@@ -17,6 +17,8 @@ export function Workbench({ onServed }: { onServed?: () => void }) {
   const feats = featuresAtStage(data, progress.stage);
   const canServe = progress.today?.phase === 'order';
   const inCup = (Object.keys(brew.counts) as IngredientId[]).filter((k) => (brew.counts[k] ?? 0) > 0);
+  // A full shelf (late game: 20+ items) uses smaller tiles so more of it fits above the dock.
+  const dense = shelf.length > 12;
   const label = (ing: IngredientId) => {
     const id = ingredientWordId(data, ing);
     return id ? wordMarkup(data, id) : ing;
@@ -24,7 +26,7 @@ export function Workbench({ onServed }: { onServed?: () => void }) {
 
   return (
     <div className="workbench">
-      <div className="shelf" role="list">
+      <div className={`shelf ${dense ? 'shelf-dense' : ''}`} role="list">
         {shelf.map((ing) => {
           const n = brew.counts[ing] ?? 0;
           // Today's stock from the market (undefined = plenty).
@@ -44,7 +46,7 @@ export function Workbench({ onServed }: { onServed?: () => void }) {
                 onClick={() => g.addIngredient(ing, 1)}
                 aria-label="一つ入れる"
               >
-                <IngredientIcon id={ing} size={44} />
+                <IngredientIcon id={ing} size={dense ? 34 : 44} />
                 <span className="shelf-label">
                   <WordText text={label(ing)} interactive={false} />
                 </span>
@@ -62,75 +64,78 @@ export function Workbench({ onServed }: { onServed?: () => void }) {
         })}
       </div>
 
-      <div className="bench-row">
-        <div className="cup" aria-label="カップの中身">
-          <div className="cup-title small muted">カップ</div>
-          <div className={`cup-body ${brew.temp ? `cup-${brew.temp}` : ''}`}>
-            {inCup.length === 0 ? <span className="muted small">（空）</span> : null}
-            {inCup.map((ing) => (
-              <span key={ing} className="cup-item">
-                <IngredientIcon id={ing} size={28} />
-                <span className="cup-n">×{brew.counts[ing]}</span>
-              </span>
-            ))}
+      {/* Cup, temperature / method and the serve button stay in view while the shelf scrolls. */}
+      <div className="bench-dock">
+        <div className="bench-row">
+          <div className="cup" aria-label="カップの中身">
+            <div className="cup-title small muted">カップ</div>
+            <div className={`cup-body ${brew.temp ? `cup-${brew.temp}` : ''}`}>
+              {inCup.length === 0 ? <span className="muted small">（空）</span> : null}
+              {inCup.map((ing) => (
+                <span key={ing} className="cup-item">
+                  <IngredientIcon id={ing} size={28} />
+                  <span className="cup-n">×{brew.counts[ing]}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="bench-controls">
+            {feats.has('temperature') ? (
+              <div className="seg" role="group" aria-label="温度">
+                {(['hot', 'cold'] as Temp[]).map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    className={`seg-btn ${brew.temp === t ? 'seg-on' : ''}`}
+                    aria-pressed={brew.temp === t}
+                    data-temp={t}
+                    onClick={() => g.setTemp(brew.temp === t ? null : t)}
+                    disabled={!canServe}
+                  >
+                    <span aria-hidden>{TEMP_ICON[t]}</span>
+                    <WordText text={wordMarkup(data, data.content.temperatureWords[t])} interactive={false} />
+                  </button>
+                ))}
+              </div>
+            ) : null}
+            {feats.has('method') ? (
+              <div className="seg" role="group" aria-label="作り方">
+                {(['steep', 'boil', 'stir'] as Method[]).map((m) => (
+                  <button
+                    key={m}
+                    type="button"
+                    className={`seg-btn ${brew.method === m ? 'seg-on' : ''}`}
+                    aria-pressed={brew.method === m}
+                    data-method={m}
+                    onClick={() => g.setMethod(brew.method === m ? null : m)}
+                    disabled={!canServe}
+                  >
+                    <span aria-hidden>{METHOD_ICON[m]}</span>
+                    <WordText text={wordMarkup(data, data.content.methodWords[m])} interactive={false} />
+                  </button>
+                ))}
+              </div>
+            ) : null}
           </div>
         </div>
 
-        <div className="bench-controls">
-          {feats.has('temperature') ? (
-            <div className="seg" role="group" aria-label="温度">
-              {(['hot', 'cold'] as Temp[]).map((t) => (
-                <button
-                  key={t}
-                  type="button"
-                  className={`seg-btn ${brew.temp === t ? 'seg-on' : ''}`}
-                  aria-pressed={brew.temp === t}
-                  data-temp={t}
-                  onClick={() => g.setTemp(brew.temp === t ? null : t)}
-                  disabled={!canServe}
-                >
-                  <span aria-hidden>{TEMP_ICON[t]}</span>
-                  <WordText text={wordMarkup(data, data.content.temperatureWords[t])} interactive={false} />
-                </button>
-              ))}
-            </div>
-          ) : null}
-          {feats.has('method') ? (
-            <div className="seg" role="group" aria-label="作り方">
-              {(['steep', 'boil', 'stir'] as Method[]).map((m) => (
-                <button
-                  key={m}
-                  type="button"
-                  className={`seg-btn ${brew.method === m ? 'seg-on' : ''}`}
-                  aria-pressed={brew.method === m}
-                  data-method={m}
-                  onClick={() => g.setMethod(brew.method === m ? null : m)}
-                  disabled={!canServe}
-                >
-                  <span aria-hidden>{METHOD_ICON[m]}</span>
-                  <WordText text={wordMarkup(data, data.content.methodWords[m])} interactive={false} />
-                </button>
-              ))}
-            </div>
-          ) : null}
+        <div className="bench-actions">
+          <button type="button" className="btn" onClick={() => g.clearBrew()} disabled={!canServe}>
+            やり直す
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary btn-big serve-btn"
+            disabled={!canServe}
+            onClick={() => {
+              g.serveBrew();
+              onServed?.();
+            }}
+          >
+            出す
+          </button>
         </div>
-      </div>
-
-      <div className="bench-actions">
-        <button type="button" className="btn" onClick={() => g.clearBrew()} disabled={!canServe}>
-          やり直す
-        </button>
-        <button
-          type="button"
-          className="btn btn-primary btn-big serve-btn"
-          disabled={!canServe}
-          onClick={() => {
-            g.serveBrew();
-            onServed?.();
-          }}
-        >
-          出す
-        </button>
       </div>
     </div>
   );

@@ -223,6 +223,6 @@ export function authoredInstance(data: GameData, o: AuthoredOrder): OrderInstanc
     audioOnly: !!o.audioOnly,
     customer: o.customer ?? '',
     recipe: o.recipe,
-    symptom: !!recipe?.symptoms?.length && !o.text.includes(data.content.recipeNames[o.recipe!] ?? '\u0000'),
+    symptom: !!recipe?.symptoms?.length && !o.text.toLowerCase().includes((data.content.recipeNames[o.recipe!] ?? '\u0000').toLowerCase()),
   };
 }

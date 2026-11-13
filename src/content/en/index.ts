@@ -32,14 +32,15 @@ const content: LanguageContent = {
     ...INGREDIENTS2,
   ],
 
+  // Lowercase: templates write {Recipe} sentence-initially and {recipe} mid-sentence.
   recipeNames: {
-    ginger_honey: 'Ginger honey tea',
-    honey_lemon: 'Honey lemon tea',
-    mint_green: 'Mint green tea',
-    chrysanthemum_dates: 'Chrysanthemum and red date tea',
-    ginger_dates: 'Ginger and red date tea',
-    cinnamon_milk_tea: 'Cinnamon milk tea',
-    chrysanthemum_green: 'Chrysanthemum green tea',
+    ginger_honey: 'ginger honey tea',
+    honey_lemon: 'honey lemon tea',
+    mint_green: 'mint green tea',
+    chrysanthemum_dates: 'chrysanthemum and red date tea',
+    ginger_dates: 'ginger and red date tea',
+    cinnamon_milk_tea: 'cinnamon milk tea',
+    chrysanthemum_green: 'chrysanthemum green tea',
     ...RECIPE_NAMES2,
   },
 
@@ -243,6 +244,7 @@ const content: LanguageContent = {
     { id: 't5_no', stage: 5, text: '{Q}, no {f}, please.', slots: { q: { kind: 'qty', min: 1, max: 3 }, f: { kind: 'forbid', ingredients: ['sugar', 'honey', 'ice', 'mint', 'lemon'] } } },
     { id: 't5_without', stage: 5, text: '{Ing} without {f}, please.', slots: { ing: { kind: 'ing', ingredients: ['lemon', 'ginger', 'mint', 'green_tea', 'black_tea', 'chrysanthemum'] }, f: { kind: 'forbid', ingredients: ['sugar', 'honey', 'ice', 'milk'] } } },
     { id: 't5_audio', stage: 5, text: '{Temp} {ing}, please.', audioOnly: 0.6, slots: { temp: { kind: 'temp' }, ing: { kind: 'ing' } } },
+    { id: 't6_where', stage: 6, weight: 2, text: 'Where is the {ing}? {Ing} tea, please.', slots: { ing: { kind: 'ing', ingredients: ['lemon', 'ginger', 'mint', 'chrysanthemum'] } } },
     { id: 't6_taste', stage: 6, text: '{Taste}, please. {Temp}.', slots: { taste: { kind: 'taste', tags: ['sweet', 'sour', 'bitter'] }, temp: { kind: 'temp' } } },
     { id: 't6_not_taste', stage: 6, text: '{Ing}, not {nt}, please.', slots: { ing: { kind: 'ing', tags: ['tea'] }, nt: { kind: 'notTaste', tags: ['sweet'] } } },
     { id: 't6_qty_taste', stage: 6, text: '{Q}. {Taste}, please.', slots: { q: { kind: 'qty', min: 1, max: 3 }, taste: { kind: 'taste', tags: ['sweet', 'sour'] } } },

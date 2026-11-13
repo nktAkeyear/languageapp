@@ -5,15 +5,15 @@
  */
 import type { AuthoredOrder, IngredientId, OrderRule, OrderTemplate, SlotSpec } from '../../core/types';
 import { RECIPES } from './index';
-import { NEW_RECIPES, ing } from './extension';
+import { NEW_RECIPES } from './extension';
 
-const A = ing('apple');
-const B = ing('banana');
-const W = ing('watermelon');
-const P = ing('pear');
-const R = ing('rose');
-const C = ing('coffee');
-const Y = ing('yogurt');
+const A: IngredientId = 'apple';
+const B: IngredientId = 'banana';
+const W: IngredientId = 'watermelon';
+const P: IngredientId = 'pear';
+const R: IngredientId = 'rose';
+const C: IngredientId = 'coffee';
+const Y: IngredientId = 'yogurt';
 
 const ALL_RECIPES = [...RECIPES, ...NEW_RECIPES];
 const recipeRule = (id: string): OrderRule => {
@@ -254,6 +254,7 @@ export const TEMPLATE_SPECS: TemplateSpec[] = [
   { id: 't12_big', stage: 12, slots: { q: { kind: 'qty', ingredients: ['mint', 'ice'], min: 6, max: 10 } } },
   { id: 't12_little', stage: 12, slots: { ing: { kind: 'ing', ingredients: ['honey', 'sugar', 'lemon', 'ginger'], max: 1 } } },
   { id: 't12_lot', stage: 12, rule: { require: [{ ing: 'mint', min: 4, max: 10 }] }, slots: {} },
+  { id: 't12_enough', stage: 12, slots: { q: { kind: 'qty', ingredients: ['honey', 'sugar'], min: 1, max: 2 } } },
   { id: 't13_morning', stage: 13, audio: 0.3, slots: { ing: { kind: 'ing', ingredients: TEA_ING } } },
   { id: 't13_evening', stage: 13, rule: { forbidTag: ['tea'] }, slots: { ing: { kind: 'ing', ingredients: NON_TEA } } },
   {
@@ -293,11 +294,11 @@ export const TEMPLATE_SPECS: TemplateSpec[] = [
   { id: 't21_except', stage: 21, rule: { requireTag: [{ tag: 'tea' }] }, slots: { f: { kind: 'forbid', ingredients: ['green_tea', 'black_tea'] } } },
   { id: 't21_instead', stage: 21, slots: { ing: { kind: 'ing', ingredients: ['honey', 'sugar', 'lemon'] }, f: { kind: 'forbid', ingredients: ['honey', 'sugar'] } } },
   { id: 't22_every', stage: 22, audio: 0.3, slots: { ing: { kind: 'ing', ingredients: ['green_tea', 'black_tea', 'chrysanthemum', 'ginger'] }, temp: { kind: 'temp' } } },
-  { id: 't22_never', stage: 22, slots: { f: { kind: 'forbid', ingredients: ['coffee', 'milk', 'sugar', 'honey', 'ice'].map(ing) }, ing: { kind: 'ing', ingredients: ['green_tea', 'black_tea', 'ginger', 'chrysanthemum'] } } },
+  { id: 't22_never', stage: 22, slots: { f: { kind: 'forbid', ingredients: ['coffee', 'milk', 'sugar', 'honey', 'ice'] }, ing: { kind: 'ing', ingredients: ['green_tea', 'black_tea', 'ginger', 'chrysanthemum'] } } },
   { id: 't23_would', stage: 23, audio: 0.3, slots: { q: { kind: 'qty', min: 1, max: 3 } } },
   { id: 't23_think', stage: 23, slots: { q: { kind: 'qty', min: 1, max: 3 } } },
   { id: 't23_maybe', stage: 23, slots: { ing: { kind: 'ing', ingredients: ['ginger', 'lemon', 'mint', 'honey', 'chrysanthemum', 'green_tea', 'black_tea'] } } },
-  { id: 't23_actually', stage: 23, slots: { temp: { kind: 'temp' }, ing: { kind: 'ing', ingredients: ['mint', 'lemon', 'ginger', 'chrysanthemum', 'apple'].map(ing) } } },
+  { id: 't23_actually', stage: 23, slots: { temp: { kind: 'temp' }, ing: { kind: 'ing', ingredients: ['mint', 'lemon', 'ginger', 'chrysanthemum', 'apple'] } } },
 ];
 
 /** Build OrderTemplate[] for one language from `texts` (template id -> text). */

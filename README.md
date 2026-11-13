@@ -92,6 +92,9 @@ the editor and in `npm run build`). After any change run `npm run validate-conte
 - **stages** — the unlock schedule: `{ stage, minDay, minReputation, ingredients[], features?, customersPerDay, newWordsPerDay, noteJa }`.
   Features: `temperature`, `method`, `audioOnly`. A stage opens when `day ≥ minDay` and
   `reputation ≥ minReputation`, or anyway `graceDays` after `minDay` (no hard gates).
+  Thresholds are calibrated to the reputation deltas below: about 2.5 points a day early on,
+  then 25 at day 11 plus 3.5 a day (stage 23 needs 123 on day 39), so a player who gets most
+  cups right is never held back and one who fails about half waits for the grace days.
 
 ### Per language (`src/content/{en,zh}/`)
 
@@ -104,7 +107,7 @@ the editor and in `npm run build`). After any change run `npm run validate-conte
   `steep|boil|stir` and taste tags to lexicon ids (used by templates, reactions and workbench labels).
 - **ingredients** — `{ ingredient, word, qty?: { one?, other } }`. `qty` patterns use `{n}` for the
   number word: en `'{n} ginger slices'`, zh `'{n}片姜'`. Required when `qtyOrderable`.
-- **recipeNames**, **symptoms** (`{ symptom, phrases[] }`, whole sentences).
+- **recipeNames** (en lowercase: `{Recipe}` capitalises at a sentence start, `{recipe}` stays lowercase mid-sentence), **symptoms** (`{ symptom, phrases[] }`, whole sentences).
 - **pages** — recipe book: `{ id, stage, kind: ingredient|recipe|note, ingredient?, recipe?, title, illustration?, lines: [{ text, icon?, style? }] }`.
 - **customers** — `{ id, name (target language), avatar (emoji), stage }`.
 - **orders** (authored, the curriculum spine) — `{ id, stage, seq?, customer?, text, audioOnly?, rule | recipe }`.
@@ -136,8 +139,8 @@ the editor and in `npm run build`). After any change run `npm run validate-conte
 
 Anything else in the cup is an "extra". The most important issue picks the reaction
 (priority: empty > forbidden > wrong ingredient > missing > extra > temperature > quantity > method).
-Outcome: perfect (+3 rep), minor (only quantities/method off by one, ±0), fail (−1),
-bad (forbidden ingredient, −2). Non-perfect customers come back on a later day.
+Outcome: perfect (+1 rep, +2 for a returning customer), minor (only quantities/method off by one,
+±0), fail (−1), bad (forbidden ingredient, −2). Non-perfect customers come back on a later day.
 
 ### Text and tokens
 
@@ -193,7 +196,12 @@ edited independently of the shop content; `src/content/index.ts` merges each lan
 
 ### Per language (`src/content/{en,zh}/town.ts`, `TownContent`)
 
-- **lexicon.town.ts**: `TOWN_LEXICON` (same `LexEntry` schema, own 検証ページ groups) + `TOWN_PAGES`.
+- **lexicon.town.ts**: `TOWN_LEXICON` (same `LexEntry` schema) + `TOWN_PAGES`. A word the shop
+  lexicon already has (numbers, colours, family, today, before / after, zh 多少 / 家 / 在 …) is
+  **not** repeated: town texts use the shop id. Town words may join shop 検証ページ (e.g. en
+  `we` → `g10b`, `blue` / zh 蓝 → `g18a`) as long as every page keeps 3–5 words. A town word whose
+  surface collides with a shop word of another meaning gets its own id and markup everywhere
+  (en `{right|right_side}`, zh `{块|kuai_money}`).
 - **numberText**: `n → number words` for 1–100 (generated in market.ts: en "twenty-three",
   zh 二十三, standalone 2 = 两). Numbers missing from the table are never generated.
 - **colourWords**: colour → lexicon id.
@@ -215,7 +223,8 @@ edited independently of the shop content; `src/content/index.ts` merges each lan
   avoided_person wrong_knock wrong_absent any_fail` (`{p}` / `{q}` = the persons on the slip).
 
 Several phrasings per slot are welcome: the engine picks the one whose words are most due for
-review (hidden SRS), so review keeps working inside the town activities.
+review (hidden SRS), with a small nudge for a phrasing that introduces one new word, so review
+keeps working inside the town activities and rarer phrasings still get heard.
 
 ### Rules and consequences
 
@@ -224,10 +233,12 @@ review (hidden SRS), so review keeps working inside the town activities.
   What is bought becomes the shop's stock (shown on the shelf as 残りN / 品切れ), used up portion
   by portion; a customer whose order needs more than is left says so (`stockReactions`, −1 rep).
   Payment: exact → thanks; too little → refused and the total repeated; too much → kept by the
-  vendor (before `change`), change given (≤ `changeLimit`) or refused. Shop cups earn coins.
+  vendor (before `change`), change given (≤ `changeLimit`) or refused. Shop cups earn coins
+  (`income`; an unhappy customer still pays 1). Goods not in `goods` (water, ice, salt, the teas,
+  cinnamon) are always in stock.
 - **Delivery**: evaluated at the door. Priority: wrong place > too early / too late / wrong time >
   handed to the person to avoid (bad, −2) > wrong person > wrong absence handling > wrong knock
-  (minor, ±0). Perfect: +3 rep and a tip; other failures −1. Failed curriculum slips come back.
+  (minor, ±0). Perfect: +2 rep and a tip; other failures −1. Failed curriculum slips come back.
 - **SRS**: notes, vendor lines, price tags, slips, map signs and reactions count as encounters;
   a covered note line / exact payment / perfect delivery counts as correct use of its words; a
   mistake lapses the words of the line it concerns (the note line, the quote's numbers, the slip

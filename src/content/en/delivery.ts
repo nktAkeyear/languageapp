@@ -18,7 +18,7 @@ export const DELIVERY: DeliveryText = {
     behind: ['The house behind the {p}.'],
     across: ['The house across from the {p}.'],
     left: ['The house to the left of the {p}.'],
-    right: ['The house to the right of the {p}.'],
+    right: ['The house to the {right|right_side} of the {p}.'],
   },
   time: {
     period: {
@@ -50,6 +50,7 @@ export const DELIVERY: DeliveryText = {
     { id: 'd_ok1', kind: 'perfect', level: 1, text: 'Thank you!', face: 'happy' },
     { id: 'd_ok2', kind: 'perfect', level: 1, text: 'Oh, thank you! Very good!', face: 'delighted' },
     { id: 'd_ok3', kind: 'perfect', level: 2, text: 'Perfect! Thank you!', face: 'delighted' },
+    { id: 'd_ok4', kind: 'perfect', level: 2, text: 'We love your tea! Thank you!', face: 'delighted' },
     { id: 'd_ok_door', kind: 'perfect_absent', level: 4, text: 'Oh, my tea is at the door! Thank you!', face: 'delighted' },
     { id: 'd_place1', kind: 'wrong_place', level: 1, text: 'This is not my house!', face: 'puzzled' },
     { id: 'd_place2', kind: 'wrong_place', level: 2, text: 'No, no! Not this house!', face: 'puzzled' },

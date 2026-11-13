@@ -10,7 +10,12 @@ export interface ChosenReaction {
   face: Face;
 }
 
-export const REP_DELTA: Record<Outcome, number> = { perfect: 3, minor: 0, fail: -1, bad: -2 };
+/**
+ * Reputation change per shop customer (a returning customer served perfectly adds +1 more).
+ * Kept small so reputation tracks the stage thresholds in content (about 3–5 points a day for a
+ * player who gets most cups right) instead of growing into the thousands.
+ */
+export const REP_DELTA: Record<Outcome, number> = { perfect: 1, minor: 0, fail: -1, bad: -2 };
 
 const PH = /\{(ing|Ing|tag|Tag|temp|Temp|method|Method)\}/g;
 

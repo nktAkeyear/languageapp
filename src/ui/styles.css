@@ -604,6 +604,41 @@ ruby rt {
 }
 
 /* ---------------------------------------------------------------- recipe book */
+.book-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0 8px;
+}
+.chip-btn {
+  font: inherit;
+  font-size: 0.9em;
+  background: #fffaf0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 12px;
+  min-height: 36px;
+  cursor: pointer;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.chip-btn-on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff8ef;
+}
+.chip-count {
+  font-size: 0.8em;
+  background: var(--accent-soft);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0 6px;
+}
+[data-layout='mobile'] .chip-btn {
+  min-height: 40px;
+}
 .book-index {
   list-style: none;
   padding: 0;
@@ -631,8 +666,10 @@ ruby rt {
 }
 .book-ill {
   font-size: 1.4em;
-  width: 2.2em;
+  min-width: 2.2em;
   text-align: center;
+  white-space: nowrap;
+  letter-spacing: -0.15em;
 }
 .book-index-title {
   flex: 1;
@@ -777,6 +814,15 @@ textarea {
 .wl-memo {
   font-size: 0.85em;
   color: var(--gold);
+}
+.verify-solved {
+  margin-top: 10px;
+}
+.verify-solved summary {
+  cursor: pointer;
+  padding: 8px 4px;
+  min-height: 40px;
+  color: var(--ink-soft);
 }
 .verify-list ul {
   list-style: none;
@@ -1126,13 +1172,96 @@ textarea {
   padding: 2px 2px;
 }
 
-/* keep the serve button reachable when the bench panel scrolls */
-.bench-actions {
+/* keep the cup, temperature / method and serve button reachable while the shelf scrolls */
+.bench-dock {
   position: sticky;
   bottom: -10px;
-  padding: 8px 0;
-  background: linear-gradient(rgba(251, 245, 230, 0), var(--paper-2) 30%);
+  z-index: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  grid-template-areas:
+    'cup controls'
+    'cup actions';
+  gap: 8px 10px;
+  margin: 0 -14px -10px;
+  padding: 8px 14px 10px;
+  background: var(--paper-2);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -6px 10px -8px rgba(60, 40, 20, 0.35);
 }
-[data-layout='mobile'] .bench-actions {
+.bench-dock .bench-row {
+  display: contents;
+}
+.bench-dock .cup {
+  grid-area: cup;
+  min-width: 0;
+  display: flex;
+}
+.bench-dock .cup-title {
+  display: none;
+}
+.bench-dock .cup-body {
+  flex: 1;
+  min-height: 56px;
+  border-top: 2px solid var(--ink-soft);
+  border-radius: 6px 6px 28px 28px;
+  padding: 4px 8px 8px;
+}
+.bench-dock .bench-controls {
+  grid-area: controls;
+  gap: 6px;
+}
+.bench-dock .bench-controls:empty {
+  display: none;
+}
+.bench-dock .bench-actions {
+  grid-area: actions;
+  align-self: end;
+}
+.bench-dock .seg-btn {
+  min-height: 40px;
+}
+.bench-dock .serve-btn {
+  min-width: 0;
+  flex: 1;
+}
+[data-layout='mobile'] .bench-dock {
   bottom: -12px;
+  margin: 0 -12px -12px;
+  padding: 8px 12px 12px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 6px 8px;
+}
+[data-layout='mobile'] .bench-dock .seg-btn {
+  padding: 4px 4px;
+  gap: 2px;
+  font-size: 0.9em;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.shelf-dense {
+  grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
+  gap: 6px;
+  padding: 6px;
+}
+.shelf-dense .shelf-add {
+  min-height: 64px;
+  padding: 4px 2px;
+}
+.shelf-dense .shelf-label {
+  font-size: 0.85em;
+  line-height: 1.45;
+}
+.shelf-dense .stock-chip {
+  font-size: 0.7em;
+}
+[data-layout='mobile'] .shelf-dense {
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+}
+/* focus / scrollIntoView should not hide shelf items under the sticky bench dock */
+.panel-bench {
+  scroll-padding-bottom: 170px;
+}
+[data-layout='mobile'] .mob-main:has(.bench-dock) {
+  scroll-padding-bottom: 190px;
 }

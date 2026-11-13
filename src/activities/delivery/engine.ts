@@ -7,7 +7,7 @@ import { wordMarkup, type GameData } from '../../core/gamedata';
 import { pick, shuffle, type Rng } from '../../core/rng';
 import type { LangProgress } from '../../core/save';
 import { recordEncounter, recordLapse, recordSuccess } from '../../core/srs';
-import type { Face } from '../../core/types';
+import type { Face, Outcome } from '../../core/types';
 import type {
   AbsentAction,
   DeliveryDay,
@@ -24,10 +24,11 @@ import type {
   SlipSpec,
   SlipTime,
 } from '../../core/townTypes';
-import { REP_DELTA } from '../shop/reactions';
 import { chooseText, fill, numberText, textWords, townOf, type Town } from '../town/text';
 import { clockNumber, descriptionsOf, evaluateDelivery, ruleFor, slotsFor, witnessChoice } from './rules';
 
+/** Reputation change per delivery (one a day at most, so a perfect one counts double a cup). */
+export const DELIVERY_REP_DELTA: Record<Outcome, number> = { perfect: 2, minor: 0, fail: -1, bad: -2 };
 export function deliveryLevel(d: DeliveryShared, runs: number): DeliveryLevel {
   const lv = [...d.levels].sort((a, b) => a.level - b.level);
   let cur = lv[0];
@@ -312,7 +313,7 @@ export function handOver(data: GameData, p: LangProgress, to: { person?: PersonI
       ? ['perfect']
       : ['perfect_absent', 'perfect'];
   const r = reactionFor(data, p, town, x, kinds, rng);
-  const repDelta = REP_DELTA[ev.outcome];
+  const repDelta = DELIVERY_REP_DELTA[ev.outcome];
   const tip = ev.outcome === 'perfect' ? town.shared.delivery.tip : 0;
   p.reputation = Math.max(0, p.reputation + repDelta);
   p.town.money += tip;

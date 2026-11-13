@@ -60,18 +60,20 @@ export const RECIPES: RecipeDef[] = [
 
 /**
  * Unlock schedule. Stages open when day >= minDay and reputation >= minReputation,
- * or anyway `graceDays` after minDay (no hard gates).
+ * or anyway `graceDays` after minDay (no hard gates). Reputation thresholds assume about
+ * 2.5 points a day early on (4–6 customers, +1 per perfect cup), so a player who gets most cups
+ * right is never held back while one who fails half of them waits for the grace days.
  */
 const BASE_STAGES: StageDef[] = [
   { stage: 1, minDay: 1, minReputation: 0, ingredients: ['lemon', 'ginger', 'mint', 'honey'], customersPerDay: 4, newWordsPerDay: 8, noteJa: '店を開けた。棚には四つの品。' },
   { stage: 2, minDay: 2, minReputation: 2, ingredients: [], customersPerDay: 5, newWordsPerDay: 6, noteJa: 'お客さんが分量を気にし始めたようだ。レシピ帳に新しいページ。' },
-  { stage: 3, minDay: 3, minReputation: 6, ingredients: ['water', 'ice'], features: ['temperature'], customersPerDay: 5, newWordsPerDay: 6, noteJa: '温度を選べるようになった。棚に二品追加。' },
-  { stage: 4, minDay: 4, minReputation: 10, ingredients: ['sugar'], customersPerDay: 5, newWordsPerDay: 5, noteJa: '棚に新しい品。注文が少し長くなってきた。' },
-  { stage: 5, minDay: 5, minReputation: 15, ingredients: ['green_tea'], features: ['audioOnly'], customersPerDay: 6, newWordsPerDay: 5, noteJa: '声だけで注文する常連が来るようになった。' },
-  { stage: 6, minDay: 6, minReputation: 20, ingredients: ['salt', 'black_tea'], customersPerDay: 6, newWordsPerDay: 5, noteJa: '味の好みを言うお客さんが増えた。' },
-  { stage: 7, minDay: 7, minReputation: 26, ingredients: [], customersPerDay: 6, newWordsPerDay: 6, noteJa: '体調の悪いお客さんが訪ねてくる。レシピ帳を確かめよう。' },
-  { stage: 8, minDay: 9, minReputation: 32, ingredients: ['red_dates', 'chrysanthemum'], customersPerDay: 6, newWordsPerDay: 6, noteJa: '棚に新しい品。レシピ帳にもページが増えた。' },
-  { stage: 9, minDay: 11, minReputation: 38, ingredients: ['milk', 'cinnamon'], features: ['method'], customersPerDay: 6, newWordsPerDay: 6, noteJa: '淹れ方（作り方）を選べるようになった。' },
+  { stage: 3, minDay: 3, minReputation: 5, ingredients: ['water', 'ice'], features: ['temperature'], customersPerDay: 5, newWordsPerDay: 6, noteJa: '温度を選べるようになった。棚に二品追加。' },
+  { stage: 4, minDay: 4, minReputation: 7, ingredients: ['sugar'], customersPerDay: 5, newWordsPerDay: 5, noteJa: '棚に新しい品。注文が少し長くなってきた。' },
+  { stage: 5, minDay: 5, minReputation: 10, ingredients: ['green_tea'], features: ['audioOnly'], customersPerDay: 6, newWordsPerDay: 5, noteJa: '声だけで注文する常連が来るようになった。' },
+  { stage: 6, minDay: 6, minReputation: 12, ingredients: ['salt', 'black_tea'], customersPerDay: 6, newWordsPerDay: 5, noteJa: '味の好みを言うお客さんが増えた。' },
+  { stage: 7, minDay: 7, minReputation: 15, ingredients: [], customersPerDay: 6, newWordsPerDay: 6, noteJa: '体調の悪いお客さんが訪ねてくる。レシピ帳を確かめよう。' },
+  { stage: 8, minDay: 9, minReputation: 20, ingredients: ['red_dates', 'chrysanthemum'], customersPerDay: 6, newWordsPerDay: 6, noteJa: '棚に新しい品。レシピ帳にもページが増えた。' },
+  { stage: 9, minDay: 11, minReputation: 25, ingredients: ['milk', 'cinnamon'], features: ['method'], customersPerDay: 6, newWordsPerDay: 6, noteJa: '淹れ方（作り方）を選べるようになった。' },
 ];
 
 export const STAGES: StageDef[] = [...BASE_STAGES, ...NEW_STAGES];

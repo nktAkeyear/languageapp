@@ -12,7 +12,7 @@ export const TOWN_SHARED: TownShared = {
     // Around shop stages 4–5 in the Phase 1 schedule: numbers 1–5 and "and / please" are familiar.
     unlock: {
       minDay: 5,
-      minReputation: 15,
+      minReputation: 10,
       graceDays: 3,
       chance: 0.55,
       maxGap: 2,
@@ -34,6 +34,16 @@ export const TOWN_SHARED: TownShared = {
       { ingredient: 'milk', portionsPerUnit: 3, price: 7, variants: ['fresh', 'old'], stalls: ['yellow', 'blue'] },
       { ingredient: 'red_dates', portionsPerUnit: 6, price: 8, stalls: ['red'] },
       { ingredient: 'chrysanthemum', portionsPerUnit: 6, price: 7, stalls: ['green'] },
+      // Shop stages 10–20 (from ~day 13): fruit at the red stall, roses with the herbs, coffee and
+      // yogurt with the dairy. Dearer goods put teens and tens into the vendors' totals.
+      { ingredient: 'apple', portionsPerUnit: 4, price: 4, variants: ['fresh', 'old'], stalls: ['red', 'blue'] },
+      { ingredient: 'banana', portionsPerUnit: 5, price: 6, stalls: ['red', 'yellow'] },
+      { ingredient: 'watermelon', portionsPerUnit: 8, price: 15, variants: ['small', 'big'], stalls: ['red'] },
+      { ingredient: 'pear', portionsPerUnit: 1, price: 3, stalls: ['red', 'blue'] },
+      { ingredient: 'rose', portionsPerUnit: 6, price: 12, stalls: ['green'] },
+      { ingredient: 'coffee', portionsPerUnit: 8, price: 14, stalls: ['yellow', 'blue'] },
+      { ingredient: 'yogurt', portionsPerUnit: 2, price: 5, variants: ['fresh', 'old'], stalls: ['yellow'] },
+      // Not sold at the market (always in stock): water, ice, salt, green / black tea, cinnamon.
     ],
     stalls: [
       { id: 'red', colour: 'red', vendor: '👨‍🌾', icon: '🍎' },
@@ -49,7 +59,8 @@ export const TOWN_SHARED: TownShared = {
     ],
     coins: [1, 5, 10, 50],
     startMoney: 40,
-    income: { perfect: 3, minor: 2, fail: 0, bad: 0 },
+    // An unhappy customer still pays a little (fail: 1) so a struggling player does not run dry.
+    income: { perfect: 3, minor: 2, fail: 1, bad: 0 },
     changeLimit: 10,
   },
 
@@ -57,7 +68,7 @@ export const TOWN_SHARED: TownShared = {
     // Around shop stage 9 in the Phase 1 schedule (late A1).
     unlock: {
       minDay: 9,
-      minReputation: 38,
+      minReputation: 20,
       graceDays: 3,
       chance: 0.6,
       maxGap: 2,
@@ -121,6 +132,7 @@ export const TOWN_SHARED: TownShared = {
       { id: 'd2_across_harbour', level: 2, seq: 2, dest: { rel: 'across', landmark: 'harbour' }, time: { kind: 'at', hour: 10 } },
       { id: 'd3_next_inn', level: 3, seq: 1, dest: { rel: 'next_to', landmark: 'inn' }, time: { kind: 'period', period: 'morning' }, give: 'mother', knocks: 2 },
       { id: 'd3_left_market', level: 3, seq: 2, dest: { rel: 'left', landmark: 'market' }, time: { kind: 'at', hour: 19 }, give: 'grandmother' },
+      { id: 'd3_right_bank', level: 3, seq: 3, dest: { rel: 'right', landmark: 'bank' }, time: { kind: 'period', period: 'afternoon' }, give: 'child', knocks: 2 },
       { id: 'd4_behind_hospital', level: 4, seq: 1, dest: { rel: 'behind', landmark: 'hospital' }, time: { kind: 'after', hour: 16 }, give: 'father', avoid: 'child', knocks: 3 },
       { id: 'd4_across_bridge', level: 4, seq: 2, dest: { rel: 'across', landmark: 'bridge' }, time: { kind: 'before', hour: 11 }, absent: 'door', home: false },
     ],

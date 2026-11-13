@@ -3,19 +3,18 @@
  * shared/curriculum.ts; this file is the Chinese text only.
  */
 import type { BookPage, Customer, IngredientText, PageLine, Reaction, SymptomText } from '../../core/types';
-import { ing, sym } from '../shared/extension';
 
 export const NUMBERS2: Record<number, string> = { 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten' };
 export const TAG_WORDS2 = { warming: 'warm', cooling: 'cool' } as const;
 
 export const INGREDIENTS2: IngredientText[] = [
-  { ingredient: ing('apple'), word: 'apple', qty: { other: '{n}片苹果' } },
-  { ingredient: ing('banana'), word: 'banana', qty: { other: '{n}根香蕉' } },
-  { ingredient: ing('watermelon'), word: 'watermelon', qty: { other: '{n}块西瓜' } },
-  { ingredient: ing('pear'), word: 'pear', qty: { other: '{n}个梨' } },
-  { ingredient: ing('rose'), word: 'rose', qty: { other: '{n}朵玫瑰' } },
-  { ingredient: ing('coffee'), word: 'coffee', qty: { other: '{n}勺咖啡' } },
-  { ingredient: ing('yogurt'), word: 'yogurt' },
+  { ingredient: 'apple', word: 'apple', qty: { other: '{n}片苹果' } },
+  { ingredient: 'banana', word: 'banana', qty: { other: '{n}根香蕉' } },
+  { ingredient: 'watermelon', word: 'watermelon', qty: { other: '{n}块西瓜' } },
+  { ingredient: 'pear', word: 'pear', qty: { other: '{n}个梨' } },
+  { ingredient: 'rose', word: 'rose', qty: { other: '{n}朵玫瑰' } },
+  { ingredient: 'coffee', word: 'coffee', qty: { other: '{n}勺咖啡' } },
+  { ingredient: 'yogurt', word: 'yogurt' },
 ];
 
 export const RECIPE_NAMES2: Record<string, string> = {
@@ -32,10 +31,10 @@ export const RECIPE_NAMES2: Record<string, string> = {
 };
 
 export const SYMPTOMS2: SymptomText[] = [
-  { symptom: sym('cough'), phrases: ['我咳嗽。', '我咳嗽了……'] },
-  { symptom: sym('headache'), phrases: ['我头疼。', '我头很疼。'] },
-  { symptom: sym('stomachache'), phrases: ['我肚子疼。', '我肚子很疼。'] },
-  { symptom: sym('thirsty'), phrases: ['我渴了。', '我很渴。'] },
+  { symptom: 'cough', phrases: ['我咳嗽。', '我咳嗽了……'] },
+  { symptom: 'headache', phrases: ['我头疼。', '我头很疼。'] },
+  { symptom: 'stomachache', phrases: ['我肚子疼。', '我肚子很疼。'] },
+  { symptom: 'thirsty', phrases: ['我渴了。', '我很渴。'] },
 ];
 
 export const CUSTOMERS2: Customer[] = [
@@ -165,7 +164,7 @@ export const ORDER_TEXTS: Record<string, string> = {
   o20_cough: '咳嗽喝什么好？',
   o20_throat: '嗓子疼喝什么好？',
   o20_yogurt: '你有酸奶吗？要冰的。',
-  o20_there: '有蜂蜜吗？请给我两勺。',
+  o20_there: '蜂蜜呢？有蜂蜜吗？请给我两勺。',
   o20_here: '请给我绿茶。我想在这儿喝。',
   o20_when: '我累的时候，要喝薄荷绿茶。',
   o20_howmany: '要几片姜？两片，和一勺蜂蜜，热的。',
@@ -219,6 +218,7 @@ export const TEMPLATE_TEXTS: Record<string, string> = {
   t12_big: '请给我{q}。',
   t12_little: '要一点儿{ing}。',
   t12_lot: '要很多薄荷。',
+  t12_enough: '{q}够了，不要太多。',
   t13_morning: '早上好！请给我{ing}。',
   t13_evening: '晚上好！要{ing}，不要茶。',
   t13_yesterday: '昨天我喝了{f}茶。今天我要{ing}茶。',
@@ -270,7 +270,7 @@ export const PAGES2: BookPage[] = [
     id: 'p_you', stage: 10, kind: 'note', title: '你和我', illustration: '🧑‍🤝‍🧑',
     lines: [L('你。', '👉🙂'), L('您。', '🎩'), L('你的茶。', '👉🍵'), L('我。', '🙋'), L('我的朋友。', '🧑‍🤝‍🧑'), L('你有薄荷吗？', '🙂🌿❔')],
   },
-  { id: 'p_apple', stage: 10, kind: 'ingredient', ingredient: ing('apple'), title: '苹果', illustration: '🍎', lines: [L('甜。', '🍬'), L('苹果是水果。', '🍎🍇'), L('苹果和红茶，很好喝。', '🫖')] },
+  { id: 'p_apple', stage: 10, kind: 'ingredient', ingredient: 'apple', title: '苹果', illustration: '🍎', lines: [L('甜。', '🍬'), L('苹果是水果。', '🍎🍇'), L('苹果和红茶，很好喝。', '🫖')] },
   {
     id: 'p_apple_tea', stage: 10, kind: 'recipe', recipe: 'apple_tea', title: '苹果茶', illustration: '🍎🫖',
     lines: [L('两片苹果', '🍎', 'item'), L('一勺红茶', '🫖', 'item'), L('热的。', '🔥', 'item'), L('和朋友喝，很好喝。', '🧑‍🤝‍🧑')],
@@ -284,7 +284,7 @@ export const PAGES2: BookPage[] = [
     id: 'p_babies', stage: 11, kind: 'note', title: '宝宝和孩子', illustration: '👶',
     lines: [L('宝宝：不要蜂蜜！', '🍯🚫👶', 'warning'), L('孩子：不要茶！', '🍵🚫🧒', 'warning'), L('香蕉牛奶，孩子很喜欢。', '🍌🥛')],
   },
-  { id: 'p_banana', stage: 11, kind: 'ingredient', ingredient: ing('banana'), title: '香蕉', illustration: '🍌', lines: [L('甜。', '🍬'), L('香蕉和牛奶，很好喝。', '🥛')] },
+  { id: 'p_banana', stage: 11, kind: 'ingredient', ingredient: 'banana', title: '香蕉', illustration: '🍌', lines: [L('甜。', '🍬'), L('香蕉和牛奶，很好喝。', '🥛')] },
   {
     id: 'p_banana_milk', stage: 11, kind: 'recipe', recipe: 'banana_milk', title: '香蕉牛奶', illustration: '🍌🥛',
     lines: [L('一根香蕉', '🍌', 'item'), L('牛奶', '🥛', 'item'), L('冰的。', '🧊', 'item'), L('孩子喜欢。', '🧒', 'goodFor'), L('不要茶！', '🚫🍵', 'warning')],
@@ -296,6 +296,10 @@ export const PAGES2: BookPage[] = [
       L('六', '🍋🍋🍋🍋🍋🍋'), L('七', '🍋🍋🍋🍋🍋🍋🍋'), L('八', '🍋🍋🍋🍋🍋🍋🍋🍋'), L('九', '🍋🍋🍋🍋🍋🍋🍋🍋🍋'),
       L('十', '🔟'), L('二十', '2️⃣0️⃣'), L('三十', '3️⃣0️⃣'), L('四十', '4️⃣0️⃣'), L('五十', '5️⃣0️⃣'), L('一百', '💯'), L('半杯水', '☕🌗'),
     ],
+  },
+  {
+    id: 'p_numbers3', stage: 12, kind: 'note', title: '十一、十二……九十九', illustration: '🔢',
+    lines: [L('十一', '1️⃣1️⃣'), L('十二', '1️⃣2️⃣'), L('十三', '1️⃣3️⃣'), L('十四', '1️⃣4️⃣'), L('十五', '1️⃣5️⃣'), L('十六', '1️⃣6️⃣'), L('十七', '1️⃣7️⃣'), L('十八', '1️⃣8️⃣'), L('十九', '1️⃣9️⃣'), L('二十五', '2️⃣5️⃣'), L('六十', '6️⃣0️⃣'), L('七十', '7️⃣0️⃣'), L('八十', '8️⃣0️⃣'), L('九十', '9️⃣0️⃣'), L('九十九', '9️⃣9️⃣'), L('十五{块|kuai_money}。', '🪙1️⃣5️⃣')],
   },
   {
     id: 'p_amounts', stage: 12, kind: 'note', title: '一点儿，很多', illustration: '⚖️',
@@ -330,7 +334,7 @@ export const PAGES2: BookPage[] = [
     id: 'p_warmcool', stage: 14, kind: 'note', title: '暖和，凉快', illustration: '🌡️',
     lines: [L('暖和：姜、红枣、肉桂。', '🧣'), L('凉快：薄荷、冰、菊花、西瓜。', '🌬️')],
   },
-  { id: 'p_watermelon', stage: 14, kind: 'ingredient', ingredient: ing('watermelon'), title: '西瓜', illustration: '🍉', lines: [L('甜。', '🍬'), L('要冰的。', '🧊'), L('西瓜和薄荷，很好喝。', '🌿')] },
+  { id: 'p_watermelon', stage: 14, kind: 'ingredient', ingredient: 'watermelon', title: '西瓜', illustration: '🍉', lines: [L('甜。', '🍬'), L('要冰的。', '🧊'), L('西瓜和薄荷，很好喝。', '🌿')] },
   // ---- 15
   {
     id: 'p_body', stage: 15, kind: 'note', title: '我的身体', illustration: '🧍',
@@ -344,7 +348,7 @@ export const PAGES2: BookPage[] = [
     lines: [L('茶不是药。', '🍵💊', 'warning'), L('休息。喝热水。', '🛌☕'), L('很不舒服？看医生。', '🧑‍⚕️', 'warning')],
   },
   { id: 'p_eyes', stage: 15, kind: 'note', title: '眼睛累了', illustration: '👁️', lines: [L('眼睛累的时候，喝菊花绿茶。', '👁️🌼🍵', 'goodFor')] },
-  { id: 'p_pear', stage: 15, kind: 'ingredient', ingredient: ing('pear'), title: '梨', illustration: '🍐', lines: [L('甜。', '🍬'), L('梨和蜂蜜，很好喝。', '🍯'), L('要煮。', '🍲')] },
+  { id: 'p_pear', stage: 15, kind: 'ingredient', ingredient: 'pear', title: '梨', illustration: '🍐', lines: [L('甜。', '🍬'), L('梨和蜂蜜，很好喝。', '🍯'), L('要煮。', '🍲')] },
   {
     id: 'p_pear_honey', stage: 15, kind: 'recipe', recipe: 'pear_honey', title: '蜂蜜梨茶', illustration: '🍐🍯',
     lines: [L('一个梨', '🍐', 'item'), L('一勺蜂蜜', '🍯', 'item'), L('煮十分钟。', '🍲⏱️', 'step'), L('热的。', '🔥', 'item'), L('咳嗽的时候喝。', '😷', 'goodFor')],
@@ -397,7 +401,7 @@ export const PAGES2: BookPage[] = [
       L('一样。', '🟰'), L('不同的茶。', '↔️'), L('我的好朋友。', '🧑‍🤝‍🧑🏆'),
     ],
   },
-  { id: 'p_rose', stage: 18, kind: 'ingredient', ingredient: ing('rose'), title: '玫瑰', illustration: '🌹', lines: [L('红花。', '🌹'), L('玫瑰和红茶，很好喝。', '🫖')] },
+  { id: 'p_rose', stage: 18, kind: 'ingredient', ingredient: 'rose', title: '玫瑰', illustration: '🌹', lines: [L('红花。', '🌹'), L('玫瑰和红茶，很好喝。', '🫖')] },
   {
     id: 'p_rose_tea', stage: 18, kind: 'recipe', recipe: 'rose_tea', title: '玫瑰茶', illustration: '🌹🫖',
     lines: [L('两朵玫瑰', '🌹', 'item'), L('一勺红茶', '🫖', 'item'), L('泡三分钟。', '⏳', 'step'), L('热的。', '🔥', 'item')],
@@ -408,7 +412,7 @@ export const PAGES2: BookPage[] = [
     lines: [L('做', '🛠️'), L('买东西', '🛒'), L('吃', '🍴'), L('去', '🏃'), L('等', '🕰️'), L('试', '🧪'), L('帮', '🛟'), L('工作', '💼'), L('带', '👜'), L('走', '🚶‍♂️'), L('回家', '↩️🏠')],
   },
   {
-    id: 'p_coffee', stage: 19, kind: 'ingredient', ingredient: ing('coffee'), title: '咖啡', illustration: '☕',
+    id: 'p_coffee', stage: 19, kind: 'ingredient', ingredient: 'coffee', title: '咖啡', illustration: '☕',
     lines: [L('苦。', '😣'), L('孩子不要喝。', '🧒🚫', 'warning'), L('晚上别喝。', '🌙🚫', 'warning'), L('咖啡和牛奶，很好喝。', '🥛')],
   },
   {
@@ -420,7 +424,7 @@ export const PAGES2: BookPage[] = [
     id: 'p_questions', stage: 20, kind: 'note', title: '什么？谁？为什么？', illustration: '❔',
     lines: [L('什么？', '❔'), L('谁？', '🕵️'), L('哪个？', '🔍'), L('为什么？', '🤔'), L('什么时候？', '🕒'), L('怎么做？', '🔧'), L('怎么样？', '💡'), L('几片？', '🍋🍋🍋❔'), L('这儿。', '📍'), L('哪儿？', '📌'), L('蜂蜜还是糖？', '🍯🔀🍬'), L('那是什么？', '🫳')],
   },
-  { id: 'p_yogurt', stage: 20, kind: 'ingredient', ingredient: ing('yogurt'), title: '酸奶', illustration: '🥣', lines: [L('酸。', '😖'), L('要冰的。', '🧊'), L('酸奶和苹果，很好喝。', '🍎')] },
+  { id: 'p_yogurt', stage: 20, kind: 'ingredient', ingredient: 'yogurt', title: '酸奶', illustration: '🥣', lines: [L('酸。', '😖'), L('要冰的。', '🧊'), L('酸奶和苹果，很好喝。', '🍎')] },
   {
     id: 'p_apple_yogurt', stage: 20, kind: 'recipe', recipe: 'apple_yogurt', title: '苹果酸奶', illustration: '🍎🥣',
     lines: [L('酸奶', '🥣', 'item'), L('一片苹果', '🍎', 'item'), L('冰的。', '🧊', 'item'), L('加蜂蜜，很好喝。', '🍯')],
@@ -450,7 +454,7 @@ export const PAGES2: BookPage[] = [
   {
     id: 'p_prices', stage: 22, kind: 'note', title: '钱，便宜，贵', illustration: '💴',
     lines: [
-      L('薄荷：两块。', '🌿🪙🪙'), L('糖：两块。', '🍬🪙🪙'), L('柠檬：三块。', '🍋🪙🪙🪙'), L('姜：四块。', '🫚🪙🪙🪙🪙'), L('蜂蜜：六块。', '🍯🪙🪙🪙🪙🪙🪙'),
+      L('柠檬：三{块|kuai_money}一个。', '🍋🪙🪙🪙'), L('薄荷：四{块|kuai_money}一把。', '🌿🪙🪙🪙🪙'), L('姜：四{块|kuai_money}一袋。', '🫚🪙🪙🪙🪙'), L('糖：六{块|kuai_money}一袋。', '🍬🪙🪙🪙🪙🪙🪙'), L('蜂蜜：九{块|kuai_money}一瓶。', '🍯🪙×9'),
       L('便宜', '🪙'), L('贵', '💎'), L('钱', '💴'), L('多少钱？', '💰❔'), L('蜂蜜比糖贵。', '🍯💎'),
     ],
   },
@@ -477,6 +481,7 @@ export const REACTIONS2: Reaction[] = [
   R('r12_hundred', 'perfect', 12, '一百！太好了！', 'delighted'),
   R('r12_little', 'too_little', 12, '再加一点儿{ing}。', 'neutral'),
   R('r12_less', 'too_much', 12, '{ing}少一点儿！', 'sad'),
+  R('r12_half', 'perfect', 12, '好喝！一半我喝，一半给妈妈。', 'delighted'),
   R('r13_tomorrow', 'perfect', 13, '谢谢！明天见！', 'happy'),
   R('r14_today', 'perfect', 14, '今天的茶很好！谢谢！', 'delighted'),
   R('r15_rest', 'perfect', 15, '谢谢，我舒服多了。我要休息。', 'delighted', { symptom: true }),

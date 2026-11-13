@@ -232,6 +232,7 @@ const content: LanguageContent = {
     { id: 't5_no', stage: 5, text: '{q}，不要{f}。', slots: { q: { kind: 'qty', min: 1, max: 3 }, f: { kind: 'forbid', ingredients: ['sugar', 'honey', 'ice', 'mint', 'lemon'] } } },
     { id: 't5_without', stage: 5, text: '{ing}，不加{f}，谢谢。', slots: { ing: { kind: 'ing', ingredients: ['lemon', 'ginger', 'mint', 'green_tea', 'black_tea', 'chrysanthemum'] }, f: { kind: 'forbid', ingredients: ['sugar', 'honey', 'ice', 'milk'] } } },
     { id: 't5_audio', stage: 5, text: '要{temp}的，加{ing}。', audioOnly: 0.6, slots: { temp: { kind: 'temp' }, ing: { kind: 'ing' } } },
+    { id: 't6_where', stage: 6, weight: 2, text: '{ing}呢？要{ing}茶。', slots: { ing: { kind: 'ing', ingredients: ['lemon', 'ginger', 'mint', 'chrysanthemum'] } } },
     { id: 't6_taste', stage: 6, text: '要{taste}的，{temp}的。', slots: { taste: { kind: 'taste', tags: ['sweet', 'sour', 'bitter'] }, temp: { kind: 'temp' } } },
     { id: 't6_not_taste', stage: 6, text: '{ing}，不要{nt}的。', slots: { ing: { kind: 'ing', tags: ['tea'] }, nt: { kind: 'notTaste', tags: ['sweet'] } } },
     { id: 't6_qty_taste', stage: 6, text: '{q}，要{taste}的。', slots: { q: { kind: 'qty', min: 1, max: 3 }, taste: { kind: 'taste', tags: ['sweet', 'sour'] } } },

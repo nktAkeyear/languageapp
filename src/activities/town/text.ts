@@ -73,7 +73,8 @@ export function textWords(data: GameData, text: string): string[] {
 
 /**
  * Choose among candidate texts the one that best serves hidden review: prefers due / weak words,
- * avoids more than `maxNew` unseen words, adds a little randomness.
+ * slightly prefers introducing a new word, avoids more than `maxNew` unseen words, adds a little
+ * randomness.
  */
 export function chooseText(data: GameData, p: LangProgress, cands: string[], rng: Rng, maxNew = 1): string | null {
   let best: { text: string; score: number } | null = null;
@@ -82,6 +83,9 @@ export function chooseText(data: GameData, p: LangProgress, cands: string[], rng
     const fresh = ids.filter((id) => !p.words[id]).length;
     let score = ids.reduce((s, id) => s + reviewWeight(p.words[id], p.day), 0) + rng() * 2;
     if (fresh > maxNew) score -= 10 * (fresh - maxNew);
+    // A phrasing that introduces a new word (within maxNew) gets a nudge; otherwise lines whose
+    // only rare word is still unseen would lose to familiar ones forever and never be heard.
+    else if (fresh > 0) score += 2;
     if (!best || score > best.score) best = { text, score };
   }
   return best?.text ?? null;

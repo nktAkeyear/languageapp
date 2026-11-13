@@ -3,39 +3,38 @@
  * shared/curriculum.ts; this file is the English text only.
  */
 import type { BookPage, Customer, IngredientText, PageLine, Reaction, SymptomText } from '../../core/types';
-import { ing, sym } from '../shared/extension';
 
 export const NUMBERS2: Record<number, string> = { 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten' };
 export const TAG_WORDS2 = { warming: 'warm', cooling: 'cool' } as const;
 
 export const INGREDIENTS2: IngredientText[] = [
-  { ingredient: ing('apple'), word: 'apple', qty: { one: 'one apple slice', other: '{n} apple slices' } },
-  { ingredient: ing('banana'), word: 'banana', qty: { one: 'one banana', other: '{n} bananas' } },
-  { ingredient: ing('watermelon'), word: 'watermelon', qty: { one: 'one watermelon slice', other: '{n} watermelon slices' } },
-  { ingredient: ing('pear'), word: 'pear', qty: { one: 'one pear', other: '{n} pears' } },
-  { ingredient: ing('rose'), word: 'rose', qty: { one: 'one rose', other: '{n} roses' } },
-  { ingredient: ing('coffee'), word: 'coffee', qty: { one: 'one spoon of coffee', other: '{n} spoons of coffee' } },
-  { ingredient: ing('yogurt'), word: 'yogurt' },
+  { ingredient: 'apple', word: 'apple', qty: { one: 'one apple slice', other: '{n} apple slices' } },
+  { ingredient: 'banana', word: 'banana', qty: { one: 'one banana', other: '{n} bananas' } },
+  { ingredient: 'watermelon', word: 'watermelon', qty: { one: 'one watermelon slice', other: '{n} watermelon slices' } },
+  { ingredient: 'pear', word: 'pear', qty: { one: 'one pear', other: '{n} pears' } },
+  { ingredient: 'rose', word: 'rose', qty: { one: 'one rose', other: '{n} roses' } },
+  { ingredient: 'coffee', word: 'coffee', qty: { one: 'one spoon of coffee', other: '{n} spoons of coffee' } },
+  { ingredient: 'yogurt', word: 'yogurt' },
 ];
 
 export const RECIPE_NAMES2: Record<string, string> = {
-  apple_tea: 'Apple tea',
-  banana_milk: 'Banana milk',
-  honey_milk: 'Honey milk',
-  watermelon_mint: 'Watermelon and mint tea',
-  pear_honey: 'Pear and honey tea',
-  ginger_water: 'Ginger water',
-  mint_chrysanthemum: 'Mint and chrysanthemum tea',
-  rose_tea: 'Rose tea',
-  coffee_milk: 'Coffee milk',
-  apple_yogurt: 'Apple yogurt',
+  apple_tea: 'apple tea',
+  banana_milk: 'banana milk',
+  honey_milk: 'honey milk',
+  watermelon_mint: 'watermelon and mint tea',
+  pear_honey: 'pear and honey tea',
+  ginger_water: 'ginger water',
+  mint_chrysanthemum: 'mint and chrysanthemum tea',
+  rose_tea: 'rose tea',
+  coffee_milk: 'coffee milk',
+  apple_yogurt: 'apple yogurt',
 };
 
 export const SYMPTOMS2: SymptomText[] = [
-  { symptom: sym('cough'), phrases: ['I have a cough.', 'Oh... I have a cough.'] },
-  { symptom: sym('headache'), phrases: ['I have a headache.', 'My head hurts.'] },
-  { symptom: sym('stomachache'), phrases: ['My stomach hurts.', 'Oh... my stomach hurts.'] },
-  { symptom: sym('thirsty'), phrases: ["I'm thirsty.", "I'm thirsty. It's hot today."] },
+  { symptom: 'cough', phrases: ['I have a cough.', 'Oh... I have a cough.'] },
+  { symptom: 'headache', phrases: ['I have a headache.', 'My head hurts.'] },
+  { symptom: 'stomachache', phrases: ['My stomach hurts.', 'Oh... my stomach hurts.'] },
+  { symptom: 'thirsty', phrases: ["I'm thirsty.", "I'm thirsty. It's hot today."] },
 ];
 
 export const CUSTOMERS2: Customer[] = [
@@ -165,7 +164,7 @@ export const ORDER_TEXTS: Record<string, string> = {
   o20_cough: 'What is good for a cough?',
   o20_throat: 'What is good for a sore throat?',
   o20_yogurt: 'Do you have yogurt? Cold, please.',
-  o20_there: 'Is there honey? Two spoons, please.',
+  o20_there: 'Where is the honey? Is there honey? Two spoons, please.',
   o20_here: 'Green tea, please. I want to drink it here.',
   o20_when: "When I'm tired, I want mint green tea.",
   o20_howmany: 'How many ginger slices? Two. And one spoon of honey. Hot, please.',
@@ -219,6 +218,7 @@ export const TEMPLATE_TEXTS: Record<string, string> = {
   t12_big: '{Q}, please.',
   t12_little: 'A little {ing}, please.',
   t12_lot: 'A lot of mint, please.',
+  t12_enough: '{Q} is enough. Not too much, please.',
   t13_morning: 'Good morning! {Ing}, please.',
   t13_evening: 'Good evening! {Ing}, no tea, please.',
   t13_yesterday: 'Yesterday I drank {f} tea. Today I want {ing} tea.',
@@ -237,7 +237,7 @@ export const TEMPLATE_TEXTS: Record<string, string> = {
   t18_weak: 'Weak black tea, please.',
   t18_sweeter: 'Something sweeter than sugar, please.',
   t19_make: '{Recipe}. Can you make it, please?',
-  t19_try: '{Recipe}. I want to try it.',
+  t19_try: 'I want to try {recipe}.',
   t19_buy: 'I want to buy {q}.',
   t19_work: 'I work at night. {Ing}, please.',
   t20_cough: 'What is good for a cough?',
@@ -270,7 +270,7 @@ export const PAGES2: BookPage[] = [
     id: 'p_you', stage: 10, kind: 'note', title: 'You and me', illustration: '🧑‍🤝‍🧑',
     lines: [L('You.', '👉🙂'), L('Your tea.', '👉🍵'), L('Me.', '🙋'), L('Tea for me.', '🙋🍵'), L('My friend.', '🧑‍🤝‍🧑'), L('Do you have mint?', '🙂🌿❔')],
   },
-  { id: 'p_apple', stage: 10, kind: 'ingredient', ingredient: ing('apple'), title: 'Apple', illustration: '🍎', lines: [L('Sweet.', '🍬'), L('Apple is a fruit.', '🍎🍇'), L('Good with black tea.', '🫖')] },
+  { id: 'p_apple', stage: 10, kind: 'ingredient', ingredient: 'apple', title: 'Apple', illustration: '🍎', lines: [L('Sweet.', '🍬'), L('Apple is a fruit.', '🍎🍇'), L('Good with black tea.', '🫖')] },
   {
     id: 'p_apple_tea', stage: 10, kind: 'recipe', recipe: 'apple_tea', title: 'Apple tea', illustration: '🍎🫖',
     lines: [L('Two apple slices', '🍎', 'item'), L('One spoon of black tea', '🫖', 'item'), L('Hot.', '🔥', 'item'), L('Good with a friend.', '🧑‍🤝‍🧑')],
@@ -284,7 +284,7 @@ export const PAGES2: BookPage[] = [
     id: 'p_babies', stage: 11, kind: 'note', title: 'Babies and children', illustration: '👶',
     lines: [L('No honey for babies.', '🍯🚫👶', 'warning'), L('No tea for children.', '🍵🚫🧒', 'warning'), L('Banana milk is good for children.', '🍌🥛')],
   },
-  { id: 'p_banana', stage: 11, kind: 'ingredient', ingredient: ing('banana'), title: 'Banana', illustration: '🍌', lines: [L('Sweet.', '🍬'), L('Good with milk.', '🥛')] },
+  { id: 'p_banana', stage: 11, kind: 'ingredient', ingredient: 'banana', title: 'Banana', illustration: '🍌', lines: [L('Sweet.', '🍬'), L('Good with milk.', '🥛')] },
   {
     id: 'p_banana_milk', stage: 11, kind: 'recipe', recipe: 'banana_milk', title: 'Banana milk', illustration: '🍌🥛',
     lines: [L('One banana', '🍌', 'item'), L('Milk', '🥛', 'item'), L('Cold.', '🧊', 'item'), L('For children.', '🧒', 'goodFor'), L('No tea.', '🚫🍵', 'warning')],
@@ -296,6 +296,10 @@ export const PAGES2: BookPage[] = [
       L('six', '🍋🍋🍋🍋🍋🍋'), L('seven', '🍋🍋🍋🍋🍋🍋🍋'), L('eight', '🍋🍋🍋🍋🍋🍋🍋🍋'), L('nine', '🍋🍋🍋🍋🍋🍋🍋🍋🍋'),
       L('ten', '🔟'), L('twenty', '2️⃣0️⃣'), L('thirty', '3️⃣0️⃣'), L('forty', '4️⃣0️⃣'), L('fifty', '5️⃣0️⃣'), L('one hundred', '💯'),
     ],
+  },
+  {
+    id: 'p_numbers3', stage: 12, kind: 'note', title: 'Eleven, twelve … ninety-nine', illustration: '🔢',
+    lines: [L('eleven', '1️⃣1️⃣'), L('twelve', '1️⃣2️⃣'), L('thirteen', '1️⃣3️⃣'), L('fourteen', '1️⃣4️⃣'), L('fifteen', '1️⃣5️⃣'), L('sixteen', '1️⃣6️⃣'), L('seventeen', '1️⃣7️⃣'), L('eighteen', '1️⃣8️⃣'), L('nineteen', '1️⃣9️⃣'), L('twenty-five', '2️⃣5️⃣'), L('sixty', '6️⃣0️⃣'), L('seventy', '7️⃣0️⃣'), L('eighty', '8️⃣0️⃣'), L('ninety', '9️⃣0️⃣'), L('ninety-nine', '9️⃣9️⃣'), L('Fifteen coins.', '🪙1️⃣5️⃣')],
   },
   {
     id: 'p_amounts', stage: 12, kind: 'note', title: 'More and less', illustration: '⚖️',
@@ -327,7 +331,7 @@ export const PAGES2: BookPage[] = [
     id: 'p_warmcool', stage: 14, kind: 'note', title: 'Warm and cool', illustration: '🌡️',
     lines: [L('Warm: ginger, red dates, cinnamon.', '🧣'), L('Cool: mint, ice, chrysanthemum, watermelon.', '🌬️')],
   },
-  { id: 'p_watermelon', stage: 14, kind: 'ingredient', ingredient: ing('watermelon'), title: 'Watermelon', illustration: '🍉', lines: [L('Sweet.', '🍬'), L('Cold only.', '🧊'), L('Good with mint.', '🌿')] },
+  { id: 'p_watermelon', stage: 14, kind: 'ingredient', ingredient: 'watermelon', title: 'Watermelon', illustration: '🍉', lines: [L('Sweet.', '🍬'), L('Cold only.', '🧊'), L('Good with mint.', '🌿')] },
   // ---- 15
   {
     id: 'p_body', stage: 15, kind: 'note', title: 'My body', illustration: '🧍',
@@ -341,7 +345,7 @@ export const PAGES2: BookPage[] = [
     lines: [L('Tea is not medicine.', '🍵💊', 'warning'), L('Rest. Drink hot water.', '🛌☕'), L('Very sick? See a doctor.', '🧑‍⚕️', 'warning')],
   },
   { id: 'p_eyes', stage: 15, kind: 'note', title: 'Tired eyes', illustration: '👁️', lines: [L('Tired eyes? Chrysanthemum green tea.', '👁️🌼🍵', 'goodFor')] },
-  { id: 'p_pear', stage: 15, kind: 'ingredient', ingredient: ing('pear'), title: 'Pear', illustration: '🍐', lines: [L('Sweet.', '🍬'), L('Good with honey.', '🍯'), L('Boil it.', '🍲')] },
+  { id: 'p_pear', stage: 15, kind: 'ingredient', ingredient: 'pear', title: 'Pear', illustration: '🍐', lines: [L('Sweet.', '🍬'), L('Good with honey.', '🍯'), L('Boil it.', '🍲')] },
   {
     id: 'p_pear_honey', stage: 15, kind: 'recipe', recipe: 'pear_honey', title: 'Pear and honey tea', illustration: '🍐🍯',
     lines: [L('One pear', '🍐', 'item'), L('One spoon of honey', '🍯', 'item'), L('Boil for ten minutes.', '🍲⏱️', 'step'), L('Hot.', '🔥', 'item'), L('Cough? Drink this.', '😷', 'goodFor')],
@@ -394,7 +398,7 @@ export const PAGES2: BookPage[] = [
       L('The same.', '🟰'), L('A different tea.', '↔️'), L('My best friend.', '🧑‍🤝‍🧑🏆'),
     ],
   },
-  { id: 'p_rose', stage: 18, kind: 'ingredient', ingredient: ing('rose'), title: 'Rose', illustration: '🌹', lines: [L('Red flower.', '🌹'), L('Good with black tea.', '🫖')] },
+  { id: 'p_rose', stage: 18, kind: 'ingredient', ingredient: 'rose', title: 'Rose', illustration: '🌹', lines: [L('Red flower.', '🌹'), L('Good with black tea.', '🫖')] },
   {
     id: 'p_rose_tea', stage: 18, kind: 'recipe', recipe: 'rose_tea', title: 'Rose tea', illustration: '🌹🫖',
     lines: [L('Two roses', '🌹', 'item'), L('One spoon of black tea', '🫖', 'item'), L('Steep for three minutes.', '⏳', 'step'), L('Hot.', '🔥', 'item')],
@@ -405,7 +409,7 @@ export const PAGES2: BookPage[] = [
     lines: [L('make', '🛠️'), L('give', '🎁'), L('buy', '🛒'), L('take', '👜'), L('bring', '🛎️'), L('eat', '🍴'), L('go', '🏃'), L('wait', '🕰️'), L('try', '🧪'), L('help', '🛟'), L('work', '💼'), L('back', '↩️'), L('recipe', '📖')],
   },
   {
-    id: 'p_coffee', stage: 19, kind: 'ingredient', ingredient: ing('coffee'), title: 'Coffee', illustration: '☕',
+    id: 'p_coffee', stage: 19, kind: 'ingredient', ingredient: 'coffee', title: 'Coffee', illustration: '☕',
     lines: [L('Bitter.', '😣'), L('Not for children.', '🧒🚫', 'warning'), L('No coffee at night.', '🌙🚫', 'warning'), L('Good with milk.', '🥛')],
   },
   {
@@ -417,7 +421,7 @@ export const PAGES2: BookPage[] = [
     id: 'p_questions', stage: 20, kind: 'note', title: 'What? Who? Why?', illustration: '❔',
     lines: [L('What?', '❔'), L('Who?', '🕵️'), L('Which?', '🔍'), L('Why?', '🤔'), L('When?', '🕒'), L('How?', '🔧'), L('How many?', '🍋🍋🍋❔'), L('Here.', '📍'), L('There.', '📌'), L('That one.', '🫳')],
   },
-  { id: 'p_yogurt', stage: 20, kind: 'ingredient', ingredient: ing('yogurt'), title: 'Yogurt', illustration: '🥣', lines: [L('Sour.', '😖'), L('Cold only.', '🧊'), L('Good with apple.', '🍎')] },
+  { id: 'p_yogurt', stage: 20, kind: 'ingredient', ingredient: 'yogurt', title: 'Yogurt', illustration: '🥣', lines: [L('Sour.', '😖'), L('Cold only.', '🧊'), L('Good with apple.', '🍎')] },
   {
     id: 'p_apple_yogurt', stage: 20, kind: 'recipe', recipe: 'apple_yogurt', title: 'Apple yogurt', illustration: '🍎🥣',
     lines: [L('Yogurt', '🥣', 'item'), L('One apple slice', '🍎', 'item'), L('Cold.', '🧊', 'item'), L('Good with honey.', '🍯')],
@@ -447,7 +451,7 @@ export const PAGES2: BookPage[] = [
   {
     id: 'p_prices', stage: 22, kind: 'note', title: 'Prices', illustration: '💴',
     lines: [
-      L('Mint: two.', '🌿🪙🪙'), L('Sugar: two.', '🍬🪙🪙'), L('Lemon: three.', '🍋🪙🪙🪙'), L('Ginger: four.', '🫚🪙🪙🪙🪙'), L('Honey: six.', '🍯🪙🪙🪙🪙🪙🪙'),
+      L('Lemons: three coins each.', '🍋🪙🪙🪙'), L('Mint: four coins a bunch.', '🌿🪙🪙🪙🪙'), L('Ginger: four coins a bag.', '🫚🪙🪙🪙🪙'), L('Sugar: six coins a bag.', '🍬🪙🪙🪙🪙🪙🪙'), L('Honey: nine coins a jar.', '🍯🪙×9'),
       L('cheap', '🪙'), L('expensive', '💎'), L('money', '💴'), L('How much?', '💰❔'), L('Honey is more expensive than sugar.', '🍯💎'),
     ],
   },
@@ -473,6 +477,7 @@ export const REACTIONS2: Reaction[] = [
   R('r12_hundred', 'perfect', 12, 'One hundred! Perfect!', 'delighted'),
   R('r12_little', 'too_little', 12, 'A little more {ing}, please.', 'neutral'),
   R('r12_less', 'too_much', 12, 'Less {ing}, please!', 'sad'),
+  R('r12_enough', 'perfect', 12, 'Good! That is enough for me.', 'happy'),
   R('r13_tomorrow', 'perfect', 13, 'Thank you! See you tomorrow!', 'happy'),
   R('r14_today', 'perfect', 14, "It's perfect today! Thank you!", 'delighted'),
   R('r15_rest', 'perfect', 15, 'Thank you! I feel better. I rest now.', 'delighted', { symptom: true }),

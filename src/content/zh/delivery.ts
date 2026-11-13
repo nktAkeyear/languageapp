@@ -51,6 +51,7 @@ export const DELIVERY: DeliveryText = {
     { id: 'd_ok1', kind: 'perfect', level: 1, text: '谢谢！', face: 'happy' },
     { id: 'd_ok2', kind: 'perfect', level: 1, text: '太好了，谢谢！', face: 'delighted' },
     { id: 'd_ok3', kind: 'perfect', level: 2, text: '对！谢谢你！', face: 'delighted' },
+    { id: 'd_ok4', kind: 'perfect', level: 2, text: '太好了！我们全家都喜欢你的茶。', face: 'delighted' },
     { id: 'd_ok_door', kind: 'perfect_absent', level: 4, text: '茶在门口，谢谢！', face: 'delighted' },
     { id: 'd_place1', kind: 'wrong_place', level: 1, text: '这不是我家！', face: 'puzzled' },
     { id: 'd_place2', kind: 'wrong_place', level: 2, text: '送错了！', face: 'puzzled' },

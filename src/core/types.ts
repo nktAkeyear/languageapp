@@ -76,7 +76,14 @@ export type IngredientId =
   | 'milk'
   | 'red_dates'
   | 'chrysanthemum'
-  | 'cinnamon';
+  | 'cinnamon'
+  | 'apple'
+  | 'banana'
+  | 'watermelon'
+  | 'pear'
+  | 'rose'
+  | 'coffee'
+  | 'yogurt';
 
 export type Tag = 'sweet' | 'sour' | 'bitter' | 'salty' | 'tea' | 'dairy' | 'spice' | 'cooling' | 'warming' | 'floral';
 export type Temp = 'hot' | 'cold';
@@ -115,7 +122,15 @@ export interface OrderRule {
   method?: Method;
 }
 
-export type SymptomId = 'cold' | 'sore_throat' | 'tired' | 'insomnia';
+export type SymptomId =
+  | 'cold'
+  | 'sore_throat'
+  | 'tired'
+  | 'insomnia'
+  | 'cough'
+  | 'headache'
+  | 'stomachache'
+  | 'thirsty';
 
 export interface RecipeDef {
   id: string;

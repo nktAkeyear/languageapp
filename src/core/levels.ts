@@ -80,7 +80,8 @@ export function levelReport(data: GameData, p: LangProgress): LevelReport {
     examBars,
     cefrBars,
     masteredTotal: mastered.length,
-    encounteredTotal: Object.values(p.words).filter((w) => w.seen > 0).length,
+    // Ignore ids a content update removed (old saves keep their word state).
+    encounteredTotal: Object.entries(p.words).filter(([id, w]) => w.seen > 0 && data.lex.byId.has(id)).length,
     statement: statementFor(examBars),
     cefrStatement: statementFor(cefrBars, 'CEFR '),
   };

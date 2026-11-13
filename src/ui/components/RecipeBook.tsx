@@ -5,14 +5,27 @@ import { useGame } from '../useGame';
 import { SpeakButton, WordText } from './WordText';
 
 const KIND_JA: Record<BookPage['kind'], string> = { ingredient: '材料', recipe: '調合', note: '覚え書き' };
+type Filter = 'all' | BookPage['kind'] | 'unread';
+const FILTERS: [Filter, string][] = [
+  ['all', 'すべて'],
+  ['recipe', '調合'],
+  ['ingredient', '材料'],
+  ['note', '覚え書き'],
+  ['unread', '未読'],
+];
 
 /** The predecessor's recipe book, written only in the target language. */
 export function RecipeBook() {
   const g = useGame();
   const { data, progress } = g;
   const [sel, setSel] = useState<string | null>(null);
+  const [filter, setFilter] = useState<Filter>('all');
   if (!data || !progress) return null;
-  const pages = pagesAtStage(data, progress.stage);
+  const all = pagesAtStage(data, progress.stage);
+  const unread = all.filter((p) => progress.pageViews[p.id] === undefined).length;
+  // The late-game book has ~70 pages: filter by kind (◀ ▶ then step through the filtered pages).
+  const pages =
+    filter === 'all' ? all : all.filter((p) => (filter === 'unread' ? progress.pageViews[p.id] === undefined || p.id === sel : p.kind === filter));
   const cur = pages.find((p) => p.id === sel) ?? null;
   const idx = cur ? pages.indexOf(cur) : -1;
   const open = (id: string) => {
@@ -24,6 +37,23 @@ export function RecipeBook() {
     return (
       <div className="book">
         <p className="small muted">先代が残したレシピ帳。ページを開いて読んでみよう。</p>
+        {all.length > 12 ? (
+          <div className="book-filter" role="group" aria-label="ページの種類">
+            {FILTERS.map(([k, label]) => (
+              <button
+                key={k}
+                type="button"
+                className={`chip-btn ${filter === k ? 'chip-btn-on' : ''}`}
+                aria-pressed={filter === k}
+                onClick={() => setFilter(k)}
+              >
+                {label}
+                {k === 'unread' && unread ? <span className="chip-count">{unread}</span> : null}
+              </button>
+            ))}
+          </div>
+        ) : null}
+        {pages.length === 0 ? <p className="small muted">該当するページはない。</p> : null}
         <ul className="book-index">
           {pages.map((p) => (
             <li key={p.id}>

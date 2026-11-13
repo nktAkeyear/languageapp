@@ -63,7 +63,7 @@ function WordList() {
         </select>
       </div>
       <div className="small muted">
-        記録 {total} 語・確定 {confirmed} 語
+        記録 {total} 語・確定 {confirmed} 語{filter !== 'all' || q ? `・表示 ${entries.length} 語` : ''}
       </div>
       <ul className="wl">
         {entries.map(({ e, st }) => (
@@ -97,28 +97,36 @@ function VerificationList() {
   const page = data.content.verificationPages.find((p) => p.id === open);
   if (page) return <VerificationPageView page={page} onBack={() => setOpen(null)} />;
   const visible = data.content.verificationPages.filter((p) => pageWords(data, p.id).some((w) => progress.words[w.id]));
+  // Late in the game there are 70+ pages: open ones first, then the closest to opening;
+  // solved pages are folded away at the end.
+  const rows = visible.map((p) => ({ p, status: pageStatus(data, progress, p), ready: pageReadiness(data, progress, p) }));
+  const todo = rows
+    .filter((r) => r.status !== 'solved')
+    .sort((a, b) => Number(b.status === 'available') - Number(a.status === 'available') || b.ready - a.ready);
+  const solved = rows.filter((r) => r.status === 'solved');
+  const item = ({ p, status, ready }: (typeof rows)[number]) => (
+    <li key={p.id}>
+      <button type="button" className={`verify-item verify-${status}`} disabled={status === 'locked'} onClick={() => setOpen(p.id)}>
+        <span>{p.labelJa}</span>
+        <span className="small">
+          {status === 'solved' ? '✅ 確定' : status === 'available' ? '📝 検証できる' : `🔒 準備中 ${Math.round(ready * 100)}%`}
+        </span>
+      </button>
+    </li>
+  );
   return (
     <div className="verify-list">
       <p className="small muted">
         関係のありそうな言葉をまとめたページ。意味のカードに言葉を当てはめ、全部合っていれば意味が「確定」する。
         ページの言葉にそれぞれ何度か出会うと開ける。
       </p>
-      <ul>
-        {visible.map((p) => {
-          const status = pageStatus(data, progress, p);
-          const ready = pageReadiness(data, progress, p);
-          return (
-            <li key={p.id}>
-              <button type="button" className={`verify-item verify-${status}`} disabled={status === 'locked'} onClick={() => setOpen(p.id)}>
-                <span>{p.labelJa}</span>
-                <span className="small">
-                  {status === 'solved' ? '✅ 確定' : status === 'available' ? '📝 検証できる' : `🔒 準備中 ${Math.round(ready * 100)}%`}
-                </span>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      {todo.length ? <ul>{todo.map(item)}</ul> : null}
+      {solved.length ? (
+        <details className="verify-solved" open={todo.length === 0}>
+          <summary>✅ 確定したページ（{solved.length}）</summary>
+          <ul>{solved.map(item)}</ul>
+        </details>
+      ) : null}
       {visible.length === 0 ? <p className="muted small">まだ検証できるページはありません。</p> : null}
     </div>
   );
