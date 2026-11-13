@@ -1,7 +1,8 @@
 import type { Face, Lang, OrderInstance, Outcome } from './types';
 import type { WordMap } from './srs';
+import type { TownDayState, TownProgress } from './townTypes';
 
-export const SAVE_VERSION = 1;
+export const SAVE_VERSION = 2;
 export const STORAGE_KEY = 'minato-chabou-save';
 
 export type LayoutPref = 'auto' | 'desktop' | 'mobile';
@@ -49,6 +50,10 @@ export interface LangProgress {
   /** pageId -> last day the page's words were counted as encountered. */
   pageViews: Record<string, number>;
   stats: { served: number; perfect: number };
+  /** Town activities (v2). */
+  town: TownProgress;
+  /** Today's activity segments (market → shop → delivery). null = not planned yet. */
+  townDay: TownDayState | null;
 }
 
 export interface SaveFile {
@@ -77,7 +82,13 @@ export function newProgress(lang: Lang): LangProgress {
     verification: {},
     pageViews: {},
     stats: { served: 0, perfect: 0 },
+    town: newTownProgress(),
+    townDay: null,
   };
+}
+
+export function newTownProgress(): TownProgress {
+  return { money: 20, unlocked: {}, lastDay: {}, marketRuns: 0, deliveryRuns: 0, marketSeen: [], slips: {} };
 }
 
 // ---------------------------------------------------------------------------
@@ -103,6 +114,16 @@ const migrations: Record<number, (s: AnyObj) => AnyObj> = {
       settings: { ...DEFAULT_SETTINGS, showPinyin: s.pinyin !== false },
       progress: { [lang]: p },
     };
+  },
+  // v1 → v2: town activities. Progress gets `town` (fresh) and `townDay` (null). A day that was
+  // in progress continues as a shop-only day (see ensureTownDay in activities/day.ts).
+  1: (s) => {
+    const progress = { ...((s.progress as AnyObj) ?? {}) };
+    for (const k of Object.keys(progress)) {
+      const p = progress[k] as AnyObj | undefined;
+      if (p && typeof p === 'object') progress[k] = { ...p, town: newTownProgress(), townDay: null };
+    }
+    return { ...s, version: 2, progress };
   },
 };
 
@@ -132,7 +153,10 @@ function normalise(s: SaveFile): SaveFile {
   };
   for (const lang of ['en', 'zh'] as Lang[]) {
     const p = s.progress?.[lang];
-    if (p) out.progress[lang] = { ...newProgress(lang), ...p, lang };
+    if (p) {
+      const base = newProgress(lang);
+      out.progress[lang] = { ...base, ...p, lang, town: { ...base.town, ...(p.town ?? {}) }, townDay: p.townDay ?? null };
+    }
   }
   return out;
 }

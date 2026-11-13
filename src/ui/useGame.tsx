@@ -1,5 +1,8 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { endDay, nextCustomer, serve, startDay, viewPage, type ServeOutcome } from '../activities/shop/engine';
+import { currentSegment, endTownDay, ensureTownDay, nextSegment, serveInTown, startTownDay, stockOf } from '../activities/day';
+import * as delivery from '../activities/delivery/engine';
+import * as market from '../activities/market/engine';
+import { nextCustomer, viewPage, type ServeOutcome } from '../activities/shop/engine';
 import { CONTENT, SHARED } from '../content';
 import { buildGameData, type GameData } from '../core/gamedata';
 import { makeRng } from '../core/rng';
@@ -15,6 +18,7 @@ import {
   type Settings,
 } from '../core/save';
 import { ensureWord } from '../core/srs';
+import type { AbsentAction, ActivityKind, PersonId, TownDayState } from '../core/townTypes';
 import type { Brew, IngredientId, Lang, Method, Temp } from '../core/types';
 import { submitVerification } from '../core/verification';
 
@@ -40,6 +44,9 @@ export interface GameApi {
   brew: Brew;
   lastServe: ServeOutcome | null;
   selectedWord: string | null;
+  /** Current activity segment of the day (market → shop → delivery). */
+  segment: ActivityKind;
+  townDay: TownDayState | null;
   chooseLanguage(lang: Lang): void;
   leaveToTitle(): void;
   addIngredient(ing: IngredientId, delta: number): void;
@@ -57,6 +64,25 @@ export interface GameApi {
   importText(json: string): string | null;
   resetLanguage(lang: Lang): void;
   openWord(id: string | null): void;
+  /** Move on to the next segment of the day (after the current one is done). */
+  nextSegment(): void;
+  market: {
+    openStall(id: string): void;
+    leaveStall(): void;
+    selectOffer(id: string): void;
+    order(units: number): void;
+    bargain(): void;
+    pay(amount: number): void;
+    cancel(): void;
+    finish(): void;
+  };
+  delivery: {
+    choosePlace(id: string): void;
+    chooseHour(h: number): void;
+    depart(): void;
+    knock(n: number): void;
+    handOver(to: { person?: PersonId; absent?: AbsentAction }): void;
+  };
 }
 
 const Ctx = createContext<GameApi | null>(null);
@@ -72,7 +98,7 @@ function ensureDay(s: SaveFile) {
   const lang = s.currentLang;
   if (!lang) return;
   const p = (s.progress[lang] ??= newProgress(lang));
-  if (!p.today) startDay(gameData(lang), p, rng());
+  ensureTownDay(gameData(lang), p, rng());
 }
 
 export function GameProvider({ children }: { children: ReactNode }) {
@@ -119,6 +145,8 @@ export function GameProvider({ children }: { children: ReactNode }) {
       brew,
       lastServe,
       selectedWord,
+      segment: progress ? currentSegment(progress) : 'shop',
+      townDay: progress?.townDay ?? null,
       chooseLanguage: (l) => {
         mutate((s) => {
           s.currentLang = l;
@@ -136,7 +164,8 @@ export function GameProvider({ children }: { children: ReactNode }) {
       },
       addIngredient: (ing, delta) =>
         setBrew((b) => {
-          const max = SHARED.ingredients.find((i) => i.id === ing)?.maxCount ?? 5;
+          const left = progress ? stockOf(progress, ing) : undefined;
+          const max = Math.min(SHARED.ingredients.find((i) => i.id === ing)?.maxCount ?? 5, left ?? Infinity);
           const n = Math.max(0, Math.min(max, (b.counts[ing] ?? 0) + delta));
           const counts = { ...b.counts, [ing]: n };
           if (!n) delete counts[ing];
@@ -148,7 +177,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
       serveBrew: () => {
         const box: { out: ServeOutcome | null } = { out: null };
         withProgress((p, d) => {
-          box.out = serve(d, p, brew, rng());
+          box.out = serveInTown(d, p, brew, rng());
         });
         setLastServe(box.out);
       },
@@ -159,8 +188,8 @@ export function GameProvider({ children }: { children: ReactNode }) {
       },
       closeDay: () => {
         withProgress((p, d) => {
-          endDay(p);
-          startDay(d, p, rng());
+          endTownDay(p);
+          if (!p.townDay) startTownDay(d, p, rng());
         });
         setBrew(emptyBrew());
         setLastServe(null);
@@ -218,6 +247,28 @@ export function GameProvider({ children }: { children: ReactNode }) {
         setLastServe(null);
       },
       openWord: (id) => setSelectedWord(id),
+      nextSegment: () => {
+        withProgress((p) => nextSegment(p));
+        setBrew(emptyBrew());
+        setLastServe(null);
+      },
+      market: {
+        openStall: (id) => withProgress((p, d) => market.openStall(d, p, id, rng())),
+        leaveStall: () => withProgress((p) => market.leaveStall(p)),
+        selectOffer: (id) => withProgress((p, d) => market.selectOffer(d, p, id, rng())),
+        order: (n) => withProgress((p, d) => void market.orderUnits(d, p, n, rng())),
+        bargain: () => withProgress((p, d) => market.bargain(d, p, rng())),
+        pay: (n) => withProgress((p, d) => void market.pay(d, p, n, rng())),
+        cancel: () => withProgress((p) => market.cancelPurchase(p)),
+        finish: () => withProgress((p, d) => market.finishMarket(d, p)),
+      },
+      delivery: {
+        choosePlace: (id) => withProgress((p) => delivery.choosePlace(p, id)),
+        chooseHour: (h) => withProgress((p) => delivery.chooseHour(p, h)),
+        depart: () => withProgress((p) => void delivery.depart(p)),
+        knock: (n) => withProgress((p) => delivery.knock(p, n)),
+        handOver: (to) => withProgress((p, d) => delivery.handOver(d, p, to, rng())),
+      },
     };
   }, [save, lang, data, progress, brew, lastServe, selectedWord, mutate]);
 
