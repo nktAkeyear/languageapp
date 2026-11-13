@@ -1,0 +1,561 @@
+/* 港町の調香茶房 — town activities (market, deliveries). Same ledger palette as styles.css. */
+
+/* day strip (朝 市場 → 昼 茶房 → 夕方 配達) */
+.daystrip {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+.ds {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--ink-soft);
+  opacity: 0.6;
+}
+.ds-cur {
+  opacity: 1;
+  color: var(--accent);
+  font-weight: 700;
+}
+.ds-done {
+  opacity: 0.45;
+  text-decoration: line-through;
+}
+.ds-arrow {
+  margin: 0 3px;
+}
+
+/* shop stock from the market */
+.shelf-item {
+  position: relative;
+}
+.shelf-item-out {
+  opacity: 0.55;
+  filter: grayscale(0.7);
+}
+.stock-chip {
+  position: absolute;
+  top: -7px;
+  right: -4px;
+  z-index: 2;
+  font-size: 0.72em;
+  background: var(--green-soft);
+  border: 1px solid var(--green);
+  color: var(--green);
+  border-radius: 999px;
+  padding: 0 6px;
+  line-height: 1.5;
+}
+.stock-chip.stock-empty {
+  background: #f6dcd6;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+.stock-summary .chip {
+  margin: 0 3px;
+}
+
+/* desktop grid for market / delivery: note | wide panel | notebook */
+.desk-grid.desk-grid-town {
+  grid-template-columns: minmax(300px, 1fr) minmax(440px, 1.7fr) minmax(280px, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  grid-template-areas: 'note wide notebook';
+}
+.panel-note {
+  grid-area: note;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.panel-wide {
+  grid-area: wide;
+}
+
+/* shopping note & delivery slip: paper scraps */
+.shopping-note,
+.slip {
+  background-color: #fffaf0;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 10px 14px 12px;
+  box-shadow: 2px 3px 0 rgba(120, 90, 50, 0.12);
+  background-image: repeating-linear-gradient(0deg, transparent 0 27px, rgba(80, 120, 170, 0.14) 27px 28px);
+  transform: rotate(-0.4deg);
+}
+.note-title,
+.slip-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+.slip-head {
+  justify-content: space-between;
+}
+.slip-to {
+  font-size: 1.1em;
+}
+.note-lines,
+.slip-lines {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.2em;
+  line-height: 2.1;
+}
+.note-lines li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.note-lines li::before {
+  content: '☐';
+  color: var(--ink-soft);
+}
+.note-tip {
+  margin: 6px 0 0;
+  font-style: italic;
+}
+.note-strip {
+  font-size: 1em;
+}
+
+/* purse */
+.purse {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.purse-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.purse-money {
+  font-size: 1.15em;
+}
+.basket {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 4px 8px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+.basket-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 6px;
+}
+.market-done,
+.market-closed {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* stalls */
+.stalls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.stall-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+.stall-card {
+  font: inherit;
+  cursor: pointer;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 0 0 10px;
+  box-shadow: var(--shadow);
+  min-height: 120px;
+}
+.stall-card:hover {
+  border-color: var(--ink-soft);
+}
+.awning {
+  align-self: stretch;
+  height: 24px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+  -webkit-mask-image: linear-gradient(#000 70%, transparent);
+}
+.awning::after {
+  content: '';
+  display: block;
+  height: 100%;
+  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0 14px, transparent 14px 28px);
+}
+.stall-vendor {
+  font-size: 34px;
+  line-height: 1.1;
+}
+.stall-goods {
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.stall-view {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.stall-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 8px solid;
+  border-radius: 6px 6px 0 0;
+  padding-top: 8px;
+}
+.stall-vendor-big {
+  position: relative;
+  font-size: 44px;
+  line-height: 1;
+  width: 64px;
+  height: 56px;
+}
+.stall-vendor-big .face {
+  font-size: 22px;
+  width: 30px;
+  height: 30px;
+  right: -6px;
+  bottom: -8px;
+}
+.awning-chip {
+  font-size: 22px;
+  border-radius: 8px;
+  padding: 2px 8px;
+  margin-left: auto;
+}
+.talk {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 280px;
+  overflow: auto;
+  padding: 10px 2px 2px;
+}
+.talk-vendor {
+  align-self: flex-start;
+  max-width: 95%;
+}
+.talk-text {
+  font-size: 1.25em;
+  line-height: 1.9;
+}
+.talk-you {
+  align-self: flex-end;
+  background: var(--accent-soft);
+  border-radius: 12px;
+  padding: 2px 12px;
+  font-weight: 600;
+}
+.offers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  gap: 10px;
+}
+.offer {
+  font: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: #fffdf6;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 6px;
+  color: var(--ink);
+}
+.offer:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+.offer-on {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+.offer-variant {
+  font-weight: 700;
+  color: var(--green);
+}
+.price-tag {
+  margin-top: 4px;
+  background: #fff;
+  border: 1px solid #b9a27a;
+  border-radius: 3px 10px 10px 3px;
+  padding: 0 8px;
+  font-size: 0.9em;
+}
+.buy-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.stepper .count {
+  min-width: 2ch;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 700;
+}
+.buy-preview {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+}
+.pay-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  background: var(--paper);
+}
+.coins {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.coin {
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid #8a6a2a;
+  background: radial-gradient(circle at 35% 30%, #fff1b8, #d6a93e 70%, #b8892f);
+  color: #4a3510;
+  box-shadow: 0 2px 3px rgba(70, 45, 20, 0.3);
+}
+.coin-1 {
+  background: radial-gradient(circle at 35% 30%, #f6e0c8, #c08550 70%, #9a6232);
+}
+.coin-5 {
+  background: radial-gradient(circle at 35% 30%, #f4f4ee, #b9b9ae 70%, #8f8f86);
+}
+.coin-50 {
+  width: 58px;
+  height: 58px;
+}
+.coin:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.coin-mini {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  font-size: 0.75em;
+  cursor: default;
+}
+.tray {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  min-height: 38px;
+}
+.tray-total {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+.pay-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* town map */
+.town-map {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #e8dcbf;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px;
+}
+.map-row {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 6), minmax(0, 1fr));
+  gap: 4px;
+}
+.map-cell {
+  font: inherit;
+  position: relative;
+  min-height: 74px;
+  border-radius: 8px;
+  border: 1px solid #b59d6f;
+  background: #f7efd9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 4px 2px;
+  cursor: pointer;
+  color: var(--ink);
+}
+.map-cell:disabled {
+  cursor: default;
+}
+.map-empty {
+  background: transparent;
+  border: none;
+}
+.map-landmark {
+  background: #efe1bd;
+  border-color: #9c7f4a;
+}
+.map-icon {
+  font-size: 28px;
+  line-height: 1.1;
+}
+.map-sign {
+  background: #5b4330;
+  color: #fff3dc;
+  border-radius: 3px;
+  padding: 0 5px;
+  font-size: 0.8em;
+  line-height: 1.6;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.map-sign rt {
+  color: #f0d9b0;
+}
+.door {
+  width: 12px;
+  height: 16px;
+  border-radius: 3px 3px 0 0;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+}
+.map-on {
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  background: #fff6e8;
+}
+.map-pin {
+  position: absolute;
+  top: -6px;
+  right: -4px;
+  font-size: 20px;
+}
+.street {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 30px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(90deg, #cdb98f 0 30px, #c4ae80 30px 32px);
+  border-top: 2px solid #a88c5c;
+  border-bottom: 2px solid #a88c5c;
+  font-size: 18px;
+}
+.sea {
+  text-align: center;
+  background: linear-gradient(#b9d3dd, #9fbfcd);
+  border-radius: 4px;
+  font-size: 16px;
+  letter-spacing: 0.4em;
+}
+
+/* delivery controls */
+.time-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 6px;
+}
+.time-btn {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.delivery-actions,
+.door-scene,
+.delivery-result {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.door-big {
+  font-size: 54px;
+  text-align: center;
+  line-height: 1.1;
+}
+.person .person-icon {
+  font-size: 34px;
+  line-height: 1;
+}
+
+/* mobile tweaks */
+[data-layout='mobile'] .stall-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+[data-layout='mobile'] .offers {
+  grid-template-columns: repeat(2, 1fr);
+}
+[data-layout='mobile'] .map-cell {
+  min-height: 64px;
+}
+[data-layout='mobile'] .map-icon {
+  font-size: 22px;
+}
+[data-layout='mobile'] .map-sign {
+  font-size: 0.68em;
+  padding: 0 2px;
+}
+[data-layout='mobile'] .town-map {
+  padding: 4px;
+  gap: 3px;
+}
+[data-layout='mobile'] .map-row {
+  gap: 3px;
+}
+[data-layout='mobile'] .talk-text {
+  font-size: 1.35em;
+}
+[data-layout='mobile'] .note-lines,
+[data-layout='mobile'] .slip-lines {
+  font-size: 1.3em;
+}
+[data-layout='mobile'] .daystrip .ds-label {
+  display: none;
+}

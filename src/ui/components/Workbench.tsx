@@ -1,3 +1,4 @@
+import { stockOf } from '../../activities/day';
 import { featuresAtStage, ingredientWordId, ingredientsAtStage, wordMarkup } from '../../core/gamedata';
 import type { IngredientId, Method, Temp } from '../../core/types';
 import { useGame } from '../useGame';
@@ -26,9 +27,16 @@ export function Workbench({ onServed }: { onServed?: () => void }) {
       <div className="shelf" role="list">
         {shelf.map((ing) => {
           const n = brew.counts[ing] ?? 0;
-          const max = data.ing.get(ing)?.maxCount ?? 5;
+          // Today's stock from the market (undefined = plenty).
+          const left = stockOf(progress, ing);
+          const max = Math.min(data.ing.get(ing)?.maxCount ?? 5, left ?? Infinity);
           return (
-            <div key={ing} className={`shelf-item ${n ? 'shelf-item-on' : ''}`} role="listitem" data-ing={ing}>
+            <div key={ing} className={`shelf-item ${n ? 'shelf-item-on' : ''} ${left === 0 ? 'shelf-item-out' : ''}`} role="listitem" data-ing={ing}>
+              {left !== undefined ? (
+                <span className={`stock-chip ${left - n <= 0 ? 'stock-empty' : ''}`} title="今日の在庫">
+                  {left === 0 ? '品切れ' : `残り${left - n}`}
+                </span>
+              ) : null}
               <button
                 type="button"
                 className="shelf-add"

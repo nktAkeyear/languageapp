@@ -6,6 +6,8 @@
  * See README.md "Content schema" for authoring notes.
  */
 
+import type { TownContent, TownShared } from './townTypes';
+
 export type Lang = 'en' | 'zh';
 export const LANGS: Lang[] = ['en', 'zh'];
 
@@ -297,6 +299,8 @@ export interface LanguageContent {
   customers: Customer[];
   verificationPages: VerificationPage[];
   levelTargets: LevelTargets;
+  /** Town activities (market, deliveries). Merged in by src/content/index.ts; absent = shop only. */
+  town?: TownContent;
 }
 
 export interface SharedContent {
@@ -304,6 +308,8 @@ export interface SharedContent {
   recipes: RecipeDef[];
   stages: StageDef[];
   graceDays: number;
+  /** Town activities (language-neutral part). Absent = shop only. */
+  town?: TownShared;
 }
 
 // ---------------------------------------------------------------------------

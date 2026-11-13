@@ -9,6 +9,7 @@ import { buildGameData, featuresAtStage, ingredientsAtStage, qtyPhrase, type Gam
 import { makeRng } from './rng';
 import { tokenIds, unknownTokens } from './tokenize';
 import type { IssueKind, LanguageContent, OrderRule, ReactionKind, SharedContent } from './types';
+import { validateTownLanguage, validateTownShared } from './validateTown';
 
 export interface ValidationReport {
   errors: string[];
@@ -46,6 +47,9 @@ export function validateShared(shared: SharedContent): ValidationReport {
       onShelf.set(ing, s.stage);
     }
   for (const id of ids) if (!onShelf.has(id)) warnings.push(`shared: ingredient ${id} is never unlocked`);
+  const town = validateTownShared(shared);
+  errors.push(...town.errors);
+  warnings.push(...town.warnings);
   const rids = new Set<string>();
   for (const r of shared.recipes) {
     if (rids.has(r.id)) errors.push(`shared: duplicate recipe ${r.id}`);
@@ -268,6 +272,9 @@ export function validateLanguage(content: LanguageContent, shared: SharedContent
   for (const k of ISSUE_KINDS)
     if (!content.reactions.some((r) => r.kind === k)) warn(`reactions: no specific reaction for "${k}" (falls back to any_fail)`);
 
+  // --- town activities (market, deliveries)
+  const townStats = validateTownLanguage(data, { err, warn, checkText, lexRef });
+
   // --- reachability: every word must be encounterable, or its 検証ページ never opens
   for (const e of content.lexicon) if (!reachable.has(e.id)) err(`lexicon ${e.id} («${e.text}») never appears in any content text`);
 
@@ -281,6 +288,8 @@ export function validateLanguage(content: LanguageContent, shared: SharedContent
       pages: content.pages.length,
       reactions: content.reactions.length,
       verificationPages: content.verificationPages.length,
+      townWords: content.town?.lexicon.length ?? 0,
+      ...townStats,
     },
   };
 }

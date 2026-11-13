@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import { hasNextSegment } from '../../activities/day';
+import { activityDef } from '../../activities';
 import { currentOrder } from '../../activities/shop/engine';
 import { plain } from '../../core/gamedata';
 import type { Face } from '../../core/types';
@@ -129,6 +131,7 @@ function DaySummary() {
   return (
     <div className="summary">
       <h2>{t.day}日目 の店じまい</h2>
+      {g.townDay && g.townDay.stock && Object.keys(g.townDay.stock).length ? <StockSummary /> : null}
       <div className="summary-faces">
         {t.results.map((r, i) => {
           const c = data.content.customers.find((x) => x.id === r.customer);
@@ -145,9 +148,36 @@ function DaySummary() {
       </p>
       {returning ? <p className="muted">満足しなかったお客さんが {returning} 人。また来るかもしれない。</p> : null}
       <p className="muted small">出会った言葉は手帳に記録されています。</p>
-      <button type="button" className="btn btn-primary btn-big" onClick={() => g.closeDay()}>
-        次の日へ
-      </button>
+      {hasNextSegment(progress) && g.townDay ? (
+        <button type="button" className="btn btn-primary btn-big" data-testid="next-segment" onClick={() => g.nextSegment()}>
+          {activityDef(g.townDay.segments[g.townDay.seg + 1]).icon} {activityDef(g.townDay.segments[g.townDay.seg + 1]).nameJa}へ出かける
+        </button>
+      ) : (
+        <button type="button" className="btn btn-primary btn-big" onClick={() => g.closeDay()}>
+          次の日へ
+        </button>
+      )}
     </div>
+  );
+}
+
+/** What is left of today's market purchases (chrome, numbers only). */
+function StockSummary() {
+  const { townDay, data } = useGame();
+  if (!townDay || !data) return null;
+  const entries = Object.entries(townDay.stock) as [keyof typeof townDay.stock, number][];
+  return (
+    <p className="small muted stock-summary">
+      今日の在庫の残り：
+      {entries.map(([ing, n]) => {
+        const def = data.ing.get(ing);
+        const icon = def && 'emoji' in def.icon ? def.icon.emoji : '・';
+        return (
+          <span key={ing} className="chip chip-small">
+            {icon} {n}
+          </span>
+        );
+      })}
+    </p>
   );
 }

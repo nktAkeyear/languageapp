@@ -1,0 +1,67 @@
+import type { DeliveryText } from '../../core/townTypes';
+
+export const DELIVERY: DeliveryText = {
+  placeWords: {
+    harbour: 'harbour',
+    inn: 'inn',
+    school: 'school',
+    bridge: 'bridge',
+    bank: 'bank',
+    hospital: 'hospital',
+    market: 'market',
+    temple: 'temple',
+  },
+  personWords: { mother: 'mother', father: 'father', child: 'child', grandmother: 'grandmother' },
+  dest: {
+    at: ['送到{p}。', '{p}。'],
+    next_to: ['{p}旁边那家。'],
+    behind: ['{p}后面那家。'],
+    across: ['{p}对面那家。'],
+    left: ['{p}左边那家。'],
+    right: ['{p}右边那家。'],
+  },
+  time: {
+    period: {
+      morning: ['上午送到。', '上午送。'],
+      afternoon: ['下午送到。', '下午送。'],
+      evening: ['晚上送到。', '晚上送。'],
+    },
+    at: ['{pp}{n}点送到。'],
+    before: ['{pp}{n}点以前送到。'],
+    after: ['{pp}{n}点以后送到。'],
+  },
+  // 晚上 is the shop lexicon's "night".
+  periodWords: { morning: 'morning', afternoon: 'afternoon', evening: 'night' },
+  give: ['给{p}。', '请给{p}。'],
+  giveNot: ['给{p}，不要给{q}。'],
+  knock: { 2: ['敲两次门。'], 3: ['敲三次门。'] },
+  absent: {
+    door: ['如果没有人在家，放在门口。'],
+    neighbour: ['如果没有人在家，给邻居。'],
+  },
+  recipients: [
+    { id: 'r_zhang', name: '张太太', avatar: '👩' },
+    { id: 'r_zhao', name: '赵先生', avatar: '👨' },
+    { id: 'r_xiaohong', name: '小红', avatar: '👧' },
+    { id: 'r_sun', name: '孙奶奶', avatar: '👵' },
+    { id: 'r_wu', name: '吴医生', avatar: '🧑‍⚕️' },
+    { id: 'r_ma', name: '马老师', avatar: '👨‍🦳' },
+  ],
+  reactions: [
+    { id: 'd_ok1', kind: 'perfect', level: 1, text: '谢谢！', face: 'happy' },
+    { id: 'd_ok2', kind: 'perfect', level: 1, text: '太好了，谢谢！', face: 'delighted' },
+    { id: 'd_ok3', kind: 'perfect', level: 2, text: '对！谢谢你！', face: 'delighted' },
+    { id: 'd_ok_door', kind: 'perfect_absent', level: 4, text: '茶在门口，谢谢！', face: 'delighted' },
+    { id: 'd_place1', kind: 'wrong_place', level: 1, text: '这不是我家！', face: 'puzzled' },
+    { id: 'd_place2', kind: 'wrong_place', level: 2, text: '送错了！', face: 'puzzled' },
+    { id: 'd_early1', kind: 'too_early', level: 1, text: '太早了！', face: 'puzzled' },
+    { id: 'd_late1', kind: 'too_late', level: 1, text: '太晚了！', face: 'sad' },
+    { id: 'd_time1', kind: 'wrong_time', level: 2, text: '不对，不是这个时候。', face: 'puzzled' },
+    { id: 'd_person1', kind: 'wrong_person', level: 3, text: '这是给{p}的！', face: 'puzzled' },
+    { id: 'd_avoid1', kind: 'avoided_person', level: 4, text: '我说了不要给{q}！', face: 'angry' },
+    { id: 'd_knock1', kind: 'wrong_knock', level: 3, text: '哇！……谢谢。', face: 'neutral' },
+    { id: 'd_absent1', kind: 'wrong_absent', level: 4, text: '我的茶呢？', face: 'sad' },
+    { id: 'd_fail1', kind: 'any_fail', level: 1, text: '不对。', face: 'sad' },
+    { id: 'd_fail2', kind: 'any_fail', level: 2, text: '错了……', face: 'sad' },
+  ],
+};

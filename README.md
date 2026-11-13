@@ -7,9 +7,19 @@ the target language, and the only feedback is the customer's reaction (target la
 face and the shop's reputation. There are no translations. Game chrome (menus, hints, notebook
 UI) is Japanese.
 
-Phase 1 implements the **shop** activity only. The code is split into a shared core
-(lexicon, word tracking, notebook, verification, reputation, saves) and pluggable activities
-(`src/activities/<id>/`), so later phases can add market / delivery / letters activities.
+The code is split into a shared core (lexicon, word tracking, notebook, verification,
+reputation, saves) and pluggable activities (`src/activities/<id>/`):
+
+- **shop** (Phase 1): order → recipe book → workbench → reaction.
+- **market** (Phase 2, opens around day 5 / early–mid A1): the shop runs short; a shopping note
+  says what to buy; stalls have target-language price tags; vendors quote, give change, run out,
+  haggle. Wrong item / quantity → the shelf runs out in the shop that day; overpaying → less money.
+- **delivery** (Phase 2, opens around day 9 / late A1–A2): a slip says where (town map with
+  signs; behind / across from / next to / left / right), when (morning, o'clock, before / after),
+  to whom and how (knock twice, not the child, leave it at the door if nobody is home).
+
+A day is a sequence of segments planned by `src/activities/day.ts` (e.g. 朝 market → 昼 shop →
+夕方 delivery). Before the town activities open, a day is exactly the Phase 1 shop day.
 
 ## Commands
 
@@ -19,7 +29,8 @@ npm run dev               # Vite dev server
 npm run build             # type-check + build → dist/index.html (single file, opens by double-click)
 npm test                  # vitest (engine unit tests + seed-content validation)
 npm run validate-content  # content validator; exits 1 on errors
-npm run simulate -- zh 10 # print a simulated 10-day playthrough (orders + reactions) for content review
+npm run simulate -- zh 10 # simulated playthrough for content review: market notes + vendor talk, orders +
+                          # reactions, delivery slips + reactions (args: lang days seed failEvery)
 ```
 
 `dist/index.html` is self-contained (relative base + `vite-plugin-singlefile`): copy it anywhere
@@ -32,6 +43,7 @@ and open it with a browser. No network requests at runtime; saves live in `local
 src/
   core/                 shared engine (no UI, no language-specific text)
     types.ts            content schema + runtime types  ← start here
+    townTypes.ts        schema + runtime types of the town activities (market, delivery)
     tokenize.ts         text → lexicon ids (en: words/multi-words, zh: longest match)
     gamedata.ts         content + indexes per language, qty phrases, stage helpers
     srs.ts              hidden spaced repetition (per-word state)
@@ -39,15 +51,23 @@ src/
     levels.ts           現在地 (coverage per CEFR / 英検 / HSK level)
     save.ts             versioned save, migration, export/import
     validate.ts         content validator (used by script + tests)
+    validateTown.ts     validator part for market / delivery content
   activities/
     index.ts            activity registry
+    day.ts              day orchestration: segment planner (unlocks), stock-aware serving, end of day
     shop/               rules.ts (order rule evaluation), reactions.ts, templates.ts,
                         dayplan.ts (order picker), engine.ts (day loop)
+    market/             rules.ts (needs, units, payment, stock), engine.ts (note, stalls, vendor talk)
+    delivery/           rules.ts (map relations, time slots, evaluation), engine.ts (slips, door, reaction)
+    town/text.ts        number / money phrases, placeholder filling, SRS-aware choice of phrasing
   content/
+    index.ts            merges each language's town content (lexicon, verification pages) in
     shared/             language-neutral: ingredients, recipes, stages (unlock schedule)
-    en/  zh/            lexicon.ts + index.ts (everything else for that language)
+    shared/town.ts      language-neutral town data: goods, stalls, map, time slots, curriculum, unlocks
+    en/  zh/            lexicon.ts + index.ts (shop); town.ts = lexicon.town.ts + market.ts + delivery.ts
   ui/
     components/         small presentational components shared by both layouts
+    components/town/    Market.tsx (note, purse, stalls, vendor talk, coins), Delivery.tsx (slip, map, door)
     desktop/            PC layout (panels side by side)
     mobile/             phone layout (one panel + bottom tabs)
     useGame.tsx         React state/actions over the core
@@ -137,8 +157,101 @@ tokenize for every ingredient/tag; unconditional stage-1 `perfect` and `any_fail
 exist; stages are contiguous. It also warns about ambiguous surface forms and en/zh structural
 differences.
 
+## Town activities: content schema
+
+Types are in `src/core/townTypes.ts`. Town content is kept in separate files so it can be
+edited independently of the shop content; `src/content/index.ts` merges each language's
+`town.lexicon` / `town.verificationPages` into the language content and attaches `town`
+(and `SHARED.town`). Both halves are optional: without them the game is the shop only.
+
+### Shared (`src/content/shared/town.ts`, `TownShared`)
+
+- **Unlocks** (`market.unlock`, `delivery.unlock`): `{ minDay, minReputation, graceDays, chance, maxGap, noteJa }`.
+  Keyed on day + reputation, never on shop stage numbers. Opens when `day ≥ minDay` and
+  `reputation ≥ minReputation`, or anyway `graceDays` after `minDay`. Once open, the activity is
+  on the day's plan the first day, then with probability `chance`, and at least every `maxGap` days.
+- **Levels** `{ level, minRuns, features[], noteJa? }`: each activity's own difficulty, by runs
+  completed. Market features: `change` (vendors give change ≤ `changeLimit`; before that,
+  overpaying is simply lost), `soldOut` (a needed good is gone at its usual stall; the vendor
+  names another stall by colour), `variants` (fresh/old, big/small offers; the note may ask for
+  one), `cheaper` (a needed good is cheaper at a second stall; the note says so), `audioOnly`
+  (some quotes are spoken only), `bargain`. Each market feature is forced the first run it is
+  available, so it is always introduced. Delivery features: `relations` (next to / behind /
+  across), `clock` (o'clock), `person`, `knock`, `leftRight`, `beforeAfter`, `avoid` ("not the
+  child"), `absent` (nobody home).
+- **Market**: `goods: { ingredient, portionsPerUnit, price, variants?: [base, other], stalls[] }`
+  (stock is counted in workbench portions: slices per lemon, leaves per bunch…; the first stall is
+  the usual one), `stalls: { id, colour, vendor, icon }` (distinct colours: stalls are named by
+  colour), `variants: { id, portionsMult, priceMult }`, `coins`, `startMoney`, `income` (coins
+  per shop cup by outcome), `changeLimit`.
+- **Delivery**: `cols`, `rows`, `map: { id, col, row, landmark? | door }` (rows 0–1 north of the
+  main street, 2–3 south; relations are computed from the grid and must point at exactly one
+  house), `slots: { hour (24h), period }`, `persons: { id, icon }`, `tip`, and
+  `curriculum: { id, level, seq, dest: { rel, landmark }, time?, give?, avoid?, knocks?, absent?, home? }`:
+  language-neutral slips served in order until delivered perfectly; afterwards slips are generated
+  from the unlocked features. `time` is `{ kind: 'period', period }` or `{ kind: 'at'|'before'|'after', hour }`.
+
+### Per language (`src/content/{en,zh}/town.ts`, `TownContent`)
+
+- **lexicon.town.ts**: `TOWN_LEXICON` (same `LexEntry` schema, own 検証ページ groups) + `TOWN_PAGES`.
+- **numberText**: `n → number words` for 1–100 (generated in market.ts: en "twenty-three",
+  zh 二十三, standalone 2 = 两). Numbers missing from the table are never generated.
+- **colourWords**: colour → lexicon id.
+- **market** (`MarketText`): `money` / `tagMoney` (`{ one?, other }` with `{n}` words / `{d}` digits),
+  `stallRef` (`'the {c} stall'`, `'{c}那家'`), `variantWords`,
+  `goods: { ingredient, name, qty: { base, fresh?, old?, big?, small? }, per }` (`qty` patterns
+  use `{n}`; `per` uses `{price}`: `'{price} a bunch'`, `'{price}一把'`), `noteTitles`, `noteLine`
+  (`'{Qty}.'`), `cheaperNotes` (`{g}`, `{stall}`), `lines` (vendor lines `{ id, kind, level, text, face }`;
+  kinds `greet cheapHere askQty quote thanks overpaid change notEnough noChange soldOut soldOutTip
+  bargainYes bargainNo`; placeholders `{g}` good, `{qty}`, `{total}`, `{change}`, `{stall}`;
+  capitalised `{Qty}` capitalises), `stockReactions` (shop customer when a good ran out; `{ing}`).
+- **delivery** (`DeliveryText`): `placeWords`, `personWords`, `periodWords` (→ lexicon ids),
+  `dest: { at | next_to | behind | across | left | right: patterns with {p} }`,
+  `time: { period: { morning | afternoon | evening: [...] }, at, before, after }` (`{n}` = 12-hour
+  number, `{pp}` = period word of that hour, e.g. zh `'{pp}{n}点以前送到。'`), `give` (`{p}`),
+  `giveNot` (`{p}`, `{q}`), `knock: { 2: [...], 3: [...] }`, `absent: { door, neighbour }`,
+  `recipients: { id, name, avatar }` (names are not vocabulary), `reactions: { id, kind, level, text, face }`
+  with kinds `perfect perfect_absent wrong_place too_early too_late wrong_time wrong_person
+  avoided_person wrong_knock wrong_absent any_fail` (`{p}` / `{q}` = the persons on the slip).
+
+Several phrasings per slot are welcome: the engine picks the one whose words are most due for
+review (hidden SRS), so review keeps working inside the town activities.
+
+### Rules and consequences
+
+- **Market**: the shop queue is planned first; the portions it needs (minimum per order + 2
+  reserve) of up to `maxItems` goods become the shopping note, and those goods start the day at 0.
+  What is bought becomes the shop's stock (shown on the shelf as 残りN / 品切れ), used up portion
+  by portion; a customer whose order needs more than is left says so (`stockReactions`, −1 rep).
+  Payment: exact → thanks; too little → refused and the total repeated; too much → kept by the
+  vendor (before `change`), change given (≤ `changeLimit`) or refused. Shop cups earn coins.
+- **Delivery**: evaluated at the door. Priority: wrong place > too early / too late / wrong time >
+  handed to the person to avoid (bad, −2) > wrong person > wrong absence handling > wrong knock
+  (minor, ±0). Perfect: +3 rep and a tip; other failures −1. Failed curriculum slips come back.
+- **SRS**: notes, vendor lines, price tags, slips, map signs and reactions count as encounters;
+  a covered note line / exact payment / perfect delivery counts as correct use of its words; a
+  mistake lapses the words of the line it concerns (the note line, the quote's numbers, the slip
+  line for the place / time / person …).
+
+### What the validator checks (town)
+
+Shared: goods / stalls / variants exist, stall colours distinct, levels numbered with growing
+`minRuns`, map cells unique and inside the grid, every curriculum slip points at exactly one
+place, has a time slot and a perfect choice, and only uses features unlocked at its level.
+Per language: every word map points into the lexicon; every quantity phrase (1–10, all variants),
+price tag, money phrase, stall reference, cheaper note, vendor line (with every good) and stock
+reaction tokenizes fully; vendor-line placeholders fit their kind; the vendor-line and
+delivery-reaction kinds the engine needs exist at the level that needs them; 240 planned market
+days (every level × every shop stage) only ask for goods on the shelf, have number words for every
+price / total, and are bought completely by a solver; every reachable destination / time / person /
+knock / absence phrase and 40 generated slips per level tokenize and are solvable. Town texts
+count for the "every word appears somewhere" check.
+
 ## Learning model notes
 
+- **Saves**: version 2 adds `town` (money, unlocks, runs, curriculum log) and `townDay` (today's
+  segments, stock, market / delivery state) to each language's progress. Version 1 saves migrate;
+  a day in progress continues as a shop-only day.
 - **Hidden SRS** (`core/srs.ts`): per-word seen / correct / wrong / interval / ease / due.
   A perfect order grows the interval of all its words; a mistake resets only the words it
   implicates (ingredient, number, temperature…). The day planner prefers template orders full

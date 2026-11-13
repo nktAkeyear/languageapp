@@ -49,4 +49,16 @@ describe('save', () => {
     expect(r.progress.en).toBeUndefined();
     expect(r.progress.zh).toBeDefined();
   });
+
+  it('migrates v1 saves: town progress added, running day kept', () => {
+    const v1 = { version: 1, currentLang: 'en', settings: { layout: 'mobile' }, progress: { en: { lang: 'en', day: 7, reputation: 30, stage: 6, today: { day: 7 } } } };
+    const s = migrateSave(v1);
+    expect(s.version).toBe(2);
+    expect(s.settings.layout).toBe('mobile');
+    expect(s.progress.en).toMatchObject({ day: 7, reputation: 30, stage: 6, townDay: null, today: { day: 7 } });
+    expect(s.progress.en!.town).toMatchObject({ marketRuns: 0, deliveryRuns: 0, unlocked: {}, slips: {} });
+    // v0 goes through both steps
+    expect(migrateSave({ lang: 'zh', day: 2 }).progress.zh!.town.money).toBeGreaterThan(0);
+  });
 });
+
