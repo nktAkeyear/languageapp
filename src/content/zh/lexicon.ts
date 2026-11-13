@@ -19,7 +19,7 @@ export const LEXICON: LexEntry[] = [
   { id: 'three', text: '三', pinyin: 'sān', gloss: '3（みっつ）', emoji: '3️⃣', pos: 'num', cefr: 'A1', hsk: 1, group: 'g_num1' },
 
   // g_measure
-  { id: 'pian', text: '片', pinyin: 'piàn', gloss: '〜枚・〜切れ（薄いものを数える）', emoji: '🔪', pos: 'measure', cefr: 'A2', hsk: null, group: 'g_measure' },
+  { id: 'pian', text: '片', pinyin: 'piàn', gloss: '〜枚・〜切れ（薄いものを数える）', emoji: '🔪', pos: 'measure', cefr: 'B2', hsk: 5, group: 'g_measure' },
   { id: 'shao', text: '勺', pinyin: 'sháo', gloss: '〜さじ（スプーン一杯）', emoji: '🥄', pos: 'measure', cefr: 'B1', hsk: null, group: 'g_measure' },
   { id: 'bei', text: '杯', pinyin: 'bēi', gloss: '〜杯（カップ）', emoji: '☕', pos: 'measure', cefr: 'A1', hsk: 1, group: 'g_measure' },
   { id: 'kuai', text: '块', pinyin: 'kuài', gloss: '〜個（かたまりを数える）', emoji: '🧱', pos: 'measure', cefr: 'A1', hsk: 1, group: 'g_measure' },
@@ -49,7 +49,7 @@ export const LEXICON: LexEntry[] = [
   { id: 'salty', text: '咸', pinyin: 'xián', gloss: 'しょっぱい', emoji: '🧂', pos: 'adj', cefr: 'B1', hsk: 4, group: 'g_taste' },
 
   // g_shelf2
-  { id: 'sugar', text: '糖', pinyin: 'táng', gloss: '砂糖・あめ', emoji: '🍬', pos: 'noun', cefr: 'B1', hsk: 4, group: 'g_shelf2' },
+  { id: 'sugar', text: '糖', pinyin: 'táng', gloss: '砂糖・あめ', emoji: '🍬', pos: 'noun', cefr: 'A2', hsk: 3, group: 'g_shelf2' },
   { id: 'salt', text: '盐', pinyin: 'yán', gloss: '塩', emoji: '🧂', pos: 'noun', cefr: 'B1', hsk: 4, group: 'g_shelf2' },
   { id: 'green_tea', text: '绿茶', pinyin: 'lǜchá', gloss: '緑茶', emoji: '🍵', pos: 'noun', cefr: 'A2', hsk: null, group: 'g_shelf2' },
   { id: 'black_tea', text: '红茶', pinyin: 'hóngchá', gloss: '紅茶', emoji: '🫖', pos: 'noun', cefr: 'A2', hsk: null, group: 'g_shelf2' },
@@ -59,13 +59,13 @@ export const LEXICON: LexEntry[] = [
   { id: 'red_date', text: '红枣', pinyin: 'hóngzǎo', gloss: 'ナツメ（紅棗）', emoji: '🔴', pos: 'noun', cefr: 'B2', hsk: null, group: 'g_shelf3' },
   { id: 'chrysanthemum', text: '菊花', pinyin: 'júhuā', gloss: '菊の花', emoji: '🌼', pos: 'noun', cefr: 'B2', hsk: null, group: 'g_shelf3' },
   { id: 'cinnamon', text: '肉桂', pinyin: 'ròuguì', gloss: 'シナモン（肉桂）', emoji: '🪵', pos: 'noun', cefr: 'C1', hsk: null, group: 'g_shelf3' },
-  { id: 'gen', text: '根', pinyin: 'gēn', gloss: '〜本（細長いものを数える）', emoji: '🥢', pos: 'measure', cefr: 'B1', hsk: null, group: 'g_shelf3' },
-  { id: 'duo_flower', text: '朵', pinyin: 'duǒ', gloss: '〜輪（花を数える）', emoji: '🌸', pos: 'measure', cefr: 'B1', hsk: null, group: 'g_shelf3' },
+  { id: 'gen', text: '根', pinyin: 'gēn', gloss: '〜本（細長いものを数える）', emoji: '🥢', pos: 'measure', cefr: 'B2', hsk: 5, group: 'g_shelf3' },
+  { id: 'duo_flower', text: '朵', pinyin: 'duǒ', gloss: '〜輪（花を数える）', emoji: '🌸', pos: 'measure', cefr: 'B1', hsk: 4, group: 'g_shelf3' },
 
   // g_num2
   { id: 'four', text: '四', pinyin: 'sì', gloss: '4（よっつ）', emoji: '4️⃣', pos: 'num', cefr: 'A1', hsk: 1, group: 'g_num2' },
   { id: 'five', text: '五', pinyin: 'wǔ', gloss: '5（いつつ）', emoji: '5️⃣', pos: 'num', cefr: 'A1', hsk: 1, group: 'g_num2' },
-  { id: 'ke', text: '颗', pinyin: 'kē', gloss: '〜粒（小さく丸いものを数える）', emoji: '🔘', pos: 'measure', cefr: 'B1', hsk: null, group: 'g_num2' },
+  { id: 'ke', text: '颗', pinyin: 'kē', gloss: '〜粒（小さく丸いものを数える）', emoji: '🔘', pos: 'measure', cefr: 'B2', hsk: 5, group: 'g_num2' },
   { id: 'minute', text: '分钟', pinyin: 'fēnzhōng', gloss: '〜分間', emoji: '⏱️', pos: 'noun', cefr: 'A1', hsk: 1, group: 'g_num2' },
 
   // g_react1
@@ -99,7 +99,7 @@ export const LEXICON: LexEntry[] = [
 
   // g_symptom
   { id: 'cold_illness', text: '感冒', pinyin: 'gǎnmào', gloss: 'かぜ（をひく）', emoji: '🤧', pos: 'noun', cefr: 'A2', hsk: 3, group: 'g_symptom' },
-  { id: 'throat', text: '嗓子', pinyin: 'sǎngzi', gloss: 'のど', emoji: '🗣️', pos: 'noun', cefr: 'B1', hsk: null, group: 'g_symptom' },
+  { id: 'throat', text: '嗓子', pinyin: 'sǎngzi', gloss: 'のど', emoji: '🗣️', pos: 'noun', cefr: 'B2', hsk: 5, group: 'g_symptom' },
   { id: 'hurt', text: '疼', pinyin: 'téng', gloss: '痛い', emoji: '🤕', pos: 'adj', cefr: 'A2', hsk: 3, group: 'g_symptom' },
   { id: 'tired', text: '累', pinyin: 'lèi', gloss: '疲れた', emoji: '😩', pos: 'adj', cefr: 'A1', hsk: 2, group: 'g_symptom' },
 
@@ -113,12 +113,12 @@ export const LEXICON: LexEntry[] = [
   { id: 'comfortable', text: '舒服', pinyin: 'shūfu', gloss: '心地よい・気分がいい', emoji: '😌', pos: 'adj', cefr: 'A2', hsk: 3, group: 'g_react3' },
   { id: 'again', text: '再', pinyin: 'zài', gloss: 'もう一度・それから', emoji: '🔁', pos: 'adv', cefr: 'A1', hsk: 2, group: 'g_react3' },
   { id: 'wrong', text: '错', pinyin: 'cuò', gloss: '間違っている', emoji: '❌', pos: 'adj', cefr: 'A1', hsk: 2, group: 'g_react3' },
-  { id: 'wa', text: '哇', pinyin: 'wā', gloss: 'わあ（感嘆）', emoji: '😮', pos: 'interj', cefr: 'A2', hsk: null, group: 'g_react3' },
+  { id: 'wa', text: '哇', pinyin: 'wā', gloss: 'わあ（感嘆）', emoji: '😮', pos: 'interj', cefr: 'C1', hsk: 6, group: 'g_react3' },
 
   // g_method
   { id: 'boil', text: '煮', pinyin: 'zhǔ', gloss: '煮る', emoji: '🍲', pos: 'verb', cefr: 'B2', hsk: 5, group: 'g_method' },
   { id: 'steep', text: '泡', pinyin: 'pào', gloss: '（お湯に）浸す・（お茶を）淹れる', emoji: '⏳', pos: 'verb', cefr: 'B1', hsk: null, group: 'g_method' },
-  { id: 'stir', text: '搅拌', pinyin: 'jiǎobàn', gloss: 'かき混ぜる', emoji: '🌀', pos: 'verb', cefr: 'C1', hsk: null, group: 'g_method' },
+  { id: 'stir', text: '搅拌', pinyin: 'jiǎobàn', gloss: 'かき混ぜる', emoji: '🌀', pos: 'verb', cefr: 'C1', hsk: 6, group: 'g_method' },
   { id: 'first', text: '先', pinyin: 'xiān', gloss: 'まず・先に', emoji: '☝️', pos: 'adv', cefr: 'A2', hsk: 3, group: 'g_method' },
 
   // g_talk

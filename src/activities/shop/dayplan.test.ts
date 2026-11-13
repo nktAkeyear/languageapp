@@ -44,13 +44,17 @@ describe.each(LANGS)('day planning (%s)', (lang) => {
     expect(p.today!.queue.map((q) => q.key)).toEqual(['o1_lemon', 'o1_ginger', 'o1_mint', 'o1_honey']);
   });
 
-  it('perfect play progresses through all stages in ~10 days, every witness brew is perfect', () => {
-    const { p, log } = play(data, 10, 42);
-    expect(p.stage).toBeGreaterThanOrEqual(9);
+  it('perfect play progresses through all stages in ~40 days (a new stage about every two days), every witness brew is perfect', () => {
+    const lastStage = Math.max(...SHARED.stages.map((s) => s.stage));
+    const { p, log } = play(data, 40, 42);
+    expect(p.stage).toBe(lastStage);
+    // pacing: stage 10 is not reached before day 13, and the last stage not before day 39
+    expect(log.find((l) => l.stage >= 10)!.day).toBeGreaterThanOrEqual(13);
+    expect(log.find((l) => l.stage === lastStage)!.day).toBeGreaterThanOrEqual(35);
     expect(p.stats.perfect).toBe(p.stats.served);
     expect(log.every((l) => l.texts.length >= 4)).toBe(true);
     // all authored orders of reached stages got served
-    const authored = CONTENT[lang].orders.filter((o) => o.stage <= 8);
+    const authored = CONTENT[lang].orders.filter((o) => o.stage <= 22);
     expect(authored.filter((o) => !p.orders[o.id]?.perfect).map((o) => o.id)).toEqual([]);
   });
 

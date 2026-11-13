@@ -26,10 +26,10 @@ const CINNAMON = svg(
 export const INGREDIENTS: IngredientDef[] = [
   { id: 'lemon', icon: { emoji: '🍋' }, tags: ['sour'], maxCount: 5, qtyOrderable: true },
   { id: 'ginger', icon: { svg: GINGER }, tags: ['warming', 'spice'], maxCount: 5, qtyOrderable: true },
-  { id: 'mint', icon: { emoji: '🌿' }, tags: ['cooling'], maxCount: 5, qtyOrderable: true },
+  { id: 'mint', icon: { emoji: '🌿' }, tags: ['cooling'], maxCount: 10, qtyOrderable: true },
   { id: 'honey', icon: { emoji: '🍯' }, tags: ['sweet'], maxCount: 5, qtyOrderable: true },
   { id: 'water', icon: { emoji: '💧' }, tags: [], maxCount: 3, qtyOrderable: true, neutral: true },
-  { id: 'ice', icon: { emoji: '🧊' }, tags: ['cooling'], maxCount: 5, qtyOrderable: true, coldOnly: true },
+  { id: 'ice', icon: { emoji: '🧊' }, tags: ['cooling'], maxCount: 10, qtyOrderable: true, coldOnly: true },
   { id: 'sugar', icon: { svg: SUGAR }, tags: ['sweet'], maxCount: 5, qtyOrderable: true },
   { id: 'salt', icon: { emoji: '🧂' }, tags: ['salty'], maxCount: 3, qtyOrderable: false },
   { id: 'green_tea', icon: { svg: GREEN_TEA }, tags: ['tea', 'bitter'], maxCount: 3, qtyOrderable: true },

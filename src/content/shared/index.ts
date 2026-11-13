@@ -1,5 +1,6 @@
 import type { RecipeDef, SharedContent, StageDef } from '../../core/types';
 import { INGREDIENTS } from './ingredients';
+import { NEW_INGREDIENTS, NEW_RECIPES, NEW_STAGES } from './extension';
 
 /** Language-neutral recipes. Names and book pages live in each language's content. */
 export const RECIPES: RecipeDef[] = [
@@ -34,7 +35,6 @@ export const RECIPES: RecipeDef[] = [
   {
     id: 'ginger_dates',
     stage: 9,
-    symptoms: ['cold'],
     rule: { require: [{ ing: 'ginger', min: 3, max: 3 }, { ing: 'red_dates', min: 2, max: 2 }], temp: 'hot', method: 'boil' },
   },
   {
@@ -62,7 +62,7 @@ export const RECIPES: RecipeDef[] = [
  * Unlock schedule. Stages open when day >= minDay and reputation >= minReputation,
  * or anyway `graceDays` after minDay (no hard gates).
  */
-export const STAGES: StageDef[] = [
+const BASE_STAGES: StageDef[] = [
   { stage: 1, minDay: 1, minReputation: 0, ingredients: ['lemon', 'ginger', 'mint', 'honey'], customersPerDay: 4, newWordsPerDay: 8, noteJa: '店を開けた。棚には四つの品。' },
   { stage: 2, minDay: 2, minReputation: 2, ingredients: [], customersPerDay: 5, newWordsPerDay: 6, noteJa: 'お客さんが分量を気にし始めたようだ。レシピ帳に新しいページ。' },
   { stage: 3, minDay: 3, minReputation: 6, ingredients: ['water', 'ice'], features: ['temperature'], customersPerDay: 5, newWordsPerDay: 6, noteJa: '温度を選べるようになった。棚に二品追加。' },
@@ -70,14 +70,15 @@ export const STAGES: StageDef[] = [
   { stage: 5, minDay: 5, minReputation: 15, ingredients: ['green_tea'], features: ['audioOnly'], customersPerDay: 6, newWordsPerDay: 5, noteJa: '声だけで注文する常連が来るようになった。' },
   { stage: 6, minDay: 6, minReputation: 20, ingredients: ['salt', 'black_tea'], customersPerDay: 6, newWordsPerDay: 5, noteJa: '味の好みを言うお客さんが増えた。' },
   { stage: 7, minDay: 7, minReputation: 26, ingredients: [], customersPerDay: 6, newWordsPerDay: 6, noteJa: '体調の悪いお客さんが訪ねてくる。レシピ帳を確かめよう。' },
-  { stage: 8, minDay: 8, minReputation: 32, ingredients: ['red_dates', 'chrysanthemum'], customersPerDay: 6, newWordsPerDay: 6, noteJa: '棚に新しい品。レシピ帳にもページが増えた。' },
-  { stage: 9, minDay: 9, minReputation: 38, ingredients: ['milk', 'cinnamon'], features: ['method'], customersPerDay: 6, newWordsPerDay: 6, noteJa: '淹れ方（作り方）を選べるようになった。' },
-  { stage: 10, minDay: 10, minReputation: 45, ingredients: [], customersPerDay: 7, newWordsPerDay: 4, noteJa: '店の評判が港に広まってきた。' },
+  { stage: 8, minDay: 9, minReputation: 32, ingredients: ['red_dates', 'chrysanthemum'], customersPerDay: 6, newWordsPerDay: 6, noteJa: '棚に新しい品。レシピ帳にもページが増えた。' },
+  { stage: 9, minDay: 11, minReputation: 38, ingredients: ['milk', 'cinnamon'], features: ['method'], customersPerDay: 6, newWordsPerDay: 6, noteJa: '淹れ方（作り方）を選べるようになった。' },
 ];
 
+export const STAGES: StageDef[] = [...BASE_STAGES, ...NEW_STAGES];
+
 export const SHARED: SharedContent = {
-  ingredients: INGREDIENTS,
-  recipes: RECIPES,
+  ingredients: [...INGREDIENTS, ...NEW_INGREDIENTS],
+  recipes: [...RECIPES, ...NEW_RECIPES],
   stages: STAGES,
   graceDays: 3,
 };

@@ -1,13 +1,18 @@
 import type { LanguageContent } from '../../core/types';
+import { buildOrders, buildTemplates } from '../shared/curriculum';
 import { LEXICON } from './lexicon';
+import { LEXICON2, VERIFICATION2 } from './lexicon2';
+import {
+  CUSTOMERS2, INGREDIENTS2, NUMBERS2, ORDER_TEXTS, PAGES2, REACTIONS2, RECIPE_NAMES2, SYMPTOMS2, TAG_WORDS2, TEMPLATE_TEXTS,
+} from './stages2';
 
 const content: LanguageContent = {
   lang: 'zh',
-  lexicon: LEXICON,
-  numbers: { 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five' },
+  lexicon: [...LEXICON, ...LEXICON2],
+  numbers: { 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', ...NUMBERS2 },
   temperatureWords: { hot: 'hot', cold: 'ice' },
   methodWords: { steep: 'steep', boil: 'boil', stir: 'stir' },
-  tagWords: { sweet: 'sweet', sour: 'sour', bitter: 'bitter', salty: 'salty', tea: 'tea' },
+  tagWords: { sweet: 'sweet', sour: 'sour', bitter: 'bitter', salty: 'salty', tea: 'tea', ...TAG_WORDS2 },
 
   ingredients: [
     { ingredient: 'lemon', word: 'lemon', qty: { other: '{n}片柠檬' } },
@@ -24,6 +29,7 @@ const content: LanguageContent = {
     { ingredient: 'red_dates', word: 'red_date', qty: { other: '{n}颗红枣' } },
     { ingredient: 'chrysanthemum', word: 'chrysanthemum', qty: { other: '{n}朵菊花' } },
     { ingredient: 'cinnamon', word: 'cinnamon', qty: { other: '{n}根肉桂' } },
+    ...INGREDIENTS2,
   ],
 
   recipeNames: {
@@ -34,6 +40,7 @@ const content: LanguageContent = {
     ginger_dates: '红枣姜茶',
     cinnamon_milk_tea: '肉桂奶茶',
     chrysanthemum_green: '菊花绿茶',
+    ...RECIPE_NAMES2,
   },
 
   symptoms: [
@@ -41,6 +48,7 @@ const content: LanguageContent = {
     { symptom: 'sore_throat', phrases: ['我嗓子疼。', '我嗓子很疼。'] },
     { symptom: 'tired', phrases: ['我很累。', '我太累了。'] },
     { symptom: 'insomnia', phrases: ['我睡不着。', '我晚上睡不着。'] },
+    ...SYMPTOMS2,
   ],
 
   pages: [
@@ -160,6 +168,7 @@ const content: LanguageContent = {
         { text: '热的。', icon: '🔥', style: 'item' },
       ],
     },
+    ...PAGES2,
   ],
 
   orders: [
@@ -209,6 +218,7 @@ const content: LanguageContent = {
     { id: 'o9_steep', stage: 9, seq: 3, customer: 'c_scholar', text: '菊花绿茶，谢谢。', recipe: 'chrysanthemum_green' },
     { id: 'o9_big', stage: 9, seq: 4, customer: 'c_boy', text: '四片薄荷，五块冰，冰的。', rule: { require: [{ ing: 'mint', min: 4, max: 4 }, { ing: 'ice', min: 5, max: 5 }], temp: 'cold' } },
     { id: 'o9_milk_tea', stage: 9, seq: 5, text: '红茶加牛奶，热的。', rule: { require: [{ ing: 'black_tea' }, { ing: 'milk' }], temp: 'hot' } },
+    ...buildOrders(ORDER_TEXTS),
   ],
 
   templates: [
@@ -228,6 +238,7 @@ const content: LanguageContent = {
     { id: 't7_symptom', stage: 7, text: '{symptom}', audioOnly: 0.3, slots: { symptom: { kind: 'symptom' } } },
     { id: 't7_recipe', stage: 7, text: '请给我{recipe}。', slots: { recipe: { kind: 'recipe' } } },
     { id: 't9_big', stage: 9, text: '{q1}和{q2}，{temp}的。', slots: { q1: { kind: 'qty', min: 1, max: 5 }, q2: { kind: 'qty', min: 1, max: 5 }, temp: { kind: 'temp' } } },
+    ...buildTemplates(TEMPLATE_TEXTS),
   ],
 
   reactions: [
@@ -274,6 +285,7 @@ const content: LanguageContent = {
 
     { id: 'r_temp', kind: 'wrong_temp', stage: 3, text: '我要{temp}的！', face: 'puzzled' },
     { id: 'r_method', kind: 'wrong_method', stage: 9, text: '要{method}！', face: 'neutral' },
+    ...REACTIONS2,
   ],
 
   customers: [
@@ -284,6 +296,7 @@ const content: LanguageContent = {
     { id: 'c_merchant', name: '周老板', avatar: '🧑‍💼', stage: 2 },
     { id: 'c_docker', name: '大刘', avatar: '👷', stage: 3 },
     { id: 'c_scholar', name: '林老师', avatar: '🧑‍🏫', stage: 6 },
+    ...CUSTOMERS2,
   ],
 
   verificationPages: [
@@ -307,6 +320,7 @@ const content: LanguageContent = {
     { id: 'g_react3', labelJa: 'お客さんの気持ち' },
     { id: 'g_method', labelJa: '作り方' },
     { id: 'g_talk', labelJa: '気持ちを言う' },
+    ...VERIFICATION2,
   ],
 
   // HSK 2.0 cumulative list sizes; CEFR targets follow the mapping table (A1≈HSK2, A2≈HSK3, ...).

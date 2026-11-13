@@ -24,8 +24,8 @@ describe('tokenize', () => {
   });
 
   it('reports unknown words', () => {
-    expect(unknownTokens(tokenize('Two bananas.', en), 'en')).toEqual(['bananas']);
-    expect(unknownTokens(tokenize('两个苹果。', zh), 'zh')).toEqual(['个', '苹', '果']);
+    expect(unknownTokens(tokenize('Two pineapples.', en), 'en')).toEqual(['pineapples']);
+    expect(unknownTokens(tokenize('两条鱼。', zh), 'zh')).toEqual(['条', '鱼']);
     expect(unknownTokens(tokenize('{x|nope}', en), 'en')).toEqual(['{x|nope}']);
   });
 });

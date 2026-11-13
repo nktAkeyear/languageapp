@@ -6,7 +6,7 @@ import type { LexEntry } from '../../core/types';
  */
 export const LEXICON: LexEntry[] = [
   // g_shelf1 — first shelf
-  { id: 'lemon', text: 'lemon', forms: ['lemons'], gloss: 'レモン', emoji: '🍋', pos: 'noun', cefr: 'A1', eiken: '4', group: 'g_shelf1' },
+  { id: 'lemon', text: 'lemon', forms: ['lemons'], gloss: 'レモン', emoji: '🍋', pos: 'noun', cefr: 'A2', eiken: '4', group: 'g_shelf1' },
   { id: 'ginger', text: 'ginger', gloss: '生姜（しょうが）', emoji: '🫚', pos: 'noun', cefr: 'B1', eiken: '2', group: 'g_shelf1' },
   { id: 'mint', text: 'mint', gloss: 'ミント', emoji: '🌿', pos: 'noun', cefr: 'B1', eiken: '準2', group: 'g_shelf1' },
   { id: 'honey', text: 'honey', gloss: 'はちみつ', emoji: '🍯', pos: 'noun', cefr: 'A2', eiken: '3', group: 'g_shelf1' },
@@ -17,9 +17,9 @@ export const LEXICON: LexEntry[] = [
   { id: 'three', text: 'three', gloss: '3（みっつ）', emoji: '3️⃣', pos: 'num', cefr: 'A1', eiken: '5', group: 'g_num1' },
 
   // g_unit
-  { id: 'slice', text: 'slice', forms: ['slices'], gloss: '薄切り（ひと切れ）', emoji: '🔪', pos: 'noun', cefr: 'A2', eiken: '準2', group: 'g_unit' },
-  { id: 'leaf', text: 'leaf', forms: ['leaves'], gloss: '葉（一枚）', emoji: '🍃', pos: 'noun', cefr: 'A2', eiken: '4', group: 'g_unit' },
-  { id: 'spoon', text: 'spoon', forms: ['spoons'], gloss: 'スプーン（一杯）', emoji: '🥄', pos: 'noun', cefr: 'A1', eiken: '4', group: 'g_unit' },
+  { id: 'slice', text: 'slice', forms: ['slices'], gloss: '薄切り（ひと切れ）', emoji: '🔪', pos: 'noun', cefr: 'B1', eiken: '準2', group: 'g_unit' },
+  { id: 'leaf', text: 'leaf', forms: ['leaves'], gloss: '葉（一枚）', emoji: '🍃', pos: 'noun', cefr: 'B1', eiken: '4', group: 'g_unit' },
+  { id: 'spoon', text: 'spoon', forms: ['spoons'], gloss: 'スプーン（一杯）', emoji: '🥄', pos: 'noun', cefr: 'A2', eiken: '4', group: 'g_unit' },
   { id: 'cup', text: 'cup', forms: ['cups'], gloss: 'カップ（一杯）', emoji: '☕', pos: 'noun', cefr: 'A1', eiken: '5', group: 'g_unit' },
 
   // g_temp
@@ -38,12 +38,12 @@ export const LEXICON: LexEntry[] = [
   { id: 'no', text: 'no', gloss: 'いいえ／〜はなし', emoji: '🚫', pos: 'det', cefr: 'A1', eiken: '5', group: 'g_neg' },
   { id: 'not', text: 'not', gloss: '〜ではない', emoji: '✖️', pos: 'adv', cefr: 'A1', eiken: '5', group: 'g_neg' },
   { id: 'with', text: 'with', gloss: '〜入りの・〜と一緒に', emoji: '🤝', pos: 'prep', cefr: 'A1', eiken: '5', group: 'g_neg' },
-  { id: 'without', text: 'without', gloss: '〜なしで', emoji: '🙅', pos: 'prep', cefr: 'A2', eiken: '3', group: 'g_neg' },
+  { id: 'without', text: 'without', gloss: '〜なしで', emoji: '🙅', pos: 'prep', cefr: 'A1', eiken: '3', group: 'g_neg' },
 
   // g_taste
-  { id: 'sweet', text: 'sweet', gloss: '甘い', emoji: '🍬', pos: 'adj', cefr: 'A1', eiken: '4', group: 'g_taste' },
+  { id: 'sweet', text: 'sweet', forms: ['sweeter'], gloss: '甘い', emoji: '🍬', pos: 'adj', cefr: 'A2', eiken: '4', group: 'g_taste' },
   { id: 'sour', text: 'sour', gloss: 'すっぱい', emoji: '😖', pos: 'adj', cefr: 'A2', eiken: '準2', group: 'g_taste' },
-  { id: 'bitter', text: 'bitter', gloss: '苦い', emoji: '😣', pos: 'adj', cefr: 'B1', eiken: '準2', group: 'g_taste' },
+  { id: 'bitter', text: 'bitter', gloss: '苦い', emoji: '😣', pos: 'adj', cefr: 'B2', eiken: '準2', group: 'g_taste' },
   { id: 'salty', text: 'salty', gloss: 'しょっぱい', emoji: '🧂', pos: 'adj', cefr: 'A2', eiken: '準2', group: 'g_taste' },
 
   // g_shelf2
@@ -57,7 +57,7 @@ export const LEXICON: LexEntry[] = [
   { id: 'red_date', text: 'red date', forms: ['red dates'], gloss: 'ナツメ（紅棗）', emoji: '🔴', pos: 'noun', cefr: 'B2', eiken: '準1', group: 'g_shelf3' },
   { id: 'chrysanthemum', text: 'chrysanthemum', forms: ['chrysanthemums'], gloss: '菊の花', emoji: '🌼', pos: 'noun', cefr: 'C1', eiken: '1', group: 'g_shelf3' },
   { id: 'cinnamon', text: 'cinnamon', gloss: 'シナモン', emoji: '🪵', pos: 'noun', cefr: 'B1', eiken: '準2', group: 'g_shelf3' },
-  { id: 'stick', text: 'stick', forms: ['sticks'], gloss: '棒（一本）', emoji: '🥢', pos: 'noun', cefr: 'A2', eiken: '3', group: 'g_shelf3' },
+  { id: 'stick', text: 'stick', forms: ['sticks'], gloss: '棒（一本）', emoji: '🥢', pos: 'noun', cefr: 'B1', eiken: '3', group: 'g_shelf3' },
   { id: 'cube', text: 'cube', forms: ['cubes'], gloss: '角（立方体のかたまり）', emoji: '🎲', pos: 'noun', cefr: 'B1', eiken: '2', group: 'g_shelf3' },
 
   // g_react1
@@ -69,7 +69,7 @@ export const LEXICON: LexEntry[] = [
   // g_amount
   { id: 'too', text: 'too', gloss: '〜すぎる', emoji: '⚠️', pos: 'adv', cefr: 'A1', eiken: '4', group: 'g_amount' },
   { id: 'much', text: 'much', gloss: 'たくさん（の量）', emoji: '📈', pos: 'det', cefr: 'A1', eiken: '5', group: 'g_amount' },
-  { id: 'enough', text: 'enough', gloss: '十分な', emoji: '👌', pos: 'det', cefr: 'A2', eiken: '3', group: 'g_amount' },
+  { id: 'enough', text: 'enough', gloss: '十分な', emoji: '👌', pos: 'det', cefr: 'A1', eiken: '3', group: 'g_amount' },
   { id: 'more', text: 'more', gloss: 'もっと', emoji: '➕', pos: 'det', cefr: 'A1', eiken: '4', group: 'g_amount' },
 
   // g_grammar
@@ -83,13 +83,13 @@ export const LEXICON: LexEntry[] = [
   { id: 'i', text: 'I', gloss: '私', emoji: '🙋', pos: 'pron', cefr: 'A1', eiken: '5', group: 'g_people' },
   { id: 'im', text: "I'm", gloss: '私は〜だ（I am）', pos: 'phrase', cefr: 'A1', eiken: '5', group: 'g_people' },
   { id: 'my', text: 'my', gloss: '私の', pos: 'det', cefr: 'A1', eiken: '5', group: 'g_people' },
-  { id: 'have', text: 'have', forms: ['has'], gloss: '持っている・（病気に）かかっている', pos: 'verb', cefr: 'A1', eiken: '5', group: 'g_people' },
+  { id: 'have', text: 'have', forms: ['has', 'had'], gloss: '持っている・（病気に）かかっている', pos: 'verb', cefr: 'A1', eiken: '5', group: 'g_people' },
   { id: 'want', text: 'want', gloss: 'ほしい', emoji: '🤲', pos: 'verb', cefr: 'A1', eiken: '5', group: 'g_people' },
 
   // g_symptom
   { id: 'cold_illness', text: 'cold', gloss: 'かぜ（風邪）', emoji: '🤧', pos: 'noun', cefr: 'A1', eiken: '4', group: 'g_symptom' },
   { id: 'sore', text: 'sore', gloss: 'ひりひり痛む', emoji: '😖', pos: 'adj', cefr: 'B1', eiken: '2', group: 'g_symptom' },
-  { id: 'throat', text: 'throat', gloss: 'のど', emoji: '🗣️', pos: 'noun', cefr: 'A2', eiken: '準2', group: 'g_symptom' },
+  { id: 'throat', text: 'throat', gloss: 'のど', emoji: '🗣️', pos: 'noun', cefr: 'B1', eiken: '準2', group: 'g_symptom' },
   { id: 'tired', text: 'tired', gloss: '疲れた', emoji: '😩', pos: 'adj', cefr: 'A1', eiken: '4', group: 'g_symptom' },
 
   // g_sleep
@@ -100,7 +100,7 @@ export const LEXICON: LexEntry[] = [
 
   // g_react3
   { id: 'oh', text: 'oh', gloss: 'あっ・おお（驚き）', emoji: '😮', pos: 'interj', cefr: 'A1', eiken: '5', group: 'g_react3' },
-  { id: 'perfect', text: 'perfect', gloss: '完璧な', emoji: '💯', pos: 'adj', cefr: 'A2', eiken: '3', group: 'g_react3' },
+  { id: 'perfect', text: 'perfect', gloss: '完璧な', emoji: '💯', pos: 'adj', cefr: 'A1', eiken: '3', group: 'g_react3' },
   { id: 'again', text: 'again', gloss: 'もう一度・また', emoji: '🔁', pos: 'adv', cefr: 'A1', eiken: '4', group: 'g_react3' },
   { id: 'feel', text: 'feel', gloss: '（気分を）感じる', emoji: '💭', pos: 'verb', cefr: 'A1', eiken: '4', group: 'g_react3' },
   { id: 'better', text: 'better', gloss: 'より良い（よくなった）', emoji: '📈', pos: 'adj', cefr: 'A1', eiken: '4', group: 'g_react3' },
@@ -108,12 +108,12 @@ export const LEXICON: LexEntry[] = [
   // g_method
   { id: 'boil', text: 'boil', gloss: '煮る・煮立てる', emoji: '🍲', pos: 'verb', cefr: 'A2', eiken: '準2', group: 'g_method' },
   { id: 'steep', text: 'steep', gloss: '（お湯に）浸して出す', emoji: '⏳', pos: 'verb', cefr: 'B2', eiken: '準1', group: 'g_method' },
-  { id: 'stir', text: 'stir', gloss: 'かき混ぜる', emoji: '🌀', pos: 'verb', cefr: 'B1', eiken: '2', group: 'g_method' },
+  { id: 'stir', text: 'stir', gloss: 'かき混ぜる', emoji: '🌀', pos: 'verb', cefr: 'C1', eiken: '2', group: 'g_method' },
   { id: 'add', text: 'add', gloss: '加える', emoji: '➕', pos: 'verb', cefr: 'A1', eiken: '3', group: 'g_method' },
 
   // g_drink
   { id: 'tea', text: 'tea', gloss: 'お茶（飲み物）', emoji: '🍵', pos: 'noun', cefr: 'A1', eiken: '5', group: 'g_drink' },
-  { id: 'drink', text: 'drink', forms: ['drinks'], gloss: '飲む・飲み物', emoji: '🥤', pos: 'verb', cefr: 'A1', eiken: '5', group: 'g_drink' },
+  { id: 'drink', text: 'drink', forms: ['drinks', 'drank'], gloss: '飲む・飲み物', emoji: '🥤', pos: 'verb', cefr: 'A1', eiken: '5', group: 'g_drink' },
   { id: 'for', text: 'for', gloss: '〜のための・〜向けの', emoji: '🎯', pos: 'prep', cefr: 'A1', eiken: '5', group: 'g_drink' },
 
   // g_num2
@@ -123,6 +123,6 @@ export const LEXICON: LexEntry[] = [
 
   // g_talk
   { id: 'say', text: 'say', forms: ['said', 'says'], gloss: '言う', emoji: '💬', pos: 'verb', cefr: 'A1', eiken: '5', group: 'g_talk' },
-  { id: 'like', text: 'like', gloss: '好きだ', emoji: '❤️', pos: 'verb', cefr: 'A1', eiken: '5', group: 'g_talk' },
+  { id: 'like', text: 'like', forms: ['likes'], gloss: '好きだ', emoji: '❤️', pos: 'verb', cefr: 'A1', eiken: '5', group: 'g_talk' },
   { id: 'very', text: 'very', gloss: 'とても', emoji: '‼️', pos: 'adv', cefr: 'A1', eiken: '5', group: 'g_talk' },
 ];

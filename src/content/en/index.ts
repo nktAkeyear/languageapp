@@ -1,13 +1,18 @@
 import type { LanguageContent } from '../../core/types';
+import { buildOrders, buildTemplates } from '../shared/curriculum';
 import { LEXICON } from './lexicon';
+import { LEXICON2, VERIFICATION2 } from './lexicon2';
+import {
+  CUSTOMERS2, INGREDIENTS2, NUMBERS2, ORDER_TEXTS, PAGES2, REACTIONS2, RECIPE_NAMES2, SYMPTOMS2, TAG_WORDS2, TEMPLATE_TEXTS,
+} from './stages2';
 
 const content: LanguageContent = {
   lang: 'en',
-  lexicon: LEXICON,
-  numbers: { 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five' },
+  lexicon: [...LEXICON, ...LEXICON2],
+  numbers: { 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', ...NUMBERS2 },
   temperatureWords: { hot: 'hot', cold: 'cold' },
   methodWords: { steep: 'steep', boil: 'boil', stir: 'stir' },
-  tagWords: { sweet: 'sweet', sour: 'sour', bitter: 'bitter', salty: 'salty', tea: 'tea' },
+  tagWords: { sweet: 'sweet', sour: 'sour', bitter: 'bitter', salty: 'salty', tea: 'tea', ...TAG_WORDS2 },
 
   ingredients: [
     { ingredient: 'lemon', word: 'lemon', qty: { one: 'one lemon slice', other: '{n} lemon slices' } },
@@ -24,6 +29,7 @@ const content: LanguageContent = {
     { ingredient: 'red_dates', word: 'red_date', qty: { one: 'one red date', other: '{n} red dates' } },
     { ingredient: 'chrysanthemum', word: 'chrysanthemum', qty: { one: 'one chrysanthemum', other: '{n} chrysanthemums' } },
     { ingredient: 'cinnamon', word: 'cinnamon', qty: { one: 'one cinnamon stick', other: '{n} cinnamon sticks' } },
+    ...INGREDIENTS2,
   ],
 
   recipeNames: {
@@ -34,6 +40,7 @@ const content: LanguageContent = {
     ginger_dates: 'Ginger and red date tea',
     cinnamon_milk_tea: 'Cinnamon milk tea',
     chrysanthemum_green: 'Chrysanthemum green tea',
+    ...RECIPE_NAMES2,
   },
 
   symptoms: [
@@ -41,6 +48,7 @@ const content: LanguageContent = {
     { symptom: 'sore_throat', phrases: ['I have a sore throat.', 'My throat is sore.'] },
     { symptom: 'tired', phrases: ["I'm tired.", "I'm tired. I want a cold drink."] },
     { symptom: 'insomnia', phrases: ["I can't sleep.", "I can't sleep at night."] },
+    ...SYMPTOMS2,
   ],
 
   pages: [
@@ -170,6 +178,7 @@ const content: LanguageContent = {
         { text: 'Hot.', icon: '🔥', style: 'item' },
       ],
     },
+    ...PAGES2,
   ],
 
   orders: [
@@ -220,6 +229,7 @@ const content: LanguageContent = {
     { id: 'o9_steep', stage: 9, seq: 3, customer: 'c_scholar', text: 'Chrysanthemum green tea, please.', recipe: 'chrysanthemum_green' },
     { id: 'o9_big', stage: 9, seq: 4, customer: 'c_boy', text: 'Four mint leaves and five ice cubes, please. Cold.', rule: { require: [{ ing: 'mint', min: 4, max: 4 }, { ing: 'ice', min: 5, max: 5 }], temp: 'cold' } },
     { id: 'o9_milk_tea', stage: 9, seq: 5, text: 'Black tea with milk, please. Hot.', rule: { require: [{ ing: 'black_tea' }, { ing: 'milk' }], temp: 'hot' } },
+    ...buildOrders(ORDER_TEXTS),
   ],
 
   templates: [
@@ -239,6 +249,7 @@ const content: LanguageContent = {
     { id: 't7_symptom', stage: 7, text: '{symptom}', audioOnly: 0.3, slots: { symptom: { kind: 'symptom' } } },
     { id: 't7_recipe', stage: 7, text: '{Recipe}, please.', slots: { recipe: { kind: 'recipe' } } },
     { id: 't9_big', stage: 9, text: '{Q1} and {q2}, please. {Temp}.', slots: { q1: { kind: 'qty', min: 1, max: 5 }, q2: { kind: 'qty', min: 1, max: 5 }, temp: { kind: 'temp' } } },
+    ...buildTemplates(TEMPLATE_TEXTS),
   ],
 
   reactions: [
@@ -273,7 +284,7 @@ const content: LanguageContent = {
     // forbidden
     { id: 'r_forbid1', kind: 'forbidden', stage: 5, text: 'No {ing}! No!', face: 'angry' },
     { id: 'r_forbid2', kind: 'forbidden', stage: 7, text: 'I said no {ing}!', face: 'angry' },
-    { id: 'r_forbid_tag', kind: 'forbidden_tag', stage: 6, text: 'Oh, no! This is {tag}!', face: 'angry' },
+    { id: 'r_forbid_tag', kind: 'forbidden_tag', stage: 6, text: 'Oh, no! This is {tag}!', face: 'angry', when: { tags: ['sweet', 'sour', 'bitter', 'salty'] } },
     // tastes
     { id: 'r_tag_missing', kind: 'tag_missing', stage: 6, text: 'Not {tag}.', face: 'sad' },
     { id: 'r_tag_missing2', kind: 'tag_missing', stage: 6, text: '{Tag}, please!', face: 'puzzled' },
@@ -286,6 +297,7 @@ const content: LanguageContent = {
     { id: 'r_temp', kind: 'wrong_temp', stage: 3, text: '{Temp}, please!', face: 'puzzled' },
     { id: 'r_temp2', kind: 'wrong_temp', stage: 6, text: 'Oh! This is not {temp}.', face: 'sad' },
     { id: 'r_method', kind: 'wrong_method', stage: 9, text: '{Method} it, please.', face: 'neutral' },
+    ...REACTIONS2,
   ],
 
   customers: [
@@ -296,6 +308,7 @@ const content: LanguageContent = {
     { id: 'c_merchant', name: 'Mr. Grant', avatar: '🧑‍💼', stage: 2 },
     { id: 'c_docker', name: 'Big Joe', avatar: '👷', stage: 3 },
     { id: 'c_scholar', name: 'Professor Hale', avatar: '🧑‍🏫', stage: 6 },
+    ...CUSTOMERS2,
   ],
 
   verificationPages: [
@@ -319,6 +332,7 @@ const content: LanguageContent = {
     { id: 'g_drink', labelJa: '飲み物まわり', minEncounters: 2 },
     { id: 'g_num2', labelJa: '数（二）と時間', minEncounters: 2 },
     { id: 'g_talk', labelJa: '気持ちを言う' },
+    ...VERIFICATION2,
   ],
 
   // Approximate cumulative vocabulary sizes. 英検 has no official list; these are common estimates.
