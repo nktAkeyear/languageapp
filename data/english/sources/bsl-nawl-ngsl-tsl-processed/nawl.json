@@ -1,0 +1,1967 @@
+[
+  {
+    "entry": "semantic",
+    "rank": 12,
+    "meaning_ejdict": "(言語の)意味に関する;意味論の"
+  },
+  {
+    "entry": "ion",
+    "rank": 14,
+    "meaning_ejdict": "イオン"
+  },
+  {
+    "entry": "linguistic",
+    "rank": 20,
+    "meaning_ejdict": "言語学の;言語上の"
+  },
+  {
+    "entry": "velocity",
+    "rank": 23,
+    "meaning_ejdict": "〈U〉速度"
+  },
+  {
+    "entry": "discourse",
+    "rank": 25,
+    "meaning_ejdict": "〈C〉(…についての)『講演』,講話;説教《+『on』(『upon』)+『名』》 / 〈U〉会話,談話 / 〈C〉論説,論考,論文 / (…について)講演する,論述する《+『on』(『upon』)+『名』》"
+  },
+  {
+    "entry": "finite",
+    "rank": 26,
+    "meaning_ejdict": "限りある,有限の / =finite verb"
+  },
+  {
+    "entry": "electron",
+    "rank": 29,
+    "meaning_ejdict": "『電子』,エレクトロン"
+  },
+  {
+    "entry": "receptor",
+    "rank": 30,
+    "meaning_ejdict": "=sense organ / 受信装置"
+  },
+  {
+    "entry": "theorem",
+    "rank": 31,
+    "meaning_ejdict": "定理 / (一般に)自明の原理,定理"
+  },
+  {
+    "entry": "fluid",
+    "rank": 33,
+    "meaning_ejdict": "『流体』,流動体 / 『流動性の』,流動する / 流体の,流動体から成る / 変わりやすい,固定していない,浮動する"
+  },
+  {
+    "entry": "developmental",
+    "rank": 34,
+    "meaning_ejdict": "開発の;発達上の;発育上の"
+  },
+  {
+    "entry": "molecular",
+    "rank": 36,
+    "meaning_ejdict": "分子の,分子による"
+  },
+  {
+    "entry": "spatial",
+    "rank": 38,
+    "meaning_ejdict": "空間の / 空間に存在する(で起こる)"
+  },
+  {
+    "entry": "membrane",
+    "rank": 41,
+    "meaning_ejdict": "(生物の)膜,皮膜"
+  },
+  {
+    "entry": "neuron",
+    "rank": 42,
+    "meaning_ejdict": "神経単位,神経細胞,ニューロン,ノイロン"
+  },
+  {
+    "entry": "lexical",
+    "rank": 44,
+    "meaning_ejdict": "単語の・語いの / 辞書の"
+  },
+  {
+    "entry": "marker",
+    "rank": 48,
+    "meaning_ejdict": "印をつける人(道具) / (ゲームなどの)採点者 / 目印,目標"
+  },
+  {
+    "entry": "vowel",
+    "rank": 52,
+    "meaning_ejdict": "母音 / 《話》母音字 / 母音の"
+  },
+  {
+    "entry": "diagnosis",
+    "rank": 56,
+    "meaning_ejdict": "診断[書] / (問題の原因などの)判断,分析 / (問題の)解決;結論"
+  },
+  {
+    "entry": "mortality",
+    "rank": 62,
+    "meaning_ejdict": "〈U〉死を免れぬこと,死ぬべき運命 / 〈U〉《時にa~》死亡数;死亡率 / 〈U〉《時にa~》(戦争などによる)多数の死"
+  },
+  {
+    "entry": "antibody",
+    "rank": 63,
+    "meaning_ejdict": "抗体,免疫体,抗毒素"
+  },
+  {
+    "entry": "temporal",
+    "rank": 64,
+    "meaning_ejdict": "時の,時間の / この世の,現世の;俗界の / 一時的な,はかない / こめかみの"
+  },
+  {
+    "entry": "bilingual",
+    "rank": 69,
+    "meaning_ejdict": "2つの言語を話す,母国語と同じように外国語を話す / (書籍など)2か国語で表された(書かれた) / 2か国語を話せる人"
+  },
+  {
+    "entry": "mutation",
+    "rank": 74,
+    "meaning_ejdict": "変化,変転 / (生物の)突然変異;その変種"
+  },
+  {
+    "entry": "phonological",
+    "rank": 76,
+    "meaning_ja": "【形】音韻論の；音韻体系の；音韻的な"
+  },
+  {
+    "entry": "nucleus",
+    "rank": 78,
+    "meaning_ejdict": "中心,核 / (生物の)細胞核 / 原子核"
+  },
+  {
+    "entry": "onset",
+    "rank": 79,
+    "meaning_ejdict": "攻撃,襲撃 / (病気・季節などの)始まり,開始《+『of』+『名』》"
+  },
+  {
+    "entry": "pathway",
+    "rank": 82,
+    "meaning_ejdict": "道,小道(path)"
+  },
+  {
+    "entry": "subset",
+    "rank": 86,
+    "meaning_ejdict": "(一組・一団などの一部を成す)小さな一組 / (数学の集合論で)部分集合"
+  },
+  {
+    "entry": "syntactic",
+    "rank": 87,
+    "meaning_ejdict": "文章構成[法]の,統語論の"
+  },
+  {
+    "entry": "prevalence",
+    "rank": 92,
+    "meaning_ejdict": "広く行きわっていること,普及 / 優勢,支配"
+  },
+  {
+    "entry": "pulse",
+    "rank": 96,
+    "meaning_ejdict": "《通例単数形で》『脈はく』 / (一般に,規則的な)鼓動,律動 / (電気の)パルス / (一般的な)傾向 / 脈を打つ,鼓動する / 〈U〉《時に複数扱い》(食用の)豆類 / 〈C〉《通例複数形で》豆のとれる植物"
+  },
+  {
+    "entry": "syllable",
+    "rank": 102,
+    "meaning_ejdict": "音節,シラブル / 《通例否定語と共に用いて》一言,一語"
+  },
+  {
+    "entry": "chromosome",
+    "rank": 103,
+    "meaning_ejdict": "染色体"
+  },
+  {
+    "entry": "maternal",
+    "rank": 113,
+    "meaning_ejdict": "母らしい;母の / 母方の"
+  },
+  {
+    "entry": "locus",
+    "rank": 116,
+    "meaning_ejdict": "(法律用語で)場所,位置 / (数学で,点が描く)軌跡"
+  },
+  {
+    "entry": "thesis",
+    "rank": 119,
+    "meaning_ejdict": "(論証のための)陳述,主張;論題,主題 / (卒業・学位の)論文"
+  },
+  {
+    "entry": "sin",
+    "rank": 120,
+    "meaning_ejdict": "〈U〉(宗教・道徳上の)『罪』 / 〈C〉(宗教・道徳上の)『罪の行為』,罪悪 / 〈C〉《特におどけて》違反(過失)の行為 / (宗教・道徳上の)おきてを破る,罪を犯す / (…に)違反(過失)をする,背く《+『against』+『名』》 / sine"
+  },
+  {
+    "entry": "syndrome",
+    "rank": 123,
+    "meaning_ejdict": "(疾患の徴候となる一群の)症徴候,症候群 / (事件・社会的状態などのパターンを示す)徴候形態"
+  },
+  {
+    "entry": "adolescent",
+    "rank": 126,
+    "meaning_ejdict": "青春期の,青年らしい / 青春期の人,若者"
+  },
+  {
+    "entry": "vocabulary",
+    "rank": 127,
+    "meaning_ejdict": "〈C〉(特定の人・グループ・分野で用いられるすべての)『語彙』,用語 / 〈C〉(アルファベット順に並べて語義や訳を付けた)語彙集,単語表(集) / 〈U〉(一言語の)全語彙"
+  },
+  {
+    "entry": "encode",
+    "rank": 128,
+    "meaning_ejdict": "…を暗号化する"
+  },
+  {
+    "entry": "utterance",
+    "rank": 128,
+    "meaning_ejdict": "〈U〉(言葉を)発すること,発声 / 〈U〉発表力,話しぶり / 〈C〉言葉,表現;言説,意見;(言語学で)発話"
+  },
+  {
+    "entry": "incidence",
+    "rank": 131,
+    "meaning_ejdict": "(病気・事件・犯罪などの)発生率,頻度;発生(影響)する範囲 / 投射[角],入射[角]"
+  },
+  {
+    "entry": "trajectory",
+    "rank": 133,
+    "meaning_ejdict": "(ミサイルなどの描く)弾道,軌道,曲線"
+  },
+  {
+    "entry": "manuscript",
+    "rank": 134,
+    "meaning_ejdict": "〈C〉(手書きまたはタイプされた印刷用の)『原稿』;〈U〉原稿の状態(《略》『MS.,MS,ms.,ms』) / 〈C〉(特に印刷術発明以前で,手書きの)『写本』"
+  },
+  {
+    "entry": "grammatical",
+    "rank": 136,
+    "meaning_ejdict": "《名詞の前にのみ用いて》文法上の / 文法にかなった"
+  },
+  {
+    "entry": "adaptation",
+    "rank": 138,
+    "meaning_ejdict": "〈U〉適応,順応 / 〈U〉脚色,翻案;〈C〉翻案物,改作物"
+  },
+  {
+    "entry": "amplitude",
+    "rank": 138,
+    "meaning_ejdict": "広さ,大きさ / 十分,豊富 / (振子の)最大振幅;(電波・音波などの)振幅"
+  },
+  {
+    "entry": "cortex",
+    "rank": 140,
+    "meaning_ejdict": "(内臓,特に脳の)皮質 / (植物の)皮層;樹皮"
+  },
+  {
+    "entry": "synthesis",
+    "rank": 144,
+    "meaning_ejdict": "〈U〉総合,統合[すること] / 〈C〉総合体,統合されたもの / 〈U〉合成"
+  },
+  {
+    "entry": "diameter",
+    "rank": 146,
+    "meaning_ejdict": "〈C〉『直径』"
+  },
+  {
+    "entry": "cone",
+    "rank": 147,
+    "meaning_ejdict": "円すい,円すい形 / 円すい形のもの / 球果(松かさなど) / 暴風警報球"
+  },
+  {
+    "entry": "organism",
+    "rank": 149,
+    "meaning_ejdict": "有機体,生物 / (国家・社会などの)有機的組織体"
+  },
+  {
+    "entry": "neural",
+    "rank": 158,
+    "meaning_ejdict": "神経[系統]の"
+  },
+  {
+    "entry": "enzyme",
+    "rank": 161,
+    "meaning_ejdict": "酵素"
+  },
+  {
+    "entry": "conception",
+    "rank": 163,
+    "meaning_ejdict": "〈U〉『概念』,観念,考え(idea) / 〈C〉着想,思いつき,案 / 〈U〉妊娠,受胎"
+  },
+  {
+    "entry": "sperm",
+    "rank": 166,
+    "meaning_ejdict": "〈C〉精子 / 〈U〉精液"
+  },
+  {
+    "entry": "sphere",
+    "rank": 168,
+    "meaning_ejdict": "『球』,球体,球面 / (惑星・星などの)『天体』;天球;《詞》天,空 / (知識・活動・影響などの)『範囲』,領域《+『of』+『名』》 / (社会的)地位,階級"
+  },
+  {
+    "entry": "mediate",
+    "rank": 170,
+    "meaning_ejdict": "〈紛争・相違点など〉を調停する,仲裁する / 〈妥協・和解・同意など〉を仲裁して成立させる / (両者の)調停をする《+『between』+『名』》 / 仲介者(媒介物)を通じての,間接の"
+  },
+  {
+    "entry": "variant",
+    "rank": 178,
+    "meaning_ejdict": "(同種のものと)異なった,別の / 異形;(同じ単語の)異なったつづり(発音など)"
+  },
+  {
+    "entry": "evolutionary",
+    "rank": 179,
+    "meaning_ejdict": "発展の / 進化の;進化論に関する"
+  },
+  {
+    "entry": "nonlinear",
+    "rank": 185,
+    "meaning_ja": "【形】直線的でない；突然変化する； 非線形の,非1次の"
+  },
+  {
+    "entry": "morphology",
+    "rank": 190,
+    "meaning_ejdict": "形態学(生物の構造の研究) / 形態論,語形論(言語の形態の研究)"
+  },
+  {
+    "entry": "syntax",
+    "rank": 192,
+    "meaning_ejdict": "文章論,統語論,文章構成法,シンタックス(文中における語の配列を扱う文法の一部門)"
+  },
+  {
+    "entry": "radiation",
+    "rank": 199,
+    "meaning_ejdict": "〈U〉(光・熱・放射能などの)発散,放射 / 〈C〉放射物;放射線;輻射(ふくしゃ)熱 / 〈C〉(喜び・幸福感などの)発散《+『of』+『名』》 / =radioactivity"
+  },
+  {
+    "entry": "acute",
+    "rank": 202,
+    "meaning_ejdict": "(先の)『鋭い』,とがった / (痛み・感情などが)『激しい』,強い / (知力・感覚などが)『鋭い』,鋭敏な / (事態が)重大な / (病気が)急性の / (音が)高い,鋭い / 鋭角の"
+  },
+  {
+    "entry": "leaf",
+    "rank": 205,
+    "meaning_ejdict": "〈C〉(木・草の)『葉』 / 〈C〉花びら / 〈C〉(本などのページの裏表)『1枚』 / 〈U〉(金属の)薄片,箔(はく) / 〈C〉(折りたたみ式テーブルの)補助板 / 《おもに米》〈木が〉葉を出す《+『out』》 / (本などの)ページをばらばらとめくる,内容にざっと目を通す《+『through』+『名』》"
+  },
+  {
+    "entry": "corpus",
+    "rank": 209,
+    "meaning_ejdict": "(特定の事に関する,または特殊の性質の)文書資料の集成 / (研究用に収集した)資料"
+  },
+  {
+    "entry": "gradient",
+    "rank": 211,
+    "meaning_ejdict": "(道路・鉄道などの)勾配(こうばい),傾斜度,グラジエント・斜面"
+  },
+  {
+    "entry": "tumor",
+    "rank": 214,
+    "meaning_ejdict": "はれもの,できもの,腫瘍"
+  },
+  {
+    "entry": "paradigm",
+    "rank": 216,
+    "meaning_ejdict": "範例,規範 / 語形変化表"
+  },
+  {
+    "entry": "infinite",
+    "rank": 218,
+    "meaning_ejdict": "(空間・数・量・程度などについて)『無限の』,限りがない / ばく大な,非常に大きい(very great) / 《the I-》神(God) / 《the ~》無限なもの,無限の空間(時間) / (数学で)無限"
+  },
+  {
+    "entry": "outer",
+    "rank": 223,
+    "meaning_ejdict": "外に,外側の,外部の / 中心から遠い"
+  },
+  {
+    "entry": "notation",
+    "rank": 224,
+    "meaning_ejdict": "〈C〉(特殊な記号・符号による一組の)表記,表記 / 〈U〉(特殊な記号・符号による)表記法 / 〈C〉《米》(本の欄外などの)書き込み,注記(note)"
+  },
+  {
+    "entry": "consciousness",
+    "rank": 236,
+    "meaning_ejdict": "意識,知覚 / (個人や集団の)意識,精神,意見"
+  },
+  {
+    "entry": "disturbance",
+    "rank": 238,
+    "meaning_ejdict": "〈U〉乱す(騒がす,妨害する)こと;乱れた状態 / 〈C〉騒ぎ,騒動,動乱 / 〈C〉乱す(騒がす,妨害する)もの"
+  },
+  {
+    "entry": "rotation",
+    "rank": 240,
+    "meaning_ejdict": "〈U〉〈C〉回転 / 〈U〉〈C〉(地球・天体の)自転 / 〈U〉循環;交替;(作物の)輪作"
+  },
+  {
+    "entry": "archaeology",
+    "rank": 243,
+    "meaning_ejdict": "考古学"
+  },
+  {
+    "entry": "inhibit",
+    "rank": 249,
+    "meaning_ejdict": "〈感情・欲望・行動・作用など〉を抑制する / (…しないように)〈人〉を抑制する,妨げる《+『名』+『from』+『名』(do『ing』)》"
+  },
+  {
+    "entry": "consonant",
+    "rank": 250,
+    "meaning_ejdict": "子音 / 《文》(…と)調和する,一致する《+『with』(『to』)+『名』》"
+  },
+  {
+    "entry": "morphological",
+    "rank": 257,
+    "meaning_ja": "【形】形態学的な,形態学の；形態上の,形態的な"
+  },
+  {
+    "entry": "lateral",
+    "rank": 258,
+    "meaning_ejdict": "横の,側面の;横からの / (音声が)側音の / 側面,(道路の)側溝(そっこう) / 側音(英語の[1]など)"
+  },
+  {
+    "entry": "insect",
+    "rank": 261,
+    "meaning_ejdict": "『昆虫』;(一般に)虫"
+  },
+  {
+    "entry": "calculus",
+    "rank": 263,
+    "meaning_ejdict": "〈C〉(腎臓内などにできる)結石 / 〈U〉微積分学"
+  },
+  {
+    "entry": "longitudinal",
+    "rank": 264,
+    "meaning_ejdict": "経度の / 長さの;縦の"
+  },
+  {
+    "entry": "characterization",
+    "rank": 269,
+    "meaning_ejdict": "性格描写 / 特性(特質)を表すこと,特徴づけ"
+  },
+  {
+    "entry": "composer",
+    "rank": 273,
+    "meaning_ejdict": "作曲家"
+  },
+  {
+    "entry": "singular",
+    "rank": 274,
+    "meaning_ejdict": "『非凡な』,目ざましい / 『奇妙な』,変わった / (文法で)『単数の』 / 単数[形]"
+  },
+  {
+    "entry": "fetal",
+    "rank": 276,
+    "meaning_ejdict": "胎児の"
+  },
+  {
+    "entry": "oxygen",
+    "rank": 280,
+    "meaning_ejdict": "『酸素』(化学記号はO)"
+  },
+  {
+    "entry": "dialect",
+    "rank": 282,
+    "meaning_ejdict": "『方言』,なまり / (ある階級・人種・職業などの)通り言葉"
+  },
+  {
+    "entry": "colony",
+    "rank": 283,
+    "meaning_ejdict": "『植民地』 / 植民団,居留民;(外国人の)集団居留地 / (同じ人種・宗教・職業などの人たちが住む)『集団』,部落 / (動物・鳥・虫などの)集団;(生物の)群体,群落《+『of』+『名』》 / 《the Colonies》アメリカ合衆国を形成した13州のイギリス植民地"
+  },
+  {
+    "entry": "algebra",
+    "rank": 286,
+    "meaning_ejdict": "『代数』[学]"
+  },
+  {
+    "entry": "diffusion",
+    "rank": 290,
+    "meaning_ejdict": "放散,発散,拡散[作用] / 普及,流布 / (文体などの)散漫,冗漫"
+  },
+  {
+    "entry": "specimen",
+    "rank": 291,
+    "meaning_ejdict": "(…の)『見本』,標本,実例《+『of』+『名』》 / (検査のため採取された,組織・血液・尿などの)『標本』 / 《話》《形容詞を伴って》…の人,…なやつ"
+  },
+  {
+    "entry": "fusion",
+    "rank": 296,
+    "meaning_ejdict": "〈U〉(金属などが)溶けること,融解,融合《+『of』+『名』》 / 〈C〉融合物 / 〈C〉(政党・党派などの)連合,合同;(民族などの)融合《+『of』+『名』》 / 〈U〉〈C〉核融合(nuclear fusion)"
+  },
+  {
+    "entry": "amino",
+    "rank": 301,
+    "meaning_ja": "【名/U】アミノ酸"
+  },
+  {
+    "entry": "philosophical",
+    "rank": 304,
+    "meaning_ejdict": "=philosophic"
+  },
+  {
+    "entry": "indigenous",
+    "rank": 308,
+    "meaning_ejdict": "固有の,土着の,生まれながらの"
+  },
+  {
+    "entry": "symbolic",
+    "rank": 311,
+    "meaning_ejdict": "象徴の(に関する);象徴(記号)によって表された"
+  },
+  {
+    "entry": "physiological",
+    "rank": 313,
+    "meaning_ejdict": "生理学上の;生理的な"
+  },
+  {
+    "entry": "calcium",
+    "rank": 315,
+    "meaning_ejdict": "『カルシウム』(金属元素;化学記号は『Ca』)"
+  },
+  {
+    "entry": "psychiatric",
+    "rank": 318,
+    "meaning_ejdict": "精神医学(病理学)の"
+  },
+  {
+    "entry": "critique",
+    "rank": 320,
+    "meaning_ejdict": "〈C〉(美術・文芸作品などに関する)評論 / 〈U〉(一般に)論評,批判"
+  },
+  {
+    "entry": "cue",
+    "rank": 327,
+    "meaning_ejdict": "きっかけ(俳優の登場またはせりふの合図),(せりふの)渡し文句 / (行動の)きっかけ,合図 / …にきっかけ(指示)を与える / (玉突きの)突き棒,キュー / =queue"
+  },
+  {
+    "entry": "parental",
+    "rank": 328,
+    "meaning_ejdict": "親の,親としての,親にふさわしい / 親のような"
+  },
+  {
+    "entry": "ritual",
+    "rank": 329,
+    "meaning_ejdict": "儀式の,儀式として行う / 《集合的に》(宗教上の)儀式[形式];(特定の)儀式 / (社会的慣習としての)礼儀,作法(おじぎ・脱帽・握手など)"
+  },
+  {
+    "entry": "fertility",
+    "rank": 330,
+    "meaning_ejdict": "肥沃(ひよく);産出力,繁殖力;(創造力の)豊かさ"
+  },
+  {
+    "entry": "inhibition",
+    "rank": 332,
+    "meaning_ejdict": "禁止; 抑制; (心理学で)抑制; (化学で)(反応の)阻害, 抑制"
+  },
+  {
+    "entry": "tense",
+    "rank": 338,
+    "meaning_ejdict": "(文法で)『時制』 / (筋肉:繊維などが)『ぴんと張った』 / (精神的に)『緊張した』;緊張させる / …をぴんと張る;…を緊張させる《+名+up,+up+名》 / ぴんと張る;緊張する《+up》"
+  },
+  {
+    "entry": "transcription",
+    "rank": 339,
+    "meaning_ejdict": "〈U〉(…を)書き写す(書き直す)こと,(…の)転写,謄写《+of+名》 / 〈C〉写し(書き直し)[たもの] / 〈U〉〈C〉編曲[されたもの] / 〈U〉〈C〉(ラジオ・テレビの)録音(録画)"
+  },
+  {
+    "entry": "nutrient",
+    "rank": 341,
+    "meaning_ejdict": "栄養に富む / 〈C〉栄養物,栄養剤"
+  },
+  {
+    "entry": "dense",
+    "rank": 345,
+    "meaning_ejdict": "『密度が濃い』,密集した,目の詰まった / 《話》頭の鈍い,のろまな"
+  },
+  {
+    "entry": "ecology",
+    "rank": 346,
+    "meaning_ejdict": "生態学(生物と生活環境との関連を研究する学問)"
+  },
+  {
+    "entry": "adaptive",
+    "rank": 351,
+    "meaning_ejdict": "適応できる,適応性のある"
+  },
+  {
+    "entry": "ecological",
+    "rank": 352,
+    "meaning_ejdict": "生態学の"
+  },
+  {
+    "entry": "aesthetic",
+    "rank": 355,
+    "meaning_ejdict": "美学の;審美的な"
+  },
+  {
+    "entry": "equivalence",
+    "rank": 360,
+    "meaning_ejdict": "(価値・重要性などの)等しいこと,等価,同量 / (原子の)等価;(数学で)等価,同値;(図形の)等積"
+  },
+  {
+    "entry": "pragmatic",
+    "rank": 361,
+    "meaning_ejdict": "実際的な実用的な / 実用主義の"
+  },
+  {
+    "entry": "arrow",
+    "rank": 363,
+    "meaning_ejdict": "『矢』 / (用途・形などが)矢に似た物;(記号の)矢印(→)"
+  },
+  {
+    "entry": "commentary",
+    "rank": 365,
+    "meaning_ejdict": "(…の)注解,注釈書,解説,論評《+『on』(『upon』)+『名』》 / 《複数形で》(…の)実録《+『on』+『名』》"
+  },
+  {
+    "entry": "residue",
+    "rank": 366,
+    "meaning_ejdict": "残り,残余;残留物"
+  },
+  {
+    "entry": "unstable",
+    "rank": 367,
+    "meaning_ejdict": "(物が)不安定な,ぐらぐらする / 情緒不安定な,落ち着のない / (気候・経済などが)安定性のない,不安定な / (化合物が)分解しやすい"
+  },
+  {
+    "entry": "radius",
+    "rank": 370,
+    "meaning_ejdict": "半径 / (行動・活動・能力なのどの)及ぶ範囲《+『of』+『名』》 / 橈骨(とうこつ)(上腕の骨の一つ)"
+  },
+  {
+    "entry": "pi",
+    "rank": 374,
+    "meaning_ejdict": "〈C〉パイ(ギリシア語アルファベットの第16字Π,π;英語のP,pに相当) / 〈U〉円周率(記号はπ) / ごちゃまぜの活字 / ごちゃまぜ,混乱"
+  },
+  {
+    "entry": "monkey",
+    "rank": 375,
+    "meaning_ejdict": "『さる』(猿)(普通小さくて尾のあるサル) / 《話》猿に似た顔つきの人(動作をする人);(特に)いたずら小僧 / 《英俗》500ポンド,500ドル / (…を)いじる《+『around with』+『名』》"
+  },
+  {
+    "entry": "habitat",
+    "rank": 376,
+    "meaning_ejdict": "(動・植物の)産地,生息地"
+  },
+  {
+    "entry": "problematic",
+    "rank": 385,
+    "meaning_ejdict": "疑問のある,あやふやな;未決(定)の"
+  },
+  {
+    "entry": "linguistics",
+    "rank": 387,
+    "meaning_ejdict": "言語学"
+  },
+  {
+    "entry": "hormone",
+    "rank": 388,
+    "meaning_ejdict": "ホルモン"
+  },
+  {
+    "entry": "primitive",
+    "rank": 389,
+    "meaning_ejdict": "『原始の』,太古の / 原始的な,そぼくな;古風な,旧式な / 原始人"
+  },
+  {
+    "entry": "substrate",
+    "rank": 394,
+    "meaning_ja": "【名/C】基層；基板；基質；回路基盤；隠れた特質；基礎,土台"
+  },
+  {
+    "entry": "randomize",
+    "rank": 398,
+    "meaning_ejdict": "…を成り行き任せでする / 成り行きでする"
+  },
+  {
+    "entry": "sensory",
+    "rank": 399,
+    "meaning_ejdict": "感覚の"
+  },
+  {
+    "entry": "peripheral",
+    "rank": 401,
+    "meaning_ejdict": "周囲の; 周辺(装置)の・末梢的な・重要でない; (…に比べて)瑣末な (to); 【医】末端部の; コンピュータの周辺装置"
+  },
+  {
+    "entry": "spontaneous",
+    "rank": 403,
+    "meaning_ejdict": "(行動などが)『自然に起こる』,自発的な / (現象などが)自然[発生]の;(植物などが)天然の,自生の"
+  },
+  {
+    "entry": "reproduction",
+    "rank": 410,
+    "meaning_ejdict": "〈U〉繁殖,生殖[作用] / 〈U〉(…を)再生(再現)すること;模写(複製)すること《+『of』+『名』》 / 〈C〉再生(再現)された物,複写(複製)した物"
+  },
+  {
+    "entry": "lung",
+    "rank": 413,
+    "meaning_ejdict": "《しばしば複数形で》『肺』,肺臓"
+  },
+  {
+    "entry": "decay",
+    "rank": 415,
+    "meaning_ejdict": "『腐る』,朽ちる / 〈繁栄・健康などが〉『衰える』,衰退する;〈活力などが〉低下する / 〈他〉 / …を『腐らせる』 / 『腐敗』;腐朽 / 『衰微』,衰え / (放射性物質の)自然崩壊"
+  },
+  {
+    "entry": "thickness",
+    "rank": 417,
+    "meaning_ejdict": "〈U〉〈C〉厚さ,太さ,濃さ,密集,繁茂 / 〈C〉層,重ね(layer)"
+  },
+  {
+    "entry": "conceive",
+    "rank": 419,
+    "meaning_ejdict": "〈考え,目的など〉を『心に抱く』,思う,〈計画など〉を思いつく / 《文》〈子〉をはらむ / 《『conceive of』+『名』(do『ing』)》(…を)想像する"
+  },
+  {
+    "entry": "offspring",
+    "rank": 420,
+    "meaning_ejdict": "《単数・複数扱い》(人間や動物の)『子;子孫』 / (…から)生じたもの,(…の)結果,所産《+『of』+『名』》"
+  },
+  {
+    "entry": "metaphor",
+    "rank": 425,
+    "meaning_ejdict": "隠喩,暗喩(like, asなどを用いない比喩)"
+  },
+  {
+    "entry": "tract",
+    "rank": 426,
+    "meaning_ejdict": "広大な土地(地域),(土地・海・空などの)広がり《+of+名》 / (器官の)管,(神経の)索 / (おもに宗教・政治などの宣伝用の)小冊子,パンフレット"
+  },
+  {
+    "entry": "liver",
+    "rank": 427,
+    "meaning_ejdict": "(ある態度で)生活する人;居住者 / 〈C〉『肝臓』 / 〈U〉(食用にする)動物の肝臓,レバー"
+  },
+  {
+    "entry": "valve",
+    "rank": 435,
+    "meaning_ejdict": "(液体・ガスなどの流れを調節する)『バルブ』,弁 / (血液の流れを調節する)弁,弁膜 / (管楽器の)バルブ / (2枚貝の)から,貝がら / 《英》真空管"
+  },
+  {
+    "entry": "plural",
+    "rank": 435,
+    "meaning_ejdict": "『複数の』 / (文法で)複数の / 複数;〈C〉複数形[の語]"
+  },
+  {
+    "entry": "thermal",
+    "rank": 439,
+    "meaning_ejdict": "熱の,熱による / 熱い / (暖まった)上昇気流"
+  },
+  {
+    "entry": "articulate",
+    "rank": 442,
+    "meaning_ejdict": "(音節や単語が)はっきり話される,分節的な / (自分の考えなど)はっきりと表現できる;(人が)考えを口に出せる / (動物が)関節のある / 〈語・音節〉をはっきり発音する / 〈気持・考えなど〉をはっきり表現する / …を関節でつなぐ,接合する"
+  },
+  {
+    "entry": "flux",
+    "rank": 444,
+    "meaning_ejdict": "流動,流れ;上げ潮 / 絶え間ない変化,流転(るてん) / 融剤,フラックス / (流体・粒子・エネルギーの)流量,流束,流動率 / (電気・磁気の)束(そく) / (体内の液体の)異常流出,異常排出"
+  },
+  {
+    "entry": "analogy",
+    "rank": 449,
+    "meaning_ejdict": "(…間の)類似《+『between』+『名』》,(…との)類似《+『to』(『with』)+『名』》 / (論理・言語などの)類推"
+  },
+  {
+    "entry": "nitrogen",
+    "rank": 451,
+    "meaning_ejdict": "『窒素』(気体元素;化学記号は『N』)"
+  },
+  {
+    "entry": "vein",
+    "rank": 453,
+    "meaning_ejdict": "〈C〉『静脈』 / 〈C〉(植物の)葉脈;(昆虫の)翅脈;(石の)石理;(木の)木目 / 〈C〉岩脈,鉱脈 / 〈U〉《しばしば a vein》(…の)傾向,性質《+of+名》 / 〈U〉《the vein》(…に対する)気分,気持ち《+for+名(doing)》"
+  },
+  {
+    "entry": "peasant",
+    "rank": 459,
+    "meaning_ejdict": "(ヨーロッパなどの小さい農地を所有して耕作する)『農夫』;借地農民,小作農 / 《軽蔑して》小百姓;無学者"
+  },
+  {
+    "entry": "binary",
+    "rank": 464,
+    "meaning_ejdict": "二つから成る,二つを含む;二元の,複の(dual) / 二進法による"
+  },
+  {
+    "entry": "contour",
+    "rank": 466,
+    "meaning_ejdict": "〈C〉《しばしば複数形で》《単数扱い》(図形・体・物体などの)輪郭,外形;(言葉の)抑揚を表す線 / =contour line / (土地の流失を防ぐため)等高線に沿って耕作する / (体・物などの)輪郭にぴったりするように作られた / 〈道路〉を等高線に沿って建設する / 〈ある地域〉の等高線を地図に記入する"
+  },
+  {
+    "entry": "rhythm",
+    "rank": 468,
+    "meaning_ejdict": "〈U〉『律動,リズム』;韻律 / 〈C〉(特定の)リズム"
+  },
+  {
+    "entry": "dictionary",
+    "rank": 470,
+    "meaning_ejdict": "『辞書』,辞典,字引き"
+  },
+  {
+    "entry": "acceleration",
+    "rank": 472,
+    "meaning_ejdict": "加速 / 加速度"
+  },
+  {
+    "entry": "strand",
+    "rank": 476,
+    "meaning_ejdict": "〈船〉を座礁させる / 《受動態で》〈人〉を置き去りにする,困った状態におく / 〈船が〉座礁する / 〈人が〉途方に暮れる,立ち往生する / 岸,浜 / こ撚(よ)り(何本かより合わせて糸・なわなどにするその一本) / (より合わせた)糸,ひも;(頭髪の)房 / (真珠・ビーズなど)ひもに通したもの"
+  },
+  {
+    "entry": "philosopher",
+    "rank": 479,
+    "meaning_ejdict": "『哲学者』;賢人 / 困難にも冷静(沈着)な人"
+  },
+  {
+    "entry": "wavelength",
+    "rank": 484,
+    "meaning_ejdict": "〈C〉(音・光などの)波長"
+  },
+  {
+    "entry": "realm",
+    "rank": 487,
+    "meaning_ejdict": "《文》王国(おもに法律・詩・修辞用語) / 《しばしば複数形で》(学問などの)『分野』,領域"
+  },
+  {
+    "entry": "replication",
+    "rank": 488,
+    "meaning_ejdict": "写し,複写,複製 / 《文》(被告の訴答に対する)原告の訴答"
+  },
+  {
+    "entry": "basin",
+    "rank": 489,
+    "meaning_ejdict": "『たらい』,はち(bowl);洗面器 / (…の)たらい1杯[分]《+『of』+『名』》 / (自然または人工の)水たまり,池 / (川の)流域;くぼ地,盆地 / 入江,内湾,船だまり"
+  },
+  {
+    "entry": "interestingly",
+    "rank": 491,
+    "meaning_ejdict": "おもしろく;おもしろいことには"
+  },
+  {
+    "entry": "curriculum",
+    "rank": 494,
+    "meaning_ejdict": "(学校の)教科課程"
+  },
+  {
+    "entry": "displacement",
+    "rank": 495,
+    "meaning_ejdict": "とって代わること,置き換え / 解職,罷免 / 排水量"
+  },
+  {
+    "entry": "coherent",
+    "rank": 496,
+    "meaning_ejdict": "密着する / (論理などが)筋の通った,首尾一貫した"
+  },
+  {
+    "entry": "civilization",
+    "rank": 498,
+    "meaning_ejdict": "〈U〉〈C〉(物質的・社会的・科学的・政治的に高度な)『文明』;(特定の地域・国民・時代に発達した)『文明』[様式] / 《集合的に》文明世界;文明人 / 〈U〉(…の)文明化,開化《+『of』+『名』》"
+  },
+  {
+    "entry": "bacterial",
+    "rank": 500,
+    "meaning_ejdict": "バクテリアの,細菌の"
+  },
+  {
+    "entry": "exponential",
+    "rank": 505,
+    "meaning_ejdict": "(数学で)指数の"
+  },
+  {
+    "entry": "progression",
+    "rank": 510,
+    "meaning_ejdict": "〈U〉前進,進行;進歩,進展 / 〈U〉(でき事などの)連続,連鎖 / 〈C〉数列"
+  },
+  {
+    "entry": "cylinder",
+    "rank": 512,
+    "meaning_ejdict": "円柱,円筒;円柱形の物 / シリンダー,気筒"
+  },
+  {
+    "entry": "sodium",
+    "rank": 514,
+    "meaning_ejdict": "ソジウム,ナトリウム(金属元素;化学記号はNa)"
+  },
+  {
+    "entry": "predominantly",
+    "rank": 515,
+    "meaning_ejdict": "たいていは,主として"
+  },
+  {
+    "entry": "oscillation",
+    "rank": 516,
+    "meaning_ejdict": "〈U〉振動;〈C〉(振動の)ひと振り / 〈U〉〈C〉(意見・信念などの)動揺,迷い"
+  },
+  {
+    "entry": "impulse",
+    "rank": 516,
+    "meaning_ejdict": "〈U〉〈C〉(心の)『衝動』,一時の感情,でき心 / 〈C〉『衝撃』,推進力(push);刺激 / 〈C〉インパルス(短時間だけ続く電流) / 〈C〉(神経細胞が起こす)衝動"
+  },
+  {
+    "entry": "theorist",
+    "rank": 518,
+    "meaning_ejdict": "理論家,理論(学説)を立てる人"
+  },
+  {
+    "entry": "crystal",
+    "rank": 521,
+    "meaning_ejdict": "〈U〉『水晶』 / 〈C〉『水晶製品』,水晶玉 / 〈U〉クリスタルグラス(透明度の高い鉛ガラス);《集合的に》クリスタルグラス製食器類(特にコップ類) / 〈C〉『結晶[体]』 / 〈C〉《米》(時計の)ガラスぶた / 『水晶[製]の』;クリスタルグラス製の;透き通った"
+  },
+  {
+    "entry": "nest",
+    "rank": 525,
+    "meaning_ejdict": "(鳥・昆虫・魚類・小動物などの)『巣』,巣穴 / 《集合的に》巣の中の鳥(動物など),(昆虫などの)群れ / 居ごこちよい場所,落ちつける場所 / (犯罪などの)温床;(悪党などの)巣窟(そうくつ) / (入れ子式・重箱式などになった物の)一組,一そろい《+『of』+『名』》 / 巣を作る,巣ごもる / …を巣に入れる / (巣に入れるように)…をすっぽり収める / …を入れ子式にする,重ね合わせる"
+  },
+  {
+    "entry": "fossil",
+    "rank": 526,
+    "meaning_ejdict": "化石 / 時代遅れの人 / 化石の,化石となった"
+  },
+  {
+    "entry": "dimensional",
+    "rank": 527,
+    "meaning_ejdict": "(長さ・幅・厚さなどの)寸法の / (数学で)…次元の"
+  },
+  {
+    "entry": "resistant",
+    "rank": 527,
+    "meaning_ejdict": "抵抗力のある;(…に)抵抗する《+『to』+『名』》"
+  },
+  {
+    "entry": "artifact",
+    "rank": 531,
+    "meaning_ejdict": "(天然物と区別して)人工物,加工品;(特に)古代人が使った道具(武器,装飾品)"
+  },
+  {
+    "entry": "surgical",
+    "rank": 533,
+    "meaning_ejdict": "外科の;手術用の / 《名詞の前にのみ用いて》(衣服などが)整形用の"
+  },
+  {
+    "entry": "turbulent",
+    "rank": 535,
+    "meaning_ejdict": "荒れ狂う,混乱した / 不穏な,騒がしい,動乱の"
+  },
+  {
+    "entry": "quantum",
+    "rank": 536,
+    "meaning_ejdict": "量子"
+  },
+  {
+    "entry": "sediment",
+    "rank": 537,
+    "meaning_ejdict": "《時にa~》沈殿物,かす(dregs) / (岩・石・土砂などの)堆積(たいせき)物"
+  },
+  {
+    "entry": "conserve",
+    "rank": 539,
+    "meaning_ejdict": "(損傷・腐敗などしないように)…を保存する,保護する / 《文》〈果物〉を砂糖煮にする,ジャムにする / (果物の)砂糖煮,ジャム"
+  },
+  {
+    "entry": "primer",
+    "rank": 540,
+    "meaning_ejdict": "(…についての)手引き,入門書《+『of』+『名』(『how句』)》 / 〈C〉雷管,導火線 / 〈U〉〈C〉下塗り塗料"
+  },
+  {
+    "entry": "terminology",
+    "rank": 543,
+    "meaning_ejdict": "術語,専門用語 / (特定の分野の)用語法"
+  },
+  {
+    "entry": "vegetation",
+    "rank": 544,
+    "meaning_ejdict": "(ある地域の)植物 / 《集合的に》植物,草木"
+  },
+  {
+    "entry": "triangle",
+    "rank": 545,
+    "meaning_ejdict": "三角形 / 三角形の物 / 《米》三角定規 / (楽器の)トライアングル / 三つ組,三人組;(男女の)三角関係"
+  },
+  {
+    "entry": "reconstruct",
+    "rank": 549,
+    "meaning_ejdict": "…を再建する,改造(復興,復元)する / 〈でき事〉を再現する"
+  },
+  {
+    "entry": "metabolism",
+    "rank": 551,
+    "meaning_ejdict": "新陳代謝,物質交代"
+  },
+  {
+    "entry": "motif",
+    "rank": 555,
+    "meaning_ejdict": "モチーフ / 文学・芸術作品の表現の中心となる主題 / 楽曲の主題 / デザインなどに繰り返して用いられる主模様"
+  },
+  {
+    "entry": "dissertation",
+    "rank": 561,
+    "meaning_ejdict": "〈C〉学位(博士)論文;論文,論説"
+  },
+  {
+    "entry": "susceptible",
+    "rank": 562,
+    "meaning_ejdict": "《名詞の前のみ用いて》感じやすい,多感な / 《補語にのみ用いて》《be susceptible to+名》 / 《補語にのみ用いて》《be susceptible of+名》"
+  },
+  {
+    "entry": "coronary",
+    "rank": 564,
+    "meaning_ejdict": "冠状動脈の / 心臓の / 冠状動脈血栓(けっせん)症(coronary thrombosis)"
+  },
+  {
+    "entry": "inject",
+    "rank": 566,
+    "meaning_ejdict": "(…に)〈液体など〉を注射する,注入する《+『名』+『into』+『名』》;(…を)…に注射する《+『名』+『with』+『名』》 / (話などに)…を導入する,さしはさむ《+『名』+『into』+『名』》"
+  },
+  {
+    "entry": "polar",
+    "rank": 569,
+    "meaning_ejdict": "『極地の』;南(北)極の / 正反対の"
+  },
+  {
+    "entry": "morality",
+    "rank": 572,
+    "meaning_ejdict": "〈U〉道徳,倫理;道徳学,倫理学 / 〈U〉道徳性 / 〈U〉品行 / 〈C〉教訓;寓意"
+  },
+  {
+    "entry": "communicative",
+    "rank": 573,
+    "meaning_ejdict": "話好きな,おしゃべりの / 通信の,伝達の"
+  },
+  {
+    "entry": "inferior",
+    "rank": 581,
+    "meaning_ejdict": "(階級・親分・質・程度などが)『下の』,『劣る』 / (位置が)低い,下方の / 目下の者;劣った人"
+  },
+  {
+    "entry": "elementary",
+    "rank": 588,
+    "meaning_ejdict": "『初歩の』,基礎の"
+  },
+  {
+    "entry": "initiation",
+    "rank": 592,
+    "meaning_ejdict": "〈U〉開始;創業 / 〈U〉入会,入門;〈C〉入会(入門)式 / 〈U〉手ほどき,伝授"
+  },
+  {
+    "entry": "rotate",
+    "rank": 598,
+    "meaning_ejdict": "『回転する』 / 循環する,交替する / …を回転させる / …を循環させる / 〈人〉を交替で服務させる"
+  },
+  {
+    "entry": "elevation",
+    "rank": 600,
+    "meaning_ejdict": "〈U〉〈C〉《文》(…を…に)『高めること』,昇進(向上)させること《+『of』+『名』+『to』+『名』》 / 〈U〉《文》気高さ,高尚 / 〈C〉《文》隆起したところ;高地 / 《単数形で》(地表・海面からの)『高さ』;地上,海抜 / 〈C〉(建物などの)立面図,正面図 / 《単数形で》仰角"
+  },
+  {
+    "entry": "atomic",
+    "rank": 603,
+    "meaning_ejdict": "『原子の』 / 原子力の(を用いた) / 極微の"
+  },
+  {
+    "entry": "trivial",
+    "rank": 604,
+    "meaning_ejdict": "『ささいな』,取るに足らない,つまらない / 平凡な,普通の,ありふれた"
+  },
+  {
+    "entry": "profound",
+    "rank": 607,
+    "meaning_ejdict": "『深遠な』,深い洞察力をもった / 《名詞の前に用いて》《文》深い,深い所の / 心の底からの,深い / 『完全な』,全くの / (書物・学説などが)深みのある,難解な"
+  },
+  {
+    "entry": "ancestor",
+    "rank": 609,
+    "meaning_ejdict": "(一人の)『先祖』,祖先(forefather) / (事物の)原型,先駆 / (生物の)原型種"
+  },
+  {
+    "entry": "genetics",
+    "rank": 610,
+    "meaning_ejdict": "遺伝学"
+  },
+  {
+    "entry": "proton",
+    "rank": 611,
+    "meaning_ejdict": "プロトン,陽子(素粒子の一つ)"
+  },
+  {
+    "entry": "phosphate",
+    "rank": 612,
+    "meaning_ejdict": "〈U〉リン酸塩 / 《複数形で》リン酸肥料"
+  },
+  {
+    "entry": "gravity",
+    "rank": 613,
+    "meaning_ejdict": "(地球の)『引力』,『重力』;重量(weight) / 『厳粛さ』,まじめさ / 『重大さ』,ゆゆしさ"
+  },
+  {
+    "entry": "respiratory",
+    "rank": 616,
+    "meaning_ejdict": "呼吸の,呼吸作用の,呼吸のための"
+  },
+  {
+    "entry": "elimination",
+    "rank": 617,
+    "meaning_ejdict": "(…の)除去,削除《+『of』+『名』》 / (競技の)予選"
+  },
+  {
+    "entry": "trauma",
+    "rank": 624,
+    "meaning_ejdict": "外傷 / 精神的外傷(心に永久的な傷を残すような衝撃)"
+  },
+  {
+    "entry": "optical",
+    "rank": 627,
+    "meaning_ejdict": "視覚の,視力の / 光学用の"
+  },
+  {
+    "entry": "limb",
+    "rank": 632,
+    "meaning_ejdict": "(動物の)『手足』;(鳥の)翼 / (木の)大枝"
+  },
+  {
+    "entry": "rationality",
+    "rank": 635,
+    "meaning_ejdict": "道理にかなっていること,合理性"
+  },
+  {
+    "entry": "stereotype",
+    "rank": 636,
+    "meaning_ejdict": "ステロ版,鉛版;ステロ版作製(印刷) / 定型;決まり文句,常套手段;型にはまったイメージ / …をステロ版で印刷する / …を固定させる,型にはめる"
+  },
+  {
+    "entry": "slavery",
+    "rank": 637,
+    "meaning_ejdict": "『奴隷制度』;奴隷の身分,奴隷の状態 / (欲望・悪習などの)とりこになっていること《+『to』+『名』》 / 骨の折れる仕事,つらい労働"
+  },
+  {
+    "entry": "anthropology",
+    "rank": 639,
+    "meaning_ejdict": "人類学"
+  },
+  {
+    "entry": "antibiotic",
+    "rank": 641,
+    "meaning_ejdict": "抗生物質(ペニシリン,ストレプトマイシンなど) / 抗生[物質]の"
+  },
+  {
+    "entry": "sexuality",
+    "rank": 643,
+    "meaning_ejdict": "(両性の)性的特質 / 性欲,性的関心"
+  },
+  {
+    "entry": "axiom",
+    "rank": 645,
+    "meaning_ejdict": "自明の理,原理;(数学の)公理;格言"
+  },
+  {
+    "entry": "pest",
+    "rank": 646,
+    "meaning_ejdict": "害虫 / 《話》やっかい者 / 《まれ》ペスト"
+  },
+  {
+    "entry": "fracture",
+    "rank": 647,
+    "meaning_ejdict": "〈U〉(特に)骨を折ること;骨を折った状態 / 〈C〉割れ(裂け)目,(鉱物の)破砕面 / 〈足・腕などを〉を骨折する;…を砕く / 骨折する;砕ける"
+  },
+  {
+    "entry": "transplant",
+    "rank": 648,
+    "meaning_ejdict": "〈植物〉を移植する / (…から他の場所へ)…を移す,〈人〉を移住させる《+名+from+名+to+名》 / (…から…へ)〈組織・器官など〉を移植する《+名+from+名+to+名》 / 移植できる;移住する / 〈C〉移植された物 / 〈U〉移植すること"
+  },
+  {
+    "entry": "epidemic",
+    "rank": 651,
+    "meaning_ejdict": "(病気などが)『伝染性の』,急速に広がる / (一般に)流行している / (一時的な)流行病,伝染病 / 流行,はやり"
+  },
+  {
+    "entry": "inversion",
+    "rank": 652,
+    "meaning_ejdict": "反対,転倒 / (文法で)倒置[法]"
+  },
+  {
+    "entry": "epidemiology",
+    "rank": 655,
+    "meaning_ja": "【名/U】疫学,流行疫学"
+  },
+  {
+    "entry": "infectious",
+    "rank": 660,
+    "meaning_ejdict": "(病気が)伝染する,伝染性の / (影響などが)感化しやすい,うつりやすい"
+  },
+  {
+    "entry": "psychologist",
+    "rank": 662,
+    "meaning_ejdict": "心理学者"
+  },
+  {
+    "entry": "trans",
+    "meaning_ja": "【接頭辞】越えて；横切って；貫いて；ほかの側へ；別の状態（場所）へ",
+    "rank": 663
+  },
+  {
+    "entry": "irrigation",
+    "rank": 664,
+    "meaning_ejdict": "潅漑(かんがい) / (傷口などの)洗浄"
+  },
+  {
+    "entry": "rehabilitation",
+    "rank": 667,
+    "meaning_ejdict": "(けが人・病人などの)社会復帰,リハビリテーション / 復職;名誉回復"
+  },
+  {
+    "entry": "illusion",
+    "rank": 668,
+    "meaning_ejdict": "『思い込み』,思い違い / 〈C〉(…の)『幻覚』,幻影,幻,錯覚《+『of』+『名』》"
+  },
+  {
+    "entry": "bat",
+    "rank": 669,
+    "meaning_ejdict": "『コウモリ』 / (野球・クリケットの)『バット』;(特にバドミントン・スカッシュなどの)ラケット / 打者;打順 / バットによる一撃 / 〈ボール〉をバットで打つ / 〈走者〉を打って進める / バットで打つ;打者に立つ / 〈目,まぶた〉をぱちくりする"
+  },
+  {
+    "entry": "fever",
+    "rank": 671,
+    "meaning_ejdict": "〈U〉《しばしばa fever》(身体の異常な)『熱』,発熱 / 〈U〉『熱病』 / 〈U〉〈C〉(…に対する)『興奮』,熱狂《+『for』+『名』》"
+  },
+  {
+    "entry": "paradox",
+    "rank": 672,
+    "meaning_ejdict": "『逆説』(矛盾するようにみえても実際は真理を含んでいる説) / 矛盾;へ理屈"
+  },
+  {
+    "entry": "kidney",
+    "rank": 673,
+    "meaning_ejdict": "腎臓;(食品としての)羊(豚など)の腎臓 / 《文》気質,性質,たち(nature)"
+  },
+  {
+    "entry": "predator",
+    "rank": 674,
+    "meaning_ejdict": "捕(肉)食動物(ライオン・タカなど) / (強奪・搾取などで)他人を食いものにしている人"
+  },
+  {
+    "entry": "migrate",
+    "rank": 675,
+    "meaning_ejdict": "(…から…へ)移住する《+『from』+『名』+『to』+『名』》 / (季節に応じ定期的に)〈鳥・動物が〉移動する,渡る"
+  },
+  {
+    "entry": "infinity",
+    "rank": 676,
+    "meaning_ejdict": "〈U〉無限であること / 〈C〉無限なもの,無限の空間(時間) / 〈C〉ばく大な量(数) / 〈C〉(数学で)無限大(記号∞)"
+  },
+  {
+    "entry": "shallow",
+    "rank": 677,
+    "meaning_ejdict": "『浅い』 / 『浅薄な』,表面的な / 浅瀬 / …を浅くする / 浅くなる"
+  },
+  {
+    "entry": "fundamentally",
+    "rank": 678,
+    "meaning_ejdict": "基本的に;本質的に"
+  },
+  {
+    "entry": "hepatitis",
+    "rank": 681,
+    "meaning_ejdict": "肝[臓]炎"
+  },
+  {
+    "entry": "contradictory",
+    "rank": 687,
+    "meaning_ejdict": "矛盾した,正反対の;(…に)矛盾する《+『to』+『名』》 / 否定の言葉,反ばく / 矛盾した事実"
+  },
+  {
+    "entry": "sensation",
+    "rank": 688,
+    "meaning_ejdict": "〈U〉〈C〉(五感による)『感覚』,知覚 / 〈C〉(…の)感じ,気持ち / 〈C〉〈U〉大評判,センセーション;大評判になった人(物,事)"
+  },
+  {
+    "entry": "cyclic",
+    "rank": 697,
+    "meaning_ejdict": "周期的な,循環する"
+  },
+  {
+    "entry": "prey",
+    "rank": 697,
+    "meaning_ejdict": "〈U〉(肉食獣・鳥の)『えじき』 / 〈C〉《単数形で》《比喩(ひゆ)的に》(…の)えじき(犠牲)となる人(物)《+『of』(『to』,『for』 )+『名』》 / 〈U〉(動物・鳥が)肉食をかること;肉食の習性 / 〈獣などが〉獲物をあさる;(…を)えじきにする《+『on』(『upon』)+『名』》 / 〈人が〉(…を)えじきにする《+『on』(『upon』)+『名』》 / 〈物事が〉(心を)苦しめる,さいなむ《+『on』(『upon』)+『名』》"
+  },
+  {
+    "entry": "friction",
+    "rank": 700,
+    "meaning_ejdict": "〈U〉摩擦,こすること / 〈U〉〈C〉衝突,不和"
+  },
+  {
+    "entry": "parenthesis",
+    "rank": 701,
+    "meaning_ejdict": "『挿入語句』 / 《複数形で》括弧(通例丸括弧()を資す)"
+  },
+  {
+    "entry": "noble",
+    "rank": 702,
+    "meaning_ejdict": "高貴の;貴族の / 高潔な,気高い / (姿・規模などが)壮大な,堂々とした;すばらしい / (金属が)腐食しない / 《複数形で》(特に中世の)貴族"
+  },
+  {
+    "entry": "potassium",
+    "rank": 703,
+    "meaning_ejdict": "ポタシウム,カリウム(金属元素;化学記号はK)"
+  },
+  {
+    "entry": "reactive",
+    "rank": 704,
+    "meaning_ejdict": "反作用の;化学反応を示す / 反動的な"
+  },
+  {
+    "entry": "genetically",
+    "rank": 705,
+    "meaning_ja": "遺伝（子）的に,遺伝学的に"
+  },
+  {
+    "entry": "realism",
+    "rank": 709,
+    "meaning_ejdict": "現実主義 / 写実主義,リアリズム / 実在論"
+  },
+  {
+    "entry": "chemotherapy",
+    "rank": 711,
+    "meaning_ejdict": "化学療法"
+  },
+  {
+    "entry": "capillary",
+    "rank": 713,
+    "meaning_ejdict": "毛状の,毛のように細い / 毛細管の / 毛細管"
+  },
+  {
+    "entry": "alien",
+    "rank": 716,
+    "meaning_ejdict": "『外国の』,異国の;外国人の,在留外国人の / 《補語にのみ用いて》(…と)性質の異なる《+『from』(『to』)+『名』》 / 《補語にのみ用いて》(…と)相いれない,(…に)反する《+『to』+『名』》 / 異常な / (ある国に在住する)外国人,在留外国人;(citizenと区別して帰化してない)外国人"
+  },
+  {
+    "entry": "invert",
+    "rank": 720,
+    "meaning_ejdict": "…を逆さまにする / 〈順序・位置・関係など〉を反対にする"
+  },
+  {
+    "entry": "thread",
+    "rank": 721,
+    "meaning_ejdict": "〈U〉〈C〉(縫ったり,織ったりするための)『糸』 / 〈C〉(…の)糸状の物,細長い物《+of+名》 / 〈C〉(話などの)『筋道』,脈絡《+of+名》 / ねじ筋,ねじ山 / 〈針など〉に『糸を通す』 / 〈真珠など〉を糸でつなぐ / …を縫うように進む / …にねじ山をつける / 縫うように進む / (煮詰まったシロップが)糸を引く,細い糸状になる"
+  },
+  {
+    "entry": "clay",
+    "rank": 722,
+    "meaning_ejdict": "『粘土』;泥土 / (聖書で,人間の肉体が造られているとされる)土"
+  },
+  {
+    "entry": "dye",
+    "rank": 723,
+    "meaning_ejdict": "(髪・布などの)『染料』 / 染め色,色合い / …を『染める』,に色をつける / 〈布などが〉『染まる』"
+  },
+  {
+    "entry": "transcribe",
+    "rank": 724,
+    "meaning_ejdict": "…を書き写す,複写する,タイプする / 〈速記・録音・記録など〉を書き直す / 〈発音〉を記号で書き表す / (他国語文字に)…を書き直す《+名+into+名》 / (他の楽器などのために)〈曲〉を編曲する / (後日放送するために)〈ラジオ番組など〉を録音する"
+  },
+  {
+    "entry": "damp",
+    "rank": 727,
+    "meaning_ejdict": "〈U〉湿気, しめり (moisture) / 〈C〉もや, 霧 (mist) / 〈U〉(鉱山の) 有毒ガス / 《a ~》 気持ちをめいらせるもの / 『湿っぽい』, 湿気のある / …を湿らせる / …の勢いを弱める (そぐ) 《+『down』+『名,』+『名』+『down』》 / 〈ピアノ・弦楽器の弦〉の振動を弱める (抑える) 《+『down』+『名,』+『名』+『down』》"
+  },
+  {
+    "entry": "critically",
+    "rank": 729,
+    "meaning_ja": "非常に,決定的に / 危険なほどに / 批評的に / 注意深く"
+  },
+  {
+    "entry": "secrete",
+    "rank": 730,
+    "meaning_ejdict": "〈ホルモン・樹液など〉を分泌(ぶんぴつ)する / …を隠す,秘密の場所にしまう"
+  },
+  {
+    "entry": "hip",
+    "rank": 731,
+    "meaning_ejdict": "『腰』[の一方の側],ヒップ / = hip joint / 野バラの実 / (最新流行の思想・スタイルなどに)よく通じた《+『to』+『名』》 / 応援などの音頭をとるかけ声"
+  },
+  {
+    "entry": "plantation",
+    "rank": 732,
+    "meaning_ejdict": "(大規模な)『農場』,栽培場 / 植林地"
+  },
+  {
+    "entry": "onwards",
+    "rank": 734,
+    "meaning_ejdict": "=onward"
+  },
+  {
+    "entry": "helix",
+    "rank": 736,
+    "meaning_ejdict": "らせん / らせん形のもの"
+  },
+  {
+    "entry": "domination",
+    "rank": 738,
+    "meaning_ejdict": "支配,君臨;優勢"
+  },
+  {
+    "entry": "undergraduate",
+    "rank": 739,
+    "meaning_ejdict": "大学生,学部在学生 / 学部学生の"
+  },
+  {
+    "entry": "soluble",
+    "rank": 740,
+    "meaning_ejdict": "溶解できる / 解決できる"
+  },
+  {
+    "entry": "innate",
+    "rank": 741,
+    "meaning_ejdict": "生まれつきの,生得の(inborn) / 本質的な"
+  },
+  {
+    "entry": "goat",
+    "rank": 743,
+    "meaning_ejdict": "『ヤギ』 / 《米話》=scapegoat / 《俗》好色家"
+  },
+  {
+    "entry": "emit",
+    "rank": 744,
+    "meaning_ejdict": "〈水・熱・光・音・声など〉を『出す』,『発する』"
+  },
+  {
+    "entry": "confound",
+    "rank": 745,
+    "meaning_ejdict": "〈情況など〉を『混乱させる』,〈人〉を困惑させる,面くらわせる / (…と)…を『混同する』《+『名』+『with』+『名』》 / 〈計画・希望・敵など〉を破る,くじく(defeat) / 《遠回しに腹立たしさなどを表して》〈神〉が…を地獄に落とす"
+  },
+  {
+    "entry": "degrade",
+    "rank": 747,
+    "meaning_ejdict": "(…に)…の地位(身分)を下げる《+『名』+『to』+『名』》 / (…にまで)…の品位(評判)を下げる,を卑しくする《+『名』+『to』+『名』》"
+  },
+  {
+    "entry": "fungus",
+    "rank": 751,
+    "meaning_ejdict": "菌(葉緑素が無く,他の生物の有機物に依存しているキノコ,カビなど)"
+  },
+  {
+    "entry": "reservoir",
+    "rank": 752,
+    "meaning_ejdict": "(天然または人工の)『貯水池』,貯水そう / (液体・ガス用の)容器,つぼ / (知識・富などの)貯蔵,蓄積(store)"
+  },
+  {
+    "entry": "footnote",
+    "rank": 753,
+    "meaning_ejdict": "脚注"
+  },
+  {
+    "entry": "bodily",
+    "rank": 754,
+    "meaning_ejdict": "『身体上の』,肉体上の / みずから,自身で(in person) / 体ごとそっくり"
+  },
+  {
+    "entry": "affirm",
+    "rank": 757,
+    "meaning_ejdict": "…を『断言する』,明言する / (正式に)…を確認する,承認する / (法廷で)証言する"
+  },
+  {
+    "entry": "urine",
+    "rank": 758,
+    "meaning_ejdict": "尿,小便"
+  },
+  {
+    "entry": "antiquity",
+    "rank": 761,
+    "meaning_ejdict": "〈U〉古代(特に中世以前を指す);《集合的に》古代人 / 〈U〉古さ,古風 / 《複数形で》古代の遺物(遺跡,風習)"
+  },
+  {
+    "entry": "toxic",
+    "rank": 763,
+    "meaning_ejdict": "毒性の,有毒な / 毒による"
+  },
+  {
+    "entry": "yeast",
+    "rank": 764,
+    "meaning_ejdict": "イースト,酵母(パン種・ビール醸造用などに使う)"
+  },
+  {
+    "entry": "bleed",
+    "rank": 767,
+    "meaning_ejdict": "『出血する』,血を流す;血を流して死ぬ / (切り口などから)〈植物が〉樹液を出す / (…に)血の出るような思いをする《+『for』+『名』》 / 〈絵具・染料などが〉にじむ / (病気の治療として)〈患者〉から血をとる,放血させる / (切口・開口部から)〈血・樹液など〉を出す / …から液体(ガス)を抜きとる;(液体・ガスなどを)…から抜きとる《+『名』+『of』+『名』》 / 《話》…から金をしぼり取る"
+  },
+  {
+    "entry": "goodness",
+    "rank": 771,
+    "meaning_ejdict": "(一般に)『優秀さ』,質のよさ,よい状態 / (人の)『親切』,優しさ,寛容,親切 / (食物などの)『よいところ』,精髄,滋養分 / 《Godを遠回しに言って驚きを表す句に用いて》"
+  },
+  {
+    "entry": "legend",
+    "rank": 774,
+    "meaning_ejdict": "〈C〉『伝説』,言い伝え;〈U〉伝説文学 / 〈C〉伝説上の人物 / 〈C〉(メダルなどの)題銘,銘(inscription) / 〈C〉(地図・図表などの)説明,凡例(はんれい)"
+  },
+  {
+    "entry": "abdominal",
+    "rank": 777,
+    "meaning_ejdict": "(比較変化なし)腹の,腹部の"
+  },
+  {
+    "entry": "precipitation",
+    "rank": 781,
+    "meaning_ejdict": "〈U〉(化学で)沈殿物;〈U〉沈殿 / 〈U〉降雨,降雪;降雨量,降雪量 / (文語)早まった行動"
+  },
+  {
+    "entry": "interviewer",
+    "rank": 784,
+    "meaning_ejdict": "面接する人,会見者;訪問記者"
+  },
+  {
+    "entry": "gut",
+    "rank": 788,
+    "meaning_ejdict": "腸;(楽器の弦の材料となる)腸 / 《複数形で》内臓,腹わた(bowels) / =catgut / 《複数形で》元気,勇気,はら,根性 / 《複数形で》中身,内容 / 〈鳥・魚〉の腹わたを取り除く / …の中をすっかりやられる / 本能的に感じる,生き生きした;切実な"
+  },
+  {
+    "entry": "emperor",
+    "rank": 790,
+    "meaning_ejdict": "皇帝;(日本の)天皇"
+  },
+  {
+    "entry": "altitude",
+    "rank": 791,
+    "meaning_ejdict": "〈U〉『高さ』(height) / 〈C〉標高,海抜(かいばつ) / 《しばしば複数形で》高所;高い地位 / 〈U〉〈C〉(三角形などの底辺からの)高さ;(天体の)高度,高角"
+  },
+  {
+    "entry": "chloride",
+    "rank": 796,
+    "meaning_ejdict": "塩化物"
+  },
+  {
+    "entry": "weave",
+    "rank": 798,
+    "meaning_ejdict": "織物を織る,機を織る / 縫うように進む / 〈毛糸・綿糸など〉を『織って』(織物などを)『作る』《+名+into+名》 / (毛糸・綿糸などから)〈織物〉を『織る』,編む《+名+from(of)+名》 / 〈かごなど〉を編む,編み上げる / (かごなどに)…を編んで作る《+名+into+名》 / (いくつかの事実・材料から)〈物語・計画など〉を作り上げる,組み立てる《+名+from+名》 / (ある物語・計画などに)〈事実・材料など〉を組み立てる《+名+into+名》 / 《weave one's way の形で》縫うように進む / 織り[方];編み[方]"
+  },
+  {
+    "entry": "precipitate",
+    "rank": 800,
+    "meaning_ejdict": "…を思いがけなく引き起こす,の到来を早める / (…の中に)…を投げ落とす,(…の状態に)…を陥らせる《+『名』+『into』+『名』》 / 〈流動体〉を沈殿させる / (雨・雪・霧などに)〈水蒸気〉を凝結させる / 〈水蒸気が〉凝結して雨(雪など)となる / 〈流動体が〉沈殿して固体になる / 大急ぎの;まっしぐらの / (化学で)沈殿物"
+  },
+  {
+    "entry": "industrialization",
+    "rank": 802,
+    "meaning_ejdict": "産業化,工業化"
+  },
+  {
+    "entry": "conduction",
+    "rank": 806,
+    "meaning_ejdict": "(熱・電気の)伝導;(液体を)管などで導くこと"
+  },
+  {
+    "entry": "facet",
+    "rank": 809,
+    "meaning_ejdict": "(宝石・結晶などのなめらかな)面,切り子面 / (物事の)面(aspect)"
+  },
+  {
+    "entry": "splice",
+    "rank": 810,
+    "meaning_ejdict": "〈綱などの端と端と〉を組み(より)継ぎする;〈材木など)を重ね継ぐ,〈フィルム・テープ〉をつなぐ / 《受動態で》《話》〈二人〉を結婚させる / (綱の)より継ぎ;(材木の)重ね継ぎ;(フィルム・テープの)接合 / より(重ね継ぎ目"
+  },
+  {
+    "entry": "biodiversity",
+    "rank": 812,
+    "meaning_ja": "【名/U】生物多様性"
+  },
+  {
+    "entry": "tutor",
+    "rank": 815,
+    "meaning_ejdict": "(個人あるいは少人数を教える,時に住み込みの)家庭教師・《米》(大学でinstructorの下位の)講師 / ・《英》(大学生の)個別指導教官(教授) ・〈人〉に(…の)家庭教師をする,個人教授をする《+名〈人〉+in+名》・…をしつける,仕込む・家庭教師をする"
+  },
+  {
+    "entry": "fin",
+    "rank": 817,
+    "meaning_ejdict": "(魚などの)ひれ / (形・働きが)ひれに似た物 / (飛行機の)垂直安定板 / 《話》手,腕"
+  },
+  {
+    "entry": "marble",
+    "rank": 821,
+    "meaning_ejdict": "〈U〉『大理石』 / 《複数形で;単数扱い》おはじき遊戯 / 〈C〉おはじきの石 / 大理石[製]の;大理石模様の / (大理石のように)硬い,冷たい;滑らかな;白い"
+  },
+  {
+    "entry": "pesticide",
+    "rank": 822,
+    "meaning_ejdict": "殺虫剤"
+  },
+  {
+    "entry": "biologist",
+    "rank": 827,
+    "meaning_ejdict": "生物学者"
+  },
+  {
+    "entry": "connotation",
+    "rank": 828,
+    "meaning_ejdict": "言外の意味 / (論理学で)内包"
+  },
+  {
+    "entry": "snake",
+    "rank": 831,
+    "meaning_ejdict": "『ヘビ』(『蛇』) / (蛇のように)ずるく陰険な人 / へび(配水管などの詰まった物を取り除く道具) / 蛇行する,くねくねと続く / 〈体など〉をくねらす / 《米》〈材木など〉を引っぱる,引きずる"
+  },
+  {
+    "entry": "flesh",
+    "rank": 832,
+    "meaning_ejdict": "(人間・動物の)『肉』 / (魚,時には鳥を除く)食肉(meat) / 肉付き,太りぐあい / (くだもの)果肉;(野菜の)葉肉 / 《the~》(精神・魂に対して)『肉体』,身体 / 《the~》肉欲 / 肉色(ピンクがかった肌色)"
+  },
+  {
+    "entry": "ghost",
+    "rank": 833,
+    "meaning_ejdict": "『幽霊』,亡霊,死者の霊 / (…の)ほんのわずか《+『of』+『名』》 / (…の)幻,面影《+『of』+『名』》 / =ghost writer / (テレビの画面の)ゴースト / =ghostwrite"
+  },
+  {
+    "entry": "marrow",
+    "rank": 834,
+    "meaning_ejdict": "髄(ずい),骨髄 / 精髄,粋 / 力,活力"
+  },
+  {
+    "entry": "surgeon",
+    "rank": 835,
+    "meaning_ejdict": "『外科医』 / 軍医"
+  },
+  {
+    "entry": "industrialize",
+    "rank": 837,
+    "meaning_ejdict": "…を産業化する,工業化する"
+  },
+  {
+    "entry": "denominator",
+    "rank": 838,
+    "meaning_ejdict": "分母"
+  },
+  {
+    "entry": "solvent",
+    "rank": 841,
+    "meaning_ejdict": "(借金の)支払い能力がある / 溶解力のある,溶かす / 溶剤,溶媒 / 解決策"
+  },
+  {
+    "entry": "slab",
+    "rank": 843,
+    "meaning_ejdict": "(木材・石・金属の)厚板,平板;(肉・パン・ケーキ・チーズなどの)平たい厚切り"
+  },
+  {
+    "entry": "naked",
+    "rank": 849,
+    "meaning_ejdict": "(体の全部,または一部が)『裸の』 / 『はぎ取られた』,むき出しにされた / (目が)肉眼の,裸眼の / 《名詞の前にのみ用いて》(事が)赤裸裸の,あからさまの"
+  },
+  {
+    "entry": "powder",
+    "rank": 852,
+    "meaning_ejdict": "〈U〉〈C〉『粉』,粉末 / 〈U〉おしろい / 〈U〉〈C〉粉薬 / 〈U〉火薬,爆薬(gunpowder) / 〈U〉粉雪 / …を粉にする / (粉などを)…にふりかける《+『名』+『with』+『名』》 / 〈顔など〉におしろいをつける / 粉になる / おしろいをつける"
+  },
+  {
+    "entry": "solute",
+    "rank": 855,
+    "meaning_ejdict": "(化学で)溶質"
+  },
+  {
+    "entry": "dissection",
+    "rank": 856,
+    "meaning_ejdict": "〈U〉〈C〉(実験・研究のための)解剖,解体 / 〈C〉実験用解剖体,解剖模型 / 〈U〉詳細な分析"
+  },
+  {
+    "entry": "censor",
+    "rank": 857,
+    "meaning_ejdict": "(出版・報道・映画・手紙などの)検閲官 / (古代ローマの)監察官 / (人の)批評をする人,やかまし屋 / …を検閲する"
+  },
+  {
+    "entry": "portrayal",
+    "rank": 858,
+    "meaning_ejdict": "〈U〉(…についての)描写《+『of』+『名』》 / 〈C〉(…を)描写した絵(文)《+『of』+『名』》"
+  },
+  {
+    "entry": "acidic",
+    "rank": 861,
+    "meaning_ja": "【形】酸味のある,すっぱい；酸性の"
+  },
+  {
+    "entry": "uplift",
+    "rank": 862,
+    "meaning_ejdict": "…をあげる,持ち上げる / 〈精神〉を高揚する,〈意気〉を盛んにする / (社会的・道徳的・知的に)…を向上させる / 持ち上げること;(道徳的・社会的・知的)向上;精神的高揚 / (土地の)隆起"
+  },
+  {
+    "entry": "flip",
+    "rank": 863,
+    "meaning_ejdict": "…をはじく,ぽんとほうり上げる,はじき上げる / …をくるっとひっくり返す《+『over』+『名,』+『名』+『over』》 / ぽんとはじける,ぐいと動く / 《俗》興奮してぴくっとする / はじくこと,ぱちんとひっくり返すこと / (言葉などが)軽薄な;生意気な / フリップ(ワインなどに砂糖・卵・香料を混ぜた飲み物)"
+  },
+  {
+    "entry": "congruent",
+    "rank": 864,
+    "meaning_ejdict": "(数字などが)符合する,(2図形が)合同の;(…と)一致している,ふさわしい《+『with』(『to』)+『名』》"
+  },
+  {
+    "entry": "skip",
+    "rank": 867,
+    "meaning_ejdict": "《副詞[句]を伴って》『軽く』(ぴょんぴょん)『跳ねる』,ぴょんと跳ぶ / 《英》なわ跳びをする / 《副詞[句]を伴って》(論点などが)飛ぶ,移る / 『省く』,抜かす,飛ばして読む(話す,書く);(…を)省く《+『over』(『through』)+『名』》 / (…の)表面をはずみながら(かすめて)飛ぶ《+『along』(『over』)+『名』》 / 《話》急いでそっと立ち去る《+『off』(『out』)》 / …を『軽く跳び越える』 / …を『省く』,抜かす,飛ばして読む(話す,書く) / …を休む,…に出席しない / 〈石など〉を水面をはずませながら(かすめて)飛ばす(skim) / 《話》〈ある場所〉を急いでそっと立ち去る / 軽く跳ぶ(はねる)こと / 省略すること,飛ばすこと / スキップ(鉱石・れんが・木材など重い材料を運ぶ大きな金属容器) / (curlingまたはbowlsのチームの)主将"
+  },
+  {
+    "entry": "sword",
+    "rank": 869,
+    "meaning_ejdict": "『刀』,剣 / 《the ~》武力,兵力"
+  },
+  {
+    "entry": "photographic",
+    "rank": 870,
+    "meaning_ejdict": "写真の,写真用の / (写真のように)正確な,精密な"
+  },
+  {
+    "entry": "nicely",
+    "rank": 874,
+    "meaning_ejdict": "見事に,気持ちよく;うまく / 精密に"
+  },
+  {
+    "entry": "quiz",
+    "rank": 876,
+    "meaning_ejdict": "『小テスト』 / 『クイズ』 / (…について)《人》に質問する,試験する《+『名』《人》+『about』(『no』)+『名』》"
+  },
+  {
+    "entry": "watershed",
+    "rank": 877,
+    "meaning_ejdict": "分水界 / (川の)流域"
+  },
+  {
+    "entry": "oxidize",
+    "rank": 879,
+    "meaning_ejdict": "…を酸化させる / 酸化する,さびる"
+  },
+  {
+    "entry": "mercury",
+    "rank": 880,
+    "meaning_ejdict": "水星 / 『マーキュリー』(ローマ神話で,商業をつかさどり,神々の使者をつとめた神;ギリシア神話のHermesにあたる)"
+  },
+  {
+    "entry": "headquarters",
+    "rank": 882,
+    "meaning_ejdict": "『本部』,(軍隊の)司令部,(警察の)本署 / (一般に)活動の中心,本拠,本社 / 《集合的に》本部員,司令部員"
+  },
+  {
+    "entry": "phenomenal",
+    "rank": 883,
+    "meaning_ejdict": "自然現象の(に関する) / 並みはずれた,驚異的な / 知覚できる"
+  },
+  {
+    "entry": "comma",
+    "rank": 885,
+    "meaning_ejdict": "(句読点の)『コンマ』(,)"
+  },
+  {
+    "entry": "bizarre",
+    "rank": 886,
+    "meaning_ejdict": "一風変わった,変な(odd);奇怪な,異様な(grotesque)"
+  },
+  {
+    "entry": "socialize",
+    "rank": 888,
+    "meaning_ejdict": "〈国・制度など〉を社会主義化する / 〈人〉を社会生活に順応させる / 社会的活動に参加する;打ち解けてつき合う"
+  },
+  {
+    "entry": "novice",
+    "rank": 889,
+    "meaning_ejdict": "初心者,新米 / 見習い修道士(女)"
+  },
+  {
+    "entry": "enormously",
+    "rank": 889,
+    "meaning_ja": "非常に；ものすごく,途方もなく"
+  },
+  {
+    "entry": "rope",
+    "rank": 891,
+    "meaning_ejdict": "〈U〉『なわ』,綱,ロープ;〈C〉(1本の)なわ / 〈C〉一つながり(の…)《+『of』+『名』》 / 《the~》絞首索;絞首刑 / 〈C〉投げなわ / 《複数形で》ロープス(ボクシングなどでリングを囲った綱) / …をなわで縛る(くくる)《+『up』+『名,』+『名』+『up』》 / 〈場所〉をなわで囲う(仕切る)《+『off』+『名』,+『名』+『off』》 / 《米》…を投げなわで捕らえる / 〈登山者が〉ロープで体を結び合わせる《+『up』》 / 〈登山者が〉(…を)ロープで登る(降りる)《+『up』(『down』)+『名』》"
+  },
+  {
+    "entry": "mole",
+    "rank": 894,
+    "meaning_ejdict": "モグラ / ほくろ,あざ / 防波堤,突堤 / モル,グラム分子(化学分子量をグラムで表したもの)"
+  },
+  {
+    "entry": "bucket",
+    "rank": 896,
+    "meaning_ejdict": "『バケツ,手おけ』;(井戸の)つるべ / バケツ状の物;(水車・タービンなどの)水受け;(ポンプの)吸い子 / バケツ1杯(の…)(bucketful)《+『of』+『名』》"
+  },
+  {
+    "entry": "deflection",
+    "rank": 900,
+    "meaning_ejdict": "(進路などの)ふれ,偏り;(計器などの針の)ふれ,偏差"
+  },
+  {
+    "entry": "deceive",
+    "rank": 901,
+    "meaning_ejdict": "〈人〉を『欺く』,『だます』,裏切る / 欺く,人をだます"
+  },
+  {
+    "entry": "syllabus",
+    "rank": 902,
+    "meaning_ejdict": "(講義などの)要項,概要 / (学期・学年などの)学習指導計画"
+  },
+  {
+    "entry": "factorial",
+    "rank": 904,
+    "meaning_ejdict": "(数学で)階乗 / 階乗の;因数の"
+  },
+  {
+    "entry": "lever",
+    "rank": 905,
+    "meaning_ejdict": "てこ,レバー / をてこを使って動かす"
+  },
+  {
+    "entry": "descriptor",
+    "rank": 906,
+    "meaning_ja": "【名/C】記述語；記述子"
+  },
+  {
+    "entry": "underneath",
+    "meaning_ja": "の下に,の下を / の見かけに隠れて",
+    "rank": 908
+  },
+  {
+    "entry": "herbicide",
+    "rank": 910,
+    "meaning_ejdict": "除草剤"
+  },
+  {
+    "entry": "rub",
+    "rank": 914,
+    "meaning_ejdict": "〈物の表面など〉を『こする』,さする / (…に)…をこすりつける《+名+『against(on, over)』+名》;(…に)…をすりこむ《+『名』+『in』(『into, on』)+『名』》 / 〈二つの物〉をこすり合わせる《+『名』+『together,』+『together』+『名』》 / …をこすり落とす《+『名』+『away』(『off』)『,』+『away』(『off』)+『名』》 / …をすりむく,ひりひりさせる / (…の表面を)『こする』,すれる《+『against』(『on』)+『名』》;〈二つの物が〉こすれ合う《+『together』》 / 《単数形で》こすること / 当てこすり / 《the rub》やっかいな事,困難"
+  },
+  {
+    "entry": "radar",
+    "rank": 915,
+    "meaning_ejdict": "電波探知法;〈C〉電波探知機,レーダー[radio detecting and rangingの略]"
+  },
+  {
+    "entry": "scripture",
+    "rank": 917,
+    "meaning_ejdict": "聖書・経典,聖典・聖書の一節"
+  },
+  {
+    "entry": "whichever",
+    "meaning_ja": "《関係代名詞》《先行詞を含んで》…するどれでも(どちらでも)  / 《譲歩節を導いて》どちら(どれ)が(を)…しでも  / 《話》《which の強調形として》いったいどちらが(を)",
+    "rank": 919
+  },
+  {
+    "entry": "punch",
+    "rank": 921,
+    "meaning_ejdict": "パンチ(英国の人形劇Punch-and-Judy showのかぎ鼻で猫背の道化者) / (英国の)風刺週刊誌パンチ"
+  },
+  {
+    "entry": "postgraduate",
+    "rank": 922,
+    "meaning_ejdict": "大学卒業後の,研究科の,大学院の / 研究生,大学院生"
+  },
+  {
+    "entry": "artwork",
+    "rank": 923,
+    "meaning_ja": "【名/U】挿し絵,図版【C】芸術作品；工芸品【U】工芸品の製作"
+  },
+  {
+    "entry": "pardon",
+    "rank": 924,
+    "meaning_ejdict": "〈罪・過失など〉を『許す』,〈質問・妨害など〉を大目に見る;〈人〉を許す / 〈刑罰〉を免除する,軽減する / 〈U〉〈C〉(…を)許すこと,容赦すること《+『for』+『名』(do『ing』)》 / 〈C〉恩赦,赦免 / =indulgence"
+  },
+  {
+    "entry": "millimeter",
+    "rank": 925,
+    "meaning_ejdict": "ミリメートル(1メートルの1000分の1)"
+  },
+  {
+    "entry": "incredible",
+    "rank": 926,
+    "meaning_ejdict": "『信じられない』,信用できない / 途方もない,驚くべき(surprising)"
+  },
+  {
+    "entry": "halfway",
+    "rank": 927,
+    "meaning_ejdict": "(2点間の)中間の / 中途はんぱの / 中途で,中途まで / ほとんど"
+  },
+  {
+    "entry": "bang",
+    "rank": 929,
+    "meaning_ejdict": "バン(ドカン,ズドン,バタン)という音 / バン(ドン)という一撃(強打) / 《話》活力,気力 / …を『バン(ドン)と打つ』;(…に)…をバン(ドン)と打ちつける《+『名』+『on』(『against』『,at』)+『名』》;〈戸など〉をバタンとしめる / 『バン(ドン)と音を立てる』;(…を)ドン(バン)と打つ《+『on』(『against』,『at』)+『名』》 / 性交する(相手は女) / まさに,全く,ちょうど / おかっぱにした前髪,切り下げ前髪(また《英》fringe) / 〈前髪〉を切り下げにする"
+  },
+  {
+    "entry": "ridiculous",
+    "rank": 932,
+    "meaning_ejdict": "『おかしな』・『ばかばかしい』,とんでもない"
+  },
+  {
+    "entry": "volition",
+    "rank": 935,
+    "meaning_ejdict": "意志,決意"
+  },
+  {
+    "entry": "aerosol",
+    "rank": 939,
+    "meaning_ejdict": "エアロゾル(気体中に微粒子が分散した状態)"
+  },
+  {
+    "entry": "chess",
+    "rank": 941,
+    "meaning_ejdict": "チェス,西洋将棋"
+  },
+  {
+    "entry": "terribly",
+    "rank": 942,
+    "meaning_ejdict": "『恐ろしく』,ものすごく / (比較変化なし)《話》『ひどく』,非常に(very)"
+  },
+  {
+    "entry": "unintelligible",
+    "rank": 943,
+    "meaning_ejdict": "(話し方・文章などが)理解できない,訳の分からない"
+  },
+  {
+    "entry": "circa",
+    "meaning_ja": "(とくに近似の年代を示すのに用いて)およそ, 約, 頃",
+    "rank": 944
+  },
+  {
+    "entry": "scroll",
+    "rank": 945,
+    "meaning_ejdict": "〈C〉(記録などを書きとめておくための羊皮紙,パピルス紙などの)巻物 / 〈U〉〈C〉(いすのひじかけ・バイオリンなどの)渦巻き形模様(装飾)"
+  },
+  {
+    "entry": "connector",
+    "rank": 947,
+    "meaning_ejdict": "(電気の)接続子,(電話の)接続器 / (一般に)連絡者;(列車の)連結手;連結物;(車両の)連結器"
+  },
+  {
+    "entry": "incredibly",
+    "rank": 949,
+    "meaning_ejdict": "信じられないほど"
+  },
+  {
+    "entry": "hawk",
+    "rank": 952,
+    "meaning_ejdict": "『タカ』 / 《話》(国際問題などで)強硬論者,タカ派の人 / 〈商品〉を呼び売りする,行商する / 〈うわさなど〉をふれ回る,広める"
+  },
+  {
+    "entry": "handout",
+    "rank": 953,
+    "meaning_ejdict": "(こじきなどに与える)施し物 / 商品案内,広告ビラ / (広告主・政府機関などが新聞社へ渡す)新聞発表(原稿) / (学会などで資料として配布する)印刷物"
+  },
+  {
+    "entry": "applause",
+    "rank": 956,
+    "meaning_ejdict": "『拍手かっさい』;称賛"
+  },
+  {
+    "entry": "demonstrator",
+    "rank": 957,
+    "meaning_ejdict": "立証者 / 実演する人 / デモ参加者"
+  },
+  {
+    "entry": "sneeze",
+    "rank": 960,
+    "meaning_ejdict": "くしゃみ / くしゃみをする"
+  },
+  {
+    "entry": "sniff",
+    "rank": 961,
+    "meaning_ejdict": "(…を)『かぐ』,〈犬が〉(…を)くんくんかぐ《+『at』+『名』》 / (軽べつ・不満などを示して)(…に)フンと鼻をならす《+『at』+『名』》 / …の『においをかぐ』,鼻で吸う / くんくんかぐこと(音)《+『of』+『名』》"
+  },
+  {
+    "entry": "descendent",
+    "rank": 963,
+    "meaning_ejdict": "=descendant"
+  },
+  {
+    "entry": "cheers",
+    "meaning_ja": "(健康を祝して)乾杯  / ありがとう  / (特に電話で)ではまた",
+    "rank": null
+  }
+]

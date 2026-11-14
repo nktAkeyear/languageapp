@@ -1,0 +1,5857 @@
+[
+  {
+    "entry": "equity",
+    "rank": 3,
+    "meaning_ejdict": "〈U〉公平,公正,無私;〈C〉公明正大なもの / 〈U〉衡平法(公平と正義の点において慣習法(common law)の不備を補う英国の法律);(米国の法律で)抵当差額 / 〈U〉普通株主権;《英》《複数形で》固定配分のない株式"
+  },
+  {
+    "entry": "sponsorship",
+    "rank": 6,
+    "meaning_ejdict": "保証人であること;発起;(商業放送の)スポンサーであること"
+  },
+  {
+    "entry": "non",
+    "rank": 9,
+    "meaning_ja": "【接頭辞】…しない；...でない；…のない；非…；不…；無…"
+  },
+  {
+    "entry": "hedge",
+    "rank": 11,
+    "meaning_ejdict": "『生け垣』 / (一般に)障壁,境界 / (危険などから)守るもの,(…に対する)保護手段《+『against』+『名』》 / …を生け垣(垣根,さく)で囲む / 〈かけ,投資〉を両方にかけて丸損を防ぐ / (自由に動けないように,障害などで)…を囲む,束縛する《+『名』+『in』(『round』)+『with』+『名』,+『in』(『round』)+『名』+『with』+『名』》 / 確答をしない,逃げ道を作っておく"
+  },
+  {
+    "entry": "maturity",
+    "rank": 18,
+    "meaning_ejdict": "成熟,円熟;完成 / (手形などの)満期"
+  },
+  {
+    "entry": "marginal",
+    "rank": 23,
+    "meaning_ejdict": "縁の,へりの / 限界の,ぎりぎりの,かろうじて要件を満たす / 《名詞の前にのみ用いて》余白に書いた,欄外の / かろうじて帳じりの合う,限界収益点の / 取るに足りない,小さな"
+  },
+  {
+    "entry": "e-book",
+    "meaning_ja": "【名/C】電子書籍",
+    "rank": 27
+  },
+  {
+    "entry": "variance",
+    "rank": 29,
+    "meaning_ejdict": "変化,多様性;相違,不一致"
+  },
+  {
+    "entry": "depreciation",
+    "rank": 30,
+    "meaning_ejdict": "(消耗・年月による価値・価格の)下落,低落 / 減価見積り[額];減価償却"
+  },
+  {
+    "entry": "anti",
+    "meaning_ja": "【接頭辞】反…；非…；対…；抗…；不…",
+    "rank": 32
+  },
+  {
+    "entry": "entity",
+    "rank": 34,
+    "meaning_ejdict": "実在するもの,実体"
+  },
+  {
+    "entry": "commodity",
+    "rank": 40,
+    "meaning_ejdict": "『日用品』,必需品;商品"
+  },
+  {
+    "entry": "monetary",
+    "rank": 41,
+    "meaning_ejdict": "貨幣の,通貨の / 金銭上の;金銭についての"
+  },
+  {
+    "entry": "aggregate",
+    "rank": 42,
+    "meaning_ejdict": "…を集める / 総計(…に)なる《+『to』+『名』》 / 集まった,総計の / 集合体 / 〈U〉〈C〉(砂利など)骨材 / 《the ~》総計,総額"
+  },
+  {
+    "entry": "valuation",
+    "rank": 43,
+    "meaning_ejdict": "〈U〉(金銭的な)評価,見積り / 〈C〉評価額,査定額 / 〈C〉(人の能力・性格に対する)評価,意見"
+  },
+  {
+    "entry": "default",
+    "rank": 46,
+    "meaning_ejdict": "(義務・債務などの)不履行,怠慢《+『on』(『against』)+『名』》;(法廷・試合場などへの)不出場・欠席 / (義務・債務などを)履行しない;(裁判・試合などに)出場しない《+『in』(『on』)+『名』》"
+  },
+  {
+    "entry": "subsidiary",
+    "rank": 49,
+    "meaning_ejdict": "補助の / 従属的な,二次的な / 助成金(補助金)の(による) / 補助物(者);付属物 / 子会社"
+  },
+  {
+    "entry": "mid",
+    "meaning_ja": "【形】中央の, 中部の, 中間の / 【前】《詩》 …の中に, …の真ん中に(amid)  / 【接頭辞】中央の, 中部の, 半ばの",
+    "rank": 50
+  },
+  {
+    "entry": "allocation",
+    "rank": 51,
+    "meaning_ejdict": "(…への)割り当て,配置;〈C〉割り当て額(量)《+『to』(『for』)+『名』》"
+  },
+  {
+    "entry": "volatility",
+    "rank": 53,
+    "meaning_ejdict": "揮発性 / 移り気,気まぐれ"
+  },
+  {
+    "entry": "deviation",
+    "rank": 55,
+    "meaning_ejdict": "〈C〉〈U〉(…から)外れること,(…からの)脱線,逸脱《+『from』+『名』》 / 〈C〉偏差;磁針のx"
+  },
+  {
+    "entry": "receivable",
+    "rank": 56,
+    "meaning_ejdict": "受け取りうる,受け取っていい / 支払いを待っている,支払われるべき"
+  },
+  {
+    "entry": "equilibrium",
+    "rank": 57,
+    "meaning_ejdict": "(力・勢力・作用などの)釣り合い,均衡;(心の)平静"
+  },
+  {
+    "entry": "pre",
+    "meaning_ja": "【接頭辞】前の,以前の / 前もって,あらかじめ / …の前部にある",
+    "rank": 58
+  },
+  {
+    "entry": "creditor",
+    "rank": 59,
+    "meaning_ejdict": "債権者,貸し主"
+  },
+  {
+    "entry": "derivative",
+    "rank": 60,
+    "meaning_ejdict": "派生した,由来した;独創性のない,借り物めいた / 派生語 / 派生した物"
+  },
+  {
+    "entry": "sub",
+    "rank": 61,
+    "meaning_ejdict": "=submarine / (おもにスポーツで)=substitute / =subordinate / 《英》=sublieutenant / =subeditor / 《英》給料の前払い分 / (…の)代役を勤める,代りとなる《+for+名》 / 《英》給料を前借り(前貸し)する / 〈給料〉を前借り(前貸し)する"
+  },
+  {
+    "entry": "surplus",
+    "rank": 63,
+    "meaning_ejdict": "余り,余剰 / 剰余金 / 余った,過剰の"
+  },
+  {
+    "entry": "annuity",
+    "rank": 64,
+    "meaning_ejdict": "年金,年賦金"
+  },
+  {
+    "entry": "disclosure",
+    "rank": 65,
+    "meaning_ejdict": "〈U〉露見,暴露 / 〈C〉打ち明け話,暴露されたもの"
+  },
+  {
+    "entry": "regime",
+    "rank": 66,
+    "meaning_ejdict": "政治体制;制度 / =regimen"
+  },
+  {
+    "entry": "risky",
+    "rank": 67,
+    "meaning_ejdict": "危険な,危ない / =risqué"
+  },
+  {
+    "entry": "leverage",
+    "rank": 68,
+    "meaning_ejdict": "てこの作用(力) / てこ入れ,影響力"
+  },
+  {
+    "entry": "parliament",
+    "rank": 72,
+    "meaning_ejdict": "『議会』,『国会』 / 《通例P-》《英》議会"
+  },
+  {
+    "entry": "coalition",
+    "rank": 73,
+    "meaning_ejdict": "(政党などの,特に一時的な)(…間の)連立,提携《+『between』+『名』》 / 一体化,合体,融合"
+  },
+  {
+    "entry": "beta",
+    "rank": 75,
+    "meaning_ejdict": "ベータ(ギリシア語アルファベットの第2文字;Β,β;英語のB,b に相当)"
+  },
+  {
+    "entry": "lender",
+    "rank": 76,
+    "meaning_ejdict": "貸す人"
+  },
+  {
+    "entry": "gross",
+    "rank": 77,
+    "meaning_ejdict": "『全体の,総計の』(entire) / (人が)太りすぎた,でぶの / 粗野な,下品な(vulgar) / (食物が)粗悪な / (誤り・誤解などが)はなはだしい,全くひどい(very bad) / (植物が)はびこった,伸びほうだいの…(霧などが)濃い,密な / グロス(12ダース,144個) / 《the~》《文》全体;大部分 / …の総利益をあげる"
+  },
+  {
+    "entry": "liquidity",
+    "rank": 78,
+    "meaning_ejdict": "(資産・証券などの)換金性,流動性 / 《まれ》流動的な状態"
+  },
+  {
+    "entry": "fraud",
+    "rank": 81,
+    "meaning_ejdict": "〈U〉詐欺,ごまかし / 〈C〉詐欺行為,不正手段 / 〈C〉詐欺師,不正行為者"
+  },
+  {
+    "entry": "regulator",
+    "rank": 83,
+    "meaning_ejdict": "取り締まり人;調整者 / 調整装置"
+  },
+  {
+    "entry": "par",
+    "rank": 84,
+    "meaning_ejdict": "〈U〉同等,同価,同水準,同程度 / (また『par value』)〈U〉平価,額面価格 / 〈U〉(程度・質・状態・数量などの)平均,標準;(精神・健康などの)常態 / 〈C〉(ゴルフで)標準打数,パー / 《名詞の前にのみ用いて》平均の,標準の / 額面の / (ゴルフで)〈1ホールまたは1コース〉を基準打数でとる,パーで上がる"
+  },
+  {
+    "entry": "swap",
+    "rank": 85,
+    "meaning_ejdict": "《単数形で》(物と物の)交換,取り換え;交換物 / (と)…を交換する《+名+for+名》 / 交換する"
+  },
+  {
+    "entry": "regression",
+    "rank": 88,
+    "meaning_ejdict": "後退;退化,退歩"
+  },
+  {
+    "entry": "constitution",
+    "rank": 91,
+    "meaning_ejdict": "〈U〉(物の)『構成』,構造《+『of』+『名』》 / 〈C〉〈U〉『体格』,体質,性質,気質 / 〈C〉政体 / 〈C〉『憲法』,国憲 / 《the C-》合衆国憲法 / 〈U〉(制度などの)制定;(機関などの)設立"
+  },
+  {
+    "entry": "trader",
+    "rank": 92,
+    "meaning_ejdict": "商人,貿易業者"
+  },
+  {
+    "entry": "monopoly",
+    "rank": 93,
+    "meaning_ejdict": "〈U〉〈C〉《単数形で》(事業などの)『独占』,(商品の)『専売』;(一般に)(…の)独占,占有《+『of』+『名』》 / 〈C〉(国家・特許などによる)(…の)『独占権,専売権』《+『of』(『on』)+『名』》 / 〈C〉独占企業,専売会社(公社) / 〈C〉(独占の対象となる)専売品,専売業,独占事業"
+  },
+  {
+    "entry": "correlation",
+    "rank": 94,
+    "meaning_ejdict": "〈C〉(…間の)相互関係《+『between』+『名』》;(…との)関連《+『with』+『名』》 / 〈U〉《文》関連させること;相関関係にある状態 / 〈C〉相関グラフ"
+  },
+  {
+    "entry": "stockmarket",
+    "meaning_ja": "【名】株式市場 / 証券取引所 / 株式売買 / 株価",
+    "rank": 95
+  },
+  {
+    "entry": "ex",
+    "rank": 96,
+    "meaning_ejdict": "先妻,先夫"
+  },
+  {
+    "entry": "breach",
+    "rank": 98,
+    "meaning_ejdict": "(法律・約束・道徳・義務などを)破ること,破棄,違反,不履行《+『of』+『名』》 / (…の)違犯,侵害,妨害(violation)《+『of』+『名』》 / (…との)仲たがい,絶交,断絶《+『with』+『名』》 / 裂け目,(城壁・とりでなどの)突破口 / 〈城壁・とりでなど〉を突破する,に突破口を作る"
+  },
+  {
+    "entry": "subsidy",
+    "rank": 99,
+    "meaning_ejdict": "(国家・団体などの)補助金,助成金,奨励金"
+  },
+  {
+    "entry": "corruption",
+    "rank": 102,
+    "meaning_ejdict": "(官吏などの)不正行為,汚職 / 堕落 / (物の)腐敗 / (原文の)改悪;(言語の)なまり"
+  },
+  {
+    "entry": "issuer",
+    "rank": 103,
+    "meaning_ja": "【名】発行者；振出人"
+  },
+  {
+    "entry": "borrower",
+    "rank": 104,
+    "meaning_ja": "{[名/C]}《金の》借り手,借用者,負債者"
+  },
+  {
+    "entry": "insurer",
+    "rank": 105,
+    "meaning_ejdict": "保険業者,保険会社;保証人"
+  },
+  {
+    "entry": "profitability",
+    "rank": 107,
+    "meaning_ja": "【名/U】収益性,利益率,採算性"
+  },
+  {
+    "entry": "scenario",
+    "rank": 110,
+    "meaning_ejdict": "(映画の)シナリオ,台本 / (小説・戯曲の)筋書き"
+  },
+  {
+    "entry": "terrorism",
+    "rank": 111,
+    "meaning_ejdict": "(政治的な)行為,テロ;恐怖政治"
+  },
+  {
+    "entry": "regulatory",
+    "rank": 113,
+    "meaning_ja": "取り締まる(ための), 調節する(ための),調整する(ための)"
+  },
+  {
+    "entry": "coefficient",
+    "rank": 115,
+    "meaning_ejdict": "(数学で)係数,(物理で)係数,率"
+  },
+  {
+    "entry": "optimal",
+    "rank": 119,
+    "meaning_ejdict": "=optimum"
+  },
+  {
+    "entry": "nominal",
+    "rank": 120,
+    "meaning_ejdict": "名目上の,名義だけの / (実際の価値に比べて)ごくわずかの,おしるし程度の / 名詞の,名詞として用いられた"
+  },
+  {
+    "entry": "infrastructure",
+    "rank": 121,
+    "meaning_ejdict": "(組織の機能を助ける)下部構造,下部組織 / (NATOなどの)永久[軍事]基地"
+  },
+  {
+    "entry": "disclose",
+    "rank": 122,
+    "meaning_ejdict": "〈隠れたもの〉をあらわにする,見せる(uncover) / 〈秘密など〉を打ち明ける,明らかにする(reveal)"
+  },
+  {
+    "entry": "offset",
+    "rank": 123,
+    "meaning_ejdict": "(…を)相殺(そうさい)するもの,(…の)埋め合わせ《+『to』(『for』)+『名』》 / (地面に近い幹から出る)側枝,横枝 / =offset printing / …を埋め合わせる,相殺する / …をオフセット印刷する"
+  },
+  {
+    "entry": "conversion",
+    "rank": 128,
+    "meaning_ejdict": "〈U〉〈C〉(性質・形・機能などの)(…から…への)転換,変換,変化《+『from』+『名』+『into』(『to』)+『名』》 / 〈U〉〈C〉(宗教・主義などの)改宗;(…への)帰依,転向《+『to』+『名』》"
+  },
+  {
+    "entry": "stakeholder",
+    "rank": 130,
+    "meaning_ejdict": "(勝負がつくまで)賭(かけ)金を預かる人 / 管財人"
+  },
+  {
+    "entry": "taxpayer",
+    "rank": 132,
+    "meaning_ejdict": "納税者,被課税者"
+  },
+  {
+    "entry": "alliance",
+    "rank": 133,
+    "meaning_ejdict": "〈U〉〈C〉(国家間の)同盟,協定;〈C〉同盟国 / 〈U〉〈C〉(個人・組織間の)協力,提携 / 〈U〉〈C〉(…との)縁組み,姻戚関係;交友《+『with』+『名』》"
+  },
+  {
+    "entry": "debtor",
+    "rank": 136,
+    "meaning_ejdict": "債務者,借り主 / 借り方(《略》Dr.,dr.)"
+  },
+  {
+    "entry": "liable",
+    "rank": 137,
+    "meaning_ejdict": "(法律的に)責任(義務)のある / 《『be liable to』+『名』》(病気などに)『かかりやすい』 / 《『be liable to』 do》(性質・習慣などにより)…しがちである,しやすい;《話》…しそうな,たぶん…する"
+  },
+  {
+    "entry": "parameter",
+    "rank": 139,
+    "meaning_ejdict": "(数学で)媒介変数,補助変数 / (統計で)母数"
+  },
+  {
+    "entry": "integration",
+    "rank": 140,
+    "meaning_ejdict": "統合,集成,完成 / (学校や住居における)人種差別の撤廃"
+  },
+  {
+    "entry": "scandal",
+    "rank": 141,
+    "meaning_ejdict": "〈C〉『醜聞』,スキャンダル / 〈U〉恥,不面目 / 〈C〉(スキャンダルに対する人々の)義憤,反感,物議 / 〈U〉(…についての)中傷,陰口,悪口《+『about』(『over』)+『名』》"
+  },
+  {
+    "entry": "interval",
+    "rank": 142,
+    "meaning_ejdict": "(事と事の)間の時間,『合い間』;(物と物の)間の空間,間隔 / 《英》=intermission / 音程"
+  },
+  {
+    "entry": "defer",
+    "rank": 143,
+    "meaning_ejdict": "…を『延ばす』,延期する(postpone) / 《『defer to』+『名』》(人・希望・意見などに)従う"
+  },
+  {
+    "entry": "payoff",
+    "rank": 146,
+    "meaning_ejdict": "(給料,借金,掛け金などの)支払い;支払日 / (悪事の)報酬,わいろ / (一連の行為などの)結末,(話の)やま / (悪事の)報い,罰"
+  },
+  {
+    "entry": "ethical",
+    "rank": 147,
+    "meaning_ejdict": "倫理の,道徳の;倫理学 / 道徳的な,(特に)職業道徳にかなった"
+  },
+  {
+    "entry": "publicly",
+    "rank": 148,
+    "meaning_ejdict": "公に,公然と;おおっぴらに / 公的に,公衆によって"
+  },
+  {
+    "entry": "governance",
+    "rank": 150,
+    "meaning_ejdict": "支配(統治)すること / 支配(統治)されている状態"
+  },
+  {
+    "entry": "marketer",
+    "rank": 152,
+    "meaning_ejdict": "市場で生産物を売買する人(会社)"
+  },
+  {
+    "entry": "benchmark",
+    "rank": 153,
+    "meaning_ejdict": "水準点(測量に用いる基準標識) / (評価などの)基準"
+  },
+  {
+    "entry": "rebel",
+    "rank": 154,
+    "meaning_ejdict": "(統治者・政府に対する)『反逆者』,(権威に対する)反抗者 / 《『R-』》(南北戦争時の)南部連邦軍人 / 《俗》南部の白人 / 反逆の,反抗の / (…に)反逆する,反抗する《+『against』+『名』》 / (…を)ひどくきらう《+『against』(『at』)+『名』(do『ing』)》"
+  },
+  {
+    "entry": "statute",
+    "rank": 155,
+    "meaning_ejdict": "法令,成文法,法規 / (法人団体の)規則"
+  },
+  {
+    "entry": "restructure",
+    "rank": 156,
+    "meaning_ejdict": "〈組織・機構など〉を編成し直す,組み立て直す"
+  },
+  {
+    "entry": "residual",
+    "rank": 157,
+    "meaning_ejdict": "残りの,残留の / 残余"
+  },
+  {
+    "entry": "bubble",
+    "rank": 158,
+    "meaning_ejdict": "〈C〉『あわ』,あぶく / 〈U〉あわ立ち,あわ立ちの音 / 〈C〉(すぐ消える)あわのようなこと / 〈C〉『シャボン玉』 / 『あわ立つ』 / ぶくぶくと音を立てる,あわ立って流れる / 〈特に女性が〉気持をわかす,はしゃぐ《+『over』》"
+  },
+  {
+    "entry": "arbitrage",
+    "rank": 159,
+    "meaning_ejdict": "(為替・株式などの)さやとり売買;裁定取引"
+  },
+  {
+    "entry": "execute",
+    "rank": 162,
+    "meaning_ejdict": "〈計画・任務など〉を『実行する』,遂行する / (…の罪で,…犯として)…の『死刑を執行する』《+『名』+『for』+『名』(do『ing』),+『名』+『as』+『名』》 / 〈芸術品〉を制作する;〈曲〉を演奏する / 〈法律・契約など〉を執行する;〈証書など〉を署名することによって完成する"
+  },
+  {
+    "entry": "deem",
+    "rank": 166,
+    "meaning_ejdict": "…と思う(think)"
+  },
+  {
+    "entry": "defendant",
+    "rank": 168,
+    "meaning_ejdict": "被告"
+  },
+  {
+    "entry": "statistical",
+    "rank": 169,
+    "meaning_ejdict": "統計の,統計学上の"
+  },
+  {
+    "entry": "matrix",
+    "rank": 170,
+    "meaning_ejdict": "(複数形 matrices, ～es)(発生・成長の)母体 / 鋳型・模型;(レコードの)原盤;(活字の)母型,字母 / (金属・化石・宝石などの含んだ)母岩・《古》子宮・基盤; (細胞)細胞間質; (地学)基質; (印)字母; 紙型; 鋳型; (鉱)母岩; (数)行列; (コンピュータ)マトリックス (入力導線と出力導線の回路網); (言)母型文 (matrix sentence)"
+  },
+  {
+    "entry": "allowance",
+    "rank": 172,
+    "meaning_ejdict": "『割り当て』;(定期的な)手当,こづかい / 値引き,割引き"
+  },
+  {
+    "entry": "enforce",
+    "rank": 175,
+    "meaning_ejdict": "〈法律など〉を『実施する』,施行する / (…に)…を『強要する』,強いる《+『名』+『on』(『upon』)+『名』》 / 〈意見など〉を強化する,強調する"
+  },
+  {
+    "entry": "emission",
+    "rank": 176,
+    "meaning_ejdict": "〈U〉〈C〉(光・熱・液体などの)放射,放出 / 〈C〉放射物,放出物"
+  },
+  {
+    "entry": "warrant",
+    "rank": 180,
+    "meaning_ejdict": "〈C〉(逮捕・差し押さえなどの)『令状』《+for+名》 / 〈U〉(…の)『正当な理由』,権限《+for+名(doing)》 / 〈C〉『保証[となるもの]』,保証人,担保物件 / …を『認可する』,公式に認める / 〈行為など〉を正当化する / 〈品物・品質など〉を『保証する』,確約する(guarantee) / 《話》…を確信(断言)する;断じて請け合う"
+  },
+  {
+    "entry": "telecom",
+    "rank": 182,
+    "meaning_ja": "【名/U/C】遠距離通信；電気通信技術（ = telecommunication）"
+  },
+  {
+    "entry": "diversify",
+    "rank": 184,
+    "meaning_ejdict": "…を多様化する,いろいろ変化させる"
+  },
+  {
+    "entry": "exploit",
+    "rank": 187,
+    "meaning_ejdict": "英雄的行為,めざましい功績,偉業 / 〈鉱山・資源など〉を『開発する』;〈機会など〉を活用する / …を食いものにする,搾取する"
+  },
+  {
+    "entry": "referendum",
+    "rank": 189,
+    "meaning_ejdict": "国民(住民)投票"
+  },
+  {
+    "entry": "treaty",
+    "rank": 191,
+    "meaning_ejdict": "〈C〉(国家間の)『条約』,協定 / 〈C〉条約(協定)文書 / 〈U〉《文》(個人間の)約定"
+  },
+  {
+    "entry": "sophisticate",
+    "rank": 193,
+    "meaning_ejdict": "〈人〉の純真さを失わせる,を世慣れさせる / …を複雑にする,精巧にする / 洗練された人 / 世間ずれした人"
+  },
+  {
+    "entry": "multi",
+    "meaning_ja": "【接頭辞】多くの…；種々の…：多数（倍）の...",
+    "rank": 194
+  },
+  {
+    "entry": "taxation",
+    "rank": 200,
+    "meaning_ejdict": "課税,徴税;税制 / (支払うべき)税金,課税額"
+  },
+  {
+    "entry": "technological",
+    "rank": 203,
+    "meaning_ejdict": "科学技術の(に関する)"
+  },
+  {
+    "entry": "multinational",
+    "rank": 204,
+    "meaning_ejdict": "多国籍企業(多数の国に系列会社を持つ巨大企業)・多国籍の / 多国籍企業の"
+  },
+  {
+    "entry": "plaintiff",
+    "rank": 205,
+    "meaning_ejdict": "(訴訟の)原告"
+  },
+  {
+    "entry": "tariff",
+    "rank": 209,
+    "meaning_ejdict": "(…に掛かる)関税《+on+名》 / (関税の)税率表 / (ホテル・レストランなどの)料金表"
+  },
+  {
+    "entry": "shrink",
+    "rank": 211,
+    "meaning_ejdict": "〈布などが〉『縮む』 / 『しりごみする』,ひるむ,避ける / (…に)〈数量・価値などが〉減る,減少する《+『to』+『名』》 / (…に)…を縮める,減らす《+『名』+『to』+『名』》 / 後ずさり,しりごみ / 《米俗》精神科医,精神分析医"
+  },
+  {
+    "entry": "foreigner",
+    "rank": 213,
+    "meaning_ejdict": "『外国人』 / 外国から来た物"
+  },
+  {
+    "entry": "consolidate",
+    "rank": 217,
+    "meaning_ejdict": "〈組織など〉を固める,〈地位・勢力・知識など〉を強化する / …を一つにする,を合わせて(…に)する《+『名』+『into』+『名』》"
+  },
+  {
+    "entry": "taxable",
+    "rank": 218,
+    "meaning_ejdict": "税金がかかる;課税できる"
+  },
+  {
+    "entry": "disadvantage",
+    "rank": 220,
+    "meaning_ejdict": "〈C〉『不利な立場』(状態) / 〈U〉『不利』,不利益;(名声・信用などの)損傷,損失"
+  },
+  {
+    "entry": "subordinate",
+    "rank": 223,
+    "meaning_ejdict": "(…より)『下位の』,下級の《+to+名》 / 『従属的な』,捕助的な / 従属する人(物);部下,属官 / (…より)…を下位におく,(…に)…を従属させる《+名+to+名》"
+  },
+  {
+    "entry": "inflow",
+    "rank": 225,
+    "meaning_ejdict": "〈U〉流入 / 〈C〉流入物"
+  },
+  {
+    "entry": "pledge",
+    "rank": 226,
+    "meaning_ejdict": "〈C〉〈U〉『誓約』,固い約束 / 〈C〉(…の)担保,抵当品《+『of』(『for』)+『名』》 / 〈U〉『担保』,『抵当』,質入れ / 〈C〉(友情・忠誠などの)印,あかし《+『of』+『名』》 / 〈C〉《文》乾杯(toast) / …を『誓約する』,堅く約束する / 〈人・自分〉に誓約させる / …を担保(抵当)に入れる / 《文》…のために乾杯する"
+  },
+  {
+    "entry": "collateral",
+    "rank": 229,
+    "meaning_ejdict": "並び合った / 二次的な,付随的な(secondary) / 証券類を担保とした / 傍系の,直系でない / 担保,抵当,見返り物資"
+  },
+  {
+    "entry": "modest",
+    "rank": 230,
+    "meaning_ejdict": "『謙そんした』,謙虚な;控え目な / (特に女性について)品のいい,しとやかな / じみな,質素な(simple) / (量・規模・程度が)中ぐらいの,並の(moderate)"
+  },
+  {
+    "entry": "convertible",
+    "rank": 231,
+    "meaning_ejdict": "(用途・形・状態などが)変えられる,転換できる / 等価交換できる / 改宗させられる / (車などが)折りたたみ式ほろ屋好がついた / コンバーチブル型の車(船)"
+  },
+  {
+    "entry": "thereby",
+    "rank": 232,
+    "meaning_ejdict": "それによって(by that means) / それに関連して"
+  },
+  {
+    "entry": "ledger",
+    "rank": 233,
+    "meaning_ejdict": "元帳,原簿"
+  },
+  {
+    "entry": "linear",
+    "rank": 234,
+    "meaning_ejdict": "線の,直線の / 線から成る,線を使った;線状の / (方程式が)一次の"
+  },
+  {
+    "entry": "summit",
+    "rank": 235,
+    "meaning_ejdict": "=something / 〈C〉(山などの)『頂上』《+of+名》 / 〈U〉《the~》《比喩的に》(…の)絶頂,最高潮《+of+名》 / 〈U〉《the~》(政府などの)首脳 / 〈C〉首脳会議,頂上会談 / 国家最高首脳間の,元首間の"
+  },
+  {
+    "entry": "repay",
+    "rank": 236,
+    "meaning_ejdict": "…を『返す』 / (…に対して),〈人〉に『報いる』《+『名』〈人〉+『for』+『名』(doing)》 / 〈行為〉にお返しをする,答える"
+  },
+  {
+    "entry": "ministry",
+    "rank": 238,
+    "meaning_ejdict": "〈U〉《the~》牧師の職 / 《the~》《集合的に》聖職者,牧師(clergy) / 〈C〉(英国・欧州諸国・日本などの)『省』;省の建物 / 〈C〉《通例単数形で》大臣(公使)の職(任期) / 〈C〉《しばしばthe M-》『内閣』,閣僚たち"
+  },
+  {
+    "entry": "multiply",
+    "rank": 239,
+    "meaning_ejdict": "…を『増す』,ふやす;…を繁殖させる / (ある数を)〈ある数〉に『掛ける』《+『名』〈被乗数〉+『by』+『名』〈乗数〉》 / 〈数・量などが〉『ふえる』,増大する;繁殖する / 掛け算をする / 多様に,複雑に,複合的に"
+  },
+  {
+    "entry": "consensus",
+    "rank": 246,
+    "meaning_ejdict": "(多人数の意見などの)一致,調和《+『of』+『名』》;一致した意見,総意"
+  },
+  {
+    "entry": "essentially",
+    "rank": 247,
+    "meaning_ejdict": "本質的に;本来は / 《否定構文で》必然的には(necessarily)"
+  },
+  {
+    "entry": "presidency",
+    "rank": 248,
+    "meaning_ejdict": "《the presidency》大統領(総裁,学長,社長など)の職(任期) / 〈U〉《しばしばPresidency》米大統領の職務(地位)"
+  },
+  {
+    "entry": "rational",
+    "rank": 249,
+    "meaning_ejdict": "(物事が)『道理にかなった』,合理的な / (人が)『理性的な』,分別のある / 『理性を備えた』 / (数が)有理の"
+  },
+  {
+    "entry": "con",
+    "rank": 250,
+    "meaning_ejdict": "反対投票, 反対論 / 〈人〉をペテンにかける (confidence trick) / =convict (誤り)"
+  },
+  {
+    "entry": "undermine",
+    "rank": 252,
+    "meaning_ejdict": "…の下を掘る,下に穴(トンネル)を掘る / (浸食作用で)…の土台を壊す(削る) / 〈健康・名声など〉を知らないうちに(徐々に)害する,弱める"
+  },
+  {
+    "entry": "identical",
+    "rank": 256,
+    "meaning_ejdict": "《the identical》『同一の』,全く同じの / 『等しい』,同様な"
+  },
+  {
+    "entry": "surge",
+    "rank": 260,
+    "meaning_ejdict": "波のように押し寄せる,殺到する / 〈感情が〉こみあげる《+up》 / 急増する,〈株などが〉急騰する / (…が)押し寄せること,(…の)襲来,殺到《+of+名》 / (感情の)高まり,急増,急騰"
+  },
+  {
+    "entry": "predecessor",
+    "rank": 265,
+    "meaning_ejdict": "2『前任者』;前のもの"
+  },
+  {
+    "entry": "deputy",
+    "rank": 267,
+    "meaning_ejdict": "『代理人』,代表者 / (フランスなどの)代議士 / 《米》郡保安官代理"
+  },
+  {
+    "entry": "sole",
+    "rank": 270,
+    "meaning_ejdict": "足の裏 / 靴底 / 〈靴〉に底をつける / 『たった一人』(『一つ』)『の』 / 『独占的な』,一手に扱う / ウシノシタ,シタビラメ(ササウシノシタ科,ウシノシタ科の魚の総称)"
+  },
+  {
+    "entry": "outsource",
+    "rank": 271,
+    "meaning_ja": "【動/他】を外部発注する,委託する【動/自】外部発注する,委託する"
+  },
+  {
+    "entry": "chancellor",
+    "rank": 273,
+    "meaning_ejdict": "(西独・オーストリアなどの)首相 / (アメリカのいくつかの大学で)総長,学長 / 《米》衡平法裁判所(court of equity)の判事 / (国王などの)秘書;(外交官の)一等書記官 / 各種の高官の称号"
+  },
+  {
+    "entry": "lawsuit",
+    "rank": 274,
+    "meaning_ejdict": "訴訟[事件]"
+  },
+  {
+    "entry": "notably",
+    "rank": 275,
+    "meaning_ejdict": "著しく,際立って / 特に"
+  },
+  {
+    "entry": "fluctuation",
+    "rank": 276,
+    "meaning_ejdict": "波動;動揺,変動"
+  },
+  {
+    "entry": "discrimination",
+    "rank": 277,
+    "meaning_ejdict": "区別(識別)すること / (…に対する)差別待遇《+『against』+『名』》 / 識別力,鋭く見分ける力"
+  },
+  {
+    "entry": "widespread",
+    "rank": 279,
+    "meaning_ejdict": "(翼など)広げた / 広範囲にわたる,行き渡った"
+  },
+  {
+    "entry": "goodwill",
+    "rank": 281,
+    "meaning_ejdict": "善意,親切;親善,友好 / (商店などの)信用,のれん,のれん料"
+  },
+  {
+    "entry": "diversification",
+    "rank": 282,
+    "meaning_ejdict": "多様にすること,多様化;多様[であること]"
+  },
+  {
+    "entry": "likelihood",
+    "rank": 283,
+    "meaning_ejdict": "(…が)ありそうなこと,(…の)見込み,可能性(probability)《+『of』+『名』》"
+  },
+  {
+    "entry": "orient",
+    "rank": 285,
+    "meaning_ejdict": "『東洋』(the East)"
+  },
+  {
+    "entry": "metric",
+    "rank": 287,
+    "meaning_ejdict": "メートル法の / =metrical"
+  },
+  {
+    "entry": "insider",
+    "rank": 288,
+    "meaning_ejdict": "内部の人,会員,部員 / 《話》内幕を知っている人,消息通"
+  },
+  {
+    "entry": "minus",
+    "meaning_ja": "…を引くと,を減ずると  / 《話》…なしで,を失って,のない(without)",
+    "rank": 290
+  },
+  {
+    "entry": "constitutional",
+    "rank": 291,
+    "meaning_ejdict": "体質の,生まれつきの;構成上の / 憲法の,立憲の / 《話》健康のための散歩"
+  },
+  {
+    "entry": "privatization",
+    "rank": 292,
+    "meaning_ja": "【名】民営化；公開会社の非公開化"
+  },
+  {
+    "entry": "missile",
+    "rank": 294,
+    "meaning_ejdict": "『ミサイル』,ロケット弾 / 《文》飛び道具(石,矢,投げやりなど)"
+  },
+  {
+    "entry": "remedy",
+    "rank": 296,
+    "meaning_ejdict": "(…の)『治療薬』,『治療法』《+『for』+『名』》 / (…を)矯正(救済)するもの,(…の)対策となるもの《+『for』+『名』》 / 〈病気など〉を『治療する』 / …を矯正する,改善する"
+  },
+  {
+    "entry": "accordance",
+    "rank": 298,
+    "meaning_ejdict": "一致,調和,適合"
+  },
+  {
+    "entry": "parliamentary",
+    "rank": 299,
+    "meaning_ejdict": "議会の,議会に関する / 議会の規則に従った,議会方式の;議会で制定された"
+  },
+  {
+    "entry": "vertical",
+    "rank": 300,
+    "meaning_ejdict": "『垂直の』,直立した,縦の / 垂直線(面);垂直位置"
+  },
+  {
+    "entry": "activist",
+    "rank": 304,
+    "meaning_ejdict": "(特に政治信条の)積極行動主義者,実践主義者"
+  },
+  {
+    "entry": "node",
+    "rank": 305,
+    "meaning_ejdict": "(茎・幹の)節(ふし) / (体組織にできた)結節,こぶ(リンパ瘤(りゅう)など) / (天体の軌道の)交点 / (物事の)中心点"
+  },
+  {
+    "entry": "consultancy",
+    "rank": 306,
+    "meaning_ejdict": "〈C〉コンサルタント業務 / 〈U〉助言業 / コンサルタント会社《英》"
+  },
+  {
+    "entry": "classification",
+    "rank": 307,
+    "meaning_ejdict": "〈U〉〈C〉分類[作業];分類法;分類結果 / 〈U〉(生物学上の)分類"
+  },
+  {
+    "entry": "utilize",
+    "rank": 308,
+    "meaning_ejdict": "…を『利用する』,役立たせる"
+  },
+  {
+    "entry": "methodology",
+    "rank": 309,
+    "meaning_ja": "【名/U/C】方法論"
+  },
+  {
+    "entry": "upward",
+    "rank": 311,
+    "meaning_ejdict": "『上のほうへ』,上向きに / (地位・階級などが)『上位へ』 / (数量などが)…以上,さらに多く / (…から)以降 / (大都市・水源・内陸)のほうへ / 『上向きの』,上昇する"
+  },
+  {
+    "entry": "charter",
+    "rank": 312,
+    "meaning_ejdict": "(君主・政府などが人民・組織・個人に与える権利の)『特許状』,免許状,憲章 / (組織の趣旨を述べた)『憲章』 / (バス・飛行機・船などの)貸借契約 / 〈組織など〉に『特許(免許)を与える』 / (契約によって)〈バス・飛行機・船など〉を『借り切る』"
+  },
+  {
+    "entry": "vulnerable",
+    "rank": 314,
+    "meaning_ejdict": "(身体的に)傷つきやすい / 攻撃(非難)を受けやすい,批判(皮肉など)に傷つきやすい;(…に)攻撃(非難)されやすい《+to+名》"
+  },
+  {
+    "entry": "dominant",
+    "rank": 315,
+    "meaning_ejdict": "『支配的な』,最も有力な / (位置が)群を抜いて高い,そびえ立つ / (手・目など左右のいずれかが)力のある / (遺伝で)優性の / (音階で)第5度音の,属音の / (遺伝の)優性形質 / 第5度音,属音"
+  },
+  {
+    "entry": "citation",
+    "rank": 316,
+    "meaning_ejdict": "〈U〉(事実などの)引用,挙例《+『of』+『名』》;〈C〉引用文 / 〈C〉(…の)召喚状 / 〈C〉(軍人・部隊などに与えられる)感状;(一般に)表彰状"
+  },
+  {
+    "entry": "lessee",
+    "rank": 318,
+    "meaning_ejdict": "借地人,借家人"
+  },
+  {
+    "entry": "communist",
+    "rank": 320,
+    "meaning_ejdict": "『共産主義者』 / 《しばしばC-》共産党員 / 共産主義[者]の;《しばしばC-》共産党の"
+  },
+  {
+    "entry": "bust",
+    "rank": 321,
+    "meaning_ejdict": "〈C〉半身像,胸像 / 〈U〉《遠回しに》(婦人の)胸部 / を破裂させる,打ち壊す / …をなぐる,打つ / …を破産させる / 破裂する,壊れる / 破産する / 失敗,破産 / ぶんなぐり / …を警察に連行する,逮捕する / …を家宅捜索する / 〈軍人〉の階級を下げる"
+  },
+  {
+    "entry": "execution",
+    "rank": 323,
+    "meaning_ejdict": "〈U〉(命令・任務などの)『実行』,遂行《+『of』+『名』》 / 〈U〉〈C〉死刑執行,処刑 / 〈U〉(芸術品の)制作,できばえ;演奏[ぶり];演技 / 〈U〉(遺言などの)執行《+『of』+『名』》"
+  },
+  {
+    "entry": "sensitivity",
+    "rank": 326,
+    "meaning_ejdict": "敏感,(生理的な)感受性 / 感度,度光度"
+  },
+  {
+    "entry": "rally",
+    "rank": 327,
+    "meaning_ejdict": "(…のもとに)〈人〉を『再び集める』《+『名』〈人〉+『around』(『to, behind』)+『名』》 / (…に対して)〈気力・体力など〉を『持ち直す』,もう一度奮い起こす《+『名』+『for』(『to』)+『名』》 / (…のもとに)『再び集まる』;(援助などのために)はせ参じる《+『around』(『to, behind』)+『名』》 / (不幸・病気などから)『持ち直す』,立ち直る《+『from』+『名』》 / (テニスなどで)続けて打ち合う / (次の活動のための)再結集 / (悪い状態からの)『持ち直し』,回復《+『from』+『名』》 / (特定の目的のための)集会,大会 / (テニスの)ラリー(続けて打ち合うこと) / ラリー(長距離自動車レース) / (悪意がなくて)…をからかう,ひやかす"
+  },
+  {
+    "entry": "intangible",
+    "rank": 328,
+    "meaning_ejdict": "触れることができない / 雲をつかむような,はっきりしない"
+  },
+  {
+    "entry": "successor",
+    "rank": 329,
+    "meaning_ejdict": "(…の)『後任者』,継承者,相続人;(…に)取って代わる者《+to+名》"
+  },
+  {
+    "entry": "exempt",
+    "rank": 330,
+    "meaning_ejdict": "(義務などから)〈人〉を免れさせる《+『名』〈人〉+『from』+『名』(do『ing』)》 / (…を)免除された《+『from』+『名』(do『ing』)》"
+  },
+  {
+    "entry": "globalization",
+    "rank": 331,
+    "meaning_ja": "【名/U】世界（標準）化"
+  },
+  {
+    "entry": "elasticity",
+    "rank": 333,
+    "meaning_ejdict": "弾力,弾性;伸縮自在;融通性"
+  },
+  {
+    "entry": "weaken",
+    "rank": 334,
+    "meaning_ejdict": "…を『弱くする』 / …を薄くする / 弱くなる / 〈人・人の態度が〉軟化する,ぐらつく"
+  },
+  {
+    "entry": "accrue",
+    "rank": 335,
+    "meaning_ejdict": "《文》(自然の結果として)生じる,発生する;〈利子が〉つく"
+  },
+  {
+    "entry": "interim",
+    "rank": 340,
+    "meaning_ejdict": "(二つのでき事・時期などの)中間,合い間 / 中間の,間の"
+  },
+  {
+    "entry": "payout",
+    "meaning_ja": "【名/C】支出金,支払金",
+    "rank": 341
+  },
+  {
+    "entry": "suppress",
+    "rank": 342,
+    "meaning_ejdict": "〈反乱など〉を『鎮圧する』,…の活動を押える / 〈感情・欲望など〉を『抑制する』,抑える / …の発表を禁止する,伏せる"
+  },
+  {
+    "entry": "electoral",
+    "rank": 344,
+    "meaning_ejdict": "選挙[人]の;選挙人から成る"
+  },
+  {
+    "entry": "jurisdiction",
+    "rank": 345,
+    "meaning_ejdict": "司法権,裁判権 / 支配権,管轄権 / 管轄区域"
+  },
+  {
+    "entry": "ambition",
+    "rank": 346,
+    "meaning_ejdict": "『大望』,野心,野望 / 〈C〉大望(野心)の対象(目的)"
+  },
+  {
+    "entry": "systematic",
+    "rank": 347,
+    "meaning_ejdict": "『系統だった』,組織的な;計画的な,故意の / 規則正しい,きちょうめんな"
+  },
+  {
+    "entry": "outsider",
+    "rank": 348,
+    "meaning_ejdict": "局外者,第三者 / (競馬などで)勝ちめのない馬(騎手)"
+  },
+  {
+    "entry": "prevail",
+    "rank": 349,
+    "meaning_ejdict": "《文》 / (…に)〈強さ・影響力が〉『勝る』,勝つ《+『over』(『against』)+『名』》 / (…に)『普及している』,広く行きわたる《『in』(『among』)+『名』》"
+  },
+  {
+    "entry": "virtual",
+    "rank": 350,
+    "meaning_ejdict": "(名目上・表面上はそうではないが)事実上の,実際上の"
+  },
+  {
+    "entry": "observer",
+    "rank": 353,
+    "meaning_ejdict": "(…を)『観察する人』,見守る人《+『of』+『名』》 / オブザーバー(会議などの正式の代表者でなく傍聴する人) / (規則・習慣などを)守る人"
+  },
+  {
+    "entry": "algorithm",
+    "rank": 356,
+    "meaning_ejdict": "アルゴリズム(問題解決のための手順や規則の集まり。最大公約数を求める互除法はその一例)"
+  },
+  {
+    "entry": "horizon",
+    "rank": 357,
+    "meaning_ejdict": "『地平線』,水平線 / (知識・関心・経験などの)限界,範囲,視野《+『of』+『名』》"
+  },
+  {
+    "entry": "quantitative",
+    "rank": 359,
+    "meaning_ejdict": "量の,量的な"
+  },
+  {
+    "entry": "counterpart",
+    "rank": 362,
+    "meaning_ejdict": "(正副2通のうちの)1通,副本,写し / 対応する物(人);よく似た物(人)"
+  },
+  {
+    "entry": "diminish",
+    "rank": 363,
+    "meaning_ejdict": "…を『小さくする』,『減らす』,少なくする / 〈音程〉を半音狭くする / 『小さくなる』,減少する"
+  },
+  {
+    "entry": "collective",
+    "rank": 364,
+    "meaning_ejdict": "集めた,収集された;蓄積された,集積した / 総合した,合わせた;集団の,団体の,共同の / =collective noun / 集産主義組織(事業)"
+  },
+  {
+    "entry": "repayment",
+    "rank": 367,
+    "meaning_ejdict": "返済,返礼 / 払い戻された物,お返し,報酬"
+  },
+  {
+    "entry": "offshore",
+    "rank": 368,
+    "meaning_ejdict": "沖に向かう / 沖合いの / 沖へ向かって / 沖で,沖合いで"
+  },
+  {
+    "entry": "marketplace",
+    "rank": 369,
+    "meaning_ejdict": "市の開かれる広場(建物) / 商業界,財界"
+  },
+  {
+    "entry": "comparable",
+    "rank": 371,
+    "meaning_ejdict": "比較できる,類似点がある;(…と)比較できる《+『with』(『to』)+『名』》 / 匹敵する,肩を並べられる;(…に)匹敵する《+『with』(『to』)+『名』》"
+  },
+  {
+    "entry": "proxy",
+    "rank": 374,
+    "meaning_ejdict": "〈U〉(…の)代理,代理権;〈C〉代理人《+『for』+『名』》 / 〈C〉委任状"
+  },
+  {
+    "entry": "politically",
+    "rank": 375,
+    "meaning_ja": "政治上,政略上；政治的に"
+  },
+  {
+    "entry": "municipal",
+    "rank": 377,
+    "meaning_ejdict": "『市の』,『町の』,地方自治体の;市政の;市営の,市立の"
+  },
+  {
+    "entry": "hostile",
+    "rank": 378,
+    "meaning_ejdict": "『敵の』,敵国(軍)の / 『敵意のある』,敵対する"
+  },
+  {
+    "entry": "tonne",
+    "rank": 379,
+    "meaning_ejdict": "=metric ton メートルトン"
+  },
+  {
+    "entry": "periodic",
+    "rank": 382,
+    "meaning_ejdict": "定期的な,周期的な / ときどき起こる / 掉尾(とうび)的の"
+  },
+  {
+    "entry": "barrel",
+    "rank": 383,
+    "meaning_ejdict": "(胴のふくれた)『たる』 / (…の)1たる[の量]《+『of』+『名』》 / 銃身,砲身 / 《単数扱い》(…の)多量《+『of』+『名』》《話》 / …をたるに入れる,たるに詰める"
+  },
+  {
+    "entry": "accelerate",
+    "rank": 384,
+    "meaning_ejdict": "…の速度を速める,加速する / 〈ある状態〉を早く起こさせる / 速くなる,速度を増す"
+  },
+  {
+    "entry": "mandate",
+    "rank": 389,
+    "meaning_ejdict": "〈C〉命令,指令 / 〈C〉(上級裁判所から下級裁判所への,または上級官吏から下級官吏への)命令[書] / 《単数形で》(選挙民が選挙によって与える議員・議会への)委任,権能付与 / 〈U〉(国際連盟による)委任統治 / 〈領土・植民地など〉の統治を委任する"
+  },
+  {
+    "entry": "donor",
+    "rank": 394,
+    "meaning_ejdict": "寄付者,寄贈者 / (移植用の組織・器官の)提供者,献血者"
+  },
+  {
+    "entry": "gamble",
+    "rank": 395,
+    "meaning_ejdict": "(…で)『かけごとをする』,とばくをする《+『at』+『名』》;(…に)かける《+『in』(『on』)+『名』》 / (…にかけて)のるかそるかの冒険をする《+『on』+『名』》;(…をかけて)一か八かやってみる《+『with』+『名』》 / (…に)〈金・名誉など〉を『かける』《+『名』〈金など〉+『on』+『名』》 / …をかけごとで失う,とばくでする《+『away』+『名,』+『名』+『away』》 / 『かけごと』,『ばくち』 / 《a ~》一か八かの冒険"
+  },
+  {
+    "entry": "norm",
+    "rank": 396,
+    "meaning_ejdict": "《しばしば複数形で》標準,規準;一般水準;(行動の)規範,ノルマ・基準量(値)"
+  },
+  {
+    "entry": "tighten",
+    "rank": 399,
+    "meaning_ejdict": "…をきつく締める《+名+up,+up+名》 / 締まる,きつくなる"
+  },
+  {
+    "entry": "amend",
+    "rank": 400,
+    "meaning_ejdict": "…を『改める』,改良する / (正式に)〈議案など〉を修正する,改正する / 品行を改める,行いを良くする"
+  },
+  {
+    "entry": "squeeze",
+    "rank": 401,
+    "meaning_ejdict": "…を『絞る』,圧搾する,押しつぶす / (…から)〈果汁・汁・水分など〉を『絞り取る』,絞り出す《+『from』(『out of』)+『名』》 / 〈手など〉を強く握る;〈人など〉をきつく抱く / (…に)…を押し込む,詰め込む《+『名』+『into』(『in, into』)+『名』》;(…を)押し分けて…を進める《+『名』+『through』+『名』》 / (…から)…をむりに取りたてる,搾取する,強制する《+『名』+『from』(『out of』)+『名』》 / (特に手で)圧力を加える,絞る / 絞れる / 《副詞[句]を伴って》(人ごみなどを)押し分けて進む,(狭い場所などを)むりに通る;割り込む / 〈C〉『絞ること』,圧搾 / 〈C〉少量の絞り汁 / 〈C〉『強く握ること』,きつく抱きしめること / 〈U〉《しばしばa~》《話》雑踏,押し合い / 〈U〉《米話》搾取;強要,ゆすり / 〈U〉《しばしばa~》苦境,窮地"
+  },
+  {
+    "entry": "ultimate",
+    "rank": 406,
+    "meaning_ejdict": "『最後の』,最後の,究極の / 『最大限の』,極限の / 根本的な / 最も遠い / 最終(究極,最高)のもの"
+  },
+  {
+    "entry": "neutral",
+    "rank": 407,
+    "meaning_ejdict": "『中立の』;中立国の / 『公平な』,不偏不党の / (人・物が)特色のはっきりしない;(色が)はっきりしない,くすんだ / (酸性でもアルカリ性でもない)中性の / (電気が)中性の,(物体が)帯電していない / (自動車などのギアが)ニュートラルの / (文法で)中性の / 〈C〉(戦争・論争などで)中立の人;中立国民;中立国 / 〈C〉くすんだ色,灰色 / 〈U〉(自動車などのギヤの)ニュートラル(動力のかかっていない状態・位置)"
+  },
+  {
+    "entry": "axis",
+    "rank": 408,
+    "meaning_ejdict": "〈C〉軸,軸線;枢軸(すうじく) / 《the A-》枢軸国(第二次大戦当時の日本・ドイツ・イタリアなど)"
+  },
+  {
+    "entry": "scrap",
+    "rank": 413,
+    "meaning_ejdict": "〈C〉『かけら』,小片;少し;《A~》少々(の…)《+『of』+『名』》 / 〈C〉《複数形で》残りもの,食べ残し / 〈U〉(くず鉄など)金属のスクラップ / 〈U〉『くず』,廃物,がらくた / (役に立たないとして)…を捨てる(discard) / …をくず(スクラップ)にする / (突然のちょっとした)いさかい,けんか / けんかする"
+  },
+  {
+    "entry": "petrol",
+    "rank": 414,
+    "meaning_ejdict": "=gasoline"
+  },
+  {
+    "entry": "uncertain",
+    "rank": 415,
+    "meaning_ejdict": "《補語にのみ用いて》(人が)『確信が持てない』,はっきり分からない / (結果などが)『確かでない』,はっきりしない,疑わしい / 『変わりやすい』,不安定な / 明確でない,ぼんやりした"
+  },
+  {
+    "entry": "pipeline",
+    "rank": 417,
+    "meaning_ejdict": "(石油・ガスなどの)輸送パイプ / 《米》情報ルート / 〈石油など〉をパイプラインで運ぶ"
+  },
+  {
+    "entry": "suicide",
+    "rank": 419,
+    "meaning_ejdict": "〈U〉自殺 / 〈C〉『自殺的行為,』自滅 / 〈C〉自殺者;自殺行為"
+  },
+  {
+    "entry": "terror",
+    "rank": 420,
+    "meaning_ejdict": "〈U〉〈C〉(身に迫る)『恐怖』 / 〈C〉『恐ろしい人(物・事)』 / 〈C〉《話》やっかいな人,手に負えない物"
+  },
+  {
+    "entry": "quota",
+    "rank": 421,
+    "meaning_ejdict": "(生産・分配などの個個への)割当・分け前; 割当て(額)・移民割当人数"
+  },
+  {
+    "entry": "trustee",
+    "rank": 424,
+    "meaning_ejdict": "(他人の財産の)受託者,保管人 / (学校などの)評議員,理事"
+  },
+  {
+    "entry": "domain",
+    "rank": 426,
+    "meaning_ejdict": "(国の)領地,領土;(個人の)所有地 / (関心・活動などの)範囲,分野 / (個人・一族の)所有地 / (数学で)変域(関数の独立変数がとる値の集合)"
+  },
+  {
+    "entry": "frontier",
+    "rank": 427,
+    "meaning_ejdict": "『国境』,国境地方 / 辺境(米国の西部開拓時代の開拓地と未開拓地の境界地方) / 《しばしば複数形で》(学問・知識などの)最前線,未研究の分野"
+  },
+  {
+    "entry": "seize",
+    "rank": 428,
+    "meaning_ejdict": "(急に)…を『ぐいとつかむ』,ひっつかむ / (力ずくで)…を奪い取る;(合法的に)…を押収する,差し押さえる,逮捕する / 〈機会・申し出など〉をとらえる,利用する / 〈意味・要点など〉を把握する,理解する(grasp) / 《しばしば受動態で》〈痛み・恐怖などが〉〈人〉を襲う / 《通例受動態で》《文》〈人〉に所有させる《+『名』+『of』+『名』》"
+  },
+  {
+    "entry": "beneficiary",
+    "rank": 429,
+    "meaning_ejdict": "利益(恩恵)を受ける人 / 年金(保険金などの)受取人"
+  },
+  {
+    "entry": "comparative",
+    "rank": 430,
+    "meaning_ejdict": "『比較の』,比較による / 比較的,かなりの / 比較級の / 比較級"
+  },
+  {
+    "entry": "capitalism",
+    "rank": 431,
+    "meaning_ejdict": "資本主義"
+  },
+  {
+    "entry": "readily",
+    "rank": 433,
+    "meaning_ejdict": "『快く』,『進んで』(willingly) / 『容易に』,やすやすと(easily)"
+  },
+  {
+    "entry": "fraction",
+    "rank": 434,
+    "meaning_ejdict": "『破片』,断片;(…の)一部,わずか《+『of』+『名』》 / 『分数』"
+  },
+  {
+    "entry": "solely",
+    "rank": 437,
+    "meaning_ejdict": "『一人で』,『単独で』(alone) / ただ,全く,もっぱら(only)"
+  },
+  {
+    "entry": "capitalization",
+    "rank": 438,
+    "meaning_ejdict": "資本化;投資 / 大文字で書く(印刷する)こと"
+  },
+  {
+    "entry": "pioneer",
+    "rank": 440,
+    "meaning_ejdict": "(未開地の)『開拓者』 / (研究・事業などの)『先駆者』,開拓者《+『in』(『of』)+『名』》 / (先発して本隊のために道路や橋を作る)工兵 / 先駆動物(植物)(動・植物のなかった地域に最初に入り定着した動・植物) / 〈土地など〉を開拓する,開拓して定住する / 〈研究・事業など〉を開拓する,創始する / (新しい土地の)開拓者となる《+『in』+『名』》 / (…において)先駆者となる《+『in』+『名』(do『ing』)》"
+  },
+  {
+    "entry": "diplomat",
+    "rank": 441,
+    "meaning_ejdict": "外交官;外交家 / 駆け引きのじょうずな人"
+  },
+  {
+    "entry": "endorse",
+    "rank": 443,
+    "meaning_ejdict": "〈小切手・手形・証書など〉に裏書きをする / 〈意見・提案など〉を支持する,是認する,保証する"
+  },
+  {
+    "entry": "cheque",
+    "rank": 444,
+    "meaning_ejdict": "=check{名}6"
+  },
+  {
+    "entry": "intent",
+    "rank": 447,
+    "meaning_ejdict": "(特に法律用語で)『意図』,目的 / (目・心など)『一心に向けた』,熱心な"
+  },
+  {
+    "entry": "lessor",
+    "rank": 449,
+    "meaning_ejdict": "貸主;地主,家主, 賃貸人"
+  },
+  {
+    "entry": "affiliate",
+    "rank": 452,
+    "meaning_ejdict": "(規模がさらに大きいグループに)…を加入させる,合併する,提携させる《+『名』+『with』(『to』)+『名』》 / (…に)加入する《+『to』+『名』》;(…と)合併する,提携する《+『with』+『名』》 / 加入者,会員,《米》支部"
+  },
+  {
+    "entry": "statutory",
+    "rank": 453,
+    "meaning_ejdict": "法定の,法令による"
+  },
+  {
+    "entry": "exporter",
+    "rank": 458,
+    "meaning_ejdict": "輸出業者"
+  },
+  {
+    "entry": "prosecutor",
+    "rank": 460,
+    "meaning_ejdict": "検察官 / 訴追者"
+  },
+  {
+    "entry": "slump",
+    "rank": 463,
+    "meaning_ejdict": "(…に)くずれるように落ちる(倒れる,沈み込む)《+『down on』(『to』)+『名』》 / 〈健康・人気などが〉急激に衰える,〈相場などが〉暴落する《+『down』》 / 《おもに米》不調,不振,スランプ / (景気・人気などの)急な衰え,(相場などの)暴落《+『in』+『名』》(反意語はboom)"
+  },
+  {
+    "entry": "lag",
+    "rank": 464,
+    "meaning_ejdict": "『遅れる』,(学業・仕事などで)遅れをとる《+『behind』》;(…より)遅れる《+『behind』+『名』》 / 〈関心などが〉衰える / 遅れること,遅延 / (熱の放散を防ぐために)〈ボイラー管など〉を被覆する,包む / 囚人,前科者"
+  },
+  {
+    "entry": "volatile",
+    "rank": 465,
+    "meaning_ejdict": "(液体が)揮発性の,揮発しやすい / (人・性格が)変わりやすい,気まぐれの / 不安定な;爆発しやすい / 怒りやすい,短気な"
+  },
+  {
+    "entry": "enforcement",
+    "rank": 466,
+    "meaning_ejdict": "(法律などの)実施,施行 / 強制,強要"
+  },
+  {
+    "entry": "sack",
+    "rank": 467,
+    "meaning_ejdict": "〈C〉(丈夫な布(革)製の)『大袋』 / 〈C〉《おもに米》(一般に)袋,(特に,購入した食料を入れる)紙袋 / =sackful / 〈C〉(婦人・子供用の)ゆったりして短い上着 / 《the ~》《米俗》ベッド,寝袋 / 〈U〉《the ~》《俗》(…からの)解雇《+『from』+『名』》 / …を袋に入れる / 《話》〈人〉を解雇する / (軍隊が占領後)〈都市など〉を略奪する / (都市などの)略奪 / サック酒(白ぶどう酒の一種)"
+  },
+  {
+    "entry": "initiate",
+    "rank": 470,
+    "meaning_ejdict": "…を始める / 《しばしば受動態で》(特に式を行って)(…に)〈人〉を入会させる《+『名』〈人〉+『in』(『into』)+『名』》 / 〈人〉に(…の)初歩を教える,秘伝(秘訣)を教える《+『名』〈人〉+『in』(『into』)+『名』》 / 新入りの,手ほどきを受けた / 新入会者;手ほどきを受けた人"
+  },
+  {
+    "entry": "obstacle",
+    "rank": 472,
+    "meaning_ejdict": "(…に対する)『障害』[『物』],邪魔[物]《+『to』+『名』》"
+  },
+  {
+    "entry": "render",
+    "rank": 473,
+    "meaning_ejdict": "《『render』+『名』〈目〉+『形』〈補〉》…を(…の状態に)『する』)make) / …を行う,果たす / (…に対して)…を返す《+『名』+『for』+『名』》 / …を公式に宣言する,言い渡す / (…に)〈計算書など〉を提出する,送付する《+『名』+『to』+『名』》 / (文章や絵画で)…を表現する / (…に)…を翻訳する(translate《+『名』+『into』+『名』》 / を演奏する,演ずる(perform / 〈脂肪など〉を溶かす,溶かして精製する《+『名』+『down,』+『down』+『名』》"
+  },
+  {
+    "entry": "coup",
+    "rank": 474,
+    "meaning_ejdict": "不意に一撃 / 大当たり,大成功 / =coup d'état"
+  },
+  {
+    "entry": "bundle",
+    "rank": 475,
+    "meaning_ejdict": "(…の)『束』,『包み』,巻いたもの(旅行者の荷物など)《+『of』+『名』》 / …を包みにする,束にする / (…に)…をごっちゃに投げ込む《+『名』+『into』+『名』》 / 荷物をまとめてさっさと出て行く《+『off』(『out』,『away』)》"
+  },
+  {
+    "entry": "issuance",
+    "rank": 478,
+    "meaning_ejdict": "発行,発布;配給"
+  },
+  {
+    "entry": "capitalist",
+    "rank": 479,
+    "meaning_ejdict": "資本家 / 《まれ》資本主義者"
+  },
+  {
+    "entry": "capitalize",
+    "rank": 480,
+    "meaning_ejdict": "…を大文字で書く(印刷する) / …を資本化する / …に投資する,出資する / …の資本価値を算定する"
+  },
+  {
+    "entry": "contractual",
+    "rank": 481,
+    "meaning_ejdict": "契約[上]の"
+  },
+  {
+    "entry": "differential",
+    "rank": 482,
+    "meaning_ejdict": "『差別的な』 / 微分の / 差動の / 〈C〉差別額,運賃差 / 〈U〉微分 / 〈C〉〈U〉(また『differential gear』)差動歯車,差動装置"
+  },
+  {
+    "entry": "amortization",
+    "rank": 483,
+    "meaning_ja": "償却 / 減価 / 弁済 / 分割返済"
+  },
+  {
+    "entry": "unfair",
+    "rank": 484,
+    "meaning_ejdict": "不公平な,不当な,かたよった / (商取引などが)公正でない,不正の"
+  },
+  {
+    "entry": "inter",
+    "rank": 487,
+    "meaning_ejdict": "〈死体〉を埋葬する"
+  },
+  {
+    "entry": "induce",
+    "rank": 488,
+    "meaning_ejdict": "〈人〉に『勧めて』(…)『させる』 / …を『引き起こす』,もたらす(cause) / 〈電気〉を誘導する / …を帰納する"
+  },
+  {
+    "entry": "elite",
+    "rank": 489,
+    "meaning_ejdict": "《the ~》《複数扱い》えり扱きの人々,エリート,精鋭 / 〈C〉エリート活字"
+  },
+  {
+    "entry": "nationalist",
+    "rank": 491,
+    "meaning_ejdict": "国家(国粋)主義者 / 民族独立主義者 / 国家(国粋)主義の;民族独立主義の"
+  },
+  {
+    "entry": "simultaneously",
+    "rank": 494,
+    "meaning_ejdict": "同時に"
+  },
+  {
+    "entry": "broadly",
+    "rank": 495,
+    "meaning_ejdict": "広く,あまねく / 明白に;露骨に / 大まかに"
+  },
+  {
+    "entry": "demographic",
+    "rank": 496,
+    "meaning_ejdict": "人口統計学の"
+  },
+  {
+    "entry": "conglomerate",
+    "rank": 499,
+    "meaning_ejdict": "固まりになった;密集した / 礫岩(れきがん)の / 複合企業の / (いろいろな物の)集合体;丸いかたまり / 礫岩(径2mm以上の礫から成る岩石) / 複合企業 / …を集めて丸く固める / 丸く固まる"
+  },
+  {
+    "entry": "sustainable",
+    "rank": 501,
+    "meaning_ja": "【形】持続可能な；維持（継続）できる"
+  },
+  {
+    "entry": "credibility",
+    "rank": 504,
+    "meaning_ejdict": "信用できること,確実性"
+  },
+  {
+    "entry": "simulation",
+    "rank": 505,
+    "meaning_ejdict": "〈U〉ふりをすること,見せかけること / 〈C〉まね,模擬実験(コンピューターで,経済,科学などの変化を予測するモデル実験)"
+  },
+  {
+    "entry": "senator",
+    "rank": 506,
+    "meaning_ejdict": "(古代ローマの)元老院議員 / (米国・カナダ・フランスなどの)『上院議員』"
+  },
+  {
+    "entry": "adoption",
+    "rank": 507,
+    "meaning_ejdict": "(考え・方法・規則・法案などの)採用,採択《+『of』+『名』》 / 養子縁組"
+  },
+  {
+    "entry": "standardize",
+    "rank": 509,
+    "meaning_ejdict": "…を標準に合わせる,標準化する,規格化する"
+  },
+  {
+    "entry": "consolidation",
+    "rank": 511,
+    "meaning_ejdict": "強化 / 合併,合体"
+  },
+  {
+    "entry": "sensible",
+    "rank": 513,
+    "meaning_ejdict": "『分別』(『良識』)『がある』,ものの分かる / (心・五感によって,容易に)感じられる,感覚できる / 《文》《補語にのみ用いて》(…に)気づいている(…を)意識している(aware, conscious)《+『of』+『名』》"
+  },
+  {
+    "entry": "headline",
+    "rank": 514,
+    "meaning_ejdict": "(新聞などの)見出し,表題 / 《複数形で》(ニュース放送の)おもな項目 / 〈新聞など〉に見出しをつける"
+  },
+  {
+    "entry": "deploy",
+    "rank": 516,
+    "meaning_ejdict": "〈部隊など〉を配置する / (作戦的に)〈部隊などが〉配置につく"
+  },
+  {
+    "entry": "macroeconomic",
+    "rank": 517,
+    "meaning_ja": "【形】マクロ経済の, 巨視的経済学の"
+  },
+  {
+    "entry": "concession",
+    "rank": 518,
+    "meaning_ejdict": "〈U〉〈C〉(要求・結果などに対する)『譲歩』,容認《+『to』+『名』》 / 〈C〉譲歩事項,譲与物 / 〈C〉(政府・土地所有者などが与える)特権,利権;免許 / 〈C〉《米》(公園・劇場などでの)売り場使用権,営業権;営業所"
+  },
+  {
+    "entry": "contingent",
+    "rank": 520,
+    "meaning_ejdict": "起こるかもしれない,不測の;(…に)起こり得る《+『to』+『名』》 / 《補語にのみ用いて》(他の条件などに)依存する,…次第の《+『on』(『upon』)+『名』》 / 《集合的に》《《米》単数扱い,《英》単数・複数扱い》派遣団,代表団 / 分遣隊(艦隊)"
+  },
+  {
+    "entry": "diverse",
+    "rank": 521,
+    "meaning_ejdict": "(…とは)別種の,違った《+『from』+『名』》 / いろいろの,多様の"
+  },
+  {
+    "entry": "privately",
+    "rank": 523,
+    "meaning_ejdict": "個人として / ひそかに,秘密に"
+  },
+  {
+    "entry": "guerrilla",
+    "rank": 524,
+    "meaning_ejdict": "ゲリラ兵,遊撃兵 / ゲリラの"
+  },
+  {
+    "entry": "repurchase",
+    "rank": 528,
+    "meaning_ja": "【動/他】を買い戻す；再購入する【名】買い戻し；再購入"
+  },
+  {
+    "entry": "denote",
+    "rank": 529,
+    "meaning_ejdict": "…を示す,表す;…の記号である"
+  },
+  {
+    "entry": "inequality",
+    "rank": 530,
+    "meaning_ejdict": "〈U〉〈C〉(大きさ・数・量・程度などが)等しくないこと,不平等,不同 / 《複数形で》表面に不ぞろい,でこぼこ / 〈U〉不等;〈C〉不等式"
+  },
+  {
+    "entry": "plunge",
+    "rank": 531,
+    "meaning_ejdict": "…を『突っ込む』,押し込む《+『down』(『forward[s]』)+『名』,+『名』+『down』(『forward[s]』)》;(…に)…を突っ込む《+『名』+『into』+『名』》 / (ある状態に)…を追い込む《+『名』+『into』+『名』》 / 『飛び込む』《+『in』(『down』)》,(…に)飛び込む《+『in』(『into,on,upon』)+『名』》 / (…へ)『突き進む』《+『into』(『through』)+『名』(do『ing』)》 / (ある状態に)陥る《+『into』+『名』》 / 《副詞句を伴って》〈道路などが〉急に落ち込む / 〈船が〉前後に揺れる,縦揺れする / 《話》(かけ事や事業などに)多額の金をつぎ込む / (…に)飛び込むこと《+『into』+『名』》 / ひと泳ぎ(a swim)"
+  },
+  {
+    "entry": "intensive",
+    "rank": 532,
+    "meaning_ejdict": "『集中的な』,徹底的な,強度の,激しい / (語が)強意の,強調の / =intensifier"
+  },
+  {
+    "entry": "nonetheless",
+    "rank": 533,
+    "meaning_ejdict": "『それでもなお』"
+  },
+  {
+    "entry": "horizontal",
+    "rank": 537,
+    "meaning_ejdict": "『水平線の』,地平線の;水平の,水平面の / 水平の位置;水平線(面)"
+  },
+  {
+    "entry": "legally",
+    "rank": 538,
+    "meaning_ejdict": "法律上,法律的に / 合法的に"
+  },
+  {
+    "entry": "installment",
+    "rank": 539,
+    "meaning_ejdict": "(月賦などの1回分の)『分割払い込み金』 / (続き物などの)1回分,1部"
+  },
+  {
+    "entry": "empirical",
+    "rank": 540,
+    "meaning_ejdict": "経験を基礎とする,実験に基づいた"
+  },
+  {
+    "entry": "revive",
+    "rank": 541,
+    "meaning_ejdict": "〈人〉を『生き返らせる』,〈意識・元気〉を回復させる / 〈習慣・流行など〉を『復活させる』 / …を再上演する,再上映する / 『生き返る』;元気(意識)を取り戻す / 〈習慣・流行など〉を『復活させる』"
+  },
+  {
+    "entry": "inevitable",
+    "rank": 543,
+    "meaning_ejdict": "『避けがたい』,免れられない,必然的な"
+  },
+  {
+    "entry": "array",
+    "rank": 544,
+    "meaning_ejdict": "〈軍隊など〉を整列させる,配置する / 《文》〈人〉に衣類を着せる,(特に)〈人〉を盛装させる / 〈U〉整列,陳列 / (…の)整列(配置)した物(人),勢ぞろい《+『of』+『名』(複数)》 / 〈U〉衣装,(特に)美しい装い"
+  },
+  {
+    "entry": "ballot",
+    "rank": 545,
+    "meaning_ejdict": "〈C〉投票用紙 / 〈U〉〈C〉無記命投票,(一般に)投票 / 〈C〉投票総数 / 《the ballot》投票権 / 投票する,投票で決める"
+  },
+  {
+    "entry": "treasury",
+    "rank": 546,
+    "meaning_ejdict": "(特に昔,政府の金を備蓄・運用した)『国庫』,(政府・公共団体・会社などの)基金,資金 / (…の)貴重な収集,宝庫,宝典,名作集《+of+名》 / 《the Treasury》《米》財務省"
+  },
+  {
+    "entry": "intermediary",
+    "rank": 547,
+    "meaning_ejdict": "中間の,中継の,仲介の,媒介の / 仲裁人,仲介者"
+  },
+  {
+    "entry": "boast",
+    "rank": 549,
+    "meaning_ejdict": "(…を)『自慢する』,鼻にかける《+『about』(『of』)+『名』(do『ing』)》 / …を『自慢する』,鼻にかける / …を『誇りとして持っている』,が自慢の種である / 誇り / 『自慢』,自慢話"
+  },
+  {
+    "entry": "militant",
+    "rank": 550,
+    "meaning_ejdict": "(目的・主義のために)攻撃的な,好戦的な,闘争的な / 好戦的な人,闘争家"
+  },
+  {
+    "entry": "discourage",
+    "rank": 551,
+    "meaning_ejdict": "〈人〉を『落胆させる』,がっかりさせる / (…することを)〈人〉に思いとどまらせる《+『名』+『from』 do『ing』》 / (反対の意を表し,また困難を予想して)〈事〉をさせないようにする,思いとどまらせる"
+  },
+  {
+    "entry": "hierarchy",
+    "rank": 552,
+    "meaning_ejdict": "聖職の階級組織 / 聖職位階制政治 / (一般に)階級組織,職階制;階層"
+  },
+  {
+    "entry": "fate",
+    "rank": 554,
+    "meaning_ejdict": "〈U〉『運命』,宿命 / 〈U〉(運命として定められた)最期,破滅,(特に)死 / 《the Fates》(ギリシア・ローマ神話の)運命の三女神(Clotho,Lachesis,Atropos) / …を運命づける"
+  },
+  {
+    "entry": "widen",
+    "rank": 555,
+    "meaning_ejdict": "…を広くする / 広くなる"
+  },
+  {
+    "entry": "transformation",
+    "rank": 558,
+    "meaning_ejdict": "変形,変質;変身 / (物理学で)変換;(電流の)変圧 / (言語学で)変形"
+  },
+  {
+    "entry": "qualitative",
+    "rank": 559,
+    "meaning_ejdict": "質の,質的な"
+  },
+  {
+    "entry": "gang",
+    "rank": 561,
+    "meaning_ejdict": "(人の)『一団』,群れ《+『of』+『名』》 / (悪人の)一味,ギャング団《+『of』+『名』》 / 《話》親しい仲間,遊び仲間 / 《米》(特に他のグループと争う青少年の)非行グループ / 〈人〉を一団にまとめる(組織する) / 一団になる,徒党を組む《+『up』》"
+  },
+  {
+    "entry": "curb",
+    "rank": 565,
+    "meaning_ejdict": "(馬の)くつわ鎖,止めぐつわ / 拘束,抑制 / 《米》(歩道を車道と区分するため縁にそって並べた)縁石(《英》kerb) / (止めぐつわで)〈馬〉を制御する / 〈感情・欲望など〉を抑制する"
+  },
+  {
+    "entry": "robust",
+    "rank": 567,
+    "meaning_ejdict": "たくましい;強壮な / 体力のいる"
+  },
+  {
+    "entry": "brokerage",
+    "rank": 568,
+    "meaning_ejdict": "仲買業 / 仲買手数料,口銭"
+  },
+  {
+    "entry": "tolerance",
+    "rank": 571,
+    "meaning_ejdict": "(自分と異なる他人の意見・行動などを許す)寛大,寛容・我慢(がまん),忍耐力 / (薬品・毒物などに対する)耐性,抗毒性 / 公差,許容誤差"
+  },
+  {
+    "entry": "devise",
+    "rank": 572,
+    "meaning_ejdict": "…を『工夫する』,考案する / (遺言で)〈財産〉を残す"
+  },
+  {
+    "entry": "speculation",
+    "rank": 573,
+    "meaning_ejdict": "(…に関する)『推測』,考察《+『about』(『on, upon』)+『名』》 / (…への)投機《+『in』(『on』)+『名』》"
+  },
+  {
+    "entry": "incremental",
+    "rank": 575,
+    "meaning_ejdict": "増加の"
+  },
+  {
+    "entry": "fighter",
+    "rank": 576,
+    "meaning_ejdict": "戦う人,戦士,闘士 / プロボクサー / (またfighter plane)戦闘機"
+  },
+  {
+    "entry": "grip",
+    "rank": 578,
+    "meaning_ejdict": "《単数形で》(…を)『しっかり握る』(『つかむ』)『こと』《+『on』+『名』》 / (特にスポーツ用具などの)握り方;握力 / (…に対する)支配力,制御力《+『on』+『名』》 / 《単数形で》(…に対する)『理解力』《+『on』(『of』)+『名』》 / (道具・機械などの)『握り』,取っ手,柄 / 《おもに米》小型の手さげ旅行かばん / =grippe / …を『しっかりつかむ』(『握る』) / 〈人・物・事が〉〈人・関心・注意など〉をつかむ,引きつける / 〈人が〉〈意味・要点など〉をつかむ,理解する"
+  },
+  {
+    "entry": "mathematical",
+    "rank": 579,
+    "meaning_ejdict": "数学の,数学的 / (非常に)正確な"
+  },
+  {
+    "entry": "assert",
+    "rank": 580,
+    "meaning_ejdict": "…を『断言する』,力説する(affirm)"
+  },
+  {
+    "entry": "underwrite",
+    "rank": 581,
+    "meaning_ejdict": "…の費用負担を承諾する / 〈保険証書〉に署名する / …に保険をつける / 《おもに過去分詞形で》…の下に書く;〈文書など〉に署名する / 〈株式・債券など〉を引き受ける / 保険業を営む"
+  },
+  {
+    "entry": "differentiate",
+    "rank": 582,
+    "meaning_ejdict": "(…から)…を『区別する』,識別する《+『名』+『from』+『名』》 / …を微分する / (…を)区別をつける,(…を)識別する《+『between』+『名』》 / 別のものとなる"
+  },
+  {
+    "entry": "correlate",
+    "rank": 583,
+    "meaning_ejdict": "…に相互関係を持たせる;…を(…と)関連させる《+『名』+『with』+『名』》 / 相互に関連がある;(…と)関連がある《+『with』+『名』》 / 相互関係にあるもの"
+  },
+  {
+    "entry": "compel",
+    "rank": 584,
+    "meaning_ejdict": "《『compel』+『名』+『to』 do》(…するように)〈人〉に『しいる』 / (人に)…を『強要する』《+『名』+『from』+『名』〈人〉》"
+  },
+  {
+    "entry": "agriculture",
+    "rank": 586,
+    "meaning_ejdict": "『農業』,農学"
+  },
+  {
+    "entry": "multiplier",
+    "rank": 588,
+    "meaning_ejdict": "増加(増殖)させる人(物) / 乗数"
+  },
+  {
+    "entry": "slowdown",
+    "rank": 589,
+    "meaning_ejdict": "速度を落とすこと / 《米》故意に生産率を落とすこと,怠業(《英》go-slow)"
+  },
+  {
+    "entry": "adverse",
+    "rank": 590,
+    "meaning_ejdict": "反対の,逆の / 逆方向の"
+  },
+  {
+    "entry": "suspicion",
+    "rank": 591,
+    "meaning_ejdict": "〈U〉〈C〉(…の)『疑い』,疑惑,嫌疑《+of+名》 / 〈C〉(…という)漠然とした感じ《that節》 / 〈U〉《しばしば a~》(…の)ほんの少し,気味《+of+名》"
+  },
+  {
+    "entry": "virtue",
+    "rank": 592,
+    "meaning_ejdict": "〈U〉『美徳』,徳;高潔 / 〈U〉(特に婦人の)節操,貞操 / 〈C〉(特定の)道徳,美徳 / 〈U〉〈C〉(物・事・人などの)(…という)『長所』,美点《+of+名(doing)》 / 〈U〉〈C〉(…するという)効力,ききめ《+of doing》"
+  },
+  {
+    "entry": "flee",
+    "rank": 593,
+    "meaning_ejdict": "(…から)『逃げる』《+『from』+『名』(do『ing』)》 / 《副詞[句]を伴って》すばやく動く(過ぎる) / 〈人・場所など〉から逃げる;〈責任など〉を逃れる,避ける"
+  },
+  {
+    "entry": "bureaucracy",
+    "rank": 594,
+    "meaning_ejdict": "〈U〉〈C〉官僚政治,官僚制度 / 《the ~》《集合的に》官吏,官僚 / 〈U〉お役所式の繁雑な手続"
+  },
+  {
+    "entry": "threshold",
+    "rank": 595,
+    "meaning_ejdict": "『敷居』 / 《単数形で》(…の)『始め』,出発点,発端《+of+名》 / 閾(心理学で刺激に対して反応を示し始める点)"
+  },
+  {
+    "entry": "wholesale",
+    "rank": 597,
+    "meaning_ejdict": "『卸し[売り]』 / 『卸し[売り]の』 / 『大規模な』,大量の,多量の / 卸し[売り]で;大量(多量)に / …を卸し売りする / (…の値段で)卸し売りされる《+at+名》"
+  },
+  {
+    "entry": "legitimate",
+    "rank": 598,
+    "meaning_ejdict": "(要求・目的などが)『合法的な』,法律の認める / (議論などが)『論理的な』,筋道の立った / (支出・苦情などが)正当な,もっともな / (生まれが)適法な婚姻から生じた,嫡出(ちゃくしゅつ)の / 正統の / …を合法化する / 〈子供〉を嫡出子とする"
+  },
+  {
+    "entry": "privacy",
+    "rank": 599,
+    "meaning_ejdict": "他人から干渉されない状態(権利),プライバシー / 秘密,内密"
+  },
+  {
+    "entry": "behavioral",
+    "rank": 600,
+    "meaning_ejdict": "行動の"
+  },
+  {
+    "entry": "tangible",
+    "rank": 601,
+    "meaning_ejdict": "手で触ることのできる,触知できる / 実体のある,有形の;現実の / 明白な,確実な"
+  },
+  {
+    "entry": "dump",
+    "rank": 602,
+    "meaning_ejdict": "〈重い荷物など〉を『どさっと落とす』(降ろす);〈ごみなど〉をどさっと捨てる / (特に外国市場で)〈商品〉を投げ売りする,ダンピングする / ごみ捨て場 / (捨てられた)ごみの山 / (弾薬・軍需品などの)臨時集積場"
+  },
+  {
+    "entry": "discharge",
+    "rank": 606,
+    "meaning_ejdict": "〈船〉の『荷を降ろす』;(積荷・客を)〈船〉から降ろす《+『名』〈船〉+『of』+『名』〈荷〉》;(船から)〈積荷・客〉を降ろす《+『名』〈荷〉+『from』+『名』〈船〉》 / (…に)…を『発射する』《+『名』+『at』(『into』)+『名』》 / 〈煙・液体〉を『出す』,排出する / (…から)〈人〉を解放する,に行くことを許す《+『名』〈人〉+『from』+『名』》 / (仕事から)〈人〉を解雇する,くびにする《+『名』〈人〉+『from』+『名』》 / 〈職務・義務・約束など〉を果たす,遂行する(fulfill) / 〈借金〉を返済する,支払う(pay) / 〈電池など〉から放電する / 〈船が〉『荷を降ろす』,荷揚げする / 〈水などが〉流れ出る,注ぐ,流出する / 〈鉄砲などが〉発射される / 放電する / 〈U〉『荷降ろし』,荷揚げ / 〈C〉発砲,発射 / 〈C〉『放出』,流出,排出;排出物 / 〈U〉解任,退出,解雇;解放,釈放 / 〈U〉(職務・義務などの)『遂行』,履行 / 〈U〉(負債の)『返済』,弁済 / 〈C〉〈U〉(電気の)放電"
+  },
+  {
+    "entry": "explicit",
+    "rank": 607,
+    "meaning_ejdict": "明白に述べた"
+  },
+  {
+    "entry": "breakdown",
+    "rank": 608,
+    "meaning_ejdict": "(列車・機械などの)故障,破損 / 病気で倒れること,衰弱 / 分析"
+  },
+  {
+    "entry": "span",
+    "rank": 609,
+    "meaning_ejdict": "『スパン』,親指と小指を広げた長さ(約9インチ=23センチ) / (ものが及ぶ限りの)長さ,伸び,範囲 / (アーチ・はり・橋などの)支柱間の距離,径間,渡間(わたりま)・『短い期間』,つかの間 / (親指と小指を広げて)…を測る / 〈橋・道路などが〉〈川・土地など〉に架(か)かる,を横切る,に伸びる / 〈川・土地など〉に(橋・道路などを)架ける,渡す《+『名』+『with』+『名』》 / (空間・時間的に)…に及ぶ,わたる / (引き具を付け荷車を引く)一端の馬(または団の動物) / =spick-and-span"
+  },
+  {
+    "entry": "bail",
+    "rank": 610,
+    "meaning_ejdict": "保釈;保釈金;〈C〉保釈保証人 / (保釈金を払って)…を保釈出所させる《+『名』+『out,』+『out』+『名』》 / (おけ・やかんなどの)つる / (タイプライターの)紙押さえ棒 / (舟から)〈水〉を汲み出す《+『名』+『out of』+『名』》;〈舟〉の水を汲み出す《+『out』+『名』,+『out』+『名』》 / 舟の水を汲み出す / (舟から水を汲み出す)バケツ,ひしゃく"
+  },
+  {
+    "entry": "incumbent",
+    "rank": 611,
+    "meaning_ejdict": "義務として掛かる,責務がある / 《名詞の前にのみ用いて》《おもに米》現職の,在職の / 《おもに米》現職者,在職者 / 受祿聖職者,受給聖者(英国国教会の教会を持ち聖職祿を持っている牧師)"
+  },
+  {
+    "entry": "outflow",
+    "rank": 614,
+    "meaning_ejdict": "〈U〉流出すること / 〈C〉流出物,流出量"
+  },
+  {
+    "entry": "albeit",
+    "meaning_ja": "《かたく》...だけれども / たとえ…でも",
+    "rank": 615
+  },
+  {
+    "entry": "tricky",
+    "rank": 616,
+    "meaning_ejdict": "(人が)こうかつな,ずるい / (物事・仕事などが)手の込んだ;慎重を要する,扱いにくい"
+  },
+  {
+    "entry": "spokesman",
+    "rank": 617,
+    "meaning_ejdict": "スポークスマン,代弁者"
+  },
+  {
+    "entry": "contingency",
+    "rank": 619,
+    "meaning_ejdict": "〈C〉偶発事件,不慮の事故;(ある事に)伴う事件 / 〈U〉偶然,偶発性"
+  },
+  {
+    "entry": "surrender",
+    "rank": 623,
+    "meaning_ejdict": "(…に)…を『引き渡す』,明け渡す《+名+to+名》 / (感情などに)〈自分の身〉を『任せる』,ゆだねる《+oneself to+名》 / 《文》〈権利・自由など〉を『譲る』,放棄する / (…に)『降伏する』,自首する《+to+名》 / (感情などに)身をゆだねる,屈服する《+to+名》 / 『引き渡し,降伏』,自首;譲渡,放棄"
+  },
+  {
+    "entry": "judicial",
+    "rank": 624,
+    "meaning_ejdict": "裁判の,司法の / 裁判官の,裁判官にふさわしい / 裁判による"
+  },
+  {
+    "entry": "certainty",
+    "rank": 625,
+    "meaning_ejdict": "〈U〉確実性,必然性;確信 / 〈C〉確実なもの(こと),確かな見込み"
+  },
+  {
+    "entry": "mainstream",
+    "rank": 626,
+    "meaning_ejdict": "《the ~》(運動・思潮などの)主流 / (川の)本流"
+  },
+  {
+    "entry": "rebuild",
+    "rank": 629,
+    "meaning_ejdict": "…を再建する,改築する,作り直す・たてなおす;〈社会など〉を改革する / 再建させる"
+  },
+  {
+    "entry": "corrupt",
+    "rank": 630,
+    "meaning_ejdict": "『わいろの利く』,不正行為をする / (道徳的に)『腐敗した』,堕落した / 『汚れた』,汚染した;腐敗した / (誤訳や改変のために,原文などが)改悪された;(言語が)なまった / (わいろなどによって)〈人〉に『不正行為をさせる』,を買収する / (道徳的に)〈人〉を『堕落させる』,…を腐敗させる / 〈物〉を汚す,腐らせる / (不正確に写すなどして)〈原文など〉を改悪する;〈言語〉をなまらせる / 腐敗する,堕落する"
+  },
+  {
+    "entry": "integrity",
+    "rank": 631,
+    "meaning_ejdict": "完全,無欠 / 高潔,清廉,誠実"
+  },
+  {
+    "entry": "proposition",
+    "rank": 632,
+    "meaning_ejdict": "『提案』,申し出 / 陳述,主張 / (論理学の)命題;(数学の)定理 / 《話》(扱わなければならない)仕事,事柄;相手 / 〈人〉に提案する,事を持ちかける"
+  },
+  {
+    "entry": "litigation",
+    "rank": 633,
+    "meaning_ejdict": "訴訟"
+  },
+  {
+    "entry": "amid",
+    "meaning_ja": "…の中に / …のまっさい中に / （=[[mid]]）",
+    "rank": 634
+  },
+  {
+    "entry": "bold",
+    "rank": 636,
+    "meaning_ejdict": "『大胆な,恐れを知らない』(fearless) / ずぶとい,ずうずうしい / 太くて目立つ;(文字が)肉太の / けわしい"
+  },
+  {
+    "entry": "straightforward",
+    "rank": 639,
+    "meaning_ejdict": "正直な,率直な(frank) / (仕事,意味など)簡単な"
+  },
+  {
+    "entry": "handful",
+    "rank": 640,
+    "meaning_ejdict": "(…の)『一握り』,一つかみ《+『of』+『名』》 / 《a handful》(…の)わずか,少量,少数《+of+名》 / 《話》手に負えない人(物事)"
+  },
+  {
+    "entry": "unchanged",
+    "rank": 643,
+    "meaning_ejdict": "変化のない,もとのままの"
+  },
+  {
+    "entry": "queue",
+    "rank": 644,
+    "meaning_ejdict": "(昔男性が後頭部から編んで下げた)弁髪 / 《おもに英》(順番を待っている人・乗り物の)列 / 〈人が〉(乗物などを)列を作って待つ《+『up for』+『名』》"
+  },
+  {
+    "entry": "bidder",
+    "rank": 645,
+    "meaning_ejdict": "(カードゲームで)せり札の宣言者 / せり手,入札者"
+  },
+  {
+    "entry": "respective",
+    "rank": 646,
+    "meaning_ejdict": "『それぞれの』,各自の"
+  },
+  {
+    "entry": "deliverable",
+    "rank": 647,
+    "meaning_ja": "【名/C】成果物、配送品【形】配達可能な；到達可能な"
+  },
+  {
+    "entry": "depict",
+    "rank": 649,
+    "meaning_ejdict": "(絵・言葉などで)…を描き表す,描写する"
+  },
+  {
+    "entry": "odds",
+    "rank": 650,
+    "meaning_ejdict": "(ある率で起こる)『可能性』,見込み / (競技などで弱いほうに与えられる)『有利な条件』(handicap) / (勝負などでの)『優勢』[の方],強み,勝ち目(advantage)"
+  },
+  {
+    "entry": "allegation",
+    "rank": 653,
+    "meaning_ejdict": "(十分な証拠を持たない)主張,申し立て"
+  },
+  {
+    "entry": "redemption",
+    "rank": 654,
+    "meaning_ejdict": "買い戻し・(質や差し押さえ物の)取り戻し・(約束などの)履行 / (キリストの犠牲による)罪のあがない"
+  },
+  {
+    "entry": "downward",
+    "rank": 655,
+    "meaning_ejdict": "(高さ・状態が)『下の方へ』,低い方へ / …『以来』,このかた / (位置・状態が)『下方への』,下り坂の,下向きの"
+  },
+  {
+    "entry": "grid",
+    "rank": 656,
+    "meaning_ejdict": "格子(こうし);焼き網 / グリッド(真空管で陽極と陰極との中間に装置する金属の格子) / 高圧送電線網 / (地図などの)碁盤目"
+  },
+  {
+    "entry": "depreciate",
+    "rank": 659,
+    "meaning_ejdict": "…の価値(価格)を下げる / …を見くびる,けなす / 価値(価格)が下がる"
+  },
+  {
+    "entry": "interface",
+    "rank": 660,
+    "meaning_ejdict": "中間面,界面(2物体・空間の接触面)・(異なる物の)境界面, 中間共通面; 共有領域; (コンピュータ)インタフェース"
+  },
+  {
+    "entry": "digit",
+    "rank": 661,
+    "meaning_ejdict": "(手足の)指 / アラビア数字(0から9までの一つ;0を除くこともある)"
+  },
+  {
+    "entry": "hybrid",
+    "rank": 664,
+    "meaning_ejdict": "(動物植の)雑種,(物の)混成物 / 混種語(語源の異なる二つ以上の要素から成る語;たとえばshortageは英語(short)とフランス語(hybridage)の混種語) / 雑種(混成)の"
+  },
+  {
+    "entry": "provoke",
+    "rank": 666,
+    "meaning_ejdict": "…を『怒らせる』,不きげんにする / (ある状態に)〈人〉を『駆り立てる』 / 〈けんか・議論・関心・感情など〉を『引き起こす』"
+  },
+  {
+    "entry": "inevitably",
+    "rank": 667,
+    "meaning_ejdict": "避けられないで,必然的に"
+  },
+  {
+    "entry": "dilemma",
+    "rank": 669,
+    "meaning_ejdict": "『板ばさみ』,抜きさしならない羽目,窮地 / (論理学で)両刀論法"
+  },
+  {
+    "entry": "info",
+    "rank": 671,
+    "meaning_ejdict": "=information"
+  },
+  {
+    "entry": "secular",
+    "rank": 673,
+    "meaning_ejdict": "宗教に関係のない,世俗的な,現世[尊重]の / (聖職者が)修道院に住まない,修道会に所属しない"
+  },
+  {
+    "entry": "cease",
+    "rank": 674,
+    "meaning_ejdict": "『やむ』,終わる / …を『やめる』,中止する / 終止"
+  },
+  {
+    "entry": "distress",
+    "rank": 675,
+    "meaning_ejdict": "〈U〉(肉体的・精神的な)『激しい苦しみ』,苦痛,苦悩,悲嘆 / 《a~》(…にとっての)悩みの種《+『to』+『名』》 / 〈U〉『貧苦』,窮乏 / 〈U〉『危険状態』,難儀 / (精神的・肉体的に)〈人〉を『苦しめる』,苦悩させる"
+  },
+  {
+    "entry": "withhold",
+    "rank": 676,
+    "meaning_ejdict": "(…に)〈承認・真相など〉を『与えないでおく』,差し控える《+名+from+名》 / (…から)…を抑える,制する《+名+from+名(doing)》"
+  },
+  {
+    "entry": "sterling",
+    "rank": 677,
+    "meaning_ejdict": "英貨の,ポンドの;(英国で)法定純金(銀)を含む / 《名詞の前にのみ用いて》(銀が)法定純度の / 《名詞の前にのみ用いて》(物の品質・人物など)本物の,真正の,確かな / 英貨;純銀[製品]"
+  },
+  {
+    "entry": "legacy",
+    "rank": 678,
+    "meaning_ejdict": "(特に遺言によって相続する)遺産 / (祖先・先人から受け継いだ精神的・物質的)遺産"
+  },
+  {
+    "entry": "thrive",
+    "rank": 679,
+    "meaning_ejdict": "〈物事が〉『成功する』,栄える,繁栄する / 〈人・動植物が〉『よく成長する』,健康である"
+  },
+  {
+    "entry": "autonomy",
+    "rank": 680,
+    "meaning_ejdict": "〈U〉(行動などの)自主性 / 〈U〉自治,自治権 / 〈C〉自治体,自治団体"
+  },
+  {
+    "entry": "commander",
+    "rank": 681,
+    "meaning_ejdict": "(軍隊の)『指揮官』…司令官;(探検隊などの)隊長 / 海軍中佐;(小型艦艇の)艦長,(大型艦の)副長"
+  },
+  {
+    "entry": "accountability",
+    "rank": 683,
+    "meaning_ja": "【名/U】説明責任,報告義務；責任のあること"
+  },
+  {
+    "entry": "incorporation",
+    "rank": 684,
+    "meaning_ejdict": "法人設立 / 編入,合併"
+  },
+  {
+    "entry": "batch",
+    "rank": 686,
+    "meaning_ejdict": "(パンなどの)一焼き分《+『of』+『名』》 / (…の)1度分の[の分量]《+『of』+『名』》 / 《話》(…の)束;群,組《+『of』+『名』》"
+  },
+  {
+    "entry": "essence",
+    "rank": 687,
+    "meaning_ejdict": "〈U〉(…の)『本質』,真髄《+『of』+『名』》 / 〈U〉〈C〉(植物・薬物などから抽出された)精,エキス《+『of』+『名』》 / 〈U〉香水(perfume) / 〈U〉本質,実在;〈C〉(特に)霊的実在"
+  },
+  {
+    "entry": "invasion",
+    "rank": 691,
+    "meaning_ejdict": "(敵軍の)侵入,侵略《+『of』+『名』》 / (人・物の)殺到;(災害などの)襲来《+『of』+『名』》 / (権利などの)侵害《+『of』+『名』》"
+  },
+  {
+    "entry": "bondholder",
+    "rank": 692,
+    "meaning_ejdict": "債券所有者"
+  },
+  {
+    "entry": "unveil",
+    "rank": 693,
+    "meaning_ejdict": "…のベールを取る,おおいをはずす / …を明らかにする,打ち明ける / ベールを脱ぐ;正体を明らかにする"
+  },
+  {
+    "entry": "intrinsic",
+    "rank": 694,
+    "meaning_ejdict": "(価値・質などが)本質的な,本来備わった"
+  },
+  {
+    "entry": "continent",
+    "rank": 695,
+    "meaning_ejdict": "自制した,禁欲的な / 〈C〉『大陸』 / 《the~》(イギリス諸島と区別して)ヨーロッパ本土"
+  },
+  {
+    "entry": "computation",
+    "rank": 697,
+    "meaning_ejdict": "計算;〈C〉(その結果出た)算定額"
+  },
+  {
+    "entry": "diplomatic",
+    "rank": 698,
+    "meaning_ejdict": "《名詞の前にのみ用いて》『外交の』,外交上の / 外交的手腕のある,駆け引きのうまい / 古文書学の"
+  },
+  {
+    "entry": "formerly",
+    "rank": 705,
+    "meaning_ejdict": "『以前は』,かつて"
+  },
+  {
+    "entry": "optimization",
+    "rank": 706,
+    "meaning_ja": "【名】最適化,適正化"
+  },
+  {
+    "entry": "spectrum",
+    "rank": 709,
+    "meaning_ejdict": "スペクトル(光がプリズムを通過するとき生じる色の帯) / (電磁波・音波などの)範囲,スペクトル / (多様だが関連あるものの)連続[範囲]《+『of』+『名』》"
+  },
+  {
+    "entry": "tuple",
+    "meaning_ja": "【名】組；タプル",
+    "rank": 710
+  },
+  {
+    "entry": "magnitude",
+    "rank": 711,
+    "meaning_ejdict": "『大きさ』,規模 / 『重要さ』(importance);(精神的な)偉大さ,高潔 / (星の)光度,等級 / マグニチュード(地震の強さなどの数量的単位)"
+  },
+  {
+    "entry": "validity",
+    "rank": 714,
+    "meaning_ejdict": "(理論・理由などの)『妥当性』,正当性《+of+名》 / (契約などの)有効性,合法性《+of+名》"
+  },
+  {
+    "entry": "interact",
+    "rank": 715,
+    "meaning_ejdict": "(…と)相互に作用する,影響し合う《+『with』+『名』》"
+  },
+  {
+    "entry": "intervene",
+    "rank": 718,
+    "meaning_ejdict": "(ある事と事,時と時,場所と場所の)『間に起こる』,間に入る《+『between』(『in』)+『名』》 / (相対するものの間に)仲裁に入る,(…に)干渉する《+『in』(『between』)+『名』》 / 〈事が〉じゃまに入る"
+  },
+  {
+    "entry": "repertoire",
+    "rank": 719,
+    "meaning_ejdict": "上演目録,演奏曲目,レパートリー"
+  },
+  {
+    "entry": "halt",
+    "rank": 720,
+    "meaning_ejdict": "《a~》『停止』,休止 / 《おもに英》停車場;バス停 / 『停止』(休止)『する』 / …を停止(休止)させる / ためらう / 脚の不自由な人"
+  },
+  {
+    "entry": "niche",
+    "rank": 721,
+    "meaning_ejdict": "壁がん(像・花びんなどを置く壁のくぼみ) / (…に)ふさわしい場所(地位,仕事),適所《+『for』+『名』》"
+  },
+  {
+    "entry": "shed",
+    "rank": 722,
+    "meaning_ejdict": "〈血・液など〉を『流す』,こぼす / 〈葉・毛・外皮など〉を『自然に落とす』;〈衣服〉を脱ぐ / 〈光・香りなど〉を放つ / 〈布などが〉〈水〉をはじく,通さない / 〈動物などが〉脱毛する,脱皮する / 〈葉が〉落ちる / (物をしまうための)『納屋』,物置;(風雨よけの)…置き場,小屋"
+  },
+  {
+    "entry": "motive",
+    "rank": 723,
+    "meaning_ejdict": "(…の)『動機』,誘因,目的《+『for(of)』+『名』(do『ing』)》 / =motif / 運動の;運動に関する;運動を起こす"
+  },
+  {
+    "entry": "whereby",
+    "meaning_ja": "【副】《関係副詞》…によって…するところの(according to which)",
+    "rank": 724
+  },
+  {
+    "entry": "median",
+    "rank": 725,
+    "meaning_ejdict": "中央の,中間の / 中間数の,中央値の / (統計・数学で)中間数,中央値;中点"
+  },
+  {
+    "entry": "wholly",
+    "rank": 726,
+    "meaning_ejdict": "『まったく』,完全に(completely)"
+  },
+  {
+    "entry": "supposedly",
+    "rank": 727,
+    "meaning_ejdict": "想像上,おそらく"
+  },
+  {
+    "entry": "crude",
+    "rank": 728,
+    "meaning_ejdict": "(原材料が)『天然のままの』,未加工の / (製品・作品などが)仕上がりの悪い,荒造りの / (言葉・態度・考え方などが)粗雑な,不作法な / =crude oil"
+  },
+  {
+    "entry": "commissioner",
+    "rank": 729,
+    "meaning_ejdict": "(政府が任命する)『委員』,理事 / (中央官庁・地方自治体の)『長官』,局長;弁務官 / 《米》(プロスポーツの)コミッショナー(運営の最高責任者で制裁権を持つ)"
+  },
+  {
+    "entry": "sufficiently",
+    "rank": 730,
+    "meaning_ejdict": "『十分に』"
+  },
+  {
+    "entry": "protocol",
+    "rank": 731,
+    "meaning_ejdict": "〈U〉外交儀礼 / 〈C〉プロトコル(通信規約など)"
+  },
+  {
+    "entry": "constrain",
+    "rank": 732,
+    "meaning_ejdict": "《『constrain』+『名』+『to』 do》 / 〈人〉を押さえつけて動けないようにする,〈怒りなど〉を抑えつける"
+  },
+  {
+    "entry": "blank",
+    "rank": 735,
+    "meaning_ejdict": "(紙が)『白紙の』;(欄が)空白の,書き入れていない / がらんとした,からの(empty);なんの装飾もない / 『ぼんやりした』,うつろな,無関心な / 全くの / 『空白』,空所 / 書き込み用紙(form) / 空虚;空(くう)の部分 / (語句・文学を伏せる場所に用いる)ダッシュ“‐\":Mr-某氏 / (またblank cartridge)(銃火器の)空包 / …を消す,削除する《+『名』+『out,』+『out』+『名』》 / 《米》〈相手〉に試合で得点させない"
+  },
+  {
+    "entry": "legislature",
+    "rank": 737,
+    "meaning_ejdict": "《the ~》立法府,立法機関 / 《米》州議会"
+  },
+  {
+    "entry": "punish",
+    "rank": 740,
+    "meaning_ejdict": "〈人〉を『罰する』,こらしめる / 〈犯罪・違反・過ち〉を『罰する』 / …を手荒く扱う"
+  },
+  {
+    "entry": "predictable",
+    "rank": 741,
+    "meaning_ejdict": "(現象などが)予報(予言)し得る / (悪い意味で)予想どおりの"
+  },
+  {
+    "entry": "liquidation",
+    "rank": 742,
+    "meaning_ejdict": "(負債)の弁済,(会社の)整理 / 殺害"
+  },
+  {
+    "entry": "chaos",
+    "rank": 743,
+    "meaning_ejdict": "〈U〉(天地創造以前の)混とん / 〈U〉(一般に)『混乱状態』,無秩序;〈C〉混乱したもの"
+  },
+  {
+    "entry": "impairment",
+    "rank": 745,
+    "meaning_ja": "〈U/C〉損傷, 障害 / 悪化,低下 / 減少 / 《会計》減損"
+  },
+  {
+    "entry": "harvest",
+    "rank": 746,
+    "meaning_ejdict": "〈C〉(穀物・果物などの)『収穫』,取り入れ / 〈C〉『収穫期』,取り入れの時期 / 〈C〉収穫物;収穫高(量) / 《a~,the~》(仕事などの)結果,報い / 〈作物〉を取り入れる,〈畑〉の作物を取り入れる / 〈結果など〉を獲得する"
+  },
+  {
+    "entry": "migrant",
+    "rank": 751,
+    "meaning_ejdict": "移住者;渡り鳥 / 渡り歩く(migratory)"
+  },
+  {
+    "entry": "objection",
+    "rank": 752,
+    "meaning_ejdict": "(…に対する)『反対』,異議,異論《+『to』(『against』)+『名』(do『ing』,『wh-節』)》 / (…に対する)嫌悪,不満《+『to』(『against』)+『名』(do『ing』,『wh』‐『節』)》 / (…に)反対する理由(根拠)《+『to』(『against』)+『名』(do『ing』,『wh』‐『節』)》"
+  },
+  {
+    "entry": "macroeconomics",
+    "rank": 753,
+    "meaning_ja": "【名/U】マクロ経済学"
+  },
+  {
+    "entry": "accrual",
+    "rank": 757,
+    "meaning_ja": "〈U/C〉発生, 増加 / 付加利子 / 《会計》発生主義"
+  },
+  {
+    "entry": "confront",
+    "rank": 758,
+    "meaning_ejdict": "〈人が〉〈危険・問題・相手など〉に立ち向かう,ぶつかっていく / 〈危険・問題・相手・物などが〉…の前に立ちはだかる,に向かい合って立つ / (…と)…を直面させる,対決させる《+『名』+『with』+『名』》"
+  },
+  {
+    "entry": "punishment",
+    "rank": 759,
+    "meaning_ejdict": "〈U〉罰を[を受けること] / 〈C〉処罰,刑罰 / 〈U〉ひどい仕打ち,虐待"
+  },
+  {
+    "entry": "passive",
+    "rank": 760,
+    "meaning_ejdict": "『受動的な』,消極的な / 服従的な,言いなりになる / (文法で)受動態の,受身の / 《the~》受動態,受身の構文 / 動詞の受動形"
+  },
+  {
+    "entry": "conditional",
+    "rank": 761,
+    "meaning_ejdict": "条件つきの,暫定的な / (文法で)条件を表す / (文法で)条件文(節)"
+  },
+  {
+    "entry": "scrutiny",
+    "rank": 764,
+    "meaning_ejdict": "(…の)綿密な調査;(…を)くわしく見ること《+『of』+『名』》"
+  },
+  {
+    "entry": "exile",
+    "rank": 766,
+    "meaning_ejdict": "〈U〉(政治的な)『国外追放』;亡命 / 〈U〉国外に追放されていること,流刑 / 〈C〉(政治的な理由で)国外に追放された人;亡命者 / (…から)〈人〉を『国外へ追放する』《+『名』+『from』+『名』》"
+  },
+  {
+    "entry": "inherent",
+    "rank": 768,
+    "meaning_ejdict": "『本来の』,生まれつきの"
+  },
+  {
+    "entry": "explicitly",
+    "rank": 769,
+    "meaning_ja": "【副】明示的に；明白に,はっきりと,あからさまに."
+  },
+  {
+    "entry": "clever",
+    "rank": 770,
+    "meaning_ejdict": "『利口な』,頭のよい,才気のある,気のきいた / 『器用な』,じょうずな(skillful)"
+  },
+  {
+    "entry": "payback",
+    "rank": 772,
+    "meaning_ja": "【名/C】元金回収期間 / 《投資への》払戻金, 報酬, 見返り / 【名/U】仕返し,報復"
+  },
+  {
+    "entry": "sacrifice",
+    "rank": 773,
+    "meaning_ejdict": "〈U〉〈C〉(神に…の)『いけにえをささげること』;〈C〉(神への…の)『いけにえ』《+『of』+『名』+『to』+『名』》 / 〈C〉〈U〉(人・国家・目的などのために…を)『犠牲にすること』《+『of』+『名』+『for』(『to』)+『名』》,(…のための)犠牲的行為;〈C〉(…のために)犠牲にされるもの《+『for』(『to』)+『名』》 / 〈C〉〈U〉投げ売り[値段];見切品 / 〈C〉(野球の)犠牲バント,犠打 / (神に)〈人・動物など〉を『いけにえにする』《+『名』+『to』+『名』》 / (…のために)…を『犠牲にする』《+『名』+『for』(『to』)+『名』》 / 《話》を投げ売りする / (野球で)〈走者〉を犠打で進める / (神に)いけにえをささげる《+『to』+『名』》 / (野球で)犠打を打つ"
+  },
+  {
+    "entry": "semi",
+    "rank": 774,
+    "meaning_ja": "【接頭辞】半…；やや…,いくぶん…,不十分な"
+  },
+  {
+    "entry": "feasible",
+    "rank": 775,
+    "meaning_ejdict": "実行できる,可能性のある / もっともらしい,ありそうな"
+  },
+  {
+    "entry": "conviction",
+    "rank": 776,
+    "meaning_ejdict": "〈U〉〈C〉『確信』,自信 / 〈U〉《文》説得力,確信を抱かせること / 〈U〉有罪宣告;〈C〉有罪判決"
+  },
+  {
+    "entry": "continuously",
+    "rank": 777,
+    "meaning_ja": "絶え間なく,連続して"
+  },
+  {
+    "entry": "tier",
+    "rank": 780,
+    "meaning_ejdict": "(ひな段式になった段々の)一段,一列 / …を段段に積む,重ねる / 結ぶ人(もの)"
+  },
+  {
+    "entry": "transparency",
+    "rank": 781,
+    "meaning_ejdict": "〈U〉透明 / 透明なもの,(特に)スライド[写真]"
+  },
+  {
+    "entry": "inadequate",
+    "rank": 782,
+    "meaning_ejdict": "(物事が)不十分な,不適当な;(人が)能力不足の"
+  },
+  {
+    "entry": "acre",
+    "rank": 783,
+    "meaning_ejdict": "『エーカー』(面積の単位;約4,047平方メートル) / 《複数形で》田畑,土地"
+  },
+  {
+    "entry": "levy",
+    "rank": 784,
+    "meaning_ejdict": "(…に)〈税金など〉を強制的に課する《+『名』+『on』(『upon』)+『名』》;〈税金など〉を取り立てる / 《文》(…に対して)〈戦争〉を始める《+『upon』(『against』)+『名』》 / (税金などの)強制課税(取り立て);(兵士の)召集 / 取り立てた税金;召集兵,召集軍隊"
+  },
+  {
+    "entry": "freely",
+    "rank": 785,
+    "meaning_ejdict": "『自由に』;かってに / 『惜しげなく』,十分に / 率直に;無遠慮に / 自分から進んで"
+  },
+  {
+    "entry": "reliance",
+    "rank": 786,
+    "meaning_ejdict": "〈U〉(…への)『依存』;(…に対する)信頼《+『on』(『upon』)+『名』》 / 〈C〉信頼できる人(物),頼みの綱"
+  },
+  {
+    "entry": "covenant",
+    "rank": 787,
+    "meaning_ejdict": "〈C〉(両者または数人の間の)契約,誓約,盟約 / 〈C〉契約条項,約款 / 《the covenant》(神がイスラエル人に与えた)契約 / (文書で)…を契約する"
+  },
+  {
+    "entry": "prosecute",
+    "rank": 789,
+    "meaning_ejdict": "(…の罪で)〈人〉を『起訴する』,告訴する《+『名』〈人〉+『for』+『名』(do『ing』)》 / (司法手続きに訴えて)〈権利など〉を要求する / (特に最後まで)〈調査・研究・事業など〉をやり通す,遂行する / 起訴する"
+  },
+  {
+    "entry": "materially",
+    "rank": 790,
+    "meaning_ejdict": "物質的に,物理的に;肉体的に / 実質的に / 大いに,著しく"
+  },
+  {
+    "entry": "convict",
+    "rank": 791,
+    "meaning_ejdict": "(…の罪状で)〈人〉に『有罪を宣告する』《+『名』+『of』+『名』(do『ing』)》 / 《文》《しばしば受動態で》(罪・誤りなどを)…に悟らせる《+『名』+『of』+『名』》 / 『罪人』,囚人"
+  },
+  {
+    "entry": "procurement",
+    "rank": 792,
+    "meaning_ejdict": "(…の)入手,獲得,調達《+『of』+『名』》"
+  },
+  {
+    "entry": "clash",
+    "rank": 793,
+    "meaning_ejdict": "(物がぶつかり合う)『ガチャン』(『ガシャン』,『ジャーン』)『という音』 / (…間の)(意見・利害などの)衝突,抗争《+『between』+『名』》 / 『ガチャン』(『ガシャン』)『と音を立てる』;(…に)ガチャンとぶつかる《+『to』(『against, into』)+『名』》 / (…と)『合わない』,調和しない《+『with』+『名』(do『ing』)》 / (競技・戦闘で)(…と)相打つ,激突する《+『with』+『名』》 / …をガチャン(ジャン)とぶつける"
+  },
+  {
+    "entry": "deter",
+    "rank": 794,
+    "meaning_ejdict": "〈恐怖・不安などが〉〈人〉をちゅうちょさせる;(…することを)〈人〉に思い留まらせる《+『名』+『from』 do『ing』》"
+  },
+  {
+    "entry": "prosecution",
+    "rank": 795,
+    "meaning_ejdict": "〈U〉〈C〉『起訴』,告訴 / 《the~》《集合的に》起訴者側,検察当局 / 〈U〉(…の)実行,遂行《+『of』+『名』》"
+  },
+  {
+    "entry": "nasty",
+    "rank": 796,
+    "meaning_ejdict": "『意地悪な』,卑劣な / 『不快な』,いやな(unpleasant) / みだらな,下品な / 厄介な,ひどい"
+  },
+  {
+    "entry": "condemn",
+    "rank": 797,
+    "meaning_ejdict": "(…であると)〈人・過失など〉を『非難する』,とがめる(blame)《+『名』〈人〉+『for』+『名』》 / 〈人〉を『有罪と決定する』,に刑を宣告する(sentence) / (ある状態に)〈人など〉を追いやる,運命づける(doom) / 〈品物など〉を廃棄処分に決める;〈病人など〉を不治と宣告する / 《米》〈物・土地など〉を収用する,を没収を宣告する / 〈人〉を罪(やましさ)を証明する"
+  },
+  {
+    "entry": "operative",
+    "rank": 799,
+    "meaning_ejdict": "〈機械などが〉働く,運転する / (法律などが)有効な / 作業の / 手術の(による) / 工員 / 《米》刑事;スパイ"
+  },
+  {
+    "entry": "privatize",
+    "rank": 800,
+    "meaning_ja": "【動/他】を民営化する"
+  },
+  {
+    "entry": "endure",
+    "rank": 801,
+    "meaning_ejdict": "…に『耐える』,を持ちこたえる / 《しばしば否定文で》…を『がまんする』,忍ぶ,大目に見る / 《文》持ちこたえる,長く続く〈last〉 / 耐え忍ぶ"
+  },
+  {
+    "entry": "doctrine",
+    "rank": 802,
+    "meaning_ejdict": "〈U〉〈C〉(教会・政党などの)『教義』,『主義』,信条 / 〈U〉〈C〉教え,教訓 / 〈C〉原理,学説"
+  },
+  {
+    "entry": "distort",
+    "rank": 803,
+    "meaning_ejdict": "〈形〉をゆがめる,ねじる / 〈事実・真実など〉を曲げる,ゆがめる"
+  },
+  {
+    "entry": "triple",
+    "rank": 804,
+    "meaning_ejdict": "3倍の / 3重の,3部から成る / 3倍の数(量) / (野球で)三塁打 / …を3倍(3重)にする / 3倍(3重)になる / (野球で)三塁打を打つ"
+  },
+  {
+    "entry": "textile",
+    "rank": 805,
+    "meaning_ejdict": "織物の / 織物;織物材料(綿糸・ナイロンなど)"
+  },
+  {
+    "entry": "manipulate",
+    "rank": 807,
+    "meaning_ejdict": "〈道具類〉を巧みに扱う(動かす),〈言葉〉をうまく使う / 〈人・世論など〉を巧みに操る,〈問題など〉をうまく処理する(maneuver) / (自分の利益のために)…をごまかす,小細工する"
+  },
+  {
+    "entry": "unity",
+    "rank": 808,
+    "meaning_ejdict": "〈U〉『単一性,統一性』;〈C〉単一体,統一体 / 〈C〉〈U〉(古典劇構成での)一致 / 〈U〉(…との)『協調』,調和《+with+名》"
+  },
+  {
+    "entry": "alpha",
+    "rank": 809,
+    "meaning_ejdict": "アルファ(ギリシア語アルファベットの第1字Α,α;英語のA,aに相当) / アルファ星(星座の主星)"
+  },
+  {
+    "entry": "refine",
+    "rank": 810,
+    "meaning_ejdict": "…を『精製する』,精錬する / 〈言葉・態度など〉を『洗練する』,上品にする,優雅にする"
+  },
+  {
+    "entry": "implicit",
+    "rank": 811,
+    "meaning_ejdict": "(同意・反対などが)暗に示された,暗黙の / 無条件の,絶対の"
+  },
+  {
+    "entry": "deflation",
+    "rank": 812,
+    "meaning_ejdict": "空気(ガス)を抜くこと;収縮 / 通貨収縮,デフレーション,テレビ"
+  },
+  {
+    "entry": "antitrust",
+    "rank": 813,
+    "meaning_ejdict": "トラスト反対の,独占禁止の"
+  },
+  {
+    "entry": "practitioner",
+    "rank": 814,
+    "meaning_ejdict": "開業医;弁護士 / 技術者,工芸家"
+  },
+  {
+    "entry": "prosperity",
+    "rank": 815,
+    "meaning_ejdict": "『繁栄』,成功"
+  },
+  {
+    "entry": "riot",
+    "rank": 816,
+    "meaning_ejdict": "〈C〉『暴動』,騒動;騒擾(そうじょう) / 《a~》(色・音などの)『多彩』,はなやかさ;(感情・想像などの)ほとばしり,奔放《+『of』+『名』》 / 〈C〉《話》非常に愉快な(おもしろい)人(事,物) / 暴動(騒動)に加わる,暴動を起こす / (…に)ふける,おぼれる《+『in』+『名』(do『ing』)》"
+  },
+  {
+    "entry": "align",
+    "rank": 820,
+    "meaning_ejdict": "…を一列に並べる,整列させる / (…と)…を提携させる,連合させる《+『名』+『with』+『名』》 / 一列に並ぶ / (…と)提携する《+『with』+『名』》"
+  },
+  {
+    "entry": "reinvest",
+    "meaning_ja": "【動/他】を再び投資する,再投資する",
+    "rank": 821
+  },
+  {
+    "entry": "provincial",
+    "rank": 823,
+    "meaning_ejdict": "《名詞の前にのみ用いて》『地方の』,いなかの;州の,省の,県の / 地方特有の;いなかめいた / 偏狭な / 地方人,いなか者・管区長"
+  },
+  {
+    "entry": "concede",
+    "rank": 826,
+    "meaning_ejdict": "(譲歩して)…を『真実と認める』 / 《『concede』+『名』〈間〉+『名』〈直〉=『concede』+『名』+『to』+『名』》〈権利など〉を〈人〉に与える / (…に)譲歩する,(…を)認める《+『to』+『名』》"
+  },
+  {
+    "entry": "controversy",
+    "rank": 830,
+    "meaning_ejdict": "(通例紙上での)『論争』;議論,口論"
+  },
+  {
+    "entry": "fierce",
+    "rank": 832,
+    "meaning_ejdict": "(性質・行動など)『凶暴な』,どう猛な / (強さ・程度などの)『激しい』,猛烈な"
+  },
+  {
+    "entry": "veto",
+    "rank": 833,
+    "meaning_ejdict": "〈U〉拒否権;拒否権の行使 / (またveto message)〈U〉拒否通告状,拒否教書 / 〈C〉(一般に)(…の)拒否《+on+名》 / (拒否権を行使して)〈議案など〉を拒否する / (一般に)…を拒否する,禁止する"
+  },
+  {
+    "entry": "instant",
+    "rank": 834,
+    "meaning_ejdict": "『一瞬の間』,瞬間(moment) / 《the,this,thatなどを伴って》(…の)ちょうどその瞬間,まさに(…の)時 / 『即時の』,すぐの,即刻の / 《名詞の前にのみ用いて》『急の』,緊急の(urgent) / 『即席の』,インスタント[料理]の / 《古》今月の"
+  },
+  {
+    "entry": "ceasefire",
+    "meaning_ja": "〈C〉停戦, 休戦,休戦命令",
+    "rank": 835
+  },
+  {
+    "entry": "handset",
+    "rank": 836,
+    "meaning_ejdict": "(電話の)送受話器"
+  },
+  {
+    "entry": "sentiment",
+    "rank": 837,
+    "meaning_ejdict": "〈C〉〈U〉『感情』,心情,気持ち / 〈C〉《しばしば複数形で》(自分の感情・主観を加えた)(…に関する)『感想』,所感,意見《+『on』(『about』)+『名』》 / 〈C〉〈U〉織細な感情,情趣;(芸術的)情感 / 〈U〉(…に対する)『感傷』《+『for』+『名』》"
+  },
+  {
+    "entry": "vest",
+    "rank": 838,
+    "meaning_ejdict": "《米》『チョッキ』(《英》waist-coat) / 《英》=undershirt / 《文》(権利・財産などを)〈人〉に与える,授ける,付与する《+名〈人〉+with+名》 / (人に)〈権利・財産など〉を与える,授ける《+名+in+名〈人〉》 / 《古》《詩》(法衣などを)〈人〉に着せる / 〈権利・財産などが〉(人に)属する,帰属する《+in+名》 / 《古》《詩》祭服を着る"
+  },
+  {
+    "entry": "beef",
+    "rank": 839,
+    "meaning_ejdict": "〈U〉『牛肉』;(一般に)肉 / 〈C〉《おもに米》肉牛,食肉牛;(屠殺(とさつ)して処理した)牛 / 〈U〉《話》筋肉,力;体重,肉づき / 〈C〉《俗》不平,苦情 / (人に…について)不平をこぼす,ぶつぶつ言う《+『at』+『名』〈人〉+『about』+『名』》 / …を強化する,補強する"
+  },
+  {
+    "entry": "combat",
+    "rank": 841,
+    "meaning_ejdict": "『戦い』,戦闘;格闘 / 〈敵・悪など〉と『戦う』,闘争する / (…のために…と)『戦う』《+『with』(『against』)+『名』+『for』+『名』》"
+  },
+  {
+    "entry": "parity",
+    "rank": 842,
+    "meaning_ejdict": "同等,均等,類似 / (他国通貨との)等価,平価"
+  },
+  {
+    "entry": "centralize",
+    "rank": 844,
+    "meaning_ejdict": "…を中心に集める,一点に集中する;…を中央集権化する"
+  },
+  {
+    "entry": "sovereign",
+    "rank": 845,
+    "meaning_ejdict": "(国王・女王などの)『君主』,主権者 / (英国の古い)1ポンド金貨 / 『君主の』,最高権力(最高位)を持つ / 『独立の』 / 最高の,この上ない / 《文》(薬・療法などが)効能のある,よく効く"
+  },
+  {
+    "entry": "estimation",
+    "rank": 846,
+    "meaning_ejdict": "〈U〉判断;評価;尊重 / 〈C〉〈U〉(特に商業上の)(…の)見積り,概算《+『of』+『名』》"
+  },
+  {
+    "entry": "lucrative",
+    "rank": 849,
+    "meaning_ejdict": "利益が上がる,もうかる"
+  },
+  {
+    "entry": "stabilize",
+    "rank": 850,
+    "meaning_ejdict": "…を固定させる,安定させる"
+  },
+  {
+    "entry": "molecule",
+    "rank": 852,
+    "meaning_ejdict": "分子《略》『mol』) / (一般に)(…の微量《+『of』+『名』》"
+  },
+  {
+    "entry": "variability",
+    "rank": 853,
+    "meaning_ejdict": "変わりやすいこと,可変性,変動性"
+  },
+  {
+    "entry": "strive",
+    "rank": 854,
+    "meaning_ejdict": "『大いに努力する』,励む / (…と)『戦う』,(…に)抵抗する《+against+『名』》"
+  },
+  {
+    "entry": "cure",
+    "rank": 855,
+    "meaning_ejdict": "〈病気・病人〉を『治療する』,なおす / 〈悪癖・弊害など〉を『なおす』,取り除く / (塩づけ・燻製(くんせい)などにして)〈魚・肉など〉を保存する / 〈病気が〉なおる / (塩づけ・燻製などにして)〈魚・肉などが〉保存させる / 〈U〉〈C〉(病気の)『回復;治療』 / 〈C〉(…の)『治療薬』;『治療法』《+『for』+『名』》 / (フランスの)主任司祭"
+  },
+  {
+    "entry": "bribe",
+    "rank": 857,
+    "meaning_ejdict": "『わいろ』 / 〈人〉に『わいろを贈る』,わいろを使う"
+  },
+  {
+    "entry": "militia",
+    "rank": 861,
+    "meaning_ejdict": "《the ~》国民軍,市民軍(軍事訓練を受けるが非常事態にのみ召集される)"
+  },
+  {
+    "entry": "wisdom",
+    "rank": 862,
+    "meaning_ejdict": "『賢いこと』,賢明さ,知恵,分別;《集合的に》賢明な思考,名言"
+  },
+  {
+    "entry": "enact",
+    "rank": 863,
+    "meaning_ejdict": "〈法律〉を制定する;…を法令(条令)化する / (弓など)を演じる;…の役を演じる"
+  },
+  {
+    "entry": "controller",
+    "rank": 864,
+    "meaning_ejdict": "管理する人,監督者,取締人 / (また『comptroller』)(会計などの)監査役;会計検査官"
+  },
+  {
+    "entry": "shield",
+    "rank": 866,
+    "meaning_ejdict": "(昔,武士が戦場で用いた)『盾』(たて) / (…に対して,…から)『かばうもの(人)』,保護者(物)《+『against』(『from』)+『名』》 / 盾に似たもの(警官・刑事・保安官のバッジなど) ・=escutcheon・…を『かばう』,保護する《+『名』+『from』+『名』》"
+  },
+  {
+    "entry": "pact",
+    "rank": 867,
+    "meaning_ejdict": "協定(agreement),条約(treaty)"
+  },
+  {
+    "entry": "discretion",
+    "rank": 868,
+    "meaning_ejdict": "『分別』,慎重さ(prudence) / (行動・選択などの)判断の自由;自由裁量"
+  },
+  {
+    "entry": "supervision",
+    "rank": 870,
+    "meaning_ejdict": "(…の)監督,管理,指揮《+of+名》"
+  },
+  {
+    "entry": "dictate",
+    "rank": 872,
+    "meaning_ejdict": "(人に)〈文章など〉を『書き取らせる』,口述する《+『名』+『to』+『名』》 / …を命じる,命令する,指図する:《『dictate』+『名』+『to』+『名』》…を…に命じる / (人に)書き取らせる,口述する《+『to』+『名』》 / (…に)命令する,指図する《+『to』+『名』》 / (権威ある)命令;(良心などの)命じるところ"
+  },
+  {
+    "entry": "purely",
+    "rank": 873,
+    "meaning_ejdict": "『全く』,完全に / 『純粋に』,きれいに,清らかに"
+  },
+  {
+    "entry": "substitution",
+    "rank": 874,
+    "meaning_ejdict": "(…の)『代用』,代理,置き換え《+for+名》"
+  },
+  {
+    "entry": "pursuit",
+    "rank": 875,
+    "meaning_ejdict": "〈U〉(…を)『追うこと』,(…の)追跡《+『of』+『名』》 / 〈U〉(目的・快楽などの)『追求』《+『of』+『名』》 / 〈C〉(一般に)仕事,趣味"
+  },
+  {
+    "entry": "minimal",
+    "rank": 876,
+    "meaning_ejdict": "最小の,極小の,最近の"
+  },
+  {
+    "entry": "vector",
+    "rank": 879,
+    "meaning_ejdict": "(数学で)ベクトル,方向量 / (ハエ・カなどの)病原媒介昆虫 / (飛行機,ミサイルなどの)進路,軌道"
+  },
+  {
+    "entry": "endowment",
+    "rank": 881,
+    "meaning_ejdict": "〈C〉(大学や教会などに寄付された)基金,財産;〈U〉(基金の)寄付,寄贈 / 〈C〉《しばしば複数形で》(天から与えられた)才能,資質"
+  },
+  {
+    "entry": "disability",
+    "rank": 883,
+    "meaning_ejdict": "〈U〉障害 / 〈C〉身体的・精神的障害 / (法的)無能力"
+  },
+  {
+    "entry": "governmental",
+    "rank": 884,
+    "meaning_ejdict": "政治の,政府の"
+  },
+  {
+    "entry": "competence",
+    "rank": 887,
+    "meaning_ejdict": "〈U〉能力,適性,力量 / 〈U〉(法律上の)権限,権能 / 《まれ》《a~》相当の資産"
+  },
+  {
+    "entry": "slash",
+    "rank": 889,
+    "meaning_ejdict": "(刃・ナイフなどで)…をさっと切る・…をヒュッと打ち下ろす / 《通例受動態で》(裏地(下着)が見えるようにするため)〈衣服〉にあき口(スリット)を付ける・《通例受動態で》〈価格・数量など〉を大幅に切り下げる,大きく削減する・…をこき下ろす,酷評する・(…を)切り払う《+『at』+『名』》・〈雨が〉さっと打ちつける・さっと切りつけること,打ち下ろすこと・切り口,深い切り傷・(価格・数量などの)大幅切り下げ,大削減・(衣服の)あき口(スリット) ・斜線記号(/)"
+  },
+  {
+    "entry": "logistics",
+    "rank": 891,
+    "meaning_ejdict": "兵站(へいたん)学(調達・補給・宿営などの業務に関する兵学)"
+  },
+  {
+    "entry": "scarce",
+    "rank": 892,
+    "meaning_ejdict": "《補語にのみ用いて》(物が)『乏しい』,不足した / 『まれな』,珍しい / =scarcely"
+  },
+  {
+    "entry": "restraint",
+    "rank": 894,
+    "meaning_ejdict": "〈U〉『抑制』(『拘束』,『束縛』)『すること』 / 〈U〉束縛された状態,監禁(confinement) / 〈C〉抑制(拘束,束縛)するもの / 〈U〉(行為・感情などの)自制,慎み,遠慮(reserve)"
+  },
+  {
+    "entry": "follower",
+    "rank": 895,
+    "meaning_ejdict": "後から来る人,後に続く人 / (信仰・思想などで)『人に従う人』;弟子,門人,信奉者,支持者 / 随行者,家来,部下"
+  },
+  {
+    "entry": "torture",
+    "rank": 896,
+    "meaning_ejdict": "…を『拷問にかける』 / (…で)…を『ひどく苦しめる(悩ませる)』《+名+with+名(doing)》 / 〈U〉『拷問』,ひどく苦しめること / 〈U〉〈C〉(心身の)苦痛"
+  },
+  {
+    "entry": "crunch",
+    "rank": 897,
+    "meaning_ejdict": "…をカリカリ(ボリボリ)かむ / 〈砂利道・氷雪上など〉をバリバリ(ジャリジャリ)音を立てる(立てて進む),をザクザク踏む / カリカリ(ボリボリ)かむ / バリバリ(ジャリジャリ,ザクザク)音を立てる(立てて進む) / 〈U〉〈C〉かみ砕くこと(音);踏み砕くこと(音),(砕いて)音を立てて進むこと / 《the~》(決断が必要な)危機,緊張 / 〈U〉金融引締め"
+  },
+  {
+    "entry": "receiver",
+    "rank": 899,
+    "meaning_ejdict": "『受取人』 / 管財人(判決が出るまでの期間,他人の財産や事業の管理を裁判所から任命された人) / (電話の)『受話器』;(電信を)受信機;(テレビの)受像機 / (盗品の)故買人"
+  },
+  {
+    "entry": "overlap",
+    "rank": 902,
+    "meaning_ejdict": "…を部分的に重ねる / …と一部共通(一致)する;(時間的に)…とかち合う / 部分的に重なり合う / 部分的に共通(一致)する;〈時間が〉かち合う / 〈U〉部分的に一致すること,重複 / 〈C〉重複部分"
+  },
+  {
+    "entry": "encyclopedia",
+    "rank": 904,
+    "meaning_ejdict": "百科事典"
+  },
+  {
+    "entry": "lump",
+    "rank": 905,
+    "meaning_ejdict": "(一定の形のない)『塊』 / 小さい立方体 / 『こぶ』,はれもの / 《話》のろま,まぬけ,でくのぼう / 《英話》《集合的に》飯場臨時作業員 / 塊になった / 一まとめの,一括した / 〈いくつかのもの〉を一まとめにする,一様に扱う《+『together』+『名,』+『名』+『together』》 / 塊になる / …を我慢する,じっとこらえる"
+  },
+  {
+    "entry": "momentum",
+    "rank": 906,
+    "meaning_ejdict": "〈U〉〈C〉運動量(運動する物体の質量と速度の相乗積) / 〈U〉(一般に)勢い,はずみ"
+  },
+  {
+    "entry": "probe",
+    "rank": 907,
+    "meaning_ejdict": "(傷の深さを調べる)さぐり針 / (…を)厳密に調べること,精査《+『into』(『for』,『at』)+『名』》 / (また『space probe』)(ロケットの)宇宙探測機 / …を厳密に調べる / 〈傷〉をさぐり針で調べる / (…を)厳密に調べる《+『into』(『for』,『at』)+『名』》"
+  },
+  {
+    "entry": "aversion",
+    "rank": 908,
+    "meaning_ejdict": "〈U〉(…に対する)嫌悪(けんお),けぎらい《+『to』+『名』(do『ing』)》 / 〈C〉大きらいな人(もの)"
+  },
+  {
+    "entry": "reconcile",
+    "rank": 909,
+    "meaning_ejdict": "(…と)…を『和解させる』《+『名』+『with』+『名』》 / 《受動態で》(…に)〈人・自分〉を甘んじさせる《+『to』+『名』(do『ing』)》 / 〈不一致・紛争など〉を解決する,調停する / (…と)…を調和(一致)させる《+『名』+『with』+『名』》"
+  },
+  {
+    "entry": "indirectly",
+    "rank": 910,
+    "meaning_ejdict": "間接に,遠回しに"
+  },
+  {
+    "entry": "yuan",
+    "rank": 912,
+    "meaning_ejdict": "ユアン,元(中華人民共和国の貨幣単位)"
+  },
+  {
+    "entry": "namely",
+    "rank": 913,
+    "meaning_ejdict": "『すなわち』,つまり(that is to say)"
+  },
+  {
+    "entry": "liberty",
+    "rank": 914,
+    "meaning_ejdict": "〈U〉(圧政・支配・束縛などからの)『自由』,独立,解放;(自分の意志で行動・選択する)自由,権利 / 〈C〉『気まま』,かって;かって気ままな言動 / 《the ~》(ある場所に出入りする)『権利』,自由《+『of』+『名』》 / 〈U〉(海軍の)上陸許可(時間) / 《複数形で》(王などから与えられた)権利,特権"
+  },
+  {
+    "entry": "decent",
+    "rank": 916,
+    "meaning_ejdict": "(社会・道徳的な規範にかなって)『きちんとした』,ふさわしい / 《話》『かなりよい』,まあまあの,そう悪くない / 《話》《補語にのみ用いて》親切な,寛大な"
+  },
+  {
+    "entry": "appetite",
+    "rank": 918,
+    "meaning_ejdict": "『食欲』 / (…に対する)『欲求』,切望(desire)《+『for』+『名』》"
+  },
+  {
+    "entry": "tobacco",
+    "rank": 919,
+    "meaning_ejdict": "〈C〉『タバコの木』 / 〈U〉〈C〉『タバコの葉』 / 〈C〉(加工して製品にした)『たばこ』(紙巻きたばこ(cigarettes),葉巻(cigars),かきたばこ(snuff)など) / 〈U〉喫煙(smoking)"
+  },
+  {
+    "entry": "unpopular",
+    "rank": 920,
+    "meaning_ejdict": "人気(人望)のない,不評の;はやらない"
+  },
+  {
+    "entry": "confine",
+    "rank": 921,
+    "meaning_ejdict": "(ある範囲に)…を『制限する』,限る(limit)《+『名』+『to』+『名』(do『ing』)》 / (…に)〈人など〉を『閉じ込める』,監禁する《+『名』+『in』(『to』)+『名』》 / 《通例受動態で》〈女性〉をお産の床につかせる / 境界,範囲,限界"
+  },
+  {
+    "entry": "quantify",
+    "rank": 923,
+    "meaning_ejdict": "…の量を定める,を定量化する"
+  },
+  {
+    "entry": "persist",
+    "rank": 926,
+    "meaning_ejdict": "(困難・障害に屈せず)『あくまでも続ける』(『やり抜く』),がん張る,固執する / 『存続する』,生き残る"
+  },
+  {
+    "entry": "gauge",
+    "rank": 927,
+    "meaning_ejdict": "(銃砲の口径・鉄板の厚さなどの)標準寸法(規格) / 計器 / (評価・判断の)方法,基準 / (レールの)軌道 / (銃砲の)口径 / (特に,計器を用いて)…を測る / …を評価する"
+  },
+  {
+    "entry": "corn",
+    "rank": 929,
+    "meaning_ejdict": "〈U〉(米,カナダ,オーストラリアで)『とうもろこし』;〈C〉とうもろこしの実(おもに《英》maize, Indian corn) / 〈U〉《英》《集合的に》『穀草』(wheat, oatsなど);『穀物』,穀類;穀粒 / 〈C〉《話》古くさい(お涙ちょうだい的な)もの(こと) / 〈牛肉など〉を塩づけにする / (足指の)たこ,魚の目(うおのめ)"
+  },
+  {
+    "entry": "skeptical",
+    "rank": 930,
+    "meaning_ejdict": "疑い深い,懐疑的な"
+  },
+  {
+    "entry": "legislative",
+    "rank": 931,
+    "meaning_ejdict": "立法の,立法権のある"
+  },
+  {
+    "entry": "independently",
+    "rank": 932,
+    "meaning_ejdict": "独立して,自主的に"
+  },
+  {
+    "entry": "negligence",
+    "rank": 934,
+    "meaning_ejdict": "(習慣的な)『怠慢』,不注意,落ち度;(法律で)過失 / 『むとんじゃく』,だらしなさ"
+  },
+  {
+    "entry": "determinant",
+    "rank": 936,
+    "meaning_ejdict": "決定要素 / 決定力のある"
+  },
+  {
+    "entry": "redeem",
+    "rank": 937,
+    "meaning_ejdict": "〈手放した物〉を『買い戻す』;〈ローンなど〉を払い終える,皆済する;(質屋などから)〈抵当〉を請け出す《+『名』+『from』+『名』》 / 〈名誉など〉を取り戻す,回復する / 〈クーポンなど〉を品物(金)に換える / 〈約束など〉を果す,履行する / 〈短所など〉を補う,償う,相殺する / (身のしろ金を支払って)〈人〉を自由にする;(罪から)〈人〉を救う《+『名』+『from』+『名』》"
+  },
+  {
+    "entry": "tribunal",
+    "rank": 938,
+    "meaning_ejdict": "裁判所,法廷,裁決機関 / (一般に)裁き"
+  },
+  {
+    "entry": "chunk",
+    "rank": 940,
+    "meaning_ejdict": "(…の)厚切り,厚いかたまり《+『of』+『名』》 / かなりの量(額,部分)"
+  },
+  {
+    "entry": "proprietary",
+    "rank": 941,
+    "meaning_ejdict": "所有主の / 個人所有の / 資産のある / 専売特許の,独占権をもつ"
+  },
+  {
+    "entry": "icon",
+    "rank": 942,
+    "meaning_ejdict": "像,肖像;(ギリシア教会の)聖画像"
+  },
+  {
+    "entry": "intermediate",
+    "rank": 943,
+    "meaning_ejdict": "(程度・距離・時間などにおいて)中間の,中間にある(起こる)"
+  },
+  {
+    "entry": "steep",
+    "rank": 944,
+    "meaning_ejdict": "『傾斜の急な』,急勾配(こうばい)の / 《話》極端な,途方もない / (液体に)…を浸す,つける《+『名』+『in』+『名』》 / (悪などに)を染まらせる《+『名』+『in』+『名』》 / (液体に)浸っている《+『in』+『名』》 / 浸す(される)こと;つける液体"
+  },
+  {
+    "entry": "acid",
+    "rank": 946,
+    "meaning_ejdict": "酸性の / 酸味のある,すっぱい(sour) / (言葉・態度などが)厳しい,しんらつな / 酸 / すっぱいもの / 《俗》=LSD"
+  },
+  {
+    "entry": "safeguard",
+    "rank": 947,
+    "meaning_ejdict": "(…に対して)保護(予防)するもの(手段)《+『from』(『against』)+『名』》 / (…から)…を保護する,守る(protect)《+『名』+『from』(『against』)+『名』》"
+  },
+  {
+    "entry": "loom",
+    "rank": 948,
+    "meaning_ejdict": "(織物を織る)機(はた),織機 / ぼうっと現れる,ぼんやりと大きく見えてくる《+『up』》 / 〈危険・困難などが〉不気味に迫る"
+  },
+  {
+    "entry": "uranium",
+    "rank": 949,
+    "meaning_ejdict": "ウラン,ウラニウム(放射性金属元素;化学記号はU)"
+  },
+  {
+    "entry": "deductible",
+    "rank": 950,
+    "meaning_ejdict": "差し引くことができる,控除できる"
+  },
+  {
+    "entry": "conceptual",
+    "rank": 952,
+    "meaning_ejdict": "概念の"
+  },
+  {
+    "entry": "assault",
+    "rank": 953,
+    "meaning_ejdict": "(暴力で,時に比喩(ひゆ)的な意で)(…を)『襲うこと』,強襲,攻撃《+『against』(『on』)+『名』》 / (法律用語で)暴行 / 〈場所〉を襲撃する;〈人〉に暴行を加える / 〈人・物〉を非難する"
+  },
+  {
+    "entry": "optimism",
+    "rank": 954,
+    "meaning_ejdict": "楽天主義 / 楽観,のんき"
+  },
+  {
+    "entry": "painful",
+    "rank": 955,
+    "meaning_ejdict": "(肉体的・精神的に)『痛い』,苦痛の / 人を苦しめる,やっかいな"
+  },
+  {
+    "entry": "ruler",
+    "rank": 956,
+    "meaning_ejdict": "『支配者』,統治者 / 『定規』"
+  },
+  {
+    "entry": "faction",
+    "rank": 957,
+    "meaning_ejdict": "〈C〉派閥,徒党 / 〈U〉派閥争い,内紛"
+  },
+  {
+    "entry": "null",
+    "rank": 958,
+    "meaning_ejdict": "(法律上)無効の,効力のない / ゼロの,無価値の / (数学で集合が)空(から)の"
+  },
+  {
+    "entry": "forge",
+    "rank": 959,
+    "meaning_ejdict": "(かじ場の)炉 / かじ屋の仕事場;鉄工場 / 〈金属〉を鍛(きた)える;(…から)〈馬ていなど〉を鍛えて作る《forge+名+from(out of)+名》 / 〈計画など〉を作り上げる / 〈文書など〉を偽造する / ぐんぐん前に出る,どんどん進む"
+  },
+  {
+    "entry": "rig",
+    "rank": 961,
+    "meaning_ejdict": "〈船〉を艤装(ぎそう)する / (マストなどを)〈船〉につける《+『名』+『with』+『名』》;(マストに)〈帆〉をつける《+『名』+『to』+『名』》 / …に装備をつける;…を装備する《+『up』+『名,』+『名』+『up』》 / 船の装備(帆装),艤装(ぎそう) / (特定の目的のための)道具,用具 / 《英話》衣服,服装(clothing) / 〈他〉〈相場など〉を不正な手段であやつる"
+  },
+  {
+    "entry": "accountable",
+    "rank": 962,
+    "meaning_ejdict": "説明責任のある,責任を問える"
+  },
+  {
+    "entry": "super",
+    "rank": 963,
+    "meaning_ejdict": "(アパートなどの)管理人,長官,所長,監督(superintendent) / (映画の)エキストラ,端(は)役(supernumerary) / 特等品,特製品 / すばらしい"
+  },
+  {
+    "entry": "abolish",
+    "rank": 964,
+    "meaning_ejdict": "〈制度・習慣・規則など〉を廃止する,やめる"
+  },
+  {
+    "entry": "predetermine",
+    "rank": 965,
+    "meaning_ejdict": "…を前もって定める;(…するよう)…を前もって定める《+『名』+『to』 do》 / 〈生産量,経費など〉を見積もる"
+  },
+  {
+    "entry": "inherit",
+    "rank": 966,
+    "meaning_ejdict": "(…から)〈財産・権利・称号など〉を『相続する』《+『名』+『from』+『名』》 / (…から)〈体質・性質など〉を『受け継ぐ』《+『名』+『from』+『名』》 / (前任者・前代から)…を受け継ぐ,継承する《+『名』+『from』+『名』》 / 財産を相続する"
+  },
+  {
+    "entry": "analytical",
+    "rank": 971,
+    "meaning_ejdict": "分析的な,分解的な,解析的"
+  },
+  {
+    "entry": "congressional",
+    "rank": 972,
+    "meaning_ejdict": "(小選挙区制の)下院議員選挙区"
+  },
+  {
+    "entry": "spy",
+    "rank": 973,
+    "meaning_ejdict": "『スパイ』,諜報員 / 『探偵』(たんてい),密偵 / (敵意をもって)(…を)『ひそかに見張る』(探る)《『+on』(『upon』)+『名』》 / (…について)調査する,せんさくする《+『into』+『名』》 / …を見つけ出す,探り出す《『out』+『名』,+『名』+『out』》"
+  },
+  {
+    "entry": "fiber",
+    "rank": 975,
+    "meaning_ejdict": "(1本の)『繊維』,すじ / 〈U〉《集合的に》繊維,繊維組織 / 〈U〉(布の)生地,織り地(textile) / 〈U〉性格,性質;根性"
+  },
+  {
+    "entry": "stall",
+    "rank": 976,
+    "meaning_ejdict": "(1頭を入れる)馬小屋(牛舎)の一仕切り / (部屋の中の)小仕切り / 《おもに英》《しばしば複合語を作って》売店,屋台商,露店;商品陳列台 / (教会の内陣または聖歌隊席にある)聖職者席 / 《通例複数形で》《英》(劇場・映画館の)1階前方の[特別]席 / (飛行機の)失速,(車の)失速,エンスト / (指を保護するゴム製などの)指サック / 《話》(時間かせぎの)口実,ごまかし,引き延ばし / (特に,太らせるために)〈家畜〉を小屋に入れる / 〈障害などが〉…を止める,妨げる / (積み過ぎなどのために)〈エンジン・車など〉を止める,にエンストを起こさせる / (特に,口実・ごまかしなどによって)〈人〉を待たせる,引き止める《+『off』+『名,』+『名』+『off』》 / 〈エンジン・車などが〉止まる;〈飛行機が〉失速する / (特に,口実・ごまかしなどによって)引き延ばす,ごまかす,確答(決定)を避ける"
+  },
+  {
+    "entry": "lure",
+    "rank": 979,
+    "meaning_ejdict": "『誘惑するもの』,魅力 / 《おもに英》(魚釣り用の)にせ餌(え);(他の鳥をおびき寄せるための)おとり / を『誘惑する』,おびき寄せる《+『名』+『on』》"
+  },
+  {
+    "entry": "populist",
+    "rank": 981,
+    "meaning_ejdict": "(米国の)人民党員 / 人民党の"
+  },
+  {
+    "entry": "contemplate",
+    "rank": 984,
+    "meaning_ejdict": "…を『よく考える』,熟考する / …をじっと見つめる / …を予想する,期待する / じっくり考える,熟考する"
+  },
+  {
+    "entry": "socially",
+    "rank": 985,
+    "meaning_ejdict": "社会的に,社会によって / 社交上;社交的に"
+  },
+  {
+    "entry": "raid",
+    "rank": 987,
+    "meaning_ejdict": "(…への)『襲撃』,奇襲;(警察の)手入れ《+『on(upon)』+『名』》 / …を急襲する;〈警察が〉…を手入れする / 急襲する"
+  },
+  {
+    "entry": "diplomacy",
+    "rank": 988,
+    "meaning_ejdict": "外交 / 外交的手腕,人扱いの手腕,駆け引き"
+  },
+  {
+    "entry": "liquidate",
+    "rank": 989,
+    "meaning_ejdict": "…を除く,廃止する / 〈負債〉を弁済する / (破産などで)〈会社〉を整理する / 《話》…を殺す,片づける / 整理する,清算する"
+  },
+  {
+    "entry": "rocket",
+    "rank": 991,
+    "meaning_ejdict": "『ロケット』;ロケット弾;ロケット推進ミサイル / 火矢;打ち上げ花火;のろし / 〈電車などが〉(ロケットのように)突進する / 〈値段などが〉急上昇する"
+  },
+  {
+    "entry": "debenture",
+    "rank": 992,
+    "meaning_ejdict": "社債券"
+  },
+  {
+    "entry": "collar",
+    "rank": 993,
+    "meaning_ejdict": "(衣服の)『えり』,カラー / 首飾り;(勲章としての)頚(けい)章,首章 / (犬などの)首輪;(馬・牛などの)首当て / 〈衣服〉にカラーをつける;〈犬〉に首輪をつける / 〈人〉のえり首を捕まえる / 《話》〈犯人など〉を捕らえる;〈帰りたがっている人〉を引き止めて話し込む / 《俗》〈物〉を持つ去る,盗む"
+  },
+  {
+    "entry": "outperform",
+    "rank": 994,
+    "meaning_ja": "【動/他】をしのぐ；上回る"
+  },
+  {
+    "entry": "optimize",
+    "rank": 997,
+    "meaning_ja": "【動/他】を能率的に利用できるようにする,最適なものにする；を最大限に活用する；を最適化する"
+  },
+  {
+    "entry": "broadband",
+    "rank": 999,
+    "meaning_ejdict": "(周波数が)広帯域の"
+  },
+  {
+    "entry": "reactor",
+    "rank": 1000,
+    "meaning_ejdict": "反応装置 / = nuclear reactor"
+  },
+  {
+    "entry": "equality",
+    "rank": 1002,
+    "meaning_ejdict": "(数量・程度・価値・大きさなどで)『等しいこと』,均等;(特に,権利・責任などにおいて)(…間の…の)『平等』《+『of』+『名』+『between』+『名』》"
+  },
+  {
+    "entry": "entail",
+    "rank": 1003,
+    "meaning_ejdict": "(…に)〈損失・労力・出費など〉を負わせる,課する《+『名』+『on』(『for』)+『名』》 / 《受動態で》(…に)〈土地〉を限嗣(げんし)相続させる《+『名』+『on』(『upon』)+『名』》 / 限嗣(げんし)相続権の土地の分配"
+  },
+  {
+    "entry": "attributable",
+    "rank": 1007,
+    "meaning_ejdict": "(原因などが)(…の)せいにできる,(…に)起因する;(…に)備わった;(…の)作と考えられる《+『to』+『名』》"
+  },
+  {
+    "entry": "revolutionary",
+    "rank": 1008,
+    "meaning_ejdict": "《名詞の前にのみ用いて》革命の;革命的な / 全く新しい / 《『R-』》アメリカ独立戦争の / 革命家"
+  },
+  {
+    "entry": "carmaker",
+    "rank": 1009,
+    "meaning_ejdict": "自動車製造業者"
+  },
+  {
+    "entry": "discretionary",
+    "rank": 1010,
+    "meaning_ejdict": "任意の,自由裁量の"
+  },
+  {
+    "entry": "reconciliation",
+    "rank": 1011,
+    "meaning_ejdict": "『和解』;甘んじること;調停;調和"
+  },
+  {
+    "entry": "directive",
+    "rank": 1012,
+    "meaning_ejdict": "指令,命令,訓令 / 指導的な,指示的な"
+  },
+  {
+    "entry": "mutually",
+    "rank": 1013,
+    "meaning_ejdict": "相互に"
+  },
+  {
+    "entry": "viable",
+    "rank": 1014,
+    "meaning_ejdict": "生存できる,生活できる,生育できる / 実行できる"
+  },
+  {
+    "entry": "subprime",
+    "meaning_ja": "【形】上位に次ぐ位の；最高クラスに次ぐ；サブプライムの",
+    "rank": 1015
+  },
+  {
+    "entry": "refusal",
+    "rank": 1016,
+    "meaning_ejdict": "〈U〉〈C〉『拒否』,拒絶 / 〈U〉《しばしばthe~》(諾否を決める)優先権,取捨選択権"
+  },
+  {
+    "entry": "geographic",
+    "rank": 1019,
+    "meaning_ejdict": "地理の,地理学[上]の"
+  },
+  {
+    "entry": "consortium",
+    "rank": 1020,
+    "meaning_ejdict": "(共通の事業のための)資本連合,企業連合"
+  },
+  {
+    "entry": "speculative",
+    "rank": 1021,
+    "meaning_ejdict": "(人・心などが)推測にふける,思索的な / 《名詞の前にのみ用いて》(考え・結論などが)理論にもとづく,観念的な / 投機の,思わく買いの"
+  },
+  {
+    "entry": "policeman",
+    "rank": 1022,
+    "meaning_ejdict": "『警官』,巡査"
+  },
+  {
+    "entry": "historically",
+    "rank": 1023,
+    "meaning_ejdict": "歴史的に,歴史上"
+  },
+  {
+    "entry": "amortize",
+    "rank": 1025,
+    "meaning_ejdict": "〈抵当・負債など〉を清算する;(特に減債基金で)…を償却する"
+  },
+  {
+    "entry": "exploration",
+    "rank": 1026,
+    "meaning_ejdict": "(未知・未調査の場所の)『探検』,『実地調査』《+『of』+『名』》 / (問題の)探索,調査《+『of』+『名』》"
+  },
+  {
+    "entry": "deliberately",
+    "rank": 1027,
+    "meaning_ejdict": "よく考えて,慎重に(cautiously) / 故意に,わざと"
+  },
+  {
+    "entry": "mill",
+    "rank": 1028,
+    "meaning_ejdict": "『製粉所』 / 『製粉機』;(手動の)ひき器 / 製造所,工場 / 〈穀物・コーヒーなど〉をひいて粉にする,製粉する / 〈金属・鋼鉄〉を圧延機(断裁機,打出機など)にかける / 〈貨幣など〉のへりにぎざぎざをつける / 〈家畜・人の群れが〉目的もなくうろうろする;ぞろぞろ歩く《+『about(around)』》 / ミル(貨幣計算の単位;1ドルの1000分の1,1セントの10分の1)"
+  },
+  {
+    "entry": "loser",
+    "rank": 1029,
+    "meaning_ejdict": "負ける,(負けた)人,敗北者"
+  },
+  {
+    "entry": "subjective",
+    "rank": 1030,
+    "meaning_ejdict": "(思想や感情が)主観的な,主観による / (芸術や芸術家が)主観的に表現する / (文法で)主格の"
+  },
+  {
+    "entry": "builder",
+    "rank": 1031,
+    "meaning_ejdict": "建築者;建築業者"
+  },
+  {
+    "entry": "mainland",
+    "rank": 1032,
+    "meaning_ejdict": "《通例 the~》本土,大陸(付近の島と区別した)"
+  },
+  {
+    "entry": "peaceful",
+    "rank": 1034,
+    "meaning_ejdict": "『平和な』,平和的な,平和を好む / 『穏やかな』,静かな"
+  },
+  {
+    "entry": "importantly",
+    "rank": 1035,
+    "meaning_ejdict": "重要性をもって;もったいぶって"
+  },
+  {
+    "entry": "backward",
+    "rank": 1036,
+    "meaning_ejdict": "《名詞の前にのみ用いて》(方向が)『後方への』,もとへの / 《名詞の前にのみ用いて》『逆の』,反対からの / 進歩(発達)が遅れている / (性格が)内気な(shy),引っ込み思案の / 『後方へ』,後ろ向きに / (方向・順序・時間が)『逆に』,反対に"
+  },
+  {
+    "entry": "counterparty",
+    "meaning_ja": "取引先, 取引先企業 / 契約相手, 相手方",
+    "rank": 1037
+  },
+  {
+    "entry": "overwhelm",
+    "rank": 1039,
+    "meaning_ejdict": "…を『圧倒する』,に打ち勝つ / 《通例受動態で》(精神的・感情的に)〈人〉を打ちのめす,参らせる / (波がおおいかぶさるように);をすっぽりと飲み込む(おおう)"
+  },
+  {
+    "entry": "consistency",
+    "rank": 1040,
+    "meaning_ejdict": "〈U〉(言語・論理などの)一致,一貫性 / 〈U〉(特に液体の)粘度,粘り"
+  },
+  {
+    "entry": "unprecedented",
+    "rank": 1041,
+    "meaning_ejdict": "先例のない,みぞうの"
+  },
+  {
+    "entry": "declaration",
+    "rank": 1042,
+    "meaning_ejdict": "〈U〉(…の)『宣言』,発表,布告《+『of』+『名』》 / 〈C〉申告書 / 〈C〉供述"
+  },
+  {
+    "entry": "retention",
+    "rank": 1044,
+    "meaning_ejdict": "保持(維持)すること;保持(維持)された状態 / 保持(維持)する力 / 記憶(力)"
+  },
+  {
+    "entry": "harsh",
+    "rank": 1045,
+    "meaning_ejdict": "(感触や目・耳など五感に)『不快な』,いやな / 『厳しい』(severe);過酷な(stern)"
+  },
+  {
+    "entry": "contend",
+    "rank": 1046,
+    "meaning_ejdict": "(…のことで…と)『争う』(compete),戦う《+『against』(『with』)+『名』+『for』(『about』)+『名』》 / (…について…と)論争する《+『against』(『with』)+『名』〈人〉+『about』(『against, for』)+『名』〈事〉》"
+  },
+  {
+    "entry": "covariance",
+    "rank": 1047,
+    "meaning_ja": "共分散"
+  },
+  {
+    "entry": "jointly",
+    "rank": 1048,
+    "meaning_ejdict": "共同して,連帯で"
+  },
+  {
+    "entry": "exclusion",
+    "rank": 1052,
+    "meaning_ejdict": "(…を…から)除外すること《+『of』+『名』+『from』+『名』》"
+  },
+  {
+    "entry": "bomber",
+    "rank": 1053,
+    "meaning_ejdict": "爆撃機 / 爆撃手 / 爆撃魔"
+  },
+  {
+    "entry": "viewer",
+    "rank": 1056,
+    "meaning_ejdict": "テレビを視聴者 / 観察者,見物人 / ビューアー(スライド・標本などを拡大して見る装置)"
+  },
+  {
+    "entry": "spur",
+    "rank": 1057,
+    "meaning_ejdict": "『拍車』 / (…に対する)『刺激』,激励《+『to』(『for』)+『名』》 / 拍車状のもの,(鶏などの)けづめ,(植物の)距(きょ) / (山などの)支脈 / (行き止まり)支線 / 〈馬〉に拍車を当てる《+『on』+『名』,+『名』+『on』》 / 〈人〉をかり立てる:《『spur』+『名』+『to』(『into』)+『名』》…に…をかり立てる"
+  },
+  {
+    "entry": "prospectus",
+    "rank": 1062,
+    "meaning_ejdict": "(会社の)設立趣意書;(事業・学校などの)内容説明書;内容見本"
+  },
+  {
+    "entry": "conscious",
+    "rank": 1063,
+    "meaning_ejdict": "《補語にのみ用いて》『気づいている』,知っている,意識している / 《補語にのみ用いて》(…に)『反応を示す』,意識(知覚)のある《+『to』+『名』》 / 《名詞の前にのみ用いて》『意識した』,わざとらしい / 考えることができる,意志のある"
+  },
+  {
+    "entry": "robot",
+    "rank": 1064,
+    "meaning_ejdict": "ロボット / 機械的に働く人間,他人の意のままに働く人"
+  },
+  {
+    "entry": "buffer",
+    "rank": 1068,
+    "meaning_ejdict": "(鉄道車両などの衝突の衝撃を弱める)緩衝器 / 間に立って争いや衝突の衝撃を弱める人(物) / 物をみがく人(道具) / …を緩和する,和らげる / …を緩衝液で処理する / ばかな老人 / やつ"
+  },
+  {
+    "entry": "infect",
+    "rank": 1070,
+    "meaning_ejdict": "〈病気が〉…に『感染する』;(病気を)…に感染させる,うつす《+『名』+『with』+『名』〈病気〉》 / …に『影響を及ぼす』"
+  },
+  {
+    "entry": "formulate",
+    "rank": 1071,
+    "meaning_ejdict": "〈考え・理論・計画など〉を明確に(系統立てて)述べる / …を公式で表す"
+  },
+  {
+    "entry": "socialist",
+    "rank": 1072,
+    "meaning_ejdict": "社会主義者 / 《通例S-》社会党員 / 社会主義の;社会主義者の"
+  },
+  {
+    "entry": "browser",
+    "rank": 1073,
+    "meaning_ja": "〈C〉ブラウザ / 拾い読みをする人"
+  },
+  {
+    "entry": "cyclical",
+    "rank": 1074,
+    "meaning_ejdict": "周期的な,循環する"
+  },
+  {
+    "entry": "exaggerate",
+    "rank": 1075,
+    "meaning_ejdict": "…を『誇張する』,大げさに言う(考える) / 誇張する,大げさに言う"
+  },
+  {
+    "entry": "cartel",
+    "rank": 1077,
+    "meaning_ejdict": "カルテル,企業連合 / (交戦国間の)捕虜交換協定書 / (政党が共通の目的のために結ぶ)党派連合 / (決闘の)挑戦状,果たし状"
+  },
+  {
+    "entry": "triumph",
+    "rank": 1078,
+    "meaning_ejdict": "(…に)『勝利を収める』,勝つ《+over+名》 / 勝利を喜ぶ,勝ち誇る / 〈C〉(…に対する)『勝利』,成功,功績《+over+名》 / 〈U〉勝利(成功)の喜び,勝ち誇り,得意の色"
+  },
+  {
+    "entry": "rationale",
+    "rank": 1079,
+    "meaning_ejdict": "理由の説明 / (ある物・事の)論理的根拠;原理"
+  },
+  {
+    "entry": "processor",
+    "rank": 1080,
+    "meaning_ejdict": "[農産物]加工業者 / (コンピューターの)データ処理装置"
+  },
+  {
+    "entry": "divert",
+    "rank": 1081,
+    "meaning_ejdict": "(ある道筋・用途から…へ)…を『わきへそらす』《+『名』+『from』+『名』+『to』+『名』》 / (…から)〈心・注意など〉をそらす《+『名』+『from』+『名』》 / …を楽しませる"
+  },
+  {
+    "entry": "delegation",
+    "rank": 1082,
+    "meaning_ejdict": "〈U〉『代表派遣』,代表任命 / 〈C〉《集合的に》『代表団』,派遣団"
+  },
+  {
+    "entry": "arguably",
+    "rank": 1083,
+    "meaning_ja": "まず間違いなく,十分論証できることだが / 議論の余地はあるかもしれないが / きっと, おそらく"
+  },
+  {
+    "entry": "ordinate",
+    "rank": 1084,
+    "meaning_ejdict": "縦座標"
+  },
+  {
+    "entry": "casualty",
+    "rank": 1085,
+    "meaning_ejdict": "(事故・災害などの)死傷者,負傷者,被災者,被害者;(戦争による)負傷者,行方不明者 / 不慮の事故,人身事故"
+  },
+  {
+    "entry": "verdict",
+    "rank": 1086,
+    "meaning_ejdict": "(陪審員の)『評決』 / 《話》(一般に)判断,決定,意見"
+  },
+  {
+    "entry": "dot",
+    "rank": 1087,
+    "meaning_ejdict": "Department of Transportation(米国の)運輸省"
+  },
+  {
+    "entry": "distinctive",
+    "rank": 1088,
+    "meaning_ejdict": "はっきりした差異のある,特有の,独特の"
+  },
+  {
+    "entry": "inflationary",
+    "rank": 1089,
+    "meaning_ejdict": "インフレの,通貨膨張の,物価騰貴の"
+  },
+  {
+    "entry": "tort",
+    "rank": 1091,
+    "meaning_ejdict": "(契約不履行を除く)不法行為(民事裁判にかけ補償請求ができる)"
+  },
+  {
+    "entry": "positively",
+    "rank": 1092,
+    "meaning_ejdict": "『断固として;積極的に』 / 《話》『全く,本当に』 / 《米》(質問に答えて)そのとおり,もちろん"
+  },
+  {
+    "entry": "constituency",
+    "rank": 1095,
+    "meaning_ejdict": "〈C〉選挙区;〈U〉《集合的に》選挙民 / 〈U〉《集合的に》支持者"
+  },
+  {
+    "entry": "explosion",
+    "rank": 1097,
+    "meaning_ejdict": "(火薬などの)『爆発』,破裂《+『of』+『名』》 / 爆発音 / 《an~》(怒り・笑いなどの)爆発《+『of』+『名』》 / 急激な増加"
+  },
+  {
+    "entry": "liberalization",
+    "rank": 1098,
+    "meaning_ejdict": "寛大なこと / 自由化,自由改革,自由主義化"
+  },
+  {
+    "entry": "buyout",
+    "rank": 1099,
+    "meaning_ja": "【名/C】買収；乗っ取り"
+  },
+  {
+    "entry": "separation",
+    "rank": 1100,
+    "meaning_ejdict": "〈C〉〈U〉『分離』,分割,別離・〈C〉(…の)分離(分割)した箇所《+『of』+『名』》 / 〈C〉〈U〉(合意・判決に基づく)夫婦の別居"
+  },
+  {
+    "entry": "dissolve",
+    "rank": 1102,
+    "meaning_ejdict": "…を『溶かす』,溶液にする / …を解消する,終りにする / …を分解する;…を解明する / 〈物質が〉『溶ける』,溶解する,液化する / 〈霧などが〉消散する,四散する(disperse) / 次第に消滅する,次第に薄れる(fade away) / (強い感情に)負ける"
+  },
+  {
+    "entry": "remarkably",
+    "rank": 1104,
+    "meaning_ejdict": "著しく,目立って"
+  },
+  {
+    "entry": "spark",
+    "rank": 1106,
+    "meaning_ejdict": "〈C〉『火花』,火の粉;(電気の)スパーク;(一般に)閃光(せんこう),(宝石などの)きらめき / 〈C〉(人などの)活気,生気;(才気などの)ひらめき《+『of』+『名』》 / 〈C〉(事件などの)発端,発火点 / 《a spark》ほんの少し(の…)《+『of』+『名』》 / 火花を出す;閃光を発する;〈電気が〉スパークする / 〈人〉をかり立てて…させる《+『名』〈人〉+『to』(『into』)+『名』(do『ing』)》"
+  },
+  {
+    "entry": "migration",
+    "rank": 1107,
+    "meaning_ejdict": "〈U〉〈C〉移住,(動物の)移動 / 〈C〉《集合的に》(人・動物などの)移動の群"
+  },
+  {
+    "entry": "dip",
+    "rank": 1111,
+    "meaning_ejdict": "(水などに)…を『ちょっと浸す』,さっとつける《+『名』+『in』(『into』)+『名』》 / (中の物を取り出すために)(…に)〈手・バケツ・ひしゃくなど〉を入れる《+『名』+『into』+『名』》 / …を浸して染める / (…から)…をすくい出す,くみ出す,すくい上げる《+『名』+『from』(『out of』)+『名』》 / 〈旗など〉をちょっと下げてまたすぐ上げる / (…に)『ちょっとつかる』,さっと潜る《+『into』+『名』》 / 下がる,沈む / 〈土地・道路などが〉下に傾く / (液体や容器に)手(さじなど)を突っ込んで取り出す《+『into』+『名』》 / (ある問題を)ちょっと調べる,のぞく;(本などを)拾い読みする《+『into』+『名』》 / 〈C〉《話》ちょっと浸す(浸る)こと,一浴び / 〈C〉(スープなどの)一すくい;一くみ / 〈U〉(クラッカーを浸す)味付けソース;(染色などの)浸液;(羊を洗う)消毒液 / 〈C〉(土地・道路の)傾斜,下り坂;沈下,くぼみ / 〈C〉(値段の)下落"
+  },
+  {
+    "entry": "slogan",
+    "rank": 1113,
+    "meaning_ejdict": "『スローガン』,標語"
+  },
+  {
+    "entry": "competitiveness",
+    "rank": 1114,
+    "meaning_ja": "【名/U】競争力；競争的なこと；競合性"
+  },
+  {
+    "entry": "inclusion",
+    "rank": 1115,
+    "meaning_ejdict": "〈U〉(…を)中に含めること,(…の)包含《+『of』+『名』》 / 〈C〉中に含まれた物"
+  },
+  {
+    "entry": "copper",
+    "rank": 1116,
+    "meaning_ejdict": "〈U〉『銅』(化学記号は『Cu』) / 〈C〉《英話》銅貨 / 〈C〉銅製品,銅器;《英》(洗濯用)銅の大がま / 〈U〉赤銅色 / 銅[製]の / 赤銅色の / …にをかぶせる,銅板を張る / ポリ公"
+  },
+  {
+    "entry": "poison",
+    "rank": 1117,
+    "meaning_ejdict": "『毒』,毒薬 / (…に)害になるもの,害毒《+『to』+『名』》;《俗》酒 / 〈人・動物など〉を『毒殺する』;…に毒を入れる / …を毒する,汚染する / (精神的に)…をだめにする,害する"
+  },
+  {
+    "entry": "justification",
+    "rank": 1118,
+    "meaning_ejdict": "(…を)正当化すること,(…の)正当化,弁明,弁護《+『of』+『名』》 / (…を)正当とする理由(事実)《+『for』+『名』(do『ing』)》"
+  },
+  {
+    "entry": "outright",
+    "rank": 1119,
+    "meaning_ejdict": "完全の,全くの / (比較変化なし)包み隠さず,率直に / 直ちに,すぐさま / 即座に"
+  },
+  {
+    "entry": "stance",
+    "rank": 1120,
+    "meaning_ejdict": "態度,立場 / スタンス(ゴルフ・野球などで打球のときの足の位置)"
+  },
+  {
+    "entry": "fringe",
+    "rank": 1121,
+    "meaning_ejdict": "(ショール・幕などの)『ふさ飾り』,ふさべり / (一般に)へり,縁,周辺 / 〈服・カーテンなど〉にふさ飾りを付ける;(…で)…を縁どる《+『名』+『with』+『名』》"
+  },
+  {
+    "entry": "bitter",
+    "rank": 1122,
+    "meaning_ejdict": "『苦い』 / 『つらい』;苦しい,きびしい,悲痛な / (寒気などが)『きびしい』 / 敵意に満ちた,恨みに思っている / 冷酷な;しんらつな;皮肉な / ひどく(bitterly) / 〈C〉《the bitter,the bitters》苦さ,苦しみ,つらさ,きびしさ / 〈U〉《英》苦味ビール(bitter beer) / 《複数形で》(カクテルなどに混ぜる)ビターズ,苦味剤"
+  },
+  {
+    "entry": "wheat",
+    "rank": 1123,
+    "meaning_ejdict": "小麦"
+  },
+  {
+    "entry": "hostility",
+    "rank": 1124,
+    "meaning_ejdict": "〈U〉(…への)敵意,敵がい心《+『toward』(『to』)+『名』》 / 〈C〉敵対行為 / 《複数形で》戦争[状態]"
+  },
+  {
+    "entry": "enlargement",
+    "rank": 1125,
+    "meaning_ejdict": "〈U〉〈C〉拡大,増大,拡張;増補;増築 / 〈C〉拡大(増大,拡張)された部分 / 〈C〉(写真)の引き伸ばし;引き伸ばした写真"
+  },
+  {
+    "entry": "hub",
+    "rank": 1126,
+    "meaning_ejdict": "(車輪の)こしき,中心部 / (活動などの)中心,中枢《+『of』+『名』》"
+  },
+  {
+    "entry": "trim",
+    "rank": 1127,
+    "meaning_ejdict": "(切ったり刈ったりして)…の『形を整える』,をこぎれいにする,手入れする / 〈余分なものなど〉を切り取る,摘み取る《+名+off,+off+名》 / (…で)…を飾る,に飾りを付ける《+名+with+名》 / (航行するために)〈帆〉を調節する,適帆する / (積み荷などを整理して)〈船・飛行機など〉のつり合いを取る / 《話》(スポーツなどで)…を完全に負かす,徹底的にやっつける / 〈意見・方針など〉を都合のよいように変える / …を削除する,削減する / 〈U〉《しばしば A ~》刈り(切り)整えること / 〈U〉『整頓』,整備;(心身の)良好な調子 / 〈U〉装飾;(衣服・ドア・窓などの)縁取り装飾,木造部;(自動車などの)内装,外装 / 『きちんとした』,整った,こぎれいな,均整のとれた"
+  },
+  {
+    "entry": "lesser",
+    "rank": 1128,
+    "meaning_ejdict": "『いっそう小さい(少ない,重要でない)』,より劣った"
+  },
+  {
+    "entry": "republic",
+    "rank": 1129,
+    "meaning_ejdict": "『共和国』;共和政体 / 《R-》(フランス革命から現代までの,フランスの)共和制"
+  },
+  {
+    "entry": "forthcoming",
+    "rank": 1130,
+    "meaning_ejdict": "まさに来よう(現れよう)としている;来たるべき,今度の / 《補語にのみ用いて》《しばしば否定文で》手近に用意されで / 《話》《しばしば否定文で》喜んで(進んで)手助けする"
+  },
+  {
+    "entry": "denounce",
+    "rank": 1133,
+    "meaning_ejdict": "(公然と)〈人〉を『非難する』,攻撃する / 〈一方の国が〉〈条約など〉を廃棄宣言する"
+  },
+  {
+    "entry": "artificial",
+    "rank": 1134,
+    "meaning_ejdict": "『人造の』,『人工の』,人為的な / 模造の / 不自然な,見せかけの"
+  },
+  {
+    "entry": "trait",
+    "rank": 1135,
+    "meaning_ejdict": "特性,特質,特色"
+  },
+  {
+    "entry": "protester",
+    "rank": 1137,
+    "meaning_ejdict": "異議申し立て人,抗議する人 / 主張(断言)する人"
+  },
+  {
+    "entry": "portray",
+    "rank": 1138,
+    "meaning_ejdict": "〈人物・風景〉を絵(彫刻,写真)で描く / …を言葉で描写する(describe) / (舞台・映画で)…を演じる"
+  },
+  {
+    "entry": "echo",
+    "rank": 1139,
+    "meaning_ejdict": "〈C〉〈U〉『反響』[音];『こだま』,山びこ / 〈C〉〈U〉(意見・心情などに対する)共鳴,反応 / 〈C〉〈U〉(他人の行為・意見などの)繰り返し,まね《+『of』+『名』》;(…からの)影響《+『from』+『名』》;〈C〉まねをする人 / 〈場所が〉…を『反響させる』 / 〈人の言葉・意見〉を『そのまま繰り返す』,そっくりまねる / (…で)〈場所・音・声が〉『反響する』《+『with』+『名』(do『ing』)》"
+  },
+  {
+    "entry": "haul",
+    "rank": 1140,
+    "meaning_ejdict": "…を『引っぱる』;…を引きずる《+『up』+『名,』+『名』+『up』》 / (警察などへ)…を引っぱって行く《+『名』+『before』(『to』)+『名』》 / 〈船〉の針路を変える / (…を)引っぱる《+[『away』]『at』(『on, upon』)+『名』》 / 《a ~》引っぱること / 《a ~》《修飾語句を伴って》引っぱられる距離 / 一網の漁獲;《話》(特に盗品の)もうけ"
+  },
+  {
+    "entry": "financially",
+    "rank": 1141,
+    "meaning_ja": "財政的に,経済的に,金銭的に / 財政的にいうと"
+  },
+  {
+    "entry": "maximization",
+    "rank": 1142,
+    "meaning_ja": "【名】最大化；極大化"
+  },
+  {
+    "entry": "bureaucrat",
+    "rank": 1143,
+    "meaning_ejdict": "官僚・官吏 / 官僚的な人"
+  },
+  {
+    "entry": "competency",
+    "rank": 1145,
+    "meaning_ejdict": "=competence"
+  },
+  {
+    "entry": "dissolution",
+    "rank": 1148,
+    "meaning_ejdict": "(部分・要素への)『分解』[作用] / (契約・連合の)解除,解消 / (議会・組織の)解散;崩壊"
+  },
+  {
+    "entry": "distortion",
+    "rank": 1149,
+    "meaning_ejdict": "〈U〉(話・真実・事実などを)ゆがめること,曲げて伝えること / 〈U〉(形の)ゆがみ,ねじれ;〈C〉ゆがんだ(ねじれた)もの / (光の)ひずみ,収差"
+  },
+  {
+    "entry": "continually",
+    "rank": 1150,
+    "meaning_ejdict": "『ひんぱんに』,たびたび(again and again);絶えず"
+  },
+  {
+    "entry": "coordination",
+    "rank": 1151,
+    "meaning_ejdict": "同等[にすること] / (筋肉運動の)整合,釣り合い"
+  },
+  {
+    "entry": "awkward",
+    "rank": 1154,
+    "meaning_ejdict": "(人・動作などが)『ぶかっこうな』,『ぎこちない』,無器用な(clumsy) / (物が)『扱いにくい』,使いにくい / (状態・問題などが)『やっかいな』,始末に困る"
+  },
+  {
+    "entry": "slack",
+    "rank": 1155,
+    "meaning_ejdict": "(綱などが)『緩んだ』,たるんだ / (規則などが)緩い,甘い,どっかりしていない / (動きなどが)遅い,のろい,ぐずぐずした / (商売などが)忙しくない,活発でない / 不注意な,いいかげんな,怠慢な / 〈U〉《the~》緩んだ(たるんだ)部分 / 〈C〉(商売などが)不振(不景気)の時期 / 〈綱など〉を緩める,たるませる,〈速度・努力など〉を緩める,怠る《+『off』(『up』)+『名,』+『名』+『off』(『up』)》 / なまける,怠る;〈綱などが〉緩る,たるむ;〈勢いが〉弱くなる;〈速力が〉のろくなる《+『off』(『up』)》 / 緩く,たるんで;不注意に,いいかげんに / 粉炭(coal dust)"
+  },
+  {
+    "entry": "drift",
+    "rank": 1157,
+    "meaning_ejdict": "〈U〉『漂流』,流されること / 〈U〉(海流・風などの)流れ,流れの方向(速度) / 〈C〉(雪・砂などの)吹きだまり,漂流物《+『of』+『名』》 / 〈U〉〈C〉大勢,風潮,傾向 / 〈U〉《時にa~》主意,主旨 / (水・風に)『流される』,漂う,漂流する / あてもなくさまよう / 〈雪・砂などが〉吹き積もる,吹きだまりになる / 〈砂・雪など〉を吹き寄せる;〈場所〉を吹きだまりにする"
+  },
+  {
+    "entry": "vaccine",
+    "rank": 1158,
+    "meaning_ejdict": "牛痘種,痘苗(牛痘を起こすビールスで,天然痘予防のために人体に接種される) / (伝染病の病原菌から作った)ワクチン"
+  },
+  {
+    "entry": "particle",
+    "rank": 1160,
+    "meaning_ejdict": "小片,(ごく)少量,微量 / 粒子 / 不変化詞(冠詞・前置詞・接続詞・感嘆詞など語形変化のない語);小詞,小辞"
+  },
+  {
+    "entry": "emergence",
+    "rank": 1162,
+    "meaning_ejdict": "出現"
+  },
+  {
+    "entry": "interference",
+    "rank": 1163,
+    "meaning_ejdict": "〈U〉(…への)干渉,口出し,妨害《+『with』+『名』》 / 〈U〉〈C〉(ラジオ・テレビの)混信;(光波・音波などの)干渉 / 〈U〉(一般のスポーツで)妨害行為"
+  },
+  {
+    "entry": "indifference",
+    "rank": 1164,
+    "meaning_ejdict": "(…に対する)『無関心』,むとんじゃく,冷淡《+『to』(『toward』)+『名』》 / (…にとって)重要でないこと,ささいなこと《+『to』+『名』》"
+  },
+  {
+    "entry": "geographical",
+    "rank": 1165,
+    "meaning_ejdict": "地理の,地理学[上]の"
+  },
+  {
+    "entry": "encompass",
+    "rank": 1167,
+    "meaning_ejdict": "(…で)…を取り囲む;取り巻く(surround)《+『名』+『with』(『by』)+『名』》 / …を包み込む,包含する(include)"
+  },
+  {
+    "entry": "proportional",
+    "rank": 1168,
+    "meaning_ejdict": "比例の,比例による;(…と)比例として《+『to』+『名』》 / 釣り合った,調和した;(…に)釣り合った《+『to』+『名』》"
+  },
+  {
+    "entry": "uncover",
+    "rank": 1170,
+    "meaning_ejdict": "…の『おおい』(ふた)『を取る』 / 〈秘密など〉を『明らかにする』,暴露する / 《古》(敬意を表して)〈頭〉から帽子を取る / (敬意を表して)脱帽する"
+  },
+  {
+    "entry": "petty",
+    "rank": 1171,
+    "meaning_ejdict": "『取るに足らない』,重要できない / 『下級の』 / 心の強い,狭量な"
+  },
+  {
+    "entry": "convergence",
+    "rank": 1172,
+    "meaning_ejdict": "1点に集まること;〈C〉1点に集まった箇所"
+  },
+  {
+    "entry": "worsen",
+    "rank": 1173,
+    "meaning_ejdict": "…をいっそう悪化させる / いっそう悪化する"
+  },
+  {
+    "entry": "rejection",
+    "rank": 1174,
+    "meaning_ejdict": "〈U〉〈C〉断ること,拒絶;却下 / 〈C〉廃棄物"
+  },
+  {
+    "entry": "reorganization",
+    "rank": 1175,
+    "meaning_ja": "【名/U/C】再編成,再組織；再建"
+  },
+  {
+    "entry": "mitigate",
+    "rank": 1176,
+    "meaning_ejdict": "〈苦痛・怒りなど〉を和らげる,鎮める;〈刑罰など〉を軽くする"
+  },
+  {
+    "entry": "successive",
+    "rank": 1177,
+    "meaning_ejdict": "『連続する』"
+  },
+  {
+    "entry": "blend",
+    "rank": 1178,
+    "meaning_ejdict": "(分離できないほどに)…を『混ぜ合わせる』;(…に)…を混ぜる《+『名』+『with』+『名』》 / 『混じる』;溶け合う / (…と)『調和する』《+『with』+『名』》(harmonize) / 『混合』,調合;〈C〉『混合物』"
+  },
+  {
+    "entry": "simplicity",
+    "rank": 1180,
+    "meaning_ejdict": "『簡単』,平易;(…の)容易《+『of』+『名』》 / 『飾り気のなさ』,簡素,地味,質素 / 実直,誠実"
+  },
+  {
+    "entry": "static",
+    "rank": 1181,
+    "meaning_ejdict": "静止の,固定した / 動きのない,活気のない / 静止電気の / 静止学の / 空電 / (空電による)ラジオの雑音,テレビの電波障害"
+  },
+  {
+    "entry": "deregulation",
+    "rank": 1182,
+    "meaning_ja": "〈U〉規制緩和,自由化"
+  },
+  {
+    "entry": "computerize",
+    "rank": 1183,
+    "meaning_ejdict": "…を電子計算機で処理する / …を電子計算化する / 電子計算化される"
+  },
+  {
+    "entry": "succession",
+    "rank": 1184,
+    "meaning_ejdict": "〈C〉(…の)『連続』(series)《+of+名》 / 〈U〉『続くこと』,連続 / 〈U〉(地位・財産などの)『継承[権]』,相続[権]《+to+名》 / 〈U〉(…に対する)継承(相続)順位《+to+名》"
+  },
+  {
+    "entry": "royalty",
+    "rank": 1185,
+    "meaning_ejdict": "〈C〉王室の一員;〈U〉《集合的に》王族 / 〈U〉王位;王権 / 〈C〉《しばしば複数形で》(発明家・著者・作曲家などが受ける)(…の)特許権使用料,上演料,印税,著作権料《+『on』+『名』》"
+  },
+  {
+    "entry": "classroom",
+    "rank": 1186,
+    "meaning_ejdict": "『クラスルーム』,教室"
+  },
+  {
+    "entry": "spectacular",
+    "rank": 1187,
+    "meaning_ejdict": "見せ物的な,壮観の,めざましい / (テレビ・映画などの)超大作,特別ショー"
+  },
+  {
+    "entry": "macro",
+    "rank": 1188,
+    "meaning_ja": "【複合要素】長い,大きい,大規模な"
+  },
+  {
+    "entry": "flourish",
+    "rank": 1189,
+    "meaning_ejdict": "〈文化などが〉『栄える』;〈商売などが〉繁盛する(prosper);〈植物などが〉繁茂する(thrive) / 〈人が〉元気である;〈人が〉(ある時代に)生きて活躍する / (…に向けて)…を振る,振り回す《+『名』+『at』+『名』》 / …を見せびらかす,誇示する;…を飾りたてる / (…を)振り回すこと《+『of』+『名』》 / 見せびらかし / 飾り書き,装飾文字 / 文飾,華麗な表現 / (要人の入場などの際の)華やかな音楽;トランペットの華麗などの吹奏;装飾楽句(節)"
+  },
+  {
+    "entry": "insurgent",
+    "rank": 1190,
+    "meaning_ejdict": "暴動(反乱)を起こした / 暴徒,謀反(むほん)人,反乱者 / 《米》党議に従わない人,反党分子"
+  },
+  {
+    "entry": "script",
+    "rank": 1191,
+    "meaning_ejdict": "〈U〉手書き;筆記体 / 〈U〉筆記活字 / (ある言語の)文字,(alphabetなどの)文字体系 / 台本,脚本"
+  },
+  {
+    "entry": "relevance",
+    "rank": 1192,
+    "meaning_ejdict": "適切 / (…に対する)関連性《+『to』+『名』》"
+  },
+  {
+    "entry": "complement",
+    "rank": 1193,
+    "meaning_ejdict": "(あるものを完全にするため)(…を)補う物(事)《+『of』+『名』》 / 補語(文法で文の成分の一つ) / (必要な)全数,全量;(船の)定員 / …を補足する,補う"
+  },
+  {
+    "entry": "oral",
+    "rank": 1194,
+    "meaning_ejdict": "『口頭の』,口述の(spoken) / 口の,口部の / 経口の"
+  },
+  {
+    "entry": "setup",
+    "rank": 1195,
+    "meaning_ejdict": "組織,機構 / 《しばしば複数形で》《米》(グラス・ソーダ水・氷など)酒を飲むときに必要なもの一そろい"
+  },
+  {
+    "entry": "notable",
+    "rank": 1196,
+    "meaning_ejdict": "『注目に値する』,目立った / 〈C〉著名人,名士"
+  },
+  {
+    "entry": "tranche",
+    "rank": 1197,
+    "meaning_ja": "〈C〉一部分；分割払い込み金"
+  },
+  {
+    "entry": "numerical",
+    "rank": 1198,
+    "meaning_ejdict": "数の,数で表した"
+  },
+  {
+    "entry": "policymaker",
+    "meaning_ja": "【名/C】政策立案者",
+    "rank": 1199
+  },
+  {
+    "entry": "technically",
+    "rank": 1200,
+    "meaning_ejdict": "専門的に,技術的に;専門語で"
+  },
+  {
+    "entry": "organ",
+    "rank": 1201,
+    "meaning_ejdict": "『オルガン』,パイプオルガン(pipe organ),リードオルガン(reed organ),電子オルガン(electronic organ),手回しオルガン(barrel organ) / (動植物の)『器官』 / (政党・会社などの)機関誌,機関紙 / 《しばしば複数形で》(行動・実施などの)組織,機関"
+  },
+  {
+    "entry": "cheat",
+    "rank": 1202,
+    "meaning_ejdict": "〈人〉を『だます』,欺く / 《文》…をうまくのがれる / (…で)〈人が〉『不正をする』,カンニングする《+『at』(『on, in』)+『名』》 / 《話》(浮気などで夫または妻を)裏切る《+『on』+『名』》 / 〈U〉〈C〉詐欺,ぺてん / 〈C〉ずるいやつ,詐欺師,やま師"
+  },
+  {
+    "entry": "utilization",
+    "rank": 1203,
+    "meaning_ejdict": "利用"
+  },
+  {
+    "entry": "tumble",
+    "rank": 1204,
+    "meaning_ejdict": "《状態・方向を表す副詞[句]を伴って》『ころがる』,倒れる / ころげ回る,のたうち回る《+about》 / 《状態・方向を表す副詞[句]を伴って》ころがるようにして行く(来る) / くずれ落ちる,崩壊する《+down》 / (体操)とんぼ返りを打つ,くるくる回転する / 〈価格が〉急落する / 《状態・方向を表す副詞[句]を伴って》…をほうり投げる / …をめちゃくちゃにする / 〈C〉転倒,転落 / 〈U〉《しばしば A ~》混乱,乱雑,ごちゃごちゃ / 〈C〉とんぼ返り"
+  },
+  {
+    "entry": "baseline",
+    "rank": 1205,
+    "meaning_ejdict": "基線 / (テニスコートの)ベースライン / (野球の)ベースライン"
+  },
+  {
+    "entry": "template",
+    "rank": 1206,
+    "meaning_ejdict": "型板(ある型に切った薄い木や金属の板)"
+  },
+  {
+    "entry": "instability",
+    "rank": 1209,
+    "meaning_ejdict": "不安定,不確定;(心の)不安定,変わりやすさ"
+  },
+  {
+    "entry": "obituary",
+    "rank": 1210,
+    "meaning_ejdict": "(新聞などの)死亡記事 / 死亡の,死者に関する"
+  },
+  {
+    "entry": "peso",
+    "rank": 1212,
+    "meaning_ejdict": "ペソ(メキシコ・キューバ・フィリピンなどの貨幣単位;《略》『P.』)"
+  },
+  {
+    "entry": "denominate",
+    "rank": 1213,
+    "meaning_ejdict": "…に命名する"
+  },
+  {
+    "entry": "shortfall",
+    "rank": 1214,
+    "meaning_ejdict": "不足額(量)"
+  },
+  {
+    "entry": "originate",
+    "rank": 1217,
+    "meaning_ejdict": "…を『引き起こす』 / …を『考え出す』,発明する / (…に,…から)『起こる』(begin)《+『in』(『from』)+『名』》 / (人に)始まる《+『with』+『名』〈人〉》"
+  },
+  {
+    "entry": "bureaucratic",
+    "rank": 1218,
+    "meaning_ejdict": "《軽べつして》官僚の;官僚的な;官僚制の"
+  },
+  {
+    "entry": "stochastic",
+    "rank": 1221,
+    "meaning_ja": "確率的な,確率論的な / 推測の,推計学的な"
+  },
+  {
+    "entry": "kidnap",
+    "rank": 1222,
+    "meaning_ejdict": "〈人〉を誘拐する"
+  },
+  {
+    "entry": "prevention",
+    "rank": 1223,
+    "meaning_ejdict": "〈U〉(…を)『予防』(『防止』)『すること』《+『of』+『名』》 / 〈C〉(…を)予防(防止)するもの《+『against』+『名』(do『ing』)》"
+  },
+  {
+    "entry": "redundancy",
+    "rank": 1224,
+    "meaning_ejdict": "〈U〉余分な言葉を使うこと,冗長,冗漫 / 余分なもの;不必要な言葉"
+  },
+  {
+    "entry": "dictator",
+    "rank": 1225,
+    "meaning_ejdict": "〈C〉独裁者 / 絶対的権力者"
+  },
+  {
+    "entry": "dual",
+    "rank": 1226,
+    "meaning_ejdict": "二つの部分(2個)から成る / 二重の性質がある"
+  },
+  {
+    "entry": "brick",
+    "rank": 1227,
+    "meaning_ejdict": "〈C〉(1個の)『れんが』 / 〈U〉(材料としての)『れんが』 / 〈C〉(形が)れんがに似た物 / れんがの,れんが造りの / 〈建築物〉を=れんがで囲う,れんがで作る,…にれんがを敷く《+『in』(『on』)+『名』》"
+  },
+  {
+    "entry": "internally",
+    "rank": 1228,
+    "meaning_ja": "【副】内部で；内面的に；国内で"
+  },
+  {
+    "entry": "erode",
+    "rank": 1230,
+    "meaning_ejdict": "〈酸などが〉〈金属類〉を腐食する;〈水滴・雨・波などが〉…を浸食する"
+  },
+  {
+    "entry": "refinance",
+    "rank": 1231,
+    "meaning_ja": "...を借り換える / に再融資する / 借り換える / 再融資する"
+  },
+  {
+    "entry": "tribal",
+    "rank": 1232,
+    "meaning_ejdict": "部族の;部族的な"
+  },
+  {
+    "entry": "empower",
+    "rank": 1233,
+    "meaning_ejdict": "〈人など〉に(…する)能力(権限)を付与する《+『名』+『to』 do》"
+  },
+  {
+    "entry": "oversight",
+    "rank": 1234,
+    "meaning_ejdict": "過失,見落とし"
+  },
+  {
+    "entry": "transparent",
+    "rank": 1235,
+    "meaning_ejdict": "『透明な』,透き通った,光を通す / 透けるほど薄い / (言い訳などが)見え透いた / 率直な,正直な,あけひろげの"
+  },
+  {
+    "entry": "predictor",
+    "rank": 1236,
+    "meaning_ja": "〈C〉予測者 / 予測因子 / 予言するもの,徴候を示すもの"
+  },
+  {
+    "entry": "dominance",
+    "rank": 1238,
+    "meaning_ejdict": "優越,優勢;支配"
+  },
+  {
+    "entry": "segmentation",
+    "rank": 1239,
+    "meaning_ejdict": "区分,分割,分断"
+  },
+  {
+    "entry": "hugely",
+    "rank": 1240,
+    "meaning_ja": "大いに,とても,非常に"
+  },
+  {
+    "entry": "arbitrary",
+    "rank": 1241,
+    "meaning_ejdict": "随意の,任意の,気まぐれな(capricious) / 独裁的な,独断的な,専横な(despotic)"
+  },
+  {
+    "entry": "seemingly",
+    "rank": 1242,
+    "meaning_ejdict": "うわべは,表面は(apparently) / 一見したところ,なるほど"
+  },
+  {
+    "entry": "wholesaler",
+    "rank": 1244,
+    "meaning_ejdict": "卸し売り業者"
+  },
+  {
+    "entry": "renewable",
+    "rank": 1245,
+    "meaning_ejdict": "再開可能な / 更新可能な;復活可能な;回復可能な / 繰り返せる"
+  },
+  {
+    "entry": "bilateral",
+    "rank": 1246,
+    "meaning_ejdict": "両側のある,左右同形の / 双方の,二派の / (おもに法律で)相互に義務を負う,双務的な"
+  },
+  {
+    "entry": "cotton",
+    "rank": 1249,
+    "meaning_ejdict": "『綿』,綿花 / 綿の木(cotton plant) / 『綿布』,もめん / 綿糸,もめん糸 / 綿製の"
+  },
+  {
+    "entry": "intensity",
+    "rank": 1250,
+    "meaning_ejdict": "(感情・行動・熱・色などの)『強烈さ』,熱烈さ,強度"
+  },
+  {
+    "entry": "routinely",
+    "rank": 1251,
+    "meaning_ja": "【副】日常的に,いつものように；規定通りに"
+  },
+  {
+    "entry": "displace",
+    "rank": 1252,
+    "meaning_ejdict": "…にとって代わる / (…から)〈人〉を強制的に退去させる(移動させる,やめさせる)《+『名』+『from』+『名』》 / 〈船舶が〉…の排水量を持つ"
+  },
+  {
+    "entry": "immune",
+    "rank": 1253,
+    "meaning_ejdict": "免疫の / 《補語にのみ用いて》(影響・攻撃・義務・税などを)免れている《+『against』(『from, to』)+『名』》"
+  },
+  {
+    "entry": "obscure",
+    "rank": 1254,
+    "meaning_ejdict": "『はっきりしない』,分かりにくい / よく知られていない,目につかない / 『薄暗』 / …を隠す,おおう / 〈意味など〉あいまいにする,分かりにくくする"
+  },
+  {
+    "entry": "mobility",
+    "rank": 1255,
+    "meaning_ejdict": "可動性,流動性,変わりやすさ;(軍隊の)機動力"
+  },
+  {
+    "entry": "dilute",
+    "rank": 1256,
+    "meaning_ejdict": "(…で)〈液体〉を薄める《+『名』+『with』+『名』》 / 〈力・効力など〉を弱める / (液体などが)薄い"
+  },
+  {
+    "entry": "precedent",
+    "rank": 1257,
+    "meaning_ejdict": "〈C〉(…の)先例,前例《+『for』+『名』》 / 〈U〉先例にならうこと"
+  },
+  {
+    "entry": "elaborate",
+    "rank": 1258,
+    "meaning_ejdict": "『入念な』,手の込んだ / …を念入りに仕上げる,練り上げる / (…について)詳細に述べる《+『on』(『upon, about』)+『名』(do『ing』)》"
+  },
+  {
+    "entry": "reprint",
+    "rank": 1259,
+    "meaning_ejdict": "…を再び印刷する;…を再版する,翻刻する / (同一の版の)増刷;翻刻"
+  },
+  {
+    "entry": "bull",
+    "rank": 1260,
+    "meaning_ejdict": "『雄牛』 / (象,鯨,アザラシなどの)雄 / (株の)買い方,強気筋 / ローマ教皇の教書 / こっけいな矛盾 / …を押し進める"
+  },
+  {
+    "entry": "clone",
+    "rank": 1263,
+    "meaning_ejdict": "クローン(一個体から無性生殖で増殖した有機体群);(植物の)栄養系,(動物の)分技系"
+  },
+  {
+    "entry": "extremist",
+    "rank": 1264,
+    "meaning_ejdict": "(特に政治上の)過激論者,過激主義者"
+  },
+  {
+    "entry": "peg",
+    "rank": 1265,
+    "meaning_ejdict": "(木などの,おもに木工に用いる)『くぎ』,掛けくぎ;(たるなどの)『せん』;(テントなどの)『くい』 / (弦楽器の弦をしめる)ねじ / 《話》(評価などの)段階)degree) / (議論などの)きっかけ,口実 / 《話》(おもに野球で)送球 / …を『木くぎ』(『くい』)『でとめる』,に木くぎ(木くいを打つ《+『名』+『down』,+『down』+『名』》 / 〈物価・賃金など〉を抑える,安定させる / 《話》(おもに野球で〈ボール〉を投げる / 《話》…を認める,見定める"
+  },
+  {
+    "entry": "idle",
+    "rank": 1266,
+    "meaning_ejdict": "(人が)『働いていない』(unemployed),(機械などが)使われていない,(時間が)空いている / (人が)『怠惰な』,怠けている / 価値のない,むだな / 〈人が〉何もしないでいる,ぶらぶらと時間を過ごす《+『about』》 / 〈機械などが〉から回りし続ける,アイドリングする / 〈時間〉を空費する,ぶらぶらして過ごす《+『名』+『away』,+『away』+『名』》 / 〈不景気・ストライキなどが〉〈人・機械など〉を遊ばせる,暇にさせる"
+  },
+  {
+    "entry": "allegedly",
+    "rank": 1269,
+    "meaning_ejdict": "申し立てによれば,伝えられるところでは"
+  },
+  {
+    "entry": "annualize",
+    "meaning_ja": "【動/他】…を年率に換算する；...を年間で計算する【動/自】年間で...になる。",
+    "rank": 1271
+  },
+  {
+    "entry": "turmoil",
+    "rank": 1272,
+    "meaning_ejdict": "騒ぎ,混乱,動揺"
+  },
+  {
+    "entry": "reinforcement",
+    "rank": 1273,
+    "meaning_ejdict": "〈U〉増強,補強 / 〈C〉補強材 / 《複数形で》援軍,増援隊"
+  },
+  {
+    "entry": "wary",
+    "rank": 1274,
+    "meaning_ejdict": "注意深い,用心深い"
+  },
+  {
+    "entry": "credible",
+    "rank": 1276,
+    "meaning_ejdict": "信用できる,確実な"
+  },
+  {
+    "entry": "woe",
+    "rank": 1277,
+    "meaning_ejdict": "〈U〉深い悲しみ,悲哀,苦悩 / 《複数形で》災難,苦難,難儀"
+  },
+  {
+    "entry": "capita",
+    "meaning_ja": "【名】市民たる地位；人物；頭；人；個体",
+    "rank": 1278
+  },
+  {
+    "entry": "underestimate",
+    "rank": 1279,
+    "meaning_ejdict": "〈価値・質・量・能力など〉を実際より低く評価する(見積もる) / 過小評価"
+  },
+  {
+    "entry": "tolerate",
+    "rank": 1280,
+    "meaning_ejdict": "…に『寛大な態度をとる』,を黙認する / …を『がまんする』,耐える / 〈薬品・毒物など〉に耐性がある"
+  },
+  {
+    "entry": "casino",
+    "rank": 1281,
+    "meaning_ejdict": "カジノ(とばく・ダンス・演芸などの娯楽場)"
+  },
+  {
+    "entry": "downside",
+    "rank": 1283,
+    "meaning_ja": "【形】下降気味の / 【名/C】下側 / 下降気味 / 否定的な側面, 欠点"
+  },
+  {
+    "entry": "fragile",
+    "rank": 1284,
+    "meaning_ejdict": "『壊れやすい』,もろい / (体質が)虚弱な(weak);《おどけて》調子が悪い / (幸福などが)はかない"
+  },
+  {
+    "entry": "invade",
+    "rank": 1285,
+    "meaning_ejdict": "〈敵が〉…に『侵入する』 / 〈人が〉…に『押し寄せる』 / 〈権利など〉を『侵害する』(violate) / 〈病気などが〉…をおかす"
+  },
+  {
+    "entry": "steam",
+    "rank": 1286,
+    "meaning_ejdict": "『蒸気』,湯気,水蒸気 / 蒸気の力 / 《話》力,精,力,元気 / …を蒸気にさらす,蒸す / 『[水]蒸気を出す』,湯気をたてる《+『away』》 / 《副詞[句]を伴って》蒸気で動く / 《話》怒る,いきまく"
+  },
+  {
+    "entry": "subtle",
+    "rank": 1287,
+    "meaning_ejdict": "(知覚しにくいほど)『かすかな』,ほのかな,微妙な / (頭脳・感覚などが)鋭い / ずるい,こうかつな / 難解な / 巧みな,精巧な"
+  },
+  {
+    "entry": "hydrogen",
+    "rank": 1288,
+    "meaning_ejdict": "『水素』(化学記号は『H』)"
+  },
+  {
+    "entry": "replicate",
+    "rank": 1290,
+    "meaning_ejdict": "(統計)実施・(楽)1[数]オクターブ高い[低い]音・(葉などが)折返った・反復した・再生する・ 模写[複製]する; 折返す.〈葉など〉を折り返す,曲げ返す・…を繰り返す・細胞分裂で再生する"
+  },
+  {
+    "entry": "crush",
+    "rank": 1291,
+    "meaning_ejdict": "…を『押しつぶす』,ぺしゃんこにする《+『up』+『名,』+『名』+『up』》 / …を『砕く』,粉々にする;…を砕いて(…に)する《+『名』+『into』+『名』》 / (…に)…を押しつける《+『名』+『against』+『名』》;(…に)…を押し込む《+『名』+『into』+『名』》 / (…から)…を押しつぶして出す,しぼり出す《+『名』+『from』+『名』》 / …をぎゅっと抱きしめる / …を打ちのめす,打ちひしぐ《+『down』+『名,』+『名』+『down』》 / 『つぶれる』,ぺしゃんこになる;くしゃくしゃになる / 『砕ける』,粉々になる / (…に)押し合って入る,殺到する《+『into』(『through』)+『名』》 / 〈C〉《単数形で》押し合いへし合い,殺到 / 〈C〉《話》《単数形で》大混雑の集会,すしづめの集会 / 〈U〉《英》(押しつぶして出した)果汁 / 〈C〉《話》(…に)のぼせ上がること,(…への)べたぼれ《+『on』+『名』》;のぼせ上がった相手"
+  },
+  {
+    "entry": "thereafter",
+    "rank": 1293,
+    "meaning_ejdict": "その後(after that)"
+  },
+  {
+    "entry": "breakthrough",
+    "rank": 1295,
+    "meaning_ejdict": "敵陣突破[作戦];(ある事態・線の)突破 / (科学などの)新機軸,新発見,成功,大躍進"
+  },
+  {
+    "entry": "rhetoric",
+    "rank": 1296,
+    "meaning_ejdict": "修辞学;演説法 / 美辞麗句で飾った言葉"
+  },
+  {
+    "entry": "delta",
+    "rank": 1297,
+    "meaning_ejdict": "デルタ(ギリシア語アルファベットの第4字Δ,δ;英語D,dに相当) / (河口の)三角州,デルタ / 三角形をしたもの"
+  },
+  {
+    "entry": "marketable",
+    "rank": 1299,
+    "meaning_ejdict": "(商品が)売れやすい,市場向きの;売買上の"
+  },
+  {
+    "entry": "conjunction",
+    "rank": 1302,
+    "meaning_ejdict": "〈C〉『接続詞』(and,but,for,sinceなど) / 《文》〈U〉〈C〉結合,連結;(事件などの)同時発生 / 〈U〉合(ごう)(二つ以上の天体が同じ黄経上にあること)"
+  },
+  {
+    "entry": "overhaul",
+    "rank": 1304,
+    "meaning_ejdict": "(修理・治療などのために)…を分解検査(修理)する,精密検査する,オーバーホールする / 〈組織など〉を徹底的に見直して改革する / …に追いつく / 〈C〉分解検査(修理),オーバーホール"
+  },
+  {
+    "entry": "sensor",
+    "rank": 1305,
+    "meaning_ejdict": "(光・温度・放射能などの)感知器"
+  },
+  {
+    "entry": "doubtful",
+    "rank": 1306,
+    "meaning_ejdict": "(事が)『疑わしい』,疑問を抱かせる,不確かな / (人が)『疑っている』,怪しんでいる / いかがわしい,問題となる"
+  },
+  {
+    "entry": "ideological",
+    "rank": 1307,
+    "meaning_ejdict": "イデオロギーの / 観念的な,空想的な"
+  },
+  {
+    "entry": "tribe",
+    "rank": 1308,
+    "meaning_ejdict": "《集合的に》《単数・複数扱い》『部族』 / 《しばしば軽べつして》(…の)仲間,集団,連中《+of+名》 / (動植物の)族(family(科)と genus(属)の間の分類単位)"
+  },
+  {
+    "entry": "grasp",
+    "rank": 1309,
+    "meaning_ejdict": "…を『しっかり握る』,『ぎゅっとつかむ』 / …を『理解する』,把握する / (…を)捕まえ(捕らえ)ようとする《+『at』(『for』)+『名』》 / 《通例a~》(手などでしっかり)『捕まえること』,『つかむこと』 / 『理解』[『力』],知的把握[力]"
+  },
+  {
+    "entry": "injection",
+    "rank": 1311,
+    "meaning_ejdict": "〈U〉〈C〉注射,注入 / 〈C〉注射液"
+  },
+  {
+    "entry": "bracket",
+    "rank": 1312,
+    "meaning_ejdict": "(たななどを支える)腕木,たな受け,持ち送り / (腕木に支えられた)たな,張り出しだな / 《複数形で》かっこ,角がっこ([ ]など) / (同類の人の)群,階層 / 〈たななど〉に腕木をつける / …をかっこで囲む / …を同類としてまとめる"
+  },
+  {
+    "entry": "outrage",
+    "rank": 1314,
+    "meaning_ejdict": "〈C〉〈U〉(…に対する)暴行,乱暴(残虐)な行為《+『against』(『on, upon』)+『名』》 / 〈U〉激怒 / …を激怒させる / …に乱暴を働く,を踏みにじる"
+  },
+  {
+    "entry": "hurdle",
+    "rank": 1315,
+    "meaning_ejdict": "〈C〉(競技用)ハードル,障害物 / 《複数形で;単数扱い》ハードル競走 / 〈C〉困難,障害物 / 〈C〉(臨時に家畜の囲いなどに用いる移動式の)編み垣 / (競技で)〈ハードルなど〉を跳び越す / 〈困難・障害など〉を克服する,に打ち勝つ(overcome)"
+  },
+  {
+    "entry": "coincide",
+    "rank": 1317,
+    "meaning_ejdict": "(…と)『同時に起こる』《+『with』+『名』》 / 〈人・性格・意見などが〉(…と)『一致する』,ぴったり合う《+『with』(『in』)+『名』》"
+  },
+  {
+    "entry": "commentator",
+    "rank": 1318,
+    "meaning_ejdict": "注釈者 / (ラジオ・テレビの)解説者,実況放送者"
+  },
+  {
+    "entry": "premier",
+    "rank": 1319,
+    "meaning_ejdict": "『第1位の』;『首席の』(chief) / (フランス・イタリア・日本などの)『首相』"
+  },
+  {
+    "entry": "insurgency",
+    "rank": 1320,
+    "meaning_ja": "〈U/C〉暴動,反乱"
+  },
+  {
+    "entry": "incline",
+    "rank": 1321,
+    "meaning_ejdict": "(…に)『心が傾く』,気が向く / 〈人・物が〉『傾向がある』(rend) / (…に)傾く,傾斜する;身をかがめる《+『to』(『toward』)+『名』》 / 〈物事が〉(…に)の心を向けさせる / (…に)…を傾ける,傾斜させる,かがめる《+『名』+『to』(『toward』)+『名』》 / 傾斜,こう配;斜面"
+  },
+  {
+    "entry": "averse",
+    "meaning_ja": "《...を》嫌って；《...に》気が進まなくて；反対して《to, from ...》",
+    "rank": 1322
+  },
+  {
+    "entry": "enlarge",
+    "rank": 1325,
+    "meaning_ejdict": "…を『大きくする』,拡大する / 大きくなる,広がる,ふえる"
+  },
+  {
+    "entry": "ethanol",
+    "rank": 1326,
+    "meaning_ejdict": "=alcohol"
+  },
+  {
+    "entry": "fairness",
+    "rank": 1327,
+    "meaning_ejdict": "《古》美しさ / 色白,金髪 / 公平,公正,正々堂々"
+  },
+  {
+    "entry": "dependency",
+    "rank": 1329,
+    "meaning_ejdict": "〈U〉依存,依存関係 / 〈C〉(国の)属領,従属国"
+  },
+  {
+    "entry": "prepayment",
+    "rank": 1330,
+    "meaning_ja": "【名/C】前払い金；前納金"
+  },
+  {
+    "entry": "externality",
+    "rank": 1331,
+    "meaning_ja": "【名/U】外面性；外部性【C】外形,外観；外部への影響"
+  },
+  {
+    "entry": "helicopter",
+    "rank": 1332,
+    "meaning_ejdict": "『ヘリコプター』"
+  },
+  {
+    "entry": "perpetual",
+    "rank": 1336,
+    "meaning_ejdict": "『永久の』,『永遠に続く』 / 終身の / 『絶え間のない』"
+  },
+  {
+    "entry": "ration",
+    "rank": 1338,
+    "meaning_ejdict": "〈V〉(非常時などの物資の)『配給量』 / 〈V〉(兵士などの)1日分の糧食 / 《複数形で》食料,糧食(food) / (…に)…を配給する《+『名』+『to』+『名』》 / …に食料(糧食)を供給する / 〈物資〉を供給を制限する;…を配給制にする"
+  },
+  {
+    "entry": "mosque",
+    "rank": 1340,
+    "meaning_ejdict": "イスラム教寺院(外部に数個の尖塔(せんとう)がある独特の建築物)"
+  },
+  {
+    "entry": "inability",
+    "rank": 1341,
+    "meaning_ejdict": "無力,無能,不能"
+  },
+  {
+    "entry": "discriminate",
+    "rank": 1343,
+    "meaning_ejdict": "(…と)…を『見分ける』,識別する《+『名』+『from』+『名』》 / (…間の)『差異を見分ける』,識別する《+『between』+『名』》 / (…を)分け隔てする,差別待遇する《+『against』+『名』》"
+  },
+  {
+    "entry": "analytic",
+    "rank": 1344,
+    "meaning_ejdict": "分析的な,分解的な,解析的"
+  },
+  {
+    "entry": "proliferation",
+    "rank": 1346,
+    "meaning_ejdict": "〈U〉《しばしばa~》(…の)拡散《+『of』+『名』》 / 〈U〉(細胞分裂による)増殖;〈C〉増殖部分"
+  },
+  {
+    "entry": "autonomous",
+    "rank": 1347,
+    "meaning_ejdict": "自治の,自治権のある"
+  },
+  {
+    "entry": "prone",
+    "rank": 1348,
+    "meaning_ejdict": "《補語にのみ用いて》傾向がある / うつぶせの,平伏した"
+  },
+  {
+    "entry": "inefficiency",
+    "rank": 1351,
+    "meaning_ejdict": "むだ,無能"
+  },
+  {
+    "entry": "downgrade",
+    "rank": 1353,
+    "meaning_ejdict": "(丘や道の)下り坂 / 落ち目の,没落しつつある / 〈地位・等級・給与など〉を下げる;〈人〉を降職させる,左遷する / …を軽く見る,見くびる"
+  },
+  {
+    "entry": "ideology",
+    "rank": 1354,
+    "meaning_ejdict": "〈C〉イデオロギー(社会・政党などが持つ典型的な思考形態) / 〈U〉《軽蔑して》空理,空論"
+  },
+  {
+    "entry": "greenhouse",
+    "rank": 1355,
+    "meaning_ejdict": "温室"
+  },
+  {
+    "entry": "plead",
+    "rank": 1356,
+    "meaning_ejdict": "嘆願する,懇願する / (訴訟で)(…を)弁護する《+『for』+『名』》;(…に)抗弁する,申し開きをする《+『against』+『名』》 / …を言い訳(理由)として述べる / (訴訟)…を弁護する,弁論する"
+  },
+  {
+    "entry": "openly",
+    "rank": 1357,
+    "meaning_ejdict": "『公然と』,あからさまに / 『率直に』,包み隠さず(frankly)"
+  },
+  {
+    "entry": "elastic",
+    "rank": 1358,
+    "meaning_ejdict": "『弾力のある』,伸縮自在の / 融通性のある / ゴムひも;ゴムひもで作った物,靴下留め,ズボンつり"
+  },
+  {
+    "entry": "oust",
+    "rank": 1359,
+    "meaning_ejdict": "(場所・地位などから)…を追い払う,追い出す《+『名』+『from』+『名』》"
+  },
+  {
+    "entry": "entrant",
+    "rank": 1363,
+    "meaning_ejdict": "(競技などの)参加者《+『for』+『名』》 / (…の)新会員,新入生,新入者,(新しい職務などに)つく人《+『to』(『into』)+『名』》"
+  },
+  {
+    "entry": "underwriter",
+    "rank": 1364,
+    "meaning_ejdict": "保険業者 / 証巻引受業者"
+  },
+  {
+    "entry": "cattle",
+    "rank": 1365,
+    "meaning_ejdict": "(家畜の)『牛』"
+  },
+  {
+    "entry": "newcomer",
+    "rank": 1367,
+    "meaning_ejdict": "(…に)新しく入った人,新入者《+『to』+『名』》"
+  },
+  {
+    "entry": "prolong",
+    "rank": 1368,
+    "meaning_ejdict": "(時間的・空間的に)…を『延ばす』,『延長する』"
+  },
+  {
+    "entry": "salvage",
+    "rank": 1369,
+    "meaning_ejdict": "(主として船・乗組員・貨物の)海難救助;(一般に)救助 / 救助された貨物 / 救助作業,沈没船引き上げ作業 / (難船・火災などから)〈船・貨物など〉を救出する《+『名』+『from』+『名』》 / 〈負傷者〉を救う,〈けが〉を治療する"
+  },
+  {
+    "entry": "pursuant",
+    "meaning_ja": "(形)《...に》準ずる, 従った, 拠った 《to ...》 / 追跡する,追う / (副)《…に》従って,準じて《to ...》",
+    "rank": 1370
+  },
+  {
+    "entry": "appropriately",
+    "rank": 1371,
+    "meaning_ejdict": "適当に,適切に,ふさわしく"
+  },
+  {
+    "entry": "accusation",
+    "rank": 1373,
+    "meaning_ejdict": "〈C〉〈U〉(…を)告発(告訴,非難)すること《+『of』+『名』》,告発(非難)されること / 〈C〉(…の)罪状;…罪《+『of』+『名』》"
+  },
+  {
+    "entry": "entrepreneurial",
+    "rank": 1374,
+    "meaning_ja": "【形】起業家の；起業家精神に溢れた"
+  },
+  {
+    "entry": "devaluation",
+    "rank": 1375,
+    "meaning_ejdict": "(貨幣の)平価切り下げ,デノミ"
+  },
+  {
+    "entry": "outlay",
+    "rank": 1376,
+    "meaning_ejdict": "支出;〈C〉(…の)経費《+『for』(『on』)+『名』》 / (…のために)…を支出する《+『名』+『on』(『for』)+『名』》"
+  },
+  {
+    "entry": "simulate",
+    "rank": 1377,
+    "meaning_ejdict": "…のふりをする,を装う;simulate death死を装う / …をまねる,に似せる(imitate)"
+  },
+  {
+    "entry": "precious",
+    "rank": 1379,
+    "meaning_ejdict": "『高価な』;『貴重な』,大切な / 『かけがえのない』,無駄にできない / 『愛する』,いとしい(dear・beloved) / 《話》《名詞の前にのみ用いて》《強調・皮肉に》とびきりの,大した / いやに気取った,凝り過ぎの / とても,非常に / かわいい人"
+  },
+  {
+    "entry": "regain",
+    "rank": 1380,
+    "meaning_ejdict": "〈健康・記憶など〉を『取り戻す』,回復する / 〈場所・状態など〉に立ち帰る,再び着く"
+  },
+  {
+    "entry": "differentiation",
+    "rank": 1381,
+    "meaning_ja": "〈U〉区別,識別 / 差別化 / 分化 / 微分法"
+  },
+  {
+    "entry": "restrictive",
+    "rank": 1382,
+    "meaning_ejdict": "制限する,限定的な / (文法で)制限的な"
+  },
+  {
+    "entry": "deed",
+    "rank": 1383,
+    "meaning_ejdict": "『行為』,行動 / (正式の)捺印証書,権利書 / …を証書を作製して譲渡する"
+  },
+  {
+    "entry": "competent",
+    "rank": 1384,
+    "meaning_ejdict": "『有能な』,能力ある;適任の / (要求を満たすのに)十分な,満足できる / (役所・役人・証人などが)権限(資格)を持つ"
+  },
+  {
+    "entry": "horror",
+    "rank": 1385,
+    "meaning_ejdict": "〈U〉『恐怖』,身の毛のよだつ思い / 《a~》(…の)『嫌悪』(けんお),毛ぎらい《+『of』+『名』》 / 〈U〉(…の)恐ろしさ《+『of』+『名』》 / 〈C〉ぞっとさせるもの,いやな人 / 〈C〉《話》実にひどいもの"
+  },
+  {
+    "entry": "occasional",
+    "rank": 1388,
+    "meaning_ejdict": "『時たまの』,時おりの / 《文》特別な場合のための / 《文》(家具が)予備の,補助の"
+  },
+  {
+    "entry": "globe",
+    "rank": 1391,
+    "meaning_ejdict": "〈C〉『球』,球体 / 《the ~》『地球』(the earth) / 〈C〉『地球儀』 / 〈C〉球形のガラス器(ガラス鉢・ランプのほや・金魚鉢など)"
+  },
+  {
+    "entry": "sovereignty",
+    "rank": 1392,
+    "meaning_ejdict": "主権,統治権 / 主権者の身分(支配権,権力)"
+  },
+  {
+    "entry": "asylum",
+    "rank": 1393,
+    "meaning_ejdict": "(孤児・盲人・狂人などの)保護収容所,養育院;〈U〉避難,保護"
+  },
+  {
+    "entry": "isolation",
+    "rank": 1394,
+    "meaning_ejdict": "孤立;隔離,分離"
+  },
+  {
+    "entry": "overstate",
+    "rank": 1396,
+    "meaning_ejdict": "…を大げさに言う,誇張して話す"
+  },
+  {
+    "entry": "partition",
+    "rank": 1397,
+    "meaning_ejdict": "〈U〉(…の)分割,区分《+『of』+『名』》 / 〈C〉(分割された)部分 / 〈C〉仕切り壁 / (…に)…を分割する,分配する《+『名』+『into』+『名』》 / …を仕切る,区切る《+『off』+『名,』+『名』+『off』》"
+  },
+  {
+    "entry": "hypothetical",
+    "rank": 1398,
+    "meaning_ejdict": "仮説の;前提の,仮定の / (三段論法など)仮言的な"
+  },
+  {
+    "entry": "deprive",
+    "rank": 1399,
+    "meaning_ejdict": "(所有しているものを)〈人〉から『奪う』《+『名』〈人〉+『of』+『名』》"
+  },
+  {
+    "entry": "investigator",
+    "rank": 1401,
+    "meaning_ejdict": "調査者,研究者"
+  },
+  {
+    "entry": "explosive",
+    "rank": 1402,
+    "meaning_ejdict": "爆発の,爆発的な / 爆発(破裂)しやすい,爆発性の;(性質などが)激しやすい / 爆発物,火薬"
+  },
+  {
+    "entry": "tactical",
+    "rank": 1403,
+    "meaning_ejdict": "戦術上の,戦術的な / かけ引きのうまい,策略にたけた"
+  },
+  {
+    "entry": "psychology",
+    "rank": 1404,
+    "meaning_ejdict": "『心理学』 / 《話》(個人・団体の)『心理』[『状態』]"
+  },
+  {
+    "entry": "reap",
+    "rank": 1405,
+    "meaning_ejdict": "〈穀類〉を『刈る』 / 〈作物〉を『刈り入れる』,収穫する / 〈畑〉から作物を刈る(収穫する) / …で『報いられる』;〈利益・報酬〉を特る / 刈り取る,収穫する;《比喩(ひゆ)的に》利益を受ける"
+  },
+  {
+    "entry": "disposable",
+    "rank": 1406,
+    "meaning_ejdict": "使い捨てにできる / (税金などを差し引かれた後)自由に使える"
+  },
+  {
+    "entry": "arbitration",
+    "rank": 1407,
+    "meaning_ejdict": "仲裁,裁定;仲裁裁判"
+  },
+  {
+    "entry": "boycott",
+    "rank": 1409,
+    "meaning_ejdict": "…に対して不買同盟する,(同盟して)…を排斥する / 不買同盟,ボイコット"
+  },
+  {
+    "entry": "discrete",
+    "rank": 1410,
+    "meaning_ejdict": "別個の,個々の"
+  },
+  {
+    "entry": "gloomy",
+    "rank": 1411,
+    "meaning_ejdict": "『暗い』,薄暗い / 気をめいらせる,陰気な / 『憂うつな』,気分のふさいだ / 希望のない,悲観的な"
+  },
+  {
+    "entry": "unpredictable",
+    "rank": 1412,
+    "meaning_ejdict": "予言できない,予知不可能な"
+  },
+  {
+    "entry": "accumulation",
+    "rank": 1415,
+    "meaning_ejdict": "〈U〉蓄積すること,ためること / 〈C〉蓄積したもの"
+  },
+  {
+    "entry": "disastrous",
+    "rank": 1416,
+    "meaning_ejdict": "『災害の』,災害によって引き起こされた;悲惨な"
+  },
+  {
+    "entry": "dissident",
+    "rank": 1417,
+    "meaning_ejdict": "違った意見の;(…と)意見が違う《+『from』+『名』》 / 意見が違う人,反対者"
+  },
+  {
+    "entry": "prototype",
+    "rank": 1419,
+    "meaning_ejdict": "(…の)原型;典型,模範《+『of』+『名』》"
+  },
+  {
+    "entry": "defensive",
+    "rank": 1420,
+    "meaning_ejdict": "防御の,守備の / 弁護の / 防御,守勢"
+  },
+  {
+    "entry": "communism",
+    "rank": 1422,
+    "meaning_ejdict": "『共産主義』"
+  },
+  {
+    "entry": "drain",
+    "rank": 1424,
+    "meaning_ejdict": "(液体を)…から『排出する』《+『名』+『of』+『名』》;(…から)〈液体〉を『排出する』《+『名』+『from』+『名』》 / …を消耗させる,枯渇させる;(…を)〈人〉から消耗させる《+『名』+『of』+『名』》 / 〈酒など〉を飲み干す,空にする / 〈土地〉を干上がらせる / 〈土地などが〉水はけがよい;(液体を)排出する《+『of』+『名』》 / 〈水・液体などが〉徐々に流れ去る / 〈C〉『排水設備』,排水路 / 〈C〉(…を)消耗(枯渇)させるもの《+『on』+『名』》 / 〈U〉《時にa~》(富・力などの)消耗,枯渇"
+  },
+  {
+    "entry": "frustration",
+    "rank": 1425,
+    "meaning_ejdict": "〈U〉(努力・計画などの)失敗,ざ折,落胆,失意;〈C〉(具体的な事柄の)失敗,ざ折 / 〈U〉(心理学で)欲求不満,フラストレーション"
+  },
+  {
+    "entry": "fret",
+    "rank": 1427,
+    "meaning_ejdict": "(…のことで)『いらいらする』 / 〈人・人の心〉を『悩ます』 / 〈さび・水などが〉〈物〉を浸食する;〈虫などが〉〈物〉に食い込んで穴をあける / いらだち,焦り;苦労,苦悩 / 雷文(らいもん),まんじ模様 / …を雷文(まんじ模修)で飾る / (ギター・マンドリンなどの)フレット(指押さえの区切り)"
+  },
+  {
+    "entry": "undervalue",
+    "rank": 1429,
+    "meaning_ejdict": "…を実際の価値よりも低く評価する / …を軽視する,見くびる"
+  },
+  {
+    "entry": "diligence",
+    "rank": 1430,
+    "meaning_ejdict": "『勤勉』,不断の努力"
+  },
+  {
+    "entry": "outweigh",
+    "rank": 1432,
+    "meaning_ejdict": "…より重い / …より重要である,価値がある"
+  },
+  {
+    "entry": "undoubtedly",
+    "rank": 1435,
+    "meaning_ejdict": "疑いなく,確かに"
+  },
+  {
+    "entry": "composite",
+    "rank": 1436,
+    "meaning_ejdict": "合成の,複合の / キク科の / 合成物,複合物 / キク科植物"
+  },
+  {
+    "entry": "micro",
+    "rank": 1439,
+    "meaning_ja": "【複合要素】小,微少"
+  },
+  {
+    "entry": "amongst",
+    "meaning_ja": "～の間に / ～の中の",
+    "rank": 1442
+  },
+  {
+    "entry": "congressman",
+    "rank": 1443,
+    "meaning_ejdict": "国会議員,下院議員"
+  },
+  {
+    "entry": "ratify",
+    "rank": 1446,
+    "meaning_ejdict": "…を批准する"
+  },
+  {
+    "entry": "eventual",
+    "rank": 1448,
+    "meaning_ejdict": "『結果として起こる』"
+  },
+  {
+    "entry": "vague",
+    "rank": 1449,
+    "meaning_ejdict": "(言葉・意味などが)『はっきりしない』,あいまいな / (考え・感じなどが)『ばく然としている』,ぼんやりした / (形・姿などが)『ぼやけた』,はっきりしない / 《名詞の前にのみ用いて》《通例最上級で》《話》ほんのわずかの,かすかな"
+  },
+  {
+    "entry": "correspondent",
+    "rank": 1450,
+    "meaning_ejdict": "『文通する人』,手紙を書く人 / (新聞・雑誌社などの)『通信員』,特派員 / 《文》(…と)一致する,合致する《+『with』+『名』》 / =corresponding"
+  },
+  {
+    "entry": "doom",
+    "rank": 1451,
+    "meaning_ejdict": "(通例悪い)『運命』 / 『破滅』(ruin);死(death) / (神の)最後の審判 / (厳しい刑罰などを)〈人〉に宣告する《+『名』+『to』+『名』(do『ing』)》 / 《受動態で》…を運命づける"
+  },
+  {
+    "entry": "rage",
+    "rank": 1452,
+    "meaning_ejdict": "〈U〉〈C〉『激怒』,憤激 / 〈U〉〈C〉《おもに文》(風・波などの)『猛威』,激しさ《+『of』+『名』》 / 〈U〉〈C〉(感情・欲望などの)激しさ,強烈さ《+『of』+『名』》 / 〈C〉(…に対する)熱望,熱情《+『for』+『名』(do『ing』)》 / 〈C〉《話》(一時的に)『大流行しているもの』 / (…に)『激怒する』,憤激する《+『against』(『about,at,over』)+『名』(do『ing』)》 / 〈風・波などが〉『荒れ狂う』,猛威をふるう"
+  },
+  {
+    "entry": "myth",
+    "rank": 1453,
+    "meaning_ejdict": "〈C〉(個々の)『神話』,神代物語;〈U〉《集合的に》神話 / 〈C〉神話的な人(物・事) / 〈C〉作り話,伝説;(…という)作り話《+『that節』》"
+  },
+  {
+    "entry": "synthetic",
+    "rank": 1454,
+    "meaning_ejdict": "総合の,統合的な / 合成の,人造の / にせの,作りごとの / (言語が)総合的な(統語的関係を表すのに,独立した語より屈折形を広く用いるもの) / 合成品,人造物"
+  },
+  {
+    "entry": "outbreak",
+    "rank": 1456,
+    "meaning_ejdict": "(戦争・暴動・病気などの)『突発』,ぼっ発,(怒りなどの)爆発《+『of』+『名』》"
+  },
+  {
+    "entry": "separatist",
+    "rank": 1457,
+    "meaning_ejdict": "分離主義者,分離派"
+  },
+  {
+    "entry": "deficiency",
+    "rank": 1458,
+    "meaning_ejdict": "〈U〉〈C〉(…の)(量・額などの)不足,欠乏《+『of』(『in』)+『名』》 / 〈C〉不足分,不足量,不足額 / 〈C〉(精神・肉体などの)欠陥"
+  },
+  {
+    "entry": "imbalance",
+    "rank": 1459,
+    "meaning_ejdict": "不均衡,釣り合いがとれていないこと"
+  },
+  {
+    "entry": "bolster",
+    "rank": 1460,
+    "meaning_ejdict": "(円筒形の)長まくら / (一般に)まくら / …を支える"
+  },
+  {
+    "entry": "constructive",
+    "rank": 1461,
+    "meaning_ejdict": "建設的な / 構成の,構造上の"
+  },
+  {
+    "entry": "laser",
+    "rank": 1462,
+    "meaning_ejdict": "レーザー(強力な可視光線を発生させる;医療,通信,軍事用)"
+  },
+  {
+    "entry": "smuggle",
+    "rank": 1463,
+    "meaning_ejdict": "(…へ,…から)…を密輸する,こっそり運ぶ《+『名』+『into(out of)』+『名』》 / 密輸する,こっそり運ぶ"
+  },
+  {
+    "entry": "loop",
+    "rank": 1464,
+    "meaning_ejdict": "(糸・ひも・針金などで作った)『輪』・輪状のもの;(輪状の)湾曲部・(宙返り飛行・スケートなどで描く)輪・ループ (ある条件が成立するまで繰り返し実行される,プログラム中に記述された一連の命令のこと)・仲間、影響を受け合う間柄・同列の立場・「keep誰々in the loop」として、「keep誰々informed:情報を(人)に絶えず提供し続ける、報告を(人)に欠かさない、(人)に逐次連絡する、(人)に常に通知する」・避妊リング; (鉄道・電線などの)環状線(loop line)・…を輪にする,輪で囲む・…を輪で結ぶ,輪で締める《+『up』+『名,』+『名』+『up』》・輪になる,輪を描く"
+  },
+  {
+    "entry": "proclaim",
+    "rank": 1465,
+    "meaning_ejdict": "〈国家的・社会的重大事〉を『宣言する』,公表する / 《文》〈物・事が〉…をはっきりと知らせる"
+  },
+  {
+    "entry": "audio",
+    "rank": 1467,
+    "meaning_ejdict": "(電波の)可聴周波の,低周波の;(テレビの)音声の / (テレビの)音声[部門]"
+  },
+  {
+    "entry": "commence",
+    "rank": 1470,
+    "meaning_ejdict": "…を『始める』,に着手する / (…で)『始まる』《+『with』+『名』》;(…に)着手する《+『on』+『名』》"
+  },
+  {
+    "entry": "skeptic",
+    "rank": 1471,
+    "meaning_ejdict": "懐疑論者,疑い深い人;キリスト教不信仰者,無神論者"
+  },
+  {
+    "entry": "bounce",
+    "rank": 1472,
+    "meaning_ejdict": "〈ボールなどが〉『はずむ』,はる返る / 〈人が〉『はねる』 / …を『はずませる』,はる返らせる / 〈C〉『はね返り』,はずみ / 〈U〉『弾力』 / 〈U〉《話》元気,活気"
+  },
+  {
+    "entry": "reformer",
+    "rank": 1474,
+    "meaning_ejdict": "(政治・制度などの)改革者,改善者"
+  },
+  {
+    "entry": "endorsement",
+    "rank": 1475,
+    "meaning_ejdict": "裏書き / 是認,承認,保証"
+  },
+  {
+    "entry": "unwilling",
+    "rank": 1476,
+    "meaning_ejdict": "気が進まない,いやいやながらの,不本意の"
+  },
+  {
+    "entry": "cheaply",
+    "rank": 1477,
+    "meaning_ejdict": "=cheap{副}"
+  },
+  {
+    "entry": "enrich",
+    "rank": 1478,
+    "meaning_ejdict": "(…で)〈社会・人など〉を『裕福にする』,金持ちにする《+『名』+『by』+『名』》 / (…で)〈生活・心・文化など〉を『豊かにする』,充実させる《+『名』+『by』(『with, through』)+『名』》 / (ある成分・要素などを加えて)…の質を向上させる《+『名』+『by』+『名』(do『ing』)》"
+  },
+  {
+    "entry": "prop",
+    "rank": 1479,
+    "meaning_ejdict": "支柱,支え / 支えとなる人(物) / …を支える / (…に)…を寄りかからせる《+『名』+『against』+『名』》 / (劇場の)小道具 / プロペラ"
+  },
+  {
+    "entry": "depositor",
+    "rank": 1480,
+    "meaning_ejdict": "(銀行の)預金者;供託者"
+  },
+  {
+    "entry": "clout",
+    "rank": 1482,
+    "meaning_ejdict": "〈C〉《話》手でなぐること / 〈U〉《米話》政治的影響力,実力 / …を手でなぐる"
+  },
+  {
+    "entry": "thumb",
+    "rank": 1483,
+    "meaning_ejdict": "『親指』;(手袋などの)親指の部分 / 〈本のページ〉を親指でめくる / 《話》〈ヒッチハイカーが〉〈便乗〉を親指を立てて頼む / ヒッチハイクする"
+  },
+  {
+    "entry": "decree",
+    "rank": 1487,
+    "meaning_ejdict": "法令,布告 / (裁判所の)判決,命令 / …を布告する / 《『decree』+『that』》(決まりに従って)…を命令する / 〈法廷・裁判官が〉…を宣告する,判決する"
+  },
+  {
+    "entry": "collectively",
+    "rank": 1488,
+    "meaning_ejdict": "集合的に;集団的に / (文法で,名詞が)集合的に"
+  },
+  {
+    "entry": "conspiracy",
+    "rank": 1489,
+    "meaning_ejdict": "陰謀,たくらみ;陰謀団"
+  },
+  {
+    "entry": "dioxide",
+    "rank": 1490,
+    "meaning_ejdict": "二酸化物"
+  },
+  {
+    "entry": "enhancement",
+    "rank": 1491,
+    "meaning_ejdict": "高揚,増進"
+  },
+  {
+    "entry": "decentralize",
+    "rank": 1492,
+    "meaning_ejdict": "〈行政〉の中央集権化を避ける,〈産業・人口など〉を分散させる"
+  },
+  {
+    "entry": "explode",
+    "rank": 1493,
+    "meaning_ejdict": "〈火薬など爆発物が〉『爆発する』,破裂する / (怒り・笑いなどで)〈人が〉爆発する《+『with』(『in』)+『名』》 / 〈人口などが〉急激に増す / 〈物〉を破裂させる;〈火薬など〉を爆発させる / 〈習慣・迷信・学説など〉をくつがえす,が誤りであることを証明する"
+  },
+  {
+    "entry": "pensioner",
+    "rank": 1494,
+    "meaning_ejdict": "恩給(年金)受給者"
+  },
+  {
+    "entry": "pin",
+    "rank": 1496,
+    "meaning_ejdict": "『ピン』・留め針・《しばしば複合語を作って》ピンの働きをする物 / (留め針の付いた)『記章』,『バッジ』 / (木・プラスチック・金属などの)留めくぎ,掛けくぎ(peg);(弦楽器の)糸巻き / 《複数形で》《英話》脚(legs) / 《a~》《否定文で》ほんのわずか / (ゴルフ・ボウリングの)ピン / (…に)…を『ピンで留める』《+『名』+『to』(『on』)+『名』》 / (人・物事に)〈望み・信頼など〉をかける《+『名』+『on』+『名』》 / (…に)…を動けなくする《+『名』+『against』(『to, under』)+『名』》 / 《話》〈罪・過失など〉を(人の)せいだとする《+『名』+『on』+『名』〈人〉》"
+  },
+  {
+    "entry": "aluminum",
+    "rank": 1497,
+    "meaning_ejdict": "《米》アルミニウム(金属元素の一つ;化学記号は『Al』;《英》 aluminium)"
+  },
+  {
+    "entry": "presume",
+    "rank": 1498,
+    "meaning_ejdict": "…を推定する,仮定する / 《『presume to』 do》『思い切って』『する』,大胆(生意気)にも…する(dare) / 思いあがった(生意気な,大胆な)ことをする / (…に)つけ入る,つけ込む,甘える《+『on』(『upon』)+『名』》"
+  },
+  {
+    "entry": "prudent",
+    "rank": 1499,
+    "meaning_ejdict": "『用心深い』,慎重な / 倹約した"
+  },
+  {
+    "entry": "census",
+    "rank": 1502,
+    "meaning_ejdict": "人口調査,国勢調査"
+  },
+  {
+    "entry": "vow",
+    "rank": 1503,
+    "meaning_ejdict": "『誓い』,誓約 / …を『誓う』,誓約する"
+  },
+  {
+    "entry": "ineffective",
+    "rank": 1504,
+    "meaning_ejdict": "効果のない,むだな / 役に立たない,無能の,無力の"
+  },
+  {
+    "entry": "adequately",
+    "rank": 1505,
+    "meaning_ejdict": "適切に,十分に"
+  },
+  {
+    "entry": "prosper",
+    "rank": 1506,
+    "meaning_ejdict": "『繁栄する』,成功する / (神が)…を繁栄させる,成功させる"
+  },
+  {
+    "entry": "testimony",
+    "rank": 1508,
+    "meaning_ejdict": "〈C〉〈U〉(法廷の証人台での)『証言』 / 〈U〉(…の)証拠,しるし《+of+名》 / (信仰などの)公然とした表明"
+  },
+  {
+    "entry": "manipulation",
+    "rank": 1509,
+    "meaning_ejdict": "(…の)巧妙な扱い,操作《+『of』+『名』》 / (自分の利益のための)ごまかし,小細工"
+  },
+  {
+    "entry": "cooperative",
+    "rank": 1510,
+    "meaning_ejdict": "協力的な,助けになる / 協力の,協同の / 協同組織の / 協同組合 / 共同アパート(コーポ)"
+  },
+  {
+    "entry": "rigid",
+    "rank": 1512,
+    "meaning_ejdict": "(簡単には曲がらないほど)『堅い』(stiff) / (考えなど)『変わらない』;(…が)変わらない《+『in』+『名』》 / 『厳しい』,厳格な"
+  },
+  {
+    "entry": "tenure",
+    "rank": 1513,
+    "meaning_ejdict": "任期,(役職・不動産などの)保有;保有権;保有条件・保有期間・《米》(通例ある在職期間後に与えられる)終身在職権・身分保証"
+  },
+  {
+    "entry": "milestone",
+    "rank": 1514,
+    "meaning_ejdict": "(次の町までの距離を示すために道ばたに立てられた)里程標 / (歴史・人生での)重大なでき事,重大事件"
+  },
+  {
+    "entry": "optimum",
+    "rank": 1515,
+    "meaning_ejdict": "(成長のための)最適の条件(水準) / (また『optimal』)(比較変化なし)《名紙の前にのみ用いて》最高の,最上の"
+  },
+  {
+    "entry": "subsection",
+    "rank": 1516,
+    "meaning_ja": "〈C〉小節,下位区分 /《法律文書などの》款 / 小区分"
+  },
+  {
+    "entry": "formulation",
+    "rank": 1520,
+    "meaning_ejdict": "〈U〉公式化 / 〈C〉明確な表現"
+  },
+  {
+    "entry": "exert",
+    "rank": 1521,
+    "meaning_ejdict": "(…に)〈威力など〉を『発揮する』,〈感化など〉を及ぼす《+『名』+『on』+『名』》"
+  },
+  {
+    "entry": "expectancy",
+    "rank": 1522,
+    "meaning_ejdict": "〈U〉予期(期待)すること,見込み / 〈C〉予期されること,期待されるもの"
+  },
+  {
+    "entry": "syndicate",
+    "rank": 1523,
+    "meaning_ejdict": "企業合同,シンジケート / 通信社(多くの新聞・雑誌に同時発表の記事・写真などを供給する事業) / 〈店・企業など〉を合同組織にする / (通信社を通して)〈記事・写真など〉を売る,供給する / 企業(店)を合同組織する"
+  },
+  {
+    "entry": "unfavorable",
+    "rank": 1525,
+    "meaning_ejdict": "不利な,都合の悪い,逆の / (批評などが)好意的でない,批判的な / (要求などに)否定的な"
+  },
+  {
+    "entry": "proprietorship",
+    "rank": 1526,
+    "meaning_ja": "【名/U】所有権；個人事業"
+  },
+  {
+    "entry": "franc",
+    "rank": 1527,
+    "meaning_ejdict": "フラン(フランス・ベルギー・スイスなどの貨幣単位)"
+  },
+  {
+    "entry": "policyholder",
+    "rank": 1528,
+    "meaning_ejdict": "保険契約者"
+  },
+  {
+    "entry": "sustainability",
+    "rank": 1529,
+    "meaning_ja": "【名/U】持続可能性"
+  },
+  {
+    "entry": "supervisory",
+    "rank": 1530,
+    "meaning_ejdict": "監督[者]の,管理[者]の"
+  },
+  {
+    "entry": "sheer",
+    "rank": 1532,
+    "meaning_ejdict": "(織物などが)『透けるほど薄い』 / 『純然たる』,完全な / 『垂直に近い』,切り立った / 完全に,全く / 垂直に,険しく / 〈特に船が〉針路からそれる,向きを変える《+『away』(『off』)》 / (不快なもの・危険から)離れる,(…を)避ける《+『away』(『off』)『from』+『名』》"
+  },
+  {
+    "entry": "electorate",
+    "rank": 1533,
+    "meaning_ejdict": "選挙民,有権者"
+  },
+  {
+    "entry": "realization",
+    "rank": 1534,
+    "meaning_ejdict": "〈U〉(希望・計画などの)『実現』,達成;〈C〉実現したもの《+『of』+『名』》 / 〈U〉『完全に理解する』(『している』)『こと』;《a~》(具体的な)認識,自覚,体得 / 〈U〉《the~》《話》(財産などの)売却;(財産を売却してある額の金を)手に入れること《+『of』+『名』》"
+  },
+  {
+    "entry": "neo",
+    "rank": 1535,
+    "meaning_ja": "【複合要素】新…；復活…；近代の…"
+  },
+  {
+    "entry": "reinvestment",
+    "meaning_ja": "【名/U】再投資",
+    "rank": 1536
+  },
+  {
+    "entry": "scratch",
+    "rank": 1538,
+    "meaning_ejdict": "(つめなど,とがった物で)…を『ひっかく』,にひっかき傷をつける / 〈かゆいところ〉をかく / …にかゆみを感じさせる / (線で消したりして)(…から)〈名前など〉を削除する《+『out』(『off』)+『名』+『from』(『off』)+『名』》 / (ひっかいたり,刻んだりして)…を書く,描く / …を走り書きする / (競争・レースなどから)…の参加を取り消す / (つめなどで)『ひっかく』;ひっかきまわす《+『about』》 / (…を)ひっかいてガリガリ音をたてる《+『at』(『on』)+『名』》 / かき傷(跡)がつく / (競技への)出場を取り止める;手を引く / 『かき傷』,かすり傷 / ひっかく音,こする音,ガリガリいう音 / 走り書き用の / 《話》かき集めた"
+  },
+  {
+    "entry": "dissent",
+    "rank": 1539,
+    "meaning_ejdict": "(…と)『意見が違う』,(…に)異議を唱える,従わない《+『from』+『名』》 / (英国国教会の)教義に従わない / (…との)『意見の相違』,異議,不同意《+『from』+『名』》 / 《しばしば『D-』》英国国教会からの分離,国教反対"
+  },
+  {
+    "entry": "pit",
+    "rank": 1540,
+    "meaning_ejdict": "(自然の,または掘った)『地面の穴』,『くぼみ』 / 《しばしば単数形で》《the pit》立て坑,採掘場 / 落とし穴 / 《単数形で》《the pit》《英》(劇場の)平土間(1階正面後部の安い料金の席全体を指す);平土間の観客;《米》(舞台手前の1段低くなった)オーケストラ席 / (身体や物の表面の自然にできた)くぼみ / 《しばしば複数形で》(傷・天然痘などでできた皮膚の)小さなくぼんだ跡,あばた / (動物を入れておく)囲い;闘鶏場(cockpit),闘犬場 / 《the ~》地獄(hell) / ピット / 自動車修理店などで,車体の下で作業するために床に設けたくぼみ / 《the pits》自動車レースで給油・タイヤ交換などの場所 / …に点々と穴をあける;…をあばたにする / (…と)…を取り組ませる,対抗させる《+『名』+『against』+『名』》 / (サクランボ・モモなどの)核,種(stone) / 〈果物〉から種を取り除く"
+  },
+  {
+    "entry": "intrigue",
+    "rank": 1541,
+    "meaning_ejdict": "〈U〉陰謀を企てること / 〈C〉陰謀,計略 / 〈C〉密通 / 〈人〉の好奇心(興味)をそそる / (人に対して)陰謀を企てる《+『against』+『名』》"
+  },
+  {
+    "entry": "patch",
+    "rank": 1542,
+    "meaning_ejdict": "(補修・補強のための)『つぎ当て』;当て布;当て板,当て金;(アップリケで縫いつけた)布切れ / (傷口などを覆う)『傷当て』 / (色などが周囲と区別できる)(…の)まだら,班点;断片,破片《+『of』+『名』》 / 小さな地面(畑) / (補修・補強のために)…に『つぎ当てる』;(装飾のために)…に当て布をする / …をつぎ合わせて作る"
+  },
+  {
+    "entry": "brave",
+    "rank": 1543,
+    "meaning_ejdict": "『勇敢な,勇ましい』 / 《文》はなやかな,みごとな / 勇士 / 北市インディアンの戦士 / 〈困難など〉に勇敢に立ち向かう,〈危険〉をものともしない"
+  },
+  {
+    "entry": "pending",
+    "meaning_ja": "未決定の  / 差し迫った  / …間に(during)  / 《文》…まで(till)",
+    "rank": 1544
+  },
+  {
+    "entry": "scatter",
+    "rank": 1545,
+    "meaning_ejdict": "(…に)…を『ばらまく』,まき散らす《+『名』+『on』(『over』)+『名』》;(…の回りに)…をばらまく《+『名』+『around』(『round』,『about』)+『名』》 / (…を)〈場所〉にばらまく,まき散らす《+『名』+『with』+『名』》 / …を追い散らす,四散させる / 四散する / 散乱させる / 散乱する"
+  },
+  {
+    "entry": "annum",
+    "rank": 1546,
+    "meaning_ja": "【名/C】年"
+  },
+  {
+    "entry": "mar",
+    "rank": 1547,
+    "meaning_ejdict": "…を汚す,傷つける / 《文》…を損なう(spoil)"
+  },
+  {
+    "entry": "restrain",
+    "rank": 1548,
+    "meaning_ejdict": "〈感情・行動など〉を『抑える』,『抑制する』 / (…しないように)〈人〉に『がまんさせる』,をこらえさせる《+『名』〈人〉+『from』+『名』(do『ing』)》 / (逮捕・監禁などによって)〈人〉の自由を奪う,を拘束する"
+  },
+  {
+    "entry": "configuration",
+    "rank": 1549,
+    "meaning_ejdict": "(全体の)形状,外形;(部分の)配置;(星の)星位;原子配列"
+  },
+  {
+    "entry": "reportedly",
+    "rank": 1550,
+    "meaning_ejdict": "伝えられるところによれば…とのこと"
+  },
+  {
+    "entry": "negotiator",
+    "rank": 1553,
+    "meaning_ejdict": "交渉者,協定者 / (小切手などの)譲渡者"
+  },
+  {
+    "entry": "offensive",
+    "rank": 1554,
+    "meaning_ejdict": "『不愉快にする』,無礼な,しゃくにさわる / (感覚的に)『いやな』,不快な(disagreeable) / 『攻撃の』 / (スポーツで)攻撃[側]の / 〈C〉攻撃,攻勢"
+  },
+  {
+    "entry": "rape",
+    "rank": 1555,
+    "meaning_ejdict": "〈婦女〉を暴行する,強姦(ごうかん)する / 婦女暴行,強姦 / セイヨウアブラナ(羊・豚などのえさになる)"
+  },
+  {
+    "entry": "embody",
+    "rank": 1556,
+    "meaning_ejdict": "〈思想・感情など〉を『具体化する』 / (ある形態の中に)…をまとめる,包含する"
+  },
+  {
+    "entry": "deployment",
+    "rank": 1557,
+    "meaning_ejdict": "(兵などの)展開,散開"
+  },
+  {
+    "entry": "detection",
+    "rank": 1558,
+    "meaning_ejdict": "発見,探知,発覚 / (電波の)検波"
+  },
+  {
+    "entry": "bullet",
+    "rank": 1559,
+    "meaning_ejdict": "『弾丸』,銃弾,小銃弾"
+  },
+  {
+    "entry": "intelligent",
+    "rank": 1561,
+    "meaning_ejdict": "『理解力のある』,そう明な,知能の高い"
+  },
+  {
+    "entry": "conservation",
+    "rank": 1562,
+    "meaning_ejdict": "保存,(特に自然環境の)保護"
+  },
+  {
+    "entry": "slim",
+    "rank": 1563,
+    "meaning_ejdict": "(体格などが)ほっそりとした,細い / (量・程度などが)わずかの,少しの(slight) / 〈体,体の一部分〉を細くする / (減食・運動などで)体重を減らしてやせる《+『down』》"
+  },
+  {
+    "entry": "synergy",
+    "rank": 1564,
+    "meaning_ja": "【名/U】相乗効果,シナジー；共同（共働）作用"
+  },
+  {
+    "entry": "beam",
+    "rank": 1566,
+    "meaning_ejdict": "〈C〉(建設の)『はり』,『けた』,横材 / 〈C〉(船の甲板を支える)横はり / 〈C〉(はかりの)さお;(織機の)糸巻き / 〈C〉『光線』,光束 / 〈C〉(顔などの)『輝き』,晴れやかさ / 〈C〉(船舶・航空機用の)信号電波 / 〈U〉最大船幅 / 《副詞[句]を伴って》『輝く』,光を発する / (…に)顔を輝かせる《+『at』(『on, upon』)+『名』》 / 〈光・熱〉を出す,発散する / (…に向けて)〈放送・無線信号〉を送る《+『名』+『at』(『to』)+『名』》 / …を顔を輝かせて言う"
+  },
+  {
+    "entry": "disguise",
+    "rank": 1567,
+    "meaning_ejdict": "(…に)〈人,特に自分〉を『変装させる』《+『名』+『as』+『名』》 / (…だと)…を『見せかける』,偽る《+『名』+『as』+『名』》 / 〈U〉『変装』,仮装;見せかけること / 〈C〉〈U〉変装に用いる物;偽りの態度,口実"
+  },
+  {
+    "entry": "selective",
+    "rank": 1569,
+    "meaning_ejdict": "{形}選択的な / 選り好みする / 入学などに選抜を行う"
+  },
+  {
+    "entry": "assertion",
+    "rank": 1570,
+    "meaning_ejdict": "〈C〉(しばしば根拠のない)『断言』,主張 / 〈U〉主張(断言)すること"
+  },
+  {
+    "entry": "dictatorship",
+    "rank": 1571,
+    "meaning_ejdict": "〈U〉独裁者の職(任期) / 〈U〉独裁政治 / 〈C〉独裁国家 / 独裁政権"
+  },
+  {
+    "entry": "fraudulent",
+    "rank": 1572,
+    "meaning_ejdict": "詐欺の,いかさまの"
+  },
+  {
+    "entry": "constituent",
+    "rank": 1573,
+    "meaning_ejdict": "(またconstitutive)(ある物の)構成要素の / 選挙権(指名権)のある,憲法制定(改正)権のある / (ある物質の)成分,[構成]要素 / 選挙有権者,選挙人"
+  },
+  {
+    "entry": "fiduciary",
+    "rank": 1575,
+    "meaning_ejdict": "他人の財産を委託された人,受託者,被信託者 / 信用上の,信託に基づいた"
+  },
+  {
+    "entry": "speculate",
+    "rank": 1577,
+    "meaning_ejdict": "(…について)『推測する』,思い巡らす《+『about』(『on, upon』)+『名』(do『ing』)》 / (株・土地などに)『投機する』《+『in』(『on』)+『名』(do『ing』)》 / 《『speculate』+『that節』》…と推測する"
+  },
+  {
+    "entry": "citizenship",
+    "rank": 1579,
+    "meaning_ejdict": "市民権,公民権"
+  },
+  {
+    "entry": "rebound",
+    "rank": 1580,
+    "meaning_ejdict": "(…から)〈物体が〉はね返る《+『from』+『名』》 / (自分に)〈したこと[の報]が〉はね返る《『on』(『upon』)one『self』》 / はね返り"
+  },
+  {
+    "entry": "scorecard",
+    "rank": 1582,
+    "meaning_ejdict": "得点表,採点表"
+  },
+  {
+    "entry": "ounce",
+    "rank": 1583,
+    "meaning_ejdict": "〈C〉『オンス』(重量の単位;《略》『oz.』;常衡で1オンスは1/16ポンド(28.35gr.),金衡で1/12ポンド(31.1gr.)) / 〈C〉液量オンス(1オンスは《米》では1/16パイント(pint),《英》では1/20パイントに等しい) / 《通例否定文で》《an ~》少量(の…)《+『of』+『名』》 / =snow leopard"
+  },
+  {
+    "entry": "plague",
+    "rank": 1587,
+    "meaning_ejdict": "(死亡率の高い)『疾病』,流行病,悪疫;《the ~》(特に)ペスト / (広い地域に及ぶ)(…の)災い,災難,(いやなものが)はびこること《+『of』+『名』》 / 《話》やっかいな人(もの),悩みの種 / (…で)…を『悩ます』《+『名』+『with』+『名』(do『ing』)》"
+  },
+  {
+    "entry": "killer",
+    "rank": 1588,
+    "meaning_ejdict": "殺人者;屠殺(とさつ)者;殺し屋"
+  },
+  {
+    "entry": "grave",
+    "rank": 1589,
+    "meaning_ejdict": "『墓穴』;(一般に)埋葬所,墓 / 《しばしばthe grave》死(death);滅亡 / 『重大な』,容易ならない(serious) / 『まじめな』,厳粛な(solemn) / (心・記憶に)…を刻みつける,銘記する《+『名』+『on(upon, in)』+『名』》"
+  },
+  {
+    "entry": "contributor",
+    "rank": 1592,
+    "meaning_ejdict": "(…への)寄付者《+『to』+『名』(do『ing』)》 / (…への)貢献者,寄与者;一助,一因《+『to』+『名』(do『ing』)》 / (雑誌・新聞などへの)寄稿家《+『to』+『名』》"
+  },
+  {
+    "entry": "cognitive",
+    "rank": 1593,
+    "meaning_ejdict": "認識の(に関する,を要する)"
+  },
+  {
+    "entry": "negotiable",
+    "rank": 1594,
+    "meaning_ejdict": "交渉できる / (手形などが)譲渡できる / 《話》(障害・困難などが)乗り越えられる"
+  },
+  {
+    "entry": "reconstruction",
+    "rank": 1595,
+    "meaning_ejdict": "〈U〉再建,改造,復興,復元 / 〈C〉再建(改造,復元)された物 / 《the R-》《米》南部諸州の再統合期,再建時代(南北戦争後,法律・諸制度を改正した1865年から1877年までの期間)"
+  },
+  {
+    "entry": "restate",
+    "rank": 1596,
+    "meaning_ejdict": "…を言い換える"
+  },
+  {
+    "entry": "rightly",
+    "rank": 1597,
+    "meaning_ejdict": "『正確に』,間違いなく / 『適切に』,ふさわしく,正当に / (道徳的に)『正しく』,正直に,公正に"
+  },
+  {
+    "entry": "converge",
+    "rank": 1598,
+    "meaning_ejdict": "(同一点・同一場所に)集まる,集中する《+『on』+『名』》 / (物理・数学で)収れんする / …を1点に集める"
+  },
+  {
+    "entry": "sadly",
+    "rank": 1599,
+    "meaning_ejdict": "『悲しそうに』 / ひどく"
+  },
+  {
+    "entry": "paramilitary",
+    "rank": 1600,
+    "meaning_ejdict": "準軍事的な,予備軍の役目をする"
+  },
+  {
+    "entry": "incorrect",
+    "rank": 1601,
+    "meaning_ejdict": "『不正確な』,誤った / 適切でない"
+  },
+  {
+    "entry": "compulsory",
+    "rank": 1602,
+    "meaning_ejdict": "強制的な,無理じいの / 義務的な,必修の"
+  },
+  {
+    "entry": "dismantle",
+    "rank": 1603,
+    "meaning_ejdict": "…の装備(設備)を撤去する;(装備を)…から取り除く《+『名』+『of』+『名』》 / …を取り壊す,解体する"
+  },
+  {
+    "entry": "precision",
+    "rank": 1604,
+    "meaning_ejdict": "正確,きちょうめん / (計器などが)精密な"
+  },
+  {
+    "entry": "duly",
+    "rank": 1606,
+    "meaning_ejdict": "正しく,当然に,順当に"
+  },
+  {
+    "entry": "reformist",
+    "rank": 1608,
+    "meaning_ja": "【名】改革主義者,革新主義者【形】改革主義者の,革新主義者の"
+  },
+  {
+    "entry": "imminent",
+    "rank": 1609,
+    "meaning_ejdict": "(危険・あらしなどが)差し迫った"
+  },
+  {
+    "entry": "sympathy",
+    "rank": 1611,
+    "meaning_ejdict": "〈U〉『共感』,思いやり / 〈U〉《時に複数形で》(…に対する)『同情』,哀れみ《+for(with)+名》 / 〈U〉《時に複数形で》(…に対する)弔慰,お見舞《+for+名》 / 〈U〉《時に複数形で》(…に対する)『共鳴』,賛成,好意《+with+名(wh-節)》"
+  },
+  {
+    "entry": "forecaster",
+    "rank": 1612,
+    "meaning_ja": "【名/C】予測をする人,予測者；気象予報士"
+  },
+  {
+    "entry": "conceal",
+    "rank": 1614,
+    "meaning_ejdict": "〈物〉を『隠す』 / (…に)…を『秘密にする』《+『from』+『名』》"
+  },
+  {
+    "entry": "unrelated",
+    "rank": 1616,
+    "meaning_ejdict": "無関係の;語られていない"
+  },
+  {
+    "entry": "clarity",
+    "rank": 1617,
+    "meaning_ejdict": "(思想・文体などの)明快さ,明瞭 / (音色の)清澄"
+  },
+  {
+    "entry": "rigorous",
+    "rank": 1618,
+    "meaning_ejdict": "(法などが)厳格な / 厳密な / (事態・気候などが)厳しい,過酷な(severe)"
+  },
+  {
+    "entry": "flotation",
+    "rank": 1620,
+    "meaning_ejdict": "浮くこと,浮揚 / (債券などの)発行 / (会社などの)設立"
+  },
+  {
+    "entry": "atom",
+    "rank": 1621,
+    "meaning_ejdict": "『原子』 / 微量,非常な少量;《a~》微量,わずか(の…)《+『of』+『名』》"
+  },
+  {
+    "entry": "hitherto",
+    "rank": 1622,
+    "meaning_ejdict": "今まで,これまで(until now)"
+  },
+  {
+    "entry": "maneuver",
+    "rank": 1624,
+    "meaning_ejdict": "(軍隊・艦隊などの)機動作戦,作戦行動 / 《複数形で》大演習,機動演習 / 〈C〉巧妙な手,策略 / 〈部隊・艦隊・兵など〉を動かす / …を巧みに扱う(処理する),さばく / 〈軍隊・艦隊・兵が〉作戦行動を取る / (…に対して)計略を用いる,たくらむ《+for+名》"
+  },
+  {
+    "entry": "prosperous",
+    "rank": 1625,
+    "meaning_ejdict": "『繁栄している』,成功している"
+  },
+  {
+    "entry": "launder",
+    "rank": 1626,
+    "meaning_ejdict": "〈衣類など〉を洗濯する,洗濯してアイロン仕上げをする / 〈衣類などが〉洗濯とアイロンがきく(できる)"
+  },
+  {
+    "entry": "statistically",
+    "rank": 1627,
+    "meaning_ja": "【副】統計的に；統計（学）上"
+  },
+  {
+    "entry": "specialization",
+    "rank": 1630,
+    "meaning_ejdict": "特殊化,専門化"
+  },
+  {
+    "entry": "globally",
+    "rank": 1631,
+    "meaning_ja": "世界的に,地球規模で"
+  },
+  {
+    "entry": "cleric",
+    "rank": 1633,
+    "meaning_ejdict": "{名}〈C〉 / =clergyman"
+  },
+  {
+    "entry": "pronounce",
+    "rank": 1634,
+    "meaning_ejdict": "〈単語・文・音〉を『発音する』;〈単語の発音〉を発音記号で示す / …を『宣言する』,言明する;…を宣告する / 発音する / (…について)判断(判決)を下す《+『on』(『upon』)+『名』》"
+  },
+  {
+    "entry": "unify",
+    "rank": 1636,
+    "meaning_ejdict": "…を一つにする,統一する,結束させる(unite) / …を同一(一様)にする"
+  },
+  {
+    "entry": "dash",
+    "rank": 1639,
+    "meaning_ejdict": "《副詞[句]を伴って》『突進する』 / (…に)『衝突する』,激しくぶつかる《+『against』(『into, onto』)+『名』》 / (…に)…を『打ちつける』,投げつける《+『名』+『against』(『into, to』)+『名』》;…に打ちつける / 〈元気・希望など〉をくじく,〈人〉を落胆させる(depress) / (…に)〈木など〉をぶっ掛ける,浴びせる《+『名』+『in』(『on, over』)+『名』》;(水などを)…にぶっかける《+『名』+『with』+『名』》 / 〈C〉《a~》(…への)『突進』,疾走(rush)《+『at』(『for』)+『名』》 / 《the~》短距離競走 / 《the~》(…に)打ちつける音《+『against』(『on』)+『名』》 / 〈C〉(元気・希望などを)くじくもの,(…の)障害《+『to』+『名』(do『ing』)》 / 〈C〉(混合・添加する)(…の)少量《+『of』+『名』》 / 〈U〉英気;(…する)気力《+『to』 do》 / 〈C〉ダッシュ(一の符号) / 〈C〉モールス信号の長音"
+  },
+  {
+    "entry": "rein",
+    "rank": 1641,
+    "meaning_ejdict": "《しばしば複数形で》『手綱』 / (…に対する)制御手段;統御力;制御,統率《+『on』(『over』)+『名』》 / 〈人が〉〈馬など〉を手綱で操る,御する / 〈人が〉〈感情など〉を抑制する"
+  },
+  {
+    "entry": "dismissal",
+    "rank": 1642,
+    "meaning_ejdict": "解散,退去 / (…からの)解雇,免職,放免《+『from』+『名』》 / (考えなどの)放棄 / 却下,棄却"
+  },
+  {
+    "entry": "empowerment",
+    "rank": 1643,
+    "meaning_ja": "{[名/U]}能力を高めること；力を持たせること / 権限を与えること；権限移譲"
+  },
+  {
+    "entry": "revival",
+    "rank": 1644,
+    "meaning_ejdict": "〈U〉〈C〉(生命・意識・元気などの)『回復』;(…を)生き返らせること《+『of』+『名』》 / 〈U〉〈C〉(習慣・流行などの)『復活』,よみがえり《+『of』+『名』》 / 〈C〉(…の)再上演,再上映《+『of』+『名』》 / 〈U〉信仰復興;〈C〉信仰復興伝道集会"
+  },
+  {
+    "entry": "nationalize",
+    "rank": 1645,
+    "meaning_ejdict": "〈土地・産業など〉を国有化する / …を全国的にする,国家的にする"
+  },
+  {
+    "entry": "swiftly",
+    "rank": 1646,
+    "meaning_ejdict": "速く;す早く"
+  },
+  {
+    "entry": "nationalism",
+    "rank": 1648,
+    "meaning_ejdict": "愛国心;国家主義 / (植民地などの)民族主義,独立自治主義"
+  },
+  {
+    "entry": "void",
+    "rank": 1649,
+    "meaning_ejdict": "(法的に)『無効な』 / 《文》『空虚な』,からっぽの / 《補語にのみ用いて》《be void of+名》(…が)『ない』,欠けた / 〈U〉《the ~》(地球の回りの)『空間』,空所,虚空 / 〈C〉《単数形で》(地面・壁などの)すきま,割れ目 / 〈C〉《単数形で》『空虚感』,物足りなさ / (法的に)…を無効にする / …をからにする;…を排泄(はいせつ)する"
+  },
+  {
+    "entry": "prejudice",
+    "rank": 1651,
+    "meaning_ejdict": "〈U〉〈C〉(…に対する不当な)『先入観』,『偏見』《+『against』+『名』(do『ing』)》;(…に好意的な)先入観,えこひいき《+『in favor of』+『名』》 / 〈U〉不利益,損害 / (…に対して)…に(不当な)『先入観』(『偏見』)『を抱かせる』《+『名』+『against』+『名』(do『ing』)》;(…に対して)…に(好意的な)先入観を抱かせる《+『名』+『in favor of』+『名』,+『名』+『in』 one's 『favor』》 / 〈立場,見込みなど〉を損なう,だいなしにする"
+  },
+  {
+    "entry": "enforceable",
+    "rank": 1652,
+    "meaning_ejdict": "実施できる / 強制できる"
+  },
+  {
+    "entry": "instinct",
+    "rank": 1653,
+    "meaning_ejdict": "『本能』 / 〈C〉(…に対する)(生まれつきの)才能,素質,天分《+『for』+『名』(do『ing』)》 / (…に)満ちた《+『with』+『名』》"
+  },
+  {
+    "entry": "dub",
+    "rank": 1654,
+    "meaning_ejdict": "《文または古》(国王がナイトの爵位授与式で)〈武人〉を剣で肩を軽くたたいて(ナイトに)叙する《+『名』+『名』〈補〉》 / (…と)…にあだな(名称)を付ける《+『名』+『名(形)』〈補〉》 / 〈映画のフイルム・テレビなど〉の吹き替えをする;〈フイルム・テープ〉に音楽(せりふ)を加える / (録音したものを)〈他のレコード・テープなど〉に複製(再録音)する"
+  },
+  {
+    "entry": "deliberate",
+    "rank": 1655,
+    "meaning_ejdict": "『よく考えた』,熟考した;故意の,計画的な / 『思慮ある』,慎重な / 落ち着いた,ゆうゆうとした / …を『よく考える』,熟考する;…を審議する / (…について)『よく考える』,熟考する;審議する《+『over』(『on,upon,about』)+『名』(do『ing』)》"
+  },
+  {
+    "entry": "approximation",
+    "rank": 1656,
+    "meaning_ejdict": "接近,近似 / 概算 / 近似値"
+  },
+  {
+    "entry": "unsecured",
+    "rank": 1657,
+    "meaning_ja": "無担保の / 施錠されていない / 安全でない"
+  },
+  {
+    "entry": "quotation",
+    "rank": 1658,
+    "meaning_ejdict": "〈U〉(…から)『引用すること』《+『from』+『名』》 / (また《話》『quote』)〈C〉(…からの)『引用語』(『句』),『引用文』《+『from』+『名』》 / 〈C〉(株式などの)相場《+『on』+『名』》;相場をつけること"
+  },
+  {
+    "entry": "mold",
+    "rank": 1661,
+    "meaning_ejdict": "沃土(よくど),肥土,耕土 / (かびを生やす)糸状菌 / かび / かびが生える / 〈C〉(材料を流し込んで特定の形を作る)『型』;鋳型(いがた);(プディング・ゼリー用の)流し型 / 〈C〉型に入れて作った物 / 〈U〉〈C〉(一般に)(…の)形,姿(shape)《+『of』+『名』》 / 〈U〉《文》(人の)特性,性格,性質 / (…の材料で)…を『型に入れて作る』,型どる《+『名』+『in』(『out of, from』)+『名』》 / 〈材料〉を型に入れて(…の形に)する《+『名』+『into』+『名』》 / (…を手本にして)〈人格など〉を形成する《+『on』(『upon』)+『名』》"
+  },
+  {
+    "entry": "blast",
+    "rank": 1662,
+    "meaning_ejdict": "〈C〉(風の)『一吹き』,一陣の風;突風,疾風《+『of』+『名』》 / 〈C〉(穴から吹き出す空気の)一吹き / 〈C〉(笛・らっぱなどの)突然の大きな[不快な]音《+『of』+『名』》 / 〈C〉〈U〉爆破(explosion)《+『of』+『名』》 / 〈C〉(1回分の)発破,爆薬 / 〈C〉〈U〉爆風 / …を『爆破する』;…を爆破して作る(開く) / 《文》…を損なう,台なしにする;〈暑さ寒さなどで〉…を枯らす / 〈らっぱなど〉を急に大きく鳴らす / …を酷評する;(…について)〈人〉をこっぴどく叱る《+『名』+『about』+『名』(do『ing』)》 / …をのろう(damn)"
+  },
+  {
+    "entry": "alas",
+    "rank": 1665,
+    "meaning_ejdict": "ああ,あわれ(悲しみ・後悔などを表す声)"
+  },
+  {
+    "entry": "impair",
+    "rank": 1666,
+    "meaning_ejdict": "〈健康・視力など〉を損なう,〈判断力など〉を弱める"
+  },
+  {
+    "entry": "testify",
+    "rank": 1668,
+    "meaning_ejdict": "〈人が〉(法廷で)『証言する』,(一般に)証言する;(…に不利な,有利な)証言をする《+against(for, in favor of)+名》 / 〈人が〉(…を)保証する,立証する《+to+名(doing)》 / 〈物事が〉(…の)証拠となる,(…を)示す《+to+名》 / 《testify+that-節》(法廷で)〈人が〉(…である)と『証言する』;〈物事が〉…‘という'証拠となる"
+  },
+  {
+    "entry": "prod",
+    "rank": 1669,
+    "meaning_ejdict": "突き刺す(つつく)こと / 刺し針,突き棒 / (一般に)刺激 / (先のとがったもので)…を突き刺す,つつく《+『名』+『with』+『名』》 / …を刺激する,呼び起こす;〈人〉を励まして(…を)促す《+『名』〈人〉+『to』(『into』)+『名』(do『ing』)》 / (…を)突く,つつく《+『at』+『名』》"
+  },
+  {
+    "entry": "liberalize",
+    "rank": 1670,
+    "meaning_ejdict": "〈心など〉を広くする,寛大にする / (自由主義に基づいて)…を改革する;…を自由[主義]化する / 寛大になる / 自由になる"
+  },
+  {
+    "entry": "bully",
+    "rank": 1671,
+    "meaning_ejdict": "弱い者いじめ,がき大将 / 〈弱い者〉をいじめる,おどかす / 《話》(…にとって)すてきな,すばらしい《+『for』+『名』》 / うまい,でかした"
+  },
+  {
+    "entry": "persistent",
+    "rank": 1672,
+    "meaning_ejdict": "(反対・困難にもくじけず)『あくまでもやり抜く』,ねばり強い,執ような / いつまでも続く,持続する(lasting)"
+  },
+  {
+    "entry": "catastrophe",
+    "rank": 1673,
+    "meaning_ejdict": "(突然の)大変動,大災害 / 悲劇的結末,破局"
+  },
+  {
+    "entry": "endless",
+    "rank": 1674,
+    "meaning_ejdict": "『無限の』,果てしのない / 絶え間のない,ひっきりなしの / (端と端がつながって)輪になっている"
+  },
+  {
+    "entry": "revaluation",
+    "rank": 1675,
+    "meaning_ja": "【名/U/C】再評価； 平価切り上げ"
+  },
+  {
+    "entry": "swell",
+    "rank": 1676,
+    "meaning_ejdict": "〈物が〉『大きくなる』,ふくれる,はれる《+up》 / 〈帆などが〉『張り出る』,ふくらむ《+out》 / 〈数量・程度・力などが〉『増大する』,増える,強まる / 〈川などが〉増水する,〈海が〉うねる,〈土地が〉高まる / 《話》〈感情が〉高まる;(感情で)〈胸が〉いっぱいになる《+with+名》 / …を『ふくらます』,のかさを大きくする / 〈帆など〉を『張り出させる』,ふくらませる《+out+名,+名+out》 / …を『増大させる』,増やす,強める / 〈心・胸など〉をいっぱいにする / 〈U〉《時にa ~》ふくれる(増大する)こと;ふくれている状態 / 〈C〉土地の隆起部,なだらかな丘 / 〈U〉《単数形で》大波,うねり / 〈C〉音の高まり,音量の増減 / 〈C〉《古》《話》名士;(特に)流行の服を着た人 / 《米話》すばらしい,すてきな / 《古》《俗》いきな,しゃれた"
+  },
+  {
+    "entry": "worthy",
+    "rank": 1678,
+    "meaning_ejdict": "『価値のある』,尊敬するべき / お偉方,名士,ごりっぱな人"
+  },
+  {
+    "entry": "resale",
+    "rank": 1679,
+    "meaning_ejdict": "再販,転売"
+  },
+  {
+    "entry": "progressive",
+    "rank": 1680,
+    "meaning_ejdict": "(行列などが)『前進する』,進んで行く / (事態が)進展する,進行する / 『進歩的な』,革新的な / (病気・暴力などが)次第に悪くなる(広がる) / (課税が)累進的な / (文法で)進行[形]の / 進歩的な人,革新主義者"
+  },
+  {
+    "entry": "corrective",
+    "rank": 1681,
+    "meaning_ejdict": "訂正(調整,修正,矯正)する,正しくする;訂正(調整,修正,矯正)するための / 矯正手段"
+  },
+  {
+    "entry": "genocide",
+    "rank": 1683,
+    "meaning_ejdict": "(人種・民族などを絶滅させる目的の)大虐殺,集団虐殺"
+  },
+  {
+    "entry": "legitimacy",
+    "rank": 1684,
+    "meaning_ejdict": "合法,適法,正当 / 正統,正系,嫡出(ちゃくしゅつ)"
+  },
+  {
+    "entry": "speculator",
+    "rank": 1685,
+    "meaning_ejdict": "投機者,相場師 / 思索家,理論家"
+  },
+  {
+    "entry": "inconsistent",
+    "rank": 1686,
+    "meaning_ejdict": "食い違っている,矛盾する"
+  },
+  {
+    "entry": "plainly",
+    "rank": 1688,
+    "meaning_ejdict": "『はっきりと』,明白に / 『率直に』,ありのままに / 『簡素に』,質素に"
+  },
+  {
+    "entry": "equate",
+    "rank": 1689,
+    "meaning_ejdict": "(…と)…が等しいと見なす,を等しく扱う《+『名』+『with』+『名』》 / (…と)…を等しくする《+『名』+『with(to)』+『名』》 / (数学で)…を等式化する"
+  },
+  {
+    "entry": "unexpectedly",
+    "rank": 1691,
+    "meaning_ejdict": "『思いがけなく』"
+  },
+  {
+    "entry": "timber",
+    "rank": 1692,
+    "meaning_ejdict": "(また《米》lumber)〈U〉(建築・木工用の)『材木』 / 〈U〉(特に材木用の)森林[地];《集合的に》立ち木 / 〈C〉梁;(船の)助材 / 〈U〉素質,性格 / …を木材で建てる(支える) / 木が倒れるぞ(伐採で注意をうながすかけ声)"
+  },
+  {
+    "entry": "credential",
+    "rank": 1693,
+    "meaning_ja": "【名】信任状、資格、経歴、証明書　【形】信用証明となる、資格認定の"
+  },
+  {
+    "entry": "randomly",
+    "rank": 1695,
+    "meaning_ja": "【副】無作為に"
+  },
+  {
+    "entry": "colonial",
+    "rank": 1696,
+    "meaning_ejdict": "植民地の;植民の / 《しばしばC-》(後に合衆国となった13州について)英国植民地[時代]の / 植民地住民"
+  },
+  {
+    "entry": "underpin",
+    "rank": 1697,
+    "meaning_ejdict": "(支柱・けたなどで)…を下から支える,に基礎(根拠)を与える《+名+with(by)+名》"
+  },
+  {
+    "entry": "diary",
+    "rank": 1698,
+    "meaning_ejdict": "『日記』,日記帳,日誌"
+  },
+  {
+    "entry": "heir",
+    "rank": 1699,
+    "meaning_ejdict": "(財産・地位などの)『相続人』,跡取り《+『to』+『名』》 / (先人の思想・精神・伝統などを)受け継ぐ人,後継者"
+  },
+  {
+    "entry": "genuinely",
+    "rank": 1700,
+    "meaning_ja": "純粋に,心から,誠実に / 本当に,実に"
+  },
+  {
+    "entry": "severely",
+    "rank": 1702,
+    "meaning_ejdict": "『厳しく』;ひどく;重く"
+  },
+  {
+    "entry": "grim",
+    "rank": 1703,
+    "meaning_ejdict": "(顔つき・態度などが)『険しい』,こわい / 『断固とした』,妥協を許さない / 《話》ぞっとする,不快な / 容赦のない,すさまじい"
+  },
+  {
+    "entry": "relational",
+    "rank": 1704,
+    "meaning_ejdict": "関係の,交渉の / (語が)関係を示す,関係のある / 親類の,血縁関係のある"
+  },
+  {
+    "entry": "brutal",
+    "rank": 1705,
+    "meaning_ejdict": "『けものの』;けもののような;『残酷な』,野蛮な"
+  },
+  {
+    "entry": "quasi",
+    "meaning_ja": "【複合要素】疑似の..., 類似の..., ある意味の..., 準...",
+    "rank": 1706
+  },
+  {
+    "entry": "monopolist",
+    "rank": 1707,
+    "meaning_ejdict": "独占者,専売者"
+  },
+  {
+    "entry": "physically",
+    "rank": 1708,
+    "meaning_ejdict": "物質的に;身体上;物理的に"
+  },
+  {
+    "entry": "disposition",
+    "rank": 1709,
+    "meaning_ejdict": "(人の)『気質』,性質 / 〈C〉(…する)傾向,(…したい)気持ち / 〈U〉『配置』,配列(arrangement) / 〈U〉(物事の最終的な)処理,処置;決着 / 〈U〉(物件などの)処分,譲渡,売却;使用権,自由裁量権"
+  },
+  {
+    "entry": "histogram",
+    "rank": 1710,
+    "meaning_ejdict": "(統計の)度数分布図,柱状図表"
+  },
+  {
+    "entry": "misunderstand",
+    "rank": 1711,
+    "meaning_ejdict": "…を誤解する,思い違いをする / 誤解する"
+  },
+  {
+    "entry": "outgoing",
+    "rank": 1714,
+    "meaning_ejdict": "(人か)外向的な,社交的な / 出て行く,去って行く / 〈U〉〈C〉出て行くこと,出発 / 《複数形で》《おもに英》支出,出費(expenditure)"
+  },
+  {
+    "entry": "worksheet",
+    "rank": 1715,
+    "meaning_ejdict": "作業票 / 検討事項(計画)の下書き用紙"
+  },
+  {
+    "entry": "intercept",
+    "rank": 1718,
+    "meaning_ejdict": "〈進行する人・物〉を途中で捕まえる(奪う) / …の進行をさえぎる;…を妨げる,中断する / (数学で)〈線・平面〉を2点(2線)で切り取る"
+  },
+  {
+    "entry": "dent",
+    "rank": 1719,
+    "meaning_ejdict": "くぼみ,へこみ / …をくぼませる,へこませる / へこむ,くぼむ / (くし・歯車などの)歯"
+  },
+  {
+    "entry": "absorption",
+    "rank": 1720,
+    "meaning_ejdict": "吸収,併合 / (…に)夢中になること,専心すること《+『in』+『名』》"
+  },
+  {
+    "entry": "importer",
+    "rank": 1721,
+    "meaning_ejdict": "輸入者,輸入業者"
+  },
+  {
+    "entry": "peacekeeping",
+    "rank": 1723,
+    "meaning_ejdict": "平和維持;(国連軍などの)平和維持活動 / 平和維持のための"
+  },
+  {
+    "entry": "continuity",
+    "rank": 1724,
+    "meaning_ejdict": "〈U〉連続,断続,一貫性 / 〈U〉(映画・ラジオ・テレビの)コンテ,撮影(録音)用台本;〈C〉コンテに書かれた個々の指示"
+  },
+  {
+    "entry": "geography",
+    "rank": 1725,
+    "meaning_ejdict": "〈U〉『地理』,『地理学』 / 〈C〉『地勢』,地形 / 〈C〉地理学書"
+  },
+  {
+    "entry": "dismal",
+    "rank": 1726,
+    "meaning_ejdict": "『陰うつな』,気のめいるような(gloomy);わびしい,ものさびしい(dreary) / 見る(聞く)に耐えない,へたな"
+  },
+  {
+    "entry": "magnetic",
+    "rank": 1727,
+    "meaning_ejdict": "磁石の;磁気の(による,を帯びた) / 人を引き付ける,魅力のある"
+  },
+  {
+    "entry": "generalize",
+    "rank": 1728,
+    "meaning_ejdict": "一般的に扱う(述べる) / (いくつかの事実から)一般原理(法則)を引き出す / 〈一般的な原理・法則〉を引き出す / …を一般的に述べる,概括する"
+  },
+  {
+    "entry": "confrontation",
+    "rank": 1729,
+    "meaning_ejdict": "(…との)対決,対面,直面《+『with』+『名』》"
+  },
+  {
+    "entry": "demise",
+    "rank": 1730,
+    "meaning_ejdict": "《遠回しに》(人の)死 / 《ふざけて》(物事の)消滅;終末"
+  },
+  {
+    "entry": "reversal",
+    "rank": 1731,
+    "meaning_ejdict": "(…を)逆にすること,裏返すこと《+『of』+『名』》"
+  },
+  {
+    "entry": "tide",
+    "rank": 1732,
+    "meaning_ejdict": "〈U〉〈C〉『潮[の干満]』,(潮の干満によって起こる)潮流 / 〈C〉(世論などの)『風潮』,全体的傾向,形勢 / 〈C〉潮(のように押し寄せてくる…)《+of+名》 / 〈U〉《古》時,季節 / 《『tide over』+『名』》(困難・障害を)乗り切る / (難しい時期を)〈人〉を助けて乗り切らせる,になんとかやっていかせる《+名+over+名》"
+  },
+  {
+    "entry": "saver",
+    "rank": 1733,
+    "meaning_ja": "【名/C】節約するもの；貯蓄家,倹約家；格安のもの；救済者,救助者"
+  },
+  {
+    "entry": "tick",
+    "rank": 1734,
+    "meaning_ejdict": "(時計まどの)カチカチ[という音] / 《英語》瞬間 / 照合(点検)済みの印(✓の印),チェック / 〈時計などが〉カチカチ音がする《+away》 / 〈時が〉過ぎる,経過する《+by(away)》 / 《話》〈人が〉行動する,〈機械などが〉動く / 〈C〉(ふとん・まくらなどの)表布 / ダニ"
+  },
+  {
+    "entry": "intensify",
+    "rank": 1736,
+    "meaning_ejdict": "…を強める,強烈にする / 強くなる,激しくなる"
+  },
+  {
+    "entry": "reluctance",
+    "rank": 1737,
+    "meaning_ejdict": "気が進まないこと,不承不承 / 磁気抵抗,リラクタンス"
+  },
+  {
+    "entry": "aviation",
+    "rank": 1738,
+    "meaning_ejdict": "飛行,航空;飛行術 / 航空機産業"
+  },
+  {
+    "entry": "defy",
+    "rank": 1739,
+    "meaning_ejdict": "《『defy』+『名』+『to』 do》(…してみよと)〈人〉に『挑む』,挑戦する / …を『無視する』,ものともしない / 〈物事が〉…を『拒む』,受け付けない"
+  },
+  {
+    "entry": "confer",
+    "rank": 1740,
+    "meaning_ejdict": "(同僚・弁護士などと…について)『相談する』,協議する《+『with』+『名』+『on』(『about, over』)+『名』(do『ing』)》 / (…に)〈爵位・勲章・恩恵など〉を与える,授ける《+『名』+『on』(『upon』)+『名』》 / 《廃》比較する(《略》『cf.』)"
+  },
+  {
+    "entry": "surveillance",
+    "rank": 1742,
+    "meaning_ejdict": "(特に容疑者・囚人などの)監視,見張り / 監督,指揮"
+  },
+  {
+    "entry": "decimal",
+    "rank": 1743,
+    "meaning_ejdict": "小数の / 十進法の / 小数"
+  },
+  {
+    "entry": "realizable",
+    "rank": 1744,
+    "meaning_ejdict": "はっきり理解できる / 実現できる / 利益が得られる / 《英》換金できる"
+  },
+  {
+    "entry": "blog",
+    "rank": null,
+    "meaning_ja": "〈C〉ブログ"
+  },
+  {
+    "entry": "sheer off",
+    "meaning_ja": "【動/自】〈特に船が〉針路からそれる,向きを変える《away, off》 / 《不快なもの・危険から》離れる,《…を》避ける《away, off, from ...》",
+    "rank": null
+  }
+]
