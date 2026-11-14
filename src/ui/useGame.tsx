@@ -18,7 +18,7 @@ import {
   type SaveFile,
   type Settings,
 } from '../core/save';
-import { ensureWord } from '../core/srs';
+import { addHandEntry, editEntry, markReview, removeEntry, setWordNote, toggleStar, type HandResult } from '../core/wordbook';
 import type { AbsentAction, ActivityKind, PersonId, TownDayState } from '../core/townTypes';
 import type { Brew, IngredientId, Lang, Method, Temp } from '../core/types';
 import { submitVerification } from '../core/verification';
@@ -85,6 +85,16 @@ export interface GameApi {
   closeDay(): void;
   openPage(pageId: string): void;
   setMemo(wordId: string, memo: string): void;
+  /** The player's own guess / memo on a word (word card, notebook). */
+  setNote(wordId: string, note: { guess?: string; memo?: string }): void;
+  /** 単語帳 (src/core/wordbook.ts). */
+  wordbook: {
+    toggleStar(wordId: string): void;
+    addHand(input: { text: string; guess?: string; memo?: string }): HandResult | null;
+    edit(key: string, patch: { text?: string; guess?: string; memo?: string }): void;
+    remove(key: string): void;
+    review(key: string, ok: boolean): void;
+  };
   verify(pageId: string, assignment: Record<string, string | undefined>): boolean;
   updateSettings(s: Partial<Settings>): void;
   exportFile(): void;
@@ -297,10 +307,21 @@ export function GameProvider({ children }: { children: ReactNode }) {
         setLastServe(null);
       },
       openPage: (pageId) => withProgress((p, d) => viewPage(d, p, pageId)),
-      setMemo: (wordId, memo) =>
-        withProgressNoRetry((p) => {
-          ensureWord(p.words, wordId, p.day).memo = memo;
-        }),
+      setMemo: (wordId, memo) => withProgressNoRetry((p) => setWordNote(p, wordId, { memo })),
+      setNote: (wordId, note) => withProgressNoRetry((p) => setWordNote(p, wordId, note)),
+      wordbook: {
+        toggleStar: (id) => withProgressNoRetry((p) => void toggleStar(p, id)),
+        addHand: (input) => {
+          let out: HandResult | null = null;
+          withProgressNoRetry((p, d) => {
+            out = addHandEntry(d, p, input);
+          });
+          return out;
+        },
+        edit: (key, patch) => withProgressNoRetry((p) => editEntry(p, key, patch)),
+        remove: (key) => withProgressNoRetry((p) => removeEntry(p, key)),
+        review: (key, ok) => withProgressNoRetry((p) => markReview(p, key, ok)),
+      },
       verify: (pageId, assignment) => {
         let ok = false;
         withProgressNoRetry((p, d) => {

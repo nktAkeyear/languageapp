@@ -15,7 +15,7 @@ import { currentOrder, endDay, serve, startDay, type ServeOutcome } from './shop
 import { chooseText, fill, textWords, townOf, type Town } from './town/text';
 import { storyAfterServe, storyEndDay, storyPlanShop, storyPlanTown } from '../story/engine';
 import { renoAfterServe, renoCarry, renoEndDay, renoPlanShop, renoPlanTown } from '../renovation/engine';
-import { difficultyEndDay, difficultyOnServe, difficultyStartDay, stageDay } from '../core/difficulty';
+import { difficultyEndDay, difficultyOnServe, difficultyStartDay, repairAssumed, stageDay } from '../core/difficulty';
 import { checkRankUp, jobById, jobsEndDay, jobsEnsureDay, jobsStartDay, TEAHOUSE } from '../jobs/engine';
 
 /** Is the activity open by now? (day + reputation, or grace days after minDay — no hard gate) */
@@ -116,6 +116,13 @@ export function startTownDay(data: GameData, p: LangProgress, rng: Rng): void {
 
 /** Make sure a running day has its segment state (saves from v1 continue as shop-only days). */
 export function ensureTownDay(data: GameData, p: LangProgress, rng: Rng): void {
+  repairAssumed(data, p); // v4 → v5: start-level words the player verified in play stay confirmed
+  // An old (v1) save may hold a running day without its queue: plan the day again instead of crashing.
+  const t = p.today as Partial<NonNullable<LangProgress['today']>> | null;
+  if (t && (!Array.isArray(t.queue) || !Array.isArray(t.results) || typeof t.index !== 'number' || !t.phase)) {
+    p.today = null;
+    p.townDay = null;
+  }
   if (!p.today) startTownDay(data, p, rng);
   else if (!p.townDay || p.townDay.day !== p.day) p.townDay = { day: p.day, segments: ['shop'], seg: 0, notes: [], stock: {}, moneyStart: p.town.money };
   storyPlanShop(data, p, rng); // story (idempotent per day): a resumed / migrated day joins in

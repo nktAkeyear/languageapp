@@ -1306,7 +1306,7 @@ const REACTIONS: JobContent['reactions'] = [
     { id: 'or_ok1', kind: 'perfect', text: 'Thank you. That is right.', face: 'happy' },
     { id: 'or_ok2', kind: 'perfect', text: 'Perfect. Good work!', face: 'delighted' },
     { id: 'or_ok3', kind: 'perfect', arch: 'respond', text: 'Great, thank you.', face: 'happy' },
-    { id: 'or_ok4', kind: 'perfect', rank: 2, text: 'Well done. Everything is in order.', face: 'happy' },
+    { id: 'or_ok4', kind: 'perfect', rank: 2, text: 'Good work. Everything is in order.', face: 'happy' },
     { id: 'or_ok5', kind: 'perfect', rank: 2, arch: 'check', text: 'Good eyes. The papers are fine now.', face: 'delighted' },
     { id: 'or_ok6', kind: 'perfect', rank: 2, arch: 'respond', text: 'Good answer. That is just what I wanted.', face: 'happy' },
     { id: 'or_ok7', kind: 'perfect', rank: 3, text: 'Excellent. You work fast!', face: 'delighted' },

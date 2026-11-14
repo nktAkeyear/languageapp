@@ -382,7 +382,8 @@ const R2: AuthoredTask[] = [
   Q('p2_open', 2, 10, 'c_student', 'Is the post office open today?', ['Yes, we are open.', 'It is two coins.', 'To the school.'], 0, { grammar: ['gr-5-002'] }),
   T('p2_notebook', 2, 11, 'c_student', 'A notebook, please. It is for school.', [['t_notebook', 1]], 4, { grammar: ['gr-5-007'] }),
   S('p2_days3', 2, 12, 'Today is Friday.', ['thu', 'fri', 'sat'], [['For yesterday', 'thu'], ['For tomorrow', 'sat'], ['For today', 'fri'], ['For tomorrow', 'sat']], { grammar: ['gr-5-027'] }),
-  S('p2_sun', 2, 23, 'Today is Saturday. We are closed tomorrow.', ['sat', 'sun', 'mon'], [['For today', 'sat'], ['For tomorrow', 'mon'], ['For today', 'sat'], ['For tomorrow', 'mon']], { grammar: ['gr-4-019'] }),
+  // Sunday is closed: letters for Sunday wait in the Monday box (said outright, so the task is not a riddle).
+  S('p2_sun', 2, 23, 'Today is Saturday. We are closed on Sunday, so letters for Sunday go in the Monday box.', ['sat', 'sun', 'mon'], [['For today', 'sat'], ['For Sunday', 'mon'], ['For today', 'sat'], ['For Monday', 'mon']], { grammar: ['gr-4-019'] }),
   K('p2_closed', 2, 13, 'c_grandma', ['I can come on Saturday or Sunday.', 'But not in the afternoon, please.'], ['sat', 'sun'], [['am', 'Morning'], ['pm', 'Afternoon']], { 'sun-am': 'Closed', 'sun-pm': 'Closed' }, 'sat-am', { grammar: ['gr-4-006'] }),
   FS('p2_form', 2, 14, 'c_grandma', ['I live at Number 4, East Street.', 'Please write it here.'], [
     { id: 'number', label: 'Number', options: ['4', '14', '40'], answer: '4' },

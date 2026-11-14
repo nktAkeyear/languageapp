@@ -9,12 +9,15 @@ import { useGame } from '../useGame';
 import { openLevelSettings } from './LevelSettings';
 import './difficulty.css';
 
-/** Small 「既」 stamp next to a word that is known by the chosen level, not by play. */
+/**
+ * A word the chosen start level assumes known (未確認・知っているはず): marked, never glossed — the
+ * meaning appears only when the player confirms it on its 検証ページ.
+ */
 export function SeededMark({ st }: { st: WordState }) {
-  if (!st.seeded) return null;
+  if (!st.seeded || st.confirmed) return null;
   return (
-    <span className="seed-mark" title="既習扱い（レベル設定で知っている扱いにした言葉）" aria-label="既習扱い">
-      既
+    <span className="nb-assumed" title="未確認（知っているはず）：始めたレベルで知っているはずの言葉。意味はまだ確かめていない。" aria-label="未確認（知っているはず）">
+      知っているはず
     </span>
   );
 }
@@ -26,17 +29,19 @@ export function WordAssist({ id }: { id: string }) {
   const st = progress.words[id];
   const entry = data.lex.byId.get(id);
   if (!entry) return null;
-  if (st?.seeded)
+  if (st?.seeded && !st.confirmed)
     return (
       <div className="wa-box" data-testid="seeded-box">
-        <span className="seed-mark">既</span>
-        <span className="hand small">既習扱い：レベル設定で「知っている」ことにした言葉です。ときどき復習に出てきます。</span>
+        <span className="nb-assumed">知っているはず</span>
+        <span className="hand small">
+          始めたレベルで知っているはずの言葉です（出題の調整に使うだけで、意味は表示しません）。自分の推測を書いて、検証ページで確かめましょう。
+        </span>
         <button
           type="button"
           className="btn btn-small"
           data-testid="revert-seeded"
           onClick={() => {
-            if (confirm(`「${entry.text}」を既習扱いから外して、ゲームの中で学び直しますか？`)) mutateProgress((p, d) => void revertSeededWord(d, p, id));
+            if (confirm(`「${entry.text}」を「知っているはず」から外して、ゲームの中で新しく学び直しますか？`)) mutateProgress((p, d) => void revertSeededWord(d, p, id));
           }}
         >
           学び直す
@@ -89,7 +94,7 @@ export function TargetPanel() {
         <span className="tp-ceiling" style={{ left: r(t.ceiling) }} title="このゲームの今の内容で届く上限" />
       </div>
       <div className="hand small">
-        身についた {t.mastered} 語{t.seeded ? `（うち既習扱い ${t.seeded}）` : ''}／一覧 約{t.listSize} 語（{r(t.ratio)}）
+        身についた {t.mastered} 語{t.seeded ? `（うち始めたレベルで知っているはず ${t.seeded}）` : ''}／一覧 約{t.listSize} 語（{r(t.ratio)}）
       </div>
       <div className="hand small">
         ゲームの中で残り {t.remainingInGame} 語・ゲームにない語 約{t.notInGame} 語

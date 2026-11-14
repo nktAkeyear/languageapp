@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
-import type { LayoutPref } from '../../core/save';
+import type { GuessDisplay, LayoutPref } from '../../core/save';
+import { useSpeechAvailable } from '../speech';
 import { LANGS, type Lang } from '../../core/types';
 import { useGame } from '../useGame';
 import { SaveTextTransfer } from './SaveText';
@@ -13,6 +14,7 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
   const { settings, save, lang } = g;
   const fileRef = useRef<HTMLInputElement>(null);
   const [msg, setMsg] = useState('');
+  const voice = useSpeechAvailable(lang ?? 'en');
   return (
     <div className="settings">
       <div className="settings-head">
@@ -61,6 +63,14 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
           </select>
         </label>
         <label className="field">
+          自分の推測（意味）を文の中の言葉に
+          <select value={settings.guessDisplay ?? 'under'} onChange={(e) => g.updateSettings({ guessDisplay: e.target.value as GuessDisplay })} data-testid="settings-guess">
+            <option value="under">言葉の下に小さく書く</option>
+            <option value="hover">触れたとき・カーソルを当てたときだけ</option>
+            <option value="off">文の中には出さない（手帳と単語帳だけ）</option>
+          </select>
+        </label>
+        <label className="field">
           読み上げの速さ {settings.speechRate.toFixed(1)}
           <input
             type="range"
@@ -71,6 +81,11 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
             onChange={(e) => g.updateSettings({ speechRate: Number(e.target.value) })}
           />
         </label>
+        {!voice ? (
+          <p className="small voice-note" data-testid="no-voice">
+            この環境には{lang === 'zh' ? '中国語' : '英語'}の読み上げ音声が見つかりません。聞くボタンは使えず、聞くだけの注文は文字で表示されます（OS の設定で音声を追加すると使えます）。
+          </p>
+        ) : null}
       </section>
 
       <section>

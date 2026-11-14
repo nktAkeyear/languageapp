@@ -8,7 +8,7 @@ levels.tsv     word <TAB> pos <TAB> eiken <TAB> toeic <TAB> note
     eiken / toeic "=" = leave as is; toeic "null" = no TOEIC band. Later rows win. Idempotent.
 additions.tsv  word <TAB> pos <TAB> eiken <TAB> toeic <TAB> cefr <TAB> ja <TAB> domains(comma-separated)
     Adds an entry unless (word,pos) already exists. freq = rank in sources/wordfreq-derived/en_top60k.tsv,
-    else 60000+len(word) (same fallback as build_vocab.py).
+    else (multi-word headword) 1.5x the rank of its rarest component word, else 60000+len(word) (same fallback as build_vocab.py).
 The file is re-sorted with the build's key (eiken grade, freq, word) and written with the same JSON format as apply_review.py.
 """
 import json, os, sys
@@ -63,6 +63,25 @@ if os.path.exists(p):
             freq.setdefault(c[1].lower(), int(c[0]))
 have = {(e['word'], e['pos']) for e in vocab}
 added = 0
+
+def freq_of(w):
+    """Frequency rank for an added headword: its own rank if listed; for a multi-word headword the rank of its rarest
+    component (post office -> the rarer of post/office); for a contraction the rank of its base (don't -> do)."""
+    k = w.lower()
+    if k in freq:
+        return freq[k]
+    parts = [t for t in k.replace('-', ' ').split(' ') if t]
+    out = []
+    for t in parts:
+        if t.endswith("n't"):
+            t = t[:-3]
+        t = t.split("'")[0]
+        if t in freq:
+            out.append(freq[t])
+    if len(out) == len(parts) and out:
+        return max(out) if len(parts) == 1 or "'" in k else int(max(out) * 1.5) + 1   # a compound is rarer than its rarest part
+    return 60000 + len(w)
+
 for n, (w, pos, eik, toe, cefr, ja, dom, *_rest) in rows('additions.tsv', 7):
     doms = dom.split(',')
     if eik not in EIKEN or toe not in TOEIC or any(d not in valid_dom for d in doms):
@@ -70,7 +89,7 @@ for n, (w, pos, eik, toe, cefr, ja, dom, *_rest) in rows('additions.tsv', 7):
     if (w, pos) in have:
         continue
     vocab.append({'word': w, 'pos': pos, 'eiken': eik, 'toeic': TOEIC[toe], 'cefr': cefr, 'ja': ja,
-                  'domains': doms, 'freq': freq.get(w.lower(), 60000 + len(w))})
+                  'domains': doms, 'freq': freq_of(w)})
     have.add((w, pos)); added += 1
 
 vocab.sort(key=lambda e: (EIKEN.index(e['eiken']), e['freq'], e['word']))

@@ -16,6 +16,7 @@ import { UiProvider } from './uiState';
 import { GameProvider, useGame } from './useGame';
 import { LevelSettingsHost } from './difficulty/LevelSettings';
 import { DifficultyEffects } from './difficulty/AssistUi';
+import { WordCardHost } from './components/WordCard';
 
 const MOBILE_QUERY = '(max-width: 820px)';
 
@@ -61,6 +62,7 @@ function Shell() {
           )}
           <LevelSettingsHost />
           <DifficultyEffects />
+          <WordCardHost />
           {settings ? (
             <Overlay variant={mobile ? 'sheet' : 'modal'} onClose={() => setSettings(false)}>
               <SettingsPanel onClose={() => setSettings(false)} />

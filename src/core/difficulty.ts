@@ -5,8 +5,9 @@
  * below, which plan exactly like the game did before this module existed):
  *
  * - **start** (現在の実力の目安): an exam level (zh HSK n / en 英検 grade). Words tagged at or below it
- *   are seeded as 既習扱い (confirmed, counted as known, still reviewed now and then, revertible one
- *   by one); 検証ページ whose words are all known are sealed; earlier curriculum orders made only of
+ *   are seeded as 既習扱い ("assumed known": counted as known for pacing, still reviewed now and then,
+ *   revertible one by one — but NOT confirmed: no meaning is shown until the player verifies the word
+ *   on its 検証ページ like any other word); earlier curriculum orders made only of
  *   known words are marked done; the shop jumps to the stage the level corresponds to (see
  *   START_STAGE), reputation / the stage clock / market and delivery experience follow so later
  *   stages and the town open consistently. Lowering the level takes back exactly what seeding added.
@@ -25,7 +26,7 @@ import { stageDef, type GameData } from './gamedata';
 import { examLabel, levelReport, REACHED } from './levels';
 import { accServe, newDayAcc, pushHistory, windowStats, type DayAcc, type DayMetrics } from './metrics';
 import type { LangProgress } from './save';
-import { newWordState, START_EASE, type WordState } from './srs';
+import { isKnown, newWordState, START_EASE, type WordState } from './srs';
 import { tokenIds } from './tokenize';
 import { EIKEN_GRADES, type Lang, type LexEntry, type OrderInstance, type Outcome } from './types';
 import { lineCovered, stockFromMarket } from '../activities/market/rules';
@@ -271,8 +272,7 @@ export function targetProgress(data: GameData, p: LangProgress, level: number): 
   const words = wordsUpTo(data, level);
   const own = words.filter((e) => wordLevel(lang, e) === level).length;
   const mastered = words.filter((e) => {
-    const w = p.words[e.id];
-    return !!w && w.confirmed && (w.correct >= 2 || w.seen >= 6);
+    return isMasteredState(p.words[e.id]);
   });
   const seeded = mastered.filter((e) => p.words[e.id]?.seeded).length;
   const ceiling = Math.min(1, words.length / listSize);
@@ -650,13 +650,13 @@ function seedInterval(id: string): number {
 
 function seedWord(p: LangProgress, id: string): boolean {
   const prev = p.words[id];
-  if (prev?.confirmed) return false;
+  if (prev?.confirmed || prev?.seeded) return false;
   const w: WordState = prev ?? newWordState(p.day);
   const addSeen = Math.max(0, SEED_SEEN - w.seen);
   const addCorrect = Math.max(0, SEED_CORRECT - w.correct);
   w.seen += addSeen;
   w.correct += addCorrect;
-  w.confirmed = true;
+  // Assumed known (既習扱い), not confirmed: the gloss stays hidden until verified in play.
   const iv = seedInterval(id);
   if (w.interval < iv) {
     w.interval = iv;
@@ -675,7 +675,7 @@ export function unseedWord(data: GameData, p: LangProgress, id: string): boolean
   const entry = data.lex.byId.get(id);
   const page = entry ? p.verification[entry.group] : undefined;
   const sealedByPlay = !!page?.solved && !page.seeded;
-  if (s.fresh && w.seen <= s.seen && !w.memo && !sealedByPlay) {
+  if (s.fresh && w.seen <= s.seen && !w.memo && !w.guess && !sealedByPlay) {
     delete p.words[id];
   } else {
     w.seen = Math.max(0, w.seen - s.seen);
@@ -702,7 +702,7 @@ export function revertSeededWord(data: GameData, p: LangProgress, id: string): b
 }
 
 function orderKnown(data: GameData, p: LangProgress, text: string): boolean {
-  return tokenIds(data.tokens(text)).every((id) => !!p.words[id]?.confirmed);
+  return tokenIds(data.tokens(text)).every((id) => isKnown(p.words[id]));
 }
 
 function reopenSeededOrders(data: GameData, p: LangProgress): number {
@@ -733,7 +733,7 @@ export interface LevelChangeSummary {
 /** Japanese summary of a level change for the settings screen. */
 export function describeChange(data: GameData, s: LevelChangeSummary): string[] {
   const out: string[] = [];
-  if (s.seeded) out.push(`${s.seeded} 語を「既習扱い」にしました（手帳で一語ずつ取り消せます）。`);
+  if (s.seeded) out.push(`${s.seeded} 語を「知っているはず（未確認）」にしました。出題の調整に使うだけで、意味は表示されません（手帳で自分の推測を書き、検証ページで確かめると「確」になります。一語ずつ取り消せます）。`);
   if (s.reopened) out.push(`${s.reopened} 語を学び直しの対象に戻しました。`);
   if (s.pagesSealed) out.push(`検証ページ ${s.pagesSealed} 枚を確定済みにしました。`);
   if (s.pagesReopened) out.push(`検証ページ ${s.pagesReopened} 枚をもう一度開けるようにしました。`);
@@ -781,16 +781,8 @@ export function applyStartLevel(data: GameData, p: LangProgress, level: number):
       seededNow.push(e.id);
     }
   }
-  // 3. verification pages whose words are all known are sealed
-  for (const page of data.content.verificationPages) {
-    const words = data.content.lexicon.filter((e) => e.group === page.id);
-    const rec = p.verification[page.id];
-    if (rec?.solved || !words.length) continue;
-    if (words.every((e) => p.words[e.id]?.confirmed)) {
-      p.verification[page.id] = { attempts: rec?.attempts ?? 0, solved: true, seeded: true };
-      sum.pagesSealed++;
-    }
-  }
+  // 3. 検証ページ are never sealed by the start level: the player confirms assumed words in play
+  //    (a page opens once its words have been met in play, see verification.ts pageStatus).
   // 4. curriculum orders before the start stage made only of known words are done
   sum.ordersReopened = reopenSeededOrders(data, p);
   const startStage = startStageFor(data, level);
@@ -863,6 +855,25 @@ export function setDifficultyOptions(p: LangProgress, opts: Partial<Pick<Difficu
 /** Is the story replaying a backlog (the player started above zero)? */
 export function storyCatchingUp(p: LangProgress): boolean {
   return !!p.difficulty?.storyCatchUp;
+}
+
+/**
+ * At load (idempotent): an assumed-known word whose 検証ページ the player has sealed in play is
+ * confirmed (saves from v4 had start-level words confirmed outright; the v5 migration un-confirms
+ * them and this keeps the ones the player actually verified).
+ */
+export function repairAssumed(data: GameData, p: LangProgress): number {
+  let n = 0;
+  for (const [id, w] of Object.entries(p.words)) {
+    if (!w?.seeded || w.confirmed) continue;
+    const e = data.lex.byId.get(id);
+    const v = e ? p.verification[e.group] : undefined;
+    if (v?.solved && !v.seeded) {
+      w.confirmed = true;
+      n++;
+    }
+  }
+  return n;
 }
 
 /** Seeded (既習扱い) words in the notebook. */

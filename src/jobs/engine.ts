@@ -15,7 +15,7 @@
 import { wordMarkup, type GameData } from '../core/gamedata';
 import { pick, type Rng } from '../core/rng';
 import type { LangProgress } from '../core/save';
-import { recordEncounter, recordLapse, recordSuccess, reviewWeight } from '../core/srs';
+import { isKnown, recordEncounter, recordLapse, recordSuccess, reviewWeight } from '../core/srs';
 import { tokenIds } from '../core/tokenize';
 import type { Face, Outcome } from '../core/types';
 import { difficultyOnTask, difficultyState } from '../core/difficulty';
@@ -320,7 +320,7 @@ export interface RankStatus {
 
 export function confirmedJobWords(data: GameData, p: LangProgress, job: JobDef): number {
   let n = 0;
-  for (const id of jobVocab(data, job)) if (p.words[id]?.confirmed) n++;
+  for (const id of jobVocab(data, job)) if (isKnown(p.words[id])) n++; // confirmed, or assumed known by the start level
   return n;
 }
 
@@ -532,6 +532,32 @@ export function ruleCtx(data: GameData, jc: JobContent): RuleCtx {
   };
 }
 
+const CHILD = /\b(sons?|daughters?|child|children|kids?|boys?|girls?|baby)\b/i;
+const OTHER = /\b(sons?|daughters?|child|children|kids?|boys?|girls?|baby|husband|wife|mother|father|grandmother|grandfather|family|friends?|guests?|he|she|him|her|they|them)\b|\|@\}\s+(can't|cannot|wants|likes|says|is|has)\b/i;
+const GROUP = /\b(we|us|our|both|everyone|all of us)\b/i;
+
+/**
+ * Does a reaction line fit who the request was for? Content reactions are shared by every task of a
+ * kind, so a few would not fit some requests: "Both of us are happy" from a single customer, "My son
+ * will love this" when nobody mentioned a child, "I can't eat it" / "no cheese for me" when the request
+ * said someone else (my son, Mrs. Wren …) can't eat it. Lines that fit are preferred (pickFitting
+ * falls back to all lines of the kind when none fits).
+ */
+export function reactionFits(inst: TaskInstance): (text: string) => boolean {
+  const req = (inst.texts ?? []).join(' ');
+  const child = CHILD.test(req);
+  const other = OTHER.test(req);
+  const group = other || GROUP.test(req);
+  // The thing to avoid is someone else's: "My son can't eat cheese", "{Tom|@} can't eat onions".
+  const forbidOther = /can't eat|cannot eat|allerg/i.test(req) && !/\bI\s+(can't|cannot)\s+eat\b|\bI am allergic\b|\bI'm allergic\b/i.test(req) && other;
+  return (text) => {
+    if (CHILD.test(text) && !child) return false;
+    if (/\bboth of us\b|\ball of us\b|\bwe are\b|\bwe're\b/i.test(text) && !group) return false;
+    if (forbidOther && /\bI\s+(can't|cannot)\s+eat\b|\bfor me\b|\bmy allergy\b|\bgood for me\b|\bmy face\b/i.test(text)) return false;
+    return true;
+  };
+}
+
 function reactionText(data: GameData, jc: JobContent, inst: TaskInstance, ev: JobEvaluation, rank: number, rng: Rng, late: boolean): { text: string; face: Face } {
   const prim = ev.primary;
   const kind = ev.outcome === 'perfect' ? (late ? 'minor' : 'perfect') : prim?.kind;
@@ -569,13 +595,19 @@ function reactionText(data: GameData, jc: JobContent, inst: TaskInstance, ev: Jo
       .filter((r) => r.kind === k && (r.rank ?? 1) <= rank && (!r.arch || r.arch === inst.spec.arch))
       .map((r) => ({ r, text: fill(r.text.replace(/\b(the|right|wrong) \{field\}/g, '$1 {fieldLow}'), values) }))
       .filter((x): x is { r: (typeof jc.reactions)[number]; text: string } => !!x.text);
-  let cands = pickFrom(kind);
+  const fits = reactionFits(inst);
+  const pickFitting = (k: string | undefined) => {
+    const all = pickFrom(k);
+    const ok = all.filter((x) => fits(x.r.text));
+    return ok.length ? ok : all;
+  };
+  let cands = pickFitting(kind);
   // Newer issue kinds fall back to the nearest older one (content written before them still reacts sensibly).
   const near: Partial<Record<string, string>> = { disliked: 'extra', wrong_order: 'wrong_method', wrong_postage: 'change_short' };
-  if (!cands.length && kind && near[kind]) cands = pickFrom(near[kind]);
-  if (!cands.length && ev.outcome === 'minor') cands = pickFrom('minor');
-  if (!cands.length && ev.outcome !== 'perfect') cands = pickFrom('any_fail');
-  if (!cands.length) cands = pickFrom('perfect');
+  if (!cands.length && kind && near[kind]) cands = pickFitting(near[kind]);
+  if (!cands.length && ev.outcome === 'minor') cands = pickFitting('minor');
+  if (!cands.length && ev.outcome !== 'perfect') cands = pickFitting('any_fail');
+  if (!cands.length) cands = pickFitting('perfect');
   const c = cands.length ? pick(rng, cands) : null;
   return { text: c?.text ?? '', face: c?.r.face ?? (ev.outcome === 'perfect' ? 'happy' : 'puzzled') };
 }

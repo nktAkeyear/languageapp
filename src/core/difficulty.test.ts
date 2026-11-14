@@ -28,6 +28,8 @@ import {
 import { buildGameData, stageDef } from './gamedata';
 import type { DayMetrics } from './metrics';
 import { makeRng } from './rng';
+import { isKnown } from './srs';
+import { pageStatus, submitVerification } from './verification';
 import { migrateSave, newProgress } from './save';
 import { LANGS } from './types';
 
@@ -235,7 +237,7 @@ describe.each(LANGS)('starting level (%s)', (lang) => {
     expect([...stages].sort((a, b) => a - b)).toEqual(stages);
   });
 
-  it('seeds words at or below the level, seals full pages, skips known early orders, fast-forwards', () => {
+  it('seeds words at or below the level as assumed known (never confirmed, no page sealed), skips known early orders, fast-forwards', () => {
     const p = newProgress(lang);
     const s = applyStartLevel(data, p, 2);
     const stage = startStageFor(data, 2);
@@ -244,17 +246,24 @@ describe.each(LANGS)('starting level (%s)', (lang) => {
     expect(p.reputation).toBeGreaterThanOrEqual(stageDef(data, stage).minReputation);
     const lvl = wordsUpTo(data, 2);
     expect(s.seeded).toBe(lvl.length);
-    for (const e of lvl) expect(p.words[e.id]).toMatchObject({ confirmed: true, seeded: expect.anything() });
+    // Assumed known, never confirmed: no meaning is handed out for a word the player did not verify.
+    for (const e of lvl) expect(p.words[e.id]).toMatchObject({ confirmed: false, seeded: expect.anything() });
+    for (const e of lvl) expect(isKnown(p.words[e.id])).toBe(true);
     // Seeded words come back for review now and then, not all at once.
     const dues = new Set(lvl.map((e) => p.words[e.id].due));
     expect(dues.size).toBeGreaterThan(3);
     expect(Math.min(...dues)).toBeGreaterThan(p.day);
     for (const e of data.content.lexicon) if (wordLevel(lang, e) === 0 || wordLevel(lang, e) > 2) expect(p.words[e.id]?.seeded).toBeUndefined();
-    expect(s.pagesSealed).toBeGreaterThan(0);
-    for (const [id, v] of Object.entries(p.verification)) {
-      expect(v.seeded).toBe(true);
-      expect(data.content.lexicon.filter((e) => e.group === id).every((e) => p.words[e.id]?.confirmed)).toBe(true);
-    }
+    expect(s.pagesSealed).toBe(0);
+    expect(Object.keys(p.verification)).toEqual([]);
+    // A page of assumed words opens only once its words are met in play, and confirms them like any page.
+    const page = data.content.verificationPages.find((pg) => { const ws = data.content.lexicon.filter((e) => e.group === pg.id); return ws.length > 0 && ws.every((e) => p.words[e.id]?.seeded); })!;
+    expect(pageStatus(data, p, page)).toBe('locked');
+    const ws = data.content.lexicon.filter((e) => e.group === page.id);
+    for (const e of ws) p.words[e.id].seen += 3;
+    expect(pageStatus(data, p, page)).toBe('available');
+    expect(submitVerification(data, p, page.id, Object.fromEntries(ws.map((e) => [e.id, e.id])))).toBe(true);
+    for (const e of ws) expect(p.words[e.id].confirmed).toBe(true);
     // Early orders with unknown words (shelf names, higher-level words) still have to be served.
     const early = data.content.orders.filter((o) => o.stage < stage);
     expect(early.some((o) => !p.orders[o.id]?.perfect)).toBe(true);
@@ -277,8 +286,8 @@ describe.each(LANGS)('starting level (%s)', (lang) => {
       if (e.id === met.id) expect(p.words[e.id]).toMatchObject({ seen: 3, confirmed: false });
       else expect(p.words[e.id]).toBeUndefined();
     }
-    for (const e of wordsUpTo(data, 1)) expect(p.words[e.id]?.confirmed).toBe(true);
-    for (const v of Object.values(p.verification)) expect(v.solved).toBe(true);
+    for (const e of wordsUpTo(data, 1)) expect(isKnown(p.words[e.id])).toBe(true);
+    for (const e of wordsUpTo(data, 1)) expect(p.words[e.id]?.confirmed).toBe(false);
     for (const [id, log] of Object.entries(p.orders)) if (log.seeded) expect(CONTENT[lang].orders.find((o) => o.id === id)).toBeDefined();
     // Manual revert of one level-1 word, then up to 2 again.
     const one = wordsUpTo(data, 1)[3];
@@ -287,7 +296,8 @@ describe.each(LANGS)('starting level (%s)', (lang) => {
     const up = applyStartLevel(data, p, 2);
     expect(up.seeded).toBe(l2.length);
     expect(p.words[one.id]).toBeUndefined();
-    expect(p.words[met.id]).toMatchObject({ confirmed: true, seen: 6 });
+    expect(p.words[met.id]).toMatchObject({ confirmed: false, seen: 6 });
+    expect(isKnown(p.words[met.id])).toBe(true);
     // Down to zero: no seeded word is left.
     applyStartLevel(data, p, 0);
     expect(Object.values(p.words).some((w) => w.seeded)).toBe(false);

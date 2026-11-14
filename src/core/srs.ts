@@ -19,12 +19,16 @@ export interface WordState {
   due: number;
   /** Sentences (raw content text, may contain markup) in which the word was seen. Newest first. */
   contexts: string[];
-  /** Player's own guess / memo (never checked). */
+  /** Player's own free memo (never checked). */
   memo: string;
-  /** Meaning confirmed via a 検証ページ. */
+  /** Player's own guessed meaning (自分の推測; never checked; optional, absent = none). */
+  guess?: string;
+  /** Meaning confirmed via a 検証ページ (earned by play: the only state that shows the official gloss). */
   confirmed: boolean;
   /**
-   * 既習扱い: confirmed by the chosen starting level (src/core/difficulty.ts), not by play.
+   * 既習扱い ("assumed known", 未確認・知っているはず): set by the chosen starting level
+   * (src/core/difficulty.ts), not by play. Counts as known for task selection / SRS / pacing /
+   * ranks (see isKnown) but never as confirmed: no gloss is shown until the player verifies it.
    * Records what seeding added so it can be taken back exactly. Absent in older saves.
    */
   seeded?: { day: number; seen: number; correct: number; fresh: boolean };
@@ -105,7 +109,22 @@ export function isWeak(w: WordState | undefined): boolean {
  * twice in served orders or seen at least 6 times (for words that only occur in reactions/pages).
  */
 export function isMastered(w: WordState | undefined): boolean {
-  return !!w && w.confirmed && (w.correct >= 2 || w.seen >= 6);
+  return !!w && isKnown(w) && (w.correct >= 2 || w.seen >= 6);
+}
+
+/**
+ * Known for the game's internal pacing (task selection, SRS, curriculum skipping, rank thresholds,
+ * 現在地): confirmed by play OR assumed known by the start level (既習扱い). Never use this to decide
+ * whether a gloss may be shown — that is `confirmed` alone.
+ */
+export function isKnown(w: WordState | undefined): boolean {
+  return !!w && (w.confirmed || !!w.seeded);
+}
+
+/** Encounters made in play (the start level's seeded encounters left out). */
+export function playSeen(w: WordState | undefined): number {
+  if (!w) return 0;
+  return Math.max(0, w.seen - (w.seeded?.seen ?? 0));
 }
 
 /** Priority of reviewing this word today (higher = more wanted). */

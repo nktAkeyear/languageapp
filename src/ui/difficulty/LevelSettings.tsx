@@ -211,7 +211,7 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
         <p className="small lvs-explain">
           {start === 0
             ? '最初の一杯から。言葉はすべてゲームの中で出会って、検証して覚えます。'
-            : `${levelName(lang, start)}までの言葉を「既習扱い」にして（手帳に「既」の印。一語ずつ取り消せます）、店は第${startStage}段階から。棚の品の名前など、まだ知らない言葉の入った最初の注文はそのまま出てきます。物語は最初の手紙から、少し詰めて進みます。`}
+            : `${levelName(lang, start)}までの言葉は「知っているはず（未確認）」として扱い、易しい言葉ばかりの注文は省きます。答え（意味）は表示されません。手帳では未確認のまま並び、自分の推測を書いて検証ページで確かめると「確」になります（一語ずつ取り消しも可）。店は第${startStage}段階から。棚の品の名前など、まだ知らない言葉の入った最初の注文はそのまま出てきます。物語は最初の手紙から、少し詰めて進みます。`}
         </p>
         {preview ? (
           <ul className="lvs-preview small" data-testid="level-preview">

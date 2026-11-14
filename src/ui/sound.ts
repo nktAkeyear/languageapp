@@ -315,6 +315,20 @@ export function sfx(name: Sfx): void {
   }
 }
 
+/** Diagnostics (browser console / automated checks): audio state and every effect by name. */
+export function audioDiagnostics(): { state: string; names: string[]; play(n: string): boolean } {
+  return {
+    state: st.ctx ? st.ctx.state : 'none',
+    names: Object.keys(RECIPES),
+    play: (n: string) => {
+      if (!(n in RECIPES)) return false;
+      sfx(n as Sfx);
+      return true;
+    },
+  };
+}
+if (typeof window !== 'undefined') (window as unknown as { __minatoAudio?: typeof audioDiagnostics }).__minatoAudio = audioDiagnostics;
+
 // ---------------------------------------------------------------------------------------------
 // Ambient loop: very quiet harbour air (filtered noise swell) + an occasional far-off gull/creak.
 // ---------------------------------------------------------------------------------------------

@@ -652,6 +652,7 @@ const REACTIONS: JobReaction[] = [
   { id: 'kr_vessel', kind: 'wrong_vessel', text: 'I wanted a {vessel}.', face: 'neutral' },
   { id: 'kr_vessel2', kind: 'wrong_vessel', rank: 3, text: 'Not in that, please. Next time, use a {vessel}.', face: 'neutral' },
   { id: 'kr_forbid', kind: 'forbidden', text: "Oh no! {Thing}! I can't eat {it}.", face: 'angry' },
+  { id: 'kr_forbid_o', kind: 'forbidden', rank: 3, text: 'Oh no! {Thing}! I said no {thing} in this one!', face: 'angry' },
   { id: 'kr_forbid2', kind: 'forbidden', rank: 2, text: 'Stop! No {thing} for me, please!', face: 'angry' },
   { id: 'kr_forbid3', kind: 'forbidden', rank: 3, text: '{Thing} {is} not good for me. I must go to see the doctor now.', face: 'angry' },
   { id: 'kr_dislike', kind: 'disliked', text: "I said no {thing}! I don't like {it}.", face: 'puzzled' },

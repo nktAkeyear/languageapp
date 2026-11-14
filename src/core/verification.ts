@@ -2,6 +2,7 @@ import { difficultyOnVerify } from './difficulty';
 import type { GameData } from './gamedata';
 import type { LangProgress } from './save';
 import type { LexEntry, VerificationPage } from './types';
+import { playSeen } from './srs';
 
 export const DEFAULT_MIN_ENCOUNTERS = 3;
 
@@ -16,7 +17,8 @@ export function pageStatus(data: GameData, p: LangProgress, page: VerificationPa
   const min = page.minEncounters ?? DEFAULT_MIN_ENCOUNTERS;
   const words = pageWords(data, page.id);
   if (!words.length) return 'locked';
-  return words.every((w) => (p.words[w.id]?.seen ?? 0) >= min) ? 'available' : 'locked';
+  // Encounters in play: a start level's 既習扱い words open their page only once actually met.
+  return words.every((w) => playSeen(p.words[w.id]) >= min) ? 'available' : 'locked';
 }
 
 /** Fraction of the page's words encountered enough (for a progress hint). */
@@ -24,7 +26,7 @@ export function pageReadiness(data: GameData, p: LangProgress, page: Verificatio
   const min = page.minEncounters ?? DEFAULT_MIN_ENCOUNTERS;
   const words = pageWords(data, page.id);
   if (!words.length) return 0;
-  return words.filter((w) => (p.words[w.id]?.seen ?? 0) >= min).length / words.length;
+  return words.filter((w) => playSeen(p.words[w.id]) >= min).length / words.length;
 }
 
 /**

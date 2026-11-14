@@ -18,8 +18,8 @@ seen=set()
 for i,x in enumerate(v):
     ctx=f"#{i} {x.get('word')}/{x.get('pos')}"
     if set(x)!=KEYS: E(f"{ctx}: keys {sorted(set(x)^KEYS)}"); continue
-    if not isinstance(x["word"],str) or not re.fullmatch(r"[A-Za-z][A-Za-z'\-]*",x["word"]): E(f"{ctx}: bad word")
-    if x["word"]!=x["word"].lower() and not re.fullmatch(r"[A-Z][a-z]+",x["word"]) and x["word"] not in ("I","I'd","T-shirt","X-ray","pH"): E(f"{ctx}: odd capitalisation")
+    if not isinstance(x["word"],str) or not re.fullmatch(r"[A-Za-z][A-Za-z'\-]*(?: [A-Za-z][A-Za-z'\-]*)*",x["word"]): E(f"{ctx}: bad word")
+    if x["word"]!=x["word"].lower() and not re.fullmatch(r"[A-Z][a-z]+",x["word"]) and x["word"] not in ("I","I'd","I'm","T-shirt","X-ray","pH"): E(f"{ctx}: odd capitalisation")
     if x["pos"] not in POS: E(f"{ctx}: pos {x['pos']}")
     if x["eiken"] not in EIKEN: E(f"{ctx}: eiken {x['eiken']}")
     if x["toeic"] not in TOEIC: E(f"{ctx}: toeic {x['toeic']}")

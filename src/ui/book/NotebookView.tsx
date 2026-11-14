@@ -12,7 +12,9 @@ import { useMobile } from '../layout';
 import { useUi } from '../uiState';
 import { BookShell, type Ribbon } from './BookShell';
 import { owns } from '../../renovation/engine';
-import { isDue, isWeak, reviewWeight } from '../../core/srs';
+import { isDue, isWeak, playSeen, reviewWeight } from '../../core/srs';
+import { isStarred, noteOf } from '../../core/wordbook';
+import { WordbookList, WordbookRight } from './Wordbook';
 import { tokenIds } from '../../core/tokenize';
 import { VerifyPage } from './VerifyPage';
 import { RecordLeft, RecordRight } from '../difficulty/RecordPage';
@@ -33,6 +35,7 @@ export function NotebookView() {
   const mobile = useMobile();
   const ribbons: Ribbon[] = [
     { id: 'words', label: '単語', on: tab === 'words', onClick: () => ui.setNbTab('words') },
+    { id: 'book', label: '単語帳', on: tab === 'book', onClick: () => ui.setNbTab('book') },
     { id: 'verify', label: '検証', on: tab === 'verify', dot: ui.newPages.length > 0, onClick: () => ui.setNbTab('verify') },
     { id: 'level', label: '現在地', on: tab === 'level', onClick: () => ui.setNbTab('level') },
     { id: 'record', label: '記録', on: tab === 'record', onClick: () => ui.setNbTab('record') },
@@ -49,6 +52,12 @@ export function NotebookView() {
     showRight = !!ui.word;
     onBack = () => ui.setWord(null);
     turnKey = `w:${ui.word ?? ''}`;
+  } else if (tab === 'book') {
+    left = <WordbookList />;
+    right = <WordbookRight />;
+    showRight = !!ui.wb.mode;
+    onBack = () => ui.setWb({ mode: null });
+    turnKey = `b:${ui.wb.mode ?? ''}:${ui.wb.key ?? ''}`;
   } else if (tab === 'verify') {
     const page = g.data.content.verificationPages.find((p) => p.id === ui.verifyPage);
     left = <VerifyList />;
@@ -121,12 +130,12 @@ function WordList() {
     .filter((e) => progress.words[e.id])
     .map((e) => ({ e, st: progress.words[e.id] }))
     .filter(({ e, st }) =>
-      filter === 'open' ? !st.confirmed : filter === 'ok' ? st.confirmed : filter === 'memo' ? !!st.memo : filter === 'due' ? due(e.id) : true,
+      filter === 'open' ? !st.confirmed : filter === 'ok' ? st.confirmed : filter === 'memo' ? !!(st.guess || st.memo) : filter === 'due' ? due(e.id) : true,
     )
     .filter(({ e }) => (!jobF || wordJobs(data, progress.jobs?.wordJobs, e.id).includes(jobF)) && (!eikF || e.eiken === eikF) && (!toeF || String(toeicBand(e.toeic) ?? '') === toeF))
     .filter(({ e, st }) => {
       if (!q) return true;
-      const hay = [e.text, e.pinyin ?? '', st.memo, st.confirmed ? e.gloss : ''].join(' ').toLowerCase();
+      const hay = [e.text, e.pinyin ?? '', st.memo, st.guess ?? '', st.confirmed ? e.gloss : ''].join(' ').toLowerCase();
       return hay.includes(q.toLowerCase());
     })
     .sort((a, b) =>
@@ -140,15 +149,15 @@ function WordList() {
     <div className="nb-words">
       <h2 className="page-heading">出会った言葉</h2>
       <div className="nb-tools">
-        <input className="pencil-input" type="search" placeholder="さがす（文字・メモ）" value={q} onChange={(e) => setQ(e.target.value)} />
+        <input className="pencil-input" type="search" placeholder="さがす（文字・推測・メモ）" value={q} onChange={(e) => setQ(e.target.value)} />
         <div className="index-tabs small-tabs" role="group" aria-label="表示">
           {(
             [
               ...(ribbon ? ([['due', `復習 ${dueCount}`]] as [Filter, string][]) : []),
               ['all', 'すべて'],
-              ['open', '未確定'],
-              ['ok', '確定'],
-              ['memo', 'メモ'],
+              ['open', '未確認'],
+              ['ok', '確'],
+              ['memo', '推測・メモ'],
             ] as [Filter, string][]
           ).map(([k, l]) => (
             <button
@@ -197,14 +206,15 @@ function WordList() {
         ) : null}
       </div>
       <div className="hand small muted">
-        記録 {total} 語・確定 {confirmed} 語{filter !== 'all' || q || jobF || eikF || toeF ? `・表示 ${entries.length} 語` : ''}
+        記録 {total} 語・確かめた {confirmed} 語{filter !== 'all' || q || jobF || eikF || toeF ? `・表示 ${entries.length} 語` : ''}
       </div>
       <ul className="nb-list">
         {entries.map(({ e, st }) => (
           <li key={e.id} className={`nb-entry ${st.confirmed ? 'ok' : ''} ${ui.word === e.id ? 'on' : ''}`}>
             <button type="button" className="nb-word" onClick={() => ui.setWord(e.id)} lang={zh ? 'zh-CN' : 'en'}>
               <span className="nb-text">{e.text}</span>
-              <SeededMark st={st} />
+              {!st.confirmed ? <SeededMark st={st} /> : null}
+              {isStarred(progress, e.id) ? <span className="nb-star" title="単語帳に入っている" aria-label="単語帳">★</span> : null}
               {zh && e.pinyin ? <span className="nb-pinyin">{e.pinyin}</span> : null}
             </button>
             <span className="nb-meaning">
@@ -215,11 +225,13 @@ function WordList() {
                   </span>
                   {e.gloss}
                 </span>
+              ) : st.guess ? (
+                <span className="nb-own">{st.guess}</span>
               ) : st.memo ? (
                 <span className="nb-memo">{st.memo}</span>
               ) : (
-                <span className="nb-tally" title={`出会った回数 ${st.seen}`}>
-                  {st.seen ? tally(st.seen) : '棚で見た'}
+                <span className="nb-tally" title={`出会った回数 ${playSeen(st)}`}>
+                  {playSeen(st) ? tally(playSeen(st)) : st.seeded ? '' : '棚で見た'}
                 </span>
               )}
             </span>
@@ -243,14 +255,14 @@ function WordsIntro() {
   return (
     <div className="nb-intro">
       <p className="hand">お客さんの言葉、レシピ帳の言葉。出会った言葉はここに書き留めてある。</p>
-      <p className="hand muted">左の一覧から言葉を選ぶと、そのページが開く。推測をメモしておこう。</p>
+      <p className="hand muted">左の一覧から言葉を選ぶと、そのページが開く。自分の推測（意味）とメモを書いておこう。場面のどの言葉も、触れると単語カードが開いて、その場で書ける。</p>
       <p className="hand muted small">意味は「検証」のページで、組み合わせが全部合ったときにだけ確定する。</p>
     </div>
   );
 }
 
 function WordPage({ id }: { id: string }) {
-  const { data, progress, setMemo } = useGame();
+  const { data, progress, setNote, wordbook } = useGame();
   const ui = useUi();
   const entry = data?.lex.byId.get(id);
   const st = progress?.words[id];
@@ -263,10 +275,21 @@ function WordPage({ id }: { id: string }) {
     for (const c of st.contexts) for (const w of new Set(tokenIds(data.tokens(c)))) if (w !== id) count.set(w, (count.get(w) ?? 0) + 1);
     neighbours.push(...[...count].filter(([, n]) => n >= 2 || st.contexts.length <= 2).sort((a, b) => b[1] - a[1]).slice(0, 6));
   }
-  const [memo, setLocal] = useState(st?.memo ?? '');
-  useEffect(() => setLocal(st?.memo ?? ''), [id, st?.memo]);
+  const note = noteOf(progress, id);
+  const [guess, setGuessLocal] = useState(note.guess);
+  const [memo, setLocal] = useState(note.memo);
+  useEffect(() => {
+    setGuessLocal(note.guess);
+    setLocal(note.memo);
+  }, [id, note.guess, note.memo]);
   if (!data || !entry) return null;
   const zh = data.lang === 'zh';
+  const starred = isStarred(progress, id);
+  const dirty = guess.trim() !== note.guess || memo !== note.memo;
+  const save = () => {
+    if (!dirty) return;
+    setNote(id, { guess, memo });
+  };
   return (
     <div className="wp" data-testid="word-page">
       <div className="wp-head">
@@ -275,6 +298,17 @@ function WordPage({ id }: { id: string }) {
           {zh && entry.pinyin ? <div className="wp-pinyin">{entry.pinyin}</div> : null}
         </div>
         <SpeakButton text={entry.text} label="" className="speak-round" />
+        <button
+          type="button"
+          className={`wcard-star wcard-icon ${starred ? 'on' : ''}`}
+          aria-pressed={starred}
+          title={starred ? '単語帳から外す' : '気になる（単語帳に入れる）'}
+          data-testid="wp-star"
+          onClick={() => wordbook.toggleStar(id)}
+        >
+          <span aria-hidden>{starred ? '★' : '☆'}</span>
+          <span className="wcard-star-label">{starred ? '単語帳' : '気になる'}</span>
+        </button>
       </div>
       <div className="wp-status">
         {st?.confirmed ? (
@@ -282,29 +316,38 @@ function WordPage({ id }: { id: string }) {
             <span className="seal seal-inline">確</span>
             {entry.emoji ? `${entry.emoji} ` : ''}
             {entry.gloss}
+            <span className="wp-compare hand small">自分の推測：{note.guess ? `「${note.guess}」` : '（書いていなかった）'}</span>
           </span>
         ) : (
-          <span className="wp-unconfirmed">未確定</span>
+          <span className="wp-unconfirmed">{st?.seeded ? '未確認（知っているはず）' : '未確認'}</span>
         )}
         <span className="hand small muted">
-          出会った {st?.seen ?? 0} 回・うまく使えた {st?.correct ?? 0} 回
+          出会った {playSeen(st)} 回・うまく使えた {Math.max(0, (st?.correct ?? 0) - (st?.seeded?.correct ?? 0))} 回
         </span>
       </div>
       <WordTags id={id} />
       <WordAssist id={id} />
       <label className="wp-memo">
-        <span className="hand small muted">自分のメモ（推測）</span>
-        <textarea
-          value={memo}
-          rows={2}
+        <span className="hand small muted">自分の推測（意味）</span>
+        <input
+          className="pencil-input wcard-guess"
+          type="text"
+          value={guess}
+          maxLength={200}
           placeholder="たぶん「〜」という意味？"
-          onChange={(e) => setLocal(e.target.value)}
-          onBlur={() => memo !== (st?.memo ?? '') && setMemo(id, memo)}
+          data-testid="wp-guess"
+          onChange={(e) => setGuessLocal(e.target.value)}
+          onBlur={save}
+          onKeyDown={(e) => e.key === 'Enter' && (e.target as HTMLInputElement).blur()}
         />
       </label>
-      {memo !== (st?.memo ?? '') ? (
-        <button type="button" className="btn btn-small" onClick={() => setMemo(id, memo)}>
-          メモを保存
+      <label className="wp-memo">
+        <span className="hand small muted">メモ</span>
+        <textarea value={memo} rows={2} placeholder="どこで出てきた？何といっしょ？" onChange={(e) => setLocal(e.target.value)} onBlur={save} data-testid="wp-memo" />
+      </label>
+      {dirty ? (
+        <button type="button" className="btn btn-small" onClick={save}>
+          書きとめる
         </button>
       ) : null}
       {st?.contexts.length ? (
@@ -330,7 +373,7 @@ function WordPage({ id }: { id: string }) {
               return (
                 <button key={nid} type="button" className={`wp-nb ${ns?.confirmed ? 'ok' : ''}`} onClick={() => ui.setWord(nid)} lang={zh ? 'zh-CN' : 'en'}>
                   <span className="wp-nb-text">{ne?.text}</span>
-                  <span className="wp-nb-meta">{ns?.confirmed ? ne?.gloss : ns?.memo ? `メモ：${ns.memo}` : `×${n}`}</span>
+                  <span className="wp-nb-meta">{ns?.confirmed ? ne?.gloss : ns?.guess ? `推測：${ns.guess}` : ns?.memo ? `メモ：${ns.memo}` : `×${n}`}</span>
                 </button>
               );
             })}
@@ -425,7 +468,7 @@ function VerifyIntro() {
     <div className="nb-intro">
       <p className="hand">意味のカードに、言葉の紙片を置いていく。</p>
       <p className="hand muted">ページの全部のカードが合っていたときだけ、ハンコが押されて意味が確定する。どれが違うかは教えてくれない。</p>
-      <p className="hand muted small">確定した言葉は、どこで見ても触れれば意味が分かるようになる。</p>
+      <p className="hand muted small">確かめた言葉は、どこで見ても触れれば意味が分かるようになる（自分の推測と並べて見られる）。</p>
     </div>
   );
 }

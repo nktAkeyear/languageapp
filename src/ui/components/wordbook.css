@@ -1,0 +1,360 @@
+/* 単語カード (word card) + 単語帳 (word book) + the player's guess under words. */
+
+/* ---------------------------------------------------------------- the player's guess in sentences */
+.w-guess-ruby {
+  ruby-position: under;
+  -webkit-ruby-position: after;
+}
+.w-guess-ruby > rt.w-guess {
+  font-family: var(--font-ja);
+  font-size: 0.5em;
+  color: #6b6f8a;
+  font-style: normal;
+  letter-spacing: 0;
+  opacity: 0.9;
+  line-height: 1.1;
+}
+.w-gloss.w-gloss-own {
+  color: #5d6386;
+  font-style: italic;
+}
+.w-label {
+  -webkit-touch-callout: none;
+}
+
+/* ---------------------------------------------------------------- word card */
+.wcard {
+  position: fixed;
+  z-index: 80; /* above an open book (60) and レベル設定 (70), below day transitions (90) */
+  background: var(--paper-2);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(50, 30, 10, 0.28), 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+  padding: 10px 12px 12px;
+  font-family: var(--font-ja);
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.wcard-pop {
+  width: 340px;
+  max-width: calc(100vw - 16px);
+  max-height: min(78vh, 560px);
+}
+.wcard-sheet {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 72vh;
+  border-radius: 14px 14px 0 0;
+  padding: 10px 16px calc(14px + env(safe-area-inset-bottom));
+}
+.wcard-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.wcard-word {
+  flex: 1;
+  min-width: 0;
+  font-size: 1.5em;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  line-height: 1.2;
+}
+.wcard-pinyin {
+  display: block;
+  font-size: 0.55em;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+.wcard-icon {
+  min-width: 40px;
+  min-height: 40px;
+}
+.wcard-star,
+.wcard-close {
+  font: inherit;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 20px;
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 0 10px;
+}
+.wcard-close {
+  border-color: transparent;
+  background: transparent;
+  padding: 0;
+}
+.wcard-star.on {
+  background: #fff1c9;
+  border-color: var(--gold);
+  color: #7a5410;
+}
+.wcard-star > span[aria-hidden] {
+  font-size: 1.2em;
+  line-height: 1;
+}
+.wcard-star-label {
+  font-size: 0.8em;
+}
+.wcard-state {
+  margin: 2px 0 8px;
+  font-size: 0.92em;
+}
+.wcard-state-assumed,
+.wcard-state-open {
+  color: var(--ink-soft);
+}
+.wcard-confirmed {
+  display: block;
+  font-weight: 600;
+}
+.wcard-confirmed .mini-seal {
+  margin-right: 4px;
+}
+.wcard-compare {
+  display: block;
+  color: #4f5578;
+  font-size: 0.92em;
+}
+.wcard-field {
+  display: block;
+  margin: 6px 0;
+}
+.wcard-field > span {
+  display: block;
+}
+.wcard-guess {
+  width: 100%;
+  min-height: 42px;
+  font-size: 16px; /* no zoom on iOS */
+}
+.wcard-memo,
+.wb-form textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffdf6;
+  padding: 6px 8px;
+  resize: vertical;
+}
+.wcard-saved {
+  color: var(--green);
+}
+.wcard-contexts ul {
+  list-style: none;
+  margin: 4px 0;
+  padding: 0;
+}
+.wcard-contexts li {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 4px 0;
+  border-bottom: 1px dashed rgba(150, 120, 80, 0.25);
+}
+.wcard-contexts li > .tl {
+  flex: 1;
+  min-width: 0;
+}
+.wcard-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.wcard .btn-small,
+.wb .btn-small,
+.wp .btn-small {
+  min-height: 40px;
+  padding: 4px 12px;
+}
+
+/* ---------------------------------------------------------------- notebook: own meaning, states */
+.nb-own {
+  color: #4f5578;
+}
+.nb-own::before {
+  content: '推 ';
+  font-size: 0.75em;
+  color: #8a8fb0;
+}
+.nb-assumed,
+.st-tag {
+  display: inline-block;
+  font-size: 0.72em;
+  line-height: 1.3;
+  padding: 0 5px;
+  margin-left: 4px;
+  border-radius: 8px;
+  border: 1px dashed #9a8a6a;
+  color: #6b5a45;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.st-confirmed {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+.st-guess {
+  border-color: #6b6f9a;
+  color: #4f5578;
+}
+.nb-star {
+  color: var(--gold);
+  margin-left: 3px;
+  font-size: 0.9em;
+}
+.wp-compare {
+  display: block;
+  margin-top: 2px;
+  color: #4f5578;
+}
+.wp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0;
+}
+
+/* ---------------------------------------------------------------- 単語帳 */
+.wb-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.wb-tools input[type='search'] {
+  flex: 1 1 160px;
+  min-width: 0;
+  min-height: 40px;
+}
+.wb-tools select {
+  min-height: 40px;
+  max-width: 100%;
+  font: inherit;
+  font-size: 0.9em;
+}
+.wb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.wb-item {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  border-bottom: 1px solid rgba(150, 120, 80, 0.25);
+}
+.wb-item.on {
+  background: rgba(255, 240, 200, 0.6);
+}
+.wb-open {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0 8px;
+  text-align: left;
+  font: inherit;
+  background: none;
+  border: none;
+  padding: 6px 4px;
+  min-height: 44px;
+  cursor: pointer;
+  color: var(--ink);
+}
+.wb-word {
+  font-size: 1.1em;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.wb-meaning {
+  grid-column: 1 / -1;
+  font-size: 0.9em;
+  color: #4f5578;
+  overflow-wrap: anywhere;
+}
+.wb-meaning.empty {
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.wb-meta {
+  font-size: 0.75em;
+  color: var(--ink-soft);
+  text-align: right;
+}
+.wb-remove {
+  min-width: 40px;
+  min-height: 40px;
+  align-self: center;
+  border: none;
+  background: none;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font: inherit;
+}
+.wb-form label {
+  display: block;
+  margin: 8px 0;
+}
+.wb-form label > span {
+  display: block;
+}
+.wb-form input[type='text'] {
+  width: 100%;
+  min-height: 42px;
+  font-size: 16px;
+}
+.wb-msg {
+  color: var(--green);
+}
+.wb-review {
+  text-align: center;
+}
+.wb-review-card {
+  margin: 12px auto;
+  padding: 18px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fffdf6;
+  box-shadow: var(--shadow);
+  max-width: 420px;
+}
+.wb-review-word {
+  font-size: 1.8em;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.wb-review-answer {
+  margin-top: 10px;
+  min-height: 3em;
+}
+.wb-review-btns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.wb-review-btns .btn {
+  min-width: 120px;
+  min-height: 44px;
+}
+.voice-note {
+  color: var(--danger);
+}

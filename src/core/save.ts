@@ -5,8 +5,9 @@ import { newStoryState, type StoryState } from '../story/types';
 import type { RenoState } from '../renovation/types';
 import type { DifficultyState } from './difficulty';
 import type { JobsState } from '../jobs/types';
+import { newWordbook, type WordbookState } from './wordbook';
 
-export const SAVE_VERSION = 4;
+export const SAVE_VERSION = 5;
 export const STORAGE_KEY = 'minato-chabou-save';
 
 export type LayoutPref = 'auto' | 'desktop' | 'mobile';
@@ -19,7 +20,14 @@ export interface Settings {
   volume: number;
   muted: boolean;
   ambient: boolean;
+  /**
+   * The player's own guess for a word in in-world sentences: 'under' = small text under the word,
+   * 'hover' = only on hover / in the word card, 'off' = never in sentences (notebook lists always).
+   */
+  guessDisplay: GuessDisplay;
 }
+
+export type GuessDisplay = 'under' | 'hover' | 'off';
 
 export interface ServedResult {
   key: string;
@@ -76,6 +84,8 @@ export interface LangProgress {
    * the day. Absent until the first day planned with jobs (see src/jobs/engine.ts jobsState).
    */
   jobs?: JobsState;
+  /** 単語帳 (v5): starred and hand-written words, the player's own self-review (src/core/wordbook.ts). */
+  wordbook?: WordbookState;
 }
 
 export interface SaveFile {
@@ -86,7 +96,7 @@ export interface SaveFile {
 }
 
 // Fields added later get their default through normalise() (older saves need no migration).
-export const DEFAULT_SETTINGS: Settings = { showPinyin: true, layout: 'auto', speechRate: 0.9, volume: 0.7, muted: false, ambient: false };
+export const DEFAULT_SETTINGS: Settings = { showPinyin: true, layout: 'auto', speechRate: 0.9, volume: 0.7, muted: false, ambient: false, guessDisplay: 'under' };
 
 export function emptySave(): SaveFile {
   return { version: SAVE_VERSION, currentLang: null, settings: { ...DEFAULT_SETTINGS }, progress: {} };
@@ -108,6 +118,7 @@ export function newProgress(lang: Lang): LangProgress {
     town: newTownProgress(),
     townDay: null,
     story: newStoryState(),
+    wordbook: newWordbook(),
   };
 }
 
@@ -185,6 +196,39 @@ const migrations: Record<number, (s: AnyObj) => AnyObj> = {
     }
     return { ...s, version: 4, progress };
   },
+  // v4 → v5: the player's own meanings and the 単語帳; the start level no longer confirms words.
+  // - Words confirmed only by the start level (既習扱い) become "assumed known" (未確認・知っているはず):
+  //   `confirmed` false, `seeded` kept. 検証ページ the start level had sealed are opened again. Words
+  //   whose page the player sealed in play stay confirmed (repairAssumed, run with the game data at
+  //   load, re-confirms seeded words of pages solved in play).
+  // - The old single memo (「自分のメモ（推測）」) becomes the player's guess; the memo starts empty.
+  // - An empty 単語帳.
+  4: (s) => {
+    const progress = { ...((s.progress as AnyObj) ?? {}) };
+    for (const k of Object.keys(progress)) {
+      const p = progress[k] as AnyObj | undefined;
+      if (!p || typeof p !== 'object') continue;
+      const words: AnyObj = {};
+      for (const [id, w0] of Object.entries((p.words as AnyObj) ?? {})) {
+        if (!w0 || typeof w0 !== 'object') continue;
+        const w = { ...(w0 as AnyObj) };
+        if (w.seeded && w.confirmed) w.confirmed = false;
+        const memo = typeof w.memo === 'string' ? w.memo.trim() : '';
+        if (memo && !w.guess) {
+          w.guess = memo.slice(0, 200);
+          w.memo = '';
+        }
+        words[id] = w;
+      }
+      const verification: AnyObj = {};
+      for (const [id, v] of Object.entries((p.verification as AnyObj) ?? {})) {
+        if (v && typeof v === 'object' && (v as AnyObj).seeded) continue;
+        verification[id] = v;
+      }
+      progress[k] = { ...p, words, verification, wordbook: newWordbook() };
+    }
+    return { ...s, version: 5, progress };
+  },
 };
 
 export class SaveError extends Error {}
@@ -215,7 +259,14 @@ function normalise(s: SaveFile): SaveFile {
     const p = s.progress?.[lang];
     if (p) {
       const base = newProgress(lang);
-      out.progress[lang] = { ...base, ...p, lang, town: { ...base.town, ...(p.town ?? {}) }, townDay: p.townDay ?? null, story: { ...base.story, ...(p.story ?? {}) } };
+      const wb = p.wordbook && Array.isArray(p.wordbook.entries) ? { seq: Number(p.wordbook.seq) || p.wordbook.entries.length, entries: p.wordbook.entries.filter((e) => e && typeof e.key === 'string') } : newWordbook();
+      const words = p.words && typeof p.words === 'object' ? p.words : {};
+      for (const w of Object.values(words)) {
+        if (!w || typeof w !== 'object') continue;
+        if (typeof w.memo !== 'string') w.memo = '';
+        if (!Array.isArray(w.contexts)) w.contexts = [];
+      }
+      out.progress[lang] = { ...base, ...p, lang, words, town: { ...base.town, ...(p.town ?? {}) }, townDay: p.townDay ?? null, story: { ...base.story, ...(p.story ?? {}) }, wordbook: wb };
     }
   }
   return out;

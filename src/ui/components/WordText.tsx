@@ -1,35 +1,33 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useRef } from 'react';
 import { plain } from '../../core/gamedata';
 import { storyTokens, type StoryToken } from '../../story/text';
 import { speak, useSpeechAvailable } from '../speech';
 import { useGame } from '../useGame';
+import { setWordAnchor } from '../uiState';
+import { noteOf } from '../../core/wordbook';
 import { pinyinShown } from '../difficulty/assists';
 
-/**
- * Peek state shared by all WordText instances: the confirmed word whose gloss is shown after a
- * tap (touch screens have no hover). A second tap on it opens the notebook.
- */
-let peekKey: string | null = null;
-const peekListeners = new Set<(k: string | null) => void>();
-let peekTimer: number | undefined;
-function setPeek(k: string | null) {
-  peekKey = k;
-  peekListeners.forEach((f) => f(k));
-  window.clearTimeout(peekTimer);
-  if (k) peekTimer = window.setTimeout(() => setPeek(null), 2600);
-}
-function usePeek(): string | null {
-  const [k, setK] = useState(peekKey);
-  useEffect(() => {
-    peekListeners.add(setK);
-    return () => void peekListeners.delete(setK);
-  }, []);
-  return k;
-}
+/** Long press (touch) on a word label inside an object opens its card; the object's own tap is then skipped. */
 let lastPointer: string = 'mouse';
 if (typeof window !== 'undefined') window.addEventListener('pointerdown', (e) => (lastPointer = e.pointerType), { capture: true, passive: true });
+export function lastPointerType(): string {
+  return lastPointer;
+}
+const LONG_PRESS_MS = 480;
+let suppressClickUntil = 0;
+if (typeof window !== 'undefined')
+  window.addEventListener(
+    'click',
+    (e) => {
+      if (Date.now() < suppressClickUntil) {
+        suppressClickUntil = 0;
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    },
+    { capture: true },
+  );
 
-let seq = 0;
 
 /** Short form of an official gloss for under-the-word display ("ひとつの（…）" → "ひとつの"). */
 export function shortGloss(g: string | undefined): string {
@@ -62,8 +60,7 @@ export interface WordTextProps {
  */
 export function WordText({ text, className, interactive = true, story = false, glossed = false, fresh, highlight, reveal, mark }: WordTextProps) {
   const { data, progress, settings, openWord } = useGame();
-  const peek = usePeek();
-  const [inst] = useState(() => `wt${++seq}`);
+  const press = useRef<{ t: number; x: number; y: number } | null>(null);
   if (!data) return null;
   const tokens: StoryToken[] = story ? storyTokens(data, text) : data.tokens(text);
   const zh = data.lang === 'zh';
@@ -105,38 +102,94 @@ export function WordText({ text, className, interactive = true, story = false, g
     );
   }
 
+  function open(id: string, el: Element | null) {
+    setWordAnchor(el);
+    openWord(id);
+  }
+
   function renderWord(t: StoryToken, i: number) {
     if (!data || !t.id) return null;
-    const e = data.lex.byId.get(t.id);
-    const st = progress?.words[t.id];
+    const id = t.id;
+    const e = data.lex.byId.get(id);
+    const st = progress?.words[id];
     const confirmed = !!st?.confirmed;
-    const title = confirmed ? undefined : st?.memo ? `メモ: ${st.memo}` : undefined;
-    const key = `${inst}:${i}`;
-    const surface =
-      zh && pinyinShown(settings.showPinyin, progress, t.id) && e?.pinyin ? (
-        <ruby>
-          {t.text}
-          <rt>{e.pinyin}</rt>
-        </ruby>
-      ) : (
-        t.text
-      );
-    const isFresh = !!fresh?.has(t.id) && confirmed;
+    // The player's own guess (自分の推測): small text under the word, or on hover (⚙ 設定).
+    const guess = !confirmed ? noteOf(progress, id).guess : '';
+    const mode = settings.guessDisplay ?? 'under';
+    const title = confirmed ? undefined : guess && mode !== 'off' ? `自分の推測: ${guess}` : undefined;
+    const pinyin = zh && pinyinShown(settings.showPinyin, progress, id) && e?.pinyin;
+    const under = !!guess && mode === 'under' && !pinyin && !glossed;
+    const surface = pinyin ? (
+      <ruby>
+        {t.text}
+        <rt>{e!.pinyin}</rt>
+      </ruby>
+    ) : under ? (
+      <ruby className="w-guess-ruby">
+        {t.text}
+        <rt className="w-guess">{shortGuess(guess)}</rt>
+      </ruby>
+    ) : (
+      t.text
+    );
+    const isFresh = !!fresh?.has(id) && confirmed;
     const faint = glossed && !confirmed && (!st || st.seen < 3);
-    const cls = `w ${confirmed ? 'w-ok' : ''} ${st?.memo ? 'w-memo' : ''} ${peek === key ? 'w-peek' : ''} ${isFresh ? 'w-fresh' : ''} ${faint ? 'w-faint' : ''} ${highlight === t.id ? 'w-hl' : ''} ${mark?.has(t.id) ? 'w-mark' : ''}`;
+    const cls = `w ${confirmed ? 'w-ok' : ''} ${guess ? 'w-memo' : ''} ${isFresh ? 'w-fresh' : ''} ${faint ? 'w-faint' : ''} ${highlight === id ? 'w-hl' : ''} ${mark?.has(id) ? 'w-mark' : ''}`;
     // In glossed text the gloss is written under the word, so no hover tooltip.
     const gloss = confirmed && !glossed ? e?.gloss : undefined;
     const inner = glossed ? (
       <>
         <span className="w-surface">{surface}</span>
-        {confirmed ? <span className="w-gloss">{shortGloss(e?.gloss)}</span> : null}
+        {confirmed ? <span className="w-gloss">{shortGloss(e?.gloss)}</span> : guess && mode !== 'off' ? <span className="w-gloss w-gloss-own">{shortGuess(guess)}</span> : null}
       </>
     ) : (
       surface
     );
     if (!interactive)
+      // A label on an object (a jar, an envelope, a crate …): the object's own tap stays; a long
+      // press (touch) or a right click opens the word card.
       return (
-        <span key={i} className={cls} data-gloss={gloss}>
+        <span
+          key={i}
+          className={`${cls} w-label`}
+          data-gloss={gloss}
+          title={title}
+          data-word={id}
+          onContextMenu={(ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            open(id, ev.currentTarget);
+          }}
+          onPointerDown={(ev) => {
+            if (ev.pointerType === 'mouse') return;
+            const el = ev.currentTarget;
+            const p0 = { t: Date.now(), x: ev.clientX, y: ev.clientY };
+            press.current = p0;
+            // Window listeners: a drag may capture the pointer on the object around the label.
+            const cancel = () => {
+              if (press.current === p0) press.current = null;
+              done();
+            };
+            const move = (m: PointerEvent) => {
+              if (Math.hypot(m.clientX - p0.x, m.clientY - p0.y) > 8) cancel();
+            };
+            const done = () => {
+              window.removeEventListener('pointermove', move, true);
+              window.removeEventListener('pointerup', cancel, true);
+              window.removeEventListener('pointercancel', cancel, true);
+            };
+            window.addEventListener('pointermove', move, true);
+            window.addEventListener('pointerup', cancel, true);
+            window.addEventListener('pointercancel', cancel, true);
+            window.setTimeout(() => {
+              if (press.current !== p0) return;
+              press.current = null;
+              done();
+              suppressClickUntil = Date.now() + 800;
+              open(id, el);
+            }, LONG_PRESS_MS);
+          }}
+        >
           {inner}
         </span>
       );
@@ -146,21 +199,24 @@ export function WordText({ text, className, interactive = true, story = false, g
         type="button"
         className={cls}
         data-gloss={gloss}
+        data-word={id}
         title={title}
+        aria-haspopup="dialog"
         onClick={(ev) => {
           ev.stopPropagation();
-          if (gloss && lastPointer !== 'mouse' && peekKey !== key) {
-            setPeek(key);
-            return;
-          }
-          setPeek(null);
-          openWord(t.id!);
+          open(id, ev.currentTarget);
         }}
       >
         {inner}
       </button>
     );
   }
+}
+
+/** The player's guess, short enough to sit under a word. */
+export function shortGuess(g: string): string {
+  const s = g.trim();
+  return [...s].length > 8 ? `${[...s].slice(0, 7).join('')}…` : s;
 }
 
 export function SpeakButton({ text, label = '聞く', big = false, className = '' }: { text: string; label?: string; big?: boolean; className?: string }) {

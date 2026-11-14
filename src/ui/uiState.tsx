@@ -11,7 +11,25 @@ import { pageStatus } from '../core/verification';
 import { useGame } from './useGame';
 
 export type BookKind = 'recipe' | 'notebook' | 'catalogue';
-export type NbTab = 'words' | 'verify' | 'level' | 'record';
+export type NbTab = 'words' | 'book' | 'verify' | 'level' | 'record';
+
+/** The word card (a small card over the scene: the player's own guess, memo, star, sentences seen). */
+export interface WordCardState {
+  id: string;
+  /** Where the tapped word is on screen (desktop: the card opens next to it). */
+  rect: { left: number; top: number; right: number; bottom: number } | null;
+}
+
+/** Set by WordText just before it opens a word, so the card can be placed next to it. */
+let pendingAnchor: WordCardState['rect'] = null;
+export function setWordAnchor(el: Element | null): void {
+  if (!el) {
+    pendingAnchor = null;
+    return;
+  }
+  const r = el.getBoundingClientRect();
+  pendingAnchor = { left: r.left, top: r.top, right: r.right, bottom: r.bottom };
+}
 
 export interface UiApi {
   book: BookKind | null;
@@ -33,6 +51,13 @@ export interface UiApi {
   newPages: string[];
   acknowledgePages(ids: string[]): void;
   reducedMotion: boolean;
+  /** The word card open over the scene (null = none). */
+  card: WordCardState | null;
+  openCard(id: string, rect?: WordCardState['rect']): void;
+  closeCard(): void;
+  /** 単語帳: the entry open on the right-hand page, or the hand-add form / self-review. */
+  wb: { mode: 'entry' | 'add' | 'review' | null; key: string | null };
+  setWb(v: { mode: 'entry' | 'add' | 'review' | null; key?: string | null }): void;
 }
 
 const Ctx = createContext<UiApi | null>(null);
@@ -75,14 +100,15 @@ export function UiProvider({ children }: { children: ReactNode }) {
   const [verifyPage, setVerifyPage] = useState<string | null>(null);
   const [recipePage, setRecipePage] = useState<string | null>(null);
   const [seen, setSeen] = useState<Record<string, string[]>>(loadSeen);
+  const [card, setCard] = useState<WordCardState | null>(null);
+  const [wb, setWbState] = useState<{ mode: 'entry' | 'add' | 'review' | null; key: string | null }>({ mode: null, key: null });
   const reducedMotion = useReducedMotion();
 
-  // A word tapped anywhere (order bubble, recipe page, market…) opens the notebook at that word.
+  // A word tapped anywhere (order bubble, recipe page, market, job papers…) opens its word card.
   useEffect(() => {
     if (!g.selectedWord) return;
-    setBook('notebook');
-    setNbTab('words');
-    setWord(g.selectedWord);
+    setCard({ id: g.selectedWord, rect: pendingAnchor });
+    pendingAnchor = null;
     g.openWord(null);
   }, [g.selectedWord, g]);
 
@@ -92,6 +118,8 @@ export function UiProvider({ children }: { children: ReactNode }) {
     setWord(null);
     setVerifyPage(null);
     setRecipePage(null);
+    setCard(null);
+    setWbState({ mode: null, key: null });
   }, [g.lang]);
 
   const lang = g.lang;
@@ -152,8 +180,13 @@ export function UiProvider({ children }: { children: ReactNode }) {
       newPages,
       acknowledgePages,
       reducedMotion,
+      card,
+      openCard: (id, rect = null) => setCard({ id, rect }),
+      closeCard: () => setCard(null),
+      wb,
+      setWb: (v) => setWbState({ mode: v.mode, key: v.key ?? null }),
     }),
-    [book, nbTab, word, verifyPage, recipePage, newPages, acknowledgePages, reducedMotion],
+    [book, nbTab, word, verifyPage, recipePage, newPages, acknowledgePages, reducedMotion, card, wb],
   );
   return <Ctx.Provider value={api}>{children}</Ctx.Provider>;
 }
