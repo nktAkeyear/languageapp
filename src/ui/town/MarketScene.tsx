@@ -18,6 +18,8 @@ import { skyAt } from '../art/sky';
 import { BasketArt, CoinArt, MarketBackdrop, PurseArt, SignpostArt, StallFrameArt } from '../art/town';
 import { SpeakButton, WordText } from '../components/WordText';
 import { useMobile } from '../layout';
+import { Raster } from '../art/Raster';
+import { lineMs, useTalkBurst } from '../useTalk';
 import { BookProps, CornerHooks } from '../scene/parts';
 import { useStageScale } from '../scene/ShopScene';
 import { sfx } from '../sound';
@@ -174,7 +176,9 @@ function StallFront({ st, onOpen }: { st: StallDay; onOpen: () => void }) {
   const cols = n > 3 ? Math.ceil(n / 2) : Math.max(1, n);
   return (
     <button type="button" className={`mk-stall mk-stall-${def.colour}`} onClick={onOpen} data-stall={st.id} aria-label={`${def.colour} の屋台へ行く`}>
-      <StallFrameArt colour={def.colour} />
+      <Raster className="stall-frame" label="stall">
+        <StallFrameArt colour={def.colour} />
+      </Raster>
       <span className="mk-stall-vendor" aria-hidden>
         <CustomerArt look={lookFor(`v_${st.id}`, def.vendor)} ex="happy" />
       </span>
@@ -297,6 +301,8 @@ function Quantity({ o, onOrder }: { o: Offer; onOrder: (n: number) => void }) {
 function StallOpen() {
   const g = useGame();
   const md = useMarket()!;
+  const lastVendor = [...(md?.talk ?? [])].reverse().find((l) => l.who === 'vendor');
+  const vendorTalk = useTalkBurst(md && lastVendor ? `${md.stall}:${md.talk.length}` : null, lineMs(lastVendor?.text ?? '', g.lang === 'zh'));
   const mobile = useMobile();
   const { data, progress } = g;
   const [tray, setTray] = useState<number[]>([]);
@@ -309,21 +315,35 @@ function StallOpen() {
   const sel = md.selected ? findOffer(md, md.selected) : undefined;
   const trayTotal = tray.reduce((a, b) => a + b, 0);
   const paying = !!md.pending;
-  const goods = (
+  const offerEl = (o: (typeof st.offers)[0]) => (
+    <div key={o.id} className={`mk-offer ${md.selected === o.id ? 'on' : ''}`}>
+      <button type="button" className="mk-offer-btn" disabled={paying} onClick={() => g.market.selectOffer(o.id)} data-offer={o.id} aria-pressed={md.selected === o.id} aria-label={plain(goodName(town, o.good))}>
+        <ContainerArt ing={o.good} />
+      </button>
+      <PriceTag town={town} o={o} interactive />
+    </div>
+  );
+  const soldEls = st.soldOut.map((ing) => (
+    <div key={ing} className="mk-offer mk-soldout" aria-label="品切れ">
+      <ContainerArt ing={ing} empty />
+    </div>
+  ));
+  // Desktop: a busy stall (more than six offers) lays its goods out on two tiers, the back one a
+  // step higher, so every price tag stays readable.
+  const tiers = !mobile && st.offers.length + st.soldOut.length > 6;
+  const half = Math.ceil((st.offers.length + st.soldOut.length) / 2);
+  const goods = tiers ? (
+    <div className="mk-counter-goods mk-tiered">
+      <div className="mk-tier mk-tier-back">{st.offers.slice(0, half).map(offerEl)}</div>
+      <div className="mk-tier mk-tier-front">
+        {st.offers.slice(half).map(offerEl)}
+        {soldEls}
+      </div>
+    </div>
+  ) : (
     <div className="mk-counter-goods">
-      {st.offers.map((o) => (
-        <div key={o.id} className={`mk-offer ${md.selected === o.id ? 'on' : ''}`}>
-          <button type="button" className="mk-offer-btn" disabled={paying} onClick={() => g.market.selectOffer(o.id)} data-offer={o.id} aria-pressed={md.selected === o.id} aria-label={plain(goodName(town, o.good))}>
-            <ContainerArt ing={o.good} />
-          </button>
-          <PriceTag town={town} o={o} interactive />
-        </div>
-      ))}
-      {st.soldOut.map((ing) => (
-        <div key={ing} className="mk-offer mk-soldout" aria-label="品切れ">
-          <ContainerArt ing={ing} empty />
-        </div>
-      ))}
+      {st.offers.map(offerEl)}
+      {soldEls}
       {st.offers.length === 0 && !st.soldOut.length ? <p className="cv-narr hand">（並んでいる品がない）</p> : null}
     </div>
   );
@@ -358,10 +378,12 @@ function StallOpen() {
   return (
     <div className={`mk-open mk-open-${def.colour} ${paying ? 'paying' : ''}`} data-stall-open={st.id}>
       <div className="mk-open-awning" aria-hidden>
-        <StallFrameArt colour={def.colour} w={mobile ? 390 : 1600} h={mobile ? 560 : 1000} />
+        <Raster className="stall-frame" label="stall-open">
+          <StallFrameArt colour={def.colour} w={mobile ? 390 : 1600} h={mobile ? 560 : 1000} />
+        </Raster>
       </div>
       <div className="mk-open-vendor">
-        <CustomerArt look={lookFor(`v_${st.id}`, def.vendor)} ex={vendorFace(md)} pose={paying ? 'hold' : 'rest'} />
+        <CustomerArt look={lookFor(`v_${st.id}`, def.vendor)} ex={vendorFace(md)} pose={paying ? 'hold' : vendorTalk ? 'explain' : 'rest'} talking={vendorTalk} />
       </div>
       <div className="mk-open-bubble">
         <VendorBubble lines={md.talk} />

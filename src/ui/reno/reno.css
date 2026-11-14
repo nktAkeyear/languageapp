@@ -244,9 +244,9 @@
   cursor: pointer;
 }
 .catalogue-prop .prop-art {
+  position: relative;
   width: 100%;
   display: block;
-  filter: drop-shadow(0 4px 4px rgba(20, 8, 2, 0.35));
   transition: transform 0.15s;
 }
 .catalogue-prop:hover .prop-art {
@@ -258,15 +258,21 @@
   bottom: -6px;
   transform: translateX(-50%) rotate(-2deg);
 }
-.catalogue-prop.glowing .prop-art {
+.catalogue-prop.glowing::before {
+  content: '';
+  position: absolute;
+  inset: -14%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 226, 140, 0.85), rgba(255, 226, 140, 0) 100%);
   animation: reno-glow 1.6s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 @keyframes reno-glow {
   from {
-    filter: drop-shadow(0 0 2px rgba(255, 220, 120, 0.4));
+    opacity: 0.25;
   }
   to {
-    filter: drop-shadow(0 0 12px rgba(255, 220, 120, 0.95));
+    opacity: 0.95;
   }
 }
 .d-catalogue {
@@ -276,9 +282,9 @@
   z-index: 3;
 }
 .m-catalogue {
-  left: 2px;
-  top: 252px;
-  width: 68px;
+  left: 4px;
+  top: 262px;
+  width: 62px;
 }
 .m-catalogue .desk-tag {
   font-size: 10px;
@@ -288,16 +294,20 @@
 .reno-room {
   pointer-events: none;
 }
-.reno-fresh {
-  animation: reno-arrive 2.4s ease-in-out 3;
+.reno-sparkle {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: reno-twinkle 1.6s ease-in-out infinite;
 }
-@keyframes reno-arrive {
+@keyframes reno-twinkle {
   0%,
   100% {
-    filter: none;
+    transform: scale(0.55) rotate(0deg);
+    opacity: 0.55;
   }
   50% {
-    filter: drop-shadow(0 0 10px rgba(255, 236, 160, 0.95));
+    transform: scale(1) rotate(45deg);
+    opacity: 1;
   }
 }
 .reno-cat-tail {
@@ -378,17 +388,14 @@
   opacity: 0.9;
 }
 @media (prefers-reduced-motion: reduce) {
-  .reno-fresh,
+  .reno-sparkle,
   .reno-cat-tail,
   .reno-cat-z,
   .reno-cat-eyes,
   .reno-chime-strip,
   .reno-lantern-glow,
-  .catalogue-prop.glowing .prop-art {
+  .catalogue-prop.glowing::before {
     animation: none;
-  }
-  .reno-fresh {
-    filter: drop-shadow(0 0 6px rgba(255, 236, 160, 0.9));
   }
 }
 
@@ -438,4 +445,12 @@
 .wp-nb-meta {
   font-size: 0.75em;
   color: #6b5a45;
+}
+
+/* the live layer over the pre-rasterised room shows only the animated parts */
+.reno-live .reno-item {
+  visibility: hidden;
+}
+.reno-live .reno-anim {
+  visibility: visible;
 }

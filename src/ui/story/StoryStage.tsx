@@ -19,7 +19,18 @@ import { storyOf, type Story } from '../../story/text';
 import type { GameData } from '../../core/gamedata';
 import type { LangProgress } from '../../core/save';
 import type { SceneLine, StoryCard } from '../../story/types';
-import { CustomerArt, type Expression } from '../art/customer';
+import { CustomerArt, type Expression, type Pose } from '../art/customer';
+import { plain } from '../../core/gamedata';
+import { useSpeaking } from '../speech';
+import { lineMs, useTalkBurst } from '../useTalk';
+
+/** Gestures a regular makes while saying a line, by mood (one per line, in turn). */
+const GESTURES: Partial<Record<Expression, Pose[]>> & { neutral: Pose[] } = {
+  neutral: ['explain', 'rest', 'open', 'heart'],
+  happy: ['open', 'explain', 'heart', 'wave'],
+  sad: ['heart', 'rest', 'chin'],
+  listen: ['chin', 'explain'],
+};
 import { skyAt } from '../art/sky';
 import { SpeakButton, WordText } from '../components/WordText';
 import { sfx } from '../sound';
@@ -158,6 +169,8 @@ function Conversation({
     }
   }
   const [shown, setShown] = useState(1);
+  const speakingNow = useSpeaking();
+  const talkBurst = useTalkBurst(entries[shown - 1]?.kind === 'say' && !ui.reducedMotion ? `${card.beat}:${shown}` : null, entries[shown - 1]?.kind === 'say' ? lineMs((entries[shown - 1] as { text: string }).text, data.lang === 'zh') : 0);
   const talkRef = useRef<HTMLDivElement>(null);
   const all = shown >= entries.length;
   useLayoutEffect(() => {
@@ -181,6 +194,17 @@ function Conversation({
   let ex: Expression = outcome === 'good' ? 'happy' : outcome === 'poor' ? 'sad' : 'neutral';
   if (needs && all) ex = 'listen';
   if (isReply) ex = 'happy';
+  // The newest line: the speaker says it (mouth moves, the words appear one by one, a gesture);
+  // while the player speaks or thinks, the regular listens.
+  const newest = entries[shown - 1];
+  const saying = newest?.kind === 'say' ? newest : null;
+  const zh = data.lang === 'zh';
+  const sayMs = saying && !ui.reducedMotion ? lineMs(saying.text, zh) : 0;
+  const voiced = speakingNow !== null && visible.some((e) => e.kind === 'say' && e.who === speakerId && plain(e.text) === speakingNow);
+  const talking = (talkBurst && !!saying && saying.who === speakerId) || voiced;
+  if (newest?.kind === 'me') ex = 'listen';
+  const gestures = GESTURES[ex] ?? GESTURES.neutral;
+  const pose: Pose = newest?.kind === 'me' ? 'chin' : saying ? gestures[(shown - 1) % gestures.length] : ex === 'listen' ? 'chin' : 'rest';
   const advance = () => !all && setShown((n) => n + 1);
   const dismiss = () => act((pp, dd) => storyDismiss(dd, pp));
   return (
@@ -189,7 +213,7 @@ function Conversation({
       {speaker.look ? (
         <div className="cv-figure" key={speakerId}>
           <div className={`cv-figure-body ex-${ex}`}>
-            <CustomerArt look={speaker.look} ex={ex} pose="rest" />
+            <CustomerArt look={speaker.look} ex={ex} pose={pose} talking={talking} />
           </div>
           <div className="name-card cv-name" lang={data.lang === 'zh' ? 'zh-CN' : 'en'}>
             {speaker.name}
@@ -215,7 +239,7 @@ function Conversation({
                   {personOf(data, story, e.who).name}
                 </span>
               ) : null}
-              <WordText text={e.text} story className="cv-text" />
+              <WordText text={e.text} story className="cv-text" reveal={i === shown - 1 && sayMs ? sayMs : undefined} />
               <SpeakButton text={e.text} label="" className="speak-round" />
             </div>
           ),

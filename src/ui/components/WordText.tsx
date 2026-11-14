@@ -48,6 +48,8 @@ export interface WordTextProps {
   fresh?: ReadonlySet<string>;
   /** A word to mark wherever it occurs (the notebook's magnifying glass). */
   highlight?: string;
+  /** Reveal the text word by word over this many milliseconds (a line being said). */
+  reveal?: number;
 }
 
 /**
@@ -55,7 +57,7 @@ export interface WordTextProps {
  * A tap opens the notebook at the word. Confirmed words (検証ページで確定) are drawn in "inked"
  * style and show their official gloss on hover, or on a first tap on touch screens.
  */
-export function WordText({ text, className, interactive = true, story = false, glossed = false, fresh, highlight }: WordTextProps) {
+export function WordText({ text, className, interactive = true, story = false, glossed = false, fresh, highlight, reveal }: WordTextProps) {
   const { data, progress, settings, openWord } = useGame();
   const peek = usePeek();
   const [inst] = useState(() => `wt${++seq}`);
@@ -66,28 +68,39 @@ export function WordText({ text, className, interactive = true, story = false, g
     const n = tokens[i + 1];
     return !!n && !n.id && !n.name && /^[\p{P}]+$/u.test(n.text);
   };
+  const step = reveal ? reveal / Math.max(1, tokens.length) : 0;
+  const rv = (node: React.ReactNode, i: number) =>
+    reveal && node !== null ? (
+      <span key={`rv${i}`} className="w-rv" style={{ animationDelay: `${Math.round(i * step)}ms` }}>
+        {node}
+      </span>
+    ) : (
+      node
+    );
   return (
-    <span className={`tl ${glossed ? 'tl-glossed' : ''} ${className ?? ''}`} lang={zh ? 'zh-CN' : 'en'}>
-      {tokens.map((t, i) => {
-        if (t.name)
-          return (
-            <span key={i} className="w-name">
-              {t.text}
-            </span>
-          );
-        if (!t.id) return i > 0 && tokens[i - 1].id && glued(i - 1) ? null : <Fragment key={i}>{t.text}</Fragment>;
-        const word = renderWord(t, i);
-        return glued(i) ? (
-          <span key={i} className="nw">
-            {word}
-            {tokens[i + 1].text}
-          </span>
-        ) : (
-          word
-        );
-      })}
+    <span className={`tl ${glossed ? 'tl-glossed' : ''} ${reveal ? 'tl-reveal' : ''} ${className ?? ''}`} lang={zh ? 'zh-CN' : 'en'}>
+      {tokens.map((t, i) => rv(token(t, i), i))}
     </span>
   );
+
+  function token(t: StoryToken, i: number) {
+    if (t.name)
+      return (
+        <span key={i} className="w-name">
+          {t.text}
+        </span>
+      );
+    if (!t.id) return i > 0 && tokens[i - 1].id && glued(i - 1) ? null : <Fragment key={i}>{t.text}</Fragment>;
+    const word = renderWord(t, i);
+    return glued(i) ? (
+      <span key={i} className="nw">
+        {word}
+        {tokens[i + 1].text}
+      </span>
+    ) : (
+      word
+    );
+  }
 
   function renderWord(t: StoryToken, i: number) {
     if (!data || !t.id) return null;

@@ -117,6 +117,9 @@
   cursor: pointer;
   font: inherit;
   transition: transform 0.18s;
+}
+/* the shadow sits on the static frame image only (the vendor inside blinks and talks) */
+.mk-stall .stall-frame {
   filter: drop-shadow(0 14px 18px rgba(20, 10, 4, 0.4));
 }
 .mk-stall:hover {
@@ -1589,4 +1592,34 @@
   background: rgba(251, 246, 230, 0.92);
   color: #3a2410;
   pointer-events: none;
+}
+
+/* desktop: a busy stall shows its goods on two tiers (back tier on a raised step) */
+.mk-counter-goods.mk-tiered {
+  top: 392px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.mk-tier {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 14px;
+  padding: 0 18px 6px;
+}
+.mk-tier-back {
+  background: linear-gradient(transparent 82%, #8e5a2e 82% 90%, #5a3418 90%);
+  border-radius: 4px;
+}
+.mk-tiered .mk-offer {
+  width: 112px;
+}
+.mk-tiered .mk-offer-btn {
+  width: 92px;
+}
+.mk-tiered .mk-offer .mk-tag {
+  font-size: 18px;
+  margin-top: 2px;
 }

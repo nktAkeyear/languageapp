@@ -31,12 +31,15 @@ npm test                  # vitest (engine unit tests + seed-content validation)
 npm run validate-content  # content validator; exits 1 on errors
 npm run simulate -- zh 10 # simulated playthrough for content review: market notes + vendor talk, orders +
                           # reactions, delivery slips + reactions, story beats 📖 as they fire, the nightly
-                          # ledger (args: lang days seed failEvery choice; e.g. `-- en 45 1 4 0`)
+                          # ledger (args: lang days seed failEvery choice [buy]; e.g. `-- en 45 1 4 0`);
+                          # `buy` also orders from the renovation catalogue (🛠) and prints an economy summary
 ```
 
 `dist/index.html` is self-contained (relative base + `vite-plugin-singlefile`): copy it anywhere
 and open it with a browser. No network requests at runtime; saves live in `localStorage`
-(key `minato-chabou-save`), with JSON export/import and per-language reset in ⚙ 設定.
+(key `minato-chabou-save`), with JSON export/import and per-language reset in ⚙ 設定. Where file
+downloads do not work (e.g. the game embedded in a sandboxed page), the save can also be shown as text
+and copied (テキストで書き出す), and imported by pasting the text (テキストを貼り付けて読み込む).
 
 ## Layout
 
@@ -53,6 +56,8 @@ src/
     save.ts             versioned save, migration, export/import
     validate.ts         content validator (used by script + tests)
     validateTown.ts     validator part for market / delivery content
+  renovation/           shop renovation (UI-agnostic): types.ts (schema + save state), engine.ts (catalogue,
+                        orders, arrival, effects, day hooks), validate.ts, merge.ts (content merge)
   story/                story layer (UI-agnostic): types.ts (schema + save state), engine.ts (day hooks,
                         conditions, effects, cards), text.ts (name-aware tokens, readability),
                         vocab.ts (words met by stage), validate.ts, merge.ts (content merge)
@@ -68,6 +73,7 @@ src/
     index.ts            merges each language's town content (lexicon, verification pages) in
     shared/             language-neutral: ingredients, recipes, stages (unlock schedule)
     shared/town.ts      language-neutral town data: goods, stalls, map, time slots, curriculum, unlocks
+    shared/renovation.ts the catalogue: upgrades, prices, gates, effects; {en,zh}/renovation.ts its text + words
     en/  zh/            lexicon.ts + index.ts (shop); town.ts = lexicon.town.ts + market.ts + delivery.ts
   ui/
     App.tsx             shell: layout choice, settings sheet, art defs, sound settings, story stage, books,
@@ -82,7 +88,9 @@ src/
                         regulars, vendors and Old Mrs. Hill), ingredients (containers, cup pieces), vessel (the
                         glass cup), tools, props, documents (letters, ticket, postcard, diary pages, recipe card,
                         the blue cup, the carved ship, the document box), town (market street, stalls, coins,
-                        purse, basket, the town map, house fronts, the sun dial)
+                        purse, basket, the town map, house fronts, the sun dial), reno (every catalogue item;
+                        the installed items placed in the shop), Raster.tsx (static textured layers shown as
+                        pre-rasterised images)
     scene/              the shop as a scene: workbench.tsx (hand / drag & drop / serve flow), parts.tsx
                         (interactive objects), ShopScene.tsx (desktop), MobileShop.tsx (phone),
                         Transition.tsx (morning → midday → afternoon → night → dawn passages)
@@ -93,7 +101,9 @@ src/
                         (the night shop and the ledger book), StoryUi.tsx (box state, holding a scene until
                         the reaction has been read), people.ts
     book/               recipe book and notebook as physical books (BookShell, page turns, 検証 puzzle)
-    components/         settings, title, word text (gloss on hover/tap; story names; glossed documents)
+    reno/               the renovation catalogue (a booklet like the books), its prop on the counter
+    components/         settings, title, word text (gloss on hover/tap; story names; glossed documents; word-by-word
+                        reveal), SaveText.tsx (save as text: copy / paste)
     desktop/  mobile/   layouts per device: which scene the current segment shows
 scripts/                validate-content.ts, simulate.ts (+ storyLog.ts)
 ```
@@ -124,8 +134,9 @@ compositions of the same pieces), and moving between them is a short passage of 
   wanted it hot …); the plaque, tickets and coin jar update only then. A regular's small talk is
   part of their reaction in the speech bubble.
 - **Market** (morning light): a street of four stalls with awnings in the stall's colour, each with its
-  drawn vendor and goods with paper price tags; the shopping note is pinned in view, the basket and
-  the coin purse lie in front. At a stall the vendor speaks in a bubble (clickable words, listen; the
+  drawn vendor and goods with paper price tags (from the street one jar per good with its usual price;
+  at the stall every kind, on two tiers when a stall is busy); the shopping note is pinned in view, the
+  basket and the coin purse lie in front. At a stall the vendor speaks in a bubble (clickable words, listen; the
   conversation so far above it); point at a good, set the number, and pay by dropping coins from the
   purse onto the vendor's brass tray (tap the tray to take them back).
 - **Delivery** (afternoon / evening light): the slip in hand, the illustrated town map on the table
@@ -133,7 +144,9 @@ compositions of the same pieces), and moving between them is a short passage of 
   target-language signs, houses with coloured doors; rows and the main street keep the map's grid, so
   "behind / across / left / right" read as on the slip), the time on a sun dial, a short walk across the
   map, then the door: knock on it (each tap one knock), wait, and hand the parcel to whoever opens — or
-  decide what to do when nobody comes. The recipient reacts in a speech bubble.
+  decide what to do when nobody comes. The recipient reacts in a speech bubble. On a phone the map first
+  shows the whole town; a tap zooms into that district (signs legible, pan with a finger), the next tap
+  chooses the house, 全体を見る zooms back out.
 - **Books**: the recipe book and the notebook lie on the counter (and on the desk / table in the
   town) and open as books (two pages on desktop, one on the phone) with page turns. Notebook ribbons:
   単語 (handwritten list + a word's page: audio, memo, sentences seen), 検証 (verification pages),
@@ -142,10 +155,14 @@ compositions of the same pieces), and moving between them is a short passage of 
   wrong → only "something is off". When a page newly opens, the notebook glows and a bookmark sticks
   out. Confirmed words are highlighted everywhere and show their gloss on hover (or a first tap); a
   tap on any word — order, vendor, slip, story, document — opens the notebook at it.
+- **Characters** are alive: they blink on their own rhythm, breathe, move their mouth while a line
+  appears or is read out by speech synthesis, and gesture (explaining, open hands, a hand at the chin,
+  hands on the heart, waving). Customers say their order and their reaction; vendors and recipients too.
 - **The story in the scene** (src/ui/story): a regular's scene is a close-up conversation at the
   counter — the regular is always drawn the same (fixed looks per regular, see `art/customer.tsx`),
-  their lines in speech bubbles revealed one at a time, the player's thoughts as narration strips, and
-  choices as reply slips the player says (こう言う). After a regular's cup the scene waits until the
+  their lines in speech bubbles revealed one at a time (word by word, the mouth moving, a gesture per
+  line by mood; they listen with a hand at the chin while the player speaks), the player's thoughts as
+  narration strips, and choices as reply slips the player says (こう言う). After a regular's cup the scene waits until the
   player has read the reaction (話のつづきを聞く), and likewise at the door after a regular's delivery.
   A delivery request is a note left at the shop. Documents appear on the counter, are picked up
   (手に取る) and read as paper — letter, torn ticket, postcard, diary page, recipe card; every word
@@ -153,14 +170,81 @@ compositions of the same pieces), and moving between them is a short passage of 
   into the document box on the counter; the blue cup and the carved ship go on the window sill (on the
   phone, onto the shelf). Re-reading a paper marks the words confirmed since it was last put away
   (they glow, with a count). Chapter title cards hang a wooden sign over the harbour. At night the
-  window is dark, the lamp lit, and the day is written into the ledger book line by line (takings,
-  purchases, purse, reputation, today's customers, regulars met, words understood, things found,
-  the player's thoughts); blowing out the lamp ends the day. Last night's ledger is in the box.
+  window is dark, the lamp lit, the shelf stocked, and the day is written into the ledger book (lying on
+  the counter, the night shop visible around it) line by line (takings, purchases, catalogue orders,
+  purse, reputation, today's customers, goods kept for tomorrow, regulars met, words understood, things
+  found, the player's thoughts); blowing out the lamp ends the day. Last night's ledger is in the box.
+  A new chapter opens the next morning with its title card (no dawn passage on top of it). ⚙ and the
+  sound hook stay reachable over story cards and the night.
 - **Sound**: synthesised effects (door bell, pouring, chopping, clinks, simmer, page turn, coins,
   stamp, confirm chime, soft failure, paper, the box, knocks, footsteps, pen in the ledger, the lamp
   blown out, a chapter bell, dawn birds, dusk) and an optional ambient loop; volume / mute / ambient
   in ⚙ 設定 (saved with the settings). Audio starts after the first user gesture and silently does
   nothing where Web Audio is unavailable. `prefers-reduced-motion` turns the animations off.
+- **Performance**: the big textured layers (plaster and wood grain drawn with SVG turbulence filters:
+  the shop backdrop by day and night, the phone's wall strip and counter, market stall frames, house
+  fronts) are pre-rasterised once into images (`art/Raster.tsx`), so animations on top (waves, steam,
+  blinking, the lamp) never re-run the filters; animated figures carry no filters (shadows are plain
+  gradients) and the night lamp is a plain alpha layer, not a blend mode.
+
+## Shop renovation (店の改装)
+
+The coins the shop earns buy improvements from a carpenter's catalogue — a booklet on the counter
+(カタログ; it glows when new entries have appeared). The catalogue is in-world text: heading, names, the
+sales lines that say what each thing does, and prices are all in the target language with drawings
+(reading it is decipherment; only the buttons and stamps are Japanese). Orders are paid at once, can be
+taken back the same day, appear in the night's ledger (注文) and arrive the next morning: the shop is
+drawn with them from then on (a twinkle marks what arrived today) and their effects apply.
+
+| id | price | appears | effect |
+| --- | ---: | --- | --- |
+| signboard 看板 | 25 | day 4 | +1 reputation at the end of a day with a perfect cup; customers remark on it |
+| plant 鉢植え | 15 | day 4 | décor (remarks) |
+| ribbon しおり | 12 | day 5 | notebook: a 復習 list of the words due for review today (hidden SRS made visible) |
+| kettle 大きなやかん | 35 | day 5, temperature | +1 coin for a perfect hot cup |
+| curtains カーテン | 30 | day 7 | décor (remarks) |
+| bench 長いす | 60 | day 8, rep 15 (or day 14) | one more customer every day (a review order of known words) |
+| shelf 棚 | 30 | day 9, market open | leftover market goods kept overnight, up to 3 portions each |
+| scales はかり | 45 | day 10 | +1 coin for a perfect cup whose order named an exact quantity |
+| chime 風鈴 | 25 | day 11 | décor (remarks) |
+| cart 手押し車 | 60 | day 11, deliveries open | a delivery every day |
+| lantern ちょうちん | 50 | day 13, rep 30 (or day 19) | +1 reputation for a perfect cup to a returning customer |
+| magnifier 虫めがね | 40 | day 14 | notebook: the word marked in its sentences + the words that keep appearing with it |
+| icebox 氷の箱 | 75 | day 16, stage 9, market | fresh goods (milk, yogurt, fruit, mint, lemon) kept overnight (≤12); +1 coin for a perfect cold cup |
+| cellar 地下室 | 85 | day 18, after the shelf | dry goods (ginger, honey, sugar, dates, flowers, coffee) kept overnight (≤12) |
+| paint ペンキ | 70 | day 21 | the shop painted white and blue (remarks) |
+| catbed 猫の寝床 | 35 | day 24 | a cat moves in (sleeps; wakes when a customer reacts) (remarks) |
+| picture 船の絵 | 50 | day 27 | décor (remarks) |
+| bicycle 自転車 | 100 | day 30, after the cart | +4 coins on a perfect delivery's tip |
+
+Goods kept overnight start the next market day in stock and the shopping note asks only for the rest
+(the ledger lists them under 明日に取っておく). Customers sometimes remark on the décor after a perfect cup
+(target language, appended to the reaction; more likely the day after it arrived; at most two a day,
+not when a regular already made small talk). Calibration (`npm run simulate -- en 45 1 0 0 buy`): a
+player who serves everything right earns ~950 coins net of the market in 45 days and, buying whatever is
+affordable while keeping 20 coins for the market, owns the whole catalogue (842 coins) around day 41–42;
+a player who fails every 3rd–4th cup earns ~550–620 and gets 14–15 of the 18 entries.
+
+### Schema (`src/renovation/types.ts`)
+
+- Shared (`RenoShared`, `src/content/shared/renovation.ts`): `upgrades: { id, category, price, when, effects }[]`
+  in catalogue order; `when` (all must hold): `day`, `stage`, `rep` (or anyway 6 days after `day`),
+  `requires` (other upgrades), `activity` (market / delivery open), `feature` (workbench feature).
+  `effects`: `customers`, `carry { goods: all|dry|fresh, cap }`, `coinHot`, `coinCold`, `coinExact`, `repDay`,
+  `repReturning`, `deliveryDaily`, `tip`, `notebook: review|closer`, `remarks`. Also `dryGoods`,
+  `remarkChance`, `keepForMarket` (the catalogue warns below it).
+- Per language (`RenoText`, `src/content/{en,zh}/renovation.ts`): `title`, `subtitle`, `price` (`{d}` digits),
+  `upgrades: { [id]: { name, lines[], remarks?[] } }`, and the catalogue's own `lexicon` + `pages` (検証ページ)
+  + `forms` (extra surface forms of existing ids), merged by `src/renovation/merge.ts`.
+- Engine hooks (`src/renovation/engine.ts`, called from `activities/day.ts`): `renoPlanShop` (arrivals, extra
+  customers), `renoCarry` (passed to `planMarket`; kept goods start in stock), `renoPlanTown` (daily delivery),
+  `renoAfterServe` (bonuses, remarks), `renoEndDay` (signboard, goods kept overnight); `renoTipBonus` in the
+  delivery engine. UI actions: `renoOrder`, `renoCancel`, `renoRead` (reading the catalogue counts as
+  encounters, once a day), `renoMarkSeen`.
+- The validator checks: text for every entry; every name / line / remark / price tokenises; remarks exactly
+  for the upgrades with `remarks`; the catalogue's words do not repeat an existing word by surface or by
+  meaning (gloss); each entry, when it appears, has at most 4 words the player cannot have met by then;
+  prerequisites exist and appear earlier; dry goods are market goods.
 
 ## Content schema (for content authors)
 
@@ -421,7 +505,10 @@ beat fires on some path and the good player reaches the end.
 
 ## Learning model notes
 
-- **Saves**: version 3 adds `story` (beats, documents, flags, chapter, pending cards, today's
+- **Saves**: each language's progress may carry `reno` (renovation: installed upgrades with their
+  arrival day, today's orders, goods kept overnight, catalogue entries seen, remark bookkeeping); it is
+  optional (no version bump), so version 1–3 saves load unchanged and start with nothing bought. The
+  ledger may carry `purchases`. Version 3 adds `story` (beats, documents, flags, chapter, pending cards, today's
   bookkeeping, last ledger); version 2 saves get a fresh story that starts with the current day.
   A document record may carry `known` (its words confirmed when it was last put away, for the
   re-reading highlight); it is optional, so older version 3 saves load unchanged.

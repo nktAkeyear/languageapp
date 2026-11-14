@@ -27,6 +27,24 @@ export function findVoice(lang: Lang): SpeechSynthesisVoice | null {
   );
 }
 
+// Who is speaking right now (so a drawn character can move its mouth while its line is read out).
+let speakingText: string | null = null;
+const speakingListeners = new Set<(t: string | null) => void>();
+function setSpeaking(t: string | null) {
+  speakingText = t;
+  speakingListeners.forEach((f) => f(t));
+}
+
+/** React hook: the text being read out by speech synthesis now (null = silence). */
+export function useSpeaking(): string | null {
+  const [t, setT] = useState(speakingText);
+  useEffect(() => {
+    speakingListeners.add(setT);
+    return () => void speakingListeners.delete(setT);
+  }, []);
+  return t;
+}
+
 export function speak(text: string, lang: Lang, rate = 0.9): boolean {
   const s = synth();
   const voice = findVoice(lang);
@@ -41,6 +59,10 @@ export function speak(text: string, lang: Lang, rate = 0.9): boolean {
       /* some engines reject voices; the lang tag still selects one */
     }
     u.rate = rate;
+    u.onstart = () => setSpeaking(text);
+    u.onend = u.onerror = () => {
+      if (speakingText === text) setSpeaking(null);
+    };
     s.speak(u);
     return true;
   } catch (e) {

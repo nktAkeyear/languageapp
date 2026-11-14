@@ -248,25 +248,31 @@ export function ShopLive({ sky, ringing, align = 'xMidYMid' }: { sky: SkyColours
   );
 }
 
-/** Phone: the wall strip behind the customer (static textured layer + a small live layer). */
-export function MobileWall({ sky, ringing, closed = false, paint = false }: { sky: SkyColours; ringing: boolean; closed?: boolean; paint?: boolean }) {
+/** Phone: the wall strip behind the customer — the static textured layer (pre-rasterised by the scene). */
+export function MobileWallStatic({ sky, closed = false, paint = false }: { sky: SkyColours; closed?: boolean; paint?: boolean }) {
   const W = 400;
   const H = 320;
   return (
-    <>
-      <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio="xMidYMax slice" aria-hidden>
-        <rect x="0" y="0" width={W} height={H} fill={paint ? 'url(#g-wall-paint)' : 'url(#g-wall)'} filter="url(#tx-plaster)" />
-        <rect x="0" y={H - 70} width={W} height="70" fill={paint ? 'url(#g-wainscot-paint)' : 'url(#g-wainscot)'} filter="url(#tx-wood-v)" />
-        <rect x="0" y={H - 76} width={W} height="8" fill="#8e5a2e" />
-        <rect x="0" y="0" width={W} height="18" fill="url(#g-beam)" />
-        <DoorGroup sky={sky} x={34} y={84} w={124} h={H - 84} closed={closed} />
-      </svg>
-      <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio="xMidYMax slice" aria-hidden>
-        <path d={`M${W} 40 L${W - 120} 40 L${W - 260} ${H} L${W} ${H} Z`} fill={sky.light} opacity={sky.shaft * 0.2} />
-        <DoorBellGroup x={164} y={94} ringing={ringing} />
-        <rect x="0" y="0" width={W} height={H} fill="url(#g-vignette)" opacity="0.7" />
-      </svg>
-    </>
+    <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio="xMidYMax slice" aria-hidden>
+      <rect x="0" y="0" width={W} height={H} fill={paint ? 'url(#g-wall-paint)' : 'url(#g-wall)'} filter="url(#tx-plaster)" />
+      <rect x="0" y={H - 70} width={W} height="70" fill={paint ? 'url(#g-wainscot-paint)' : 'url(#g-wainscot)'} filter="url(#tx-wood-v)" />
+      <rect x="0" y={H - 76} width={W} height="8" fill="#8e5a2e" />
+      <rect x="0" y="0" width={W} height="18" fill="url(#g-beam)" />
+      <DoorGroup sky={sky} x={34} y={84} w={124} h={H - 84} closed={closed} />
+    </svg>
+  );
+}
+
+/** Phone: the small live layer over the wall (light shaft, the door bell). */
+export function MobileWallLive({ sky, ringing }: { sky: SkyColours; ringing: boolean }) {
+  const W = 400;
+  const H = 320;
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio="xMidYMax slice" aria-hidden>
+      <path d={`M${W} 40 L${W - 120} 40 L${W - 260} ${H} L${W} ${H} Z`} fill={sky.light} opacity={sky.shaft * 0.2} />
+      <DoorBellGroup x={164} y={94} ringing={ringing} />
+      <rect x="0" y="0" width={W} height={H} fill="url(#g-vignette)" opacity="0.7" />
+    </svg>
   );
 }
 /** Phone: counter top texture. */

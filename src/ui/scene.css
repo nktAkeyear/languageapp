@@ -2506,3 +2506,116 @@
   color: #7a4a26;
   margin-bottom: 2px;
 }
+
+/* ------------------------------------------------------------ characters come alive: blink, talk, gesture */
+.cust-alive .cust-lids {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  transform: scaleY(0);
+  animation: cust-blink var(--blink-dur, 4s) var(--blink-delay, 0s) infinite;
+}
+@keyframes cust-blink {
+  0%,
+  93%,
+  100% {
+    transform: scaleY(0);
+  }
+  95.5% {
+    transform: scaleY(1);
+  }
+}
+.cust-talking .mouth-talk {
+  animation: talk-open 0.52s steps(1, end) infinite;
+}
+.cust-talking .mouth-rest {
+  animation: talk-close 0.52s steps(1, end) infinite;
+}
+@keyframes talk-open {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  30%,
+  80% {
+    opacity: 0;
+  }
+}
+@keyframes talk-close {
+  0%,
+  55% {
+    opacity: 0;
+  }
+  30%,
+  80% {
+    opacity: 1;
+  }
+}
+.cust-talking .cust-headmove {
+  transform-box: view-box;
+  transform-origin: 120px 172px;
+  animation: talk-nod 1.15s ease-in-out infinite;
+}
+@keyframes talk-nod {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  35% {
+    transform: rotate(-1.6deg) translateY(1px);
+  }
+  70% {
+    transform: rotate(1.2deg) translateY(-1px);
+  }
+}
+.cust-pose {
+  transform-box: view-box;
+  transform-origin: 120px 236px;
+  animation: pose-in 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+@keyframes pose-in {
+  from {
+    opacity: 0.35;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+.tl-reveal .w-rv {
+  animation: word-in 0.24s ease-out both;
+}
+@keyframes word-in {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cust-alive .cust-lids,
+  .cust-talking .cust-headmove,
+  .cust-pose,
+  .tl-reveal .w-rv {
+    animation: none;
+  }
+  .cust-talking .mouth-talk {
+    display: none;
+  }
+  .cust-talking .mouth-rest {
+    animation: none;
+    opacity: 1;
+  }
+}
+/* phone: while reacting, the earlier order shrinks to one line so the reaction (and a remark) fit */
+.m-bubble .bubble-react .bubble-prev {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.m-bubble .bubble-react .bubble-who {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.m-bubble .bubble-xlong .reaction-text {
+  font-size: 15.5px !important;
+  line-height: 1.4;
+}
+.bubble-xlong .reaction-text {
+  font-size: 21px !important;
+}

@@ -34,6 +34,7 @@ import {
 import { useBench } from './workbench';
 import { DocBoxProp, Keepsakes } from '../story/Documents';
 import { RenoRoom } from '../art/reno';
+import { Raster } from '../art/Raster';
 import { CatalogueButton } from '../reno/CatalogueProp';
 import { useReno } from '../reno/useReno';
 
@@ -71,9 +72,14 @@ export function ShopScene({ onSettings }: { onSettings: () => void }) {
   return (
     <div className="scene-viewport" ref={ref} data-phase={phase} data-stage={b.stage}>
       <div className="stage" style={{ width: STAGE_W, height: STAGE_H, transform: `translate(-50%, -50%) scale(${scale})` }}>
-        <ShopBackdrop sky={sky} paint={reno.has('paint')} />
+        <Raster label="shop">
+          <ShopBackdrop sky={sky} paint={reno.has('paint')} />
+        </Raster>
         <ShopLive sky={sky} ringing={b.ringing} />
-        <RenoRoom owned={reno.owned} fresh={reno.fresh} catAwake={b.stage === 'react'} />
+        <Raster label="reno">
+          <RenoRoom owned={reno.owned} fresh={reno.fresh} layer="static" />
+        </Raster>
+        <RenoRoom owned={reno.owned} fresh={reno.fresh} catAwake={b.stage === 'react'} layer="live" />
         <div className="lamp-glow" style={{ opacity: sky.lamp }} aria-hidden />
         <div className="d-plaque">
           <Plaque />

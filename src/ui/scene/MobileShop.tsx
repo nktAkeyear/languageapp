@@ -4,7 +4,8 @@
  * pull-out drawer (a horizontally scrolling strip of containers). Books open full screen.
  */
 import { useState } from 'react';
-import { CounterSurface, MobileWall } from '../art/shop';
+import { CounterSurface, MobileWallLive, MobileWallStatic } from '../art/shop';
+import { Raster } from '../art/Raster';
 import {
   BookProps,
   Bubble,
@@ -45,8 +46,14 @@ export function MobileShop({ onSettings }: { onSettings: () => void }) {
   return (
     <div className="m-shop" data-phase={phase} data-stage={b.stage}>
       <section className="m-wall">
-        <MobileWall sky={sky} ringing={b.ringing} paint={reno.has('paint')} />
-        <RenoMobileWall owned={reno.owned} fresh={reno.fresh} catAwake={b.stage === 'react'} />
+        <Raster label="wall">
+          <MobileWallStatic sky={sky} paint={reno.has('paint')} />
+        </Raster>
+        <MobileWallLive sky={sky} ringing={b.ringing} />
+        <Raster label="reno-wall">
+          <RenoMobileWall owned={reno.owned} fresh={reno.fresh} layer="static" />
+        </Raster>
+        <RenoMobileWall owned={reno.owned} fresh={reno.fresh} catAwake={b.stage === 'react'} layer="live" />
         <div className="lamp-glow m-lamp" style={{ opacity: sky.lamp }} aria-hidden />
         <div className="m-plaque">
           <Plaque />
@@ -71,7 +78,9 @@ export function MobileShop({ onSettings }: { onSettings: () => void }) {
         <Juice />
       </section>
       <section className="m-counter">
-        <CounterSurface />
+        <Raster label="counter">
+          <CounterSurface />
+        </Raster>
         <div className="m-books">
           <BookProps compact />
           <div className="m-docbox">

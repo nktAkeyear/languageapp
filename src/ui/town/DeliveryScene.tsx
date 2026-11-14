@@ -41,6 +41,8 @@ import { useUi } from '../uiState';
 import { TownNoticePaper } from './common';
 import { UpgradeArt } from '../art/reno';
 import { useReno } from '../reno/useReno';
+import { Raster } from '../art/Raster';
+import { lineMs, useTalkBurst } from '../useTalk';
 
 const AFTERNOON = skyAt(0.62);
 
@@ -349,6 +351,7 @@ function DoorScene() {
   const [knocks, setKnocks] = useState(0);
   const [rap, setRap] = useState(0);
   const { progress } = g;
+  const answerTalk = useTalkBurst(x.result ? `dv:${progress?.day}:${x.result.reaction}` : null, lineMs(x.result?.reaction ?? '', g.lang === 'zh'));
   useEffect(() => setKnocks(0), [x.phase]);
   if (!town || !progress) return null;
   const d = town.shared.delivery;
@@ -385,7 +388,9 @@ function DoorScene() {
   return (
     <div className="dv-door-scene" data-phase={x.phase}>
       <div className="dv-house">
-        <DoorFrontArt door={doorCol} open={open} wall={wall} sky={sky} />
+        <Raster className="doorfront-art" label="door">
+          <DoorFrontArt door={doorCol} open={open} wall={wall} sky={sky} />
+        </Raster>
         {x.phase === 'knock' ? (
           <button type="button" className="dv-door-hit" onClick={knock} aria-label="ドアをノックする" data-testid="door">
             {knocks ? (
@@ -421,7 +426,7 @@ function DoorScene() {
         ) : null}
         {res && speaker ? (
           <div className="dv-recipient">
-            <CustomerArt look={speaker} ex={ex} pose={x.choice.person ? 'hold' : 'rest'} />
+            <CustomerArt look={speaker} ex={ex} pose={x.choice.person ? 'hold' : 'rest'} talking={answerTalk} />
             {x.choice.person ? <span className="dv-held-parcel" aria-hidden /> : null}
           </div>
         ) : null}

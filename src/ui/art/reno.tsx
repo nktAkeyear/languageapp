@@ -6,8 +6,26 @@
  * (1600×1000 design units, the same viewBox as ShopBackdrop, so it also dresses the night shop);
  * `RenoMobileWall` places them on the phone's wall strip (400×320, like MobileWall).
  */
-import type { ReactNode } from 'react';
+import { createContext, useContext, type ReactNode } from 'react';
 import type { UpgradeId } from '../../renovation/types';
+
+/**
+ * Which layer of a placed scene is being drawn: 'static' (pre-rasterised once, no animated parts),
+ * 'live' (only the animated parts: the cat, the chime's paper strip, the lantern's glow, the arrival
+ * sparkles — everything else hidden) or 'all' (catalogue drawings).
+ */
+type Layer = 'all' | 'static' | 'live';
+const LayerCtx = createContext<Layer>('all');
+
+/** An animated part: left out of the static layer, the only visible thing in the live layer. */
+function Anim({ children }: { children: ReactNode }) {
+  const layer = useContext(LayerCtx);
+  if (layer === 'static') return null;
+  return <g className="reno-anim">{children}</g>;
+}
+
+/** Items with animated parts (drawn in the live layer). */
+const ANIMATED: ReadonlySet<UpgradeId> = new Set(['chime', 'lantern', 'catbed']);
 
 /** Local drawing box of each item (x, y, w, h). */
 export const BOX: Record<UpgradeId, [number, number, number, number]> = {
@@ -217,11 +235,13 @@ function Chime() {
       <path d="M6 34 Q6 12 20 12 Q34 12 34 34 Z" fill="#cfe7f2" stroke="#5a8aa8" strokeWidth="2" opacity="0.95" />
       <path d="M10 28 q4 -6 8 0 q4 -6 8 0" stroke="#3d6c9e" strokeWidth="1.5" fill="none" />
       <circle cx="26" cy="20" r="2" fill="#c8402a" />
-      <g className="reno-chime-strip">
-        <path d="M20 34 V48" stroke="#3a2414" strokeWidth="1" />
-        <rect x="13" y="48" width="14" height="56" rx="2" fill="#f6ecd2" stroke="#b8a070" strokeWidth="1" />
-        <path d="M16 58 h8 M16 66 h8 M16 74 h6" stroke="#3d6c9e" strokeWidth="1.2" />
-      </g>
+      <Anim>
+        <g className="reno-chime-strip">
+          <path d="M20 34 V48" stroke="#3a2414" strokeWidth="1" />
+          <rect x="13" y="48" width="14" height="56" rx="2" fill="#f6ecd2" stroke="#b8a070" strokeWidth="1" />
+          <path d="M16 58 h8 M16 66 h8 M16 74 h6" stroke="#3d6c9e" strokeWidth="1.2" />
+        </g>
+      </Anim>
     </g>
   );
 }
@@ -252,7 +272,9 @@ function Lantern() {
       <path d="M30 0 V12" stroke="#2a1a10" strokeWidth="2" />
       <rect x="18" y="10" width="24" height="8" rx="2" fill="#2a1a10" />
       <ellipse cx="30" cy="54" rx="26" ry="36" fill="#d8402a" stroke="#7a1a10" strokeWidth="2" />
-      <ellipse cx="30" cy="54" rx="16" ry="30" fill="#f4a03a" opacity="0.45" className="reno-lantern-glow" />
+      <Anim>
+        <ellipse cx="30" cy="54" rx="16" ry="30" fill="#f4a03a" opacity="0.45" className="reno-lantern-glow" />
+      </Anim>
       {[30, 42, 54, 66, 78].map((y) => (
         <path key={y} d={`M${30 - Math.sqrt(Math.max(0, 1 - ((y - 54) / 36) ** 2)) * 26} ${y} H${30 + Math.sqrt(Math.max(0, 1 - ((y - 54) / 36) ** 2)) * 26}`} stroke="#7a1a10" strokeWidth="1.2" opacity="0.6" />
       ))}
@@ -500,10 +522,25 @@ export function UpgradeIcon({ id, className }: { id: UpgradeId; className?: stri
 function Put({ id, x, y, w, fresh, children }: { id: UpgradeId; x: number; y: number; w: number; fresh?: boolean; children?: ReactNode }) {
   const [, , bw] = BOX[id];
   const s = w / bw;
+  if (useContext(LayerCtx) === 'live' && !ANIMATED.has(id) && !fresh) return null;
   return (
-    <g transform={`translate(${x} ${y}) scale(${s})`} className={`reno-item reno-${id} ${fresh ? 'reno-fresh' : ''}`}>
+    <g transform={`translate(${x} ${y}) scale(${s})`} className={`reno-item reno-${id}`}>
       {children ?? <UpgradeArt id={id} />}
+      {fresh ? <Sparkle x={bw - 6} y={4} r={14 / s} /> : null}
     </g>
+  );
+}
+
+/** "Just arrived": a twinkling star by a new item on its first day (no filters). */
+function Sparkle({ x, y, r }: { x: number; y: number; r: number }) {
+  return (
+    <Anim>
+    <g transform={`translate(${x} ${y})`} className="reno-fresh">
+      <g className="reno-sparkle">
+        <path d={`M0 ${-r} Q${r * 0.18} ${-r * 0.18} ${r} 0 Q${r * 0.18} ${r * 0.18} 0 ${r} Q${-r * 0.18} ${r * 0.18} ${-r} 0 Q${-r * 0.18} ${-r * 0.18} 0 ${-r} Z`} fill="#fff6c8" stroke="#e8b830" strokeWidth={r * 0.08} />
+      </g>
+    </g>
+    </Anim>
   );
 }
 
@@ -521,11 +558,13 @@ export interface RoomProps {
  * shelf holds the picture, the small shelf and the cellar door; the bench and the cat under the
  * window; the ice box and the scales on the counter's back edge.
  */
-export function RenoRoom({ owned, fresh, catAwake, align = 'xMidYMid' }: RoomProps & { align?: string }) {
+export function RenoRoom({ owned, fresh, catAwake, align = 'xMidYMid', layer = 'all' }: RoomProps & { align?: string; layer?: Layer }) {
   const has = (id: UpgradeId) => owned.has(id);
   const f = (id: UpgradeId) => fresh.has(id);
+  if (!owned.size) return null;
   return (
-    <svg viewBox="0 0 1600 1000" className="backdrop reno-room" preserveAspectRatio={`${align} slice`} aria-hidden>
+    <LayerCtx.Provider value={layer}>
+    <svg viewBox="0 0 1600 1000" className={`backdrop reno-room reno-${layer}`} preserveAspectRatio={`${align} slice`} aria-hidden>
       <defs>
         <clipPath id="reno-wall-clip">
           <rect x="0" y="0" width="1600" height="560" />
@@ -534,8 +573,9 @@ export function RenoRoom({ owned, fresh, catAwake, align = 'xMidYMid' }: RoomPro
       {/* on the wall / behind the counter (cut at the counter's edge) */}
       <g clipPath="url(#reno-wall-clip)">
         {has('curtains') ? (
-          <g className={`reno-item reno-curtains ${f('curtains') ? 'reno-fresh' : ''}`}>
+          <g className="reno-item reno-curtains">
             <CurtainPanels x={44} y={94} w={252} h={302} />
+            {f('curtains') ? <Sparkle x={292} y={100} r={16} /> : null}
           </g>
         ) : null}
         {has('signboard') ? <Put id="signboard" x={64} y={112} w={84} fresh={f('signboard')} /> : null}
@@ -546,9 +586,11 @@ export function RenoRoom({ owned, fresh, catAwake, align = 'xMidYMid' }: RoomPro
         {has('catbed') ? (
           <Put id="catbed" x={has('bench') ? 168 : 170} y={has('bench') ? 452 : 500} w={110} fresh={f('catbed')}>
             <CatBed />
-            <g transform="translate(0 -14)">
-              <Cat awake={catAwake} />
-            </g>
+            <Anim>
+              <g transform="translate(0 -14)">
+                <Cat awake={catAwake} />
+              </g>
+            </Anim>
           </Put>
         ) : null}
         {has('picture') ? <Put id="picture" x={692} y={262} w={150} fresh={f('picture')} /> : null}
@@ -564,6 +606,7 @@ export function RenoRoom({ owned, fresh, catAwake, align = 'xMidYMid' }: RoomPro
       {has('icebox') ? <Put id="icebox" x={1420} y={560} w={150} fresh={f('icebox')} /> : null}
       {has('magnifier') ? <Put id="magnifier" x={196} y={926} w={84} fresh={f('magnifier')} /> : null}
     </svg>
+    </LayerCtx.Provider>
   );
 }
 
@@ -571,14 +614,17 @@ export function RenoRoom({ owned, fresh, catAwake, align = 'xMidYMid' }: RoomPro
  * Phone: the installed items on the wall strip beside the customer (viewBox 400×320, bottom-aligned
  * like MobileWall). Curtains hang in the door's glass; the rest sits on the free wall to the right.
  */
-export function RenoMobileWall({ owned, fresh, catAwake }: RoomProps) {
+export function RenoMobileWall({ owned, fresh, catAwake, layer = 'all' }: RoomProps & { layer?: Layer }) {
   const has = (id: UpgradeId) => owned.has(id);
   const f = (id: UpgradeId) => fresh.has(id);
+  if (!owned.size) return null;
   return (
-    <svg viewBox="0 0 400 320" className="backdrop reno-room" preserveAspectRatio="xMidYMax slice" aria-hidden>
+    <LayerCtx.Provider value={layer}>
+    <svg viewBox="0 0 400 320" className={`backdrop reno-room reno-${layer}`} preserveAspectRatio="xMidYMax slice" aria-hidden>
       {has('curtains') ? (
-        <g className={`reno-item reno-curtains ${f('curtains') ? 'reno-fresh' : ''}`}>
+        <g className="reno-item reno-curtains">
           <CurtainPanels x={52} y={102} w={88} h={58} />
+          {f('curtains') ? <Sparkle x={140} y={104} r={9} /> : null}
         </g>
       ) : null}
       {has('signboard') ? <Put id="signboard" x={182} y={196} w={58} fresh={f('signboard')} /> : null}
@@ -596,12 +642,15 @@ export function RenoMobileWall({ owned, fresh, catAwake }: RoomProps) {
       {has('catbed') ? (
         <Put id="catbed" x={has('bench') ? 274 : 270} y={has('bench') ? 252 : 284} w={56} fresh={f('catbed')}>
           <CatBed />
-          <g transform="translate(0 -14)">
-            <Cat awake={catAwake} />
-          </g>
+          <Anim>
+            <g transform="translate(0 -14)">
+              <Cat awake={catAwake} />
+            </g>
+          </Anim>
         </Put>
       ) : null}
     </svg>
+    </LayerCtx.Provider>
   );
 }
 

@@ -11,6 +11,7 @@ import { CustomerArt, lookFor } from '../art/customer';
 import { DocObjectArt, docLook } from '../art/documents';
 import { ContainerArt, PieceArt } from '../art/ingredients';
 import { RenoRoom } from '../art/reno';
+import { Raster } from '../art/Raster';
 import { ingredientsAtStage } from '../../core/gamedata';
 import { useReno } from '../reno/useReno';
 import { renoView } from '../../renovation/engine';
@@ -29,6 +30,8 @@ import type { Act } from './StoryStage';
  * to cover the screen — dark window, lamp lit, the shelf stocked (jars drawn, not interactive) and
  * everything the renovation added. On a phone the left part (window, door, lamp light) shows.
  */
+const NONE: ReadonlySet<never> = new Set();
+
 export function NightBackdrop() {
   const mobile = useMobile();
   const g = useGame();
@@ -51,9 +54,14 @@ export function NightBackdrop() {
   return (
     <div className="night-bg" ref={ref} aria-hidden>
       <div className="night-stage" style={{ width: STAGE_W, height: STAGE_H, transform: `translate(${left}px, ${top}px) scale(${scale})` }}>
-        <ShopBackdrop sky={NIGHT_SKY} closed paint={reno.has('paint')} />
+        <Raster label="night">
+          <ShopBackdrop sky={NIGHT_SKY} closed paint={reno.has('paint')} />
+        </Raster>
         <ShopLive sky={NIGHT_SKY} ringing={false} />
-        <RenoRoom owned={reno.owned} fresh={new Set()} />
+        <Raster label="reno-night">
+          <RenoRoom owned={reno.owned} fresh={NONE} layer="static" />
+        </Raster>
+        <RenoRoom owned={reno.owned} fresh={NONE} layer="live" />
         <div className="night-shelf" style={{ left: SHELF.x, top: SHELF.y, width: SHELF.w, height: SHELF.rows * SHELF.rowH, gridTemplateColumns: `repeat(${SHELF.cols}, 1fr)`, gridTemplateRows: `repeat(${SHELF.rows}, ${SHELF.rowH}px)` }}>
           {shelf.map((ing) => (
             <div key={ing} className="night-jar">

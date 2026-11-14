@@ -17,8 +17,12 @@ type Hat = 'none' | 'captain' | 'chef' | 'cap' | 'bowler' | 'grad' | 'scarf' | '
 type Collar = 'coat' | 'apron' | 'shawl' | 'labcoat' | 'suit' | 'tee' | 'vest';
 type Extra = 'brooch' | 'kerchief' | 'freckles' | 'chain' | 'pencil' | 'earrings' | 'flower';
 
-/** Arm pose: hands resting on the counter, holding a cup at the chest, or raising it to sip. */
-export type Pose = 'rest' | 'hold' | 'chest' | 'sip' | 'wave';
+/**
+ * Arm pose: hands resting on the counter, holding a cup at the chest, raising it to sip, waving;
+ * and the conversation gestures: explaining (one hand up, palm open), open hands (a shrug /
+ * "you see?"), a hand at the chin (thinking, listening), hands on the heart.
+ */
+export type Pose = 'rest' | 'hold' | 'chest' | 'sip' | 'wave' | 'explain' | 'open' | 'chin' | 'heart';
 
 export interface Look {
   skin: string;
@@ -284,6 +288,34 @@ function Mouth({ ex }: { ex: Expression }) {
   }
 }
 
+/** The open mouth while talking (alternates with the expression's own mouth). */
+function TalkMouth({ ex }: { ex: Expression }) {
+  const y = 140;
+  const glad = ex === 'happy' || ex === 'delighted' || ex === 'listen';
+  const sad = ex === 'sad' || ex === 'shiver';
+  return glad ? (
+    <path d={`M107 ${y - 2} Q120 ${y + 18} 133 ${y - 2} Z`} fill="#7a2418" stroke="#4a140c" strokeWidth="2.5" strokeLinejoin="round" />
+  ) : sad ? (
+    <ellipse cx="120" cy={y + 3} rx="7" ry="5" fill="#7a2418" stroke="#4a140c" strokeWidth="2.5" />
+  ) : (
+    <ellipse cx="120" cy={y + 2} rx="9" ry="7" fill="#7a2418" stroke="#4a140c" strokeWidth="2.5" />
+  );
+}
+
+/** Eyelids (skin) that close over open eyes for a blink. */
+function Lids({ skin }: { skin: string }) {
+  const y = 112;
+  return (
+    <g className="cust-lids" aria-hidden>
+      <ellipse cx="98" cy={y} rx="9" ry="9" fill={skin} />
+      <ellipse cx="142" cy={y} rx="9" ry="9" fill={skin} />
+      <path d={`M89 ${y + 1} q9 4 18 0 M133 ${y + 1} q9 4 18 0`} stroke="#2a1a12" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+    </g>
+  );
+}
+
+const OPEN_EYES: Expression[] = ['neutral', 'puzzled', 'shiver', 'hot', 'sad', 'angry', 'listen'];
+
 function HairBack({ look }: { look: Look }) {
   const c = look.hair;
   switch (look.hairStyle) {
@@ -519,6 +551,10 @@ const ARM_POSES: Record<Pose, { l: [number, number][]; r: [number, number][] }> 
   chest: { l: [[56, 236], [38, 290], [80, 206]], r: [[184, 236], [202, 290], [160, 206]] },
   sip: { l: [[56, 236], [46, 330], [86, 226]], r: [[184, 236], [196, 318], [156, 200]] },
   wave: { l: [[56, 236], [44, 300], [84, 352]], r: [[184, 236], [214, 200], [206, 132]] },
+  explain: { l: [[56, 236], [44, 300], [84, 352]], r: [[184, 236], [218, 300], [184, 246]] },
+  open: { l: [[56, 236], [22, 296], [24, 250]], r: [[184, 236], [218, 296], [216, 250]] },
+  chin: { l: [[56, 236], [44, 300], [96, 318]], r: [[184, 236], [196, 296], [146, 178]] },
+  heart: { l: [[56, 236], [46, 300], [104, 262]], r: [[184, 236], [194, 300], [134, 252]] },
 };
 
 /** Two arms in the coat's colour with hands (in front of the body, behind the held cup). */
@@ -555,20 +591,30 @@ function Arms({ look, pose }: { look: Look; pose: Pose }) {
   );
 }
 
-/** The character, 240×420 viewBox. Head top ~y 30, shoulders ~y 200. */
-export function CustomerArt({ look, ex, pose = 'rest' }: { look: Look; ex: Expression; pose?: Pose }) {
+/**
+ * The character, 240×420 viewBox. Head top ~y 30, shoulders ~y 200.
+ * `talking`: the mouth moves (alternating with the expression's mouth) and the head nods a little.
+ * `alive`: blinks and breathes (CSS, off with prefers-reduced-motion); small portraits pass false.
+ */
+export function CustomerArt({ look, ex, pose = 'rest', talking = false, alive = true }: { look: Look; ex: Expression; pose?: Pose; talking?: boolean; alive?: boolean }) {
   const old = look.age === 'old';
   const extras = look.extras ?? [];
   const headScale = look.age === 'child' ? 1.06 : 1;
   const blush = ex === 'delighted' || ex === 'happy' || ex === 'hot';
+  // Each person blinks on their own rhythm.
+  const seed = hashString(`${look.skin}${look.hair}${look.coat}${look.hairStyle}`);
+  const style = alive ? ({ ['--blink-delay' as string]: `${-(seed % 4000) / 1000}s`, ['--blink-dur' as string]: `${3.6 + (seed % 5) * 0.45}s` } as React.CSSProperties) : undefined;
   return (
-    <svg viewBox="0 0 240 420" className="customer-art" aria-hidden>
+    <svg viewBox="0 0 240 420" className={`customer-art ${alive ? 'cust-alive' : ''} ${talking ? 'cust-talking' : ''} ex-${ex}`} style={style} aria-hidden>
       <g className="cust-body">
         <Body look={look} />
         <NeckExtras look={look} />
-        <Arms look={look} pose={pose} />
+        <g key={pose} className="cust-pose">
+          <Arms look={look} pose={pose} />
+        </g>
       </g>
       <g className="cust-head" transform={headScale !== 1 ? `translate(120 120) scale(${headScale}) translate(-120 -120)` : undefined}>
+        <g className="cust-headmove">
         <HairBack look={look} />
         {/* neck */}
         <path d="M104 160 L104 200 Q120 210 136 200 L136 160 Z" fill={look.skin} />
@@ -603,10 +649,18 @@ export function CustomerArt({ look, ex, pose = 'rest' }: { look: Look; ex: Expre
         {/* nose */}
         <path d="M120 116 Q114 130 122 132" stroke="#00000044" strokeWidth="3" fill="none" strokeLinecap="round" />
         <Eyes ex={ex} old={old} />
+        {alive && OPEN_EYES.includes(ex) ? <Lids skin={look.skin} /> : null}
         <Brows ex={ex} color={old ? '#bdb8ae' : look.hair} />
         {look.beard ? <path d="M70 120 Q72 176 120 184 Q168 176 170 120 Q164 150 140 156 Q120 146 100 156 Q76 150 70 120 Z" fill={look.hair} /> : null}
         {look.moustache || look.beard ? <path d="M100 134 Q120 124 140 134 Q130 140 120 136 Q110 140 100 134 Z" fill={old ? '#cfcac0' : look.hair} /> : null}
-        <Mouth ex={ex} />
+        <g className="mouth-rest">
+          <Mouth ex={ex} />
+        </g>
+        {talking ? (
+          <g className="mouth-talk">
+            <TalkMouth ex={ex} />
+          </g>
+        ) : null}
         {look.glasses ? (
           <g stroke="#3a2a1a" strokeWidth="2.5" fill="#ffffff22">
             <circle cx="98" cy="112" r="14" />
@@ -639,6 +693,7 @@ export function CustomerArt({ look, ex, pose = 'rest' }: { look: Look; ex: Expre
             ?
           </text>
         ) : null}
+        </g>
       </g>
     </svg>
   );

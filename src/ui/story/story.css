@@ -111,7 +111,17 @@
   display: block;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.4));
+}
+/* a soft shadow behind the figure without filtering it (it blinks, talks and gestures) */
+.cv-figure::before {
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 30%;
+  bottom: 0;
+  background: radial-gradient(ellipse at 50% 60%, rgba(0, 0, 0, 0.35), transparent 65%);
+  pointer-events: none;
 }
 .cv-name {
   position: absolute;
@@ -981,14 +991,15 @@
 .night-wash {
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(8, 10, 30, 0.55), rgba(10, 6, 4, 0.5));
+  background: linear-gradient(rgba(8, 10, 30, 0.62), rgba(10, 6, 4, 0.56));
 }
 .night-lamp {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 39% 10%, rgba(255, 206, 130, 0.55), rgba(255, 170, 80, 0.16) 30%, transparent 55%);
-  mix-blend-mode: screen;
+  /* plain alpha over the scene (no blend mode: a full-screen blend every frame is costly on phones) */
+  background: radial-gradient(circle at 39% 10%, rgba(255, 214, 150, 0.32), rgba(255, 170, 80, 0.1) 30%, transparent 55%);
   animation: lamp-flicker 5s ease-in-out infinite;
+  will-change: opacity;
 }
 .lg-stage {
   position: absolute;
@@ -1287,7 +1298,7 @@
   animation: cv-fade 0.5s ease-out both;
 }
 [data-layout='mobile'] .cv-name {
-  left: 70%;
+  left: 4%;
   top: 4%;
   font-size: 15px;
 }
@@ -1437,4 +1448,8 @@
 }
 .st-hooks .corner-hooks {
   position: static;
+}
+
+.lg-table td {
+  white-space: nowrap;
 }

@@ -17,7 +17,8 @@ import { BoardArt, ColdBasinArt, HandToolArt, HourglassArt, KettleArt, PotArt, S
 import { VesselArt } from '../art/vessel';
 import { SpeakButton, WordText } from '../components/WordText';
 import { sfx } from '../sound';
-import { speak, useSpeechAvailable } from '../speech';
+import { speak, useSpeaking, useSpeechAvailable } from '../speech';
+import { lineMs, useTalkBurst } from '../useTalk';
 import { useGame } from '../useGame';
 import { useUi } from '../uiState';
 import { useStoryHold } from '../story/StoryUi';
@@ -357,8 +358,13 @@ export function useCustomer() {
 export function CustomerFigure() {
   const b = useBench();
   const mobile = useMobile();
-  const { order, customer, motion, ex, t } = useCustomer();
+  const { order, customer, motion, ex, t, result } = useCustomer();
   const ref = useRef<HTMLDivElement>(null);
+  const zh = useGame().lang === 'zh';
+  const speakingNow = useSpeaking();
+  // The customer says the order when they arrive, and their reaction after tasting.
+  const burstKey = !order || !t || t.phase === 'closed' ? null : b.stage === 'react' ? `r${t.day}:${t.index}` : b.stage === 'idle' && t.phase === 'order' && !order.audioOnly ? `o${t.day}:${t.index}` : null;
+  const talkBurst = useTalkBurst(burstKey, lineMs(b.stage === 'react' ? (result?.reaction ?? '') : (order?.text ?? ''), zh));
   useEffect(() => {
     b.registerDrop('counter', ref.current);
     return () => b.registerDrop('counter', null);
@@ -366,12 +372,14 @@ export function CustomerFigure() {
   }, []);
   if (!order || !t || t.phase === 'closed') return <div ref={ref} className="customer-fig customer-none" />;
   const look = lookFor(customer?.id ?? order.customer, customer?.avatar ?? '🧑');
+  const said = b.stage === 'react' ? result?.reaction : b.stage === 'idle' && t.phase === 'order' ? order.text : null;
+  const talking = talkBurst || (!!said && speakingNow === plain(said));
   const over = b.drag?.carry.kind === 'cup' && b.drag.over === 'counter';
   return (
     <div ref={ref} className={`customer-slot ${over ? 'counter-over' : ''}`}>
       <div key={`${t.day}:${t.index}`} className={`customer-fig ${b.leaving ? 'leaving' : 'entering'} ${motion ? `motion-${motion}` : ''} stage-${b.stage}`}>
         <div className="customer-body">
-          <CustomerArt look={look} ex={ex} pose={b.stage === 'sipping' ? 'sip' : b.stage === 'react' ? (mobile ? 'chest' : 'hold') : 'rest'} />
+          <CustomerArt look={look} ex={ex} pose={b.stage === 'sipping' ? 'sip' : b.stage === 'react' ? (mobile ? 'chest' : 'hold') : 'rest'} talking={talking && b.stage !== 'sipping'} />
         </div>
         {b.stage === 'sipping' || b.stage === 'react' ? (
           <div className={`held-cup held-cup-${b.stage}`} aria-hidden>
@@ -419,10 +427,11 @@ export function Bubble() {
   // Long lines get a smaller hand so the bubble stays inside the wall.
   const len = plain(reacting ? `${order.text} ${result!.reaction}` : order.text).length;
   const long = lang === 'zh' ? len > 24 : len > 60;
+  const xlong = lang === 'zh' ? len > 38 : len > 100; // e.g. a reaction plus a regular's small talk or a remark
   return (
     <div
       key={`${t.day}:${t.index}`}
-      className={`bubble-paper ${reacting ? 'bubble-react' : ''} ${b.leaving ? 'bubble-leave' : ''} ${long ? 'bubble-long' : ''}`}
+      className={`bubble-paper ${reacting ? 'bubble-react' : ''} ${b.leaving ? 'bubble-leave' : ''} ${long ? 'bubble-long' : ''} ${xlong ? 'bubble-xlong' : ''}`}
       data-testid="bubble"
     >
       {reacting ? (
