@@ -1,7 +1,8 @@
 # 港町の調香茶房 (languageapp)
 
 A personal-use "decipherment" language game for Japanese speakers learning **English** or
-**Mandarin Chinese** (simplified + pinyin) from zero. You run an inherited tea/spice shop in a
+**Mandarin Chinese** (simplified + pinyin) — from zero, or from a chosen HSK / 英検 level (レベル設定). You
+run an inherited tea/spice shop in a
 port town. Customers order in the target language, the predecessor's recipe book is written in
 the target language, and the only feedback is the customer's reaction (target language), their
 face and the shop's reputation. There are no translations. Game chrome (menus, hints, notebook
@@ -21,6 +22,12 @@ reputation, saves) and pluggable activities (`src/activities/<id>/`):
 A day is a sequence of segments planned by `src/activities/day.ts` (e.g. 朝 market → 昼 shop →
 夕方 delivery). Before the town activities open, a day is exactly the Phase 1 shop day.
 
+Around this core: a **story** (regulars, the predecessor's letters, chapters, the nightly ledger), the
+**shop renovation** (a carpenter's catalogue bought with the shop's coins: more customers, stock kept
+overnight, a daily delivery, notebook aids, décor) and **difficulty settings** (start level by HSK / 英検
+with 既習扱い words and a stage jump, target, pace, an adaptive controller, assists, the 学習の記録 page).
+All three are optional save fields / layers: without them the game plans exactly as the base game.
+
 ## Commands
 
 ```bash
@@ -32,7 +39,14 @@ npm run validate-content  # content validator; exits 1 on errors
 npm run simulate -- zh 10 # simulated playthrough for content review: market notes + vendor talk, orders +
                           # reactions, delivery slips + reactions, story beats 📖 as they fire, the nightly
                           # ledger (args: lang days seed failEvery choice [buy]; e.g. `-- en 45 1 4 0`);
-                          # `buy` also orders from the renovation catalogue (🛠) and prints an economy summary
+                          # `buy` also orders from the renovation catalogue (🛠) and prints an economy summary.
+                          # This log runs with the adaptive controller off, so with defaults and no purchases it
+                          # matches logs from before レベル設定 existed. `--log` applies settings to it:
+                          # `-- zh 10 1 4 0 buy --log --start=2 --pace=fast [--adaptive=1]`
+npm run simulate -- zh 45 --start=2 --pace=slow --acc=0.7 [--adaptive=0] [--seed=3] [--legacy] [buy]
+                          # difficulty settings: a simulated player of that accuracy, one line per day
+                          # (`buy`: it also orders from the catalogue; coins and 🛠 at the end of the line)
+npm run simulate -- --table [--buy]   # settings comparison table (both languages, 45 days, mean of 3 seeds)
 ```
 
 `dist/index.html` is self-contained (relative base + `vite-plugin-singlefile`): copy it anywhere
@@ -53,6 +67,9 @@ src/
     srs.ts              hidden spaced repetition (per-word state)
     verification.ts     検証ページ logic
     levels.ts           現在地 (coverage per CEFR / 英検 / HSK level)
+    difficulty.ts       レベル設定: start level (seeding 既習扱い, fast-forward), target, pace, adaptive controller, assists
+    metrics.ts          学習の記録: per-day indicators, rolling windows
+    placement.ts        腕だめし: placement items (orders + labelled cups) and the suggestion
     save.ts             versioned save, migration, export/import
     validate.ts         content validator (used by script + tests)
     validateTown.ts     validator part for market / delivery content
@@ -102,10 +119,12 @@ src/
                         the reaction has been read), people.ts
     book/               recipe book and notebook as physical books (BookShell, page turns, 検証 puzzle)
     reno/               the renovation catalogue (a booklet like the books), its prop on the counter
+    difficulty/         レベル設定 sheet, 腕だめし, 学習の記録 page + SVG charts, notebook bits (既 mark, peek,
+                        目標 panel), scene assists (mistake marks, retry slip, slower speech)
     components/         settings, title, word text (gloss on hover/tap; story names; glossed documents; word-by-word
                         reveal), SaveText.tsx (save as text: copy / paste)
     desktop/  mobile/   layouts per device: which scene the current segment shows
-scripts/                validate-content.ts, simulate.ts (+ storyLog.ts)
+scripts/                validate-content.ts, simulate.ts (+ storyLog.ts, simDifficulty.ts: the settings simulator)
 ```
 
 The layout is chosen by viewport width (≤ 820px → mobile), overridable in settings.
@@ -150,7 +169,9 @@ compositions of the same pieces), and moving between them is a short passage of 
 - **Books**: the recipe book and the notebook lie on the counter (and on the desk / table in the
   town) and open as books (two pages on desktop, one on the phone) with page turns. Notebook ribbons:
   単語 (handwritten list + a word's page: audio, memo, sentences seen), 検証 (verification pages),
-  現在地 (level guide). A verification page lays out meaning cards; word slips are dragged (or tap-tap)
+  現在地 (level guide + 目標), 記録 (学習の記録, see Difficulty). With the catalogue's red ribbon the word list
+  opens on 復習 (words due today); with the magnifying glass a word's page marks it in its sentences and
+  lists the words that keep appearing with it. A verification page lays out meaning cards; word slips are dragged (or tap-tap)
   onto them and the stamp checks the whole page: right → seals and cards flip to word + meaning;
   wrong → only "something is off". When a page newly opens, the notebook glows and a bookmark sticks
   out. Confirmed words are highlighted everywhere and show their gloss on hover (or a first tap); a
@@ -220,10 +241,13 @@ drawn with them from then on (a twinkle marks what arrived today) and their effe
 Goods kept overnight start the next market day in stock and the shopping note asks only for the rest
 (the ledger lists them under 明日に取っておく). Customers sometimes remark on the décor after a perfect cup
 (target language, appended to the reaction; more likely the day after it arrived; at most two a day,
-not when a regular already made small talk). Calibration (`npm run simulate -- en 45 1 0 0 buy`): a
-player who serves everything right earns ~950 coins net of the market in 45 days and, buying whatever is
-affordable while keeping 20 coins for the market, owns the whole catalogue (842 coins) around day 41–42;
-a player who fails every 3rd–4th cup earns ~550–620 and gets 14–15 of the 18 entries.
+not when a regular already made small talk; a remark may be marked `notWhen: ['cold' | 'hot']` so nobody
+says "very warm here" over an iced tea). The arrival note is on the day's first notice (the market's paper
+when the day starts there). An entry that has appeared stays listed even if reputation dips below its gate.
+Calibration (`npm run simulate -- en 45 1 0 0 buy`): a
+player who serves everything right earns ~950–1050 coins net of the market in 45 days (en; zh ~770) and,
+buying whatever is affordable while keeping 20 coins for the market, owns the whole catalogue (842 coins)
+around day 39–42; a player who fails every 3rd–4th cup earns ~480–620 and gets 13–15 of the 18 entries.
 
 ### Schema (`src/renovation/types.ts`)
 
@@ -503,11 +527,83 @@ document is readable by its `readable` stage under the same rule. The vitest sui
 days on three paths (good player; clumsy player; failing every story cup) and checks that every
 beat fires on some path and the good player reaches the end.
 
+## Difficulty: レベル設定 and 学習の記録
+
+Per language, `LangProgress.difficulty` (optional; absent = the defaults ゼロから・ふつう・自動調整あり, which
+plan exactly like older saves — `planKnobs` returns the stage's own values and the stage clock offset is 0).
+Logic in `src/core/difficulty.ts`; the sheet opens at a new game (title screen / a new language in ⚙ 設定),
+from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) and 記録 pages.
+
+- **現在の実力の目安 (start)**: ゼロから / zh HSK1–3 (中検・CEFR shown) / en 英検5・4級 (CEFR・TOEIC shown); higher
+  levels are listed as 未対応 because the content does not reach them. Choosing a level seeds every lexicon word
+  tagged at or below it as **既習扱い** (`WordState.seeded`: confirmed, seen 6 / correct 2 added, first review
+  spread over 3–14 days so they come back now and then), seals 検証ページ whose words are all known, marks earlier
+  curriculum orders made only of known words as done (orders with unknown words — shelf names, higher-level
+  words — still come), and fast-forwards the shop to the level's stage (`START_STAGE`: zh 6 / 11 / 16, en 7 / 13 —
+  calibrated on the curriculum's structures, since level tags are spread over all stages), with its reputation,
+  a stage-clock offset (`stageDay` = day + offset gates stages and town unlocks), market / delivery experience and
+  money. The notebook marks seeded words 「既」; each can be taken back (学び直す) and is then not re-seeded.
+  Changing the level later is exact: down takes back only what seeding added (a word met in play since keeps
+  its own encounters), reopens sealed pages / skipped orders; up seeds more; the shop never goes back.
+- **Story when starting above zero**: nothing is skipped — the story starts with the first letter and plays
+  in order (the regulars' arcs and choices only make sense in sequence; the early beats use words the player
+  already knows). `src/story/catchup.ts` compresses it: up to two regulars' visits a day while their beats are
+  ≥ 3 stages behind the shop, and chapter title cards follow the story (one a day at most, the next only when no
+  earlier-stage beat is still pending). Simulated (85 % player): a HSK2 / 英検4級 start reaches the last beat on day 25–27, a zero start on day 41.
+- **目標**: the 現在地 page shows mastered words of that level's list, the share the game contains (the ceiling,
+  a dashed mark), what remains in the game and what is not in it, with an honest note; a level is offered only
+  if the game has ≥ 30 words of exactly that level and ≥ 15 % of its list (zh HSK1–3, en 英検5・4・3級 — 3級 only
+  just, with the catalogue's words; its note says the game holds about 16 % of the list).
+- **進み方**: ゆっくり (new words ×0.6, one customer fewer, ≥ ⅓ review orders, stage clock ×0.75) / ふつう (as
+  designed) / 速い (×1.4, one more customer, clock ×1.3; the clock never speeds past an unserved curriculum
+  backlog).
+- **自動調整** (`controllerStep`): after each day, from the last 4 days (only days after its previous step):
+  first-try accuracy < 60 % (or orders with new words < 45 %) → ease off one step; > 90 % with few review lapses
+  → one step brisker; 70–85 % → drift back to the preset; otherwise hold. A step needs the same verdict two
+  days running, a reversal waits 2 days, `adj` stays in [−1, +0.6]. `adj` scales the new-word budget, the
+  minimum review share, template choice (older, shorter templates when easing), audio-only frequency and the
+  stage clock. The reason is shown in Japanese on the 学習の記録 page.
+- **手助け** (all off by default): pinyin always / unconfirmed only / never (else 設定's switch); peek at the gloss
+  of an unconfirmed word on its notebook page (評判 −1); mark the order words a failed cup was about; retry the
+  same customer without penalty (state restored; the failed first try still counts in the indicators; not for
+  regulars' story visits; anything else done after the failed cup — a catalogue order, a sealed page, a memo,
+  a story card — ends the chance to retry, since the restore would undo it); after an empty cup no word is
+  marked, a note says the cup was empty; audio-only orders off / normal / many (also the market's spoken
+  quotes); slower speech.
+- **腕だめし** (`src/core/placement.ts`): two curriculum orders per offered level, each with three cups labelled
+  like the shelf (one right, two near misses checked by the real rules) or わからない; the suggestion is the
+  highest level answered completely right from the first level up; the player confirms it in the sheet.
+- **学習の記録** (notebook ribbon 記録, `src/core/metrics.ts`): one record per day — first-try accuracy (all / with
+  new words / review), 検証 stamps per sealed page, market lines bought / deliveries made well, review lapse rate,
+  words confirmed, seconds per order (UI only), retries, peeks, the qualification estimate, stage and `adj` —
+  drawn as SVG charts with a table view, plus the current difficulty in words and the controller's last reason.
+
+### Difficulty × renovation
+
+- **Customers a day** = the stage's number + the pace preset (±1, at least 3) + seats bought (the bench, +1, a
+  review order of known words). The adaptive controller does not change the count; the bench's orders count
+  as orders in the indicators like any other. The 記録 page shows the total (お客さん／日, with 長椅子 +1).
+- **Catalogue gates** use the calendar day (`p.day`), not the stage clock: a HSK2 / 英検4級 start opens the
+  catalogue on day 4 like a zero start (the jump grants the market's start money, not catalogue money);
+  reputation and stage gates are already met after a jump. Simulated with buying (85 % player, 30 days),
+  zero / level 1 / level 2 starts buy 8–12 entries; nothing is affordable at once and the catalogue never
+  stays empty.
+- **Starting level and catalogue words**: the catalogue's words carry HSK / 英検 tags like any word, so a level
+  start seeds the low-level ones (cat, box, new, 猫, 新 …) as 既習扱い; its 検証ページ are sealed only when all
+  their words are known. Seeded words not met in play since are left out of the red ribbon's 復習 list.
+- **Money and reputation at a mid-day level change** are not counted as the day's takings / reputation in the
+  ledger (the day's start values move with them), like confirmed words.
+- **Indicators**: catalogue orders, catalogue reading and décor remarks are not orders; the retry assist
+  restores the whole progress, so coin / reputation bonuses (kettle, scales, ice box, signboard, lantern)
+  are paid once, for the cup that counts. A gloss peek costs reputation; catalogue entries already shown do
+  not disappear because of it.
+
 ## Learning model notes
 
 - **Saves**: each language's progress may carry `reno` (renovation: installed upgrades with their
-  arrival day, today's orders, goods kept overnight, catalogue entries seen, remark bookkeeping); it is
-  optional (no version bump), so version 1–3 saves load unchanged and start with nothing bought. The
+  arrival day, today's orders, goods kept overnight, catalogue entries seen, remark bookkeeping) and
+  `difficulty` (レベル設定 + 学習の記録); both are optional (no version bump), so version 1–3 saves and saves
+  made before either existed load unchanged (nothing bought, default difficulty created on first use). The
   ledger may carry `purchases`. Version 3 adds `story` (beats, documents, flags, chapter, pending cards, today's
   bookkeeping, last ledger); version 2 saves get a fresh story that starts with the current day.
   A document record may carry `known` (its words confirmed when it was last put away, for the

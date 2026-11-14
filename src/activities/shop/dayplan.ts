@@ -1,10 +1,11 @@
-import { featuresAtStage, ingredientsAtStage, plain, stageDef, type GameData } from '../../core/gamedata';
+import { featuresAtStage, ingredientsAtStage, plain, type GameData } from '../../core/gamedata';
 import { pick, shuffle, type Rng } from '../../core/rng';
 import type { LangProgress } from '../../core/save';
 import { reviewWeight } from '../../core/srs';
 import { tokenIds } from '../../core/tokenize';
 import type { OrderInstance } from '../../core/types';
 import { authoredInstance, instantiateTemplate } from './templates';
+import { planKnobs } from '../../core/difficulty';
 
 /** Template orders may introduce at most this many unseen words. */
 export const MAX_NEW_PER_TEMPLATE_ORDER = 1;
@@ -29,9 +30,10 @@ export function orderWordIds(data: GameData, inst: Pick<OrderInstance, 'text'>):
  *    one unseen word each, so review never runs out.
  */
 export function planDay(data: GameData, p: LangProgress, rng: Rng): DayPlan {
-  const sd = stageDef(data, p.stage);
-  const N = sd.customersPerDay;
-  const budget = sd.newWordsPerDay;
+  // レベル設定 / 自動調整 (core/difficulty.ts): without a difficulty state these are the stage's own values.
+  const k = planKnobs(data, p);
+  const N = k.customers;
+  const budget = k.budget;
   const known = (id: string) => !!p.words[id];
   const dayNew = new Set<string>();
   const newOf = (inst: OrderInstance) => orderWordIds(data, inst).filter((id) => !known(id) && !dayNew.has(id));
@@ -56,8 +58,10 @@ export function planDay(data: GameData, p: LangProgress, rng: Rng): DayPlan {
   const candidates = data.content.orders
     .filter((o) => o.stage <= p.stage && !p.orders[o.id]?.perfect && !pendingReturnKeys.has(o.id))
     .sort((a, b) => a.stage - b.stage || (a.seq ?? 0) - (b.seq ?? 0));
+  // A minimum share of review orders (pace ゆっくり / a struggling player); 0 = curriculum may fill the day.
+  const maxAuthored = k.reviewShare > 0 ? Math.max(1, Math.round(slots * (1 - k.reviewShare))) : slots;
   for (const o of candidates) {
-    if (authored.length >= slots) break;
+    if (authored.length >= maxAuthored) break;
     const inst = authoredInstance(data, o);
     const fresh = newOf(inst);
     if (fresh.length > MAX_NEW_PER_AUTHORED_ORDER && authored.length > 0) continue;
@@ -74,6 +78,7 @@ export function planDay(data: GameData, p: LangProgress, rng: Rng): DayPlan {
     available: ingredientsAtStage(data, p.stage),
     features: featuresAtStage(data, p.stage),
     rng,
+    audio: k.audio,
   };
   const templates = data.content.templates.filter((t) => t.stage <= p.stage);
   const templ: OrderInstance[] = [];
@@ -92,7 +97,8 @@ export function planDay(data: GameData, p: LangProgress, rng: Rng): DayPlan {
       if (addsNew.length && dayNew.size + addsNew.length > budget) continue;
       const ids = orderWordIds(data, inst);
       let score = ids.reduce((s, id) => s + reviewWeight(p.words[id], p.day), 0);
-      score += tpl.stage === p.stage ? 2 : tpl.stage / p.stage;
+      score += k.complexity * (tpl.stage === p.stage ? 2 : tpl.stage / p.stage);
+      if (k.complexity < 1) score += (1 - k.complexity) * 2 * (1 - tpl.stage / p.stage); // easing off: older, simpler templates
       score += fresh.length ? 0.5 : 0;
       score -= (usedTemplates.get(tpl.id) ?? 0) * 2.5;
       score += rng() * 2;
@@ -124,6 +130,7 @@ export function planDay(data: GameData, p: LangProgress, rng: Rng): DayPlan {
   const queue = [...main];
   returning.forEach((r, i) => queue.splice(Math.min(queue.length, i * 2 + 1), 0, r));
 
+  if (k.audio === 0) for (const q of queue) q.audioOnly = false; // assist: no audio-only orders
   assignCustomers(data, p.stage, queue, rng);
   return { queue, newWords: [...dayNew] };
 }

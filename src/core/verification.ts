@@ -1,3 +1,4 @@
+import { difficultyOnVerify } from './difficulty';
 import type { GameData } from './gamedata';
 import type { LangProgress } from './save';
 import type { LexEntry, VerificationPage } from './types';
@@ -41,6 +42,7 @@ export function submitVerification(
   const rec = (p.verification[pageId] ??= { attempts: 0, solved: false });
   rec.attempts++;
   const ok = words.length > 0 && words.every((w) => assignment[w.id] === w.id);
+  difficultyOnVerify(p, ok); // metrics: attempts per sealed page
   if (ok) {
     rec.solved = true;
     for (const w of words) {

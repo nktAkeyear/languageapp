@@ -317,6 +317,10 @@ function ChapterCard({ chapterId, story, act }: { chapterId: string; story: Stor
   const chapters = sortedChapters(story);
   const i = Math.max(0, chapters.findIndex((c) => c.id === chapterId));
   const t = story.text.chapters[chapterId];
+  const { data, progress } = useGame();
+  // Started above zero (レベル設定): the shop is already past its first stage, so the first-stage intro does not fit.
+  const aboveZero = !!data && !!progress && progress.stage > (data.stages[0]?.stage ?? 1);
+  const intro = (aboveZero && t?.introAboveZeroJa) || t?.introJa;
   useEffect(() => sfx('chapter'), []);
   return (
     <div className="chapter-stage" data-testid="story-chapter" role="dialog" aria-label={`第${KANJI[i]}章 ${t?.titleJa ?? ''}`}>
@@ -328,7 +332,7 @@ function ChapterCard({ chapterId, story, act }: { chapterId: string; story: Stor
           <h2 className="chapter-title">{t?.titleJa}</h2>
         </div>
       </div>
-      <p className="chapter-intro hand">{t?.introJa}</p>
+      <p className="chapter-intro hand">{intro}</p>
       <button type="button" className="cv-btn chapter-go" onClick={() => act((pp, dd) => storyDismiss(dd, pp))}>
         はじめる
       </button>

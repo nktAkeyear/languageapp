@@ -15,6 +15,7 @@ import { currentOrder, endDay, serve, startDay, type ServeOutcome } from './shop
 import { chooseText, fill, textWords, townOf, type Town } from './town/text';
 import { storyAfterServe, storyEndDay, storyPlanShop, storyPlanTown } from '../story/engine';
 import { renoAfterServe, renoCarry, renoEndDay, renoPlanShop, renoPlanTown } from '../renovation/engine';
+import { difficultyEndDay, difficultyOnServe, difficultyStartDay, stageDay } from '../core/difficulty';
 
 /** Is the activity open by now? (day + reputation, or grace days after minDay — no hard gate) */
 export function unlockReady(u: TownUnlock, day: number, reputation: number): boolean {
@@ -44,7 +45,7 @@ export function planSegments(town: Town | null, p: LangProgress, rng: Rng): { se
     ['delivery', town.shared.delivery.unlock],
   ];
   for (const [act, u] of units) {
-    if (p.town.unlocked[act] === undefined && unlockReady(u, p.day, p.reputation)) {
+    if (p.town.unlocked[act] === undefined && unlockReady(u, stageDay(p), p.reputation)) {
       p.town.unlocked[act] = p.day;
       notes.push(u.noteJa);
       if (act === 'market') p.town.money = Math.max(p.town.money, town.shared.market.startMoney);
@@ -72,11 +73,16 @@ function levelNotes(town: Town, p: LangProgress, segments: ActivityKind[]): stri
 
 /** Open the day: the shop plans its customers first (the market needs them), then the town. */
 export function startTownDay(data: GameData, p: LangProgress, rng: Rng): void {
+  difficultyStartDay(data, p); // metrics: today's accumulator (due words, confirmed count)
   startDay(data, p, rng);
+  const shopNotes = p.today?.notes.length ?? 0;
   renoPlanShop(data, p, rng); // renovation: yesterday's orders arrive; a bench brings one more customer
+  // The arrival note belongs on the day's first notice (the market's paper on a market morning).
+  const arrivals = p.today?.notes.splice(shopNotes) ?? [];
   storyPlanShop(data, p, rng); // story: a regular's visit joins the queue before the market plans
   const town = townOf(data);
   const { segments, notes } = planSegments(town, p, rng);
+  notes.unshift(...arrivals);
   const td: TownDayState = { day: p.day, segments, seg: 0, notes, stock: {}, moneyStart: p.town.money };
   if (town) {
     td.notes.push(...levelNotes(town, p, segments));
@@ -156,6 +162,7 @@ export function serveInTown(data: GameData, p: LangProgress, brew: Brew, rng: Rn
     }
   const out = serve(data, p, brew, rng);
   if (!out) return out;
+  if (order) difficultyOnServe(data, p, order, out.evaluation.outcome); // metrics: first-try accuracy
   if (td) {
     for (const [ing, n] of Object.entries(brew.counts) as [IngredientId, number][])
       if (n > 0 && td.stock[ing] !== undefined) td.stock[ing] = Math.max(0, td.stock[ing]! - n);
@@ -191,6 +198,7 @@ export function endTownDay(p: LangProgress, data?: GameData): void {
   if (currentSegment(p) !== 'shop' && !segmentDone(p)) return;
   if (data) renoEndDay(data, p); // renovation: signboard reputation, stock kept overnight
   if (data) storyEndDay(data, p); // story: evening scene + the night's ledger
+  if (data) difficultyEndDay(data, p); // metrics record, adaptive controller, stage clock
   endDay(p);
   p.townDay = null;
 }

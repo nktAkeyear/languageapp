@@ -12,7 +12,7 @@ import { tokenIds } from '../core/tokenize';
 import type { SharedContent } from '../core/types';
 import { contentWordStages, stageOnDay } from '../story/vocab';
 import { shortGloss } from './gloss';
-import type { UpgradeId } from './types';
+import { remarkText, type UpgradeId } from './types';
 
 export const MAX_NEW_PER_ENTRY = 4;
 
@@ -67,7 +67,7 @@ export function validateRenovationLanguage(data: GameData, ctx: Ctx): Record<str
     checkText(`renovation ${u.id} name`, t.name);
     if (!t.lines.length) err(`renovation ${u.id}: needs at least one line`);
     t.lines.forEach((l, i) => checkText(`renovation ${u.id} line ${i + 1}`, l));
-    (t.remarks ?? []).forEach((l, i) => checkText(`renovation ${u.id} remark ${i + 1}`, l));
+    (t.remarks ?? []).forEach((l, i) => checkText(`renovation ${u.id} remark ${i + 1}`, remarkText(l)));
     if (u.effects.remarks && !t.remarks?.length) err(`renovation ${u.id}: customers remark on it, but it has no remarks`);
     if (!u.effects.remarks && t.remarks?.length) warn(`renovation ${u.id}: has remarks that are never used`);
   }

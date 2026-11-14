@@ -3,6 +3,7 @@
  * language) says what to buy; stalls show target-language price tags; vendors talk. The only
  * feedback is the vendors' lines, the purse and — later that day — the shop's stock.
  */
+import { planKnobs } from '../../core/difficulty';
 import { ingredientWordId, ingredientsAtStage, wordMarkup, type GameData } from '../../core/gamedata';
 import { pick, shuffle, type Rng } from '../../core/rng';
 import type { LangProgress } from '../../core/save';
@@ -313,7 +314,7 @@ export function orderUnits(data: GameData, p: LangProgress, units: number, rng: 
   const line = vendorLine(data, p, town, md, 'quote', { qty, total: moneyText(town, total) }, rng);
   if (!line) return false;
   md.talk.push({ who: 'you', text: `×${units}` });
-  const audio = md.features.includes('audioOnly') && rng() < 0.4;
+  const audio = md.features.includes('audioOnly') && rng() < 0.4 * Math.min(2, p.difficulty ? planKnobs(data, p).audio : 1);
   say(data, p, md, line, audio);
   md.pending = { offer: o.id, units, total, bargained: false };
   return true;

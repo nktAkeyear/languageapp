@@ -104,7 +104,17 @@ export interface UpgradeText {
   /** What it does, as the carpenter's sales line (one or two short sentences). */
   lines: string[];
   /** Customer remarks once it is installed (only for upgrades with `remarks`). */
-  remarks?: string[];
+  remarks?: Remark[];
+}
+
+/** When a remark would contradict the moment: after a cup that was ordered cold / hot. */
+export type RemarkMoment = 'cold' | 'hot';
+
+/** A remark, or one that is not said at some moments ("It is very warm here" after an iced tea). */
+export type Remark = string | { text: string; notWhen: RemarkMoment[] };
+
+export function remarkText(r: Remark): string {
+  return typeof r === 'string' ? r : r.text;
 }
 
 export interface RenoText {

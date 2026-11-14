@@ -10,6 +10,17 @@
  * The simulated player solves everything correctly, except every `failEvery`-th customer gets a
  * deliberately wrong cup, every `failEvery`-th market buys one unit too few, and every
  * `failEvery`-th delivery goes to the wrong house — so failure reactions and consequences show up.
+ *
+ * This log plays with the adaptive controller OFF (so with the default ゼロから・ふつう it plans exactly
+ * like the game did before レベル設定 existed, and older logs stay comparable). `--log` keeps this log
+ * and applies difficulty settings to it: `--start=n --pace=slow|normal|fast --adaptive=1 --buy`, e.g.
+ *   npm run simulate -- zh 10 1 4 0 buy --log --start=2 --pace=fast
+ *
+ * Difficulty settings (レベル設定, src/core/difficulty.ts) — see scripts/simDifficulty.ts:
+ *   npm run simulate -- zh 45 --start=2 --pace=slow --acc=0.7 [--adaptive=0] [--seed=3] [buy]
+ *       one run, one line per day (stage, customers, new words, budget, first-try accuracy, adj …)
+ *   npm run simulate -- --table [--days=45] [--buy]
+ *       the comparison table: legacy vs each setting, for both languages and several accuracies
  */
 import { currentSegment, describeDay, endTownDay, nextSegment, serveInTown, startTownDay, stockOf } from '../src/activities/day';
 import { solveDelivery } from '../src/activities/delivery/engine';
@@ -23,15 +34,36 @@ import { newProgress } from '../src/core/save';
 import type { Brew, IngredientId, Lang } from '../src/core/types';
 import { storySync } from '../src/story/engine';
 import { storyLog } from './storyLog';
-import { arrivedToday, catalogue, renoOrder, renoShared } from '../src/renovation/engine';
+import { arrivedToday, renoShared } from '../src/renovation/engine';
+import { buyFromCatalogue } from '../src/activities/simPlayer';
+import { runDifficulty } from './simDifficulty';
+import { applyStartLevel, setDifficultyOptions, type Pace } from '../src/core/difficulty';
 
-const [langArg = 'en', daysArg = '10', seedArg = '1', failArg = '4', choiceArg = '0', buyArg = ''] = process.argv.slice(2);
-const buy = buyArg === 'buy';
+// Difficulty options (--start / --pace / --acc / --adaptive / --table) switch to the settings simulator
+// (`buy` / `--buy` there too: the simulated player orders from the catalogue the same way), unless
+// --log asks for this detailed log with those settings.
+const args = process.argv.slice(2);
+const flagArgs = args.filter((a) => a.startsWith('--'));
+if (flagArgs.length && !flagArgs.includes('--log')) {
+  runDifficulty(args);
+  process.exit(0);
+}
+const flag = (name: string): string | undefined => {
+  const a = flagArgs.find((x) => x === `--${name}` || x.startsWith(`--${name}=`));
+  return a === undefined ? undefined : a.includes('=') ? a.slice(a.indexOf('=') + 1) : '1';
+};
+const [langArg = 'en', daysArg = '10', seedArg = '1', failArg = '4', choiceArg = '0', buyArg = ''] = args.filter((a) => !a.startsWith('--'));
+const buy = buyArg === 'buy' || flag('buy') !== undefined;
 const bought: { day: number; id: string; price: number }[] = [];
 let earned = 0;
 const lang = (langArg === 'zh' ? 'zh' : 'en') as Lang;
 const data = buildGameData(CONTENT[lang], SHARED);
 const p = newProgress(lang);
+setDifficultyOptions(p, { pace: (flag('pace') ?? 'normal') as Pace, adaptive: flag('adaptive') === '1' });
+if (flag('start')) {
+  const s = applyStartLevel(data, p, Number(flag('start')));
+  console.log(`[${lang}] start level ${s.to}: ${s.seeded} words 既習扱い, stage ${s.stageFrom} → ${s.stageTo}, ${s.ordersSkipped} early orders done`);
+}
 const rng = makeRng(Number(seedArg));
 const failEvery = Number(failArg);
 let n = 0;
@@ -43,6 +75,7 @@ for (let d = 0; d < Number(daysArg); d++) {
     `\n[${lang}] day ${p.day}  stage ${p.stage}  rep ${p.reputation}  coins ${p.town.money}  plan: ${describeDay(p)}  new words: ${p.today!.newWords.join(' ') || '-'}`,
   );
   for (const note of p.townDay!.notes) console.log(`  ※ ${note}`);
+  if (p.difficulty?.adaptive && p.difficulty.lastReason) console.log(`  ⚙ adj ${p.difficulty.adj}: ${p.difficulty.lastReason}`);
   for (const id of arrivedToday(p)) console.log(`  🛠 arrived: ${id}`);
   const moneyAtStart = p.town.money;
   storyLog(data, p, Number(choiceArg));
@@ -71,14 +104,11 @@ for (let d = 0; d < Number(daysArg); d++) {
         storyLog(data, p, Number(choiceArg));
         nextCustomer(data, p);
       }
-      if (buy) {
-        const keep = renoShared(data)?.keepForMarket ?? 0;
-        for (const e of catalogue(data, p))
-          if (e.status === 'available' && p.town.money - e.def.price >= keep && !renoOrder(data, p, e.def.id)) {
-            bought.push({ day: p.day, id: e.def.id, price: e.def.price });
-            console.log(`  🛠 ordered ${e.def.id} (${e.def.price})  coins left ${p.town.money}`);
-          }
-      }
+      if (buy)
+        for (const b of buyFromCatalogue(data, p)) {
+          bought.push({ day: p.day, ...b });
+          console.log(`  🛠 ordered ${b.id} (${b.price})  coins left ${b.left}`);
+        }
     } else {
       const x = p.townDay!.delivery!;
       const wrong = failEvery > 0 && ++deliveries % failEvery === 0;

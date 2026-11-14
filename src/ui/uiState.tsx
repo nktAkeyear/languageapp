@@ -11,7 +11,7 @@ import { pageStatus } from '../core/verification';
 import { useGame } from './useGame';
 
 export type BookKind = 'recipe' | 'notebook' | 'catalogue';
-export type NbTab = 'words' | 'verify' | 'level';
+export type NbTab = 'words' | 'verify' | 'level' | 'record';
 
 export interface UiApi {
   book: BookKind | null;

@@ -15,6 +15,9 @@ import { owns } from '../../renovation/engine';
 import { isDue, isWeak, reviewWeight } from '../../core/srs';
 import { tokenIds } from '../../core/tokenize';
 import { VerifyPage } from './VerifyPage';
+import { RecordLeft, RecordRight } from '../difficulty/RecordPage';
+import { SeededMark, TargetPanel, WordAssist } from '../difficulty/NotebookBits';
+import { openLevelSettings } from '../difficulty/LevelSettings';
 
 type Filter = 'all' | 'open' | 'ok' | 'memo' | 'due';
 
@@ -27,6 +30,7 @@ export function NotebookView() {
     { id: 'words', label: '単語', on: tab === 'words', onClick: () => ui.setNbTab('words') },
     { id: 'verify', label: '検証', on: tab === 'verify', dot: ui.newPages.length > 0, onClick: () => ui.setNbTab('verify') },
     { id: 'level', label: '現在地', on: tab === 'level', onClick: () => ui.setNbTab('level') },
+    { id: 'record', label: '記録', on: tab === 'record', onClick: () => ui.setNbTab('record') },
   ];
   if (!g.data || !g.progress) return null;
   let left;
@@ -47,6 +51,17 @@ export function NotebookView() {
     showRight = !!page;
     onBack = () => ui.setVerifyPage(null);
     turnKey = `v:${ui.verifyPage ?? ''}`;
+  } else if (tab === 'record') {
+    left = mobile ? (
+      <>
+        <RecordLeft onSettings={() => openLevelSettings()} />
+        <RecordRight />
+      </>
+    ) : (
+      <RecordLeft onSettings={() => openLevelSettings()} />
+    );
+    right = <RecordRight />;
+    showRight = false;
   } else {
     left = mobile ? <LevelBoth /> : <LevelLeft />;
     right = <LevelRight />;
@@ -79,7 +94,13 @@ function WordList() {
   const [q, setQ] = useState('');
   if (!data || !progress) return null;
   const zh = data.lang === 'zh';
-  const due = (id: string) => isDue(progress.words[id], progress.day) || isWeak(progress.words[id]);
+  const due = (id: string) => {
+    const w = progress.words[id];
+    // 既習扱い words not met in play since the start level was set are not "to look at again" (else a
+    // HSK / 英検 start would fill the ribbon with a few hundred words a fortnight later).
+    if (w.seeded && w.seen <= w.seeded.seen) return false;
+    return isDue(w, progress.day) || isWeak(w);
+  };
   const dueCount = ribbon ? Object.keys(progress.words).filter(due).length : 0;
   const entries = data.content.lexicon
     .filter((e) => progress.words[e.id])
@@ -135,6 +156,7 @@ function WordList() {
           <li key={e.id} className={`nb-entry ${st.confirmed ? 'ok' : ''} ${ui.word === e.id ? 'on' : ''}`}>
             <button type="button" className="nb-word" onClick={() => ui.setWord(e.id)} lang={zh ? 'zh-CN' : 'en'}>
               <span className="nb-text">{e.text}</span>
+              <SeededMark st={st} />
               {zh && e.pinyin ? <span className="nb-pinyin">{e.pinyin}</span> : null}
             </button>
             <span className="nb-meaning">
@@ -220,6 +242,7 @@ function WordPage({ id }: { id: string }) {
           出会った {st?.seen ?? 0} 回・うまく使えた {st?.correct ?? 0} 回
         </span>
       </div>
+      <WordAssist id={id} />
       <label className="wp-memo">
         <span className="hand small muted">自分のメモ（推測）</span>
         <textarea
@@ -366,6 +389,7 @@ function LevelLeft() {
       <div className="hand small muted">
         身についた語 {r.masteredTotal}（確定済み＋何度か使えた語）／出会った語 {r.encounteredTotal}
       </div>
+      <TargetPanel />
       <h4 className="hand">{data.lang === 'en' ? '英検' : 'HSK'} の語彙目安</h4>
       {r.examBars.map((b) => (
         <Bar key={b.key} bar={b} />

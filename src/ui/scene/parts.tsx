@@ -25,6 +25,7 @@ import { useStoryHold } from '../story/StoryUi';
 import { useMobile } from '../layout';
 import { useBench, useBenchOptional } from './workbench';
 import { owns } from '../../renovation/engine';
+import { EmptyCupNote, RetrySign, useMistakeMarks } from '../difficulty/AssistUi';
 
 // ------------------------------------------------------------------------------------- shelf
 
@@ -411,6 +412,7 @@ export function Bubble() {
   const voice = useSpeechAvailable(lang ?? 'en');
   const { order, result, t, customer } = useCustomer();
   const mobile = useMobile();
+  const marks = useMistakeMarks(order);
   const spokenKey = useRef('');
   // Audio-only orders are read out when the customer arrives.
   useEffect(() => {
@@ -443,8 +445,9 @@ export function Bubble() {
             </div>
           ) : null}
           <div className="bubble-prev">
-            <WordText text={order.text} />
+            <WordText text={order.text} mark={marks} />
           </div>
+          <EmptyCupNote />
           <div className="bubble-line bubble-reaction" key="r">
             <WordText text={result!.reaction} className="reaction-text" />
             <SpeakButton text={result!.reaction} label="" className="speak-round" />
@@ -486,9 +489,12 @@ export function NextSign() {
       </button>
     );
   return (
-    <button type="button" className="next-sign" onClick={() => b.next()} disabled={b.leaving} data-testid="next">
-      {t.index + 1 < t.queue.length ? '次のお客さんへ ›' : '今日の店じまい ›'}
-    </button>
+    <>
+      <button type="button" className="next-sign" onClick={() => b.next()} disabled={b.leaving} data-testid="next">
+        {t.index + 1 < t.queue.length ? '次のお客さんへ ›' : '今日の店じまい ›'}
+      </button>
+      <RetrySign />
+    </>
   );
 }
 

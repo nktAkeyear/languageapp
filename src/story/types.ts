@@ -167,7 +167,11 @@ export interface StoryText {
   characters: Record<string, { name: string; avatar?: string }>;
   /** Story-only delivery recipients (merged into the town recipient list, never picked at random). */
   recipients: { id: string; name: string; avatar: string }[];
-  chapters: Record<string, { titleJa: string; introJa: string }>;
+  /**
+   * introAboveZeroJa: the intro when the shop already starts past its first stage (レベル設定 start
+   * above zero), where the first-stage intro ("four things on the shelf") would not be true.
+   */
+  chapters: Record<string, { titleJa: string; introJa: string; introAboveZeroJa?: string }>;
   beats: Record<string, BeatText>;
   docs: Record<string, DocText>;
   talk: Record<string, string>;

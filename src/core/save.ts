@@ -3,6 +3,7 @@ import type { WordMap } from './srs';
 import type { TownDayState, TownProgress } from './townTypes';
 import { newStoryState, type StoryState } from '../story/types';
 import type { RenoState } from '../renovation/types';
+import type { DifficultyState } from './difficulty';
 
 export const SAVE_VERSION = 3;
 export const STORAGE_KEY = 'minato-chabou-save';
@@ -48,11 +49,11 @@ export interface LangProgress {
   stage: number;
   words: WordMap;
   /** Authored order log. */
-  orders: Record<string, { attempts: number; perfect: boolean }>;
+  orders: Record<string, { attempts: number; perfect: boolean; seeded?: boolean }>;
   /** Customers who left unsatisfied and will come back. */
   returns: { instance: OrderInstance; day: number }[];
   today: DayState | null;
-  verification: Record<string, { attempts: number; solved: boolean }>;
+  verification: Record<string, { attempts: number; solved: boolean; seeded?: boolean }>;
   /** pageId -> last day the page's words were counted as encountered. */
   pageViews: Record<string, number>;
   stats: { served: number; perfect: number };
@@ -64,6 +65,11 @@ export interface LangProgress {
   story: StoryState;
   /** Shop renovation (optional, no version bump: absent = nothing bought yet; see renovation/engine.ts renoOf). */
   reno?: RenoState;
+  /**
+   * レベル設定 / 学習の記録 (optional; absent = defaults: ゼロから・ふつう・自動調整あり, which plan
+   * exactly like saves made before it existed). See src/core/difficulty.ts.
+   */
+  difficulty?: DifficultyState;
 }
 
 export interface SaveFile {

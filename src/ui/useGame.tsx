@@ -23,6 +23,8 @@ import type { AbsentAction, ActivityKind, PersonId, TownDayState } from '../core
 import type { Brew, IngredientId, Lang, Method, Temp } from '../core/types';
 import { submitVerification } from '../core/verification';
 import { storySync } from '../story/engine';
+import { difficultyOnRetry, difficultyOrderTime } from '../core/difficulty';
+import { currentOrder } from '../activities/shop/engine';
 import { applyBrewAction, emptyBrew, portionLimit, type BrewAction } from './brewing';
 
 const dataCache = new Map<Lang, GameData>();
@@ -60,6 +62,11 @@ export interface GameApi {
   segment: ActivityKind;
   townDay: TownDayState | null;
   chooseLanguage(lang: Lang): void;
+  /** Start a language afresh, letting `setup` adjust the new progress (レベル設定) before day 1 is planned. */
+  newGame(lang: Lang, setup: (p: LangProgress, d: GameData) => void): void;
+  /** Assist 「やり直し」: a failed cup can be made again for the same customer without penalty. */
+  canRetry: boolean;
+  retryServe(): void;
   leaveToTitle(): void;
   addIngredient(ing: IngredientId, delta: number): void;
   /** One workbench gesture (add / take back / temperature / method / tip out), see brewing.ts. */
@@ -133,6 +140,14 @@ export function GameProvider({ children }: { children: ReactNode }) {
   const [lastDay, setLastDay] = useState<DaySnapshot | null>(null);
   const saveRef = useRef(save);
   saveRef.current = save;
+  // Retry assist: the state just before the last cup (memory only), and when the current order appeared.
+  const preServe = useRef<{ progress: LangProgress; brew: Brew; key: string } | null>(null);
+  const orderShown = useRef(0);
+  const tday = save.currentLang ? save.progress[save.currentLang]?.today : null;
+  const orderKey = tday && tday.phase === 'order' ? `${save.currentLang}:${tday.day}:${tday.index}:${tday.results.length}` : '';
+  useEffect(() => {
+    if (orderKey) orderShown.current = Date.now();
+  }, [orderKey]);
   // Persist the day planned during initial load (initialisers must stay side-effect free).
   useEffect(() => writeSave(saveRef.current), []);
 
@@ -157,6 +172,12 @@ export function GameProvider({ children }: { children: ReactNode }) {
         const p = l && s.progress[l];
         if (l && p) fn(p, gameData(l));
       });
+    // Anything else done after a failed cup (a catalogue order, a sealed 検証ページ, a memo, a story card,
+    // a level change …) would be undone by the retry assist's restore: it ends the chance to retry.
+    const withProgressNoRetry = (fn: (p: LangProgress, d: GameData) => void) => {
+      preServe.current = null;
+      withProgress(fn);
+    };
     const limit = (ing: IngredientId) =>
       portionLimit(SHARED.ingredients.find((i) => i.id === ing)?.maxCount ?? 5, progress ? stockOf(progress, ing) : undefined);
     return {
@@ -180,6 +201,38 @@ export function GameProvider({ children }: { children: ReactNode }) {
         setLastServe(null);
         setSelectedWord(null);
       },
+      newGame: (l, setup) => {
+        mutate((s) => {
+          s.currentLang = l;
+          const p = newProgress(l);
+          setup(p, gameData(l));
+          s.progress[l] = p;
+          ensureDay(s);
+        });
+        setBrew(emptyBrew());
+        setLastServe(null);
+        setSelectedWord(null);
+      },
+      canRetry:
+        !!lastServe &&
+        lastServe.evaluation.outcome !== 'perfect' &&
+        !!progress?.difficulty?.assists.retry &&
+        progress?.today?.phase === 'reaction' &&
+        !!preServe.current &&
+        !preServe.current.key.startsWith('story:'),
+      retryServe: () => {
+        const snap = preServe.current;
+        if (!snap || !lang) return;
+        preServe.current = null;
+        mutate((s) => {
+          const p = structuredClone(snap.progress);
+          s.progress[lang] = p;
+          const o = currentOrder(p);
+          if (o) difficultyOnRetry(gameData(lang), p, o);
+        });
+        setBrew(snap.brew);
+        setLastServe(null);
+      },
       leaveToTitle: () => {
         mutate((s) => {
           s.currentLang = null;
@@ -194,7 +247,10 @@ export function GameProvider({ children }: { children: ReactNode }) {
       clearBrew: () => setBrew(emptyBrew()),
       serveBrew: () => {
         const box: { out: ServeOutcome | null } = { out: null };
+        const cur = progress ? currentOrder(progress) : null;
+        preServe.current = progress && cur ? { progress: structuredClone(progress), brew, key: cur.key } : null;
         withProgress((p, d) => {
+          if (orderShown.current) difficultyOrderTime(p, Date.now() - orderShown.current);
           box.out = serveInTown(d, p, brew, rng());
         });
         setLastServe(box.out);
@@ -221,12 +277,12 @@ export function GameProvider({ children }: { children: ReactNode }) {
       },
       openPage: (pageId) => withProgress((p, d) => viewPage(d, p, pageId)),
       setMemo: (wordId, memo) =>
-        withProgress((p) => {
+        withProgressNoRetry((p) => {
           ensureWord(p.words, wordId, p.day).memo = memo;
         }),
       verify: (pageId, assignment) => {
         let ok = false;
-        withProgress((p, d) => {
+        withProgressNoRetry((p, d) => {
           ok = submitVerification(d, p, pageId, assignment);
         });
         return ok;
@@ -278,7 +334,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
         setBrew(emptyBrew());
         setLastServe(null);
       },
-      mutateProgress: (fn) => withProgress(fn),
+      mutateProgress: (fn) => withProgressNoRetry(fn),
       market: {
         openStall: (id) => withProgress((p, d) => market.openStall(d, p, id, rng())),
         leaveStall: () => withProgress((p) => market.leaveStall(p)),

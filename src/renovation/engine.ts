@@ -20,7 +20,7 @@ import { planDelivery } from '../activities/delivery/engine';
 import { instantiateTemplate } from '../activities/shop/templates';
 import type { ServeOutcome } from '../activities/shop/engine';
 import { chooseText, textWords, townOf } from '../activities/town/text';
-import { newRenoState, type CarryRule, type RenoShared, type RenoState, type RenoText, type UpgradeDef, type UpgradeEffects, type UpgradeId } from './types';
+import { newRenoState, remarkText, type CarryRule, type RenoShared, type RenoState, type RenoText, type UpgradeDef, type UpgradeEffects, type UpgradeId } from './types';
 
 export function renoShared(data: GameData): RenoShared | null {
   return data.shared.renovation ?? null;
@@ -116,7 +116,9 @@ export function catalogue(data: GameData, p: LangProgress): CatalogueEntry[] {
   const r = renoView(p);
   const out: CatalogueEntry[] = [];
   for (const u of sh.upgrades) {
-    const status: EntryStatus | null = r.owned[u.id] !== undefined ? 'owned' : r.orders.some((o) => o.id === u.id) ? 'ordered' : gateOpen(data, p, u) ? 'available' : null;
+    // Once shown, an entry stays listed (a reputation dip — e.g. a paid gloss peek — does not hide it again).
+    const shown = r.seen.includes(u.id) || gateOpen(data, p, u);
+    const status: EntryStatus | null = r.owned[u.id] !== undefined ? 'owned' : r.orders.some((o) => o.id === u.id) ? 'ordered' : shown ? 'available' : null;
     if (!status) continue;
     out.push({ def: u, status, fresh: status === 'available' && !r.seen.includes(u.id), affordable: p.town.money >= u.price });
   }
@@ -309,11 +311,11 @@ export function renoAfterServe(data: GameData, p: LangProgress, out: ServeOutcom
     res.repDelta += e.repReturning;
     out.repDelta += e.repReturning;
   }
-  if (!talked && !order.key.startsWith('story:')) remark(data, p, rng, res, out);
+  if (!talked && !order.key.startsWith('story:')) remark(data, p, rng, res, out, order);
 }
 
 /** A customer notices something in the shop (target language, appended to the reaction). */
-function remark(data: GameData, p: LangProgress, rng: Rng, res: { reaction: string }, out: ServeOutcome): void {
+function remark(data: GameData, p: LangProgress, rng: Rng, res: { reaction: string }, out: ServeOutcome, order: OrderInstance): void {
   const sh = renoShared(data)!;
   const tx = renoText(data);
   const r = renoOf(p);
@@ -326,7 +328,10 @@ function remark(data: GameData, p: LangProgress, rng: Rng, res: { reaction: stri
   const chance = fresh.length ? sh.remarkChance.fresh : sh.remarkChance.usual;
   if (rng() >= chance) return;
   const u = fresh.length ? pick(rng, fresh) : pick(rng, cands);
-  const text = chooseText(data, p, tx.upgrades[u.id].remarks!, rng, 2);
+  // Only what fits the moment (no "very warm here" right after an iced tea).
+  const temp = order.rule.temp;
+  const lines = tx.upgrades[u.id].remarks!.filter((x) => typeof x === 'string' || !temp || !x.notWhen.includes(temp)).map(remarkText);
+  const text = lines.length ? chooseText(data, p, lines, rng, 2) : null;
   if (!text) return;
   r.remarks[u.id] = p.day;
   r.remarkDay.n++;

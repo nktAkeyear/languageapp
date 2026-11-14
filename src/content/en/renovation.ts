@@ -27,7 +27,7 @@ export const RENO_EN: RenoText = {
     curtains: {
       name: 'curtains',
       lines: ['A warm, comfortable shop.'],
-      remarks: ['Your new curtains are lovely.', 'It is very warm and comfortable here.'],
+      remarks: ['Your new curtains are lovely.', { text: 'It is very warm and comfortable here.', notWhen: ['cold'] }],
     },
     bench: {
       name: 'a bench',
@@ -57,7 +57,7 @@ export const RENO_EN: RenoText = {
     catbed: {
       name: 'a bed for a cat',
       lines: ['Maybe a cat comes!'],
-      remarks: ['Oh, a cat! Hello, cat!', 'Your cat is sleeping.'],
+      remarks: ['Oh, a cat! Hello, cat!', 'What a nice cat!'],
     },
     picture: {
       name: 'a picture of a ship',

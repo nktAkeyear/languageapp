@@ -25,7 +25,7 @@ import {
   renoSpentToday,
   renoTipBonus,
 } from './engine';
-import type { UpgradeId } from './types';
+import { remarkText, type UpgradeId } from './types';
 
 const data: Record<string, GameData> = Object.fromEntries(LANGS.map((l) => [l, buildGameData(CONTENT[l], SHARED)]));
 const en = data.en;
@@ -128,7 +128,7 @@ describe('catalogue', () => {
     startTownDay(en, p, rng);
     expect(owns(p, 'plant')).toBe(true);
     expect(arrivedToday(p)).toEqual(['plant']);
-    expect(p.today!.notes.some((n) => n.includes('届いた'))).toBe(true);
+    expect([...p.today!.notes, ...p.townDay!.notes].some((n) => n.includes('届いた'))).toBe(true);
     expect(catalogue(en, p).find((e) => e.def.id === 'plant')?.status).toBe('owned');
   });
 });
@@ -281,7 +281,7 @@ describe('upgrade effects', () => {
       const text = p.today!.results[0].reaction;
       expect(text.startsWith('Thank you! ')).toBe(true);
       const remark = text.slice('Thank you! '.length);
-      expect(CONTENT[l].renovation!.upgrades.plant.remarks).toContain(remark);
+      expect(CONTENT[l].renovation!.upgrades.plant.remarks!.map(remarkText)).toContain(remark);
       expect(out.reaction.text).toBe(text);
       // the same thing is not remarked on again the next cups of the day
       renoAfterServe(d, p, out, () => 0, false);

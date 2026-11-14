@@ -13,6 +13,7 @@ import { SpeakButton } from '../components/WordText';
 import { sfx } from '../sound';
 import { useGame } from '../useGame';
 import { useUi } from '../uiState';
+import { pinyinShown } from '../difficulty/assists';
 
 type Result = '' | 'ok' | 'ng';
 
@@ -145,7 +146,7 @@ export function VerifyPage({ page }: { page: VerificationPage }) {
         aria-pressed={picked === w.id}
       >
         <span className="slip-text">{w.text}</span>
-        {zh && settings.showPinyin && w.pinyin ? <small className="slip-pinyin">{w.pinyin}</small> : null}
+        {zh && pinyinShown(settings.showPinyin, progress, w.id) && w.pinyin ? <small className="slip-pinyin">{w.pinyin}</small> : null}
       </button>
       <SpeakButton text={w.text} label="" className="speak-round speak-small" />
     </span>
