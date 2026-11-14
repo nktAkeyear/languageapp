@@ -46,6 +46,12 @@ export interface LexEntry {
   text: string;
   /** Extra surface forms the tokenizer should map to this entry (en inflections: "slices", "leaves"). */
   forms?: string[];
+  /**
+   * en: the list headword (data/english/vocab.json) this entry is an inflected form of, when the game teaches the
+   * inflected form as its own word ("names" → name, "booked" → book). Only the list lookup uses it (levels,
+   * domains); the entry keeps its own id, surface, 検証ページ and meaning card.
+   */
+  lemma?: string;
   /** zh only: tone-marked pinyin of the headword, dictionary (citation) tones, syllables joined. */
   pinyin?: string;
   /** Official Japanese meaning. Shown only after the word is 確定 via a 検証ページ. */

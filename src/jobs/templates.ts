@@ -12,6 +12,7 @@ import { fill } from '../activities/town/text';
 import { eikenFromKey, eikenIndex, type EikenKey } from '../curriculum/yardsticks';
 import { evalExpr } from './expr';
 import { postage as postageOf, slotFits } from './rules';
+import { qaDistractors } from './nearmiss';
 import type {
   AuthoredTask,
   CheckDoc,
@@ -640,10 +641,9 @@ function buildChoose(ctx: GenCtx, t: TaskTemplate & RespondTemplate): Built | nu
   const bank = (ctx.jc.qa?.[t.bank] ?? []).filter((q) => q.rank <= ctx.rank);
   if (bank.length < 3) return null;
   const qa = pick(ctx.rng, bank);
-  const others = shuffle(ctx.rng, bank.filter((x) => x.fn !== qa.fn && x.a !== qa.a));
-  const distract: string[] = [];
-  for (const o of others) if (!distract.includes(o.a)) distract.push(o.a);
-  const opts = shuffle(ctx.rng, [qa.a, ...distract.slice(0, ctx.feats.has('long') ? 3 : 2)]);
+  // Wrong options on the same topic first (near misses: one fact wrong), see nearmiss.ts.
+  const distract = qaDistractors(qa, bank, ctx.feats.has('long') ? 3 : 2, ctx.rng);
+  const opts = shuffle(ctx.rng, [qa.a, ...distract]);
   if (opts.length < 3) return null;
   const spec: RespondSpec = { mode: 'choose', msg: { kind: t.kind, lines: [qa.q] }, options: opts, answer: opts.indexOf(qa.a) };
   // Spoken: the person at the desk says it. A call / paper is shown on the phone / the paper (the boss hands it over).

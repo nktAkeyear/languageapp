@@ -1,5 +1,7 @@
 /*
- * Jobs simulation: `npm run simulate -- --jobs [--days=20] [--acc=0.85] [--seed=1] [--yard=eiken|toeic] [--log]`
+ * Jobs simulation: `npm run simulate -- --jobs [--days=20] [--acc=0.85] [--seed=1] [--yard=eiken|toeic] [--log]
+ *   [--start=N | --toeic=BAND] [--tasks]` (start: 英検 level index 1 = 5級 … 7 = 1級, or a TOEIC band; --tasks lists
+ *   each task's source and the rank of its material)
  * A simulated English player works through the town: before the job board opens, tea house days;
  * afterwards every day a job in the morning (rotating through the offered jobs, the recommended one
  * first), the tea house at noon, another job in the evening. One line per day: what was done where,
@@ -16,7 +18,7 @@ import { catalogue } from '../src/renovation/engine';
 import { chooseJob, jobDay, jobOffered, jobOpenAt, jobsCloseDay, jobsOf, rankName, rankStatus, recommendJobs, spineSeen, teaToTown, canGoToTown } from '../src/jobs/engine';
 import { storyAutoPlay } from '../src/story/engine';
 import { pageStatus, pageWords, submitVerification } from '../src/core/verification';
-import { setDifficultyOptions } from '../src/core/difficulty';
+import { applyStartLevel, describeChange, setDifficultyOptions } from '../src/core/difficulty';
 import { yardstickReport } from '../src/curriculum/curriculum';
 import { withLists } from '../src/curriculum/apply';
 import { loadEnglishListsFromDisk } from '../src/curriculum/node';
@@ -39,6 +41,14 @@ export function runJobs(args: string[]): void {
   const data = buildGameData(withLists(CONTENT.en), SHARED);
   const p = newProgress('en');
   setDifficultyOptions(p, { yardstick: yard });
+  const startLv = Number(opt('start', '0'));
+  const startToeic = Number(opt('toeic', '0'));
+  const showTasks = args.includes('--tasks');
+  if (startLv || startToeic) {
+    const sum = applyStartLevel(data, p, startLv, { toeic: startToeic || null });
+    for (const l of describeChange(data, sum)) console.log(`  ⚙ ${l}`);
+    console.log(`  ⚙ stage ${p.stage}, board open ${p.jobs?.boardOpen ?? '—'}, ranks ${Object.entries(p.jobs?.jobs ?? {}).map(([id, j]) => `${id}${j.rank}`).join(' ')}`);
+  }
   const rng = makeRng(seed);
   const prng = makeRng(seed * 7919 + 1);
   let rot = 0;
@@ -75,6 +85,7 @@ export function runJobs(args: string[]): void {
         if (!r) return;
         const j = jobsOf(data).find((x) => x.id === id)!;
         parts.push(`${j.nameJa} ${r.outcomes.filter((o) => o === 'perfect').length}/${r.outcomes.length}${r.rankUp ? ` ★${rankName(r.rankUp)}` : ''}`);
+        if (showTasks) console.log(`      ${j.icon} ${j.id} rank ${jobsOf(data).find((x) => x.id === id) ? (p.jobs?.jobs[id]?.rank ?? 1) : ''}: ${r.tasks.map((t, i) => `${t.source}(r${t.rank},${t.arch})=${r.outcomes[i]}`).join(' ')}`);
         if (log) for (const t of r.texts) console.log(`      ${j.icon} ${plain(t)}`);
       };
       shift(pickJob());

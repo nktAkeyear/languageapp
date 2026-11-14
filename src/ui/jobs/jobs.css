@@ -1128,3 +1128,8 @@
 .m-hub {
   padding-bottom: 24px;
 }
+
+/* the office's sign hangs on its tall façade, clear of the post office's sign next to it */
+.hub-spot[data-job='office'] .hub-sign {
+  bottom: 96px;
+}

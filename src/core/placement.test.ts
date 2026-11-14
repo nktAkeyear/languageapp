@@ -3,13 +3,15 @@ import { CONTENT, SHARED } from '../content';
 import { evaluateBrew } from '../activities/shop/rules';
 import { startOptions } from './difficulty';
 import { buildGameData } from './gamedata';
-import { ITEMS_PER_LEVEL, placementItems, placementSuggestion } from './placement';
+import { ITEMS_PER_LEVEL, levelCandidates, placementItems, placementSuggestion } from './placement';
 import { LANGS } from './types';
 
 describe.each(LANGS)('placement check (%s)', (lang) => {
   const data = buildGameData(CONTENT[lang], SHARED);
+  // The check uses the tea house's orders: it covers the offered levels that have such orders (the higher en grades
+  // are carried by the jobs, so the check stops below them and says so).
   const levels = startOptions(data)
-    .filter((o) => o.available && o.level > 0)
+    .filter((o) => o.available && o.level > 0 && levelCandidates(data, o.level).length > 0)
     .map((o) => o.level);
 
   it('has orders of rising level, one right cup and two wrong ones each', () => {

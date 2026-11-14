@@ -25,6 +25,7 @@
 import { wordMarkup, type GameData } from '../core/gamedata';
 import { makeRng } from '../core/rng';
 import { tokenIds } from '../core/tokenize';
+import { nearMisses } from './nearmiss';
 import { EIKEN_GRADES } from '../core/types';
 import { englishLists, listsLoaded, vocabFor } from '../curriculum/lists';
 import { eikenIndex, EIKEN_KEYS, TOEIC_BANDS, toeicIndex } from '../curriculum/yardsticks';
@@ -69,6 +70,7 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
   const ids = new Set<string>();
   const missingVocab = new Set<string>();
   const lists = englishLists();
+  const lemmaOf = (id: string) => data.lex.byId.get(id)?.lemma;
   const rankCounts = new Set(jobs.filter((j) => !j.legacy && j.content[L]).map((j) => j.ranks.length));
   if (rankCounts.size > 1) h.warn(`jobs: the jobs have different numbers of ranks (${[...rankCounts].join(', ')}): every job should have the same ladder`);
   // The tea house's own words count as known (the player has worked there for three days before the board opens).
@@ -111,6 +113,13 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
     // … and so do the words that come only through template slots.
     for (const t of jc.templates) for (const id of templateSlotWords(jc, t)) if (data.lex.byId.has(id)) h.checkText(`${where} template ${t.id} slot word`, wordMarkup(data, id));
     for (const r of jc.reactions) {
+      for (const pat of [r.needs, r.not])
+        if (pat)
+          try {
+            new RegExp(pat, 'i');
+          } catch {
+            h.err(`${where} reaction ${r.id}: bad pattern ${pat}`);
+          }
       const extra = r.text.replace(PH_OK, '').match(/\{[A-Za-z]+\}/);
       if (extra) h.err(`${where} reaction ${r.id}: unknown placeholder ${extra[0]}`);
     }
@@ -120,6 +129,15 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
     for (const k of ['start', 'end'] as const) if (!jc.lines.some((l) => l.kind === k)) h.err(`${where}: needs a "${k}" line`);
     for (const [bank, items] of Object.entries(jc.qa ?? {})) {
       if (items.length < 3 || new Set(items.map((i) => i.fn)).size < 2) h.err(`${where} qa ${bank}: needs ≥ 3 items with ≥ 2 functions`);
+      // Reply choices offer wrong replies on the same topic (near misses), not answers to other questions.
+      const few: string[] = [];
+      for (const q of items) {
+        if ((q.near ?? []).includes(q.a)) h.err(`${where} qa ${bank} ${q.fn}: a near miss is the answer itself`);
+        const nm = nearMisses(q, items);
+        for (const t of nm) h.checkText(`${where} qa ${bank} ${q.fn} near miss`, t);
+        if (nm.length < 2) few.push(q.fn);
+      }
+      if (few.length) h.warn(`${where} qa ${bank}: ${few.length} item(s) with fewer than 2 near misses (wrong replies then come from other topics): ${few.join(', ')}`);
     }
     if (jc.trade?.rates) {
       const rt = jc.trade.rates;
@@ -127,8 +145,8 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
     }
     // Words of the job missing from the compiled list.
     if (L === 'en' && listsLoaded())
-      for (const e of jc.lexicon) if (!vocabFor(lists, e.text, e.pos, e.forms ?? [])) missingVocab.add(`${job.id}:${e.text}`);
-    for (const e of jc.lexicon) if (!e.gloss && !(listsLoaded() && vocabFor(lists, e.text, e.pos, e.forms ?? []))) h.err(`${where} word ${e.id}: no gloss written and none in vocab.json`);
+      for (const e of jc.lexicon) if (!vocabFor(lists, e.text, e.pos, e.forms ?? [], lemmaOf(e.id))) missingVocab.add(`${job.id}:${e.text}`);
+    for (const e of jc.lexicon) if (!e.gloss && !(listsLoaded() && vocabFor(lists, e.text, e.pos, e.forms ?? [], lemmaOf(e.id)))) h.err(`${where} word ${e.id}: no gloss written and none in vocab.json`);
 
     // Level of a text's words against a rank: a work-life job (flavour 'work') with a TOEIC band on the rank is
     // measured in TOEIC bands (a word without a band falls back to 英検). Pictured words are exempt.
@@ -161,12 +179,18 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
     const report = (w: string, r: { over: string[]; worst: number; label: string }) => {
       if (r.over.length) (r.worst > LEVEL_SLACK_ERROR ? h.err : h.warn)(`${w}: words above its level (${r.label}): ${r.over.join(', ')}`);
     };
+    // Authored near misses are read at the rank of their item.
+    for (const [bank, items] of Object.entries(jc.qa ?? {})) for (const q of items) if (q.near?.length) report(`${where} qa ${bank} ${q.fn} near misses`, levelOver(q.near, q.rank));
     /** Bin labels the player reads on a sort task's cabinet. */
     const binTexts = (spec: TaskSpec): string[] => (spec.arch === 'sort' ? spec.bins.map((b) => jc.sort?.bins.find((x) => x.id === b)?.label ?? '').filter(Boolean) : []);
 
     const checkInstance = (w: string, inst: TaskInstance, ctx: GenCtx, agg?: { over: Set<string>; worst: number; label: string }, hk: Hooks = h) => {
       instances++;
       for (const txt of inst.texts) h.checkText(w, txt);
+      // The person drawn does not speak of themselves in the third person ("{Chef Basil|@} wrote these tickets").
+      const drawn = inst.person ? jc.people.find((x) => x.id === inst.person)?.name : '';
+      if (drawn && inst.say.includes(`{${drawn}|@}`) && !new RegExp(`\\b(I am|I'm|this is|my name is)\\s+\\{${drawn.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i').test(inst.say))
+        hk.warn(`${w}: ${drawn} is drawn and speaks of ${drawn} in the third person`);
       refsOk(w, inst.spec, jc, hk);
       consistencyOk(w, inst, data, jc, hk);
       const rc = ruleCtx(data, jc);

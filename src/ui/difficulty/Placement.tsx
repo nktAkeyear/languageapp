@@ -105,6 +105,9 @@ export function Placement({ data, onDone, onCancel }: { data: GameData; onDone: 
           おすすめの始め方：<b data-testid="placement-suggestion">{levelName(data.lang, r.level)}</b>
         </p>
         <p className="small muted">その段階のすべての注文にぴったり出せたところまでを目安にしています（迷ったら低めに。あとから上げられます）。</p>
+        {r.perLevel.length && r.level === r.perLevel[r.perLevel.length - 1].level ? (
+          <p className="small muted">茶房の注文で確かめられるのは{levelName(data.lang, r.perLevel[r.perLevel.length - 1].level)}までです。それより上だと思うなら、上の級を自分で選んでください。</p>
+        ) : null}
         <div className="lvs-foot">
           <button type="button" className="btn" onClick={onCancel}>
             使わない

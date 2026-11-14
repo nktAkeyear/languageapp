@@ -144,6 +144,12 @@ function Person({ id, jc, ex, pose, talking }: { id: string; jc: JobContent; ex:
   );
 }
 
+/** A long request (rank 5: contracts, menus, letters) gets a smaller hand and a smaller person on the desktop stage. */
+function lengthClass(text: string): string {
+  const n = text.replace(/\{([^|{}]*)\|[^{}]*\}/g, '$1').length;
+  return n > 180 ? 'js-long js-longer' : n > 75 ? 'js-long' : '';
+}
+
 function Bubble({ text, hidden, onReveal, tag }: { text: string; hidden?: boolean; onReveal?: () => void; tag?: string }) {
   const { lang } = useGame();
   const rm = useReducedMotion();
@@ -219,7 +225,7 @@ function TaskView({ task, jc, result }: { task: TaskInstance; jc: JobContent; re
   };
   return (
     <>
-      <div className="js-left">
+      <div className={`js-left ${lengthClass(result ? result.reaction : task.say)}`}>
         {result ? (
           <Bubble text={result.reaction} tag={result.outcome === 'perfect' ? undefined : undefined} />
         ) : (

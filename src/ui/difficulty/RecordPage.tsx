@@ -3,7 +3,7 @@
  * controller's last decision and the qualification estimate history. Data: LangProgress.difficulty
  * (src/core/difficulty.ts, src/core/metrics.ts).
  */
-import { describeDifficulty, examCount, levelName, PACES, planKnobs, WINDOW_DAYS } from '../../core/difficulty';
+import { describeDifficulty, examCount, levelName, PACES, planKnobs, WINDOW_DAYS, startLabel } from '../../core/difficulty';
 import { rollingRatio, series, windowStats } from '../../core/metrics';
 import { useGame } from '../useGame';
 import { effectsOf } from '../../renovation/engine';
@@ -40,7 +40,7 @@ export function RecordLeft({ onSettings }: { onSettings?: () => void }) {
           {describeDifficulty(data, progress, seats)}
         </div>
         <div className="hand small">
-          始めた目安：{levelName(lang, d?.start ?? 0)}・進み方：{PACES[d?.pace ?? 'normal'].label}・自動調整：{d ? (d.adaptive ? 'あり' : 'なし') : 'あり'}
+          始めた目安：{startLabel(lang, { start: d?.start ?? 0, startToeic: d?.startToeic ?? null })}・進み方：{PACES[d?.pace ?? 'normal'].label}・自動調整：{d ? (d.adaptive ? 'あり' : 'なし') : 'あり'}
           {d?.adaptive && d.adj ? `（${d.adj < 0 ? 'ゆっくり側' : '速め側'} ${Math.round(Math.abs(d.adj) * 100)}%）` : ''}
         </div>
         {d?.lastReason ? <p className="hand small drec-reason">きのうの見直し：{d.lastReason}</p> : null}

@@ -324,6 +324,12 @@ export interface QaItem {
   /** Communicative function (answers with another function are the distractors). */
   fn: string;
   rank: number;
+  /**
+   * Near misses written for this item: answers on the same topic that get one fact wrong (the date, the amount,
+   * the person, the condition). They are the wrong options first; see src/jobs/nearmiss.ts (facts the answer
+   * echoes from the message are also varied automatically).
+   */
+  near?: string[];
   phrases?: string[];
   grammar?: string[];
 }
@@ -401,6 +407,19 @@ export interface JobReaction {
   rank?: number;
   /** Only for tasks of this archetype (the boss checks sorting, a customer reacts to a sale). */
   arch?: ArchetypeId;
+  /**
+   * Only when the task's texts match this pattern (a regular expression, case-insensitive): a line about bags
+   * for the luggage, about "the book" for the register book. Lines are plain content; the pattern keeps a line
+   * where it makes sense.
+   */
+  needs?: string;
+  /** Never when the task's texts match this pattern. */
+  not?: string;
+  /**
+   * Who says it: 'person' — the one who made the spoken request (not when the boss handed over a letter, an
+   * e-mail or a call); 'boss' — only for a handed-over paper or call.
+   */
+  voice?: 'person' | 'boss';
 }
 
 /**
@@ -452,6 +471,11 @@ export interface JobContent {
   pages: VerificationPage[];
   /** Extra surface forms for existing lexicon ids. */
   forms?: Record<string, string[]>;
+  /**
+   * Inflected words taught as words of their own, by id → the list headword they are a form of
+   * (`{ names: 'name', in_book_v: 'book' }`): sets `LexEntry.lemma` on that entry wherever it is defined.
+   */
+  lemmas?: Record<string, string>;
   people: JobPerson[];
   boss: string;
   things: ThingDef[];
@@ -578,6 +602,12 @@ export interface JobProgress {
   authored: Record<string, { attempts: number; perfect: boolean }>;
   /** Day each rank was reached. */
   rankDays: Record<number, number>;
+  /**
+   * Placed by the start level (a high start): the job began at this rank. Authored tasks of the ranks below are
+   * not served as new material (their templates still come as review), and `good` is the credit for those ranks
+   * (the ladder's `need.good` of the placed rank), so the next rank is as far as for a player who climbed there.
+   */
+  placed?: { rank: number; day: number; good: number };
 }
 
 /** Which job each part of today went to. */

@@ -190,6 +190,23 @@ export function planMarket(
   }
   for (const f of features) if (!p.town.marketSeen.includes(f) && f !== 'soldOut' && f !== 'cheaper') p.town.marketSeen.push(f);
 
+  // 5. Never ask for more than the purse can pay, even at the dearest stall that has it (a high start begins
+  //    with the market's start money and a long note; a player short of coins gets a shorter note).
+  const dearest = (l: NoteLine) =>
+    Math.max(0, ...stalls.flatMap((st) => st.offers.filter((o) => o.good === l.good && o.variant === (l.variant ?? (variantsOn && goodDef(m, l.good)?.variants ? goodDef(m, l.good)!.variants![0] : undefined))).map((o) => o.price)));
+  const costOf = () => lines.reduce((a, l) => a + l.units * dearest(l), 0);
+  while (lines.length > 1 && costOf() > p.town.money) lines.pop();
+  for (const l of lines) {
+    const each = dearest(l);
+    if (each > 0 && l.units * each > p.town.money && l.units > 1) {
+      let u = Math.max(1, Math.floor(p.town.money / each));
+      let qty = qtyText(town, l.good, l.variant, u);
+      while (!qty && u > 1) qty = qtyText(town, l.good, l.variant, --u);
+      const text = qty ? fill(town.text.market.noteLine, { qty }) : null;
+      if (text) Object.assign(l, { units: u, text, portions: Math.min(l.portions, u * (goodDef(m, l.good)?.portionsPerUnit ?? 1)) });
+    }
+  }
+
   const title = chooseText(data, p, town.text.market.noteTitles, rng, 3) ?? town.text.market.noteTitles[0];
   const md: MarketDay = {
     level: level.level,

@@ -188,11 +188,12 @@ export function simulatePlayer(opts: SimOptions): { p: LangProgress; days: SimDa
  * solves each task with probability `accuracy`, else hands in a plausible wrong answer.
  * Returns the outcomes, or null when the job cannot be chosen now.
  */
-export function playJobShift(data: GameData, p: LangProgress, jobId: string, accuracy: number, rng: Rng, prng: Rng): { outcomes: string[]; rankUp: number | null; texts: string[] } | null {
+export function playJobShift(data: GameData, p: LangProgress, jobId: string, accuracy: number, rng: Rng, prng: Rng): { outcomes: string[]; rankUp: number | null; texts: string[]; tasks: { source: string; rank: number; arch: string }[] } | null {
   if (chooseJob(data, p, jobId, rng)) return null;
   beginShift(data, p);
   const out: string[] = [];
   const texts: string[] = [];
+  const tasks: { source: string; rank: number; arch: string }[] = [];
   const job = jobById(data, jobId)!;
   const jc = job.content[data.lang]!;
   const ctx = ruleCtx(data, jc);
@@ -200,6 +201,8 @@ export function playJobShift(data: GameData, p: LangProgress, jobId: string, acc
     const t = currentTask(p);
     if (!t) break;
     texts.push(...t.texts);
+    const src = t.source.type === 'authored' ? jc.tasks.find((x) => x.id === t.source.id) : jc.templates.find((x) => x.id === t.source.id);
+    tasks.push({ source: `${t.source.type === 'authored' ? 'A' : 'T'}:${t.source.id}`, rank: src?.rank ?? 0, arch: t.spec.arch });
     const a = prng() < accuracy ? solveTask(t.spec, ctx) : fumbleTask(t.spec, ctx, prng);
     const r = submitTask(data, p, a, rng)!;
     out.push(r.evaluation.outcome);
@@ -208,7 +211,7 @@ export function playJobShift(data: GameData, p: LangProgress, jobId: string, acc
   }
   const rankUp = currentShift(p)?.rankUp ?? null;
   leaveShift(p);
-  return { outcomes: out, rankUp, texts };
+  return { outcomes: out, rankUp, texts, tasks };
 }
 
 /** Play the tea house from its current segment to the end of its day (simulator / jobs simulation). */

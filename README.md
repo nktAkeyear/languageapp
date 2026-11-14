@@ -34,7 +34,8 @@ opens (day 4) a day is exactly the tea house day.
 Around this core: a **story** (regulars, the predecessor's letters, chapters, the nightly ledger), the
 **shop renovation** (a carpenter's catalogue bought with the shop's coins: more customers, stock kept
 overnight, a daily delivery, notebook aids, décor) and **difficulty settings** (start level by HSK / 英検
-with assumed-known (未確認・知っているはず) words and a stage jump, target, pace, an adaptive controller, assists, the 学習の記録 page;
+(en: any 英検 grade 5級 … 1級, or a TOEIC band) with assumed-known (未確認・知っているはず) words, a stage jump and — en — the
+jobs placed at the rank of that level from day 1, target, pace, an adaptive controller, assists, the 学習の記録 page;
 en: the yardstick 英検 / TOEIC and a TOEIC target). All are optional save fields / layers.
 
 ## Commands
@@ -57,10 +58,14 @@ npm run simulate -- zh 45 --start=2 --pace=slow --acc=0.7 [--adaptive=0] [--seed
                           # (`buy`: it also orders from the catalogue; coins and 🛠 at the end of the line)
 npm run simulate -- --table [--buy]   # settings comparison table (both languages, 45 days, mean of 3 seeds)
 npm run simulate -- --jobs [--days=20] [--acc=0.85] [--seed=1] [--yard=eiken|toeic] [--log]
+                          [--start=N | --toeic=BAND] [--tasks]
                           # jobs: a simulated English player works through the town (a job in the morning,
                           # the tea house at noon, another job in the evening): one line per day with ranks,
                           # coins, words met / confirmed and progress on both yardsticks; --log prints every
-                          # task's request and reaction (content review)
+                          # task's request and reaction (content review); --start=5 (英検2級; 1 = 5級 … 7 = 1級)
+                          # or --toeic=600 starts at that level (the level change is printed: words assumed
+                          # known, shop stage, the jobs' ranks); --tasks lists each shift's tasks with the rank
+                          # of their material (A: authored, T: template) and the outcome
 ```
 
 The build reads `data/english/{vocab,phrases,grammar}.json` (if present) through a Vite plugin
@@ -98,7 +103,8 @@ src/
                         generator: typed slots → instances; quantities and agreement), expr.ts (computed check
                         fields), engine.ts (board, hours, parts of the day, shifts, planner, ranks, wages,
                         links), lexicon.ts (the job lexicon registry), vocab.ts (job vocabularies, where words
-                        were met), validate.ts, merge.ts
+                        were met), nearmiss.ts (wrong reply options on the same topic), placement.ts (the jobs'
+                        ranks for a start level), validate.ts, merge.ts
   curriculum/           the compiled English lists: lists.ts (types, tolerant reading, packing), node.ts
                         (disk), browser.ts (bundled, gzip + base64), curriculum.ts (reconciliation, 英検 / TOEIC
                         reports, next-word selection), yardsticks.ts, apply.ts
@@ -122,7 +128,8 @@ src/
     shared/renovation.ts the catalogue: upgrades, prices, gates, effects; {en,zh}/renovation.ts its text + words
     jobs/               the jobs: teahouse.ts (the first job + the shared goods), post.en.ts, kitchen.en.ts,
                         inn.en.ts, office.en.ts (English-only), common.en.ts (words several jobs share),
-                        index.ts (the list + the common lists)
+                        near.en.ts (near-miss replies for the QA banks), index.ts (the list + the common lists;
+                        merges the near misses onto the QA items)
     en/  zh/            lexicon.ts + index.ts (shop); town.ts = lexicon.town.ts + market.ts + delivery.ts
   ui/
     App.tsx             shell: layout choice, settings sheet, art defs, sound settings, story stage, books,
@@ -201,7 +208,9 @@ compositions of the same pieces), and moving between them is a short passage of 
   an e-mail on a screen) checked with a red pen (tap a line: it is circled) and rubber stamps (✓ / ✗, an
   imprint, no words); a ringing telephone (pick up the receiver), the message pad, reply slips, the wall
   calendar, the inn's floor board (the key hangs on the room chosen). Phone: the same pieces stacked
-  (pieces still drag with a finger; tap-tap works everywhere).
+  (pieces still drag with a finger; tap-tap works everywhere). A long request (rank 5's contracts, set menus,
+  letters) is never scrolled inside its bubble on the desktop stage: the person steps back a little and the hand
+  gets smaller (`.js-long` over 75 characters, `.js-longer` over 180).
 - **The shop**: the customer stands behind the counter in front of the door, the shelf is on the
   right wall. Reputation is the plaque above the door, the day is the wall calendar ("40日目", with
   today's plan), customers are order tickets on a nail, money is the coin jar. The window light follows
@@ -291,7 +300,8 @@ Decipherment needs a pencil: the player writes down what they think a word means
   a **right click** opens their card instead.
 - **Where the guess shows**: the notebook's word list (「推 …」), the word page, the 単語帳, the 検証ページ slips
   (a pencil note under the word) and — subtly — in sentences: ⚙ 設定 「自分の推測（意味）を文の中の言葉に」
-  言葉の下に小さく書く (default; small ruby text under an unconfirmed word) / 触れたときだけ (hover title) /
+  言葉の下に小さく書く (default; small text hanging under an unconfirmed word — positioned under it, not a ruby, so a
+  long guess never widens the word or opens a gap before the punctuation) / 触れたときだけ (hover title) /
   出さない. Documents (glossed paper) show the guess in pencil where a confirmed word shows its meaning.
 - **Compare**: once a word is confirmed on its 検証ページ, the sealed card, the word page and the word card show
   the official meaning with 「自分の推測：「…」」 next to it.
@@ -312,11 +322,13 @@ Decipherment needs a pencil: the player writes down what they think a word means
 ### The day and the town
 
 - **Before day 4** a day is exactly the tea house day (market → shop → delivery). On **day 4** the job board
-  opens (a note in the morning) and every morning from then on starts **in the town** (`TownHub.tsx`): the
+  opens (a note in the morning; from **day 1** when the start level places a job — en 英検4級 and up, see
+  「The jobs at a start level」) and every morning from then on starts **in the town** (`TownHub.tsx`): the
   delivery map, extended across the bridge by an east quarter where the new workplaces stand (post office,
   harbour kitchen, the trading company's office; the inn is the map's inn; a building site with scaffolding
   stands for the jobs still to come). Tap a building → its card (job, rank, the level of its material, what
-  it teaches, its hours) → **ここで働く**. Every workplace shows at a glance whether it is open now (営業中 or
+  it teaches, its hours) → **ここで働く**. The day's notes (「今日の知らせ」) wait until a story card on top of the town (the
+  predecessor's first letter on day 1 of a high start) has been read. Every workplace shows at a glance whether it is open now (営業中 or
   its hours), the player's rank there (●●○○○) and 「新」 when something new waits (a job not visited yet,
   or authored tasks of the player's rank not met yet). **Hours** (`JobDef.hours`): post office and office
   朝・昼, inn 朝・夕方 (check-out / check-in), kitchen all day, tea house all day. Phone: the map as an
@@ -361,15 +373,20 @@ templates (×3) over the previous rank's (×1.5) and older ones (×0.6, review).
 | --- | --- | --- | --- | --- |
 | 茶房 tea house (en + zh) | make, trade, deliver | food, cooking, health, shopping, money, family, weather, transport | 英検5 / 4 / 3・TOEIC〜400 / 準2・〜500 (= shop stages 1–6 / 7–12 / 13–18 / 19–23) | (the shop's orders) |
 | 郵便局 post office | sort, trade, check, respond | post, transport, money, shopping, housing | 英検4 / 3・〜400 / 準2・〜500 / 2・〜600 / 準1・〜730 | 38 / 43 / 47 / 35 / 28 |
-| 港の食堂 harbour kitchen | make, sort | food, cooking, health, shopping | 英検4 / 3 / 準2・〜400 / 2・〜500 / 準1・〜600 | 31 / 63 / 67 / 72 / — |
-| 宿の帳場 inn front desk | check, respond, sort | hotel, travel, housing | 英検4 / 3・〜400 / 準2・〜500 / 2・〜600 / 準1・〜730 | 41 / 40 / 46 / 50 / — |
-| 商会の事務 trading office | check, respond | office, meetings, sales, finance, logistics | TOEIC〜400 (英検3) / 〜600 / 〜730 / 〜860 / 〜990 | 33 / 36 / 32 / 32 / — |
+| 港の食堂 harbour kitchen | make, sort | food, cooking, health, shopping | 英検4 / 3 / 準2・〜400 / 2・〜500 / 準1・〜600 | 31 / 63 / 67 / 72 / 34 |
+| 宿の帳場 inn front desk | check, respond, sort | hotel, travel, housing | 英検4 / 3・〜400 / 準2・〜500 / 2・〜600 / 準1・〜730 | 41 / 40 / 46 / 50 / 36 |
+| 商会の事務 trading office | check, respond | office, meetings, sales, finance, logistics | TOEIC〜400 (英検3) / 〜600 (準2) / 〜730 (2) / 〜860 (準1) / 〜990 (1) | 33 / 36 / 32 / 32 / 35 |
 
-Every new job has authored + templated content for ranks 1–4 (the post office also for rank 5). Rank 5 of the
-kitchen, the inn and the office is reachable and its note says honestly that its new material is still to
-come (「準備中」; the job then keeps serving ranks 1–4 as review; a test checks that every rank without
-material of its own says so). The tea house's ranks follow its existing progress (cups served well + its
-words confirmed); its harder material comes with the shop stages.
+Every job has authored + templated content for all five ranks (templates per rank: post 14 / 15 / 19 / 16 / 11,
+kitchen 14 / 21 / 20 / 34 / 14, inn 13 / 18 / 14 / 14 / 13, office 14 / 14 / 13 / 13 / 14). Rank 5 (灯台) is the
+longest reading: the kitchen's catering contracts, supplier notes, an inspector's memo, set menus with diet
+rules and "if … use … instead" substitutions, spoken orders, sorting by the notes on deliveries / tickets /
+customers' cards; the inn's group bookings, refund and deposit rules, late fees, complaint letters and their
+replies, itinerary changes; the office's contract clauses and amounts, delays and penalties, claims, audits,
+negotiation e-mails, minutes, and sentence completion with inversion / the subjunctive / concession. (A rank
+without authored material of its own would say 「準備中」 in its note; a test keeps that honest.) The tea house's
+ranks follow its existing progress (cups served well + its words confirmed); its harder material comes with
+the shop stages.
 
 ### Task archetypes (`src/jobs/rules.ts`, benches in `src/ui/jobs/benches*.tsx`)
 
@@ -395,8 +412,13 @@ a wrong document approved).
    the other papers, or an arithmetic slip in a computed line). Missed → bad; false alarm / wrong line → fail;
    right line, wrong value → minor.
 4. **respond** (inn, office, post): a person / letter / e-mail / phone call (the telephone rings; picked up,
-   the call is read — or only heard at higher ranks); reply by choosing a reply slip (distractors are answers
-   of *other* communicative functions), writing the message pad (each field offers near misses), or picking
+   the call is read — or only heard at higher ranks); reply by choosing a reply slip (the wrong slips are
+   **near misses on the same topic** — the wrong day, amount, person or condition, or a reply that does not
+   answer what was asked: written per item in `src/content/jobs/near.en.ts`, plus facts the answer echoes from
+   the message varied automatically, `src/jobs/nearmiss.ts`; three slips when an item has two near misses,
+   answers of other topics only for an item with fewer; authored reply tasks likewise — their wrong slips are
+   written per task in `NEAR_TASKS_EN` or taken from the QA item with the same answer, never stock lines such
+   as "It is five kilos." under a question about a lost letter), writing the message pad (each field offers near misses), or picking
    the one free slot that fits on a week calendar or on the inn's floors (the generator makes exactly one cell
    fit the constraints; the validator re-checks it). A paper or call is handed over by the boss with a line
    of its own (`handover` lines), never in silence.
@@ -411,7 +433,7 @@ a wrong document approved).
 
 Coins and the home / renovation are shared (`p.town.money`). **Goods** (`JobsState.goods`, the 倉庫 on the
 board and in the town): a job's perfect tasks `produce` a good, another job `use`s it — each task done well
-uses one and pays a bonus, with a line said in the target language. The tea house makes tea packets (→ the
+uses one and pays a bonus, with a line said in the target language (once a shift, not after every task). The tea house makes tea packets (→ the
 office), the kitchen bakes bread (→ the inn's breakfasts and the tea house), the inn sends breakfast orders
 (→ the kitchen), the office sends parcels (→ the post office). The regulars (Rose, Tom, Joe, Nora, Grant,
 Hale, Captain Reed) come to the counters as clients; the bosses (Mrs. Wren, Chef Basil, Mr. Olsen, Ms. Park)
@@ -441,7 +463,8 @@ per-job table.
   content and art; 600 KB gzipped). Without `DecompressionStream` the game runs without lists and says so.
 - **Reconciliation** (`reconcileLexicon`, applied when the game data is built): a lexicon word found in
   `vocab.json` (headword or any of its forms; same POS preferred; the easiest matching item wins, so "is"
-  takes the level of "be") takes its 英検 grade, TOEIC band, CEFR and domains from the list; the hand-written
+  takes the level of "be"; an inflected form taught as a word of its own — "names", "booked", "telling" — is
+  looked up by its `lemma`, set per job with `lemmas: { names: 'name' }`, keeping its id and 検証ページ) takes its 英検 grade, TOEIC band, CEFR and domains from the list; the hand-written
   gloss stays (it is written for the meaning cards). A job word written without gloss / level gets them from
   the list. `validate-content` prints how many words matched and lists the ones missing from the list.
 - **Reports** (`yardstickReport`): per 英検 grade / TOEIC band, cumulative — the list size, how much of it the
@@ -474,12 +497,17 @@ Register it in `src/content/jobs/index.ts`; run `npm run validate-content` and `
   the validator, recommended for TOEIC).
 - **JobContent**: `sign` (in-world sign), `lexicon` (the words this job defines — see the registry below; gloss /
   level may be left to the list), `pages` (検証ページ), `forms` (extra surface forms of *any* existing id, wherever
-  it is defined, e.g. `{ want: ['wants', 'wanted'], rate: ['rates'] }`), `people` (`{ id, name, avatar }`; a regular
+  it is defined, e.g. `{ want: ['wants', 'wanted'], rate: ['rates'] }`), `lemmas` (an inflected word taught as a
+  word of its own → the list headword it is a form of, for the list lookup only: `{ names: 'name', in_book_v: 'book' }`), `people` (`{ id, name, avatar }`; a regular
   is listed by its customer id with an empty name), `boss`, `things`, the benches (`make: { vessels, methods:
   { id, word, art, surface: 'fried', where: 'stove'|'grill'|'oven' }, max }`, `sort: { bins: { id, label, ref, art },
   item }`, `trade: { coins, board, rates? }`), `tasks` (authored: the job's curriculum spine, served in rank / seq
   order until done perfectly), `templates`, `qa` (question / answer banks for reply choices: `{ q, a, fn, rank,
-  phrases?, grammar? }`), `reactions` (`{ id, kind, text, face, rank?, arch? }`; kinds: `perfect minor any_fail` +
+  near?, phrases?, grammar? }` — `near`: wrong replies on the same topic, usually written in `near.en.ts` keyed by
+  job → bank → `fn` (`fn#2` for the second item with that function)), `reactions` (`{ id, kind, text, face, rank?,
+  arch?, needs?, not?, voice? }` — `needs` / `not`: a pattern the task's texts must / must not match, so "Every bag is
+  in the right place" comes only for luggage and "right in the book" only for the register book; `voice: 'person'`
+  for a line only the person who asked can say, `'boss'` for a handed-over letter / e-mail / call; kinds: `perfect minor any_fail` +
   the archetypes' issue kinds; placeholders `{bin} {field} {vessel} {name}` and, for a thing, `{thing}` (in the
   number the sentence needs: "the bread", "eggs"), `{is}` (is / are), `{much}` (much / many), `{it}` (it /
   them), `{this}` — e.g. `'Where {is} the {thing}?'`, `"So {much} {thing}! I can't eat {it}."`), `lines` (the boss's
@@ -591,14 +619,17 @@ word to the common list keeps its id and page.
 rank ladders (1..n, growing needs, valid 英検 keys, every job the same number of ranks); links → goods;
 people / boss / persons exist (regulars by customer id); things → lexicon, units have `{n}`, mass nouns have no
 plural; counter goods have prices; the rate table is dests × bands; every content text tokenises (names aside),
-and the words that come only through template slots count as used; reactions' placeholders, a rank-1 `perfect`
+and the words that come only through template slots count as used; reactions' placeholders and patterns, a rank-1 `perfect`
 and `any_fail`, a `perfect` usable by each archetype, `start` / `end` lines; QA banks (≥ 3 items, ≥ 2
-functions); computed check fields (their expressions name earlier fields); every authored task and 30
+functions; every item's near misses — written and derived — tokenise and stay within its rank's level, and an item
+with fewer than two is warned about, since its wrong slips would come from other topics); computed check fields (their expressions name earlier fields); every authored task and 30
 instances of every template at every rank it can come at: references resolve (bins, things, fields, vessels,
 methods, options, pantry `out` / recipe `order` against the wanted things, postage on the rate table), solved
 perfectly by the archetype's own solver, a customer never pays less than the total (postage included), the
 papers of a check agree except on the one field marked wrong, a paper / call task has something said (a
-`handover` line), a speaker who names themselves is a person of the job and the one drawn; **level**: words
+`handover` line), a speaker who names themselves is a person of the job and the one drawn, and the person drawn
+never speaks of themselves in the third person ("{Chef Basil|@} wrote these tickets" is said by Ivy, not by the chef;
+warning); **level**: words
 above the rank's level + 1 grade are a warning, + 3 an error (work-life jobs: TOEIC bands where the word has
 one; pictured words exempt) — for tasks, template instances, bin labels (at the first rank a bin is used),
 reactions and the boss's lines (at their rank); **new words along the spine**: an authored task should bring
@@ -846,7 +877,9 @@ keeps working inside the town activities and rarer phrasings still get heard.
 ### Rules and consequences
 
 - **Market**: the shop queue is planned first; the portions it needs (minimum per order + 2
-  reserve) of up to `maxItems` goods become the shopping note, and those goods start the day at 0.
+  reserve) of up to `maxItems` goods become the shopping note, and those goods start the day at 0. The note never
+  asks for more than the purse can pay at the dearest stall that has a good (lines are dropped from the end, a last
+  line is shortened): a high start begins with the market's start money and a long note.
   What is bought becomes the shop's stock (shown on the shelf as 残りN / 品切れ), used up portion
   by portion; a customer whose order needs more than is left says so (`stockReactions`, −1 rep).
   Payment: exact → thanks; too little → refused and the total repeated; too much → kept by the
@@ -957,8 +990,12 @@ plan exactly like older saves — `planKnobs` returns the stage's own values and
 Logic in `src/core/difficulty.ts`; the sheet opens at a new game (title screen / a new language in ⚙ 設定),
 from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) and 記録 pages.
 
-- **現在の実力の目安 (start)**: ゼロから / zh HSK1–3 (中検・CEFR shown) / en 英検5・4級 (CEFR・TOEIC shown); higher
-  levels are listed as 未対応 because the content does not reach them. Choosing a level seeds every lexicon word
+- **現在の実力の目安 (start)**: ゼロから / zh HSK1–3 (中検・CEFR shown; higher HSK levels are listed as 未対応) / en
+  **every 英検 grade, 5級 … 1級** (CEFR・TOEIC shown), chosen on either yardstick: 「英検で選ぶ」 (the grades) or
+  「TOEIC で選ぶ」 (〜400 … 〜990, each seeding its 英検 equivalent — 〜400 = 3級, 〜500 = 準2級, 〜600 = 2級, 〜730 = 準1級,
+  〜860 / 〜990 = 1級 — and placing the jobs by their ranks' TOEIC bands; `DifficultyState.startToeic`). The tea house's
+  material ends at 準2級; the jobs carry the higher grades (their rank 5 is 準1級 / 1級), so en offers them all.
+  Choosing a level seeds every lexicon word
   tagged at or below it as **assumed known — 未確認（知っているはず）** (`WordState.seeded`, seen 6 / correct 2
   added, first review spread over 3–14 days so they come back now and then). Assumed words count as known for
   the game's pacing (`isKnown` in `core/srs.ts`: task selection, curriculum skipping, 現在地, job rank thresholds)
@@ -969,9 +1006,25 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
   higher marks earlier curriculum orders made only of known words — or of words written on the shelf and the
   tools (ingredient labels, hot / cold, the methods: "Mint." is answered by reading the jar) — as done (orders
   with other unknown words — units like slice / cube, higher-level words — still come), and fast-forwards the shop to the level's stage (`START_STAGE`: zh 6 /
-  11 / 16, en 7 / 13 — calibrated on the curriculum's structures, since level tags are spread over all stages),
-  with its reputation, a stage-clock offset (`stageDay` = day + offset gates stages and town unlocks), market /
-  delivery experience and money. Each assumed word can be taken back (学び直す) and is then not re-seeded. The
+  11 / 16, en 7 / 13 / 19 / 23 (準2級 and above: the last stage) — calibrated on the curriculum's structures, since
+  level tags are spread over all stages), with its reputation, a stage-clock offset (`stageDay` = day + offset gates
+  stages and town unlocks), market / delivery experience and money; the delivery curriculum's slips of the levels
+  below the one reached are skipped like early orders (`town.slips[id].seeded`), so a high start's first slip is of
+  its delivery level, not "To the school. In the morning.".
+- **The jobs at a start level** (en, `src/jobs/placement.ts`): each job starts at the highest rank whose material
+  (`RankDef.level`, on the yardstick the start was chosen by) is at or below the start — a 英検2級 start puts the
+  post office, the kitchen and the inn at 大潮 (2級) and the office at 満ち潮 (2級); 準1級: 灯台 / 灯台 / 灯台 / 大潮;
+  1級 or TOEIC 〜990: every job at 灯台. When a job is placed (英検4級 and up), **the job board is open from day 1** and
+  the placed jobs are offered at once (`opensAfter` is for players growing into them; a job whose first rank is above
+  the start opens as usual), with a short Japanese note on the first morning (「実力に合わせて、町の掲示板が最初の日から
+  開いている。郵便局は「大潮」（英検2級の内容）から…」) and in the level sheet's preview. A placed job serves its own
+  rank's authored tasks as new material from the first shift (`JobProgress.placed`; the authored tasks of the ranks
+  below are not served as new, their templates still come as review), the ladder above it is as far as for a player
+  who climbed there (the ranks below count as done: `placed.good`; the spine gate counts only the placed rank's own
+  tasks), and nothing is revealed — the words stay assumed known. Ranks never go down when the level is lowered (like
+  the shop's stage). Simulated (`npm run simulate -- --jobs --start=5 --tasks` / `--start=6`): day 1–3 shifts are the
+  rank-4 / rank-5 authored tasks plus a template for review. The 腕だめし check uses the tea house's orders, so it
+  can confirm levels up to the highest one those orders reach and says so; higher grades are chosen by hand. Each assumed word can be taken back (学び直す) and is then not re-seeded. The
   only way to see an unearned meaning is the opt-in 手助け 「意味をのぞく」 (off by default at every level; costs
   reputation).
   Changing the level later is exact: down takes back only what seeding added (a word met in play since keeps
@@ -1031,6 +1084,10 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
 
 ## Learning model notes
 
+- **Saves after this round (no version bump)**: optional `DifficultyState.startToeic` (the start chosen as a TOEIC band),
+  `JobProgress.placed` (`{ rank, day, good }`: the job was placed at that rank by the start level) and
+  `town.slips[id].seeded` (a delivery slip skipped by the start level). Word ids are
+  unchanged (the inflected words got a `lemma`, not a new id), so older saves load as they were.
 - **Saves (v5, own meanings + 単語帳)**: `WordState.guess` (the player's own meaning) next to `memo`;
   `LangProgress.wordbook` (`{ entries, seq }`: starred / hand-written entries, self-review verdicts); setting
   `guessDisplay`. The v4 → v5 migration: words confirmed only by the start level become assumed (未確認・知っている
@@ -1073,3 +1130,8 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
   task of a kind, so lines that would not fit are passed over when others exist — "Both of us are happy" when
   nobody else was mentioned, "My son will love this" without a child in the request, "I can't eat it" / "no …
   for me" when the request said someone else can't eat it (the kitchen has a third-person-safe line for that).
+  Lines can also say themselves what they need (`needs` / `not` patterns on the task's texts, `voice`): "Every bag is
+  in the right place" only for luggage, "This box is for …" only for crates, "right in the book" only where there is a
+  register book, "the bread I bake at home" only over bread, a guest's "you did not understand me" only when the guest
+  spoke (a handed-over letter gets the boss's line). The thanks for a link good ("And thank you for the tea …") is
+  said once a shift.

@@ -14,6 +14,9 @@ import {
   levelName,
   PACES,
   setDifficultyOptions,
+  START_TOEIC,
+  startLabel,
+  startLevelForToeic,
   startOptions,
   targetOptions,
   type Assists,
@@ -66,7 +69,13 @@ export function LevelSettingsSection({ onCloseSettings }: { onCloseSettings: () 
     <section>
       <h3>レベル設定（難易度）</h3>
       <p className="small muted">
-        {LANG_JA[g.lang]}：{levelName(g.lang, d?.start ?? 0)}・{PACES[d?.pace ?? 'normal'].label}・自動調整{d && !d.adaptive ? 'なし' : 'あり'}
+        {LANG_JA[g.lang]}：
+        {startLabel(g.lang, {
+          start: d?.start ?? 0,
+          startToeic: d?.startToeic ?? null,
+        })}
+        ・{PACES[d?.pace ?? 'normal'].label}・自動調整
+        {d && !d.adaptive ? 'なし' : 'あり'}
       </p>
       <button
         type="button"
@@ -105,6 +114,9 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
   const progress = isNew ? null : g.progress;
   const cur = progress?.difficulty ?? defaultDifficulty();
   const [start, setStart] = useState(cur.start);
+  // en: the start can be chosen on either yardstick (英検 grade or TOEIC band; the band seeds its 英検 equivalent).
+  const [startBy, setStartBy] = useState<'eiken' | 'toeic'>(cur.startToeic ? 'toeic' : 'eiken');
+  const [band, setBand] = useState<number | null>(cur.startToeic ?? null);
   const [target, setTarget] = useState<number | null>(cur.target);
   const [pace, setPace] = useState<Pace>(cur.pace);
   const [adaptive, setAdaptive] = useState(cur.adaptive);
@@ -115,11 +127,14 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
   const [suggested, setSuggested] = useState<number | null>(null);
   const [done, setDone] = useState<string[] | null>(null);
   const fresh = useMemo(() => (lang ? newProgress(lang) : null), [lang]);
+  const toeicStart = lang === 'en' && startBy === 'toeic' && start > 0 ? band : null;
   const preview = useMemo<LevelChangeSummary | null>(() => {
-    if (!data || !progress || start === cur.start) return null;
-    const p = structuredClone(progress);
-    return applyStartLevel(data, p, start);
-  }, [data, progress, start, cur.start]);
+    const base = progress ?? fresh;
+    if (!data || !base) return null;
+    if (start === cur.start && (toeicStart ?? null) === (cur.startToeic ?? null)) return null;
+    const p = structuredClone(base);
+    return applyStartLevel(data, p, start, { toeic: toeicStart });
+  }, [data, progress, fresh, start, toeicStart, cur.start, cur.startToeic]);
   if (!lang || !data || !fresh) return null;
   const starts = startOptions(data);
   const targets = targetOptions(data, progress ?? fresh);
@@ -134,6 +149,7 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
         onDone={(lvl) => {
           setPlacing(false);
           setSuggested(lvl);
+          setStartBy('eiken');
           setStart(lvl);
         }}
       />
@@ -157,11 +173,17 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
     );
 
   const confirm = () => {
-    const opts = { pace, adaptive, target, assists, ...(lang === 'en' ? { yardstick, toeicTarget } : {}) };
+    const opts = {
+      pace,
+      adaptive,
+      target,
+      assists,
+      ...(lang === 'en' ? { yardstick, toeicTarget } : {}),
+    };
     if (isNew) {
       g.newGame(lang, (p, d) => {
         setDifficultyOptions(p, opts);
-        if (start > 0) applyStartLevel(d, p, start);
+        if (start > 0) applyStartLevel(d, p, start, { toeic: toeicStart });
       });
       onClose();
       return;
@@ -169,7 +191,7 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
     let summary: LevelChangeSummary | null = null;
     g.mutateProgress((p, d) => {
       setDifficultyOptions(p, opts);
-      if (start !== (p.difficulty?.start ?? 0)) summary = applyStartLevel(d, p, start);
+      if (start !== (p.difficulty?.start ?? 0) || (toeicStart ?? null) !== (p.difficulty?.startToeic ?? null)) summary = applyStartLevel(d, p, start, { toeic: toeicStart });
     });
     setDone(summary ? describeChange(data, summary) : ['進み方・目標・手助けを保存しました。']);
   };
@@ -187,31 +209,81 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
 
       <section className="lvs-sec">
         <h3>現在の実力の目安</h3>
-        <div className="lvs-cards" role="radiogroup" aria-label="現在の実力の目安">
-          {starts.map((o) => (
-            <button
-              key={o.level}
-              type="button"
-              role="radio"
-              aria-checked={start === o.level}
-              disabled={!o.available}
-              className={`lvs-card ${start === o.level ? 'on' : ''}`}
-              onClick={() => setStart(o.level)}
-              data-testid={`start-${o.level}`}
-            >
-              <span className="lvs-card-l">{o.label}</span>
-              <span className="lvs-card-e">{o.available ? o.equiv : '未対応'}</span>
-              {suggested === o.level ? <span className="lvs-badge">腕だめしの結果</span> : null}
+        {lang === 'en' ? (
+          <div className="index-tabs small-tabs lvs-by" role="group" aria-label="どちらのものさしで選ぶか">
+            <button type="button" className={`index-tab ${startBy === 'eiken' ? 'on' : ''}`} aria-pressed={startBy === 'eiken'} onClick={() => setStartBy('eiken')} data-testid="start-by-eiken">
+              英検で選ぶ
             </button>
-          ))}
-        </div>
+            <button
+              type="button"
+              className={`index-tab ${startBy === 'toeic' ? 'on' : ''}`}
+              aria-pressed={startBy === 'toeic'}
+              onClick={() => {
+                setStartBy('toeic');
+                if (start > 0 && !band) {
+                  const b = START_TOEIC.find((t) => t.level >= start) ?? START_TOEIC[0];
+                  setBand(b.band);
+                  setStart(b.level);
+                }
+              }}
+              data-testid="start-by-toeic"
+            >
+              TOEIC で選ぶ
+            </button>
+          </div>
+        ) : null}
+        {lang === 'en' && startBy === 'toeic' ? (
+          <div className="lvs-cards" role="radiogroup" aria-label="現在の実力の目安（TOEIC）">
+            <button type="button" role="radio" aria-checked={start === 0} className={`lvs-card ${start === 0 ? 'on' : ''}`} onClick={() => setStart(0)} data-testid="start-0">
+              <span className="lvs-card-l">ゼロから</span>
+              <span className="lvs-card-e">初めて学ぶ</span>
+            </button>
+            {START_TOEIC.map((t) => (
+              <button
+                key={t.band}
+                type="button"
+                role="radio"
+                aria-checked={start > 0 && band === t.band}
+                className={`lvs-card ${start > 0 && band === t.band ? 'on' : ''}`}
+                onClick={() => {
+                  setBand(t.band);
+                  setStart(startLevelForToeic(t.band));
+                }}
+                data-testid={`start-toeic-${t.band}`}
+              >
+                <span className="lvs-card-l">TOEIC 〜{t.band}</span>
+                <span className="lvs-card-e">{levelName(lang, t.level)}相当の言葉</span>
+              </button>
+            ))}
+          </div>
+        ) : null}
+        {lang === 'en' && startBy === 'toeic' ? null : (
+          <div className="lvs-cards" role="radiogroup" aria-label="現在の実力の目安">
+            {starts.map((o) => (
+              <button
+                key={o.level}
+                type="button"
+                role="radio"
+                aria-checked={start === o.level}
+                disabled={!o.available}
+                className={`lvs-card ${start === o.level ? 'on' : ''}`}
+                onClick={() => setStart(o.level)}
+                data-testid={`start-${o.level}`}
+              >
+                <span className="lvs-card-l">{o.label}</span>
+                <span className="lvs-card-e">{o.available ? o.equiv : '未対応'}</span>
+                {suggested === o.level ? <span className="lvs-badge">腕だめしの結果</span> : null}
+              </button>
+            ))}
+          </div>
+        )}
         <button type="button" className="btn btn-small" onClick={() => setPlacing(true)} data-testid="placement-start">
           腕だめしで決める（注文をいくつか読むだけ・任意）
         </button>
         <p className="small lvs-explain">
           {start === 0
             ? '最初の一杯から。言葉はすべてゲームの中で出会って、検証して覚えます。'
-            : `${levelName(lang, start)}までの言葉は「知っているはず（未確認）」として扱い、易しい言葉ばかりの注文は省きます。答え（意味）は表示されません。手帳では未確認のまま並び、自分の推測を書いて検証ページで確かめると「確」になります（一語ずつ取り消しも可）。店は第${startStage}段階から。棚の品の名前など、まだ知らない言葉の入った最初の注文はそのまま出てきます。物語は最初の手紙から、少し詰めて進みます。`}
+            : `${levelName(lang, start)}までの言葉は「知っているはず（未確認）」として扱い、易しい言葉ばかりの注文は省きます。答え（意味）は表示されません。手帳では未確認のまま並び、自分の推測を書いて検証ページで確かめると「確」になります（一語ずつ取り消しも可）。店は第${startStage}段階から。棚の品の名前など、まだ知らない言葉の入った最初の注文はそのまま出てきます。${lang === 'en' && start >= 2 ? '町の掲示板は最初の日から開き、仕事はそれぞれ実力に合った位から始まります（下の位の仕事は復習としてときどき）。' : ''}物語は最初の手紙から、少し詰めて進みます。`}
         </p>
         {preview ? (
           <ul className="lvs-preview small" data-testid="level-preview">
@@ -237,7 +309,12 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
               <span className="lvs-target-e small muted">{o.equiv}</span>
               {o.available ? (
                 <span className="lvs-mini" title={`ゲームにある語：一覧の約${Math.round(o.progress.ceiling * 100)}%`}>
-                  <span className="lvs-mini-ceil" style={{ width: `${Math.round(o.progress.ceiling * 100)}%` }} />
+                  <span
+                    className="lvs-mini-ceil"
+                    style={{
+                      width: `${Math.round(o.progress.ceiling * 100)}%`,
+                    }}
+                  />
                   <span className="lvs-mini-fill" style={{ width: `${Math.round(o.progress.ratio * 100)}%` }} />
                 </span>
               ) : (
@@ -303,7 +380,15 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
         {zh ? (
           <label className="field">
             ピンイン
-            <select value={assists.pinyin ?? 'settings'} onChange={(e) => setA({ pinyin: e.target.value === 'settings' ? undefined : (e.target.value as PinyinMode) })} data-testid="assist-pinyin">
+            <select
+              value={assists.pinyin ?? 'settings'}
+              onChange={(e) =>
+                setA({
+                  pinyin: e.target.value === 'settings' ? undefined : (e.target.value as PinyinMode),
+                })
+              }
+              data-testid="assist-pinyin"
+            >
               {PINYIN.map(([v, l]) => (
                 <option key={v} value={v}>
                   {l}

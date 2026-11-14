@@ -65,8 +65,23 @@
 }
 .job-stage .js-bubble {
   font-size: 25px;
-  max-height: 300px;
-  overflow: auto;
+  /* no inner scrolling (it also clipped the bubble's tail); long requests get room via .js-long / .js-longer */
+  flex-shrink: 0;
+}
+/* long requests: the person steps back a little, the bubble gets the room (no scrolling inside the bubble) */
+.job-stage .js-left.js-long .js-person {
+  width: 250px;
+  height: 377px;
+}
+.job-stage .js-left.js-long .js-bubble {
+  font-size: 22px;
+}
+.job-stage .js-left.js-longer .js-person {
+  width: 200px;
+  height: 301px;
+}
+.job-stage .js-left.js-longer .js-bubble {
+  font-size: 20px;
 }
 .job-stage .js-books {
   top: 812px;
@@ -245,6 +260,7 @@
 .sortb-placed.bad {
   max-height: none;
   margin-top: 3px;
+  padding-right: 18px; /* room for the ✓ / ✗ mark */
 }
 .sortb-placed.good {
   border-color: #3d7a3a;

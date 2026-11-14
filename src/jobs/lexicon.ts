@@ -22,6 +22,7 @@ export interface JobCommon {
   lexicon: JobLexEntry[];
   pages: VerificationPage[];
   forms?: Record<string, string[]>;
+  lemmas?: Record<string, string>;
 }
 
 export interface RegistryProblem {
@@ -90,7 +91,12 @@ export function buildRegistry(
   };
   addForms('common', common?.forms);
   for (const j of jobs) addForms(j.id, j.content[c.lang]?.forms);
-  const withForms = (e: LexEntry): LexEntry => {
+  // Lemmas: an inflected word taught on its own, linked to the list headword it is a form of.
+  const lemmas = new Map<string, string>();
+  for (const [id, l] of Object.entries(common?.lemmas ?? {})) lemmas.set(id, l);
+  for (const j of jobs) for (const [id, l] of Object.entries(j.content[c.lang]?.lemmas ?? {})) lemmas.set(id, l);
+  const withForms = (e0: LexEntry): LexEntry => {
+    const e = lemmas.has(e0.id) ? { ...e0, lemma: lemmas.get(e0.id) } : e0;
     const extra = forms.get(e.id);
     if (!extra) return e;
     const have = new Set([e.text, ...(e.forms ?? [])].map((s) => s.toLowerCase()));
@@ -101,6 +107,7 @@ export function buildRegistry(
   const jobLex = lex.map(withForms);
   const known = new Set([...base, ...jobLex].map((e) => e.id));
   for (const [id, who] of formSrc) if (!known.has(id)) problems.push({ level: 'err', text: `job lexicon: ${who.join(', ')} add forms to "${id}", which no lexicon defines` });
+  for (const id of lemmas.keys()) if (!known.has(id)) problems.push({ level: 'err', text: `job lexicon: a lemma is given for "${id}", which no lexicon defines` });
   // Surfaces: a surface claimed by two ids, where one of them is a job word, is a duplicate definition
   // (the tokenizer could only ever give it to one of them).
   const bySurface = new Map<string, string>();

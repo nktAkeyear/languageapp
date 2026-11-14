@@ -264,7 +264,7 @@ const WORDS: [number, string, string][] = [
   [1, 'mai', 'color||n|🎨|色'],
   [1, 'mai', 'names||n||名前（いくつも）'],
   [1, 'mai', 'postcard|postcards|n|🖼️|はがき（絵はがき）'],
-  [1, 'mai', 'sending||n||送っている'],
+  [1, 'mai', 'sending||v||送っている'],
   [1, 'mai', 'stamp|stamps|n|🏷️|切手'],
   [1, 'mis', 'cousin||n||いとこ'],
   [1, 'mis', 'girl||n|👧|女の子'],
@@ -301,7 +301,7 @@ const WORDS: [number, string, string][] = [
   [4, 'des', 'fragile||a||壊れやすい'],
   [4, 'des', 'ordinary||a||ふつうの'],
   [4, 'des', 'terribly||d||ひどく'],
-  [4, 'mai', 'delivered||n||届ける'],
+  [4, 'mai', 'delivered||v||届ける'],
   [4, 'mai', 'insurance||n||保険'],
   [4, 'mai', 'label||n|🏷️|ラベル・札'],
   [4, 'mai', 'mail||n|📬|郵便'],
@@ -566,7 +566,7 @@ const R5: AuthoredTask[] = [
   C('p5_date', 5, 18, 'c_cook', 'The parcel must arrive before the first of May, and I paid for express.', [doc('order', 'My form', [['date', 'Arrive before', '1 May'], ['kind', 'Kind', 'express']]), doc('label', 'Label', [['date', 'Arrive before', '11 May'], ['kind', 'Kind', 'express']])], 1, 'date', { fixOptions: ['1 May', '11 May', '10 May'], fix: '1 May' }),
   K('p5_cal2', 5, 19, 'c_scholar', ['I would like to send a parcel abroad.', 'I am free only on Thursday or Friday.', 'If possible, I would like to come in the morning.'], ['thu', 'fri'], [['am', 'Morning'], ['pm', 'Afternoon']], { 'thu-am': '{Mr. Bell|@}', 'fri-am': 'Closed', 'fri-pm': '{Ivy|@}' }, 'thu-pm', { grammar: ['gr-3-018'] }),
   N('p5_n2', 5, 20, 'c_merchant', 'memo', ['NOTICE', 'Because of the storm, no boat will leave the harbour until Friday.', 'Parcels for the island will be kept at the counter.', '{Mr. Grant|@}: My parcel is for the island. What will happen to it?'], ['It will be kept here until the boats leave again.', 'It will be sent back today.', 'It is five kilos.'], 0, { grammar: ['gr-3-006', 'gr-pre2-034'] }),
-  S('p5_reply', 5, 21, '{Mrs. Wren|@} has written a note on each letter. Which box?', ['claims', 'hold', 'back'], [['We are sorry. A refund will be sent to the customer.', 'claims'], ['The owner will come for it on Friday.', 'hold'], ['Nobody lives at this address, so it has been returned.', 'back'], ['The customer says the parcel was broken. We must check it.', 'claims']], { grammar: ['gr-3-006', 'gr-pre2-045'] }),
+  S('p5_reply', 5, 21, 'I have written a note on each letter. Which box?', ['claims', 'hold', 'back'], [['We are sorry. A refund will be sent to the customer.', 'claims'], ['The owner will come for it on Friday.', 'hold'], ['Nobody lives at this address, so it has been returned.', 'back'], ['The customer says the parcel was broken. We must check it.', 'claims']], { grammar: ['gr-3-006', 'gr-pre2-045'] }),
   T('p5_both', 5, 22, 'c_docker', 'I would like both a box and a notebook, but not two of each. One box and one notebook will be fine.', [['t_box', 1], ['t_notebook', 1]], 10, { grammar: ['gr-3-033'] }),
   Q('p5_rule', 5, 23, 'c_doctor', 'I would like to send some medicine abroad. Am I allowed to?', ['Yes, but you must declare it on the form.', 'It is five kilos.', 'You are welcome.'], 0, { grammar: ['gr-2-034'] }),
   S('p5_rel', 5, 24, 'Read each note, please.', ['redirect', 'hold', 'claims', 'back'], [['This letter is for the man who has moved to the island.', 'redirect'], ['This parcel is for the woman who is abroad until Friday.', 'hold'], ['The customer who sent this parcel wants his money back.', 'claims'], ['Nobody knows where the owner of this letter is.', 'back']], { grammar: ['gr-3-007', 'gr-3-003'] }),
@@ -622,7 +622,7 @@ const TEMPLATES: TaskTemplate[] = [
     id: 'pt_c_name',
     rank: 1,
     arch: 'check',
-    person: 'client',
+    // read out by Mrs. Wren (a client named on the label would be sending the letter to themselves)
     say: 'This letter is for {name}. Number {number}.',
     fields: [
       { id: 'name', label: 'Name', values: [ROSE, TOM, JOE, IVY, NORA, GRANT] },
@@ -637,7 +637,7 @@ const TEMPLATES: TaskTemplate[] = [
     id: 'pt_c_street',
     rank: 1,
     arch: 'check',
-    person: 'client',
+    // read out by Mrs. Wren (a client named on the label would be sending the letter to themselves)
     say: 'This letter is for {name}. Number {number}, {street}.',
     fields: [
       { id: 'name', label: 'Name', values: [ROSE, TOM, JOE, IVY, NORA, GRANT, LILY, KEN] },
@@ -986,7 +986,7 @@ const TEMPLATES: TaskTemplate[] = [
     busy: [IVY, TOM, ROSE, JOE, NORA, 'Closed'],
     grammar: ['gr-pre2-005', 'gr-3-018'],
   },
-  { id: 'pt_pass5', rank: 5, arch: 'sort', say: '{Mrs. Wren|@} has written a note on each letter. Which box?', count: [4, 4], bins: ['claims', 'hold', 'back'], patterns: [{ text: 'We are sorry. A refund will be sent to the customer.', bins: ['claims'] }, { text: 'The owner will come for it on Friday.', bins: ['hold'] }, { text: 'Nobody lives at this address, so it has been returned.', bins: ['back'] }, { text: 'The customer says the parcel was broken. We must check it.', bins: ['claims'] }, { text: '{Name} will come for it after lunch.', bins: ['hold'] }, { text: '{Name} has moved, so this letter has been sent back.', bins: ['back'] }], grammar: ['gr-3-006', 'gr-pre2-045'] },
+  { id: 'pt_pass5', rank: 5, arch: 'sort', say: 'I have written a note on each letter. Which box?', count: [4, 4], bins: ['claims', 'hold', 'back'], patterns: [{ text: 'We are sorry. A refund will be sent to the customer.', bins: ['claims'] }, { text: 'The owner will come for it on Friday.', bins: ['hold'] }, { text: 'Nobody lives at this address, so it has been returned.', bins: ['back'] }, { text: 'The customer says the parcel was broken. We must check it.', bins: ['claims'] }, { text: '{Name} will come for it after lunch.', bins: ['hold'] }, { text: '{Name} has moved, so this letter has been sent back.', bins: ['back'] }], grammar: ['gr-3-006', 'gr-pre2-045'] },
 ];
 
 // ---------------------------------------------------------------------------- questions at the window
@@ -1145,7 +1145,7 @@ const THINGS = [
 ];
 
 // ---------------------------------------------------------------------------- reactions and lines
-const rx = (id: string, kind: JobContent['reactions'][number]['kind'], text: string, face: Face, extra: { rank?: number; arch?: JobContent['reactions'][number]['arch'] } = {}) => ({ id, kind, text, face, ...extra });
+const rx = (id: string, kind: JobContent['reactions'][number]['kind'], text: string, face: Face, extra: { rank?: number; arch?: JobContent['reactions'][number]['arch']; needs?: string; not?: string } = {}) => ({ id, kind, text, face, ...extra });
 
 const REACTIONS: JobContent['reactions'] = [
   rx('pr_ok1', 'perfect', 'Good job!', 'happy', { arch: 'sort' }),
@@ -1157,12 +1157,12 @@ const REACTIONS: JobContent['reactions'] = [
   rx('pr_ok5', 'perfect', 'Good eyes! Thank you.', 'delighted', { arch: 'check' }),
   rx('pr_ok5b', 'perfect', 'Yes, that is right. Thank you.', 'happy', { arch: 'check' }),
   rx('pr_ok6', 'perfect', 'Oh, thank you. That helps.', 'happy', { arch: 'respond' }),
-  rx('pr_ok6b', 'perfect', 'Great, thank you!', 'delighted', { arch: 'respond' }),
+  rx('pr_ok6b', 'perfect', 'Great, thank you!', 'delighted', { arch: 'respond', not: '\\b(complain\\w*|broken|lost|damaged|angry)\\b' }),
   rx('pr_minor_sort', 'minor', 'Good. But one is in the wrong box.', 'neutral', { arch: 'sort' }),
   rx('pr_minor_fix', 'wrong_fix', 'Almost. But that is not the right {field}.', 'neutral', { arch: 'check' }),
   rx('pr_minor', 'minor', 'Thank you. But please be fast next time.', 'neutral'),
   rx('pr_bin1', 'wrong_bin', 'No, no. This one goes in “{bin}”.', 'puzzled'),
-  rx('pr_bin2', 'wrong_bin', 'Check the address, please. This one goes in “{bin}”.', 'sad', { rank: 2 }),
+  rx('pr_bin2', 'wrong_bin', 'Check the address, please. This one goes in “{bin}”.', 'sad', { rank: 2, needs: '\\b(street|road|address)\\b', not: 'note on each letter' }),
   rx('pr_bin3', 'wrong_bin', 'Oh no! It is in the wrong box. It goes in “{bin}”.', 'angry', { rank: 2 }),
   rx('pr_goods1', 'wrong_goods', 'No, sorry. That is not what I want.', 'puzzled'),
   rx('pr_goods2', 'wrong_goods', 'No. Look again, please.', 'puzzled'),
@@ -1208,6 +1208,8 @@ const EN: JobContent = {
   sign: 'POST OFFICE',
   lexicon: LEX,
   pages: PAGES,
+  // inflected forms taught as words of their own: looked up in the lists by their headword
+  lemmas: { names: 'name', sending: 'send', streets: 'street', books: 'book', delivered: 'deliver' },
   forms: { ...EXTRA_FORMS, is: ['be', 'been'], grandmother: ["grandmother's"], cheap: ['cheapest'], rate: ['rates'] },
   people: PEOPLE,
   boss: 'p_wren',

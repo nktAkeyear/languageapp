@@ -1167,3 +1167,13 @@
     font-size: 1.15em;
   }
 }
+
+/* Phone: the notebook's filter tabs and selects are touch targets (≥ 40px). */
+.book-mobile .index-tab,
+.book-mobile .small-tabs .index-tab {
+  min-height: 40px;
+  padding: 4px 12px;
+}
+.book-mobile .nb-filters select {
+  min-height: 40px;
+}

@@ -31,6 +31,7 @@ import type {
   JobDef,
   JobEvaluation,
   JobProgress,
+  JobReaction,
   JobsState,
   RankDef,
   ShiftState,
@@ -126,7 +127,8 @@ export function jobOffered(p: LangProgress, job: JobDef): boolean {
   const s = p.jobs;
   if (job.legacy) return true;
   if (!s?.boardOpen) return false;
-  return p.day >= s.boardOpen + job.opensAfter;
+  // A job the start level placed at a rank is offered at once (jobs/placement.ts).
+  return p.day >= s.boardOpen + job.opensAfter || !!s.jobs[job.id]?.placed;
 }
 
 // ---------------------------------------------------------------------------- the day
@@ -329,7 +331,7 @@ export function rankStatus(data: GameData, p: LangProgress, job: JobDef): RankSt
   const rank = jp?.rank ?? 1;
   const def = job.ranks.find((r) => r.rank === rank) ?? job.ranks[0];
   const next = job.ranks.find((r) => r.rank === rank + 1) ?? null;
-  return { rank, def, next, good: jp?.good ?? 0, words: confirmedJobWords(data, p, job), vocab: jobVocab(data, job).size };
+  return { rank, def, next, good: goodCredit(jp), words: confirmedJobWords(data, p, job), vocab: jobVocab(data, job).size };
 }
 
 /**
@@ -340,11 +342,21 @@ export function rankStatus(data: GameData, p: LangProgress, job: JobDef): RankSt
  */
 export const SPINE_SEEN = 0.8;
 
+/** Tasks done well, counting the ranks below a start-level placement as done (jobs/placement.ts). */
+export function goodCredit(jp: JobProgress | undefined): number {
+  return (jp?.good ?? 0) + (jp?.placed?.good ?? 0);
+}
+
+/** Lowest rank whose authored tasks are new material (ranks below a start-level placement are review only). */
+export function spineFrom(jp: JobProgress | undefined): number {
+  return jp?.placed?.rank ?? 1;
+}
+
 /** Share of the authored tasks up to `rank` that have been tried (1 when there are none). */
 export function spineSeen(data: GameData, p: LangProgress, job: JobDef, rank: number): { seen: number; total: number; share: number } {
   const jc = job.content[data.lang];
   const jp = p.jobs?.jobs[job.id];
-  const all = (jc?.tasks ?? []).filter((t) => t.rank <= rank);
+  const all = (jc?.tasks ?? []).filter((t) => t.rank <= rank && t.rank >= spineFrom(jp));
   const seen = all.filter((t) => (jp?.authored[t.id]?.attempts ?? 0) > 0).length;
   return { seen, total: all.length, share: all.length ? seen / all.length : 1 };
 }
@@ -356,7 +368,7 @@ export function checkRankUp(data: GameData, p: LangProgress, job: JobDef): numbe
   for (;;) {
     const next = job.ranks.find((r) => r.rank === jp.rank + 1);
     if (!next) break;
-    if (jp.good < next.need.good || confirmedJobWords(data, p, job) < next.need.words) break;
+    if (goodCredit(jp) < next.need.good || confirmedJobWords(data, p, job) < next.need.words) break;
     if (!job.legacy && spineSeen(data, p, job, jp.rank).share < SPINE_SEEN) break;
     jp.rank = next.rank;
     jp.rankDays[next.rank] = p.day;
@@ -411,7 +423,7 @@ export function planShift(data: GameData, p: LangProgress, job: JobDef, part: nu
   const tasks: TaskInstance[] = [];
   let fresh = 0;
   const hasTemplates = jc.templates.some((t) => t.rank <= rank);
-  const spine = jc.tasks.filter((t) => t.rank <= rank && !jp.authored[t.id]?.perfect).sort((a, b) => a.rank - b.rank || (a.seq ?? 0) - (b.seq ?? 0));
+  const spine = jc.tasks.filter((t) => t.rank <= rank && t.rank >= spineFrom(jp) && !jp.authored[t.id]?.perfect).sort((a, b) => a.rank - b.rank || (a.seq ?? 0) - (b.seq ?? 0));
   // The spine fills the shift; a longer shift (5–6 tasks) keeps one place for review from the templates.
   const spineSlots = hasTemplates && n >= 5 ? n - 1 : n;
   for (const t of spine) {
@@ -532,8 +544,14 @@ export function ruleCtx(data: GameData, jc: JobContent): RuleCtx {
   };
 }
 
+/** A reaction's own conditions: `needs` / `not` patterns on the task's texts, and who says it (`voice`). */
+export function reactionSuits(r: Pick<JobReaction, 'needs' | 'not' | 'voice'>, inst: Pick<TaskInstance, 'texts' | 'handover'>): boolean {
+  const req = (inst.texts ?? []).join(' ');
+  return (!r.needs || new RegExp(r.needs, 'i').test(req)) && (!r.not || !new RegExp(r.not, 'i').test(req)) && (!r.voice || (r.voice === 'boss') === !!inst.handover);
+}
+
 const CHILD = /\b(sons?|daughters?|child|children|kids?|boys?|girls?|baby)\b/i;
-const OTHER = /\b(sons?|daughters?|child|children|kids?|boys?|girls?|baby|husband|wife|mother|father|grandmother|grandfather|family|friends?|guests?|he|she|him|her|they|them)\b|\|@\}\s+(can't|cannot|wants|likes|says|is|has)\b/i;
+const OTHER = /\b(sons?|daughters?|child|children|kids?|boys?|girls?|baby|husband|wife|mother|father|grandmother|grandfather|family|friends?|guests?|patients?|he|she|him|her)\b|\|@\}\s+(can't|cannot|wants|likes|says|is|has)\b/i;
 const GROUP = /\b(we|us|our|both|everyone|all of us)\b/i;
 
 /**
@@ -590,9 +608,10 @@ function reactionText(data: GameData, jc: JobContent, inst: TaskInstance, ev: Jo
     if (v) values.vessel = wordMarkup(data, v.word);
   }
   values.name = personName(data, jc, inst.person);
+  const suits = (r: JobReaction) => reactionSuits(r, inst);
   const pickFrom = (k: string | undefined) =>
     jc.reactions
-      .filter((r) => r.kind === k && (r.rank ?? 1) <= rank && (!r.arch || r.arch === inst.spec.arch))
+      .filter((r) => r.kind === k && (r.rank ?? 1) <= rank && (!r.arch || r.arch === inst.spec.arch) && suits(r))
       .map((r) => ({ r, text: fill(r.text.replace(/\b(the|right|wrong) \{field\}/g, '$1 {fieldLow}'), values) }))
       .filter((x): x is { r: (typeof jc.reactions)[number]; text: string } => !!x.text);
   const fits = reactionFits(inst);
@@ -639,7 +658,8 @@ export function submitTask(data: GameData, p: LangProgress, answer: TaskAnswer, 
       if ((st.goods[u.good] ?? 0) > 0) {
         st.goods[u.good]--;
         bonus += u.bonus;
-        if (u.line && !bonusLine) bonusLine = u.line;
+        // The thanks for the good is said once a shift (the bonus is paid every time).
+        if (u.line && !bonusLine && !s.results.some((r) => r.bonus > 0)) bonusLine = u.line;
       }
     }
   if (ev.outcome === 'perfect') for (const pr of job.links?.produce ?? []) st.goods[pr.good] = (st.goods[pr.good] ?? 0) + pr.perPerfect;

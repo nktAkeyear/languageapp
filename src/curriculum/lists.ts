@@ -256,9 +256,11 @@ export function unpackLists(pk: PackedLists, notes: string[] = []): EnglishLists
  * lexicon entry is a lemma with its forms: "is" also lists "be"); items of the same part of speech
  * are preferred, and among the matches the easiest one wins (the lemma's level).
  */
-export function vocabFor(lists: EnglishLists, text: string, pos?: string, forms: string[] = []): VocabItem | undefined {
+export function vocabFor(lists: EnglishLists, text: string, pos?: string, forms: string[] = [], lemma?: string): VocabItem | undefined {
   const all: VocabItem[] = [];
   for (const s of [text, ...forms]) all.push(...(lists.byWord.get(s.toLowerCase()) ?? []));
+  // An inflected word taught as its own entry ("names", "booked") is looked up by its headword.
+  if (!all.length && lemma) return vocabFor(lists, lemma, pos);
   if (!all.length) return undefined;
   const same = pos ? all.filter((v) => posMatches(v.pos, pos)) : [];
   const pool = same.length ? same : all.filter((v) => v.word.toLowerCase() === text.toLowerCase()).length ? all.filter((v) => v.word.toLowerCase() === text.toLowerCase()) : all;

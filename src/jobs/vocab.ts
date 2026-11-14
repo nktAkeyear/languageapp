@@ -32,7 +32,7 @@ export function jobContentTexts(jc: JobContent): string[] {
     }
   }
   for (const t of jc.templates) out.push(...templateTexts(t));
-  for (const q of Object.values(jc.qa ?? {})) for (const x of q) out.push(x.q, x.a);
+  for (const q of Object.values(jc.qa ?? {})) for (const x of q) out.push(x.q, x.a, ...(x.near ?? []));
   out.push(...jc.reactions.map((r) => r.text), ...jc.lines.map((l) => l.text));
   for (const b of jc.sort?.bins ?? []) out.push(b.label, b.ref);
   if (jc.trade?.board) out.push(jc.trade.board);

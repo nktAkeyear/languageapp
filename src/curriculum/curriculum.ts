@@ -45,7 +45,7 @@ export function reconcileLexicon(lexicon: LexEntry[], lists: EnglishLists = engl
   const missing: string[] = [];
   let matched = 0;
   const out = lexicon.map((e) => {
-    const v = vocabFor(lists, e.text, e.pos, e.forms ?? []);
+    const v = vocabFor(lists, e.text, e.pos, e.forms ?? [], e.lemma);
     if (!v) {
       if (lists.vocab.length) missing.push(e.text);
       return { ...e, gloss: e.gloss || '', cefr: e.cefr || 'A2', eiken: e.eiken === undefined ? null : e.eiken, listed: false };
@@ -79,11 +79,18 @@ function linkFor(data: GameData): Link {
   const hit = links.get(data);
   if (hit && hit.lists === lists) return hit;
   const lexOf = new Map<VocabItem, string>();
-  if (data.lang === 'en')
+  if (data.lang === 'en') {
     for (const e of data.content.lexicon) {
       const v = vocabFor(lists, e.text, e.pos, e.forms ?? []);
       if (v && !lexOf.has(v)) lexOf.set(v, e.id);
     }
+    // Inflected words taught on their own ("names") link to their headword's item only when no entry has it.
+    for (const e of data.content.lexicon) {
+      if (!e.lemma) continue;
+      const v = vocabFor(lists, e.text, e.pos, e.forms ?? [], e.lemma);
+      if (v && !lexOf.has(v)) lexOf.set(v, e.id);
+    }
+  }
   const l = { lexOf, lists };
   links.set(data, l);
   return l;

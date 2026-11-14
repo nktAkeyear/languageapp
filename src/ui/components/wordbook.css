@@ -1,18 +1,25 @@
 /* 単語カード (word card) + 単語帳 (word book) + the player's guess under words. */
 
 /* ---------------------------------------------------------------- the player's guess in sentences */
-.w-guess-ruby {
-  ruby-position: under;
-  -webkit-ruby-position: after;
+.w-guess-wrap {
+  position: relative;
 }
-.w-guess-ruby > rt.w-guess {
+/* Hangs under the word, centred, taking no width in the line (the word and its punctuation stay as they are). */
+.w-guess-wrap > .w-guess {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, -0.15em);
   font-family: var(--font-ja);
   font-size: 0.5em;
-  color: #6b6f8a;
+  font-weight: normal;
   font-style: normal;
+  color: #6b6f8a;
   letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
   opacity: 0.9;
-  line-height: 1.1;
+  pointer-events: none;
 }
 .w-gloss.w-gloss-own {
   color: #5d6386;

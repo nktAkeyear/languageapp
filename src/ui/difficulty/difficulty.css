@@ -571,3 +571,13 @@
     grid-template-columns: 80px 1fr;
   }
 }
+
+/* 現在の実力の目安: choose by 英検 or by TOEIC (touch-sized tabs) */
+.lvs-by {
+  margin: 2px 0 8px;
+}
+.lvs-by .index-tab,
+.lvs .small-tabs .index-tab {
+  min-height: 40px;
+  padding: 4px 14px;
+}

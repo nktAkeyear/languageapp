@@ -164,4 +164,4 @@ const WORDS: JobLexEntry[] = [
   {id: "desk",text: "desk",pos: "noun",group: "jp_off_work",forms: ["desks"],gloss: "机",emoji: "🗄️",eiken: "5",cefr: "A1"},
 ];
 
-export const COMMON_EN: JobCommon = { lexicon: WORDS, pages: PAGES, forms: {} };
+export const COMMON_EN: JobCommon = { lexicon: WORDS, pages: PAGES, forms: {}, lemmas: { in_tell: 'tell' } };

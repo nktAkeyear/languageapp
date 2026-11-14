@@ -125,10 +125,14 @@ export function WordText({ text, className, interactive = true, story = false, g
         <rt>{e!.pinyin}</rt>
       </ruby>
     ) : under ? (
-      <ruby className="w-guess-ruby">
+      // Not a ruby: a ruby box is as wide as its annotation, so a long guess would widen the word and open a gap
+      // before the punctuation. The guess hangs under the word without taking any width of its own.
+      <span className="w-guess-wrap">
         {t.text}
-        <rt className="w-guess">{shortGuess(guess)}</rt>
-      </ruby>
+        <span className="w-guess" aria-hidden>
+          {shortGuess(guess)}
+        </span>
+      </span>
     ) : (
       t.text
     );

@@ -447,5 +447,6 @@ export interface TownProgress {
   /** Market features already introduced (forced once when first available). */
   marketSeen: MarketFeature[];
   /** Curriculum slip log. */
-  slips: Record<string, { attempts: number; perfect: boolean }>;
+  /** `seeded`: skipped by a start level (its delivery level was already reached), never delivered. */
+  slips: Record<string, { attempts: number; perfect: boolean; seeded?: boolean }>;
 }

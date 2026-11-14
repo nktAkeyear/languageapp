@@ -40,7 +40,9 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
   const over = day.part > 2;
   const jobs = jobsOf(data);
   const notesKey = `${data.lang}:${progress.day}`;
-  const showNotes = day.notes.length > 0 && !notesShown.has(notesKey) && !sel && !board;
+  // A story card (the predecessor's letter on the first morning …) comes first; the day's notes wait for it.
+  const storyFirst = (progress.story?.cards?.length ?? 0) > 0;
+  const showNotes = day.notes.length > 0 && !notesShown.has(notesKey) && !sel && !board && !storyFirst;
   const status = (
     <div className="hub-status">
       <div className="hub-when">

@@ -33,6 +33,7 @@ import { lineCovered, stockFromMarket } from '../activities/market/rules';
 import { hashString } from './rng';
 import { listsLoaded } from '../curriculum/lists';
 import { yardstickReport } from '../curriculum/curriculum';
+import { placeJobsForStart, type PlacedJob } from '../jobs/placement';
 import { isMastered as isMasteredState } from './srs';
 
 // ---------------------------------------------------------------------------
@@ -93,6 +94,11 @@ export interface DifficultyState {
   yardstick?: 'eiken' | 'toeic';
   /** en: TOEIC target band (400 … 990), null = none. */
   toeicTarget?: number | null;
+  /**
+   * en: the start was chosen on the TOEIC yardstick (band 400 … 990): words are seeded by the equivalent 英検
+   * grade (`start`), the jobs are placed by their ranks' TOEIC bands. Absent / null = chosen by 英検.
+   */
+  startToeic?: number | null;
 }
 
 export const DEFAULT_ASSISTS: Assists = { peek: false, markMistake: false, retry: false, audio: 'normal', slowSpeech: false };
@@ -161,7 +167,8 @@ export function levelName(lang: Lang, level: number): string {
 
 /** Rough equivalents shown next to each level (目安). */
 const EQUIV: Record<Lang, string[]> = {
-  en: ['', 'CEFR A1（入門）・TOEIC —', 'CEFR A1・TOEIC 〜300', 'CEFR A2・TOEIC 〜400', 'CEFR A2〜B1・TOEIC 〜550', 'CEFR B1・TOEIC 〜650', 'CEFR B2・TOEIC 〜800', 'CEFR C1・TOEIC 900〜'],
+  // TOEIC equivalents follow the game's own rank annotations (英検3級 ≈ 〜400, 準2級 ≈ 〜500, 2級 ≈ 〜600, 準1級 ≈ 〜730).
+  en: ['', 'CEFR A1（入門）・TOEIC —', 'CEFR A1・TOEIC —', 'CEFR A2・TOEIC 〜400', 'CEFR A2〜B1・TOEIC 〜500', 'CEFR B1・TOEIC 〜600', 'CEFR B2・TOEIC 〜730', 'CEFR C1・TOEIC 〜860〜990'],
   zh: ['', '中検 準4級程度・CEFR A1（入門）', '中検 準4級・CEFR A1', '中検 4級・CEFR A2', '中検 3級・CEFR B1', '中検 2級・CEFR B2', '中検 準1級・CEFR C1'],
 };
 
@@ -175,13 +182,34 @@ export function levelEquiv(lang: Lang, level: number): string {
  * family 10–11, big numbers 12, time 13, weather 14 …, ≈ CEFR A1 → into A2). Vocabulary tags are
  * spread over all stages, so the jump is calibrated on structures, not word counts:
  * HSK1 / 英検5級 (A1 entry) skip the first-week basics, HSK2 / 英検4級 (A1) start at the
- * greetings-and-family stages, HSK3 (A2) at the late-A2 stages. Levels without an entry are not
- * offered (the content does not reach them yet).
+ * greetings-and-family stages, HSK3 / 英検3級 (A2) at the late-A2 stages, en 準2級 and above at the last
+ * stage (the tea house's material ends at 準2級; the jobs carry the higher levels, see jobs/placement.ts:
+ * their ranks reach 準1級 / 1級, so en offers every grade). Levels without an entry are not offered.
  */
 export const START_STAGE: Record<Lang, Record<number, number>> = {
   zh: { 0: 1, 1: 6, 2: 11, 3: 16 },
-  en: { 0: 1, 1: 7, 2: 13 },
+  en: { 0: 1, 1: 7, 2: 13, 3: 19, 4: 23, 5: 23, 6: 23, 7: 23 },
 };
+
+/** en: TOEIC bands offered as a start, with the 英検 grade (level index) whose words they seed. */
+export const START_TOEIC: { band: number; level: number }[] = [
+  { band: 400, level: 3 },
+  { band: 500, level: 4 },
+  { band: 600, level: 5 },
+  { band: 730, level: 6 },
+  { band: 860, level: 7 },
+  { band: 990, level: 7 },
+];
+
+export function startLevelForToeic(band: number): number {
+  return START_TOEIC.find((t) => t.band === band)?.level ?? START_TOEIC.filter((t) => t.band <= band).pop()?.level ?? 0;
+}
+
+/** Japanese label of the start as chosen (英検 grade, or TOEIC band with its 英検 equivalent). */
+export function startLabel(lang: Lang, d: Pick<DifficultyState, 'start' | 'startToeic'>): string {
+  if (lang === 'en' && d.startToeic) return `TOEIC 〜${d.startToeic}（${levelName(lang, d.start)}相当）`;
+  return levelName(lang, d.start);
+}
 
 export function startStageFor(data: GameData, level: number): number {
   const last = data.stages[data.stages.length - 1]?.stage ?? 1;
@@ -746,6 +774,11 @@ export interface LevelChangeSummary {
   ordersReopened: number;
   stageFrom: number;
   stageTo: number;
+  /** Jobs placed at a rank by the start (jobs/placement.ts). */
+  jobs?: PlacedJob[];
+  boardOpened?: boolean;
+  /** Delivery curriculum slips of the levels below the one reached (skipped like early orders). */
+  slipsSkipped?: number;
 }
 
 /** Japanese summary of a level change for the settings screen. */
@@ -757,8 +790,12 @@ export function describeChange(data: GameData, s: LevelChangeSummary): string[] 
   if (s.pagesReopened) out.push(`検証ページ ${s.pagesReopened} 枚をもう一度開けるようにしました。`);
   if (s.ordersSkipped) out.push(`知っている言葉だけの最初の注文 ${s.ordersSkipped} 件を済んだことにしました。`);
   if (s.ordersReopened) out.push(`注文 ${s.ordersReopened} 件をもう一度出すようにしました。`);
+  if (s.slipsSkipped) out.push(`配達のはじめの易しい配達票 ${s.slipsSkipped} 枚を済んだことにしました。`);
   if (s.stageTo > s.stageFrom) out.push(`店は第${s.stageTo}段階から（棚・道具・町の用事もそこまで開きます）。物語は最初から、少し詰めて進みます。`);
   if (s.to < s.from && s.stageTo === s.stageFrom) out.push('店の段階はそのままです（開いた棚や用事は閉じません）。');
+  const placed = (s.jobs ?? []).filter((j) => j.raised && j.id !== 'teahouse');
+  if (s.boardOpened) out.push('町の掲示板が最初の日から開きます（茶房のほかの仕事もすぐ選べます）。');
+  if (placed.length) out.push(`仕事は実力に合った位から：${placed.map((j) => `${j.nameJa}「${['さざ波', '潮だまり', '満ち潮', '大潮', '灯台'][j.rank - 1]}」（${j.levelJa}）`).join('・')}。下の位の仕事は復習としてときどき出ます。`);
   if (!out.length) out.push('変更はありません。');
   void data;
   return out;
@@ -769,9 +806,11 @@ export function describeChange(data: GameData, s: LevelChangeSummary): string[] 
  * 検証ページ and earlier curriculum orders accordingly, and fast-forward the shop (never back).
  * Safe to call at any time (mid-day too: today's plan stays, new stages show on the shelf at once).
  */
-export function applyStartLevel(data: GameData, p: LangProgress, level: number): LevelChangeSummary {
+export function applyStartLevel(data: GameData, p: LangProgress, level: number, opts: { toeic?: number | null } = {}): LevelChangeSummary {
   const d = difficultyState(p);
   const lang = data.lang;
+  const toeic = lang === 'en' && opts.toeic ? opts.toeic : null;
+  if (toeic) level = startLevelForToeic(toeic);
   const opt = startOptions(data).find((o) => o.level === level);
   if (!opt?.available) level = d.start;
   const before = confirmedCount(p);
@@ -827,11 +866,23 @@ export function applyStartLevel(data: GameData, p: LangProgress, level: number):
       const runs = (u: { minDay: number }, perDay: number, cap: number) => Math.min(cap, Math.max(0, Math.floor((sday - u.minDay) * perDay)));
       p.town.marketRuns = Math.max(p.town.marketRuns, runs(town.market.unlock, town.market.unlock.chance, town.market.levels[town.market.levels.length - 1].minRuns));
       p.town.deliveryRuns = Math.max(p.town.deliveryRuns, runs(town.delivery.unlock, town.delivery.unlock.chance, town.delivery.levels[town.delivery.levels.length - 1].minRuns));
+      // Slips of the delivery levels below the one reached are the first weeks' material: skipped, like early orders.
+      const dLevel = [...town.delivery.levels].sort((x, y) => x.minRuns - y.minRuns).filter((l) => p.town.deliveryRuns >= l.minRuns).pop()?.level ?? 1;
+      for (const sl of town.delivery.curriculum)
+        if (sl.level < dLevel && !p.town.slips[sl.id]?.perfect) {
+          p.town.slips[sl.id] = { attempts: p.town.slips[sl.id]?.attempts ?? 0, perfect: true, seeded: true };
+          sum.slipsSkipped = (sum.slipsSkipped ?? 0) + 1;
+        }
       if (sday >= town.market.unlock.minDay) p.town.money = Math.max(p.town.money, town.market.startMoney);
     }
   }
   sum.stageTo = p.stage;
+  // 6. the jobs: each starts at the rank of the start's level, the board opens at once (jobs/placement.ts)
+  const placement = placeJobsForStart(data, p, level, toeic);
+  sum.jobs = placement.jobs;
+  sum.boardOpened = placement.boardOpened;
   d.start = level;
+  d.startToeic = toeic;
   d.changes.push({ day: p.day, start: level, pace: d.pace });
   // Today's ledger and metrics should not count the level change as words confirmed today.
   const delta = confirmedCount(p) - before;
