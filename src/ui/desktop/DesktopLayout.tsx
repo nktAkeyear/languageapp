@@ -1,26 +1,28 @@
 import { useState } from 'react';
-import { CustomerPanel } from '../components/CustomerPanel';
 import { ShopStatus } from '../components/Header';
-import { Notebook } from '../components/Notebook';
 import { Overlay } from '../components/Overlay';
-import { RecipeBook } from '../components/RecipeBook';
 import { SettingsPanel } from '../components/Settings';
 import { DeliveryActions, Slip, TimePicker, TownMap } from '../components/town/Delivery';
 import { MarketNote, Purse, Stalls, TownNotice } from '../components/town/Market';
-import { WordDetail } from '../components/WordDetail';
-import { Workbench } from '../components/Workbench';
+import { BookProps } from '../scene/parts';
+import { ShopScene } from '../scene/ShopScene';
+import { BenchProvider } from '../scene/workbench';
 import { useGame } from '../useGame';
 
-function NotebookPanel() {
+/** Market / delivery keep their panels for now; the books lie on a small desk on the side. */
+function DeskPanel() {
   return (
-    <section className="panel panel-notebook" aria-label="手帳">
-      <h2 className="panel-title">手帳</h2>
-      <Notebook />
+    <section className="panel panel-desk" aria-label="机">
+      <h2 className="panel-title">机</h2>
+      <div className="side-desk">
+        <BookProps />
+      </div>
+      <p className="hand small muted">言葉に触れると手帳が開く。</p>
     </section>
   );
 }
 
-/** Market morning: shopping note + purse | stalls | notebook. */
+/** Market morning: shopping note + purse | stalls | desk. */
 function MarketGrid() {
   return (
     <main className="desk-grid desk-grid-town">
@@ -34,12 +36,12 @@ function MarketGrid() {
         <h2 className="panel-title">市場</h2>
         <Stalls />
       </section>
-      <NotebookPanel />
+      <DeskPanel />
     </main>
   );
 }
 
-/** Delivery: slip + time + door | town map | notebook. */
+/** Delivery: slip + time + door | town map | desk. */
 function DeliveryGrid() {
   return (
     <main className="desk-grid desk-grid-town">
@@ -54,53 +56,36 @@ function DeliveryGrid() {
         <h2 className="panel-title">町の地図</h2>
         <TownMap />
       </section>
-      <NotebookPanel />
+      <DeskPanel />
     </main>
   );
 }
 
-function ShopGrid() {
-  return (
-    <main className="desk-grid">
-      <section className="panel panel-customer" aria-label="お客さん">
-        <h2 className="panel-title">お客さん</h2>
-        <CustomerPanel />
-      </section>
-      <section className="panel panel-bench" aria-label="調合台">
-        <h2 className="panel-title">調合台</h2>
-        <Workbench />
-      </section>
-      <section className="panel panel-book" aria-label="レシピ帳">
-        <h2 className="panel-title">レシピ帳</h2>
-        <RecipeBook />
-      </section>
-      <NotebookPanel />
-    </main>
-  );
-}
-
-/** PC layout: panels side by side; the panels follow the day's current activity. */
+/** PC layout: the shop is one drawn scene; market / delivery are panels on a wooden desk. */
 export function DesktopLayout() {
   const g = useGame();
   const [settings, setSettings] = useState(false);
   return (
     <div className="desk" data-segment={g.segment}>
-      <header className="desk-header">
-        <h1 className="brand">港町の調香茶房</h1>
-        <ShopStatus />
-        <button type="button" className="btn" onClick={() => setSettings(true)}>
-          ⚙ 設定
-        </button>
-      </header>
-      {g.segment === 'market' ? <MarketGrid /> : g.segment === 'delivery' ? <DeliveryGrid /> : <ShopGrid />}
+      {g.segment === 'shop' ? (
+        <BenchProvider>
+          <ShopScene onSettings={() => setSettings(true)} />
+        </BenchProvider>
+      ) : (
+        <>
+          <header className="desk-header">
+            <h1 className="brand">港町の調香茶房</h1>
+            <ShopStatus />
+            <button type="button" className="btn" onClick={() => setSettings(true)} data-testid="settings">
+              ⚙ 設定
+            </button>
+          </header>
+          {g.segment === 'market' ? <MarketGrid /> : <DeliveryGrid />}
+        </>
+      )}
       {settings ? (
         <Overlay variant="modal" onClose={() => setSettings(false)}>
           <SettingsPanel onClose={() => setSettings(false)} />
-        </Overlay>
-      ) : null}
-      {g.selectedWord ? (
-        <Overlay variant="modal" onClose={() => g.openWord(null)}>
-          <WordDetail id={g.selectedWord} onClose={() => g.openWord(null)} />
         </Overlay>
       ) : null}
     </div>

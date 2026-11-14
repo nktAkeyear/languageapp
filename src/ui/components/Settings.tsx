@@ -51,8 +51,8 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
           画面レイアウト
           <select value={settings.layout} onChange={(e) => g.updateSettings({ layout: e.target.value as LayoutPref })}>
             <option value="auto">自動（画面の幅で選ぶ）</option>
-            <option value="desktop">PC 用（横並び）</option>
-            <option value="mobile">スマホ用（タブ切り替え）</option>
+            <option value="desktop">PC 用（横長の店内）</option>
+            <option value="mobile">スマホ用（縦長の店内）</option>
           </select>
         </label>
         <label className="field">
@@ -65,6 +65,30 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
             value={settings.speechRate}
             onChange={(e) => g.updateSettings({ speechRate: Number(e.target.value) })}
           />
+        </label>
+      </section>
+
+      <section>
+        <h3>音</h3>
+        <label className="check">
+          <input type="checkbox" checked={settings.muted} onChange={(e) => g.updateSettings({ muted: e.target.checked })} data-testid="settings-mute" />
+          効果音を消す
+        </label>
+        <label className="field">
+          効果音の音量 {Math.round(settings.volume * 100)}
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.05}
+            value={settings.volume}
+            disabled={settings.muted}
+            onChange={(e) => g.updateSettings({ volume: Number(e.target.value) })}
+          />
+        </label>
+        <label className="check">
+          <input type="checkbox" checked={settings.ambient} onChange={(e) => g.updateSettings({ ambient: e.target.checked })} />
+          店の環境音（波の音・遠くのカモメ）を流す
         </label>
       </section>
 

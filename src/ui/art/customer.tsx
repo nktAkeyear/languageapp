@@ -1,0 +1,463 @@
+/**
+ * Customer characters, drawn in SVG and parametrised (hair, hat, clothes, colours, age, build).
+ * The look is derived from the content's avatar emoji (its role hint: sailor, cook, grandma…)
+ * plus a hash of the customer id, so every customer keeps the same face across days.
+ *
+ * Expressions are composed from eyes / brows / mouth parts so the face can react to the drink
+ * (grimace for bitter, shiver for a cold drink when they wanted it hot …).
+ */
+import { hashString } from '../../core/rng';
+import type { Face } from '../../core/types';
+import type { Motion } from '../brewing';
+
+export type Expression = Face | 'sip' | 'grimace' | 'pucker' | 'shiver' | 'hot' | 'cough' | 'listen';
+
+type HairStyle = 'short' | 'bun' | 'long' | 'pigtails' | 'bald' | 'curly' | 'side';
+type Hat = 'none' | 'captain' | 'chef' | 'cap' | 'bowler' | 'grad' | 'scarf' | 'helmet';
+type Collar = 'coat' | 'apron' | 'shawl' | 'labcoat' | 'suit' | 'tee' | 'vest';
+
+export interface Look {
+  skin: string;
+  hair: string;
+  hairStyle: HairStyle;
+  hat: Hat;
+  beard: boolean;
+  moustache: boolean;
+  glasses: boolean;
+  coat: string;
+  coat2: string;
+  collar: Collar;
+  age: 'child' | 'adult' | 'old';
+  broad: boolean;
+}
+
+const SKINS = ['#f3d2b3', '#e8b98f', '#d79f74', '#b97d55', '#8d5a3a', '#f6dcc4'];
+const HAIRS = ['#2a1a12', '#4a2c18', '#6b4223', '#8a5a2e', '#1c1c22', '#a8642c'];
+const COATS: [string, string][] = [
+  ['#3e5a7a', '#2a3e57'],
+  ['#7a3e32', '#55281f'],
+  ['#4d6a45', '#33492d'],
+  ['#8a6a3a', '#5e4624'],
+  ['#5c4a72', '#3d3050'],
+  ['#2f4f4f', '#1f3636'],
+  ['#9a5a2a', '#6a3a18'],
+];
+
+/** Role presets keyed by avatar emoji (without skin tone / gender modifiers). */
+const ROLE: Record<string, Partial<Look>> = {
+  '🧔': { hat: 'captain', beard: true, collar: 'coat', coat: '#2c3e5c', coat2: '#1d2a40', broad: true },
+  '👵': { age: 'old', hairStyle: 'bun', hair: '#d8d4cc', collar: 'shawl', coat: '#8a4a5a', coat2: '#5e2f3c', glasses: true },
+  '👴': { age: 'old', hairStyle: 'bald', hair: '#d8d4cc', moustache: true, collar: 'vest', coat: '#6b5a3a', coat2: '#4a3d26' },
+  '👦': { age: 'child', hairStyle: 'short', collar: 'tee', hat: 'cap' },
+  '👧': { age: 'child', hairStyle: 'pigtails', collar: 'tee' },
+  '👩‍🍳': { hat: 'chef', hairStyle: 'long', collar: 'apron', coat: '#f1ece2', coat2: '#cfc6b4' },
+  '🧑‍💼': { hat: 'bowler', hairStyle: 'short', collar: 'suit', coat: '#3a3a42', coat2: '#24242a', moustache: true },
+  '👷': { hat: 'helmet', hairStyle: 'short', collar: 'vest', coat: '#b8682a', coat2: '#7c4318', broad: true, beard: true },
+  '🧑‍🏫': { hairStyle: 'side', glasses: true, collar: 'suit', coat: '#6b5a42', coat2: '#4a3d2c' },
+  '👩‍🍼': { hairStyle: 'long', collar: 'shawl', coat: '#c28a6a', coat2: '#8e5c42' },
+  '🧑‍⚕️': { hairStyle: 'short', collar: 'labcoat', coat: '#f4f2ec', coat2: '#cfcbc0', glasses: true },
+  '🧑‍🎓': { hat: 'grad', hairStyle: 'short', collar: 'suit', coat: '#2f3a52', coat2: '#1e2638' },
+  '👩‍🦳': { age: 'old', hairStyle: 'curly', hair: '#e8e4dc', collar: 'apron', coat: '#d9c7a8', coat2: '#a8946e' },
+  '👩': { hairStyle: 'long', collar: 'shawl' },
+  '👨': { hairStyle: 'short', collar: 'coat', moustache: true },
+  '👨‍🦳': { age: 'old', hairStyle: 'short', hair: '#e2ded6', collar: 'suit' },
+};
+
+function stripModifiers(e: string): string {
+  // Remove skin tone modifiers and gender signs so '👩🏽‍🍳' finds '👩‍🍳'.
+  return e.replace(/[\u{1F3FB}-\u{1F3FF}]/gu, '').replace(/‍[♀♂]️?/g, '');
+}
+
+export function lookFor(id: string, avatar: string): Look {
+  const h = hashString(id);
+  const pick = <T,>(arr: T[], salt: number) => arr[(h >>> salt) % arr.length];
+  const [coat, coat2] = pick(COATS, 3);
+  const base: Look = {
+    skin: pick(SKINS, 5),
+    hair: pick(HAIRS, 9),
+    hairStyle: pick<HairStyle>(['short', 'long', 'curly', 'side', 'bun'], 13),
+    hat: 'none',
+    beard: false,
+    moustache: false,
+    glasses: false,
+    coat,
+    coat2,
+    collar: pick<Collar>(['coat', 'shawl', 'vest', 'suit'], 17),
+    age: 'adult',
+    broad: false,
+  };
+  return { ...base, ...(ROLE[stripModifiers(avatar)] ?? {}) };
+}
+
+/** Face shown for a reaction motion (overrides the content face where the body says more). */
+export function expressionFor(face: Face, motion: Motion | null): Expression {
+  switch (motion) {
+    case 'grimace':
+      return 'grimace';
+    case 'pucker':
+      return 'pucker';
+    case 'shiver':
+      return 'shiver';
+    case 'fan':
+      return 'hot';
+    case 'cough':
+      return 'cough';
+    default:
+      return face;
+  }
+}
+
+function Eyes({ ex, old }: { ex: Expression; old: boolean }) {
+  const y = 112;
+  const L = 98;
+  const R = 142;
+  switch (ex) {
+    case 'delighted':
+    case 'happy':
+      return (
+        <g stroke="#2a1a12" strokeWidth="3.5" fill="none" strokeLinecap="round">
+          <path d={`M${L - 8} ${y + 2} Q${L} ${y - 8} ${L + 8} ${y + 2}`} />
+          <path d={`M${R - 8} ${y + 2} Q${R} ${y - 8} ${R + 8} ${y + 2}`} />
+        </g>
+      );
+    case 'sip':
+    case 'grimace':
+    case 'cough':
+      return (
+        <g stroke="#2a1a12" strokeWidth="3.5" fill="none" strokeLinecap="round">
+          <path d={`M${L - 8} ${y - 3} L${L + 6} ${y + 1} L${L - 8} ${y + 5}`} opacity={ex === 'sip' ? 0 : 1} />
+          <path d={`M${R + 8} ${y - 3} L${R - 6} ${y + 1} L${R + 8} ${y + 5}`} opacity={ex === 'sip' ? 0 : 1} />
+          {ex === 'sip' && (
+            <>
+              <path d={`M${L - 8} ${y} Q${L} ${y + 6} ${L + 8} ${y}`} />
+              <path d={`M${R - 8} ${y} Q${R} ${y + 6} ${R + 8} ${y}`} />
+            </>
+          )}
+        </g>
+      );
+    case 'pucker':
+      return (
+        <g stroke="#2a1a12" strokeWidth="3.5" fill="none" strokeLinecap="round">
+          <path d={`M${L - 8} ${y} h16`} />
+          <path d={`M${R - 8} ${y} h16`} />
+        </g>
+      );
+    case 'puzzled':
+    case 'shiver':
+    case 'hot':
+    case 'neutral':
+    case 'sad':
+    case 'angry':
+    case 'listen':
+    default: {
+      const big = ex === 'puzzled' || ex === 'shiver';
+      const r = big ? 6 : 5;
+      return (
+        <g>
+          <ellipse cx={L} cy={y} rx={r} ry={r + 1.5} fill="#2a1a12" />
+          <ellipse cx={R} cy={y} rx={ex === 'puzzled' ? r - 2 : r} ry={(ex === 'puzzled' ? r - 2 : r) + 1.5} fill="#2a1a12" />
+          <circle cx={L + 2} cy={y - 2} r="1.8" fill="#fff" />
+          <circle cx={R + 2} cy={y - 2} r="1.8" fill="#fff" />
+          {old && <path d={`M${L - 10} ${y + 10} q4 3 8 0 M${R + 2} ${y + 10} q4 3 8 0`} stroke="#8a5a3a" strokeWidth="1.4" fill="none" opacity="0.6" />}
+        </g>
+      );
+    }
+  }
+}
+
+function Brows({ ex, color }: { ex: Expression; color: string }) {
+  const y = 96;
+  const p = (l: string, r: string) => (
+    <g stroke={color} strokeWidth="4.5" strokeLinecap="round" fill="none">
+      <path d={l} />
+      <path d={r} />
+    </g>
+  );
+  switch (ex) {
+    case 'angry':
+    case 'grimace':
+    case 'cough':
+      return p(`M88 ${y - 4} L108 ${y + 4}`, `M152 ${y - 4} L132 ${y + 4}`);
+    case 'sad':
+    case 'shiver':
+    case 'hot':
+      return p(`M88 ${y + 3} L108 ${y - 4}`, `M152 ${y + 3} L132 ${y - 4}`);
+    case 'puzzled':
+      return p(`M88 ${y - 6} Q98 ${y - 12} 108 ${y - 6}`, `M132 ${y + 2} L152 ${y}`);
+    case 'delighted':
+      return p(`M88 ${y - 6} Q98 ${y - 12} 108 ${y - 6}`, `M132 ${y - 6} Q142 ${y - 12} 152 ${y - 6}`);
+    default:
+      return p(`M88 ${y - 2} Q98 ${y - 6} 108 ${y - 2}`, `M132 ${y - 2} Q142 ${y - 6} 152 ${y - 2}`);
+  }
+}
+
+function Mouth({ ex }: { ex: Expression }) {
+  const y = 140;
+  switch (ex) {
+    case 'delighted':
+      return (
+        <g>
+          <path d={`M104 ${y - 4} Q120 ${y + 20} 136 ${y - 4} Z`} fill="#7a2418" stroke="#4a140c" strokeWidth="2" strokeLinejoin="round" />
+          <path d={`M110 ${y + 6} Q120 ${y + 12} 130 ${y + 6}`} fill="#e86a5a" />
+        </g>
+      );
+    case 'happy':
+      return <path d={`M106 ${y - 2} Q120 ${y + 12} 134 ${y - 2}`} stroke="#4a140c" strokeWidth="3.5" fill="none" strokeLinecap="round" />;
+    case 'sad':
+      return <path d={`M108 ${y + 6} Q120 ${y - 4} 132 ${y + 6}`} stroke="#4a140c" strokeWidth="3.5" fill="none" strokeLinecap="round" />;
+    case 'angry':
+      return <path d={`M106 ${y + 4} Q120 ${y - 2} 134 ${y + 4} L134 ${y + 8} Q120 ${y + 2} 106 ${y + 8} Z`} fill="#4a140c" />;
+    case 'puzzled':
+      return <path d={`M108 ${y + 2} q6 -5 12 0 q6 5 12 -1`} stroke="#4a140c" strokeWidth="3.5" fill="none" strokeLinecap="round" />;
+    case 'sip':
+    case 'pucker':
+      return <ellipse cx="120" cy={y + 1} rx="5" ry="6" fill="#7a2418" stroke="#4a140c" strokeWidth="2" />;
+    case 'grimace':
+      return (
+        <g>
+          <rect x="104" y={y - 5} width="32" height="12" rx="4" fill="#fff" stroke="#4a140c" strokeWidth="2.5" />
+          <path d={`M112 ${y - 5} v12 M120 ${y - 5} v12 M128 ${y - 5} v12`} stroke="#4a140c" strokeWidth="1.5" />
+        </g>
+      );
+    case 'shiver':
+      return <path d={`M104 ${y + 2} l5 -4 l5 4 l5 -4 l5 4 l5 -4 l5 4`} stroke="#4a140c" strokeWidth="3" fill="none" strokeLinejoin="round" />;
+    case 'hot':
+      return (
+        <g>
+          <ellipse cx="120" cy={y + 2} rx="10" ry="8" fill="#7a2418" stroke="#4a140c" strokeWidth="2" />
+          <path d={`M114 ${y + 4} q6 8 12 0`} fill="#e86a5a" />
+        </g>
+      );
+    case 'cough':
+      return <ellipse cx="120" cy={y + 2} rx="9" ry="7" fill="#4a140c" />;
+    case 'listen':
+    case 'neutral':
+    default:
+      return <path d={`M110 ${y + 1} Q120 ${y + 4} 130 ${y + 1}`} stroke="#4a140c" strokeWidth="3.5" fill="none" strokeLinecap="round" />;
+  }
+}
+
+function HairBack({ look }: { look: Look }) {
+  const c = look.hair;
+  switch (look.hairStyle) {
+    case 'long':
+      return <path d="M64 100 Q60 40 120 38 Q180 40 176 100 L182 200 Q150 214 120 210 Q90 214 58 200 Z" fill={c} />;
+    case 'pigtails':
+      return (
+        <g fill={c}>
+          <ellipse cx="58" cy="140" rx="16" ry="30" />
+          <ellipse cx="182" cy="140" rx="16" ry="30" />
+          <circle cx="66" cy="112" r="7" fill="#d8546e" />
+          <circle cx="174" cy="112" r="7" fill="#d8546e" />
+        </g>
+      );
+    case 'bun':
+      return <circle cx="120" cy="44" r="24" fill={c} />;
+    case 'curly':
+      return (
+        <g fill={c}>
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => {
+            const a = Math.PI * (0.95 + (i / 8) * 1.1);
+            return <circle key={i} cx={120 + Math.cos(a) * 62} cy={104 + Math.sin(a) * 62} r="20" />;
+          })}
+        </g>
+      );
+    default:
+      return null;
+  }
+}
+
+function HairFront({ look }: { look: Look }) {
+  const c = look.hair;
+  switch (look.hairStyle) {
+    case 'bald':
+      return <path d="M66 112 Q64 90 74 84 M174 112 Q176 90 166 84" stroke={c} strokeWidth="10" strokeLinecap="round" fill="none" />;
+    case 'side':
+      return <path d="M66 104 Q62 52 120 50 Q178 52 174 100 Q160 74 132 70 Q104 74 82 66 Q72 84 66 104 Z" fill={c} />;
+    case 'curly':
+      return <path d="M68 96 Q70 56 120 54 Q170 56 172 96 Q150 78 120 80 Q90 78 68 96 Z" fill={c} />;
+    case 'long':
+    case 'bun':
+    case 'pigtails':
+      return <path d="M66 100 Q62 52 120 50 Q178 52 174 100 Q152 70 120 74 Q102 62 92 78 Q80 84 66 100 Z" fill={c} />;
+    case 'short':
+    default:
+      return <path d="M66 100 Q62 50 120 48 Q178 50 174 100 Q160 74 136 72 Q112 66 96 76 Q80 80 66 100 Z" fill={c} />;
+  }
+}
+
+function HatArt({ look }: { look: Look }) {
+  switch (look.hat) {
+    case 'captain':
+      return (
+        <g>
+          <path d="M62 78 Q66 40 120 38 Q174 40 178 78 Z" fill="#1d2a40" stroke="#0e1522" strokeWidth="2" />
+          <rect x="58" y="74" width="124" height="14" rx="6" fill="#141d2e" />
+          <path d="M70 88 Q120 104 170 88 L168 92 Q120 110 72 92 Z" fill="#0e1522" />
+          <circle cx="120" cy="64" r="8" fill="url(#g-brass)" />
+          <path d="M66 82 h108" stroke="#c99a3c" strokeWidth="2" />
+        </g>
+      );
+    case 'chef':
+      return (
+        <g>
+          <rect x="74" y="56" width="92" height="30" fill="#fbfaf6" stroke="#cfc6b4" strokeWidth="2" />
+          {[90, 120, 150].map((x) => (
+            <circle key={x} cx={x} cy={40} r="24" fill="#fbfaf6" stroke="#cfc6b4" strokeWidth="2" />
+          ))}
+          <rect x="76" y="44" width="88" height="24" fill="#fbfaf6" />
+        </g>
+      );
+    case 'cap':
+      return (
+        <g>
+          <path d="M66 84 Q66 44 120 44 Q172 44 174 84 Z" fill="#b8382a" />
+          <path d="M120 84 Q170 78 196 90 Q170 96 120 92 Z" fill="#8a2a1e" />
+          <circle cx="120" cy="46" r="4" fill="#8a2a1e" />
+        </g>
+      );
+    case 'bowler':
+      return (
+        <g>
+          <ellipse cx="120" cy="80" rx="72" ry="10" fill="#1a1a1e" />
+          <path d="M78 80 Q78 34 120 34 Q162 34 162 80 Z" fill="#26262c" />
+          <path d="M80 70 h80" stroke="#6b2a2a" strokeWidth="6" />
+        </g>
+      );
+    case 'grad':
+      return (
+        <g>
+          <path d="M72 84 Q72 60 120 58 Q168 60 168 84 Z" fill="#1a1e2a" />
+          <path d="M60 52 L120 34 L180 52 L120 70 Z" fill="#23283a" stroke="#0e1018" strokeWidth="2" />
+          <path d="M120 52 L170 60 L172 90" stroke="#d8a838" strokeWidth="3" fill="none" />
+          <circle cx="172" cy="92" r="4" fill="#d8a838" />
+        </g>
+      );
+    case 'helmet':
+      return (
+        <g>
+          <path d="M64 86 Q64 36 120 36 Q176 36 176 86 Z" fill="#e3b23c" stroke="#9a7420" strokeWidth="2" />
+          <rect x="56" y="80" width="128" height="10" rx="5" fill="#d0a030" />
+          <path d="M120 38 v44" stroke="#c99828" strokeWidth="6" />
+        </g>
+      );
+    default:
+      return null;
+  }
+}
+
+function Body({ look }: { look: Look }) {
+  const w = look.broad ? 1.12 : look.age === 'child' ? 0.82 : 1;
+  const sx = (x: number) => 120 + (x - 120) * w;
+  const top = 196;
+  const shoulders = `M${sx(36)} 420 L${sx(40)} ${top + 50} Q${sx(44)} ${top + 6} ${sx(92)} ${top} L${sx(148)} ${top} Q${sx(196)} ${top + 6} ${sx(200)} ${top + 50} L${sx(204)} 420 Z`;
+  return (
+    <g>
+      <path d={shoulders} fill={look.coat} stroke={look.coat2} strokeWidth="3" />
+      {/* shading on the coat */}
+      <path d={`M${sx(150)} ${top + 4} Q${sx(196)} ${top + 10} ${sx(200)} ${top + 50} L${sx(204)} 420 L${sx(170)} 420 Z`} fill={look.coat2} opacity="0.45" />
+      {look.collar === 'coat' && (
+        <g>
+          <path d={`M${sx(96)} ${top} L120 ${top + 60} L${sx(144)} ${top} Z`} fill="#efe6d4" />
+          <path d={`M${sx(92)} ${top} L112 ${top + 70} L${sx(72)} ${top + 30} Z M${sx(148)} ${top} L128 ${top + 70} L${sx(168)} ${top + 30} Z`} fill={look.coat2} />
+          {[0, 1, 2].map((i) => (
+            <circle key={i} cx="120" cy={top + 90 + i * 34} r="5" fill="url(#g-brass)" />
+          ))}
+        </g>
+      )}
+      {look.collar === 'suit' && (
+        <g>
+          <path d={`M${sx(98)} ${top} L120 ${top + 80} L${sx(142)} ${top} Z`} fill="#f4efe4" />
+          <path d={`M114 ${top + 6} L126 ${top + 6} L122 ${top + 70} L120 ${top + 78} L118 ${top + 70} Z`} fill="#8a2a2a" />
+          <path d={`M${sx(94)} ${top} L114 ${top + 96} L${sx(70)} ${top + 26} Z M${sx(146)} ${top} L126 ${top + 96} L${sx(170)} ${top + 26} Z`} fill={look.coat2} />
+        </g>
+      )}
+      {look.collar === 'tee' && <path d={`M${sx(100)} ${top} Q120 ${top + 20} ${sx(140)} ${top}`} fill="none" stroke={look.coat2} strokeWidth="5" />}
+      {look.collar === 'vest' && (
+        <g>
+          <path d={`M${sx(96)} ${top} L120 ${top + 40} L${sx(144)} ${top} Z`} fill="#efe6d4" />
+          <path d={`M${sx(84)} ${top + 10} L120 ${top + 120} L${sx(156)} ${top + 10} L${sx(160)} 420 L${sx(80)} 420 Z`} fill={look.coat2} opacity="0.9" />
+          {[0, 1, 2].map((i) => (
+            <circle key={i} cx="120" cy={top + 140 + i * 30} r="4" fill="#e6d2a6" />
+          ))}
+        </g>
+      )}
+      {look.collar === 'apron' && (
+        <g>
+          <path d={`M${sx(96)} ${top} L120 ${top + 30} L${sx(144)} ${top} Z`} fill="#e9dfcc" />
+          <path d={`M${sx(84)} ${top + 70} L${sx(156)} ${top + 70} L${sx(164)} 420 L${sx(76)} 420 Z`} fill="#f8f4ea" stroke="#cfc6b4" strokeWidth="2" />
+          <path d={`M${sx(86)} ${top + 70} L${sx(96)} ${top + 4} M${sx(154)} ${top + 70} L${sx(144)} ${top + 4}`} stroke="#cfc6b4" strokeWidth="4" />
+        </g>
+      )}
+      {look.collar === 'shawl' && (
+        <path d={`M${sx(50)} ${top + 40} Q120 ${top - 10} ${sx(190)} ${top + 40} Q${sx(170)} ${top + 110} 120 ${top + 120} Q${sx(70)} ${top + 110} ${sx(50)} ${top + 40} Z`} fill={look.coat2} opacity="0.95" />
+      )}
+      {look.collar === 'labcoat' && (
+        <g>
+          <path d={`M${sx(98)} ${top} L120 ${top + 60} L${sx(142)} ${top} Z`} fill="#7aa6c8" />
+          <path d={`M${sx(94)} ${top} L114 ${top + 120} L${sx(64)} ${top + 30} Z M${sx(146)} ${top} L126 ${top + 120} L${sx(176)} ${top + 30} Z`} fill="#e8e5dc" />
+          <path d={`M${sx(150)} ${top + 120} h22 v18 h-22 Z`} fill="none" stroke="#bdb8aa" strokeWidth="2" />
+        </g>
+      )}
+    </g>
+  );
+}
+
+/** The character, 240×420 viewBox. Head top ~y 30, shoulders ~y 200. */
+export function CustomerArt({ look, ex }: { look: Look; ex: Expression }) {
+  const old = look.age === 'old';
+  const headScale = look.age === 'child' ? 1.06 : 1;
+  const blush = ex === 'delighted' || ex === 'happy' || ex === 'hot';
+  return (
+    <svg viewBox="0 0 240 420" className="customer-art" aria-hidden>
+      <g className="cust-body">
+        <Body look={look} />
+      </g>
+      <g className="cust-head" transform={headScale !== 1 ? `translate(120 120) scale(${headScale}) translate(-120 -120)` : undefined}>
+        <HairBack look={look} />
+        {/* neck */}
+        <path d="M104 160 L104 200 Q120 210 136 200 L136 160 Z" fill={look.skin} />
+        <path d="M104 182 Q120 196 136 182 L136 200 Q120 210 104 200 Z" fill="#000" opacity="0.12" />
+        {/* ears */}
+        <ellipse cx="64" cy="118" rx="10" ry="14" fill={look.skin} stroke="#00000022" strokeWidth="2" />
+        <ellipse cx="176" cy="118" rx="10" ry="14" fill={look.skin} stroke="#00000022" strokeWidth="2" />
+        {/* face */}
+        <path d="M66 108 Q64 54 120 52 Q176 54 174 108 Q174 168 120 176 Q66 168 66 108 Z" fill={look.skin} />
+        <path d="M150 64 Q176 80 172 120 Q168 160 128 174 Q160 150 160 110 Q160 80 150 64 Z" fill="#000" opacity="0.07" />
+        {ex === 'shiver' ? <path d="M66 108 Q64 54 120 52 Q176 54 174 108 Q174 168 120 176 Q66 168 66 108 Z" fill="#7ab0e0" opacity="0.28" /> : null}
+        {ex === 'hot' || ex === 'angry' ? <path d="M66 108 Q64 54 120 52 Q176 54 174 108 Q174 168 120 176 Q66 168 66 108 Z" fill="#e0503a" opacity="0.18" /> : null}
+        {blush ? (
+          <g fill="#e8786a" opacity="0.45">
+            <ellipse cx="88" cy="134" rx="11" ry="6" />
+            <ellipse cx="152" cy="134" rx="11" ry="6" />
+          </g>
+        ) : null}
+        {/* nose */}
+        <path d="M120 116 Q114 130 122 132" stroke="#00000044" strokeWidth="3" fill="none" strokeLinecap="round" />
+        <Eyes ex={ex} old={old} />
+        <Brows ex={ex} color={old ? '#bdb8ae' : look.hair} />
+        {look.beard ? <path d="M70 120 Q72 176 120 184 Q168 176 170 120 Q164 150 140 156 Q120 146 100 156 Q76 150 70 120 Z" fill={look.hair} /> : null}
+        {look.moustache || look.beard ? <path d="M100 134 Q120 124 140 134 Q130 140 120 136 Q110 140 100 134 Z" fill={old ? '#cfcac0' : look.hair} /> : null}
+        <Mouth ex={ex} />
+        {look.glasses ? (
+          <g stroke="#3a2a1a" strokeWidth="2.5" fill="#ffffff22">
+            <circle cx="98" cy="112" r="14" />
+            <circle cx="142" cy="112" r="14" />
+            <path d="M112 112 h16" />
+          </g>
+        ) : null}
+        <HairFront look={look} />
+        <HatArt look={look} />
+        {/* reaction marks */}
+        {ex === 'grimace' || ex === 'cough' ? <path d="M182 70 l10 -10 m-4 14 l14 -4 m-14 12 l12 6" stroke="#6b3a8a" strokeWidth="3" strokeLinecap="round" /> : null}
+        {ex === 'hot' ? <path d="M182 84 q6 10 0 16 q-6 -6 0 -16" fill="#7ac0f0" /> : null}
+        {ex === 'shiver' ? <path d="M40 90 l-8 6 l8 6 l-8 6 M200 90 l8 6 l-8 6 l8 6" stroke="#5a8ac0" strokeWidth="3" fill="none" /> : null}
+        {ex === 'puzzled' ? (
+          <text x="186" y="70" fontSize="40" fontWeight="700" fill="#5a3a1a" fontFamily="Georgia, serif">
+            ?
+          </text>
+        ) : null}
+      </g>
+    </svg>
+  );
+}

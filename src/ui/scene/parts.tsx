@@ -1,0 +1,681 @@
+/**
+ * Pieces of the shop scene shared by the desktop and the phone composition. Each piece is an
+ * interactive object (HTML wrapper for events + accessibility) around drawn art (src/ui/art).
+ * Layout / position is up to the composition (ShopScene.tsx / MobileShop.tsx, via CSS).
+ */
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { activityDef } from '../../activities';
+import { hasNextSegment } from '../../activities/day';
+import { currentOrder } from '../../activities/shop/engine';
+import { plain, wordMarkup } from '../../core/gamedata';
+import type { IngredientId, Method, Temp } from '../../core/types';
+import { ING_UNIT, UNIT_ACTION_JA, canAdd, reactionMotion, type Motion } from '../brewing';
+import { CustomerArt, expressionFor, lookFor, type Expression } from '../art/customer';
+import { ContainerArt, PieceArt } from '../art/ingredients';
+import { CalendarArt, CoinJarArt, NotebookProp, PlaqueArt, RecipeBookProp } from '../art/props';
+import { BoardArt, ColdBasinArt, HourglassArt, KettleArt, PotArt, SlopBowlArt, SpoonArt } from '../art/tools';
+import { VesselArt } from '../art/vessel';
+import { IngredientIcon } from '../components/Ingredient';
+import { SpeakButton, WordText } from '../components/WordText';
+import { sfx } from '../sound';
+import { speak, useSpeechAvailable } from '../speech';
+import { useGame } from '../useGame';
+import { useUi } from '../uiState';
+import { useBench, useBenchOptional } from './workbench';
+
+// ------------------------------------------------------------------------------------- shelf
+
+export function ShelfJar({ ing }: { ing: IngredientId }) {
+  const b = useBench();
+  const left = b.stock(ing);
+  const n = b.brew.counts[ing] ?? 0;
+  const out = left === 0;
+  const remaining = left === undefined ? undefined : Math.max(0, left - n);
+  const full = !canAdd(b.brew, ing, b.limit(ing));
+  const held = b.held === ing;
+  const g = useGame();
+  const word = g.data ? plain(b.label(ing)) : ing;
+  return (
+    <div className={`jar ${held ? 'jar-held' : ''} ${out ? 'jar-out' : ''} ${full && !out ? 'jar-full' : ''}`} data-ing={ing}>
+      <button
+        type="button"
+        className="jar-btn"
+        disabled={!b.canWork || out}
+        aria-label={`${word}：${UNIT_ACTION_JA[ING_UNIT[ing]]}（クリックで手に取る）`}
+        aria-pressed={held}
+        onPointerDown={(e) => b.startDrag({ kind: 'ing', ing }, e)}
+        onClick={() => b.hold(held ? null : ing)}
+        onContextMenu={(e) => {
+          e.preventDefault();
+          b.add(ing);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            b.add(ing);
+          }
+        }}
+      >
+        <ContainerArt ing={ing} empty={out} />
+      </button>
+      <span className="jar-label">
+        <WordText text={b.label(ing)} interactive={false} />
+      </span>
+      {remaining !== undefined ? (
+        <span className={`jar-stock ${remaining <= 0 ? 'jar-stock-empty' : ''}`} title="今日の在庫">
+          {out ? '品切れ' : `残り${remaining}`}
+        </span>
+      ) : null}
+      {n > 0 ? <span className="jar-in" aria-hidden>{n}</span> : null}
+    </div>
+  );
+}
+
+// ------------------------------------------------------------------------------------- cup
+
+export function VesselSpot() {
+  const b = useBench();
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    b.registerDrop('cup', ref.current);
+    return () => b.registerDrop('cup', null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const over = b.drag?.over === 'cup' && b.drag.carry.kind !== 'cup';
+  const away = b.stage !== 'idle';
+  const tipping = b.fx?.kind === 'tipout';
+  return (
+    <div
+      ref={ref}
+      className={`vessel-spot ${b.held ? 'vessel-target' : ''} ${over ? 'vessel-over' : ''}`}
+      onClick={() => b.held && b.add(b.held)}
+      data-testid="cup"
+    >
+      <div
+        key={away ? 'away' : 'here'}
+        className={`vessel-wrap ${away ? `vessel-${b.stage}` : 'vessel-fresh'} ${tipping ? `vessel-tip fx-${b.fx!.id % 2}` : ''}`}
+        onPointerDown={(e) => b.brew && Object.keys(b.brew.counts).length && b.startDrag({ kind: 'cup' }, e)}
+        title={b.held ? 'カップに入れる' : 'カップをカウンターへ運ぶと出せる'}
+      >
+        <VesselArt
+          brew={away && b.servedBrew ? b.servedBrew : b.brew}
+          order={b.shelf}
+          onPiece={b.canWork && !b.held ? b.remove : undefined}
+          pieceLabel={(ing) => `${plain(b.label(ing))} を一つ取り出す`}
+        />
+      </div>
+      {b.held ? (
+        <button
+          type="button"
+          className="vessel-drop-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            b.add(b.held!);
+          }}
+        >
+          ここに入れる
+        </button>
+      ) : null}
+      <FxLayer />
+    </div>
+  );
+}
+
+/** Tool animation over the cup: knife, spoon, pour, tongs, fingers, kettle, basin … */
+function FxLayer() {
+  const b = useBench();
+  const fx = b.fx;
+  if (!fx) return null;
+  let body: ReactNode = null;
+  const piece = fx.ing ? (
+    <svg viewBox="-20 -20 40 40" className="fx-piece">
+      <PieceArt ing={fx.ing} />
+    </svg>
+  ) : null;
+  switch (fx.kind) {
+    case 'knife':
+      body = (
+        <>
+          <span className="fx-tool fx-knife" aria-hidden>
+            🔪
+          </span>
+          {piece}
+        </>
+      );
+      break;
+    case 'spoon':
+      body = (
+        <>
+          <span className="fx-tool fx-spoon" aria-hidden>
+            🥄
+          </span>
+          <span className="fx-blob" style={{ background: fx.ing ? undefined : '#fff' }} />
+        </>
+      );
+      break;
+    case 'pour':
+    case 'kettle':
+      body = <span className={`fx-stream ${fx.kind === 'kettle' ? 'fx-stream-hot' : fx.ing === 'milk' ? 'fx-stream-milk' : ''}`} />;
+      break;
+    case 'tongs':
+      body = (
+        <>
+          <span className="fx-tool fx-tongs" aria-hidden>
+            🥢
+          </span>
+          {piece}
+        </>
+      );
+      break;
+    case 'fingers':
+      body = piece ?? <span className="fx-blob" />;
+      break;
+    case 'basin':
+      body = <span className="fx-frost" aria-hidden>❄ ❄ ❄</span>;
+      break;
+    case 'hourglass':
+      body = <span className="fx-tool fx-hourglass" aria-hidden>⏳</span>;
+      break;
+    case 'pot':
+      body = <span className="fx-bubbles" aria-hidden>◦ ° ◦</span>;
+      break;
+    case 'stir':
+      body = <span className="fx-tool fx-stir" aria-hidden>🥄</span>;
+      break;
+    case 'remove':
+      body = piece ? <span className="fx-out">{piece}</span> : null;
+      break;
+    case 'tipout':
+      body = <span className="fx-splash" />;
+      break;
+  }
+  return (
+    <div key={fx.id} className={`fx fx-k-${fx.kind}`} aria-hidden>
+      {body}
+    </div>
+  );
+}
+
+/** What is in the cup, as a paper chit (the only way to read dissolved portions like honey). */
+export function ContentsSlip() {
+  const b = useBench();
+  const g = useGame();
+  const ings = b.shelf.filter((i) => (b.brew.counts[i] ?? 0) > 0);
+  if (!g.data) return null;
+  return (
+    <div className="slip-chit" aria-label="カップの中身">
+      {ings.length === 0 && !b.brew.temp && !b.brew.method ? <span className="chit-empty">（空）</span> : null}
+      {ings.map((ing) => (
+        <div key={ing} className="chit-row">
+          <IngredientIcon id={ing} size={24} />
+          <span className="chit-n">×{b.brew.counts[ing]}</span>
+          <button type="button" className="chit-minus" disabled={!b.canWork} onClick={() => b.remove(ing)} aria-label={`${plain(b.label(ing))} を一つ取り出す`}>
+            −
+          </button>
+        </div>
+      ))}
+      {b.brew.temp ? <div className="chit-row chit-mark">{b.brew.temp === 'hot' ? '♨' : '❄'}</div> : null}
+      {b.brew.method ? <div className="chit-row chit-mark">{b.brew.method === 'steep' ? '⏳' : b.brew.method === 'boil' ? '🍲' : '🥄'}</div> : null}
+    </div>
+  );
+}
+
+// ------------------------------------------------------------------------------------- tools
+
+type ToolKind = { temp: Temp } | { method: Method };
+
+export function ToolButton({ tool, className = '' }: { tool: ToolKind; className?: string }) {
+  const b = useBench();
+  const { data } = useGame();
+  if (!data) return null;
+  const isTemp = 'temp' in tool;
+  const on = isTemp ? b.brew.temp === tool.temp : b.brew.method === tool.method;
+  const wordId = isTemp ? data.content.temperatureWords[tool.temp] : data.content.methodWords[tool.method];
+  const id = isTemp ? tool.temp : tool.method;
+  const art =
+    id === 'hot' ? (
+      <KettleArt active={on} />
+    ) : id === 'cold' ? (
+      <ColdBasinArt active={on} />
+    ) : id === 'steep' ? (
+      <HourglassArt active={on} />
+    ) : id === 'boil' ? (
+      <PotArt active={on} />
+    ) : (
+      <SpoonArt active={on} />
+    );
+  return (
+    <div className={`tool tool-${id} ${on ? 'tool-on' : ''} ${className}`}>
+      <button
+        type="button"
+        className="tool-btn"
+        aria-pressed={on}
+        disabled={!b.canWork}
+        data-temp={isTemp ? tool.temp : undefined}
+        data-method={!isTemp ? tool.method : undefined}
+        aria-label={`${plain(wordMarkup(data, wordId))}${on ? '（使用中・もう一度で戻す）' : ''}`}
+        onPointerDown={(e) => b.startDrag(isTemp ? { kind: 'temp', temp: tool.temp } : { kind: 'method', method: tool.method }, e)}
+        onClick={() => (isTemp ? b.setTemp(tool.temp) : b.setMethod(tool.method))}
+      >
+        {art}
+      </button>
+      <span className="tool-tag">
+        <WordText text={wordMarkup(data, wordId)} interactive={false} />
+      </span>
+    </div>
+  );
+}
+
+export function Board() {
+  const b = useBench();
+  return (
+    <div className="board" aria-hidden>
+      <BoardArt chopping={b.fx?.kind === 'knife'} />
+    </div>
+  );
+}
+
+export function TipOut() {
+  const b = useBench();
+  const has = Object.keys(b.brew.counts).length > 0 || b.brew.temp || b.brew.method;
+  return (
+    <button type="button" className="tipout" disabled={!b.canWork || !has} onClick={() => b.empty()} aria-label="カップを空ける（やり直す）" title="カップを空ける">
+      <SlopBowlArt tipping={b.fx?.kind === 'tipout'} />
+      <span className="tool-tag tool-tag-ja">捨てる</span>
+    </button>
+  );
+}
+
+export function ServeButton({ className = '' }: { className?: string }) {
+  const b = useBench();
+  return (
+    <button type="button" className={`serve ${className}`} disabled={!b.canWork} onClick={() => b.serve()} data-testid="serve">
+      <span className="serve-plate" aria-hidden />
+      <span className="serve-label">出す</span>
+    </button>
+  );
+}
+
+// ------------------------------------------------------------------------------------- customer
+
+export function useCustomer() {
+  const g = useGame();
+  const b = useBench();
+  const { data, progress, lastServe } = g;
+  const t = progress?.today;
+  const order = progress ? currentOrder(progress) : null;
+  const customer = order && data ? data.content.customers.find((c) => c.id === order.customer) : undefined;
+  const result = t?.phase === 'reaction' ? t.results[t.results.length - 1] : null;
+  const motion: Motion | null =
+    b.stage === 'react' && result
+      ? lastServe && lastServe.evaluation
+        ? reactionMotion(lastServe.evaluation, (ing) => data?.ing.get(ing)?.tags ?? [])
+        : result.outcome === 'perfect'
+          ? 'delight'
+          : 'sigh'
+      : null;
+  let ex: Expression = 'neutral';
+  if (b.stage === 'sipping') ex = 'sip';
+  else if (b.stage === 'react' && result) ex = expressionFor(result.face, motion);
+  return { order, customer, result, motion, ex, t };
+}
+
+export function CustomerFigure() {
+  const b = useBench();
+  const { order, customer, motion, ex, t } = useCustomer();
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    b.registerDrop('counter', ref.current);
+    return () => b.registerDrop('counter', null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  if (!order || !t || t.phase === 'closed') return <div ref={ref} className="customer-fig customer-none" />;
+  const look = lookFor(customer?.id ?? order.customer, customer?.avatar ?? '🧑');
+  const over = b.drag?.carry.kind === 'cup' && b.drag.over === 'counter';
+  return (
+    <div ref={ref} className={`customer-slot ${over ? 'counter-over' : ''}`}>
+      <div key={`${t.day}:${t.index}`} className={`customer-fig ${b.leaving ? 'leaving' : 'entering'} ${motion ? `motion-${motion}` : ''} stage-${b.stage}`}>
+        <div className="customer-body">
+          <CustomerArt look={look} ex={ex} />
+        </div>
+        {b.stage === 'sipping' || b.stage === 'react' ? (
+          <div className={`held-cup held-cup-${b.stage}`} aria-hidden>
+            <VesselArt brew={b.servedBrew ?? b.brew} order={b.shelf} />
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+export function NameCard() {
+  const { order, customer, t } = useCustomer();
+  const { lang } = useGame();
+  if (!order || !t || t.phase === 'closed' || !customer) return null;
+  return (
+    <div className="name-card" lang={lang === 'zh' ? 'zh-CN' : 'en'}>
+      {customer.name}
+      {order.returning ? <span className="name-again">再来店</span> : null}
+    </div>
+  );
+}
+
+/** Speech bubble: the order (clickable words), the listen button, then the reaction. */
+export function Bubble() {
+  const g = useGame();
+  const b = useBench();
+  const { lang, settings } = g;
+  const voice = useSpeechAvailable(lang ?? 'en');
+  const { order, result, t } = useCustomer();
+  const spokenKey = useRef('');
+  // Audio-only orders are read out when the customer arrives.
+  useEffect(() => {
+    if (!order || !lang || t?.phase !== 'order' || !order.audioOnly || !voice) return;
+    const k = `${t.day}:${t.index}`;
+    if (spokenKey.current === k) return;
+    spokenKey.current = k;
+    const timer = window.setTimeout(() => speak(plain(order.text), lang, settings.speechRate), 600);
+    return () => clearTimeout(timer);
+  }, [order, lang, t?.phase, t?.day, t?.index, voice, settings.speechRate]);
+  if (!order || !t || t.phase === 'closed') return null;
+  const reacting = b.stage === 'react' && result;
+  const hideText = order.audioOnly && voice && !result;
+  return (
+    <div key={`${t.day}:${t.index}`} className={`bubble-paper ${reacting ? 'bubble-react' : ''} ${b.leaving ? 'bubble-leave' : ''}`} data-testid="bubble">
+      {reacting ? (
+        <>
+          <div className="bubble-prev">
+            <WordText text={order.text} />
+          </div>
+          <div className="bubble-line bubble-reaction" key="r">
+            <WordText text={result!.reaction} className="reaction-text" />
+            <SpeakButton text={result!.reaction} label="" className="speak-round" />
+          </div>
+        </>
+      ) : hideText ? (
+        <div className="bubble-audio">
+          <span className="sound-waves" aria-hidden>
+            <i />
+            <i />
+            <i />
+            <i />
+            <i />
+          </span>
+          <SpeakButton text={order.text} label="もう一度聞く" />
+          <span className="small muted">声だけの注文（出したあとで文字が見えます）</span>
+        </div>
+      ) : (
+        <div className="bubble-line">
+          <WordText text={order.text} className="order-text" />
+          <SpeakButton text={order.text} label="" className="speak-round" />
+        </div>
+      )}
+      {order.audioOnly && !voice && !result ? <div className="small muted">（この環境では音声が使えないため、文字で表示しています）</div> : null}
+    </div>
+  );
+}
+
+export function NextSign() {
+  const g = useGame();
+  const b = useBench();
+  const t = g.progress?.today;
+  if (!t || t.phase !== 'reaction' || b.stage !== 'react') return null;
+  return (
+    <button type="button" className="next-sign" onClick={() => b.next()} disabled={b.leaving} data-testid="next">
+      {t.index + 1 < t.queue.length ? '次のお客さんへ ›' : '今日の店じまい ›'}
+    </button>
+  );
+}
+
+/** Floating reputation / coin deltas after a reaction. */
+export function Juice() {
+  const g = useGame();
+  const b = useBench();
+  const t = g.progress?.today;
+  const r = t?.phase === 'reaction' ? t.results[t.results.length - 1] : null;
+  if (!r || b.stage !== 'react') return null;
+  const k = `${t!.day}:${t!.index}`;
+  return (
+    <>
+      <div key={`rep${k}`} className={`juice juice-rep ${r.repDelta > 0 ? 'up' : r.repDelta < 0 ? 'down' : 'flat'}`} aria-live="polite">
+        評判 {r.repDelta > 0 ? `+${r.repDelta}` : r.repDelta}
+      </div>
+      {b.coinDelta > 0 ? (
+        <div key={`coin${k}`} className="juice juice-coin" aria-hidden>
+          {Array.from({ length: Math.min(4, b.coinDelta) }, (_, i) => (
+            <span key={i} className="coin-fly" style={{ animationDelay: `${i * 0.09}s` }} />
+          ))}
+          <span className="coin-num">+{b.coinDelta}</span>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
+// ------------------------------------------------------------------------------------- wall & desk props
+
+/**
+ * While the cup is being handed over and sipped, the saved result already exists; the wall and
+ * the jar keep showing the old numbers until the customer reacts.
+ */
+function usePending() {
+  const g = useGame();
+  const b = useBenchOptional();
+  const t = g.progress?.today;
+  const pending = !!b && (b.stage === 'handing' || b.stage === 'sipping') && t?.phase === 'reaction';
+  const r = pending ? t!.results[t!.results.length - 1] : null;
+  return { pending, rep: r?.repDelta ?? 0, coins: pending ? b!.coinDelta : 0 };
+}
+
+export function Plaque() {
+  const { progress } = useGame();
+  const pend = usePending();
+  return (
+    <div className="plaque" title="店の評判">
+      <PlaqueArt rep={Math.max(0, (progress?.reputation ?? 0) - pend.rep)} />
+    </div>
+  );
+}
+
+export function Calendar() {
+  const { progress, townDay } = useGame();
+  if (!progress) return null;
+  return (
+    <div className="calendar" title={`${progress.day}日目`}>
+      <CalendarArt day={progress.day} />
+      {townDay && townDay.segments.length > 1 ? (
+        <div className="cal-plan" aria-label="今日の予定">
+          {townDay.segments.map((s, i) => {
+            const a = activityDef(s);
+            return (
+              <span key={s} className={i < townDay.seg ? 'done' : i === townDay.seg ? 'cur' : ''}>
+                {a.whenJa}
+                {a.icon}
+              </span>
+            );
+          })}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+export function CoinJar() {
+  const { progress } = useGame();
+  const pend = usePending();
+  return (
+    <div className="coin-jar" title="売上（財布）" data-testid="money">
+      <CoinJarArt amount={(progress?.town.money ?? 0) - pend.coins} />
+    </div>
+  );
+}
+
+const MINI_FACE: Record<string, string> = { perfect: 'good', minor: 'meh', fail: 'bad', bad: 'bad' };
+
+/** Order tickets on a nail: one per customer today, marked when served. */
+export function QueueTickets() {
+  const t = useGame().progress?.today;
+  const pend = usePending();
+  if (!t) return null;
+  return (
+    <div className="tickets" aria-label={`${Math.min(t.index + 1, t.queue.length)} 人目 / ${t.queue.length} 人`}>
+      {t.queue.map((_q, i) => {
+        const r = pend.pending && i === t.results.length - 1 ? undefined : t.results[i];
+        return <span key={i} className={`ticket ${i === t.index && t.phase !== 'closed' ? 'ticket-cur' : ''} ${r ? `ticket-${MINI_FACE[r.outcome]}` : ''}`} />;
+      })}
+    </div>
+  );
+}
+
+export function BookProps({ compact = false }: { compact?: boolean }) {
+  const ui = useUi();
+  const glow = ui.newPages.length > 0;
+  const prevGlow = useRef(glow);
+  useEffect(() => {
+    if (glow && !prevGlow.current) sfx('glow');
+    prevGlow.current = glow;
+  }, [glow]);
+  return (
+    <>
+      <button
+        type="button"
+        className={`desk-book ${compact ? 'compact' : ''}`}
+        onClick={() => {
+          sfx('page');
+          ui.openRecipe();
+        }}
+        aria-label="レシピ帳を開く"
+        data-testid="open-recipe"
+      >
+        <RecipeBookProp />
+        <span className="desk-tag">レシピ帳</span>
+      </button>
+      <button
+        type="button"
+        className={`desk-notebook ${glow ? 'glowing' : ''} ${compact ? 'compact' : ''}`}
+        onClick={() => {
+          sfx('page');
+          ui.openNotebook(glow ? 'verify' : undefined, glow ? { verifyPage: ui.newPages[0] } : undefined);
+        }}
+        aria-label={glow ? '手帳を開く（新しく検証できるページがある）' : '手帳を開く'}
+        data-testid="open-notebook"
+      >
+        <NotebookProp glow={glow} />
+        <span className="desk-tag">手帳</span>
+      </button>
+    </>
+  );
+}
+
+// ------------------------------------------------------------------------------------- paper on the counter
+
+export function DayNotice() {
+  const t = useGame().progress?.today;
+  const [hidden, setHidden] = useState<string>('');
+  if (!t || !t.notes.length || t.index !== 0 || t.phase !== 'order' || hidden === `${t.day}`) return null;
+  return (
+    <div className="letter" role="dialog" aria-label="今日の知らせ">
+      <div className="letter-title">今日の知らせ</div>
+      {t.notes.map((n) => (
+        <p key={n}>{n}</p>
+      ))}
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={() => {
+          sfx('page');
+          setHidden(`${t.day}`);
+        }}
+      >
+        わかった
+      </button>
+    </div>
+  );
+}
+
+export function DayEnd() {
+  const g = useGame();
+  const { data, progress } = g;
+  if (!data || !progress?.today || progress.today.phase !== 'closed') return null;
+  const t = progress.today;
+  const rep = t.results.reduce((s, r) => s + r.repDelta, 0);
+  const returning = progress.returns.length;
+  const stock = g.townDay ? (Object.entries(g.townDay.stock) as [IngredientId, number][]) : [];
+  const nextSeg = hasNextSegment(progress) && g.townDay ? activityDef(g.townDay.segments[g.townDay.seg + 1]) : null;
+  return (
+    <div className="ledger" role="dialog" aria-label="店じまい">
+      <h2 className="ledger-title">{t.day}日目 の店じまい</h2>
+      <div className="ledger-faces">
+        {t.results.map((r, i) => {
+          const c = data.content.customers.find((x) => x.id === r.customer);
+          return (
+            <span key={i} className={`ledger-face out-${r.outcome}`} title={c?.name}>
+              <CustomerArt look={lookFor(c?.id ?? r.customer, c?.avatar ?? '🧑')} ex={r.face} />
+            </span>
+          );
+        })}
+      </div>
+      <p className="ledger-line">
+        今日の評判の変化 <strong className={rep > 0 ? 'up' : rep < 0 ? 'down' : ''}>{rep >= 0 ? `+${rep}` : rep}</strong>（現在 {progress.reputation}）
+      </p>
+      {stock.length ? (
+        <p className="ledger-line small">
+          今日の在庫の残り：
+          {stock.map(([ing, n]) => (
+            <span key={ing} className="ledger-stock">
+              <IngredientIcon id={ing} size={20} /> {n}
+            </span>
+          ))}
+        </p>
+      ) : null}
+      {returning ? <p className="ledger-line muted">満足しなかったお客さんが {returning} 人。また来るかもしれない。</p> : null}
+      <p className="ledger-line muted small">出会った言葉は手帳に記録されています。</p>
+      {nextSeg ? (
+        <button type="button" className="btn btn-primary btn-big" data-testid="next-segment" onClick={() => g.nextSegment()}>
+          {nextSeg.icon} {nextSeg.nameJa}へ出かける
+        </button>
+      ) : (
+        <button
+          type="button"
+          className="btn btn-primary btn-big"
+          data-testid="next-day"
+          onClick={() => {
+            sfx('page');
+            g.closeDay();
+          }}
+        >
+          次の日へ
+        </button>
+      )}
+    </div>
+  );
+}
+
+// ------------------------------------------------------------------------------------- chrome hooks
+
+export function CornerHooks({ onSettings }: { onSettings: () => void }) {
+  const g = useGame();
+  const muted = g.settings.muted;
+  return (
+    <div className="corner-hooks">
+      <button
+        type="button"
+        className="hook-btn"
+        onClick={() => g.updateSettings({ muted: !muted })}
+        aria-label={muted ? '音を出す' : '音を消す'}
+        aria-pressed={muted}
+        data-testid="mute"
+        title={muted ? '音を出す' : '音を消す'}
+      >
+        {muted ? '🔇' : '🔔'}
+      </button>
+      <button type="button" className="hook-btn" onClick={onSettings} aria-label="設定" data-testid="settings" title="設定・メニュー">
+        ⚙
+      </button>
+    </div>
+  );
+}
+
+export function ContainerFor({ ing }: { ing: IngredientId }) {
+  return <ContainerArt ing={ing} />;
+}

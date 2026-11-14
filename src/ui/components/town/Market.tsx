@@ -6,7 +6,7 @@ import { plain } from '../../../core/gamedata';
 import type { MarketDay, Offer, TalkLine } from '../../../core/townTypes';
 import { speak, useSpeechAvailable } from '../../speech';
 import { useGame } from '../../useGame';
-import { FACE_EMOJI } from '../CustomerPanel';
+import { FACE_EMOJI } from '../faces';
 import { IngredientIcon } from '../Ingredient';
 import { SpeakButton, WordText } from '../WordText';
 

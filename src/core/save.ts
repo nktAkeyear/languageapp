@@ -11,6 +11,10 @@ export interface Settings {
   showPinyin: boolean;
   layout: LayoutPref;
   speechRate: number;
+  /** Sound effects (synthesised, see ui/sound.ts): master volume 0..1, mute, ambient loop. */
+  volume: number;
+  muted: boolean;
+  ambient: boolean;
 }
 
 export interface ServedResult {
@@ -63,7 +67,8 @@ export interface SaveFile {
   progress: Partial<Record<Lang, LangProgress>>;
 }
 
-export const DEFAULT_SETTINGS: Settings = { showPinyin: true, layout: 'auto', speechRate: 0.9 };
+// Fields added later get their default through normalise() (older saves need no migration).
+export const DEFAULT_SETTINGS: Settings = { showPinyin: true, layout: 'auto', speechRate: 0.9, volume: 0.7, muted: false, ambient: false };
 
 export function emptySave(): SaveFile {
   return { version: SAVE_VERSION, currentLang: null, settings: { ...DEFAULT_SETTINGS }, progress: {} };

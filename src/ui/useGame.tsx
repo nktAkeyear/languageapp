@@ -21,6 +21,7 @@ import { ensureWord } from '../core/srs';
 import type { AbsentAction, ActivityKind, PersonId, TownDayState } from '../core/townTypes';
 import type { Brew, IngredientId, Lang, Method, Temp } from '../core/types';
 import { submitVerification } from '../core/verification';
+import { applyBrewAction, emptyBrew, portionLimit, type BrewAction } from './brewing';
 
 const dataCache = new Map<Lang, GameData>();
 export function gameData(lang: Lang): GameData {
@@ -32,7 +33,6 @@ export function gameData(lang: Lang): GameData {
   return d;
 }
 
-const emptyBrew = (): Brew => ({ counts: {}, temp: null, method: null });
 const rng = () => makeRng(Math.floor(Math.random() * 2 ** 32));
 
 export interface GameApi {
@@ -50,6 +50,10 @@ export interface GameApi {
   chooseLanguage(lang: Lang): void;
   leaveToTitle(): void;
   addIngredient(ing: IngredientId, delta: number): void;
+  /** One workbench gesture (add / take back / temperature / method / tip out), see brewing.ts. */
+  applyBrew(a: BrewAction): void;
+  /** Portion limit of an ingredient in one cup (maxCount, further limited by today's stock). */
+  portionLimit(ing: IngredientId): number;
   setTemp(t: Temp | null): void;
   setMethod(m: Method | null): void;
   clearBrew(): void;
@@ -136,6 +140,8 @@ export function GameProvider({ children }: { children: ReactNode }) {
         const p = l && s.progress[l];
         if (l && p) fn(p, gameData(l));
       });
+    const limit = (ing: IngredientId) =>
+      portionLimit(SHARED.ingredients.find((i) => i.id === ing)?.maxCount ?? 5, progress ? stockOf(progress, ing) : undefined);
     return {
       save,
       settings: save.settings,
@@ -162,15 +168,9 @@ export function GameProvider({ children }: { children: ReactNode }) {
         });
         setSelectedWord(null);
       },
-      addIngredient: (ing, delta) =>
-        setBrew((b) => {
-          const left = progress ? stockOf(progress, ing) : undefined;
-          const max = Math.min(SHARED.ingredients.find((i) => i.id === ing)?.maxCount ?? 5, left ?? Infinity);
-          const n = Math.max(0, Math.min(max, (b.counts[ing] ?? 0) + delta));
-          const counts = { ...b.counts, [ing]: n };
-          if (!n) delete counts[ing];
-          return { ...b, counts };
-        }),
+      addIngredient: (ing, delta) => setBrew((b) => applyBrewAction(b, { kind: delta >= 0 ? 'add' : 'remove', ing, n: Math.abs(delta) }, limit)),
+      applyBrew: (a) => setBrew((b) => applyBrewAction(b, a, limit)),
+      portionLimit: limit,
       setTemp: (t) => setBrew((b) => ({ ...b, temp: t })),
       setMethod: (m) => setBrew((b) => ({ ...b, method: m })),
       clearBrew: () => setBrew(emptyBrew()),

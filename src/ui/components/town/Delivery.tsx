@@ -4,7 +4,7 @@ import { townOf } from '../../../activities/town/text';
 import { wordMarkup } from '../../../core/gamedata';
 import type { DeliveryDay, MapCell, Period } from '../../../core/townTypes';
 import { useGame } from '../../useGame';
-import { FACE_EMOJI } from '../CustomerPanel';
+import { FACE_EMOJI } from '../faces';
 import { SpeakButton, WordText } from '../WordText';
 import { COLOUR_CSS } from './Market';
 

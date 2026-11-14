@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
+import { ArtDefs } from './art/defs';
+import { BookLayer } from './book/BookLayer';
 import { TitleScreen } from './components/TitleScreen';
 import { ErrorBoundary } from './ErrorBoundary';
 import { DesktopLayout } from './desktop/DesktopLayout';
+import { MobileCtx } from './layout';
 import { MobileLayout } from './mobile/MobileLayout';
+import { armAudioOnGesture, setAudioSettings } from './sound';
+import { UiProvider } from './uiState';
 import { GameProvider, useGame } from './useGame';
 
 const MOBILE_QUERY = '(max-width: 820px)';
@@ -22,12 +27,28 @@ function Shell() {
   const g = useGame();
   const narrow = useIsNarrow();
   const mobile = g.settings.layout === 'mobile' || (g.settings.layout === 'auto' && narrow);
+  const { volume, muted, ambient } = g.settings;
   useEffect(() => {
     document.documentElement.dataset.layout = mobile ? 'mobile' : 'desktop';
   }, [mobile]);
-  if (!g.lang || !g.progress) return <TitleScreen />;
-  // Keyed by language so per-panel UI state (open page, tab) resets on switching.
-  return mobile ? <MobileLayout key={g.lang} /> : <DesktopLayout key={g.lang} />;
+  useEffect(() => armAudioOnGesture(), []);
+  useEffect(() => setAudioSettings({ volume, muted, ambient }), [volume, muted, ambient]);
+  return (
+    <MobileCtx.Provider value={mobile}>
+      <UiProvider>
+        <ArtDefs />
+        {!g.lang || !g.progress ? (
+          <TitleScreen />
+        ) : (
+          <>
+            {/* Keyed by language so per-scene UI state resets on switching. */}
+            {mobile ? <MobileLayout key={g.lang} /> : <DesktopLayout key={g.lang} />}
+            <BookLayer />
+          </>
+        )}
+      </UiProvider>
+    </MobileCtx.Provider>
+  );
 }
 
 export function App() {
