@@ -34,7 +34,7 @@ opens (day 4) a day is exactly the tea house day.
 Around this core: a **story** (regulars, the predecessor's letters, chapters, the nightly ledger), the
 **shop renovation** (a carpenter's catalogue bought with the shop's coins: more customers, stock kept
 overnight, a daily delivery, notebook aids, décor) and **difficulty settings** (start level by HSK / 英検
-with 既習扱い words and a stage jump, target, pace, an adaptive controller, assists, the 学習の記録 page;
+with assumed-known (未確認・知っているはず) words and a stage jump, target, pace, an adaptive controller, assists, the 学習の記録 page;
 en: the yardstick 英検 / TOEIC and a TOEIC target). All are optional save fields / layers.
 
 ## Commands
@@ -85,9 +85,11 @@ src/
     srs.ts              hidden spaced repetition (per-word state)
     verification.ts     検証ページ logic
     levels.ts           現在地 (coverage per CEFR / 英検 / HSK level)
-    difficulty.ts       レベル設定: start level (seeding 既習扱い, fast-forward), target, pace, adaptive controller, assists
+    difficulty.ts       レベル設定: start level (seeding assumed-known words, fast-forward), target, pace, adaptive controller, assists
     metrics.ts          学習の記録: per-day indicators, rolling windows
     placement.ts        腕だめし: placement items (orders + labelled cups) and the suggestion
+    wordbook.ts         the player's own meanings (自分の推測 + メモ) and the 単語帳 (stars, hand-written words,
+                        self-review)
     save.ts             versioned save, migration, export/import
     validate.ts         content validator (used by script + tests)
     validateTown.ts     validator part for market / delivery content
@@ -159,8 +161,10 @@ src/
                         (現在地 by 英検 / TOEIC, the per-job record), bits.tsx, jobs.css + scene.css
     difficulty/         レベル設定 sheet, 腕だめし, 学習の記録 page + SVG charts, notebook bits (既 mark, peek,
                         目標 panel), scene assists (mistake marks, retry slip, slower speech)
-    components/         settings, title, word text (gloss on hover/tap; story names; glossed documents; word-by-word
-                        reveal), SaveText.tsx (save as text: copy / paste)
+    components/         settings, title, word text (every word opens its card; the player's guess under the word;
+                        gloss on hover for confirmed words; story names; glossed documents; word-by-word reveal),
+                        WordCard.tsx (単語カード), SaveText.tsx (save as text: copy / paste)
+    book/Wordbook.tsx   the notebook's 単語帳 ribbon (list, hand-add, self-review)
     desktop/  mobile/   layouts per device: which scene the current segment shows
 scripts/                validate-content.ts, simulate.ts (+ storyLog.ts, simDifficulty.ts: the settings simulator,
                         simJobs.ts: the jobs simulator), englishLists.ts (the Vite plugin bundling data/english)
@@ -231,14 +235,15 @@ compositions of the same pieces), and moving between them is a short passage of 
   chooses the house, 全体を見る zooms back out.
 - **Books**: the recipe book and the notebook lie on the counter (and on the desk / table in the
   town) and open as books (two pages on desktop, one on the phone) with page turns. Notebook ribbons:
-  単語 (handwritten list + a word's page: audio, memo, sentences seen), 検証 (verification pages),
+  単語 (handwritten list + a word's page: audio, ☆, own guess + memo, sentences seen), 単語帳 (the player's word book), 検証 (verification pages),
   現在地 (level guide + 目標), 記録 (学習の記録, see Difficulty). With the catalogue's red ribbon the word list
   opens on 復習 (words due today); with the magnifying glass a word's page marks it in its sentences and
   lists the words that keep appearing with it. A verification page lays out meaning cards; word slips are dragged (or tap-tap)
   onto them and the stamp checks the whole page: right → seals and cards flip to word + meaning;
   wrong → only "something is off". When a page newly opens, the notebook glows and a bookmark sticks
-  out. Confirmed words are highlighted everywhere and show their gloss on hover (or a first tap); a
-  tap on any word — order, vendor, slip, story, document — opens the notebook at it.
+  out. Confirmed words are highlighted everywhere and show their gloss on hover; a tap on any word —
+  order, vendor, slip, story, document, job paper, notebook sentence — opens its **word card** (see
+  「Own meanings and the 単語帳」 below).
 - **Characters** are alive: they blink on their own rhythm, breathe, move their mouth while a line
   appears or is read out by speech synthesis, and gesture (explaining, open hands, a hand at the chin,
   hands on the heart, waving). Customers say their order and their reaction; vendors and recipients too.
@@ -270,6 +275,37 @@ compositions of the same pieces), and moving between them is a short passage of 
   fronts) are pre-rasterised once into images (`art/Raster.tsx`), so animations on top (waves, steam,
   blinking, the lamp) never re-run the filters; animated figures carry no filters (shadows are plain
   gradients) and the night lamp is a plain alpha layer, not a blend mode.
+
+## Own meanings and the 単語帳 (the player's notes)
+
+Decipherment needs a pencil: the player writes down what they think a word means and checks it later.
+
+- **単語カード** (`src/ui/components/WordCard.tsx`): one tap / click on any word in the game opens a small card
+  next to the word (desktop) or as a bottom sheet (phone): the word, 聞く, 「☆ 気になる」 (star → 単語帳), the
+  player's **own guess** (自分の推測, one line) and a free **memo**, the sentences it was met in (each with
+  聞く; a word in them opens that word's card), how often it was met and in which jobs, 「手帳で開く」. On desktop
+  the guess field has keyboard focus at once (on a phone the keyboard would cover the card, so it is one tap
+  away). Edits are saved on blur, on Enter, when the card closes (✕, Escape — which closes only the card, not
+  the book under it — or a tap outside) and when another word's card replaces it. Words written on objects
+  (jar labels, envelopes, crates, price tags, bins …) keep their object's own tap; a **long press** (touch) or
+  a **right click** opens their card instead.
+- **Where the guess shows**: the notebook's word list (「推 …」), the word page, the 単語帳, the 検証ページ slips
+  (a pencil note under the word) and — subtly — in sentences: ⚙ 設定 「自分の推測（意味）を文の中の言葉に」
+  言葉の下に小さく書く (default; small ruby text under an unconfirmed word) / 触れたときだけ (hover title) /
+  出さない. Documents (glossed paper) show the guess in pencil where a confirmed word shows its meaning.
+- **Compare**: once a word is confirmed on its 検証ページ, the sealed card, the word page and the word card show
+  the official meaning with 「自分の推測：「…」」 next to it.
+- **単語帳** (notebook ribbon, `src/ui/book/Wordbook.tsx`, logic `src/core/wordbook.ts`): the starred words and
+  words written in by hand, each with the player's meaning, memo, state (未確認 / 知っているはず / 推測あり / 確 /
+  自分で追加), the jobs where it was met and how often; search (word, own meaning, memo), filters (state,
+  job), sorting (newest, oldest, ABC, ふりかえりが必要な順), ✕ to remove (a linked word keeps its notes in the
+  notebook). 「＋ 自分で書き入れる」 adds any word — also one the game does not have; text that matches a lexicon
+  word (its text or a form, case-insensitive) is **linked** to that word instead of being added twice (notes on a
+  linked word not met yet stay on the entry, so the word does not appear in 出会った言葉 or count as known to
+  the planner before it is met). 「ふりかえる」 is a self-review round: the word (and 聞く) → 「自分の意味を見る」
+  shows the player's own meaning and memo (the official meaning only for a word already confirmed) →
+  覚えた / まだ (kept per entry; the round puts まだ and the longest unreviewed first). It never touches the hidden
+  SRS.
 
 ## Jobs (仕事): many lives in one town
 
@@ -923,13 +959,20 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
 
 - **現在の実力の目安 (start)**: ゼロから / zh HSK1–3 (中検・CEFR shown) / en 英検5・4級 (CEFR・TOEIC shown); higher
   levels are listed as 未対応 because the content does not reach them. Choosing a level seeds every lexicon word
-  tagged at or below it as **既習扱い** (`WordState.seeded`: confirmed, seen 6 / correct 2 added, first review
-  spread over 3–14 days so they come back now and then), seals 検証ページ whose words are all known, marks earlier
-  curriculum orders made only of known words as done (orders with unknown words — shelf names, higher-level
-  words — still come), and fast-forwards the shop to the level's stage (`START_STAGE`: zh 6 / 11 / 16, en 7 / 13 —
-  calibrated on the curriculum's structures, since level tags are spread over all stages), with its reputation,
-  a stage-clock offset (`stageDay` = day + offset gates stages and town unlocks), market / delivery experience and
-  money. The notebook marks seeded words 「既」; each can be taken back (学び直す) and is then not re-seeded.
+  tagged at or below it as **assumed known — 未確認（知っているはず）** (`WordState.seeded`, seen 6 / correct 2
+  added, first review spread over 3–14 days so they come back now and then). Assumed words count as known for
+  the game's pacing (`isKnown` in `core/srs.ts`: task selection, curriculum skipping, 現在地, job rank thresholds)
+  but are **never confirmed by the level**: no meaning is shown anywhere for them (scene glosses, documents,
+  notebook, word card), the notebook lists them as 「知っているはず」 with an empty own-meaning field, and they are
+  confirmed like any word — on their 検証ページ, which opens once the page's words have been met in play
+  (`playSeen`: the level's 6 seeded encounters do not count) — nothing is sealed by the start level. Starting
+  higher marks earlier curriculum orders made only of known words as done (orders with unknown words — shelf
+  names, higher-level words — still come), and fast-forwards the shop to the level's stage (`START_STAGE`: zh 6 /
+  11 / 16, en 7 / 13 — calibrated on the curriculum's structures, since level tags are spread over all stages),
+  with its reputation, a stage-clock offset (`stageDay` = day + offset gates stages and town unlocks), market /
+  delivery experience and money. Each assumed word can be taken back (学び直す) and is then not re-seeded. The
+  only way to see an unearned meaning is the opt-in 手助け 「意味をのぞく」 (off by default at every level; costs
+  reputation).
   Changing the level later is exact: down takes back only what seeding added (a word met in play since keeps
   its own encounters), reopens sealed pages / skipped orders; up seeds more; the shop never goes back.
 - **Story when starting above zero**: nothing is skipped — the story starts with the first letter and plays
@@ -976,8 +1019,8 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
   zero / level 1 / level 2 starts buy 8–12 entries; nothing is affordable at once and the catalogue never
   stays empty.
 - **Starting level and catalogue words**: the catalogue's words carry HSK / 英検 tags like any word, so a level
-  start seeds the low-level ones (cat, box, new, 猫, 新 …) as 既習扱い; its 検証ページ are sealed only when all
-  their words are known. Seeded words not met in play since are left out of the red ribbon's 復習 list.
+  start seeds the low-level ones (cat, box, new, 猫, 新 …) as assumed known (知っているはず); like every 検証ページ,
+  the catalogue's pages are sealed only by the player. Seeded words not met in play since are left out of the red ribbon's 復習 list.
 - **Money and reputation at a mid-day level change** are not counted as the day's takings / reputation in the
   ledger (the day's start values move with them), like confirmed words.
 - **Indicators**: catalogue orders, catalogue reading and décor remarks are not orders; the retry assist
@@ -987,6 +1030,13 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
 
 ## Learning model notes
 
+- **Saves (v5, own meanings + 単語帳)**: `WordState.guess` (the player's own meaning) next to `memo`;
+  `LangProgress.wordbook` (`{ entries, seq }`: starred / hand-written entries, self-review verdicts); setting
+  `guessDisplay`. The v4 → v5 migration: words confirmed only by the start level become assumed (未確認・知っている
+  はず; `confirmed` false, `seeded` kept), 検証ページ the level had sealed reopen, and at load `repairAssumed` re-confirms
+  assumed words whose page the player sealed in play; the old single memo (「自分のメモ（推測）」) becomes the guess;
+  an empty 単語帳. Everything is in the JSON export / import (file and text). A running day saved without its
+  queue (old v1 saves) is planned again at load instead of crashing.
 - **Saves after the jobs' second pass**: no version bump — the new fields are optional (`TaskInstance.handover`,
   answers' `seq` / `postage`, `TownDayState.fromBack`; a shift saved mid-way with older task instances plays on).
   The job lexicon kept every id and 検証ページ id (the registry reproduces the earlier lexicon exactly), so
@@ -1014,5 +1064,11 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
   of due/weak words; there is no flashcard screen.
 - **Mastered** (for 現在地) = meaning confirmed in a 検証ページ AND (used correctly ≥2 times or seen ≥6 times).
 - **現在地** is a vocabulary / reading / listening guide only; it does not measure speaking or writing.
-- Speech uses the browser's `speechSynthesis` (en-US / zh-CN). Without a matching voice the
-  listen buttons are disabled and audio-only orders are shown as text.
+- Speech uses the browser's `speechSynthesis` (en-US / zh-CN). Without a matching voice (or without
+  `speechSynthesis` at all) the listen buttons are disabled, audio-only orders are shown as text, and ⚙ 設定 says
+  so in a small notice. Sound effects: `window.__minatoAudio()` (diagnostics) reports the AudioContext state
+  ('none' before the first gesture, 'running' after) and plays any effect by name.
+- **Reaction lines fit the request** (`reactionFits`, `src/jobs/engine.ts`): job reactions are shared by every
+  task of a kind, so lines that would not fit are passed over when others exist — "Both of us are happy" when
+  nobody else was mentioned, "My son will love this" without a child in the request, "I can't eat it" / "no …
+  for me" when the request said someone else can't eat it (the kitchen has a third-person-safe line for that).

@@ -217,8 +217,10 @@
 }
 .hub-card-x {
   position: absolute;
-  right: 10px;
-  top: 6px;
+  right: 4px;
+  top: 2px;
+  min-width: 44px;
+  min-height: 44px;
   border: none;
   background: none;
   font-size: 28px;

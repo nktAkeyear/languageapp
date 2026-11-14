@@ -147,6 +147,8 @@ export function VerifyPage({ page }: { page: VerificationPage }) {
       >
         <span className="slip-text">{w.text}</span>
         {zh && pinyinShown(settings.showPinyin, progress, w.id) && w.pinyin ? <small className="slip-pinyin">{w.pinyin}</small> : null}
+        {/* The player's own guess, as a pencil note on the slip (their notes help with the puzzle). */}
+        {progress.words[w.id]?.guess ? <small className="slip-guess">{progress.words[w.id]!.guess}</small> : null}
       </button>
       <SpeakButton text={w.text} label="" className="speak-round speak-small" />
     </span>
@@ -190,6 +192,7 @@ export function VerifyPage({ page }: { page: VerificationPage }) {
                     {zh && c.pinyin ? <small>{c.pinyin}</small> : null}
                   </div>
                   <div className="vcard-gloss confirmed">{c.gloss}</div>
+                  {progress.words[c.id]?.guess ? <div className="vcard-own">自分の推測：「{progress.words[c.id]!.guess}」</div> : <div className="vcard-own muted">（推測は書いていなかった）</div>}
                   <span className="seal" aria-label="確定">
                     確
                   </span>

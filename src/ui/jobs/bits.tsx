@@ -38,7 +38,7 @@ export function RankProgress({ job }: { job: JobDef }) {
         </span>
       </div>
       <div className="rank-prog-row">
-        <span>確定した言葉</span>
+        <span>{progress.difficulty?.start ? '確定・知っているはずの言葉' : '確定した言葉'}</span>
         <span className="rank-bar">
           <span style={{ width: `${w * 100}%` }} />
         </span>

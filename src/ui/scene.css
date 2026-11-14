@@ -2131,10 +2131,10 @@
 .m-drawer-handle {
   position: absolute;
   left: 50%;
-  top: -18px;
+  top: -26px;
   transform: translateX(-50%);
   width: 84px;
-  height: 26px;
+  height: 40px;
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -2142,7 +2142,7 @@
 }
 .m-drawer-handle span {
   display: block;
-  margin: 8px auto 0;
+  margin: 16px auto 0;
   width: 64px;
   height: 12px;
   border-radius: 6px;

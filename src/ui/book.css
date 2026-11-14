@@ -185,6 +185,15 @@
 .ribbon:nth-child(3) {
   background: #8a6a1c;
 }
+.book-notebook .ribbon[data-tab='book'] {
+  background: #4d6a38;
+}
+.book-notebook .ribbon[data-tab='verify'] {
+  background: #2c4a6a;
+}
+.book-notebook .ribbon[data-tab='level'] {
+  background: #8a6a1c;
+}
 .ribbon.on {
   transform: translateY(6px);
   padding-bottom: 24px;
@@ -238,11 +247,17 @@
   left: 8px;
   right: 60px;
 }
+.book-mobile .ribbons {
+  gap: 4px;
+}
 .book-mobile .ribbon {
   flex: 1;
   min-width: 0;
-  padding: 10px 6px 18px;
+  padding: 10px 2px 18px;
   min-height: 48px;
+  font-size: 14px;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
 }
 .book-mobile .ribbon.on {
   transform: translateY(0);

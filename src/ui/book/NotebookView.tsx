@@ -502,7 +502,7 @@ function LevelLeft() {
         <div className="hand small">{r.cefrStatement}</div>
       </div>
       <div className="hand small muted">
-        身についた語 {r.masteredTotal}（確定済み＋何度か使えた語）／出会った語 {r.encounteredTotal}
+        身についた語 {r.masteredTotal}（確かめた語と、始めたレベルで知っているはずの語のうち、何度も出会ったか使えた語）／出会った語 {r.encounteredTotal}
       </div>
       <TargetPanel />
       {data.lang === 'en' ? (
