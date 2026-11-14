@@ -29,6 +29,7 @@ import {
 import { useSky } from './ShopScene';
 import { useBench } from './workbench';
 import { useGame } from '../useGame';
+import { DocBoxProp, Keepsakes } from '../story/Documents';
 
 export function MobileShop({ onSettings }: { onSettings: () => void }) {
   const b = useBench();
@@ -68,6 +69,9 @@ export function MobileShop({ onSettings }: { onSettings: () => void }) {
         <CounterSurface />
         <div className="m-books">
           <BookProps compact />
+          <div className="m-docbox">
+            <DocBoxProp />
+          </div>
         </div>
         <div className="m-coinjar">
           <CoinJar />
@@ -117,6 +121,11 @@ export function MobileShop({ onSettings }: { onSettings: () => void }) {
                     <ShelfJar ing={ing} />
                   </div>
                 ))}
+                {i === 0 ? (
+                  <div className="m-keepsakes" role="listitem">
+                    <Keepsakes />
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>

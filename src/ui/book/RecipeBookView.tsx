@@ -1,3 +1,4 @@
+import { TeapotEmblem } from '../art/props';
 /**
  * The predecessor's recipe book (target language only). Left page: table of contents with
  * index tabs (kind / unread); right page: the open page. Arrows in the page corners turn pages.
@@ -109,7 +110,7 @@ export function RecipeBookView() {
   ) : (
     <div className="rb-cover-page">
       <div className="rb-emblem" aria-hidden>
-        🫖
+        <TeapotEmblem />
       </div>
       <p className="hand">先代が残したレシピ帳。</p>
       <p className="hand muted">目次からページを開いて読んでみよう。言葉に触れると手帳に記録できる。</p>

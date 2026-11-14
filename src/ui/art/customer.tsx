@@ -13,8 +13,12 @@ import type { Motion } from '../brewing';
 export type Expression = Face | 'sip' | 'grimace' | 'pucker' | 'shiver' | 'hot' | 'cough' | 'listen';
 
 type HairStyle = 'short' | 'bun' | 'long' | 'pigtails' | 'bald' | 'curly' | 'side';
-type Hat = 'none' | 'captain' | 'chef' | 'cap' | 'bowler' | 'grad' | 'scarf' | 'helmet';
+type Hat = 'none' | 'captain' | 'chef' | 'cap' | 'bowler' | 'grad' | 'scarf' | 'helmet' | 'beanie' | 'bandana' | 'straw';
 type Collar = 'coat' | 'apron' | 'shawl' | 'labcoat' | 'suit' | 'tee' | 'vest';
+type Extra = 'brooch' | 'kerchief' | 'freckles' | 'chain' | 'pencil' | 'earrings' | 'flower';
+
+/** Arm pose: hands resting on the counter, holding a cup at the chest, or raising it to sip. */
+export type Pose = 'rest' | 'hold' | 'chest' | 'sip' | 'wave';
 
 export interface Look {
   skin: string;
@@ -29,6 +33,11 @@ export interface Look {
   collar: Collar;
   age: 'child' | 'adult' | 'old';
   broad: boolean;
+  hatColour?: string;
+  /** Small distinguishing things (a rose brooch, a neck kerchief, freckles …). */
+  extras?: Extra[];
+  /** Colour of the kerchief / brooch / flower. */
+  accent?: string;
 }
 
 const SKINS = ['#f3d2b3', '#e8b98f', '#d79f74', '#b97d55', '#8d5a3a', '#f6dcc4'];
@@ -68,7 +77,45 @@ function stripModifiers(e: string): string {
   return e.replace(/[\u{1F3FB}-\u{1F3FF}]/gu, '').replace(/‍[♀♂]️?/g, '');
 }
 
+/**
+ * Fixed looks of the regulars (the story's characters) and of recurring town people, so they are
+ * recognisable every time — in the shop, in conversations, at a door, in the ledger. Keyed by
+ * customer id; story-only delivery recipients and the zh / en ids of the same person map onto
+ * one look through LOOK_ALIAS.
+ */
+const FIXED: Record<string, Look> = {
+  // Rose (李奶奶): Ada's oldest friend. White bun, round glasses, a rose shawl with a rose brooch.
+  c_grandma: { skin: '#f3d2b3', hair: '#ece8e0', hairStyle: 'bun', hat: 'none', beard: false, moustache: false, glasses: true, coat: '#b0485e', coat2: '#7a2c40', collar: 'shawl', age: 'old', broad: false, extras: ['brooch'], accent: '#e0475e' },
+  // Joe (大刘): big dockworker. Knit cap, dark beard, orange work vest, red neck kerchief.
+  c_docker: { skin: '#8d5a3a', hair: '#24160e', hairStyle: 'short', hat: 'beanie', hatColour: '#2f5a7a', beard: true, moustache: true, glasses: false, coat: '#b8682a', coat2: '#7c4318', collar: 'vest', age: 'adult', broad: true, extras: ['kerchief'], accent: '#c8402a' },
+  // Tom (小明): the boy running errands. Red cap, ginger hair, freckles, green tee.
+  c_boy: { skin: '#f6dcc4', hair: '#b0642a', hairStyle: 'short', hat: 'cap', hatColour: '#c23a2a', beard: false, moustache: false, glasses: false, coat: '#3e7a5a', coat2: '#285440', collar: 'tee', age: 'child', broad: false, extras: ['freckles'] },
+  // Nora (陈阿姨): the ship's cook. Blue headscarf, long black hair, apron, gold earrings.
+  c_cook: { skin: '#d79f74', hair: '#1c1c22', hairStyle: 'long', hat: 'bandana', hatColour: '#2c6a8a', beard: false, moustache: false, glasses: false, coat: '#f1ece2', coat2: '#cfc6b4', collar: 'apron', age: 'adult', broad: false, extras: ['earrings'] },
+  // Grant (周老板): the pushy merchant. Bowler, moustache, wine-red suit, gold watch chain.
+  c_merchant: { skin: '#e8b98f', hair: '#4a2c18', hairStyle: 'short', hat: 'bowler', beard: false, moustache: true, glasses: false, coat: '#5a2e2a', coat2: '#3a1c1a', collar: 'suit', age: 'adult', broad: true, extras: ['chain'] },
+  // Hale (林老师): the schoolteacher. Greying side parting, glasses, tweed suit, pencil behind the ear.
+  c_scholar: { skin: '#f3d2b3', hair: '#7a7068', hairStyle: 'side', hat: 'none', beard: false, moustache: false, glasses: true, coat: '#6b5a42', coat2: '#4a3d2c', collar: 'suit', age: 'adult', broad: false, extras: ['pencil'] },
+  // Anna (孙太太): Tom's mother. Tom's ginger hair, freckles, a warm shawl.
+  c_mom: { skin: '#f6dcc4', hair: '#b0642a', hairStyle: 'long', hat: 'none', beard: false, moustache: false, glasses: false, coat: '#c28a6a', coat2: '#8e5c42', collar: 'shawl', age: 'adult', broad: false, extras: ['freckles', 'flower'], accent: '#f2d04a' },
+  // Old Mrs. Hill (孙奶奶): Tom's grandmother. White curls, lavender shawl, a woollen kerchief.
+  hill: { skin: '#f6dcc4', hair: '#e6e2da', hairStyle: 'curly', hat: 'none', beard: false, moustache: false, glasses: false, coat: '#6a5a8a', coat2: '#463a60', collar: 'shawl', age: 'old', broad: false, extras: ['kerchief'], accent: '#d9c7a8' },
+  // Market vendors, one per stall (keyed by stall id).
+  v_red: { skin: '#d79f74', hair: '#3a2416', hairStyle: 'short', hat: 'straw', beard: true, moustache: true, glasses: false, coat: '#7a3e32', coat2: '#55281f', collar: 'apron', age: 'adult', broad: true, extras: [] },
+  v_green: { skin: '#e8b98f', hair: '#e2ded6', hairStyle: 'bald', hat: 'none', beard: false, moustache: true, glasses: true, coat: '#4d6a45', coat2: '#33492d', collar: 'vest', age: 'old', broad: false, extras: [] },
+  v_yellow: { skin: '#f3d2b3', hair: '#6b4223', hairStyle: 'bun', hat: 'none', beard: false, moustache: false, glasses: false, coat: '#c99a3c', coat2: '#8a6420', collar: 'apron', age: 'adult', broad: false, extras: ['kerchief'], accent: '#b8452f' },
+  v_blue: { skin: '#b97d55', hair: '#1c1c22', hairStyle: 'curly', hat: 'cap', hatColour: '#3d6c9e', beard: false, moustache: false, glasses: false, coat: '#3e5a7a', coat2: '#2a3e57', collar: 'coat', age: 'adult', broad: false, extras: [] },
+};
+const LOOK_ALIAS: Record<string, string> = { s_rose: 'c_grandma', s_joe: 'c_docker', s_nora: 'c_cook', r_hill: 'hill', r_sun: 'hill' };
+
+/** Is this one of the fixed, recognisable people? */
+export function hasFixedLook(id: string): boolean {
+  return !!FIXED[LOOK_ALIAS[id] ?? id];
+}
+
 export function lookFor(id: string, avatar: string): Look {
+  const fixed = FIXED[LOOK_ALIAS[id] ?? id];
+  if (fixed) return fixed;
   const h = hashString(id);
   const pick = <T,>(arr: T[], salt: number) => arr[(h >>> salt) % arr.length];
   const [coat, coat2] = pick(COATS, 3);
@@ -311,9 +358,10 @@ function HatArt({ look }: { look: Look }) {
     case 'cap':
       return (
         <g>
-          <path d="M66 84 Q66 44 120 44 Q172 44 174 84 Z" fill="#b8382a" />
-          <path d="M120 84 Q170 78 196 90 Q170 96 120 92 Z" fill="#8a2a1e" />
-          <circle cx="120" cy="46" r="4" fill="#8a2a1e" />
+          <path d="M66 84 Q66 44 120 44 Q172 44 174 84 Z" fill={look.hatColour ?? '#b8382a'} />
+          <path d="M120 84 Q170 78 196 90 Q170 96 120 92 Z" fill="#00000055" />
+          <path d="M120 84 Q170 78 196 90 Q170 96 120 92 Z" fill={look.hatColour ?? '#b8382a'} opacity="0.75" />
+          <circle cx="120" cy="46" r="4" fill="#00000055" />
         </g>
       );
     case 'bowler':
@@ -331,6 +379,36 @@ function HatArt({ look }: { look: Look }) {
           <path d="M60 52 L120 34 L180 52 L120 70 Z" fill="#23283a" stroke="#0e1018" strokeWidth="2" />
           <path d="M120 52 L170 60 L172 90" stroke="#d8a838" strokeWidth="3" fill="none" />
           <circle cx="172" cy="92" r="4" fill="#d8a838" />
+        </g>
+      );
+    case 'beanie':
+      return (
+        <g>
+          <path d="M64 92 Q60 34 120 32 Q180 34 176 92 Z" fill={look.hatColour ?? '#2f5a7a'} stroke="#00000033" strokeWidth="2" />
+          <rect x="60" y="80" width="120" height="18" rx="7" fill={look.hatColour ?? '#2f5a7a'} stroke="#00000044" strokeWidth="2" />
+          {[76, 92, 108, 124, 140, 156].map((x) => (
+            <path key={x} d={`M${x} 82 v14`} stroke="#00000030" strokeWidth="3" />
+          ))}
+          <path d="M84 56 Q120 44 156 56" stroke="#ffffff30" strokeWidth="3" fill="none" />
+        </g>
+      );
+    case 'bandana':
+      return (
+        <g>
+          <path d="M62 96 Q58 40 120 38 Q182 40 178 96 Q150 72 120 74 Q90 72 62 96 Z" fill={look.hatColour ?? '#2c6a8a'} stroke="#00000040" strokeWidth="2" />
+          <path d="M172 82 Q192 92 196 110 Q184 104 176 100 Q186 116 182 126 Q172 110 168 94 Z" fill={look.hatColour ?? '#2c6a8a'} stroke="#00000040" strokeWidth="1.5" />
+          {[[92, 56], [120, 50], [148, 56], [104, 72], [136, 70]].map(([x, y]) => (
+            <circle key={`${x}-${y}`} cx={x} cy={y} r="3.2" fill="#f4ecd8" opacity="0.85" />
+          ))}
+        </g>
+      );
+    case 'straw':
+      return (
+        <g>
+          <ellipse cx="120" cy="80" rx="86" ry="14" fill="#e3c27a" stroke="#9a7a3a" strokeWidth="2" />
+          <path d="M78 80 Q78 38 120 36 Q162 38 162 80 Z" fill="#ecd08c" stroke="#9a7a3a" strokeWidth="2" />
+          <path d="M79 70 h82" stroke="#7a3e32" strokeWidth="7" />
+          <path d="M84 52 Q120 44 156 52" stroke="#c8a458" strokeWidth="2" fill="none" />
         </g>
       );
     case 'helmet':
@@ -403,15 +481,92 @@ function Body({ look }: { look: Look }) {
   );
 }
 
+/** Things worn at the neck / chest (drawn over the body, under the arms). */
+function NeckExtras({ look }: { look: Look }) {
+  const ex = look.extras ?? [];
+  const a = look.accent ?? '#c8402a';
+  return (
+    <g>
+      {ex.includes('kerchief') ? (
+        <g>
+          <path d="M92 196 Q120 222 148 196 L144 212 Q120 236 96 212 Z" fill={a} stroke="#00000040" strokeWidth="2" />
+          <path d="M112 220 L104 252 L120 236 L136 252 L128 220 Z" fill={a} stroke="#00000040" strokeWidth="2" />
+        </g>
+      ) : null}
+      {ex.includes('brooch') ? (
+        <g transform="translate(146 238)">
+          {[0, 72, 144, 216, 288].map((r) => (
+            <ellipse key={r} cx="0" cy="-6" rx="6" ry="8" fill={a} stroke="#7a1a2a" strokeWidth="1" transform={`rotate(${r})`} />
+          ))}
+          <circle r="4" fill="#9a1c34" />
+          <path d="M-4 8 q-8 8 -14 6 M4 8 q8 8 14 6" stroke="#4d7a3a" strokeWidth="3" fill="none" />
+        </g>
+      ) : null}
+      {ex.includes('chain') ? (
+        <g>
+          <path d="M100 300 Q116 318 136 304" stroke="url(#g-brass)" strokeWidth="3" fill="none" strokeDasharray="4 2" />
+          <circle cx="138" cy="304" r="6" fill="url(#g-brass)" stroke="#5a3c12" />
+        </g>
+      ) : null}
+    </g>
+  );
+}
+
+const ARM_POSES: Record<Pose, { l: [number, number][]; r: [number, number][] }> = {
+  // shoulder, elbow, hand (adult proportions; scaled horizontally by build)
+  rest: { l: [[56, 236], [44, 300], [84, 352]], r: [[184, 236], [196, 300], [156, 352]] },
+  hold: { l: [[56, 236], [44, 330], [80, 296]], r: [[184, 236], [196, 330], [160, 296]] },
+  chest: { l: [[56, 236], [38, 290], [80, 206]], r: [[184, 236], [202, 290], [160, 206]] },
+  sip: { l: [[56, 236], [46, 330], [86, 226]], r: [[184, 236], [196, 318], [156, 200]] },
+  wave: { l: [[56, 236], [44, 300], [84, 352]], r: [[184, 236], [214, 200], [206, 132]] },
+};
+
+/** Two arms in the coat's colour with hands (in front of the body, behind the held cup). */
+function Arms({ look, pose }: { look: Look; pose: Pose }) {
+  const w = look.broad ? 1.12 : look.age === 'child' ? 0.82 : 1;
+  const sx = (x: number) => 120 + (x - 120) * w;
+  const P = ARM_POSES[pose];
+  const path = (pts: [number, number][]) => pts.map(([x, y], i) => `${i ? 'L' : 'M'}${sx(x)} ${y}`).join(' ');
+  const thick = look.broad ? 36 : look.age === 'child' ? 26 : 30;
+  const hand = (pts: [number, number][], key: string) => {
+    const [x, y] = pts[2];
+    return (
+      <g key={key} transform={`translate(${sx(x)} ${y})`}>
+        <ellipse rx={thick * 0.42} ry={thick * 0.38} fill={look.skin} stroke="#00000038" strokeWidth="2" />
+        <path d={`M${-thick * 0.2} ${-thick * 0.2} q${thick * 0.12} ${-thick * 0.2} ${thick * 0.3} ${-thick * 0.08}`} stroke="#00000030" strokeWidth="2" fill="none" />
+      </g>
+    );
+  };
+  const arm = (pts: [number, number][], key: string) => (
+    <g key={key}>
+      <path d={path(pts)} stroke={look.coat2} strokeWidth={thick + 5} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={path(pts)} stroke={look.coat} strokeWidth={thick} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      {/* cuff */}
+      <circle cx={sx(pts[2][0]) + (pts[1][0] - pts[2][0]) * 0.18 * w} cy={pts[2][1] + (pts[1][1] - pts[2][1]) * 0.18} r={thick * 0.5} fill={look.coat2} />
+    </g>
+  );
+  return (
+    <g className={`cust-arms pose-${pose}`}>
+      {arm(P.l, 'la')}
+      {arm(P.r, 'ra')}
+      {hand(P.l, 'lh')}
+      {hand(P.r, 'rh')}
+    </g>
+  );
+}
+
 /** The character, 240×420 viewBox. Head top ~y 30, shoulders ~y 200. */
-export function CustomerArt({ look, ex }: { look: Look; ex: Expression }) {
+export function CustomerArt({ look, ex, pose = 'rest' }: { look: Look; ex: Expression; pose?: Pose }) {
   const old = look.age === 'old';
+  const extras = look.extras ?? [];
   const headScale = look.age === 'child' ? 1.06 : 1;
   const blush = ex === 'delighted' || ex === 'happy' || ex === 'hot';
   return (
     <svg viewBox="0 0 240 420" className="customer-art" aria-hidden>
       <g className="cust-body">
         <Body look={look} />
+        <NeckExtras look={look} />
+        <Arms look={look} pose={pose} />
       </g>
       <g className="cust-head" transform={headScale !== 1 ? `translate(120 120) scale(${headScale}) translate(-120 -120)` : undefined}>
         <HairBack look={look} />
@@ -432,6 +587,19 @@ export function CustomerArt({ look, ex }: { look: Look; ex: Expression }) {
             <ellipse cx="152" cy="134" rx="11" ry="6" />
           </g>
         ) : null}
+        {extras.includes('freckles') ? (
+          <g fill="#b8743a" opacity="0.55">
+            {[[84, 128], [92, 132], [88, 138], [148, 128], [156, 132], [152, 138]].map(([x, y]) => (
+              <circle key={`${x}-${y}`} cx={x} cy={y} r="1.8" />
+            ))}
+          </g>
+        ) : null}
+        {extras.includes('earrings') ? (
+          <g fill="url(#g-brass)" stroke="#5a3c12" strokeWidth="1">
+            <circle cx="64" cy="136" r="5" />
+            <circle cx="176" cy="136" r="5" />
+          </g>
+        ) : null}
         {/* nose */}
         <path d="M120 116 Q114 130 122 132" stroke="#00000044" strokeWidth="3" fill="none" strokeLinecap="round" />
         <Eyes ex={ex} old={old} />
@@ -448,6 +616,20 @@ export function CustomerArt({ look, ex }: { look: Look; ex: Expression }) {
         ) : null}
         <HairFront look={look} />
         <HatArt look={look} />
+        {extras.includes('pencil') ? (
+          <g transform="rotate(-58 176 92)">
+            <rect x="150" y="88" width="52" height="7" fill="#e3b23c" stroke="#7a5a1c" strokeWidth="1" />
+            <path d="M202 88 L210 91.5 L202 95 Z" fill="#f2d9b0" stroke="#7a5a1c" strokeWidth="1" />
+          </g>
+        ) : null}
+        {extras.includes('flower') ? (
+          <g transform="translate(160 66)">
+            {[0, 72, 144, 216, 288].map((r) => (
+              <ellipse key={r} cx="0" cy="-6" rx="5" ry="7" fill={look.accent ?? '#f2d04a'} stroke="#00000030" transform={`rotate(${r})`} />
+            ))}
+            <circle r="3.5" fill="#c8742a" />
+          </g>
+        ) : null}
         {/* reaction marks */}
         {ex === 'grimace' || ex === 'cough' ? <path d="M182 70 l10 -10 m-4 14 l14 -4 m-14 12 l12 6" stroke="#6b3a8a" strokeWidth="3" strokeLinecap="round" /> : null}
         {ex === 'hot' ? <path d="M182 84 q6 10 0 16 q-6 -6 0 -16" fill="#7ac0f0" /> : null}

@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import { plain } from '../../core/gamedata';
+import { storyTokens, type StoryToken } from '../../story/text';
 import { speak, useSpeechAvailable } from '../speech';
 import { useGame } from '../useGame';
 
@@ -29,25 +30,49 @@ if (typeof window !== 'undefined') window.addEventListener('pointerdown', (e) =>
 
 let seq = 0;
 
+/** Short form of an official gloss for under-the-word display ("ひとつの（…）" → "ひとつの"). */
+export function shortGloss(g: string | undefined): string {
+  return (g ?? '').split(/[（(・／]/)[0];
+}
+
+export interface WordTextProps {
+  text: string;
+  className?: string;
+  /** false = words are not buttons (labels on objects); confirmed words still show their gloss. */
+  interactive?: boolean;
+  /** Story text: proper names (Ada, 梅姨 …) are shown as names, never as words. */
+  story?: boolean;
+  /** Documents: confirmed words show their gloss underneath; barely met words look faint. */
+  glossed?: boolean;
+  /** Words to mark as newly readable (confirmed since the paper was last read). */
+  fresh?: ReadonlySet<string>;
+}
+
 /**
  * Renders target-language text with every lexicon word clickable (and pinyin ruby for zh).
- * Confirmed words (検証ページで確定) are drawn in "inked" style and show their official gloss on
- * hover, or on a first tap on touch screens.
+ * A tap opens the notebook at the word. Confirmed words (検証ページで確定) are drawn in "inked"
+ * style and show their official gloss on hover, or on a first tap on touch screens.
  */
-export function WordText({ text, className, interactive = true }: { text: string; className?: string; interactive?: boolean }) {
+export function WordText({ text, className, interactive = true, story = false, glossed = false, fresh }: WordTextProps) {
   const { data, progress, settings, openWord } = useGame();
   const peek = usePeek();
   const [inst] = useState(() => `wt${++seq}`);
   if (!data) return null;
-  const tokens = data.tokens(text);
+  const tokens: StoryToken[] = story ? storyTokens(data, text) : data.tokens(text);
   const zh = data.lang === 'zh';
   const glued = (i: number) => {
     const n = tokens[i + 1];
-    return !!n && !n.id && /^[\p{P}]+$/u.test(n.text);
+    return !!n && !n.id && !n.name && /^[\p{P}]+$/u.test(n.text);
   };
   return (
-    <span className={`tl ${className ?? ''}`} lang={zh ? 'zh-CN' : 'en'}>
+    <span className={`tl ${glossed ? 'tl-glossed' : ''} ${className ?? ''}`} lang={zh ? 'zh-CN' : 'en'}>
       {tokens.map((t, i) => {
+        if (t.name)
+          return (
+            <span key={i} className="w-name">
+              {t.text}
+            </span>
+          );
         if (!t.id) return i > 0 && tokens[i - 1].id && glued(i - 1) ? null : <Fragment key={i}>{t.text}</Fragment>;
         const word = renderWord(t, i);
         return glued(i) ? (
@@ -62,14 +87,14 @@ export function WordText({ text, className, interactive = true }: { text: string
     </span>
   );
 
-  function renderWord(t: (typeof tokens)[number], i: number) {
+  function renderWord(t: StoryToken, i: number) {
     if (!data || !t.id) return null;
     const e = data.lex.byId.get(t.id);
     const st = progress?.words[t.id];
     const confirmed = !!st?.confirmed;
     const title = confirmed ? undefined : st?.memo ? `メモ: ${st.memo}` : undefined;
     const key = `${inst}:${i}`;
-    const inner =
+    const surface =
       zh && settings.showPinyin && e?.pinyin ? (
         <ruby>
           {t.text}
@@ -78,10 +103,22 @@ export function WordText({ text, className, interactive = true }: { text: string
       ) : (
         t.text
       );
-    const cls = `w ${confirmed ? 'w-ok' : ''} ${st?.memo ? 'w-memo' : ''} ${peek === key ? 'w-peek' : ''}`;
+    const isFresh = !!fresh?.has(t.id) && confirmed;
+    const faint = glossed && !confirmed && (!st || st.seen < 3);
+    const cls = `w ${confirmed ? 'w-ok' : ''} ${st?.memo ? 'w-memo' : ''} ${peek === key ? 'w-peek' : ''} ${isFresh ? 'w-fresh' : ''} ${faint ? 'w-faint' : ''}`;
+    // In glossed text the gloss is written under the word, so no hover tooltip.
+    const gloss = confirmed && !glossed ? e?.gloss : undefined;
+    const inner = glossed ? (
+      <>
+        <span className="w-surface">{surface}</span>
+        {confirmed ? <span className="w-gloss">{shortGloss(e?.gloss)}</span> : null}
+      </>
+    ) : (
+      surface
+    );
     if (!interactive)
       return (
-        <span key={i} className={cls} data-gloss={confirmed ? e?.gloss : undefined}>
+        <span key={i} className={cls} data-gloss={gloss}>
           {inner}
         </span>
       );
@@ -90,11 +127,11 @@ export function WordText({ text, className, interactive = true }: { text: string
         key={i}
         type="button"
         className={cls}
-        data-gloss={confirmed ? e?.gloss : undefined}
+        data-gloss={gloss}
         title={title}
         onClick={(ev) => {
           ev.stopPropagation();
-          if (confirmed && lastPointer !== 'mouse' && peekKey !== key) {
+          if (gloss && lastPointer !== 'mouse' && peekKey !== key) {
             setPeek(key);
             return;
           }
@@ -124,7 +161,18 @@ export function SpeakButton({ text, label = '聞く', big = false, className = '
         speak(plain(text), lang, settings.speechRate);
       }}
     >
-      🔊{label ? <span className="speak-label">{label}</span> : null}
+      <SpeakerGlyph />
+      {label ? <span className="speak-label">{label}</span> : null}
     </button>
+  );
+}
+
+/** A small drawn speaker (instead of the 🔊 emoji). */
+export function SpeakerGlyph() {
+  return (
+    <svg viewBox="0 0 24 24" className="speaker-glyph" aria-hidden>
+      <path d="M4 9 h4 l5 -4 v14 l-5 -4 h-4 Z" fill="currentColor" />
+      <path d="M16 8.5 q2.5 3.5 0 7 M18.5 6 q4.5 6 0 12" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+    </svg>
   );
 }

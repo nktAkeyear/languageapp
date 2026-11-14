@@ -195,6 +195,11 @@ export interface DocRecord {
   firstPct: number;
   lastRead?: number;
   reads: number;
+  /**
+   * The document's words that were 確定 when it was last put away (optional; saves before this
+   * field simply have nothing to compare against). Re-reading highlights words confirmed since.
+   */
+  known?: string[];
 }
 
 export interface Ledger {

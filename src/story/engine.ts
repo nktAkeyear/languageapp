@@ -91,10 +91,33 @@ export function docReadability(data: GameData, p: LangProgress, docId: string): 
   return readability(data, (id) => !!p.words[id]?.confirmed, docLines(data, p, docId));
 }
 
+/** Distinct words of a document (visible lines) whose meaning is 確定. */
+export function docConfirmedWords(data: GameData, p: LangProgress, docId: string): string[] {
+  const ids = new Set<string>();
+  for (const text of docLines(data, p, docId)) for (const id of storyWordIds(data, text)) if (p.words[id]?.confirmed) ids.add(id);
+  return [...ids];
+}
+
+/** Words of a document confirmed since it was last put away (empty when that is unknown). */
+export function docFreshWords(data: GameData, p: LangProgress, docId: string): string[] {
+  const rec = storyState(p).docs[docId];
+  // Saves from before `known`: a paper found with nothing readable had no confirmed words then.
+  const base = rec?.known ?? (rec && rec.firstPct === 0 ? [] : null);
+  if (!base) return [];
+  const known = new Set(base);
+  return docConfirmedWords(data, p, docId).filter((id) => !known.has(id));
+}
+
+/** The player put the document away: remember which of its words were readable. */
+export function storyDocPutAway(data: GameData, p: LangProgress, docId: string): void {
+  const rec = storyState(p).docs[docId];
+  if (rec) rec.known = docConfirmedWords(data, p, docId);
+}
+
 export function giveDoc(data: GameData, p: LangProgress, docId: string): void {
   const st = storyState(p);
   if (st.docs[docId]) return;
-  st.docs[docId] = { day: p.day, firstPct: docReadability(data, p, docId), reads: 0 };
+  st.docs[docId] = { day: p.day, firstPct: docReadability(data, p, docId), reads: 0, known: docConfirmedWords(data, p, docId) };
   st.today?.docs.push(docId);
   st.cards.push({ kind: 'doc', doc: docId });
 }

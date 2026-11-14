@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react';
 import { ArtDefs } from './art/defs';
 import { BookLayer } from './book/BookLayer';
+import { Overlay } from './components/Overlay';
+import { SettingsPanel } from './components/Settings';
 import { TitleScreen } from './components/TitleScreen';
 import { ErrorBoundary } from './ErrorBoundary';
 import { DesktopLayout } from './desktop/DesktopLayout';
 import { MobileCtx } from './layout';
 import { MobileLayout } from './mobile/MobileLayout';
 import { armAudioOnGesture, setAudioSettings } from './sound';
+import { DayTransition } from './scene/Transition';
+import { StoryStage } from './story/StoryStage';
+import { StoryUiProvider } from './story/StoryUi';
 import { UiProvider } from './uiState';
 import { GameProvider, useGame } from './useGame';
 
@@ -26,6 +31,9 @@ function useIsNarrow(): boolean {
 function Shell() {
   const g = useGame();
   const narrow = useIsNarrow();
+  // Settings live above the layouts: importing a save (or switching language) remounts the
+  // layout, and the sheet must stay open to show the result.
+  const [settings, setSettings] = useState(false);
   const mobile = g.settings.layout === 'mobile' || (g.settings.layout === 'auto' && narrow);
   const { volume, muted, ambient } = g.settings;
   useEffect(() => {
@@ -36,16 +44,25 @@ function Shell() {
   return (
     <MobileCtx.Provider value={mobile}>
       <UiProvider>
-        <ArtDefs />
-        {!g.lang || !g.progress ? (
-          <TitleScreen />
-        ) : (
-          <>
-            {/* Keyed by language so per-scene UI state resets on switching. */}
-            {mobile ? <MobileLayout key={g.lang} /> : <DesktopLayout key={g.lang} />}
-            <BookLayer />
-          </>
-        )}
+        <StoryUiProvider>
+          <ArtDefs />
+          {!g.lang || !g.progress ? (
+            <TitleScreen />
+          ) : (
+            <>
+              {/* Keyed by language so per-scene UI state resets on switching. */}
+              {mobile ? <MobileLayout key={g.lang} onSettings={() => setSettings(true)} /> : <DesktopLayout key={g.lang} onSettings={() => setSettings(true)} />}
+              <StoryStage key={`story-${g.lang}`} />
+              <BookLayer />
+              <DayTransition />
+            </>
+          )}
+          {settings ? (
+            <Overlay variant={mobile ? 'sheet' : 'modal'} onClose={() => setSettings(false)}>
+              <SettingsPanel onClose={() => setSettings(false)} />
+            </Overlay>
+          ) : null}
+        </StoryUiProvider>
       </UiProvider>
     </MobileCtx.Provider>
   );

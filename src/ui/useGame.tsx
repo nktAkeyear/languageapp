@@ -6,6 +6,7 @@ import { nextCustomer, viewPage, type ServeOutcome } from '../activities/shop/en
 import { CONTENT, SHARED } from '../content';
 import { buildGameData, type GameData } from '../core/gamedata';
 import { makeRng } from '../core/rng';
+import type { ServedResult } from '../core/save';
 import {
   exportSave,
   importSave,
@@ -21,6 +22,7 @@ import { ensureWord } from '../core/srs';
 import type { AbsentAction, ActivityKind, PersonId, TownDayState } from '../core/townTypes';
 import type { Brew, IngredientId, Lang, Method, Temp } from '../core/types';
 import { submitVerification } from '../core/verification';
+import { storySync } from '../story/engine';
 import { applyBrewAction, emptyBrew, portionLimit, type BrewAction } from './brewing';
 
 const dataCache = new Map<Lang, GameData>();
@@ -35,7 +37,17 @@ export function gameData(lang: Lang): GameData {
 
 const rng = () => makeRng(Math.floor(Math.random() * 2 ** 32));
 
+/** What the shop saw today, kept (in memory only) for the night's ledger after the day is closed. */
+export interface DaySnapshot {
+  day: number;
+  results: ServedResult[];
+  stock: [IngredientId, number][];
+  returning: number;
+}
+
 export interface GameApi {
+  /** The day that was just closed (for the ledger's faces / stock lines); null after a reload. */
+  lastDay: DaySnapshot | null;
   save: SaveFile;
   settings: Settings;
   lang: Lang | null;
@@ -116,6 +128,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
   const [brew, setBrew] = useState<Brew>(emptyBrew);
   const [lastServe, setLastServe] = useState<ServeOutcome | null>(null);
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
+  const [lastDay, setLastDay] = useState<DaySnapshot | null>(null);
   const saveRef = useRef(save);
   saveRef.current = save;
   // Persist the day planned during initial load (initialisers must stay side-effect free).
@@ -145,6 +158,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
     const limit = (ing: IngredientId) =>
       portionLimit(SHARED.ingredients.find((i) => i.id === ing)?.maxCount ?? 5, progress ? stockOf(progress, ing) : undefined);
     return {
+      lastDay,
       save,
       settings: save.settings,
       lang,
@@ -189,6 +203,13 @@ export function GameProvider({ children }: { children: ReactNode }) {
         setLastServe(null);
       },
       closeDay: () => {
+        if (progress?.today)
+          setLastDay({
+            day: progress.day,
+            results: progress.today.results,
+            stock: progress.townDay ? (Object.entries(progress.townDay.stock) as [IngredientId, number][]) : [],
+            returning: progress.returns.length,
+          });
         withProgress((p, d) => {
           endTownDay(p, d);
           if (!p.townDay) startTownDay(d, p, rng());
@@ -270,10 +291,14 @@ export function GameProvider({ children }: { children: ReactNode }) {
         chooseHour: (h) => withProgress((p) => delivery.chooseHour(p, h)),
         depart: () => withProgress((p) => void delivery.depart(p)),
         knock: (n) => withProgress((p) => delivery.knock(p, n)),
-        handOver: (to) => withProgress((p, d) => delivery.handOver(d, p, to, rng())),
+        handOver: (to) =>
+          withProgress((p, d) => {
+            delivery.handOver(d, p, to, rng());
+            storySync(d, p); // a regular's delivery: their own reaction line and scene
+          }),
       },
     };
-  }, [save, lang, data, progress, brew, lastServe, selectedWord, mutate]);
+  }, [save, lang, data, progress, brew, lastServe, selectedWord, lastDay, mutate]);
 
   return <Ctx.Provider value={api}>{children}</Ctx.Provider>;
 }

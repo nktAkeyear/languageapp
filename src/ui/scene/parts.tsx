@@ -15,12 +15,13 @@ import { ContainerArt, PieceArt } from '../art/ingredients';
 import { CalendarArt, CoinJarArt, NotebookProp, PlaqueArt, RecipeBookProp } from '../art/props';
 import { BoardArt, ColdBasinArt, HandToolArt, HourglassArt, KettleArt, PotArt, SlopBowlArt, SpoonArt } from '../art/tools';
 import { VesselArt } from '../art/vessel';
-import { IngredientIcon } from '../components/Ingredient';
 import { SpeakButton, WordText } from '../components/WordText';
 import { sfx } from '../sound';
 import { speak, useSpeechAvailable } from '../speech';
 import { useGame } from '../useGame';
 import { useUi } from '../uiState';
+import { useStoryHold } from '../story/StoryUi';
+import { useMobile } from '../layout';
 import { useBench, useBenchOptional } from './workbench';
 
 // ------------------------------------------------------------------------------------- shelf
@@ -172,10 +173,20 @@ function FxLayer() {
       body = piece ?? <span className="fx-blob" />;
       break;
     case 'basin':
-      body = <span className="fx-frost" aria-hidden>❄ ❄ ❄</span>;
+      body = (
+        <span className="fx-frost" aria-hidden>
+          <Snowflake />
+          <Snowflake />
+          <Snowflake />
+        </span>
+      );
       break;
     case 'hourglass':
-      body = <span className="fx-tool fx-hourglass" aria-hidden>⏳</span>;
+      body = (
+        <span className="fx-tool fx-hourglass" aria-hidden>
+          <HourglassArt active />
+        </span>
+      );
       break;
     case 'pot':
       body = <span className="fx-bubbles" aria-hidden>◦ ° ◦</span>;
@@ -201,6 +212,14 @@ function FxLayer() {
   );
 }
 
+function Snowflake() {
+  return (
+    <svg viewBox="-10 -10 20 20" className="snowflake">
+      <path d="M0 -9 V9 M-7.8 -4.5 L7.8 4.5 M-7.8 4.5 L7.8 -4.5" stroke="#eaf6ff" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 /** What is in the cup, as a paper chit (the only way to read dissolved portions like honey). */
 export function ContentsSlip() {
   const b = useBench();
@@ -212,15 +231,23 @@ export function ContentsSlip() {
       {ings.length === 0 && !b.brew.temp && !b.brew.method ? <span className="chit-empty">（空）</span> : null}
       {ings.map((ing) => (
         <div key={ing} className="chit-row">
-          <IngredientIcon id={ing} size={24} />
+          <svg viewBox="-20 -20 40 40" className="chit-piece" aria-hidden>
+            <PieceArt ing={ing} />
+          </svg>
           <span className="chit-n">×{b.brew.counts[ing]}</span>
           <button type="button" className="chit-minus" disabled={!b.canWork} onClick={() => b.remove(ing)} aria-label={`${plain(b.label(ing))} を一つ取り出す`}>
             −
           </button>
         </div>
       ))}
-      {b.brew.temp ? <div className="chit-row chit-mark">{b.brew.temp === 'hot' ? '♨' : '❄'}</div> : null}
-      {b.brew.method ? <div className="chit-row chit-mark">{b.brew.method === 'steep' ? '⏳' : b.brew.method === 'boil' ? '🍲' : '🥄'}</div> : null}
+      {b.brew.temp ? (
+        <div className="chit-row chit-mark" title={b.brew.temp === 'hot' ? '熱い' : '冷たい'}>
+          {b.brew.temp === 'hot' ? <KettleArt active={false} /> : <ColdBasinArt active={false} />}
+        </div>
+      ) : null}
+      {b.brew.method ? (
+        <div className="chit-row chit-mark">{b.brew.method === 'steep' ? <HourglassArt active={false} /> : b.brew.method === 'boil' ? <PotArt active={false} /> : <SpoonArt active={false} />}</div>
+      ) : null}
     </div>
   );
 }
@@ -327,6 +354,7 @@ export function useCustomer() {
 
 export function CustomerFigure() {
   const b = useBench();
+  const mobile = useMobile();
   const { order, customer, motion, ex, t } = useCustomer();
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -341,7 +369,7 @@ export function CustomerFigure() {
     <div ref={ref} className={`customer-slot ${over ? 'counter-over' : ''}`}>
       <div key={`${t.day}:${t.index}`} className={`customer-fig ${b.leaving ? 'leaving' : 'entering'} ${motion ? `motion-${motion}` : ''} stage-${b.stage}`}>
         <div className="customer-body">
-          <CustomerArt look={look} ex={ex} />
+          <CustomerArt look={look} ex={ex} pose={b.stage === 'sipping' ? 'sip' : b.stage === 'react' ? (mobile ? 'chest' : 'hold') : 'rest'} />
         </div>
         {b.stage === 'sipping' || b.stage === 'react' ? (
           <div className={`held-cup held-cup-${b.stage}`} aria-hidden>
@@ -430,8 +458,15 @@ export function Bubble() {
 export function NextSign() {
   const g = useGame();
   const b = useBench();
+  const hold = useStoryHold();
   const t = g.progress?.today;
   if (!t || t.phase !== 'reaction' || b.stage !== 'react') return null;
+  if (hold.held)
+    return (
+      <button type="button" className="next-sign next-sign-story" onClick={hold.release} disabled={b.leaving} data-testid="story-more">
+        話のつづきを聞く ›
+      </button>
+    );
   return (
     <button type="button" className="next-sign" onClick={() => b.next()} disabled={b.leaving} data-testid="next">
       {t.index + 1 < t.queue.length ? '次のお客さんへ ›' : '今日の店じまい ›'}
@@ -501,8 +536,7 @@ export function Calendar() {
             const a = activityDef(s);
             return (
               <span key={s} className={i < townDay.seg ? 'done' : i === townDay.seg ? 'cur' : ''}>
-                {a.whenJa}
-                {a.icon}
+                {a.whenJa}・{a.nameJa}
               </span>
             );
           })}
@@ -605,18 +639,41 @@ export function DayNotice() {
   );
 }
 
+/**
+ * The shop has closed for the day. With a delivery still to do, a short note of the day's
+ * customers and the way out; otherwise the closing sign — the day's accounts are written in the
+ * ledger at night (src/ui/story/NightLedger.tsx).
+ */
 export function DayEnd() {
   const g = useGame();
   const { data, progress } = g;
   if (!data || !progress?.today || progress.today.phase !== 'closed') return null;
   const t = progress.today;
-  const rep = t.results.reduce((s, r) => s + r.repDelta, 0);
-  const returning = progress.returns.length;
-  const stock = g.townDay ? (Object.entries(g.townDay.stock) as [IngredientId, number][]) : [];
   const nextSeg = hasNextSegment(progress) && g.townDay ? activityDef(g.townDay.segments[g.townDay.seg + 1]) : null;
+  if (!nextSeg)
+    return (
+      <div className="closing" role="dialog" aria-label="店じまい">
+        <div className="closing-sign" aria-hidden>
+          <span>本日</span>
+          <span>閉店</span>
+        </div>
+        <p className="closing-line hand">最後のお客さんが帰っていった。</p>
+        <button
+          type="button"
+          className="cv-btn cv-next closing-btn"
+          data-testid="next-day"
+          onClick={() => {
+            sfx('bell');
+            g.closeDay();
+          }}
+        >
+          店じまいして帳簿をつける
+        </button>
+      </div>
+    );
   return (
     <div className="ledger" role="dialog" aria-label="店じまい">
-      <h2 className="ledger-title">{t.day}日目 の店じまい</h2>
+      <h2 className="ledger-title">{t.day}日目、店を閉めた</h2>
       <div className="ledger-faces">
         {t.results.map((r, i) => {
           const c = data.content.customers.find((x) => x.id === r.customer);
@@ -627,38 +684,10 @@ export function DayEnd() {
           );
         })}
       </div>
-      <p className="ledger-line">
-        今日の評判の変化 <strong className={rep > 0 ? 'up' : rep < 0 ? 'down' : ''}>{rep >= 0 ? `+${rep}` : rep}</strong>（現在 {progress.reputation}）
-      </p>
-      {stock.length ? (
-        <p className="ledger-line small">
-          今日の在庫の残り：
-          {stock.map(([ing, n]) => (
-            <span key={ing} className="ledger-stock">
-              <IngredientIcon id={ing} size={20} /> {n}
-            </span>
-          ))}
-        </p>
-      ) : null}
-      {returning ? <p className="ledger-line muted">満足しなかったお客さんが {returning} 人。また来るかもしれない。</p> : null}
-      <p className="ledger-line muted small">出会った言葉は手帳に記録されています。</p>
-      {nextSeg ? (
-        <button type="button" className="btn btn-primary btn-big" data-testid="next-segment" onClick={() => g.nextSegment()}>
-          {nextSeg.icon} {nextSeg.nameJa}へ出かける
-        </button>
-      ) : (
-        <button
-          type="button"
-          className="btn btn-primary btn-big"
-          data-testid="next-day"
-          onClick={() => {
-            sfx('page');
-            g.closeDay();
-          }}
-        >
-          次の日へ
-        </button>
-      )}
+      <p className="ledger-line hand">夕方は、配達の包みがひとつ待っている。</p>
+      <button type="button" className="cv-btn cv-next" data-testid="next-segment" onClick={() => g.nextSegment()}>
+        {nextSeg.nameJa}へ出かける
+      </button>
     </div>
   );
 }
@@ -679,10 +708,20 @@ export function CornerHooks({ onSettings }: { onSettings: () => void }) {
         data-testid="mute"
         title={muted ? '音を出す' : '音を消す'}
       >
-        {muted ? '🔇' : '🔔'}
+        <svg viewBox="0 0 24 24" className="hook-glyph" aria-hidden>
+          <path d="M6 16 V11 a6 6 0 0 1 12 0 V16 l2 2 H4 Z" fill="currentColor" />
+          <circle cx="12" cy="20" r="2" fill="currentColor" />
+          {muted ? <path d="M3 3 L21 21" stroke="#7a1a10" strokeWidth="2.6" strokeLinecap="round" /> : null}
+        </svg>
       </button>
       <button type="button" className="hook-btn" onClick={onSettings} aria-label="設定" data-testid="settings" title="設定・メニュー">
-        ⚙
+        <svg viewBox="0 0 24 24" className="hook-glyph" aria-hidden>
+          <path
+            d="M12 8.5 a3.5 3.5 0 1 0 0.01 0 Z M10.4 2 h3.2 l0.5 2.6 a7.6 7.6 0 0 1 2 1.1 l2.5 -0.9 1.6 2.8 -2 1.7 a7.6 7.6 0 0 1 0 2.4 l2 1.7 -1.6 2.8 -2.5 -0.9 a7.6 7.6 0 0 1 -2 1.1 L13.6 22 h-3.2 l-0.5 -2.6 a7.6 7.6 0 0 1 -2 -1.1 l-2.5 0.9 -1.6 -2.8 2 -1.7 a7.6 7.6 0 0 1 0 -2.4 l-2 -1.7 1.6 -2.8 2.5 0.9 a7.6 7.6 0 0 1 2 -1.1 Z"
+            fill="currentColor"
+            fillRule="evenodd"
+          />
+        </svg>
       </button>
     </div>
   );

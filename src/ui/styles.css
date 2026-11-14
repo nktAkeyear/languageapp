@@ -228,7 +228,28 @@ ruby rt {
   letter-spacing: 0.08em;
 }
 .title-ill {
-  font-size: 2.6em;
+  width: 120px;
+  margin: 0 auto;
+}
+.emblem-art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.rb-emblem .emblem-art {
+  width: 110px;
+  margin: 0 auto;
+}
+.title-screen .panorama {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.title-card {
+  position: relative;
+  z-index: 1;
 }
 .title-langs {
   display: grid;

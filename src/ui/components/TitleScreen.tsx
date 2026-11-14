@@ -1,4 +1,6 @@
 import { LANGS } from '../../core/types';
+import { TeapotEmblem } from '../art/props';
+import { HarbourPanorama } from '../story/StoryStage';
 import { useGame } from '../useGame';
 import { LANG_JA } from './Settings';
 
@@ -11,9 +13,10 @@ export function TitleScreen() {
   const g = useGame();
   return (
     <div className="title-screen">
+      <HarbourPanorama t={0.08} />
       <div className="title-card">
         <div className="title-ill" aria-hidden>
-          ⚓🫖🌿
+          <TeapotEmblem />
         </div>
         <h1>港町の調香茶房</h1>
         <p>

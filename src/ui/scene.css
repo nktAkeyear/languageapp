@@ -466,12 +466,15 @@
   animation: sip 0.6s ease-out;
 }
 .held-cup-react {
-  top: 84%;
+  top: 58%;
   transform: none;
+}
+.m-customer .held-cup-react {
+  top: 35%;
 }
 @keyframes sip {
   from {
-    top: 80%;
+    top: 58%;
     transform: rotate(0);
   }
 }
@@ -1866,6 +1869,12 @@
 }
 .m-calendar .cal-plan {
   font-size: 9px;
+  white-space: nowrap;
+  width: max-content;
+  margin-left: -6px;
+}
+.m-calendar .cal-plan span:not(.cur) {
+  display: none;
 }
 .m-tickets {
   left: 160px;
@@ -1946,12 +1955,10 @@
   line-height: 1.5;
 }
 .m-bubble .bubble-prev {
-  font-size: 12px;
-  line-height: 1.3;
+  font-size: 13px;
+  line-height: 1.35;
   margin-bottom: 4px;
   padding-bottom: 3px;
-  max-height: 2.7em;
-  overflow: hidden;
 }
 .m-bubble .bubble-prev ruby rt {
   display: none;
@@ -1985,7 +1992,7 @@
   grid-template-areas:
     'books serve coin'
     'books vessel side'
-    'tools tools tools';
+    'books tools tools';
   gap: 4px 6px;
   padding: 10px 8px 8px;
   box-shadow: inset 0 10px 14px -8px rgba(0, 0, 0, 0.6);
@@ -2179,6 +2186,14 @@
 .m-drawer-row:only-child .m-slot .jar-btn {
   width: 66px;
 }
+.d-shelf .jar-label {
+  font-size: 17px;
+  max-width: 124px;
+  padding: 0 5px;
+}
+.d-shelf .jar-label ruby rt {
+  font-size: 0.72em;
+}
 .m-slot .jar-label {
   font-size: 13px;
   bottom: -20px;
@@ -2186,78 +2201,6 @@
 }
 .m-slot .jar-stock {
   font-size: 10px;
-}
-
-/* =============================================================== town skin (market / delivery share the look) */
-.desk[data-segment='market'],
-.desk[data-segment='delivery'],
-.mob {
-  background:
-    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.08) 0 2px, transparent 2px 160px),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 7px),
-    linear-gradient(#7a4a26, #5a3418);
-}
-.desk-header,
-.mob-header {
-  background: linear-gradient(#4a2a14, #3a1f0e) !important;
-  border-bottom: 3px solid #2a160a !important;
-  color: #f6e2b0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-}
-.desk-header .brand {
-  color: #f6e2b0;
-}
-.desk-header .status-item,
-.mob-header .status-item {
-  background: #f6ecd2;
-  border-color: #8a7350;
-  color: #3a2e22;
-}
-.desk[data-segment='market'] .panel,
-.desk[data-segment='delivery'] .panel {
-  background: linear-gradient(#fbf3df, #f1e2bf);
-  border: 1px solid #b89a6a;
-  box-shadow: 0 10px 24px rgba(20, 8, 2, 0.5);
-  border-radius: 4px;
-}
-.desk[data-segment='market'] .panel-title,
-.desk[data-segment='delivery'] .panel-title {
-  font-family: var(--font-serif);
-  color: var(--accent);
-}
-.panel-desk {
-  grid-area: notebook;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.side-desk {
-  position: relative;
-  height: 300px;
-}
-.side-desk .desk-book {
-  width: 150px;
-  left: 10px;
-}
-.side-desk .desk-notebook {
-  width: 128px;
-  left: 120px;
-  top: 90px;
-}
-.mob-main {
-  background: linear-gradient(#fbf3df, #f1e2bf);
-  margin: 8px;
-  border-radius: 4px;
-  box-shadow: 0 10px 24px rgba(20, 8, 2, 0.5);
-}
-.mob-tabs {
-  background: linear-gradient(#4a2a14, #3a1f0e) !important;
-}
-.mob-tab {
-  color: #f6e2b0 !important;
-}
-.mob-tab-on {
-  background: rgba(255, 230, 170, 0.18) !important;
 }
 
 /* title */
@@ -2362,3 +2305,189 @@
 .nw {
   white-space: nowrap;
 }
+
+/* =============================================================== story props in the shop */
+.d-docbox {
+  left: 40px;
+  top: 880px;
+  width: 140px;
+  z-index: 2;
+}
+.d-keepsakes {
+  left: 66px;
+  top: 340px;
+  width: 190px;
+  height: 66px;
+}
+.m-docbox {
+  position: absolute;
+  left: 4px;
+  top: 200px;
+  width: 64px;
+}
+.m-docbox .docbox .desk-tag {
+  left: 50%;
+}
+.m-docbox .desk-tag {
+  font-size: 10px;
+}
+.m-books {
+  min-height: 250px;
+}
+.m-keepsakes {
+  width: 88px;
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+}
+.m-keepsakes .keepsake {
+  width: 44px;
+}
+.next-sign-story {
+  background: linear-gradient(#b5523a, #8e3420) !important;
+  color: #fff7e6 !important;
+  border-color: #5e1c12 !important;
+}
+
+/* closing for the night */
+.closing {
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  animation: paper-in 0.5s cubic-bezier(0.2, 1, 0.3, 1) both;
+}
+.closing-sign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 30px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1.3;
+  letter-spacing: 0.3em;
+  color: #fff4dc;
+  background:
+    repeating-linear-gradient(0deg, rgba(58, 31, 14, 0.2) 0 2px, transparent 2px 12px),
+    linear-gradient(#8e3420, #5e1c12);
+  border: 4px solid #3a1f0e;
+  border-radius: 8px;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5);
+  transform-origin: 50% -30px;
+  animation: sign-sway 2.6s ease-in-out infinite;
+}
+@keyframes sign-sway {
+  50% {
+    transform: rotate(2.5deg);
+  }
+}
+.closing-line {
+  margin: 0;
+  padding: 6px 18px;
+  background: rgba(251, 243, 223, 0.95);
+  font-size: 19px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+}
+.m-paper .closing {
+  position: absolute;
+  top: 50%;
+}
+
+/* small drawn glyphs instead of emoji */
+.speaker-glyph {
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.2em;
+}
+.hook-glyph {
+  width: 60%;
+  height: 60%;
+}
+.chit-piece {
+  width: 26px;
+  height: 26px;
+}
+.chit-mark .tool-art,
+.chit-mark svg {
+  width: 34px;
+  height: auto;
+}
+.snowflake {
+  width: 18px;
+  height: 18px;
+  margin: 0 2px;
+}
+
+/* =============================================================== moving through the day */
+.tr {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: tr-pass 1.5s ease-in-out both;
+}
+.tr-dawn {
+  animation-duration: 2.1s;
+}
+.tr-sky {
+  position: absolute;
+  inset: 0;
+}
+.tr-arc {
+  position: relative;
+  overflow: visible;
+  width: min(60vw, 520px);
+  height: auto;
+}
+.tr-sun {
+  animation: sun-rise 1.4s ease-out both;
+}
+@keyframes sun-rise {
+  from {
+    transform: translate(-40px, 40px);
+    opacity: 0.3;
+  }
+}
+.tr-label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6px;
+  color: #fff8e8;
+  text-shadow: 0 2px 10px rgba(40, 20, 0, 0.6);
+  font-family: var(--font-serif);
+}
+.tr-big {
+  font-size: clamp(40px, 7vw, 72px);
+  letter-spacing: 0.2em;
+  font-weight: 700;
+}
+.tr-sub {
+  font-size: clamp(16px, 2.4vw, 22px);
+  letter-spacing: 0.3em;
+}
+@keyframes tr-pass {
+  0% {
+    opacity: 0;
+  }
+  22% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.m-keepsakes:empty { display: none; }

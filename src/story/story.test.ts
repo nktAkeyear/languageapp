@@ -16,8 +16,10 @@ import {
   cardNeedsChoice,
   condHolds,
   docLines,
+  docFreshWords,
   docReadability,
   storyAutoPlay,
+  storyDocPutAway,
   storyChoose,
   storyDismiss,
   storyPlanShop,
@@ -237,6 +239,24 @@ describe('story day hooks', () => {
     p.words.lemon.confirmed = true;
     p.words.honey.confirmed = true;
     expect(docReadability(d, p, 'd_margin')).toBeGreaterThan(0.2);
+  });
+
+  it('re-reading highlights the words confirmed since the paper was last put away', () => {
+    const d = data('en');
+    const p = newProgress('en');
+    applyEffect(d, p, { docs: ['d_margin'] });
+    expect(docFreshWords(d, p, 'd_margin')).toEqual([]);
+    p.stage = 4;
+    storyReadDoc(d, p, 'd_margin');
+    p.words.lemon.confirmed = true;
+    expect(docFreshWords(d, p, 'd_margin')).toEqual(['lemon']);
+    storyDocPutAway(d, p, 'd_margin');
+    expect(docFreshWords(d, p, 'd_margin')).toEqual([]);
+    p.words.honey.confirmed = true;
+    expect(docFreshWords(d, p, 'd_margin')).toEqual(['honey']);
+    // A save from before `known`: found with nothing readable → everything confirmed since is new.
+    delete storyState(p).docs.d_margin.known;
+    expect(docFreshWords(d, p, 'd_margin').sort()).toEqual(['honey', 'lemon']);
   });
 
   it('conditional document lines follow earlier choices', () => {

@@ -70,41 +70,46 @@ src/
     shared/town.ts      language-neutral town data: goods, stalls, map, time slots, curriculum, unlocks
     en/  zh/            lexicon.ts + index.ts (shop); town.ts = lexicon.town.ts + market.ts + delivery.ts
   ui/
-    App.tsx             shell: layout choice, UI state, art defs, sound settings, book layer
+    App.tsx             shell: layout choice, settings sheet, art defs, sound settings, story stage, books,
+                        day transitions
     useGame.tsx         React state/actions over the core (brew gestures go through brewing.ts)
     uiState.tsx         open book / notebook page, newly available 検証ページ (per-browser), reduced motion
     brewing.ts          pure: units/tools per ingredient, gesture → Brew, drink colour, reaction motions
     sound.ts            synthesised sound effects + optional ambient loop (Web Audio, no files)
     art/                drawn art, one module per object family (SVG/CSS, no image files):
-                        defs (shared materials), shop (walls, window, door, shelf, counter), sky (time of day),
-                        customer (parametrised characters + expressions), ingredients (containers, cup pieces),
-                        vessel (the glass cup), tools (kettle, basin, hourglass, pot, spoon, knife), props
+                        defs (shared materials), shop (walls, window, door, shelf, counter), sky (time of day,
+                        night), customer (parametrised characters with arms + expressions; fixed looks for the
+                        regulars, vendors and Old Mrs. Hill), ingredients (containers, cup pieces), vessel (the
+                        glass cup), tools, props, documents (letters, ticket, postcard, diary pages, recipe card,
+                        the blue cup, the carved ship, the document box), town (market street, stalls, coins,
+                        purse, basket, the town map, house fronts, the sun dial)
     scene/              the shop as a scene: workbench.tsx (hand / drag & drop / serve flow), parts.tsx
-                        (interactive objects), ShopScene.tsx (desktop), MobileShop.tsx (phone)
+                        (interactive objects), ShopScene.tsx (desktop), MobileShop.tsx (phone),
+                        Transition.tsx (morning → midday → afternoon → night → dawn passages)
+    town/               MarketScene.tsx (street of stalls, open stall, paying on the tray),
+                        DeliveryScene.tsx (slip in hand, town map, sun dial, walk, the door)
+    story/              StoryStage.tsx (conversations, choices, notes, chapter title cards), Documents.tsx
+                        (paper found on the counter, reading, the document box, keepsakes), NightLedger.tsx
+                        (the night shop and the ledger book), StoryUi.tsx (box state, holding a scene until
+                        the reaction has been read), people.ts
     book/               recipe book and notebook as physical books (BookShell, page turns, 検証 puzzle)
-    components/         settings, title, word text (gloss on hover/tap), market / delivery panels
-    desktop/  mobile/   layouts per device (the shop scene; market / delivery panels)
-scripts/                validate-content.ts, simulate.ts
-    components/         small presentational components shared by both layouts
-    components/town/    Market.tsx (note, purse, stalls, vendor talk, coins), Delivery.tsx (slip, map, door)
-    components/story/   StoryLayer.tsx (scene / choice / chapter / document / ledger cards, 書類箱),
-                        StoryText.tsx, story.css — mounted once per layout
-    desktop/            PC layout (panels side by side)
-    mobile/             phone layout (one panel + bottom tabs)
-    useGame.tsx         React state/actions over the core
+    components/         settings, title, word text (gloss on hover/tap; story names; glossed documents)
+    desktop/  mobile/   layouts per device: which scene the current segment shows
 scripts/                validate-content.ts, simulate.ts (+ storyLog.ts)
 ```
 
 The layout is chosen by viewport width (≤ 820px → mobile), overridable in settings.
 
-## Presentation (shop and notebook)
+## Presentation
 
-- **The shop is one drawn scene** (desktop: a 1600×1000 stage scaled to the window; phone: a tall
-  composition — customer and speech bubble on top, counter with cup / books / tools in the middle,
-  the shelf as a pull-out drawer at the bottom). Reputation is the plaque above the door, the day is
-  the wall calendar (with today's plan), customers are order tickets on a nail, money is the coin jar.
-  The window light follows the day (morning → evening over the customers), the lamp glows stronger
-  in the evening, the door bell rings when customers come and go.
+Every part of the day is a drawn scene (desktop: a 1600×1000 stage scaled to the window; phone: tall
+compositions of the same pieces), and moving between them is a short passage of light: 朝 market →
+昼 shop → 夕方 delivery → 夜 the ledger → dawn of the next day (skipped with `prefers-reduced-motion`).
+
+- **The shop**: the customer stands behind the counter in front of the door, the shelf is on the
+  right wall. Reputation is the plaque above the door, the day is the wall calendar ("40日目", with
+  today's plan), customers are order tickets on a nail, money is the coin jar. The window light follows
+  the day, the lamp glows stronger in the evening, the door bell rings when customers come and go.
 - **Brewing by hand**: drag a container onto the cup, or tap it (picked up) and tap the cup — each
   drop is one portion, made with the tool that fits the unit of the quantity phrases (knife for
   slices, spoon for spoonfuls, pouring for cups, tongs for ice). Kettle / cold basin set the
@@ -114,21 +119,48 @@ The layout is chosen by viewport width (≤ 820px → mobile), overridable in se
   Hand it over with 出す (or drag the cup to the customer). Every action has a click / tap / keyboard
   path (Enter on a container adds one portion); the result is the same `Brew` the rules evaluate.
   Shelf containers show `残りN` / `品切れ` from the market stock.
-- **Reactions**: the customer sips, then reacts with the content's face plus a body motion chosen
-  from the mistake (grimace for bitter, pucker for sour, shiver when they wanted it hot …); the
-  plaque, tickets and coin jar update only then.
-- **Books**: the recipe book and the notebook lie on the counter and open as books (two pages on
-  desktop, one on the phone) with page turns. Notebook ribbons: 単語 (handwritten list + a word's
-  page: audio, memo, sentences seen), 検証 (verification pages), 現在地 (level guide). A verification
-  page lays out meaning cards; word slips are dragged (or tap-tap) onto them and the stamp checks the
-  whole page: right → seals and cards flip to word + meaning; wrong → only "something is off".
-  When a page newly opens, the notebook on the desk glows and a bookmark sticks out.
-  Confirmed words are highlighted everywhere and show their gloss on hover (or a first tap).
+- **Reactions**: the customer takes the cup in both hands, sips, then reacts with the content's face
+  plus a body motion chosen from the mistake (grimace for bitter, pucker for sour, shiver when they
+  wanted it hot …); the plaque, tickets and coin jar update only then. A regular's small talk is
+  part of their reaction in the speech bubble.
+- **Market** (morning light): a street of four stalls with awnings in the stall's colour, each with its
+  drawn vendor and goods with paper price tags; the shopping note is pinned in view, the basket and
+  the coin purse lie in front. At a stall the vendor speaks in a bubble (clickable words, listen; the
+  conversation so far above it); point at a good, set the number, and pay by dropping coins from the
+  purse onto the vendor's brass tray (tap the tray to take them back).
+- **Delivery** (afternoon / evening light): the slip in hand, the illustrated town map on the table
+  (sea and harbour with ships, the river and its bridge, distinct landmark buildings with their
+  target-language signs, houses with coloured doors; rows and the main street keep the map's grid, so
+  "behind / across / left / right" read as on the slip), the time on a sun dial, a short walk across the
+  map, then the door: knock on it (each tap one knock), wait, and hand the parcel to whoever opens — or
+  decide what to do when nobody comes. The recipient reacts in a speech bubble.
+- **Books**: the recipe book and the notebook lie on the counter (and on the desk / table in the
+  town) and open as books (two pages on desktop, one on the phone) with page turns. Notebook ribbons:
+  単語 (handwritten list + a word's page: audio, memo, sentences seen), 検証 (verification pages),
+  現在地 (level guide). A verification page lays out meaning cards; word slips are dragged (or tap-tap)
+  onto them and the stamp checks the whole page: right → seals and cards flip to word + meaning;
+  wrong → only "something is off". When a page newly opens, the notebook glows and a bookmark sticks
+  out. Confirmed words are highlighted everywhere and show their gloss on hover (or a first tap); a
+  tap on any word — order, vendor, slip, story, document — opens the notebook at it.
+- **The story in the scene** (src/ui/story): a regular's scene is a close-up conversation at the
+  counter — the regular is always drawn the same (fixed looks per regular, see `art/customer.tsx`),
+  their lines in speech bubbles revealed one at a time, the player's thoughts as narration strips, and
+  choices as reply slips the player says (こう言う). After a regular's cup the scene waits until the
+  player has read the reaction (話のつづきを聞く), and likewise at the door after a regular's delivery.
+  A delivery request is a note left at the shop. Documents appear on the counter, are picked up
+  (手に取る) and read as paper — letter, torn ticket, postcard, diary page, recipe card; every word
+  clickable, confirmed words with their meaning written underneath, barely met words faint — then go
+  into the document box on the counter; the blue cup and the carved ship go on the window sill (on the
+  phone, onto the shelf). Re-reading a paper marks the words confirmed since it was last put away
+  (they glow, with a count). Chapter title cards hang a wooden sign over the harbour. At night the
+  window is dark, the lamp lit, and the day is written into the ledger book line by line (takings,
+  purchases, purse, reputation, today's customers, regulars met, words understood, things found,
+  the player's thoughts); blowing out the lamp ends the day. Last night's ledger is in the box.
 - **Sound**: synthesised effects (door bell, pouring, chopping, clinks, simmer, page turn, coins,
-  stamp, confirm chime, soft failure) and an optional ambient loop; volume / mute / ambient in
-  ⚙ 設定 (saved with the settings). Audio starts after the first user gesture and silently does
+  stamp, confirm chime, soft failure, paper, the box, knocks, footsteps, pen in the ledger, the lamp
+  blown out, a chapter bell, dawn birds, dusk) and an optional ambient loop; volume / mute / ambient
+  in ⚙ 設定 (saved with the settings). Audio starts after the first user gesture and silently does
   nothing where Web Audio is unavailable. `prefers-reduced-motion` turns the animations off.
-- Market and delivery keep their panel screens for now, dressed in the same paper-on-wood look.
 
 ## Content schema (for content authors)
 
@@ -365,13 +397,14 @@ story delivery once handed over (called by the UI and at the end of the day). Pl
 idempotent per day, so a resumed or migrated day joins in. A planned beat that did not happen
 waits for another day. Story texts count as encounters (tokenised like all in-world text);
 reading a document counts once a day — before its `readable` stage only words already in the
-notebook count. UI actions: `storyDismiss`, `storyChoose`, `storyReadDoc`. Pending cards
+notebook count. UI actions: `storyDismiss`, `storyChoose`, `storyReadDoc`, `storyDocPutAway`. Pending cards
 (`chapter | scene | reply | doc | ledger`) live in the save, so a reload shows them again.
 
 The ledger: takings / market expenses / purse / reputation / cups, the regulars met, words
 confirmed today, documents found, and the day's hook lines. Documents show confirmed words with
 their gloss underneath and barely-met words faint, with the share of confirmed words now vs. when
-found — re-reading an old letter visibly reveals more.
+found — re-reading an old letter visibly reveals more, and the words confirmed since it was last
+put away are marked (`docFreshWords`, `storyDocPutAway`).
 
 ### What the validator checks (story)
 
@@ -390,6 +423,8 @@ beat fires on some path and the good player reaches the end.
 
 - **Saves**: version 3 adds `story` (beats, documents, flags, chapter, pending cards, today's
   bookkeeping, last ledger); version 2 saves get a fresh story that starts with the current day.
+  A document record may carry `known` (its words confirmed when it was last put away, for the
+  re-reading highlight); it is optional, so older version 3 saves load unchanged.
   Version 2 added `town` (money, unlocks, runs, curriculum log) and `townDay` (today's
   segments, stock, market / delivery state) to each language's progress. Version 1 saves migrate;
   a day in progress continues as a shop-only day.

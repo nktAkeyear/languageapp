@@ -52,3 +52,19 @@ export function shopTime(index: number, count: number, closed: boolean): number 
   if (count <= 1) return 0.2;
   return 0.08 + (0.84 * index) / (count - 1);
 }
+
+/** Night: dark window, the lamp does all the work. */
+export const NIGHT_SKY: SkyColours = {
+  top: 'rgb(14,18,42)',
+  bottom: 'rgb(40,44,78)',
+  sea: 'rgb(18,26,48)',
+  light: 'rgb(255,190,120)',
+  sun: 0,
+  shaft: 0,
+  lamp: 1,
+};
+
+/** Time of day of a delivery hour (9 … 19) on the same 0 … 1 scale as the shop. */
+export function hourTime(hour: number): number {
+  return Math.max(0, Math.min(1, (hour - 8) / 11.5));
+}

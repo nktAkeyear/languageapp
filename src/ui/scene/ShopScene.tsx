@@ -32,6 +32,7 @@ import {
   VesselSpot,
 } from './parts';
 import { useBench } from './workbench';
+import { DocBoxProp, Keepsakes } from '../story/Documents';
 
 export function useStageScale(w: number, h: number) {
   const ref = useRef<HTMLDivElement>(null);
@@ -108,6 +109,12 @@ export function ShopScene({ onSettings }: { onSettings: () => void }) {
         </div>
         <div className="d-books">
           <BookProps />
+        </div>
+        <div className="d-docbox">
+          <DocBoxProp />
+        </div>
+        <div className="d-keepsakes">
+          <Keepsakes />
         </div>
         <div className="d-coinjar">
           <CoinJar />

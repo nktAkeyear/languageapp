@@ -154,11 +154,13 @@ export function CalendarArt({ day }: { day: number }) {
       <path d="M45 6 L20 20 M45 6 L70 20" stroke="#3a2a1a" strokeWidth="1.5" />
       <rect x="6" y="18" width="78" height="88" rx="4" fill="#f6ecd2" stroke="#8a7350" strokeWidth="2" filter="url(#tx-paper)" />
       <rect x="6" y="18" width="78" height="22" rx="4" fill="#9b3f26" />
-      <text x="45" y="35" textAnchor="middle" fontSize="13" fill="#fff4e0" style={{ fontFamily: 'var(--font-serif)' }}>
-        日目
-      </text>
-      <text x="45" y="86" textAnchor="middle" fontSize="40" fontWeight="700" fill="#3a2e22" style={{ fontFamily: 'var(--font-serif)' }}>
-        {day}
+      <circle cx="26" cy="29" r="3" fill="#5a1a10" />
+      <circle cx="64" cy="29" r="3" fill="#5a1a10" />
+      <text x="45" y="84" textAnchor="middle" fontWeight="700" fill="#3a2e22" style={{ fontFamily: 'var(--font-serif)' }}>
+        <tspan fontSize={day >= 100 ? 26 : 36}>{day}</tspan>
+        <tspan fontSize="15" dx="1">
+          日目
+        </tspan>
       </text>
       <path d="M10 104 h70" stroke="#c8b28a" strokeWidth="2" strokeDasharray="3 3" />
     </svg>
@@ -218,6 +220,27 @@ export function DecorArt({ i }: { i: number }) {
           <path d="M32 80 q18 10 36 0" stroke="#e8f0e0" strokeWidth="2" fill="none" />
         </g>
       )}
+    </svg>
+  );
+}
+
+/** The shop's emblem: a teapot with a sprig over an anchor (title screen, recipe book cover). */
+export function TeapotEmblem() {
+  return (
+    <svg viewBox="0 0 160 120" className="emblem-art" aria-hidden>
+      <g stroke="#7a2f1b" strokeWidth="5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+        {/* anchor behind */}
+        <path d="M80 18 V108 M58 30 H102 M40 80 Q46 108 80 108 Q114 108 120 80" opacity="0.35" />
+        <circle cx="80" cy="12" r="6" opacity="0.35" />
+      </g>
+      <path d="M40 58 Q36 100 80 102 Q124 100 120 58 Z" fill="url(#gl-indigo)" stroke="#1c2747" strokeWidth="3" />
+      <ellipse cx="80" cy="58" rx="40" ry="9" fill="#2b3a63" stroke="#1c2747" strokeWidth="3" />
+      <ellipse cx="80" cy="48" rx="12" ry="6" fill="url(#gl-indigo)" stroke="#1c2747" strokeWidth="2" />
+      <path d="M120 66 Q146 60 150 40" stroke="#2b3a63" strokeWidth="7" fill="none" strokeLinecap="round" />
+      <path d="M40 66 Q20 66 22 82 Q24 94 40 92" stroke="#2b3a63" strokeWidth="6" fill="none" />
+      <path d="M54 78 q26 12 52 0" stroke="#e6ecf6" strokeWidth="3" fill="none" opacity="0.8" />
+      <path d="M86 42 Q96 22 116 24 Q108 42 86 42 Z" fill="#6fa64a" stroke="#3d6331" strokeWidth="2" />
+      <path d="M84 40 Q74 24 58 26 Q66 40 84 40 Z" fill="#7fb35a" stroke="#3d6331" strokeWidth="2" />
     </svg>
   );
 }

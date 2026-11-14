@@ -5,6 +5,7 @@
  * Everything is static except what the `sky` (time of day) changes, so the browser can keep the
  * big textured layers cached while small animated layers (steam, lamp glow, customer) move.
  */
+import { useId } from 'react';
 import type { SkyColours } from './sky';
 
 export const STAGE_W = 1600;
@@ -18,23 +19,46 @@ export const SHELF = { x: 1030, y: 46, w: 552, rows: 4, cols: 6, rowH: 120 } as 
 export function WindowGroup({ sky, x, y, w = 260, h = 310 }: { sky: SkyColours; x: number; y: number; w?: number; h?: number }) {
   const sunY = 20 + (1 - sky.sun) * (h * 0.62);
   const horizon = h * 0.66;
+  // Unique ids: the shop and the night scene can both have a window on screen.
+  const uid = useId().replace(/:/g, '');
+  const night = sky.lamp >= 1 && sky.sun <= 0;
   return (
     <g transform={`translate(${x} ${y})`}>
       <defs>
-        <linearGradient id={`sky-${x}`} x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={`sky-${uid}`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor={sky.top} />
           <stop offset="1" stopColor={sky.bottom} />
         </linearGradient>
-        <clipPath id={`win-${x}`}>
+        <clipPath id={`win-${uid}`}>
           <rect x="14" y="14" width={w - 28} height={h - 28} rx="4" />
         </clipPath>
       </defs>
-      <g clipPath={`url(#win-${x})`}>
-        <rect x="0" y="0" width={w} height={h} fill={`url(#sky-${x})`} />
-        <circle cx={w * 0.7} cy={sunY} r="22" fill="#fff6d8" opacity="0.9" />
-        <circle cx={w * 0.7} cy={sunY} r="40" fill="#fff2c0" opacity="0.25" />
+      <g clipPath={`url(#win-${uid})`}>
+        <rect x="0" y="0" width={w} height={h} fill={`url(#sky-${uid})`} />
+        {night ? (
+          <g>
+            {[
+              [0.2, 0.12],
+              [0.35, 0.3],
+              [0.55, 0.1],
+              [0.82, 0.22],
+              [0.68, 0.42],
+              [0.12, 0.45],
+              [0.45, 0.5],
+            ].map(([a, b], i) => (
+              <circle key={i} cx={w * a} cy={h * b} r={i % 3 ? 1.6 : 2.4} fill="#fff8e0" opacity="0.85" className="star" />
+            ))}
+            <circle cx={w * 0.72} cy={h * 0.2} r="16" fill="#f4f0dc" />
+            <circle cx={w * 0.72 + 7} cy={h * 0.2 - 4} r="14" fill={sky.top} />
+          </g>
+        ) : (
+          <>
+            <circle cx={w * 0.7} cy={sunY} r="22" fill="#fff6d8" opacity="0.9" />
+            <circle cx={w * 0.7} cy={sunY} r="40" fill="#fff2c0" opacity="0.25" />
+          </>
+        )}
         {/* clouds */}
-        <g fill="#fff" opacity="0.55">
+        <g fill="#fff" opacity={night ? 0.08 : 0.55}>
           <ellipse cx={w * 0.25} cy={h * 0.2} rx="34" ry="9" />
           <ellipse cx={w * 0.33} cy={h * 0.18} rx="20" ry="9" />
           <ellipse cx={w * 0.8} cy={h * 0.32} rx="26" ry="6" />
@@ -84,7 +108,7 @@ export function WindowGroup({ sky, x, y, w = 260, h = 310 }: { sky: SkyColours; 
 }
 
 /** Shop door with a glass pane and the brass bell on a bracket. Local box 0..160 × 0..450. */
-export function DoorGroup({ sky, x, y, w = 160, h = 450 }: { sky: SkyColours; x: number; y: number; w?: number; h?: number }) {
+export function DoorGroup({ sky, x, y, w = 160, h = 450, closed = false }: { sky: SkyColours; x: number; y: number; w?: number; h?: number; closed?: boolean }) {
   return (
     <g transform={`translate(${x} ${y})`}>
       <rect x="-14" y="-14" width={w + 28} height={h + 14} fill="#5a3418" />
@@ -101,7 +125,7 @@ export function DoorGroup({ sky, x, y, w = 160, h = 450 }: { sky: SkyColours; x:
         <path d="M-22 -18 L0 -30 L22 -18" stroke="#3a2a1a" strokeWidth="1.2" fill="none" />
         <rect x="-26" y="-18" width="52" height="22" rx="3" fill="#f4ead2" stroke="#8a7350" />
         <text x="0" y="-3" textAnchor="middle" fontSize="13" fill="#7a2f1b" style={{ fontFamily: 'var(--font-serif)' }} fontWeight="700">
-          営業中
+          {closed ? '閉店' : '営業中'}
         </text>
       </g>
     </g>
@@ -174,11 +198,11 @@ export function LampGroup({ x, y }: { x: number; y: number }) {
  * bell, lamp flame) and what changes with the time of day, so animation frames never re-run
  * the expensive texture filters.
  */
-export function ShopBackdrop({ sky }: { sky: SkyColours }) {
+export function ShopBackdrop({ sky, closed = false, align = 'xMidYMid' }: { sky: SkyColours; closed?: boolean; align?: string }) {
   const W = STAGE_W;
   const H = STAGE_H;
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio="xMidYMid slice" aria-hidden>
+    <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio={`${align} slice`} aria-hidden>
       {/* wall */}
       <rect x="0" y="0" width={W} height={COUNTER_Y + 10} fill="url(#g-wall)" filter="url(#tx-plaster)" />
       {/* wainscot */}
@@ -195,7 +219,7 @@ export function ShopBackdrop({ sky }: { sky: SkyColours }) {
       <rect x="0" y="34" width={W} height="10" fill="#000" opacity="0.2" filter="url(#fx-blur-sm)" />
       {/* reveal of the window opening */}
       <rect x="30" y="80" width="280" height="336" rx="8" fill="#3a2010" opacity="0.35" filter="url(#fx-blur-sm)" />
-      <DoorGroup sky={sky} x={410} y={118} h={COUNTER_Y - 118} />
+      <DoorGroup sky={sky} x={410} y={118} h={COUNTER_Y - 118} closed={closed} />
       <ShelfUnitGroup x={SHELF.x} y={SHELF.y} w={SHELF.w} rows={SHELF.rows} rowH={SHELF.rowH} />
       {/* counter top (near surface) */}
       <rect x="0" y={COUNTER_Y} width={W} height={H - COUNTER_Y} fill="url(#g-counter)" filter="url(#tx-wood)" />
@@ -209,11 +233,11 @@ export function ShopBackdrop({ sky }: { sky: SkyColours }) {
   );
 }
 
-export function ShopLive({ sky, ringing }: { sky: SkyColours; ringing: boolean }) {
+export function ShopLive({ sky, ringing, align = 'xMidYMid' }: { sky: SkyColours; ringing: boolean; align?: string }) {
   const W = STAGE_W;
   const H = STAGE_H;
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio="xMidYMid slice" aria-hidden>
+    <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio={`${align} slice`} aria-hidden>
       <path d={`M40 ${90} L300 ${90} L560 ${COUNTER_Y} L80 ${COUNTER_Y} Z`} fill={sky.light} opacity={sky.shaft * 0.18} />
       <WindowGroup sky={sky} x={40} y={90} />
       <DoorBellGroup x={576} y={128} ringing={ringing} />
@@ -225,7 +249,7 @@ export function ShopLive({ sky, ringing }: { sky: SkyColours; ringing: boolean }
 }
 
 /** Phone: the wall strip behind the customer (static textured layer + a small live layer). */
-export function MobileWall({ sky, ringing }: { sky: SkyColours; ringing: boolean }) {
+export function MobileWall({ sky, ringing, closed = false }: { sky: SkyColours; ringing: boolean; closed?: boolean }) {
   const W = 400;
   const H = 320;
   return (
@@ -235,7 +259,7 @@ export function MobileWall({ sky, ringing }: { sky: SkyColours; ringing: boolean
         <rect x="0" y={H - 70} width={W} height="70" fill="url(#g-wainscot)" filter="url(#tx-wood-v)" />
         <rect x="0" y={H - 76} width={W} height="8" fill="#8e5a2e" />
         <rect x="0" y="0" width={W} height="18" fill="url(#g-beam)" />
-        <DoorGroup sky={sky} x={34} y={84} w={124} h={H - 84} />
+        <DoorGroup sky={sky} x={34} y={84} w={124} h={H - 84} closed={closed} />
       </svg>
       <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio="xMidYMax slice" aria-hidden>
         <path d={`M${W} 40 L${W - 120} 40 L${W - 260} ${H} L${W} ${H} Z`} fill={sky.light} opacity={sky.shaft * 0.2} />

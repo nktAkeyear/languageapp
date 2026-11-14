@@ -25,7 +25,17 @@ export type Sfx =
   | 'fail' // soft failure
   | 'happy' // customer delighted
   | 'serve' // cup set on the counter
-  | 'glow'; // notebook has something new
+  | 'glow' // notebook has something new
+  | 'chapter' // a chapter title card: a deep harbour bell and a shimmer
+  | 'write' // pen scratching in the ledger
+  | 'lampout' // the lamp is blown out
+  | 'dawn' // morning: birds outside
+  | 'dusk' // evening falls: a low, warm chord
+  | 'knock' // knuckles on a wooden door
+  | 'steps' // footsteps on cobbles
+  | 'paper' // a paper picked up / unfolded
+  | 'drawer' // the document box opens / closes
+  | 'whoosh'; // moving between places
 
 interface AudioState {
   ctx: AudioContext | null;
@@ -236,6 +246,60 @@ const RECIPES: Record<Sfx, (ctx: AudioContext, out: AudioNode) => void> = {
   },
   glow: (c, o) => {
     [1319, 1760].forEach((f, i) => tone(c, o, { t: i * 0.12, f, dur: 0.7, gain: 0.05 }));
+  },
+  chapter: (c, o) => {
+    for (const [f, g] of [
+      [98, 0.3],
+      [196, 0.14],
+      [293, 0.08],
+      [415, 0.05],
+    ] as const)
+      tone(c, o, { f, dur: 3.2, gain: g, type: 'sine', attack: 0.01 });
+    [784, 988, 1175, 1568].forEach((f, i) => tone(c, o, { t: 0.5 + i * 0.16, f, dur: 1.6, gain: 0.035, type: 'triangle', attack: 0.04 }));
+    hiss(c, o, { dur: 3, gain: 0.04, type: 'lowpass', f: 500, attack: 1 });
+  },
+  write: (c, o) => {
+    for (let i = 0; i < 4; i++) hiss(c, o, { t: i * 0.07 + Math.random() * 0.03, dur: 0.06, gain: 0.08, f: 3500 + Math.random() * 1500, q: 3, attack: 0.005 });
+  },
+  lampout: (c, o) => {
+    hiss(c, o, { dur: 0.5, gain: 0.16, f: 700, f2: 300, q: 0.8, attack: 0.04 });
+    tone(c, o, { t: 0.1, f: 220, f2: 140, dur: 0.6, gain: 0.04, type: 'sine' });
+  },
+  dawn: (c, o) => {
+    // Two small birds: quick rising chirps.
+    for (const [t, f] of [
+      [0, 3200],
+      [0.12, 3600],
+      [0.24, 3400],
+      [0.7, 2800],
+      [0.8, 3300],
+    ] as const)
+      tone(c, o, { t, f, f2: f * 1.25, dur: 0.08, gain: 0.04, type: 'sine', attack: 0.01 });
+    [523, 659, 784].forEach((f, i) => tone(c, o, { t: i * 0.05, f, dur: 1.6, gain: 0.03, type: 'triangle', attack: 0.2 }));
+  },
+  dusk: (c, o) => {
+    [220, 277, 330].forEach((f, i) => tone(c, o, { t: i * 0.08, f, dur: 1.8, gain: 0.05, type: 'triangle', attack: 0.3 }));
+  },
+  knock: (c, o) => {
+    tone(c, o, { f: 140, f2: 90, dur: 0.09, gain: 0.5, type: 'triangle', attack: 0.002 });
+    hiss(c, o, { dur: 0.05, gain: 0.25, f: 900, q: 1.2, attack: 0.002 });
+  },
+  steps: (c, o) => {
+    for (let i = 0; i < 6; i++) {
+      hiss(c, o, { t: i * 0.24, dur: 0.07, gain: 0.12, f: 500 + (i % 2) * 140, q: 1.5, attack: 0.004 });
+      tone(c, o, { t: i * 0.24, f: 90, f2: 60, dur: 0.06, gain: 0.08, type: 'triangle', attack: 0.003 });
+    }
+  },
+  paper: (c, o) => {
+    hiss(c, o, { dur: 0.22, gain: 0.14, f: 4000, f2: 2200, q: 0.8, attack: 0.02 });
+    hiss(c, o, { t: 0.12, dur: 0.16, gain: 0.08, f: 5200, q: 1, attack: 0.02 });
+  },
+  drawer: (c, o) => {
+    hiss(c, o, { dur: 0.35, gain: 0.12, f: 260, f2: 420, q: 2, attack: 0.03 });
+    tone(c, o, { t: 0.32, f: 160, f2: 100, dur: 0.1, gain: 0.25, type: 'triangle', attack: 0.003 });
+  },
+  whoosh: (c, o) => {
+    hiss(c, o, { dur: 0.6, gain: 0.07, f: 400, f2: 1600, q: 0.7, attack: 0.25 });
   },
 };
 
