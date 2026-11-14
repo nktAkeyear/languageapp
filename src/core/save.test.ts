@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { emptySave, exportSave, importSave, loadSave, migrateSave, newProgress, resetLanguage, SAVE_VERSION, SaveError, STORAGE_KEY, writeSave } from './save';
+import { DEFAULT_SETTINGS, emptySave, exportSave, importSave, loadSave, migrateSave, newProgress, resetLanguage, SAVE_VERSION, SaveError, STORAGE_KEY, writeSave } from './save';
 
 describe('save', () => {
   it('round-trips through storage', () => {
@@ -62,3 +62,13 @@ describe('save', () => {
   });
 });
 
+
+describe('sound settings', () => {
+  it('older saves get the sound defaults without a migration', () => {
+    const s = migrateSave({ version: 2, currentLang: null, settings: { showPinyin: false, layout: 'mobile', speechRate: 1 }, progress: {} });
+    expect(s.settings.volume).toBe(DEFAULT_SETTINGS.volume);
+    expect(s.settings.muted).toBe(false);
+    expect(s.settings.ambient).toBe(false);
+    expect(s.settings.layout).toBe('mobile');
+  });
+});

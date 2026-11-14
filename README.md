@@ -66,15 +66,57 @@ src/
     shared/town.ts      language-neutral town data: goods, stalls, map, time slots, curriculum, unlocks
     en/  zh/            lexicon.ts + index.ts (shop); town.ts = lexicon.town.ts + market.ts + delivery.ts
   ui/
-    components/         small presentational components shared by both layouts
-    components/town/    Market.tsx (note, purse, stalls, vendor talk, coins), Delivery.tsx (slip, map, door)
-    desktop/            PC layout (panels side by side)
-    mobile/             phone layout (one panel + bottom tabs)
-    useGame.tsx         React state/actions over the core
+    App.tsx             shell: layout choice, UI state, art defs, sound settings, book layer
+    useGame.tsx         React state/actions over the core (brew gestures go through brewing.ts)
+    uiState.tsx         open book / notebook page, newly available 検証ページ (per-browser), reduced motion
+    brewing.ts          pure: units/tools per ingredient, gesture → Brew, drink colour, reaction motions
+    sound.ts            synthesised sound effects + optional ambient loop (Web Audio, no files)
+    art/                drawn art, one module per object family (SVG/CSS, no image files):
+                        defs (shared materials), shop (walls, window, door, shelf, counter), sky (time of day),
+                        customer (parametrised characters + expressions), ingredients (containers, cup pieces),
+                        vessel (the glass cup), tools (kettle, basin, hourglass, pot, spoon, knife), props
+    scene/              the shop as a scene: workbench.tsx (hand / drag & drop / serve flow), parts.tsx
+                        (interactive objects), ShopScene.tsx (desktop), MobileShop.tsx (phone)
+    book/               recipe book and notebook as physical books (BookShell, page turns, 検証 puzzle)
+    components/         settings, title, word text (gloss on hover/tap), market / delivery panels
+    desktop/  mobile/   layouts per device (the shop scene; market / delivery panels)
 scripts/                validate-content.ts, simulate.ts
 ```
 
 The layout is chosen by viewport width (≤ 820px → mobile), overridable in settings.
+
+## Presentation (shop and notebook)
+
+- **The shop is one drawn scene** (desktop: a 1600×1000 stage scaled to the window; phone: a tall
+  composition — customer and speech bubble on top, counter with cup / books / tools in the middle,
+  the shelf as a pull-out drawer at the bottom). Reputation is the plaque above the door, the day is
+  the wall calendar (with today's plan), customers are order tickets on a nail, money is the coin jar.
+  The window light follows the day (morning → evening over the customers), the lamp glows stronger
+  in the evening, the door bell rings when customers come and go.
+- **Brewing by hand**: drag a container onto the cup, or tap it (picked up) and tap the cup — each
+  drop is one portion, made with the tool that fits the unit of the quantity phrases (knife for
+  slices, spoon for spoonfuls, pouring for cups, tongs for ice). Kettle / cold basin set the
+  temperature, hourglass / pot / spoon the method (tap again to take back). Tap a piece in the cup
+  (or − on the chit beside it) to take it out; the slop bowl empties the cup. The cup shows the
+  drink: colour blended from the ingredients, one floating piece per portion, steam, frost, bubbles.
+  Hand it over with 出す (or drag the cup to the customer). Every action has a click / tap / keyboard
+  path (Enter on a container adds one portion); the result is the same `Brew` the rules evaluate.
+  Shelf containers show `残りN` / `品切れ` from the market stock.
+- **Reactions**: the customer sips, then reacts with the content's face plus a body motion chosen
+  from the mistake (grimace for bitter, pucker for sour, shiver when they wanted it hot …); the
+  plaque, tickets and coin jar update only then.
+- **Books**: the recipe book and the notebook lie on the counter and open as books (two pages on
+  desktop, one on the phone) with page turns. Notebook ribbons: 単語 (handwritten list + a word's
+  page: audio, memo, sentences seen), 検証 (verification pages), 現在地 (level guide). A verification
+  page lays out meaning cards; word slips are dragged (or tap-tap) onto them and the stamp checks the
+  whole page: right → seals and cards flip to word + meaning; wrong → only "something is off".
+  When a page newly opens, the notebook on the desk glows and a bookmark sticks out.
+  Confirmed words are highlighted everywhere and show their gloss on hover (or a first tap).
+- **Sound**: synthesised effects (door bell, pouring, chopping, clinks, simmer, page turn, coins,
+  stamp, confirm chime, soft failure) and an optional ambient loop; volume / mute / ambient in
+  ⚙ 設定 (saved with the settings). Audio starts after the first user gesture and silently does
+  nothing where Web Audio is unavailable. `prefers-reduced-motion` turns the animations off.
+- Market and delivery keep their panel screens for now, dressed in the same paper-on-wood look.
 
 ## Content schema (for content authors)
 

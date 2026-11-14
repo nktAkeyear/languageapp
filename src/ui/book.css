@@ -737,7 +737,7 @@
 }
 .vcard {
   position: relative;
-  min-height: 196px;
+  min-height: 184px;
 }
 .vcard.target {
   cursor: pointer;
@@ -769,10 +769,10 @@
   padding: 8px;
   gap: 4px;
 }
-.vcard:nth-child(odd) .vcard-face {
+.vcard:nth-child(odd) {
   transform: rotate(-0.8deg);
 }
-.vcard:nth-child(even) .vcard-face {
+.vcard:nth-child(even) {
   transform: rotate(0.9deg);
 }
 .vcard-back {
@@ -790,6 +790,8 @@
   box-shadow:
     0 0 0 4px #e0a020,
     0 6px 14px rgba(60, 30, 10, 0.3);
+}
+.vcard.over {
   transform: scale(1.03);
 }
 .vcard-sketch {
@@ -1035,7 +1037,7 @@
 }
 @keyframes ready {
   50% {
-    transform: translateY(-3px);
+    box-shadow: 0 0 14px 4px rgba(224, 160, 32, 0.6);
   }
 }
 .verify-stamping .stamp-btn {

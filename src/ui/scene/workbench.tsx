@@ -15,6 +15,8 @@ import { featuresAtStage, ingredientWordId, ingredientsAtStage, wordMarkup } fro
 import type { Brew, Feature, IngredientId, Method, Temp } from '../../core/types';
 import { canAdd, toolFor, type Tool } from '../brewing';
 import { ContainerArt } from '../art/ingredients';
+import { ColdBasinArt, HourglassArt, KettleArt, PotArt, SpoonArt } from '../art/tools';
+import { VesselArt } from '../art/vessel';
 import { sfx, type Sfx } from '../sound';
 import { useGame } from '../useGame';
 import { useUi } from '../uiState';
@@ -184,8 +186,8 @@ export function BenchProvider({ children }: { children: ReactNode }) {
     setStage('handing');
     // The serve itself happens at once (state is saved); the scene plays it out.
     g.serveBrew();
-    later(520, () => setStage('sipping'));
-    later(1300, () => setStage('react'));
+    later(450, () => setStage('sipping'));
+    later(1150, () => setStage('react'));
   };
 
   // Reaction sounds once the customer has tasted.
@@ -385,9 +387,26 @@ function DragGhost() {
     y = pos.y;
   }
   if (d && d.carry.kind !== 'ing') {
+    const c = d.carry;
+    const art =
+      c.kind === 'cup' ? (
+        <VesselArt brew={b.brew} order={b.shelf} />
+      ) : c.kind === 'temp' ? (
+        c.temp === 'hot' ? (
+          <KettleArt active />
+        ) : (
+          <ColdBasinArt active />
+        )
+      ) : c.method === 'steep' ? (
+        <HourglassArt active={false} />
+      ) : c.method === 'boil' ? (
+        <PotArt active />
+      ) : (
+        <SpoonArt active={false} />
+      );
     return createPortal(
       <div className={`drag-ghost drag-ghost-tool ${d.over ? 'over' : ''}`} style={{ left: d.x, top: d.y }} aria-hidden>
-        {d.carry.kind === 'cup' ? '🍵' : d.carry.kind === 'temp' ? (d.carry.temp === 'hot' ? '♨' : '❄') : d.carry.method === 'steep' ? '⏳' : d.carry.method === 'boil' ? '🍲' : '🥄'}
+        {art}
       </div>,
       document.body,
     );

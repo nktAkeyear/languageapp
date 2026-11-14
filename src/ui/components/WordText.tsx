@@ -25,8 +25,7 @@ function usePeek(): string | null {
   return k;
 }
 let lastPointer: string = 'mouse';
-if (typeof window !== 'undefined')
-  window.addEventListener('pointerdown', (e) => (lastPointer = e.pointerType), { capture: true, passive: true });
+if (typeof window !== 'undefined') window.addEventListener('pointerdown', (e) => (lastPointer = e.pointerType), { capture: true, passive: true });
 
 let seq = 0;
 
@@ -42,54 +41,71 @@ export function WordText({ text, className, interactive = true }: { text: string
   if (!data) return null;
   const tokens = data.tokens(text);
   const zh = data.lang === 'zh';
+  const glued = (i: number) => {
+    const n = tokens[i + 1];
+    return !!n && !n.id && /^[\p{P}]+$/u.test(n.text);
+  };
   return (
     <span className={`tl ${className ?? ''}`} lang={zh ? 'zh-CN' : 'en'}>
       {tokens.map((t, i) => {
-        if (!t.id) return <Fragment key={i}>{t.text}</Fragment>;
-        const e = data.lex.byId.get(t.id);
-        const st = progress?.words[t.id];
-        const confirmed = !!st?.confirmed;
-        const title = confirmed ? undefined : st?.memo ? `メモ: ${st.memo}` : undefined;
-        const key = `${inst}:${i}`;
-        const inner =
-          zh && settings.showPinyin && e?.pinyin ? (
-            <ruby>
-              {t.text}
-              <rt>{e.pinyin}</rt>
-            </ruby>
-          ) : (
-            t.text
-          );
-        const cls = `w ${confirmed ? 'w-ok' : ''} ${st?.memo ? 'w-memo' : ''} ${peek === key ? 'w-peek' : ''}`;
-        if (!interactive)
-          return (
-            <span key={i} className={cls} data-gloss={confirmed ? e?.gloss : undefined}>
-              {inner}
-            </span>
-          );
-        return (
-          <button
-            key={i}
-            type="button"
-            className={cls}
-            data-gloss={confirmed ? e?.gloss : undefined}
-            title={title}
-            onClick={(ev) => {
-              ev.stopPropagation();
-              if (confirmed && lastPointer !== 'mouse' && peekKey !== key) {
-                setPeek(key);
-                return;
-              }
-              setPeek(null);
-              openWord(t.id!);
-            }}
-          >
-            {inner}
-          </button>
+        if (!t.id) return i > 0 && tokens[i - 1].id && glued(i - 1) ? null : <Fragment key={i}>{t.text}</Fragment>;
+        const word = renderWord(t, i);
+        return glued(i) ? (
+          <span key={i} className="nw">
+            {word}
+            {tokens[i + 1].text}
+          </span>
+        ) : (
+          word
         );
       })}
     </span>
   );
+
+  function renderWord(t: (typeof tokens)[number], i: number) {
+    if (!data || !t.id) return null;
+    const e = data.lex.byId.get(t.id);
+    const st = progress?.words[t.id];
+    const confirmed = !!st?.confirmed;
+    const title = confirmed ? undefined : st?.memo ? `メモ: ${st.memo}` : undefined;
+    const key = `${inst}:${i}`;
+    const inner =
+      zh && settings.showPinyin && e?.pinyin ? (
+        <ruby>
+          {t.text}
+          <rt>{e.pinyin}</rt>
+        </ruby>
+      ) : (
+        t.text
+      );
+    const cls = `w ${confirmed ? 'w-ok' : ''} ${st?.memo ? 'w-memo' : ''} ${peek === key ? 'w-peek' : ''}`;
+    if (!interactive)
+      return (
+        <span key={i} className={cls} data-gloss={confirmed ? e?.gloss : undefined}>
+          {inner}
+        </span>
+      );
+    return (
+      <button
+        key={i}
+        type="button"
+        className={cls}
+        data-gloss={confirmed ? e?.gloss : undefined}
+        title={title}
+        onClick={(ev) => {
+          ev.stopPropagation();
+          if (confirmed && lastPointer !== 'mouse' && peekKey !== key) {
+            setPeek(key);
+            return;
+          }
+          setPeek(null);
+          openWord(t.id!);
+        }}
+      >
+        {inner}
+      </button>
+    );
+  }
 }
 
 export function SpeakButton({ text, label = '聞く', big = false, className = '' }: { text: string; label?: string; big?: boolean; className?: string }) {

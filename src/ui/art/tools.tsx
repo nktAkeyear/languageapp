@@ -161,3 +161,33 @@ export function TongsArt() {
     </svg>
   );
 }
+
+/** Small hand tools used in the effects over the cup (drawn, so they match the scene). */
+export function HandToolArt({ tool }: { tool: 'knife' | 'spoon' | 'tongs' | 'stir' }) {
+  if (tool === 'knife')
+    return (
+      <svg viewBox="0 0 120 40" className="tool-art" aria-hidden>
+        <path d="M4 22 L76 10 L80 22 L8 28 Z" fill="#e2e2dc" stroke="#6d6a66" strokeWidth="1.5" />
+        <path d="M4 22 L76 10" stroke="#fff" strokeWidth="2" opacity="0.9" />
+        <rect x="76" y="10" width="40" height="13" rx="5" fill="#3a2010" transform="rotate(-4 76 10)" />
+        <circle cx="88" cy="16" r="1.6" fill="#c99a3c" />
+        <circle cx="104" cy="15" r="1.6" fill="#c99a3c" />
+      </svg>
+    );
+  if (tool === 'tongs')
+    return (
+      <svg viewBox="0 0 60 120" className="tool-art" aria-hidden>
+        <path d="M24 4 L14 112 M36 4 L46 112" stroke="url(#g-iron)" strokeWidth="6" strokeLinecap="round" />
+        <path d="M24 4 Q30 -2 36 4" stroke="#2f2b28" strokeWidth="6" fill="none" />
+        <path d="M10 108 h10 M40 108 h10" stroke="#2f2b28" strokeWidth="5" strokeLinecap="round" />
+      </svg>
+    );
+  // spoon (also used for stirring)
+  return (
+    <svg viewBox="0 0 40 130" className="tool-art" aria-hidden>
+      <path d="M20 40 L22 126" stroke="url(#g-brass)" strokeWidth="6" strokeLinecap="round" />
+      <ellipse cx="19" cy="22" rx="13" ry="19" fill="url(#g-brass)" stroke="#7d5a1c" strokeWidth="1.5" />
+      <ellipse cx="16" cy="18" rx="5" ry="9" fill="#fff4cc" opacity="0.6" />
+    </svg>
+  );
+}

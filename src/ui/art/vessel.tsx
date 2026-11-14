@@ -127,7 +127,8 @@ export function VesselArt({
           <rect x={100 + RIM_RX - 14} y={TOP - 14} width="18" height="12" rx="2" fill="#efe2c4" stroke="#8a7350" />
         </g>
       )}
-      {/* front of the glass + rim */}
+      {/* front of the glass + rim (lets clicks through to the pieces) */}
+      <g pointerEvents="none">
       <path d={`M${100 - RIM_RX} ${TOP} L${100 - BASE_RX} ${BOTTOM} Q100 ${BOTTOM + 14} ${100 + BASE_RX} ${BOTTOM} L${100 + RIM_RX} ${TOP} Z`} fill="url(#g-glass)" stroke="#9fb8b6" strokeWidth="2.5" />
       <path d={`M${100 - BASE_RX} ${BOTTOM} Q100 ${BOTTOM + 14} ${100 + BASE_RX} ${BOTTOM}`} stroke="#c9dcdb" strokeWidth="6" fill="none" opacity="0.6" />
       <ellipse cx="100" cy={TOP} rx={RIM_RX} ry="12" fill="none" stroke="#c3d6d5" strokeWidth="4" />
@@ -159,6 +160,7 @@ export function VesselArt({
           ))}
         </g>
       )}
+      </g>
     </svg>
   );
 }

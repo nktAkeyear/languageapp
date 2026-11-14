@@ -37,7 +37,6 @@ export function NotebookProp({ glow }: { glow: boolean }) {
   return (
     <svg viewBox="0 0 180 230" className="prop-art" aria-hidden>
       <ellipse cx="92" cy="218" rx="80" ry="9" fill="#1d0e05" opacity="0.35" />
-      {glow && <rect x="0" y="0" width="180" height="224" rx="20" fill="#ffd77a" opacity="0.55" className="nb-glow" filter="url(#fx-blur)" />}
       <rect x="22" y="14" width="140" height="196" rx="6" fill="#f3e6c6" />
       <rect x="16" y="10" width="140" height="196" rx="8" fill="url(#g-leather-green)" stroke="#16220f" strokeWidth="2" />
       {/* elastic band */}

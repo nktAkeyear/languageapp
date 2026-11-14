@@ -6,7 +6,7 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { hashString } from '../../core/rng';
 import { DecorArt, TeaSetArt } from '../art/props';
-import { SHELF, STAGE_H, STAGE_W, ShopBackdrop } from '../art/shop';
+import { SHELF, STAGE_H, STAGE_W, ShopBackdrop, ShopLive } from '../art/shop';
 import { shopTime, skyAt } from '../art/sky';
 import { useGame } from '../useGame';
 import {
@@ -66,7 +66,8 @@ export function ShopScene({ onSettings }: { onSettings: () => void }) {
   return (
     <div className="scene-viewport" ref={ref} data-phase={phase} data-stage={b.stage}>
       <div className="stage" style={{ width: STAGE_W, height: STAGE_H, transform: `translate(-50%, -50%) scale(${scale})` }}>
-        <ShopBackdrop sky={sky} ringing={b.ringing} />
+        <ShopBackdrop sky={sky} />
+        <ShopLive sky={sky} ringing={b.ringing} />
         <div className="lamp-glow" style={{ opacity: sky.lamp }} aria-hidden />
         <div className="d-plaque">
           <Plaque />

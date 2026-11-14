@@ -29,8 +29,6 @@ export function WindowGroup({ sky, x, y, w = 260, h = 310 }: { sky: SkyColours; 
           <rect x="14" y="14" width={w - 28} height={h - 28} rx="4" />
         </clipPath>
       </defs>
-      {/* deep reveal / shadow of the opening */}
-      <rect x="-10" y="-10" width={w + 20} height={h + 26} rx="8" fill="#3a2010" opacity="0.35" filter="url(#fx-blur-sm)" />
       <g clipPath={`url(#win-${x})`}>
         <rect x="0" y="0" width={w} height={h} fill={`url(#sky-${x})`} />
         <circle cx={w * 0.7} cy={sunY} r="22" fill="#fff6d8" opacity="0.9" />
@@ -86,7 +84,7 @@ export function WindowGroup({ sky, x, y, w = 260, h = 310 }: { sky: SkyColours; 
 }
 
 /** Shop door with a glass pane and the brass bell on a bracket. Local box 0..160 × 0..450. */
-export function DoorGroup({ sky, x, y, w = 160, h = 450, ringing }: { sky: SkyColours; x: number; y: number; w?: number; h?: number; ringing?: boolean }) {
+export function DoorGroup({ sky, x, y, w = 160, h = 450 }: { sky: SkyColours; x: number; y: number; w?: number; h?: number }) {
   return (
     <g transform={`translate(${x} ${y})`}>
       <rect x="-14" y="-14" width={w + 28} height={h + 14} fill="#5a3418" />
@@ -106,14 +104,19 @@ export function DoorGroup({ sky, x, y, w = 160, h = 450, ringing }: { sky: SkyCo
           営業中
         </text>
       </g>
-      {/* bell bracket */}
-      <g transform={`translate(${w + 6} 10)`}>
-        <path d="M-6 -12 Q14 -14 18 4" stroke="#3a2a1a" strokeWidth="3" fill="none" />
-        <g className={ringing ? 'doorbell ring' : 'doorbell'} style={{ transformOrigin: '18px 4px' }}>
-          <line x1="18" y1="4" x2="18" y2="12" stroke="#3a2a1a" strokeWidth="2" />
-          <path d="M8 30 Q8 12 18 12 Q28 12 28 30 Z" fill="url(#g-brass)" stroke="#5a3c12" strokeWidth="1.5" />
-          <circle cx="18" cy="32" r="3" fill="#7d5a1c" />
-        </g>
+    </g>
+  );
+}
+
+/** The brass bell on its bracket at the door's top-right corner (animated layer). */
+export function DoorBellGroup({ x, y, ringing }: { x: number; y: number; ringing: boolean }) {
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <path d="M-6 -12 Q14 -14 18 4" stroke="#3a2a1a" strokeWidth="3" fill="none" />
+      <g className={ringing ? 'doorbell ring' : 'doorbell'} style={{ transformOrigin: `${x + 18}px ${y + 4}px` }}>
+        <line x1="18" y1="4" x2="18" y2="12" stroke="#3a2a1a" strokeWidth="2" />
+        <path d="M8 30 Q8 12 18 12 Q28 12 28 30 Z" fill="url(#g-brass)" stroke="#5a3c12" strokeWidth="1.5" />
+        <circle cx="18" cy="32" r="3" fill="#7d5a1c" />
       </g>
     </g>
   );
@@ -165,8 +168,13 @@ export function LampGroup({ x, y }: { x: number; y: number }) {
   );
 }
 
-/** The full desktop backdrop: ceiling, wall, window, door, shelf frame, counter top. */
-export function ShopBackdrop({ sky, ringing }: { sky: SkyColours; ringing: boolean }) {
+/**
+ * The desktop backdrop in two layers: `ShopBackdrop` is static and carries the texture filters
+ * (plaster, wood grain); `ShopLive` has no filters and holds everything that moves (sea, boat,
+ * bell, lamp flame) and what changes with the time of day, so animation frames never re-run
+ * the expensive texture filters.
+ */
+export function ShopBackdrop({ sky }: { sky: SkyColours }) {
   const W = STAGE_W;
   const H = STAGE_H;
   return (
@@ -185,13 +193,10 @@ export function ShopBackdrop({ sky, ringing }: { sky: SkyColours; ringing: boole
         <rect key={i} x={i * 190 - 10} y="0" width="46" height="48" fill="#2e180a" />
       ))}
       <rect x="0" y="34" width={W} height="10" fill="#000" opacity="0.2" filter="url(#fx-blur-sm)" />
-      {/* window light on the wall */}
-      <path d={`M40 ${90} L300 ${90} L560 ${COUNTER_Y} L80 ${COUNTER_Y} Z`} fill={sky.light} opacity={sky.shaft * 0.18} className="light-shaft" />
-      <WindowGroup sky={sky} x={40} y={90} />
-      {/* door, bell */}
-      <DoorGroup sky={sky} x={410} y={118} h={COUNTER_Y - 118} ringing={ringing} />
+      {/* reveal of the window opening */}
+      <rect x="30" y="80" width="280" height="336" rx="8" fill="#3a2010" opacity="0.35" filter="url(#fx-blur-sm)" />
+      <DoorGroup sky={sky} x={410} y={118} h={COUNTER_Y - 118} />
       <ShelfUnitGroup x={SHELF.x} y={SHELF.y} w={SHELF.w} rows={SHELF.rows} rowH={SHELF.rowH} />
-      <LampGroup x={620} y={60} />
       {/* counter top (near surface) */}
       <rect x="0" y={COUNTER_Y} width={W} height={H - COUNTER_Y} fill="url(#g-counter)" filter="url(#tx-wood)" />
       {Array.from({ length: 5 }, (_, i) => {
@@ -200,31 +205,46 @@ export function ShopBackdrop({ sky, ringing }: { sky: SkyColours; ringing: boole
       })}
       <rect x="0" y={COUNTER_Y - 8} width={W} height="16" fill="url(#g-counter-edge)" />
       <rect x="0" y={COUNTER_Y + 8} width={W} height="16" fill="#000" opacity="0.18" filter="url(#fx-blur-sm)" />
-      {/* window light on the counter */}
-      <path d={`M80 ${COUNTER_Y} L560 ${COUNTER_Y} L900 ${H} L120 ${H} Z`} fill={sky.light} opacity={sky.shaft * 0.08} className="light-shaft" />
-      {/* vignette */}
+    </svg>
+  );
+}
+
+export function ShopLive({ sky, ringing }: { sky: SkyColours; ringing: boolean }) {
+  const W = STAGE_W;
+  const H = STAGE_H;
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio="xMidYMid slice" aria-hidden>
+      <path d={`M40 ${90} L300 ${90} L560 ${COUNTER_Y} L80 ${COUNTER_Y} Z`} fill={sky.light} opacity={sky.shaft * 0.18} />
+      <WindowGroup sky={sky} x={40} y={90} />
+      <DoorBellGroup x={576} y={128} ringing={ringing} />
+      <LampGroup x={620} y={60} />
+      <path d={`M80 ${COUNTER_Y} L560 ${COUNTER_Y} L900 ${H} L120 ${H} Z`} fill={sky.light} opacity={sky.shaft * 0.08} />
       <rect x="0" y="0" width={W} height={H} fill="url(#g-vignette)" />
     </svg>
   );
 }
 
-/** Phone: the wall strip behind the customer (door, plaster, wainscot, lamp). */
+/** Phone: the wall strip behind the customer (static textured layer + a small live layer). */
 export function MobileWall({ sky, ringing }: { sky: SkyColours; ringing: boolean }) {
   const W = 400;
   const H = 320;
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio="xMidYMax slice" aria-hidden>
-      <rect x="0" y="0" width={W} height={H} fill="url(#g-wall)" filter="url(#tx-plaster)" />
-      <rect x="0" y={H - 70} width={W} height="70" fill="url(#g-wainscot)" filter="url(#tx-wood-v)" />
-      <rect x="0" y={H - 76} width={W} height="8" fill="#8e5a2e" />
-      <rect x="0" y="0" width={W} height="18" fill="url(#g-beam)" />
-      <path d={`M${W} 40 L${W - 120} 40 L${W - 260} ${H} L${W} ${H} Z`} fill={sky.light} opacity={sky.shaft * 0.2} />
-      <DoorGroup sky={sky} x={34} y={84} w={124} h={H - 84} ringing={ringing} />
-      <rect x="0" y="0" width={W} height={H} fill="url(#g-vignette)" opacity="0.7" />
-    </svg>
+    <>
+      <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio="xMidYMax slice" aria-hidden>
+        <rect x="0" y="0" width={W} height={H} fill="url(#g-wall)" filter="url(#tx-plaster)" />
+        <rect x="0" y={H - 70} width={W} height="70" fill="url(#g-wainscot)" filter="url(#tx-wood-v)" />
+        <rect x="0" y={H - 76} width={W} height="8" fill="#8e5a2e" />
+        <rect x="0" y="0" width={W} height="18" fill="url(#g-beam)" />
+        <DoorGroup sky={sky} x={34} y={84} w={124} h={H - 84} />
+      </svg>
+      <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio="xMidYMax slice" aria-hidden>
+        <path d={`M${W} 40 L${W - 120} 40 L${W - 260} ${H} L${W} ${H} Z`} fill={sky.light} opacity={sky.shaft * 0.2} />
+        <DoorBellGroup x={164} y={94} ringing={ringing} />
+        <rect x="0" y="0" width={W} height={H} fill="url(#g-vignette)" opacity="0.7" />
+      </svg>
+    </>
   );
 }
-
 /** Phone: counter top texture. */
 export function CounterSurface() {
   return (

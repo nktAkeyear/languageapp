@@ -210,7 +210,7 @@ export function VerifyPage({ page }: { page: VerificationPage }) {
             <button type="button" className={`stamp-btn ${full ? 'ready' : ''}`} disabled={!full || stamping} onClick={check} data-testid="verify-check">
               <span className="stamp-handle" aria-hidden />
               <span className="stamp-face">検</span>
-              <span className="stamp-label">このページを確かめる</span>
+              <span className="stamp-label">確かめる</span>
             </button>
             {result === 'ng' ? (
               <p className="ng-note hand" role="status">

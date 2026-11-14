@@ -54,7 +54,7 @@
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 214, 140, 0.55) 0%, rgba(255, 190, 100, 0.18) 40%, rgba(255, 170, 80, 0) 70%);
   pointer-events: none;
-  mix-blend-mode: screen;
+  will-change: transform;
   animation: lamp-flicker 5s ease-in-out infinite;
 }
 @keyframes lamp-flicker {
@@ -121,6 +121,9 @@
 .doorbell {
   transform-box: view-box;
 }
+.backdrop {
+  contain: strict;
+}
 .doorbell.ring {
   animation: bell-ring 1.1s ease-out;
 }
@@ -178,7 +181,7 @@
 .d-bubble {
   left: 672px;
   top: 112px;
-  width: 340px;
+  width: 348px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -285,13 +288,13 @@
 }
 .customer-body {
   transform-origin: 50% 100%;
+  will-change: transform;
   animation: breathe 4.2s ease-in-out infinite;
 }
 .customer-art {
   display: block;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 6px 10px rgba(30, 14, 4, 0.35));
 }
 .cust-head {
   transform-box: view-box;
@@ -460,7 +463,7 @@
 .held-cup-sipping {
   top: 38%;
   transform: rotate(-24deg);
-  animation: sip 0.8s ease-in-out;
+  animation: sip 0.6s ease-out;
 }
 .held-cup-react {
   top: 84%;
@@ -572,9 +575,21 @@
   line-height: 1.55;
   color: #2b2118;
 }
-.d-bubble :lang(zh-CN) .order-text,
-.d-bubble .order-text:lang(zh-CN) {
-  line-height: 1.9;
+.tl:lang(zh-CN) {
+  line-break: strict;
+}
+.d-bubble .order-text:lang(zh-CN),
+.d-bubble .reaction-text:lang(zh-CN) {
+  font-size: 27px;
+  line-height: 1.95;
+}
+.bubble-long .order-text,
+.bubble-long .reaction-text {
+  font-size: 24px !important;
+}
+.m-bubble .bubble-long .order-text,
+.m-bubble .bubble-long .reaction-text {
+  font-size: 18px !important;
 }
 .bubble-prev {
   font-size: 17px;
@@ -656,7 +671,7 @@
   box-shadow:
     0 6px 12px rgba(20, 8, 2, 0.45),
     inset 0 2px 0 rgba(255, 220, 160, 0.35);
-  animation: sign-in 0.4s 0.6s ease-out both;
+  animation: sign-in 0.3s 0.2s ease-out both;
   align-self: flex-end;
 }
 .next-sign:hover {
@@ -1157,9 +1172,19 @@
   position: absolute;
   left: 50%;
   top: 6%;
+  width: 34px;
   font-size: 54px;
   line-height: 1;
   transform: translateX(-50%);
+}
+.fx-tool .tool-art {
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.35));
+}
+.fx-knife {
+  width: 120px;
+}
+.fx-tongs {
+  width: 40px;
 }
 .fx-knife {
   left: -6%;
@@ -1431,8 +1456,7 @@
   transform: translate(-50%, -70%) rotate(-28deg) scale(1.08);
 }
 .drag-ghost-tool {
-  font-size: 48px;
-  width: auto;
+  width: 110px;
   line-height: 1;
 }
 
@@ -1562,8 +1586,15 @@
   color: #3a2e22;
   box-shadow: 0 2px 3px rgba(20, 8, 2, 0.35);
 }
-.nb-glow {
+.desk-notebook.glowing::before {
+  content: '';
+  position: absolute;
+  inset: -26%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 220, 130, 0.95), rgba(255, 215, 120, 0) 66%);
   animation: glow 1.8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
 }
 @keyframes glow {
   50% {
@@ -1915,7 +1946,20 @@
   line-height: 1.5;
 }
 .m-bubble .bubble-prev {
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 1.3;
+  margin-bottom: 4px;
+  padding-bottom: 3px;
+  max-height: 2.7em;
+  overflow: hidden;
+}
+.m-bubble .bubble-prev ruby rt {
+  display: none;
+}
+/* inside the scrolling phone bubble the gloss shows below the word (not clipped at the top) */
+.m-bubble .w-ok[data-gloss]::after {
+  bottom: auto;
+  top: calc(100% + 2px);
 }
 .m-bubble .next-sign {
   font-size: 17px;
@@ -2036,7 +2080,7 @@
 .m-paper {
   position: absolute !important;
   inset: 0;
-  z-index: 20 !important;
+  z-index: 40 !important;
   pointer-events: none;
 }
 .m-paper > * {
@@ -2293,4 +2337,28 @@
   .fx {
     display: none;
   }
+}
+
+/* settings: a paper card over the scene */
+.overlay-body {
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 60%, rgba(140, 100, 50, 0.14) 100%),
+    linear-gradient(#fdf8ea, #f1e2bf) !important;
+  border: 1px solid #b89a6a !important;
+  box-shadow: 0 24px 60px rgba(10, 4, 0, 0.6) !important;
+}
+.overlay {
+  background: radial-gradient(ellipse at center, rgba(30, 14, 4, 0.5), rgba(10, 4, 0, 0.78)) !important;
+}
+.settings h2,
+.settings h3 {
+  color: #6b2a18;
+}
+.settings section {
+  border-color: rgba(184, 154, 106, 0.5) !important;
+}
+
+/* a word and the punctuation right after it never part at a line break */
+.nw {
+  white-space: nowrap;
 }

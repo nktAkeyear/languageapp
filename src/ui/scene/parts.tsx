@@ -13,7 +13,7 @@ import { ING_UNIT, UNIT_ACTION_JA, canAdd, reactionMotion, type Motion } from '.
 import { CustomerArt, expressionFor, lookFor, type Expression } from '../art/customer';
 import { ContainerArt, PieceArt } from '../art/ingredients';
 import { CalendarArt, CoinJarArt, NotebookProp, PlaqueArt, RecipeBookProp } from '../art/props';
-import { BoardArt, ColdBasinArt, HourglassArt, KettleArt, PotArt, SlopBowlArt, SpoonArt } from '../art/tools';
+import { BoardArt, ColdBasinArt, HandToolArt, HourglassArt, KettleArt, PotArt, SlopBowlArt, SpoonArt } from '../art/tools';
 import { VesselArt } from '../art/vessel';
 import { IngredientIcon } from '../components/Ingredient';
 import { SpeakButton, WordText } from '../components/WordText';
@@ -28,7 +28,8 @@ import { useBench, useBenchOptional } from './workbench';
 export function ShelfJar({ ing }: { ing: IngredientId }) {
   const b = useBench();
   const left = b.stock(ing);
-  const n = b.brew.counts[ing] ?? 0;
+  // While a served cup is with the customer, its portions are already taken off the stock.
+  const n = b.stage === 'idle' ? (b.brew.counts[ing] ?? 0) : 0;
   const out = left === 0;
   const remaining = left === undefined ? undefined : Math.max(0, left - n);
   const full = !canAdd(b.brew, ing, b.limit(ing));
@@ -137,7 +138,7 @@ function FxLayer() {
       body = (
         <>
           <span className="fx-tool fx-knife" aria-hidden>
-            🔪
+            <HandToolArt tool="knife" />
           </span>
           {piece}
         </>
@@ -147,7 +148,7 @@ function FxLayer() {
       body = (
         <>
           <span className="fx-tool fx-spoon" aria-hidden>
-            🥄
+            <HandToolArt tool="spoon" />
           </span>
           <span className="fx-blob" style={{ background: fx.ing ? undefined : '#fff' }} />
         </>
@@ -161,7 +162,7 @@ function FxLayer() {
       body = (
         <>
           <span className="fx-tool fx-tongs" aria-hidden>
-            🥢
+            <HandToolArt tool="tongs" />
           </span>
           {piece}
         </>
@@ -180,7 +181,11 @@ function FxLayer() {
       body = <span className="fx-bubbles" aria-hidden>◦ ° ◦</span>;
       break;
     case 'stir':
-      body = <span className="fx-tool fx-stir" aria-hidden>🥄</span>;
+      body = (
+        <span className="fx-tool fx-stir" aria-hidden>
+          <HandToolArt tool="stir" />
+        </span>
+      );
       break;
     case 'remove':
       body = piece ? <span className="fx-out">{piece}</span> : null;
@@ -380,8 +385,15 @@ export function Bubble() {
   if (!order || !t || t.phase === 'closed') return null;
   const reacting = b.stage === 'react' && result;
   const hideText = order.audioOnly && voice && !result;
+  // Long lines get a smaller hand so the bubble stays inside the wall.
+  const len = plain(reacting ? `${order.text} ${result!.reaction}` : order.text).length;
+  const long = lang === 'zh' ? len > 24 : len > 60;
   return (
-    <div key={`${t.day}:${t.index}`} className={`bubble-paper ${reacting ? 'bubble-react' : ''} ${b.leaving ? 'bubble-leave' : ''}`} data-testid="bubble">
+    <div
+      key={`${t.day}:${t.index}`}
+      className={`bubble-paper ${reacting ? 'bubble-react' : ''} ${b.leaving ? 'bubble-leave' : ''} ${long ? 'bubble-long' : ''}`}
+      data-testid="bubble"
+    >
       {reacting ? (
         <>
           <div className="bubble-prev">
