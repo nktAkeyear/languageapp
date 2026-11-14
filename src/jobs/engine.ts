@@ -12,7 +12,7 @@
  * stage clock does not move (no stage runs ahead while the player works elsewhere) and a planned
  * story beat waits for another day.
  */
-import type { GameData } from '../core/gamedata';
+import { wordMarkup, type GameData } from '../core/gamedata';
 import { pick, type Rng } from '../core/rng';
 import type { LangProgress } from '../core/save';
 import { recordEncounter, recordLapse, recordSuccess, reviewWeight } from '../core/srs';
@@ -372,7 +372,8 @@ export function planShift(data: GameData, p: LangProgress, job: JobDef, part: nu
     if (tasks.length >= (hasTemplates ? n - 1 : n)) break;
     const inst = authoredInstance(ctx, t);
     const nw = unseen(data, p, inst).length;
-    if (tasks.length && fresh + nw > budget) break;
+    // The first two of the spine always come (a new job must show its new kinds of task); then the budget.
+    if (tasks.length >= 2 && fresh + nw > budget) break;
     tasks.push(inst);
     fresh += nw;
   }
@@ -404,7 +405,8 @@ export function planShift(data: GameData, p: LangProgress, job: JobDef, part: nu
     let best: TaskInstance | null = null;
     let bestScore = -Infinity;
     for (let i = 0; i < 10; i++) {
-      const weights = from.map((t) => (t.weight ?? 1) * (t.rank === rank ? 2 : 1));
+      // The rank's own material comes most; older templates keep coming as review.
+      const weights = from.map((t) => (t.weight ?? 1) * (t.rank === rank ? 3 : t.rank === rank - 1 ? 1.5 : 0.6));
       let r = rng() * weights.reduce((a, b) => a + b, 0);
       let tm = from[0];
       for (let k = 0; k < from.length; k++) {
@@ -499,6 +501,10 @@ function reactionText(data: GameData, jc: JobContent, inst: TaskInstance, ev: Jo
     const it = inst.spec.items.find((x) => x.id === prim.item);
     const bin = jc.sort?.bins.find((b) => b.id === it?.bin);
     if (bin) values.bin = bin.ref;
+  }
+  if (prim?.kind === 'wrong_vessel' && inst.spec.arch === 'make' && inst.spec.vessel) {
+    const v = jc.make?.vessels?.find((x) => x.id === (inst.spec as { vessel?: string }).vessel);
+    if (v) values.vessel = wordMarkup(data, v.word);
   }
   values.name = personName(data, jc, inst.person);
   const pickFrom = (k: string | undefined) =>

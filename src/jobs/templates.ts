@@ -155,7 +155,11 @@ export function specTexts(spec: TaskSpec): string[] {
 export function makeInstance(ctx: GenCtx, source: TaskInstance['source'], meta: { person?: string; say?: string; features?: TaskFeature[] }, spec: TaskSpec, key: string): TaskInstance {
   const say = meta.say ?? '';
   const f = features(ctx, meta);
-  const person = meta.person ?? (spec.arch === 'sort' || spec.arch === 'check' && !say ? ctx.jc.boss : pick(ctx.rng, clientPeople(ctx).length ? clientPeople(ctx) : [ctx.jc.boss]));
+  // Who you work with: sorting and checking papers are for the boss, requests come from clients;
+  // a task / template may name a person, or 'client' for any client (a guest at the inn's desk).
+  const clients = clientPeople(ctx).length ? clientPeople(ctx) : [ctx.jc.boss];
+  const bossTask = spec.arch === 'sort' || spec.arch === 'check' || (spec.arch === 'respond' && spec.msg.kind !== 'speech');
+  const person = meta.person === 'client' ? pick(ctx.rng, clients) : (meta.person ?? (bossTask ? ctx.jc.boss : pick(ctx.rng, clients)));
   const texts = [...(say ? [say] : []), ...specTexts(spec)];
   const focus = spec.arch === 'make' || spec.arch === 'trade' ? [say] : spec.arch === 'respond' ? spec.msg.lines : spec.arch === 'sort' ? spec.items.map((i) => i.text) : texts;
   return { key, job: ctx.job.id, source, spec, person, say, audioOnly: f.audioOnly && !!say, timed: f.timed, texts: texts.filter(Boolean), focus: focus.filter(Boolean) };
@@ -232,17 +236,17 @@ function fillSlots(ctx: GenCtx, slots: Record<string, SlotDef>, maxCount: number
         values[key] = thingName(ctx.data, th);
         want.push({ thing: th.id, min: 1, max: Math.min(th.max ?? maxCount, maxCount) });
       } else {
-        values[key] = thingName(ctx.data, th);
+        values[key] = thingName(ctx.data, th, true);
         forbid.push(th.id);
       }
     } else if (s.kind === 'method') {
-      const ms = ctx.jc.make?.methods ?? [];
+      const ms = (ctx.jc.make?.methods ?? []).filter((m) => levelOk(ctx.data, m.word, maxOf(ctx)));
       if (!ms.length) return null;
       const m = pick(ctx.rng, ms);
       method = m.id;
-      values[key] = wordMarkup(ctx.data, m.word);
+      values[key] = wordMarkup(ctx.data, m.word, m.surface);
     } else if (s.kind === 'vessel') {
-      const vs = ctx.jc.make?.vessels ?? [];
+      const vs = (ctx.jc.make?.vessels ?? []).filter((v) => levelOk(ctx.data, v.word, maxOf(ctx)));
       if (!vs.length) return null;
       const v = pick(ctx.rng, vs);
       vessel = v.id;
@@ -326,6 +330,7 @@ function buildSort(ctx: GenCtx, t: TaskTemplate & SortTemplate): Built | null {
       bin = b;
     }
     if (pat.text.includes('{num}')) values.num = String(1 + Math.floor(ctx.rng() * 40));
+    if (pat.text.includes('{digit}')) values.digit = String(1 + Math.floor(ctx.rng() * 9));
     if (!bin && pat.bins?.length) {
       const pool = pat.bins.filter((b) => allowed.includes(b));
       if (!pool.length) continue;

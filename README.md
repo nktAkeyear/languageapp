@@ -1,15 +1,23 @@
 # 港町の調香茶房 (languageapp)
 
-A personal-use "decipherment" language game for Japanese speakers learning **English** or
-**Mandarin Chinese** (simplified + pinyin) — from zero, or from a chosen HSK / 英検 level (レベル設定). You
-run an inherited tea/spice shop in a
-port town. Customers order in the target language, the predecessor's recipe book is written in
-the target language, and the only feedback is the customer's reaction (target language), their
-face and the shop's reputation. There are no translations. Game chrome (menus, hints, notebook
-UI) is Japanese.
+A personal-use "decipherment" language game for Japanese speakers learning **English** (the focus) or
+**Mandarin Chinese** (simplified + pinyin; playable as before, tea house only). There are no translations:
+meaning is inferred from pictures, context and consequences. Game chrome (menus, hints, notebook UI) is
+Japanese; everything in the world is in the target language.
 
-The code is split into a shared core (lexicon, word tracking, notebook, verification,
-reputation, saves) and pluggable activities (`src/activities/<id>/`):
+**Many lives in one town.** The player inherited a tea/spice shop in a port town — the first job — and,
+from day 4, the town's job board offers more working lives they can take up and switch between freely
+(per part of the day): the **post office**, the **harbour kitchen**, the **inn's front desk** and a
+**trading company's office** (TOEIC-flavoured working English). Each job is a different place with its own
+people, tasks, ranks and vocabulary; one shared notebook / verification / hidden SRS runs across all of
+them, and the jobs feed each other (the kitchen bakes the bread the inn serves, the office's parcels go
+through the post office, the tea house's tea goes to the office's meetings). Progress is measured against
+the compiled English lists (`data/english/`) on two yardsticks the player chooses between or views side by
+side: **英検** (5級 … 1級) and **TOEIC** (〜400 … 〜990).
+
+The code is split into a shared core (lexicon, word tracking, notebook, verification, reputation, saves),
+the **jobs** framework (`src/jobs/`: the day's parts, shifts, ranks, task archetypes), the **curriculum**
+over the compiled lists (`src/curriculum/`) and the tea house's own activities (`src/activities/<id>/`):
 
 - **shop** (Phase 1): order → recipe book → workbench → reaction.
 - **market** (Phase 2, opens around day 5 / early–mid A1): the shop runs short; a shopping note
@@ -19,14 +27,15 @@ reputation, saves) and pluggable activities (`src/activities/<id>/`):
   signs; behind / across from / next to / left / right), when (morning, o'clock, before / after),
   to whom and how (knock twice, not the child, leave it at the door if nobody is home).
 
-A day is a sequence of segments planned by `src/activities/day.ts` (e.g. 朝 market → 昼 shop →
-夕方 delivery). Before the town activities open, a day is exactly the Phase 1 shop day.
+A tea house day is a sequence of segments planned by `src/activities/day.ts` (e.g. 朝 market → 昼 shop →
+夕方 delivery). Before the town activities open, a day is exactly the Phase 1 shop day; before the job board
+opens (day 4) a day is exactly the tea house day.
 
 Around this core: a **story** (regulars, the predecessor's letters, chapters, the nightly ledger), the
 **shop renovation** (a carpenter's catalogue bought with the shop's coins: more customers, stock kept
 overnight, a daily delivery, notebook aids, décor) and **difficulty settings** (start level by HSK / 英検
-with 既習扱い words and a stage jump, target, pace, an adaptive controller, assists, the 学習の記録 page).
-All three are optional save fields / layers: without them the game plans exactly as the base game.
+with 既習扱い words and a stage jump, target, pace, an adaptive controller, assists, the 学習の記録 page;
+en: the yardstick 英検 / TOEIC and a TOEIC target). All are optional save fields / layers.
 
 ## Commands
 
@@ -47,7 +56,16 @@ npm run simulate -- zh 45 --start=2 --pace=slow --acc=0.7 [--adaptive=0] [--seed
                           # difficulty settings: a simulated player of that accuracy, one line per day
                           # (`buy`: it also orders from the catalogue; coins and 🛠 at the end of the line)
 npm run simulate -- --table [--buy]   # settings comparison table (both languages, 45 days, mean of 3 seeds)
+npm run simulate -- --jobs [--days=20] [--acc=0.85] [--seed=1] [--yard=eiken|toeic] [--log]
+                          # jobs: a simulated English player works through the town (a job in the morning,
+                          # the tea house at noon, another job in the evening): one line per day with ranks,
+                          # coins, words met / confirmed and progress on both yardsticks; --log prints every
+                          # task's request and reaction (content review)
 ```
+
+The build reads `data/english/{vocab,phrases,grammar}.json` (if present) through a Vite plugin
+(`scripts/englishLists.ts`), so rebuild after the lists change. `validate-content` and `simulate` read them
+from disk directly.
 
 `dist/index.html` is self-contained (relative base + `vite-plugin-singlefile`): copy it anywhere
 and open it with a browser. No network requests at runtime; saves live in `localStorage`
@@ -73,6 +91,13 @@ src/
     save.ts             versioned save, migration, export/import
     validate.ts         content validator (used by script + tests)
     validateTown.ts     validator part for market / delivery content
+  jobs/                 the jobs framework (UI-agnostic): types.ts (schema + runtime + save state) ← start here
+                        for jobs, rules.ts (the archetypes' rules + solvers), templates.ts (task generator:
+                        typed slots → instances), engine.ts (board, parts of the day, shifts, planner, ranks,
+                        wages, links), vocab.ts (job vocabularies, where words were met), validate.ts, merge.ts
+  curriculum/           the compiled English lists: lists.ts (types, tolerant reading, packing), node.ts
+                        (disk), browser.ts (bundled, gzip + base64), curriculum.ts (reconciliation, 英検 / TOEIC
+                        reports, next-word selection), yardsticks.ts, apply.ts
   renovation/           shop renovation (UI-agnostic): types.ts (schema + save state), engine.ts (catalogue,
                         orders, arrival, effects, day hooks), validate.ts, merge.ts (content merge)
   story/                story layer (UI-agnostic): types.ts (schema + save state), engine.ts (day hooks,
@@ -91,6 +116,8 @@ src/
     shared/             language-neutral: ingredients, recipes, stages (unlock schedule)
     shared/town.ts      language-neutral town data: goods, stalls, map, time slots, curriculum, unlocks
     shared/renovation.ts the catalogue: upgrades, prices, gates, effects; {en,zh}/renovation.ts its text + words
+    jobs/               the jobs: teahouse.ts (the first job + the shared goods), post.en.ts, kitchen.en.ts,
+                        inn.en.ts, office.en.ts (English-only), index.ts (the list)
     en/  zh/            lexicon.ts + index.ts (shop); town.ts = lexicon.town.ts + market.ts + delivery.ts
   ui/
     App.tsx             shell: layout choice, settings sheet, art defs, sound settings, story stage, books,
@@ -119,12 +146,18 @@ src/
                         the reaction has been read), people.ts
     book/               recipe book and notebook as physical books (BookShell, page turns, 検証 puzzle)
     reno/               the renovation catalogue (a booklet like the books), its prop on the counter
+    jobs/               TownHub.tsx (the town: map + east quarter, workplaces, the day's parts), JobBoard.tsx
+                        (仕事の掲示板), JobScene.tsx (a workplace: backdrop, person, bubble, shift frame),
+                        benches.tsx (sort, trade) + benches2.tsx (make, check, respond), art.tsx / art2.tsx
+                        (hub, interiors, things, documents), Yardsticks.tsx (現在地 by 英検 / TOEIC, the per-job
+                        record), bits.tsx, jobs.css
     difficulty/         レベル設定 sheet, 腕だめし, 学習の記録 page + SVG charts, notebook bits (既 mark, peek,
                         目標 panel), scene assists (mistake marks, retry slip, slower speech)
     components/         settings, title, word text (gloss on hover/tap; story names; glossed documents; word-by-word
                         reveal), SaveText.tsx (save as text: copy / paste)
     desktop/  mobile/   layouts per device: which scene the current segment shows
-scripts/                validate-content.ts, simulate.ts (+ storyLog.ts, simDifficulty.ts: the settings simulator)
+scripts/                validate-content.ts, simulate.ts (+ storyLog.ts, simDifficulty.ts: the settings simulator,
+                        simJobs.ts: the jobs simulator), englishLists.ts (the Vite plugin bundling data/english)
 ```
 
 The layout is chosen by viewport width (≤ 820px → mobile), overridable in settings.
@@ -135,6 +168,18 @@ Every part of the day is a drawn scene (desktop: a 1600×1000 stage scaled to th
 compositions of the same pieces), and moving between them is a short passage of light: 朝 market →
 昼 shop → 夕方 delivery → 夜 the ledger → dawn of the next day (skipped with `prefers-reduced-motion`).
 
+- **The town** (from day 4): the delivery map extended across the bridge by the east quarter — the post
+  office (red brick, a red postbox), the trading company (stone, a clock), the harbour kitchen (striped
+  awning, chimney smoke), a building site for the jobs to come; the inn and the tea house where they always
+  were; the job board on the main street. Signs in the target language with a small Japanese label. The
+  light follows the part of the day (朝 / 昼 / 夕方 / evening). Phone: overview map + signboard list.
+- **Workplaces**: each job has its own drawn interior (post office: green tiles, the harbour window, the
+  clock, the post's flag; kitchen: white tiles, hanging pans, the range, the hatch; inn: the key board,
+  the stairs, a fern; office: the coast map, a wall calendar, filing cabinets) with the person at the
+  counter (drawn, talking, reacting with face and arms) and the bench of the task's archetype on a paper
+  panel: letters and a cabinet of brass-labelled cubbies, the price chalkboard / drawers / the till, the
+  pantry / dish / pan-pot-grill, papers side by side with a stamp, reply slips / message pad / a week
+  calendar / the inn's floors. Phone: the same pieces stacked.
 - **The shop**: the customer stands behind the counter in front of the door, the shelf is on the
   right wall. Reputation is the plaque above the door, the day is the wall calendar ("40日目", with
   today's plan), customers are order tickets on a nail, money is the coin jar. The window light follows
@@ -208,6 +253,225 @@ compositions of the same pieces), and moving between them is a short passage of 
   blinking, the lamp) never re-run the filters; animated figures carry no filters (shadows are plain
   gradients) and the night lamp is a plain alpha layer, not a blend mode.
 
+## Jobs (仕事): many lives in one town
+
+### The day and the town
+
+- **Before day 4** a day is exactly the tea house day (market → shop → delivery). On **day 4** the job board
+  opens (a note in the morning) and every morning from then on starts **in the town** (`TownHub.tsx`): the
+  delivery map, extended across the bridge by an east quarter where the new workplaces stand (post office,
+  harbour kitchen, the trading company's office; the inn is the map's inn; a building site with scaffolding
+  stands for the jobs still to come). Tap a building → its card (job, rank, the level of its material, what
+  it teaches) → **ここで働く**. Phone: the map as an overview with markers, and the workplaces as signboards.
+- **Parts of the day**: 朝 / 昼 / 夕方. A job's **shift** (4–6 tasks) fills one part; each job at most once a
+  day. The **tea house** is planned every morning as before and, when chosen, runs its own segments from the
+  current part on: started in the morning it is the original day (market 朝, shop 昼, delivery 夕); started
+  at noon there is no market that day (the shop uses what is in the back); started in the evening it is the
+  shop only. After the shop closes with no delivery planned, 「店を閉めて町へ出る」 leaves the evening for
+  another job. 「今日はもう帰る」 ends the day from the town; the night's ledger lists the shifts (お給金, tasks,
+  how many went well) next to the shop's accounts.
+- A day **without the tea house** leaves it closed: its planned customers come another day, its **stage
+  clock does not move** (`clockOffset −1`, so no stage runs ahead while the player works elsewhere), and a
+  planned story beat waits for another day (as before). The story, renovation, difficulty and metrics are
+  unchanged; job tasks count in the day's indicators (first-try accuracy, new / review) like orders.
+- **仕事の掲示板** (`JobBoard.tsx`): every job — what it teaches (archetypes, domains), its rank ladder with
+  the **英検 grade / TOEIC band of each rank's material**, progress to the next rank, the next words the
+  curriculum would bring there, and how many words of its domains no job covers yet; the town's goods store;
+  the optional time-pressure switch; recommendations by the chosen yardstick (TOEIC → working-life jobs
+  first; 英検 → the jobs whose first rank is the easiest grade).
+
+### Ranks
+
+One ladder for every job, with original names (the tide coming in, then the lighthouse): **さざ波 → 潮だまり
+→ 満ち潮 → 大潮 → 灯台**. A job's next rank needs `good` tasks done well (perfect / minor) in that job and
+`words` of the job's vocabulary confirmed in the notebook. A rank-up comes at the end of a shift (a badge,
+the reward — coins or goods — and what changes). Each rank is annotated with the level of its material
+(`level: { eiken, toeic }`) and **unlocks harder variants**, not just more words: `long` (more letters,
+more fields, a second condition), `audioOnly` (the request is only heard; shown as text where the browser
+has no voice), `multiStep` (check → also choose the right value), `timed` (optional time pressure: only if
+the player switched it on at the board; late = at best "minor"). The planner prefers the rank's own
+templates (×3) over the previous rank's (×1.5) and older ones (×0.6, review).
+
+| job | archetypes | domains | rank 1 / 2 / 3 / 4 material |
+| --- | --- | --- | --- |
+| 茶房 tea house (en + zh) | make, trade, deliver | food, cooking, health, shopping, money, family, weather, transport | 英検5 / 4 / 3・TOEIC〜400 / 準2・〜500 (= shop stages 1–6 / 7–12 / 13–18 / 19–23) |
+| 郵便局 post office | sort, trade | post, transport, money, shopping, housing | 英検4 / 3・〜400 / 準2・〜500 / 2・〜600 |
+| 港の食堂 harbour kitchen | make, sort | food, cooking, health, shopping | 英検4 / 3 / 準2・〜400 / 2・〜500 |
+| 宿の帳場 inn front desk | check, respond, sort | hotel, travel, housing | 英検4 / 3・〜400 / 準2・〜500 / 2・〜600 |
+| 商会の事務 trading office | check, respond | office, meetings, sales, finance, logistics | TOEIC〜400 (英検3) / 〜600 / 〜730 / 〜860 |
+
+Ranks 1–3 of each new job have authored + templated content; rank 4 is reachable and says honestly that its
+new material is still to come (the job then repeats ranks 1–3 as review). The tea house's ranks follow its
+existing progress (cups served well + its words confirmed); its harder material comes with the shop stages.
+
+### Task archetypes (`src/jobs/rules.ts`, benches in `src/ui/jobs/benches*.tsx`)
+
+Each archetype owns its interaction (bench), rules (pure `evaluate` + `solve` + a `fumble` for the
+simulator), reactions (issue kinds) and word tracking (which texts a mistake implicates → SRS lapses).
+Outcomes follow the tea house: perfect, minor (small slip, ±0), fail, bad (harmful: an allergy ignored,
+a wrong document approved).
+
+1. **make** (kitchen; the tea house's brewing is its specialised ancestor): pantry → the dish; things and
+   counts, vessel (plate / bowl / box), method (fried / boiled / grilled), "no onions", "I can't eat eggs".
+   Issues: empty, forbidden (bad), missing, extra, too_much / too_little, wrong_vessel (minor), wrong_method.
+2. **sort & route** (post office, kitchen's deliveries, inn's luggage): a tray of letters / crates / bags
+   with their labels, a cabinet of labelled cubbies; tap (or drag) and place, hand in, wrong ones are marked.
+   One wrong of ≥ 4 is minor. Crates show only their label (reading, not the picture, decides).
+3. **check documents** (inn, office): papers side by side (or what the guest just said vs the booking book);
+   stamp 問題なし or mark the line that disagrees (and at rank 3 choose the right value). Missed → bad;
+   false alarm / wrong line → fail; right line, wrong value → minor.
+4. **respond** (inn, office): a person / letter / e-mail / phone call; reply by choosing a reply slip
+   (distractors are answers of *other* communicative functions), filling a message pad with chips, or
+   picking the one free slot that fits on a week calendar or on the inn's floors (the generator makes
+   exactly one cell fit the constraints; the validator re-checks it).
+5. **trade** (post office counter; the tea house's market is the buying side): price board, goods drawers,
+   the customer's coins, the till; hand over the goods and count the change. Rank 2: customers round up.
+6. **go & deliver** (the tea house's delivery; the framework lists it for future jobs).
+
+### Cross-job glue
+
+Coins and the home / renovation are shared (`p.town.money`). **Goods** (`JobsState.goods`, the 倉庫 on the
+board and in the town): a job's perfect tasks `produce` a good, another job `use`s it — each task done well
+uses one and pays a bonus, with a line said in the target language. The tea house makes tea packets (→ the
+office), the kitchen bakes bread (→ the inn's breakfasts and the tea house), the inn sends breakfast orders
+(→ the kitchen), the office sends parcels (→ the post office). The regulars (Rose, Tom, Joe, Nora, Grant,
+Hale, Captain Reed) come to the counters as clients; the bosses (Mrs. Wren, Chef Basil, Mr. Olsen, Ms. Park)
+have fixed looks.
+
+### Shared learning core
+
+One lexicon / notebook / verification / SRS across jobs. Job words merge into the language's lexicon with
+their own 検証ページ (3–5 words each, like every word). Words carry the jobs where they were met
+(`JobsState.wordJobs`, plus static membership: every word a job's content uses; the tea house owns the
+original game's words) and their domains (`LexEntry.domains`). The notebook's word list filters by job, by
+英検 grade and by TOEIC band; a word's page shows its levels and its jobs. The 現在地 page shows progress per
+英検 grade and per TOEIC band (tabs: 英検 / TOEIC / 並べる), overall or for one job; the 記録 page has a
+per-job table.
+
+## Curriculum: the compiled English lists (`src/curriculum/`)
+
+- **Lists** (`data/english/`, compiled separately; never edited by the game): `vocab.json`
+  (`{word,pos,eiken,toeic,cefr,ja,domains[],freq}`), `phrases.json` (`{id,text,type,eiken,toeic,ja,…,functions[],domains[]}`),
+  `grammar.json` (`{id,name,nameJa,eiken,toeic,…}`). Reading is tolerant: a missing / broken file is an empty
+  list with a note; an item without a word / id is skipped.
+- **Bundling**: the Vite plugin (`scripts/englishLists.ts`) trims every item to what the game reads (first
+  sense of the gloss ≤ 24 chars; no examples; domains as indexes), gzips it and inlines it as base64; the
+  browser decompresses it once before the first render (`DecompressionStream`, a few ms). With the lists of
+  this writing (11 182 words, 2 580 phrases, 302 grammar points): raw 2 743 KB → packed 912 KB → gzip 265 KB →
+  **353 KB in the single file** (the build went from 955 KB to 1 450 KB: ≈ 353 KB lists, ≈ 140 KB jobs code,
+  content and art; 600 KB gzipped). Without `DecompressionStream` the game runs without lists and says so.
+- **Reconciliation** (`reconcileLexicon`, applied when the game data is built): a lexicon word found in
+  `vocab.json` (headword or any of its forms; same POS preferred; the easiest matching item wins, so "is"
+  takes the level of "be") takes its 英検 grade, TOEIC band, CEFR and domains from the list; the hand-written
+  gloss stays (it is written for the meaning cards). A job word written without gloss / level gets them from
+  the list. `validate-content` prints how many words matched and lists the ones missing from the list.
+- **Reports** (`yardstickReport`): per 英検 grade / TOEIC band, cumulative — the list size, how much of it the
+  playable content contains (**the ceiling**: drawn as a dashed frame; the rest cannot be learned in the game
+  yet, said in words), how much the player has mastered, and how many of the lists' phrases / grammar points
+  the content's tasks refer to. Scoped to a job: the list items of its domains and the words of its content.
+  The 現在地 statement, the 目標 panel (英検 target) and the qualification estimate in 学習の記録 use these
+  lists when they are loaded (else the game's own tags and estimated list sizes, as before).
+- **Selection** (`selectNext`): the next words / phrases / grammar points for a job in the chosen yardstick's
+  order — 英検: grade, then frequency (the school order); TOEIC: band, business domains first, then
+  frequency — split into what the job's content can teach now (`teachable`, lexicon ids) and what no
+  playable content covers (`uncovered`, counted honestly on the board). The shift planner gives template
+  instances that introduce the next teachable words a bonus (within the shift's new-word budget, 4 + rank) and
+  otherwise prefers instances full of due / weak words (hidden SRS). With 英検 as the yardstick, the
+  selection is capped at the rank's grade + 1.
+- **Yardstick choice** (レベル設定, en): 英検 or TOEIC, and a TOEIC target band. The board's recommendation and
+  the curriculum order follow it; the 現在地 page can always show both.
+
+## Jobs: content schema (for content authors)
+
+Types: `src/jobs/types.ts`. A job is a `JobDef` (language-neutral frame) with `content: { en: JobContent }`.
+Register it in `src/content/jobs/index.ts`; run `npm run validate-content` and `npm test`.
+
+- **JobDef**: `id`, `nameJa`, `blurbJa`, `icon`, `domains[]` (the data/english taxonomy), `archetypes[]`,
+  `ranks[]` (`{ rank, need: { good, words }, level: { eiken: '5'|'4'|'3'|'pre2'|'2'|'pre1'|'1', toeic }, unlocks?,
+  tasks (per shift), reward?, noteJa }`), `wage` (coins per outcome), `opensAfter` (days after the board
+  opens), `building` (hub art + hotspot in `src/ui/jobs/art.tsx` `BUILDINGS`), `links?`
+  (`produce: [{ good, perPerfect }]`, `use: [{ good, bonus, line }]`; goods in `content/jobs/teahouse.ts` `GOODS`),
+  `flavour: 'school' | 'work'` (work = measured in TOEIC bands by the validator, recommended for TOEIC).
+- **JobContent**: `sign` (in-world sign), `lexicon` (`LexEntry` without required gloss / level: the list
+  fills them; write a gloss when you want a better card), `pages` (検証ページ), `forms` (extra surface forms of
+  existing ids, e.g. `{ want: ['wants', 'wanted'] }`), `people` (`{ id, name, avatar }`; a regular is listed by
+  its customer id with an empty name), `boss`, `things` (`{ id, word, art, tags?, plural?, unit?, price?, bin?, max? }`),
+  the benches (`make: { vessels, methods (surface: 'fried'), max }`, `sort: { bins: { id, label, ref, art }, item }`,
+  `trade: { coins, board }`), `tasks` (authored: the job's curriculum spine, served in rank / seq order until
+  done perfectly), `templates`, `qa` (question / answer banks for reply choices: `{ q, a, fn, rank, phrases?, grammar? }`),
+  `reactions` (`{ id, kind, text, face, rank?, arch? }`; kinds: `perfect minor any_fail` + the archetypes' issue
+  kinds; placeholders `{thing} {bin} {field} {vessel} {name}`), `lines` (the boss's `start / end / rankup`).
+- **Text**: every in-world text is tokenised against the lexicon; proper names are written `{Mrs. Wren|@}`
+  (shown as a name, never a word); `{surface|id}` forces a mapping (`{change|change_v}`). Digits and prices
+  ("$4", "12") are free.
+- **Tags**: a task / template / QA item may list `phrases` (ids in phrases.json the text uses — validated:
+  the text must contain the phrase) and `grammar` (ids in grammar.json it exercises), and `level` (declared
+  英検 grade; default: its rank's).
+- **Template slots** (typed): `qty` (a counted thing: "two eggs", "three slices of bread"), `thing`, `forbid`,
+  `method`, `vessel`, `word` (any lexicon word by `domain` / `pos` / `maxLevel`), `name`. Things are filtered by
+  `tags` and by level (the rank's 英検 grade + 1). Sort templates: `patterns` with `{bin}` (the target bin's
+  `ref`), `{thing}` (its `bin` decides), `{name}`, `{num}`, `{digit}`, or fixed `bins`. Check templates:
+  `fields` (`{ id, label, values[] }`), `docs` (which fields each paper shows, or `lines` with `{fieldId}`),
+  `target`, `pWrong`, `wrongable`. Respond templates: `mode: 'choose'` + a QA `bank`, or `mode: 'slot'` with
+  `rows`, `cols`, `cellTags`, `want` / `avoid` constraint sentences and `busy` texts.
+
+**Worked example** — a job's rank-1 sorting task, a template that varies it, and a counter template
+(from `src/content/jobs/post.en.ts`):
+
+```ts
+tasks: [
+  { id: 'p1_first', rank: 1, seq: 1, arch: 'sort',
+    say: 'Good morning! Put the letters in the boxes, please.',
+    bins: ['school', 'bank', 'hospital'],
+    items: [{ id: 'a', text: 'To the school', bin: 'school' }, { id: 'b', text: 'To the bank', bin: 'bank' },
+            { id: 'c', text: 'To the hospital', bin: 'hospital' }] },
+],
+templates: [
+  // 3–4 letters (+1 from rank 2: 'long'), any of the place bins within the rank's level
+  { id: 'pt_places', rank: 1, arch: 'sort', count: [3, 4],
+    bins: ['school', 'hospital', 'bank', 'inn', 'station', 'library', 'park', 'church'],
+    patterns: [{ text: 'To {bin}' }, { text: 'For {bin}' }, { text: '{Name}, at {bin}' }] },
+  // "Can I have three stamps, please?" — the customer rounds up, the clerk gives change
+  { id: 'pt_canhave', rank: 2, arch: 'trade', say: 'Can I have {qty1}, please?', phrases: ['ph-4-0004'],
+    slots: { qty1: { kind: 'qty', tags: ['counter'], min: 2, max: 4 } }, pay: 'round' },
+],
+reactions: [
+  { id: 'pr_ok1', kind: 'perfect', arch: 'sort', text: 'Good job!', face: 'happy' },
+  { id: 'pr_bin1', kind: 'wrong_bin', text: 'No, no. This one goes in “{bin}”.', face: 'puzzled' },
+  { id: 'pr_short', kind: 'change_short', text: 'My change is not right. I need more.', face: 'angry' },
+  { id: 'pr_fail', kind: 'any_fail', text: 'Oh, no. That is wrong.', face: 'sad' },
+],
+```
+
+**What the validator checks (jobs)**: ids; rank ladders (1..n, growing needs, valid 英検 keys); links → goods;
+people / boss / persons exist (regulars by customer id); things → lexicon; counter goods have prices; every
+content text tokenises (names aside) — this also makes the job's words "appear somewhere"; reactions'
+placeholders, a rank-1 `perfect` and `any_fail`, a `perfect` usable by each archetype, `start` / `end` lines;
+QA banks (≥ 3 items, ≥ 2 functions); every authored task and 30 instances of every template at every rank
+it can come at: references resolve (bins, things, fields, vessels, methods, options), solved perfectly by the
+archetype's own solver, a customer never pays less than the total, and **level**: words above the declared
+level + 1 grade are a warning, + 3 an error (work-life jobs: TOEIC bands where the word has one). Lists:
+job words missing from `vocab.json` are listed (warning: tolerant but loud while the lists are being
+compiled), phrase / grammar tags are checked against the lists when present, a word without gloss needs one
+in the list. The jobs simulator (`npm run simulate -- --jobs`) plays the town end to end.
+
+### Roadmap: jobs the framework is ready for
+
+| job | archetypes | domains |
+| --- | --- | --- |
+| fishing boat 漁船 | make (nets / bait to a spec), sort (the catch by kind / size), go & deliver (to the market stalls) | sea, nature, weather, food, transport |
+| farm / market garden 畑 | make (planting plans), check (seed orders), trade (at the market, selling side) | farming, nature, weather, food |
+| clinic intake 診療所の受付 | respond (symptoms → form), check (insurance card ↔ form), sort (files) | health, body, emotion |
+| tailor 仕立て屋 | make (to measurements / colours / fabric), check (order ↔ garment), trade | clothing, crafts, money |
+| library 図書館 | sort (by subject / author / call number), respond (requests), check (returns ↔ cards) | school, arts, media |
+| railway station 駅 | respond (timetable questions, slot: the right train), trade (tickets), go & deliver (lost property) | transport, travel |
+| bank counter 銀行 | check (forms ↔ ID, cheques), trade (exchange), respond (account questions) | finance, money, law |
+| newspaper office 新聞社 | respond (letters to the editor), check (proofs ↔ notes), sort (stories by section) | media, society, abstract |
+| carpenter / builder 大工 | make (to a drawing: lengths, pieces), check (delivery ↔ order), go & deliver | crafts, housing |
+| town hall 役場 | check (applications ↔ rules), respond (citizens' questions / forms), sort (mail by department) | society, law, hr |
+| shipping agent 海運代理店 | check (bills of lading ↔ manifests), respond (schedules, e-mail), go & deliver | logistics, sea, sales |
+
+
 ## Shop renovation (店の改装)
 
 The coins the shop earns buy improvements from a carpenter's catalogue — a booklet on the counter
@@ -244,7 +508,9 @@ Goods kept overnight start the next market day in stock and the shopping note as
 not when a regular already made small talk; a remark may be marked `notWhen: ['cold' | 'hot']` so nobody
 says "very warm here" over an iced tea). The arrival note is on the day's first notice (the market's paper
 when the day starts there). An entry that has appeared stays listed even if reputation dips below its gate.
-Calibration (`npm run simulate -- en 45 1 0 0 buy`): a
+Jobs add wages (2–3 coins a task done well, about 8–15 a shift), so an English player who works in the
+town owns the catalogue earlier than the tea-house-only calibration below (zh has no other jobs and is
+unchanged). Calibration (`npm run simulate -- en 45 1 0 0 buy`): a
 player who serves everything right earns ~950–1050 coins net of the market in 45 days (en; zh ~770) and,
 buying whatever is affordable while keeping 20 coins for the market, owns the whole catalogue (842 coins)
 around day 39–42; a player who fails every 3rd–4th cup earns ~480–620 and gets 13–15 of the 18 entries.
@@ -600,6 +866,12 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
 
 ## Learning model notes
 
+- **Saves (v4, jobs)**: the v3 → v4 migration adds `jobs` to each language's progress: the tea house becomes
+  the first job with its served / perfect cups as the job's task log (its rank is worked out once at load
+  from that and its confirmed words; rewards paid), an empty goods store, and the board opens the next
+  morning for saves already past day 4 (a day in progress continues in the tea house). Everything else is
+  kept as it was. `jobs.day` holds today's parts (which job, the running shift); `jobs.wordJobs` where words
+  were met; `jobs.jobs[id]` rank, tasks, good, authored log, rank days.
 - **Saves**: each language's progress may carry `reno` (renovation: installed upgrades with their
   arrival day, today's orders, goods kept overnight, catalogue entries seen, remark bookkeeping) and
   `difficulty` (レベル設定 + 学習の記録); both are optional (no version bump), so version 1–3 saves and saves

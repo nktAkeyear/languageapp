@@ -12,6 +12,7 @@ import type { JobContent, ShiftState, TaskAnswer, TaskInstance, TaskResult } fro
 import { CustomerArt, lookFor, type Expression, type Pose } from '../art/customer';
 import { skyAt } from '../art/sky';
 import { SpeakButton, WordText } from '../components/WordText';
+import { useSpeechAvailable } from '../speech';
 import { useMobile } from '../layout';
 import { BookProps, CornerHooks } from '../scene/parts';
 import { useStageScale } from '../scene/ShopScene';
@@ -182,6 +183,8 @@ function Intro({ shift, jc }: { shift: ShiftState; jc: JobContent }) {
 
 function TaskView({ task, jc, result }: { task: TaskInstance; jc: JobContent; result: TaskResult | null }) {
   const g = useGame();
+  // Without a voice for the language, a heard-only request is shown as text (like the tea house).
+  const canSpeak = useSpeechAvailable(g.lang ?? 'en');
   const [revealed, setRevealed] = useState(false);
   const [left, setLeft] = useState(() => (task.timed ? timeFor(task) : 0));
   const late = useRef(false);
@@ -214,7 +217,7 @@ function TaskView({ task, jc, result }: { task: TaskInstance; jc: JobContent; re
         {result ? (
           <Bubble text={result.reaction} tag={result.outcome === 'perfect' ? undefined : undefined} />
         ) : (
-          <Bubble text={task.say} hidden={task.audioOnly && !revealed} onReveal={() => setRevealed(true)} />
+          <Bubble text={task.say} hidden={task.audioOnly && canSpeak && !revealed} onReveal={() => setRevealed(true)} />
         )}
         {result && task.audioOnly && task.say ? (
           <div className="js-said">

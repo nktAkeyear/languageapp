@@ -6,6 +6,7 @@
  */
 import { useEffect, useRef, useState } from 'react';
 import { currentSegment } from '../../activities/day';
+import { jobView } from '../../jobs/engine';
 import type { ActivityKind } from '../../core/townTypes';
 import { skyAt } from '../art/sky';
 import { sfx } from '../sound';
@@ -41,7 +42,8 @@ export function DayTransition() {
     if (b !== 'night' && p?.story?.cards[0]?.kind === 'chapter') return;
     let next: { kind: Kind; label: string; sub: string; t: number };
     if (b === 'night') next = { kind: 'dusk', label: '夜', sub: '店じまい', t: 1 };
-    else if (a === 'night' || a.split(':')[0] !== b.split(':')[0]) next = { kind: 'dawn', label: `${p!.day}日目`, sub: `朝・${seg === 'market' ? '市場へ' : '茶房を開ける'}`, t: 0 };
+    else if (a === 'night' || a.split(':')[0] !== b.split(':')[0])
+      next = { kind: 'dawn', label: `${p!.day}日目`, sub: `朝・${p && jobView(p) === 'hub' ? '町へ出る' : seg === 'market' ? '市場へ' : '茶房を開ける'}`, t: 0 };
     else next = { kind: 'seg', ...SEG[seg] };
     n.current++;
     setShow({ id: n.current, ...next });

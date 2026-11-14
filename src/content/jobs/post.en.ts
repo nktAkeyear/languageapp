@@ -82,14 +82,14 @@ const EN: JobContent = {
   trade: { coins: [1, 5, 10], board: 'Prices' },
   tasks: [
     // --- rank 1: places, the counter with exact money
-    { id: 'p1_first', rank: 1, seq: 1, arch: 'sort', say: 'Good morning! Put the letters in the boxes, please.', bins: ['school', 'bank', 'hospital'], items: [{ id: 'a', text: 'To the school', bin: 'school' }, { id: 'b', text: 'To the bank', bin: 'bank' }, { id: 'c', text: 'To the hospital', bin: 'hospital' }] },
+    { id: 'p1_first', rank: 1, seq: 1, arch: 'sort', grammar: ['gr-5-011'], say: 'Good morning! Put the letters in the boxes, please.', bins: ['school', 'bank', 'hospital'], items: [{ id: 'a', text: 'To the school', bin: 'school' }, { id: 'b', text: 'To the bank', bin: 'bank' }, { id: 'c', text: 'To the hospital', bin: 'hospital' }] },
     { id: 'p1_stamp', rank: 1, seq: 2, arch: 'trade', person: 'c_boy', say: 'One stamp, please.', want: [{ thing: 't_stamp', n: 1 }], pay: 2 },
     { id: 'p1_places', rank: 1, seq: 3, arch: 'sort', say: 'Letters, letters!', bins: ['station', 'library', 'park', 'school'], items: [{ id: 'a', text: 'To the station', bin: 'station' }, { id: 'b', text: 'To the library', bin: 'library' }, { id: 'c', text: 'To the park', bin: 'park' }, { id: 'd', text: 'For the school', bin: 'school' }] },
     { id: 'p1_cards', rank: 1, seq: 4, arch: 'trade', person: 'c_grandma', say: 'Two envelopes, please.', want: [{ thing: 't_envelope', n: 2 }], pay: 2 },
     { id: 'p1_env', rank: 1, seq: 5, arch: 'trade', person: 'c_docker', say: 'An envelope and a stamp, please.', want: [{ thing: 't_envelope', n: 1 }, { thing: 't_stamp', n: 1 }], pay: 3 },
     // --- rank 2: streets, change
     { id: 'p2_streets', rank: 2, seq: 1, arch: 'sort', say: 'North, south, east, west. Look at the street, please.', bins: ['north', 'south', 'east', 'west'], items: [{ id: 'a', text: '3 North Street', bin: 'north' }, { id: 'b', text: '7 South Street', bin: 'south' }, { id: 'c', text: '12 East Street', bin: 'east' }, { id: 'd', text: '5 West Street', bin: 'west' }] },
-    { id: 'p2_change', rank: 2, seq: 2, arch: 'trade', person: 'c_sailor', say: 'Three stamps and a box, please. Here you are.', want: [{ thing: 't_stamp', n: 3 }, { thing: 't_box', n: 1 }], pay: 20 },
+    { id: 'p2_change', rank: 2, seq: 2, arch: 'trade', person: 'c_sailor', phrases: ['ph-5-0025'], say: 'Three stamps and a box, please. Here you are.', want: [{ thing: 't_stamp', n: 3 }, { thing: 't_box', n: 1 }], pay: 20 },
     { id: 'p2_cards', rank: 3, seq: 3, arch: 'trade', person: 'c_grandma', say: 'Two postcards, please. Here you are.', want: [{ thing: 't_postcard', n: 2 }], pay: 10 },
     { id: 'p2_number', rank: 2, seq: 3, arch: 'sort', say: 'Check the number and the street.', bins: ['north', 'south', 'east', 'west'], items: [{ id: 'a', text: '{Grandma Rose|@}, Number 2, North Street', bin: 'north' }, { id: 'b', text: '{Big Joe|@}, Number 9, West Street', bin: 'west' }, { id: 'c', text: '{Tom|@}, Number 4, South Street', bin: 'south' }, { id: 'd', text: '{Ivy|@}, Number 15, East Street', bin: 'east' }] },
     // --- rank 3: far away, send back; heard-only requests
@@ -101,7 +101,7 @@ const EN: JobContent = {
     { id: 'pt_buy1', rank: 1, arch: 'trade', say: '{Qty1}, please.', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 1, max: 3 } }, pay: 'exact' },
     { id: 'pt_buy2', rank: 1, arch: 'trade', say: '{Qty1} and {qty2}, please.', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 1, max: 2 }, qty2: { kind: 'qty', tags: ['counter'], min: 1, max: 2 } }, pay: 'exact' },
     { id: 'pt_streets', rank: 2, arch: 'sort', count: [4, 4], bins: ['north', 'south', 'east', 'west'], patterns: [{ text: '{num} {bin}' }, { text: '{Name}, {num} {bin}' }, { text: '{Name}, Number {num}, {bin}' }] },
-    { id: 'pt_canhave', rank: 2, arch: 'trade', say: 'Can I have {qty1}, please?', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 2, max: 4 } }, pay: 'round' },
+    { id: 'pt_canhave', rank: 2, arch: 'trade', phrases: ['ph-4-0004'], say: 'Can I have {qty1}, please?', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 2, max: 4 } }, pay: 'round' },
     { id: 'pt_hereyou', rank: 2, arch: 'trade', say: '{Qty1} and {qty2}. Here you are.', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 1, max: 3 }, qty2: { kind: 'qty', tags: ['counter'], min: 1, max: 2 } }, pay: 'round' },
     {
       id: 'pt_far',
@@ -119,8 +119,8 @@ const EN: JobContent = {
         { text: '{num} {bin}', bins: ['north', 'south', 'east', 'west'] },
       ],
     },
-    { id: 'pt_would', rank: 3, arch: 'trade', features: ['audioOnly'], say: 'I would like {qty1} and {qty2}, please.', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 2, max: 4 }, qty2: { kind: 'qty', tags: ['counter'], min: 1, max: 3 } }, pay: 'round' },
-    { id: 'pt_howmuch', rank: 3, arch: 'trade', say: '{Qty1}, please. How much is it?', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 2, max: 5 } }, pay: 'round' },
+    { id: 'pt_would', rank: 3, arch: 'trade', features: ['audioOnly'], grammar: ['gr-4-007'], say: 'I would like {qty1} and {qty2}, please.', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 2, max: 4 }, qty2: { kind: 'qty', tags: ['counter'], min: 1, max: 3 } }, pay: 'round' },
+    { id: 'pt_howmuch', rank: 3, arch: 'trade', phrases: ['ph-5-0044'], grammar: ['gr-5-014'], say: '{Qty1}, please. How much is it?', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 2, max: 5 } }, pay: 'round' },
   ],
   reactions: [
     { id: 'pr_ok1', kind: 'perfect', arch: 'sort', text: 'Good job!', face: 'happy' },
@@ -159,7 +159,7 @@ export const POST_JOB: JobDef = {
     { rank: 3, need: { good: 20, words: 24 }, level: { eiken: 'pre2', toeic: 500 }, unlocks: ['audioOnly', 'timed'], tasks: 5, reward: { coins: 15 }, noteJa: '島へ・外国へ・差し戻しの手紙。窓口の注文を耳だけで聞くこともある（時間制限は掲示板で選べる）。' },
     { rank: 4, need: { good: 40, words: 30 }, level: { eiken: '2', toeic: 600 }, tasks: 6, reward: { coins: 25 }, noteJa: 'この先の新しい内容は準備中（いまは3までの仕事のくり返し）。' },
   ],
-  wage: { perfect: 3, minor: 2, fail: 1, bad: 0 },
+  wage: { perfect: 2, minor: 1, fail: 0, bad: 0 },
   opensAfter: 0,
   building: 'post',
   links: { use: [{ good: 'parcels', bonus: 1, line: 'Oh, and the parcels from the office. Thank you!' }] },

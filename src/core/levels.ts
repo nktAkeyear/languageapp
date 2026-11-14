@@ -2,6 +2,8 @@ import type { GameData } from './gamedata';
 import type { LangProgress } from './save';
 import { isMastered } from './srs';
 import { CEFR_LEVELS, EIKEN_GRADES, type Cefr, type Lang, type LexEntry } from './types';
+import { listsLoaded } from '../curriculum/lists';
+import { yardstickReport } from '../curriculum/curriculum';
 
 /** CEFR ↔ Japanese-familiar qualification mapping (rough guide). */
 export const CEFR_MAPPING: Record<Cefr, Record<Lang, string>> = {
@@ -63,14 +65,18 @@ export function levelReport(data: GameData, p: LangProgress): LevelReport {
   const lang = data.lang;
   const mastered = data.content.lexicon.filter((e) => isMastered(p.words[e.id]));
   const keys = examKeys(lang);
-  const examBars: LevelBar[] = keys.map((key, i) => {
+  // en with the compiled lists: the bars are the 英検 lists themselves (data/english).
+  const listRows = lang === 'en' && listsLoaded() ? yardstickReport(data, p, 'eiken').rows : null;
+  const examBars: LevelBar[] = listRows
+    ? listRows.map((r) => ({ key: r.key, label: examLabel(lang, r.key), mastered: r.mastered, target: Math.max(1, r.list), ratio: Math.min(1, r.mastered / Math.max(1, r.list)) }))
+    : keys.map((key, i) => {
     const n = mastered.filter((e) => {
       const x = examIndex(lang, e);
       return x >= 0 && x <= i;
     }).length;
     const target = data.content.levelTargets.exam[key] ?? 1;
     return { key, label: examLabel(lang, key), mastered: n, target, ratio: Math.min(1, n / target) };
-  });
+      });
   const cefrBars: LevelBar[] = CEFR_LEVELS.map((c, i) => {
     const n = mastered.filter((e) => CEFR_LEVELS.indexOf(e.cefr) <= i).length;
     const target = data.content.levelTargets.cefr[c];

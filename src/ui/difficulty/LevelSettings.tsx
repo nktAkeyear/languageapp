@@ -109,6 +109,8 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
   const [pace, setPace] = useState<Pace>(cur.pace);
   const [adaptive, setAdaptive] = useState(cur.adaptive);
   const [assists, setAssists] = useState<Assists>(cur.assists);
+  const [yardstick, setYardstick] = useState<'eiken' | 'toeic'>(cur.yardstick ?? 'eiken');
+  const [toeicTarget, setToeicTarget] = useState<number | null>(cur.toeicTarget ?? null);
   const [placing, setPlacing] = useState(false);
   const [suggested, setSuggested] = useState<number | null>(null);
   const [done, setDone] = useState<string[] | null>(null);
@@ -155,7 +157,7 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
     );
 
   const confirm = () => {
-    const opts = { pace, adaptive, target, assists };
+    const opts = { pace, adaptive, target, assists, ...(lang === 'en' ? { yardstick, toeicTarget } : {}) };
     if (isNew) {
       g.newGame(lang, (p, d) => {
         setDifficultyOptions(p, opts);
@@ -246,6 +248,36 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
         </div>
         {target ? <p className="small lvs-explain">{targets.find((o) => o.level === target)?.note}</p> : null}
       </section>
+
+      {lang === 'en' ? (
+        <section className="lvs-sec" data-testid="yardstick-sec">
+          <h3>ものさし（英検／TOEIC）</h3>
+          <div className="lvs-cards" role="radiogroup" aria-label="ものさし">
+            <button type="button" role="radio" aria-checked={yardstick === 'eiken'} className={`lvs-card ${yardstick === 'eiken' ? 'on' : ''}`} onClick={() => setYardstick('eiken')} data-testid="yard-eiken">
+              <span className="lvs-card-l">英検</span>
+              <span className="lvs-card-e">学校で習う順番（5級→1級）。言葉はやさしい級から。</span>
+            </button>
+            <button type="button" role="radio" aria-checked={yardstick === 'toeic'} className={`lvs-card ${yardstick === 'toeic' ? 'on' : ''}`} onClick={() => setYardstick('toeic')} data-testid="yard-toeic">
+              <span className="lvs-card-l">TOEIC</span>
+              <span className="lvs-card-e">仕事の英語（〜400→〜990）。事務や接客の職場と、仕事の決まり文句を先に。</span>
+            </button>
+          </div>
+          {yardstick === 'toeic' ? (
+            <label className="field">
+              TOEIC の目標
+              <select value={toeicTarget ?? ''} onChange={(e) => setToeicTarget(e.target.value ? Number(e.target.value) : null)} data-testid="toeic-target">
+                <option value="">決めない</option>
+                {[400, 500, 600, 730, 860, 990].map((b) => (
+                  <option key={b} value={b}>
+                    〜{b}
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : null}
+          <p className="small muted">手帳の「現在地」では、どちらのものさしでも（並べても）進み具合を見られます。どの仕事で何を学べるかは、町の掲示板に出ています。</p>
+        </section>
+      ) : null}
 
       <section className="lvs-sec">
         <h3>進み方</h3>

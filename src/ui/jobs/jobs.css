@@ -1768,3 +1768,213 @@
     transition: none;
   }
 }
+
+/* ------------------------------------------------------------------ notebook: yardsticks, filters */
+.ys-tools {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 6px 0;
+}
+.ys-scope,
+.nb-filters select {
+  font: inherit;
+  font-size: 13px;
+  background: #fbf6ea;
+  border: 1px solid #b89a6a;
+  border-radius: 6px;
+  padding: 1px 4px;
+}
+.ys-grid.ys-both {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.ys-row {
+  display: grid;
+  grid-template-columns: 3.4em 1fr auto;
+  gap: 6px;
+  align-items: center;
+  font-size: 13px;
+  margin: 3px 0;
+}
+.ys-both .ys-row {
+  grid-template-columns: 3em 1fr;
+}
+.ys-both .ys-num {
+  grid-column: 1 / -1;
+  text-align: right;
+  font-size: 11px;
+}
+.ys-track {
+  position: relative;
+  height: 12px;
+  background: #ece2cc;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.ys-ceil {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border: 1.5px dashed #8a7350;
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+  background: rgba(255, 255, 255, 0.45);
+}
+.ys-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #4d6a38, #8aa070);
+  border-radius: 6px;
+}
+.ys-num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.ys-in {
+  color: #8a7a64;
+  font-size: 11px;
+}
+.ys-note {
+  color: #8a5a3a;
+}
+.ys-foot {
+  margin-top: 4px;
+}
+.nb-filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.jrec-table td,
+.jrec-table th {
+  font-size: 13px;
+}
+.m-hub .hub-lot {
+  display: none;
+}
+
+/* layout refinements */
+.sortb-cabinet {
+  grid-auto-rows: minmax(120px, 1fr);
+  align-content: stretch;
+}
+.tradeb {
+  grid-template-rows: auto auto 1fr auto;
+}
+.tradeb-board {
+  grid-row: 1 / 4;
+}
+.tradeb-counter {
+  align-self: start;
+}
+.tradeb-tray {
+  min-height: 84px;
+}
+.tradeb-tray .thing-art {
+  width: 54px;
+  height: 54px;
+}
+.hub-spot[data-job='office'] .hub-sign {
+  left: auto;
+  right: -2px;
+  transform: none;
+}
+.m-job .tradeb-board {
+  grid-row: auto;
+}
+.js-work button:disabled {
+  color: inherit;
+}
+.js-work {
+  height: auto;
+  max-height: 896px;
+  min-height: 420px;
+}
+.job-stage .js-work:has(.sortb, .tradeb, .makeb) {
+  height: 896px;
+}
+.checkd-docs {
+  justify-content: center;
+}
+.checkd-doc {
+  max-width: 640px;
+  width: 100%;
+  justify-self: center;
+}
+.checkd-field,
+.checkd-line {
+  font-size: 22px;
+}
+.checkd-doc.doc-ledger {
+  background: repeating-linear-gradient(#fffdf6 0 39px, #d8e4f0 39px 40px);
+}
+.checkd-doc.doc-ledger .checkd-field {
+  min-height: 40px;
+}
+.bench-head {
+  font-size: 14px;
+  color: #6b5a45;
+  margin: 0 0 -4px;
+}
+.makeb-vessel .thing-art {
+  width: 250px;
+  height: 250px;
+}
+.makeb-portion .thing-art {
+  width: 52px;
+  height: 52px;
+}
+.makeb-onplate {
+  max-width: 230px;
+}
+.makeb-dish {
+  min-height: 300px;
+}
+.makeb-item .thing-art {
+  width: 60px;
+  height: 60px;
+}
+.wp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 4px 0;
+}
+.wp-job {
+  background: #f6ecd2;
+  border: 1px solid #c8b28a;
+  border-radius: 10px;
+  padding: 0 8px;
+  font-size: 12px;
+}
+.slotg-cell.busy * {
+  color: inherit !important;
+}
+.respd-msg.msg-phone {
+  margin-bottom: 8px;
+}
+/* phone: the books sit at the end of the page (no overlap with the bench / the list) */
+.m-job-books,
+.m-hub-books {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  margin: 8px 0 0 12px;
+  height: 110px;
+}
+.m-job,
+.m-hub {
+  padding-bottom: 24px;
+}
+.m-job .js-head,
+.m-job .js-left,
+.m-job .js-work {
+  z-index: 1;
+}

@@ -35,7 +35,7 @@ interface Hooks {
   lexRef: (where: string, id: string | undefined) => void;
 }
 
-const PH_OK = /\{(thing|Thing|bin|Bin|field|Field|name|Name)\}/g;
+const PH_OK = /\{(thing|Thing|bin|Bin|field|Field|name|Name|vessel|Vessel)\}/g;
 
 export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, number> {
   const jobs = data.content.jobs ?? [];
@@ -62,7 +62,7 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
     if (job.legacy || !jc) continue;
     const people = new Set([...jc.people.map((p) => p.id)]);
     const personOk = (id: string | undefined, w: string) => {
-      if (!id) return;
+      if (!id || id === 'client') return;
       if (!people.has(id)) h.err(`${w}: person ${id} is not in the job's people`);
       const p = jc.people.find((x) => x.id === id);
       if (p && !p.name && !data.content.customers.some((c) => c.id === id)) h.err(`${w}: person ${id} has no name and is not a customer`);
@@ -93,7 +93,7 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
       for (const e of jc.lexicon) if (!vocabFor(lists, e.text, e.pos, e.forms ?? [])) missingVocab.add(`${job.id}:${e.text}`);
     for (const e of jc.lexicon) if (!e.gloss && !(listsLoaded() && vocabFor(lists, e.text, e.pos, e.forms ?? []))) h.err(`${where} word ${e.id}: no gloss written and none in vocab.json`);
 
-    const checkInstance = (w: string, inst: TaskInstance, declared: number, ctx: GenCtx) => {
+    const checkInstance = (w: string, inst: TaskInstance, declared: number, ctx: GenCtx, agg?: { over: Set<string>; worst: number; label: string }) => {
       instances++;
       for (const txt of inst.texts) h.checkText(w, txt);
       refsOk(w, inst.spec, jc, h);
@@ -126,7 +126,12 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
             worst = Math.max(worst, g - declared);
           }
         }
-      if (over.length) (worst > LEVEL_SLACK_ERROR ? h.err : h.warn)(`${w}: words above its level (${toeicDecl >= 0 ? `TOEIC〜${TOEIC_BANDS[toeicDecl]}` : `${EIKEN_GRADES[declared]}級`} + ${LEVEL_SLACK_WARN}): ${[...new Set(over)].join(', ')}`);
+      const label = `${toeicDecl >= 0 ? `TOEIC〜${TOEIC_BANDS[toeicDecl]}` : `${EIKEN_GRADES[declared]}級`} + ${LEVEL_SLACK_WARN}`;
+      if (agg) {
+        over.forEach((x) => agg.over.add(x));
+        agg.worst = Math.max(agg.worst, worst);
+        agg.label = label;
+      } else if (over.length) (worst > LEVEL_SLACK_ERROR ? h.err : h.warn)(`${w}: words above its level (${label}): ${[...new Set(over)].join(', ')}`);
     };
     const ctxAt = (rank: number, seed: number): GenCtx => ({ data, job, jc, rank, feats: featuresAt(job, rank), rng: makeRng(seed), timedOn: true });
     const taskIds = new Set<string>();
@@ -150,14 +155,16 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
       if (t.arch === 'respond' && 'bank' in t && !jc.qa?.[t.bank]) h.err(`${w}: unknown qa bank ${t.bank}`);
       for (const r of job.ranks.filter((x) => x.rank >= t.rank)) {
         let ok = 0;
+        const agg = { over: new Set<string>(), worst: 0, label: '' };
         for (let seed = 1; seed <= 30; seed++) {
           const ctx = ctxAt(r.rank, seed * 7919 + r.rank);
           const inst = templateInstance(ctx, t);
           if (!inst) continue;
           ok++;
           const declared = t.level ? eikenIndex(eikenFromKey(t.level)) : rankLevelIndex(job, r.rank, 0);
-          checkInstance(`${w} @rank${r.rank} «${inst.say || specTexts(inst.spec)[0] || ''}»`, inst, declared, ctx);
+          checkInstance(`${w} @rank${r.rank} «${inst.say || specTexts(inst.spec)[0] || ''}»`, inst, declared, ctx, agg);
         }
+        if (agg.over.size) (agg.worst > LEVEL_SLACK_ERROR ? h.err : h.warn)(`${w} @rank${r.rank}: instances use words above the level (${agg.label}): ${[...agg.over].join(', ')}`);
         if (!ok) h.err(`${w}: cannot be instantiated at rank ${r.rank}`);
       }
     }

@@ -130,6 +130,14 @@ export function LedgerBook({ ledger, act, onClose }: { ledger: Ledger; act?: Act
               <span className="coin-glyph" aria-hidden /> −{ledger.expenses}
             </td>
           </tr>
+          {ledger.wages ? (
+            <tr className={w(1)} data-testid="ledger-wages">
+              <th>お給金</th>
+              <td>
+                <span className="coin-glyph" aria-hidden /> +{ledger.wages}
+              </td>
+            </tr>
+          ) : null}
           {ledger.purchases ? (
             <tr className={w(1)} data-testid="ledger-purchases">
               <th>注文</th>
@@ -150,10 +158,16 @@ export function LedgerBook({ ledger, act, onClose }: { ledger: Ledger; act?: Act
           </tr>
           <tr className={w(4)}>
             <th>お客</th>
-            <td>
-              {ledger.served}人（ぴったり {ledger.perfect}）
-            </td>
+            <td>{ledger.served || !ledger.work?.length ? `${ledger.served}人（ぴったり ${ledger.perfect}）` : '茶房は閉めていた'}</td>
           </tr>
+          {(ledger.work ?? []).map((l) => (
+            <tr key={l.job} className={w(4)} data-testid="ledger-work">
+              <th>{l.nameJa}</th>
+              <td>
+                {l.tasks}件（うまく {l.good}）
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
       {snap?.results.length ? (

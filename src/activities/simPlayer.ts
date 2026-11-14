@@ -210,3 +210,35 @@ export function playJobShift(data: GameData, p: LangProgress, jobId: string, acc
   leaveShift(p);
   return { outcomes: out, rankUp, texts };
 }
+
+/** Play the tea house from its current segment to the end of its day (simulator / jobs simulation). */
+export function playTeaHouse(data: GameData, p: LangProgress, acc: number, rng: Rng, prng: Rng): { cups: number; perfect: number } {
+  let cups = 0;
+  let perfect = 0;
+  for (;;) {
+    const seg = currentSegment(p);
+    if (seg === 'market') {
+      solveMarket(data, p, rng, { shortBy: prng() < acc ? 0 : 1 });
+      finishMarket(data, p);
+    } else if (seg === 'shop') {
+      while (p.today!.phase !== 'closed') {
+        const o = currentOrder(p)!;
+        const ok = prng() < acc;
+        const shelf = new Set(ingredientsAtStage(data, p.stage).filter((i) => stockOf(p, i as IngredientId) !== 0));
+        const brew = ok ? (witnessBrew(o.rule, shelf, data.ing) ?? WRONG) : WRONG;
+        const r = serveInTown(data, p, brew, rng)!;
+        cups++;
+        if (r.evaluation.outcome === 'perfect') perfect++;
+        storyAutoPlay(data, p, (b) => b.choice?.[0]?.id ?? '');
+        nextCustomer(data, p);
+      }
+    } else {
+      solveDelivery(data, p, rng, prng() < acc ? 'none' : 'place');
+      storySync(data, p);
+      storyAutoPlay(data, p, (b) => b.choice?.[0]?.id ?? '');
+    }
+    if (!p.townDay || p.townDay.seg >= p.townDay.segments.length - 1) break;
+    nextSegment(p);
+  }
+  return { cups, perfect };
+}

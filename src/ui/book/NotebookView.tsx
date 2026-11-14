@@ -18,6 +18,11 @@ import { VerifyPage } from './VerifyPage';
 import { RecordLeft, RecordRight } from '../difficulty/RecordPage';
 import { SeededMark, TargetPanel, WordAssist } from '../difficulty/NotebookBits';
 import { openLevelSettings } from '../difficulty/LevelSettings';
+import { JobRecordTable, YardstickPanel } from '../jobs/Yardsticks';
+import { jobsOf } from '../../jobs/engine';
+import { wordJobs } from '../../jobs/vocab';
+import { EIKEN_GRADES } from '../../core/types';
+import { TOEIC_BANDS, toeicBand } from '../../curriculum/yardsticks';
 
 type Filter = 'all' | 'open' | 'ok' | 'memo' | 'due';
 
@@ -56,11 +61,17 @@ export function NotebookView() {
       <>
         <RecordLeft onSettings={() => openLevelSettings()} />
         <RecordRight />
+        <JobRecordTable />
       </>
     ) : (
       <RecordLeft onSettings={() => openLevelSettings()} />
     );
-    right = <RecordRight />;
+    right = (
+      <>
+        <RecordRight />
+        <JobRecordTable />
+      </>
+    );
     showRight = false;
   } else {
     left = mobile ? <LevelBoth /> : <LevelLeft />;
@@ -92,8 +103,12 @@ function WordList() {
   const ribbon = owns(progress, 'ribbon');
   const [filter, setFilter] = useState<Filter>(ribbon ? 'due' : 'all');
   const [q, setQ] = useState('');
+  const [jobF, setJobF] = useState('');
+  const [eikF, setEikF] = useState('');
+  const [toeF, setToeF] = useState('');
   if (!data || !progress) return null;
   const zh = data.lang === 'zh';
+  const jobs = jobsOf(data);
   const due = (id: string) => {
     const w = progress.words[id];
     // 既習扱い words not met in play since the start level was set are not "to look at again" (else a
@@ -108,6 +123,7 @@ function WordList() {
     .filter(({ e, st }) =>
       filter === 'open' ? !st.confirmed : filter === 'ok' ? st.confirmed : filter === 'memo' ? !!st.memo : filter === 'due' ? due(e.id) : true,
     )
+    .filter(({ e }) => (!jobF || wordJobs(data, progress.jobs?.wordJobs, e.id).includes(jobF)) && (!eikF || e.eiken === eikF) && (!toeF || String(toeicBand(e.toeic) ?? '') === toeF))
     .filter(({ e, st }) => {
       if (!q) return true;
       const hay = [e.text, e.pinyin ?? '', st.memo, st.confirmed ? e.gloss : ''].join(' ').toLowerCase();
@@ -148,8 +164,40 @@ function WordList() {
           ))}
         </div>
       </div>
+      <div className="nb-filters" data-testid="nb-filters">
+        {jobs.length > 1 ? (
+          <select value={jobF} onChange={(e) => setJobF(e.target.value)} aria-label="仕事で絞る" data-testid="filter-job">
+            <option value="">仕事：すべて</option>
+            {jobs.map((j) => (
+              <option key={j.id} value={j.id}>
+                {j.nameJa}
+              </option>
+            ))}
+          </select>
+        ) : null}
+        {!zh ? (
+          <>
+            <select value={eikF} onChange={(e) => setEikF(e.target.value)} aria-label="英検の級で絞る" data-testid="filter-eiken">
+              <option value="">英検：すべて</option>
+              {EIKEN_GRADES.map((g) => (
+                <option key={g} value={g}>
+                  英検{g}級
+                </option>
+              ))}
+            </select>
+            <select value={toeF} onChange={(e) => setToeF(e.target.value)} aria-label="TOEIC のスコア帯で絞る" data-testid="filter-toeic">
+              <option value="">TOEIC：すべて</option>
+              {TOEIC_BANDS.map((b) => (
+                <option key={b} value={String(b)}>
+                  TOEIC〜{b}
+                </option>
+              ))}
+            </select>
+          </>
+        ) : null}
+      </div>
       <div className="hand small muted">
-        記録 {total} 語・確定 {confirmed} 語{filter !== 'all' || q ? `・表示 ${entries.length} 語` : ''}
+        記録 {total} 語・確定 {confirmed} 語{filter !== 'all' || q || jobF || eikF || toeF ? `・表示 ${entries.length} 語` : ''}
       </div>
       <ul className="nb-list">
         {entries.map(({ e, st }) => (
@@ -242,6 +290,7 @@ function WordPage({ id }: { id: string }) {
           出会った {st?.seen ?? 0} 回・うまく使えた {st?.correct ?? 0} 回
         </span>
       </div>
+      <WordTags id={id} />
       <WordAssist id={id} />
       <label className="wp-memo">
         <span className="hand small muted">自分のメモ（推測）</span>
@@ -288,6 +337,29 @@ function WordPage({ id }: { id: string }) {
           </div>
         </div>
       ) : null}
+    </div>
+  );
+}
+
+/** Where the word belongs: its levels on both yardsticks and the jobs where it was met. */
+function WordTags({ id }: { id: string }) {
+  const { data, progress } = useGame();
+  const e = data?.lex.byId.get(id);
+  if (!data || !progress || !e) return null;
+  const jobs = jobsOf(data);
+  const where = wordJobs(data, progress.jobs?.wordJobs, id)
+    .map((j) => jobs.find((x) => x.id === j))
+    .filter(Boolean);
+  const band = toeicBand(e.toeic);
+  return (
+    <div className="wp-tags hand small" data-testid="word-tags">
+      {data.lang === 'en' ? <span className="lvl-tag">{e.eiken ? `英検${e.eiken}級` : '英検 —'}</span> : null}
+      {data.lang === 'en' ? <span className="lvl-tag">{band ? `TOEIC〜${band}` : 'TOEIC —'}</span> : null}
+      {where.map((j) => (
+        <span key={j!.id} className="wp-job">
+          {j!.icon} {j!.nameJa}
+        </span>
+      ))}
     </div>
   );
 }
@@ -390,10 +462,16 @@ function LevelLeft() {
         身についた語 {r.masteredTotal}（確定済み＋何度か使えた語）／出会った語 {r.encounteredTotal}
       </div>
       <TargetPanel />
-      <h4 className="hand">{data.lang === 'en' ? '英検' : 'HSK'} の語彙目安</h4>
-      {r.examBars.map((b) => (
-        <Bar key={b.key} bar={b} />
-      ))}
+      {data.lang === 'en' ? (
+        <YardstickPanel />
+      ) : (
+        <>
+          <h4 className="hand">HSK の語彙目安</h4>
+          {r.examBars.map((b) => (
+            <Bar key={b.key} bar={b} />
+          ))}
+        </>
+      )}
     </div>
   );
 }

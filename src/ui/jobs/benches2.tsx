@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { wordMarkup } from '../../core/gamedata';
 import type { CheckSpec, MakeSpec, RespondSpec } from '../../jobs/types';
 import { SpeakButton, WordText } from '../components/WordText';
+import { useSpeechAvailable } from '../speech';
 import { sfx } from '../sound';
 import { useGame } from '../useGame';
 import { DocArt, FoodArt } from './art2';
@@ -27,7 +28,7 @@ export function MakeBench({ task, jc, result, onSubmit }: BenchProps) {
   const [vessel, setVessel] = useState<string | null>(null);
   const [method, setMethod] = useState<string | null>(null);
   const done = !!result;
-  const pantry = jc.things.filter((t) => !t.tags?.includes('counter'));
+  const pantry = jc.things.filter((t) => !t.tags?.includes('counter') && !t.tags?.includes('delivery'));
   const add = (id: string, d: number) => {
     if (done) return;
     sfx(d > 0 ? 'plop' : 'pickup');
@@ -109,6 +110,7 @@ export function CheckDesk({ task, result, onSubmit }: BenchProps) {
   const needFix = !!spec.fixOptions?.length && !!field;
   return (
     <div className="checkd" data-testid="check-desk">
+      <p className="bench-head">書類を見比べる：合っていればはんこ。違う欄があれば印をつけて差し戻す。</p>
       <div className="checkd-docs" style={{ gridTemplateColumns: `repeat(${spec.docs.filter((d) => d.kind !== 'speech').length}, 1fr)` }}>
         {spec.docs.map((d, i) =>
           d.kind === 'speech' ? null : (
@@ -199,7 +201,10 @@ export function RespondDesk({ task, result, onSubmit }: BenchProps) {
   const [fields, setFields] = useState<Record<string, string>>({});
   const [slot, setSlot] = useState<string | null>(null);
   const done = !!result;
-  const showMsg = spec.msg.kind !== 'speech' && !(spec.msg.kind === 'phone' && task.audioOnly && !done);
+  const { lang } = useGame();
+  const canSpeak = useSpeechAvailable(lang ?? 'en');
+  // A heard-only call: only the listen button (as text where no voice is available).
+  const showMsg = spec.msg.kind !== 'speech' && !(spec.msg.kind === 'phone' && task.audioOnly && canSpeak && !done);
   const ready = spec.mode === 'choose' ? choice !== null : spec.mode === 'form' ? (spec.fields ?? []).every((f) => fields[f.id]) : !!slot;
   return (
     <div className={`respd respd-${spec.mode}`} data-testid="respond-desk">
@@ -222,7 +227,16 @@ export function RespondDesk({ task, result, onSubmit }: BenchProps) {
             </p>
           ))}
         </div>
+      ) : spec.msg.kind === 'phone' ? (
+        <div className="respd-msg msg-phone respd-heard" data-testid="phone-audio">
+          <div className="respd-msghead">
+            <DocArt art="doc_phone" size={34} />
+            <span className="hand">電話（耳だけで聞く）</span>
+            <SpeakButton text={spec.msg.lines.join(' ')} label="聞く" big />
+          </div>
+        </div>
       ) : null}
+      <p className="bench-head">{spec.mode === 'choose' ? '返事を選ぶ' : spec.mode === 'form' ? '伝言メモに書く' : spec.slot?.layout === 'rooms' ? '空いている部屋から選ぶ' : '予定表の空いている時間から選ぶ'}</p>
       {spec.mode === 'choose' ? (
         <div className="respd-replies" role="radiogroup" aria-label="返事">
           {spec.options!.map((o, i) => (

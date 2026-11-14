@@ -14,7 +14,7 @@ import { WordText } from '../components/WordText';
 import { sfx } from '../sound';
 import { useGame } from '../useGame';
 import { BinIcon, CoinDisc, coinsFor, ThingArt } from './art';
-import { FoodArt } from './art2';
+
 import type { BenchProps } from './JobScene';
 
 // ------------------------------------------------------------------------------------- sort
@@ -58,7 +58,7 @@ export function SortBench({ task, jc, result, onSubmit }: BenchProps) {
               data-item={it.id}
               aria-pressed={held === it.id}
             >
-              {food && th ? <FoodArt art={th.art} size={40} /> : <span className="sortb-stamp" aria-hidden />}
+              {food && th ? <CrateArt /> : <span className="sortb-stamp" aria-hidden />}
               <span className="sortb-label">
                 <WordText text={it.text} interactive={false} />
               </span>
@@ -99,6 +99,11 @@ export function SortBench({ task, jc, result, onSubmit }: BenchProps) {
                     onClick={(e) => {
                       e.stopPropagation();
                       if (done) return;
+                      // Holding another letter: it goes into this cubby too.
+                      if (held) {
+                        put(b);
+                        return;
+                      }
                       sfx('pickup');
                       setPlaced((p) => {
                         const n = { ...p };
@@ -125,6 +130,17 @@ export function SortBench({ task, jc, result, onSubmit }: BenchProps) {
         </button>
       ) : null}
     </div>
+  );
+}
+
+/** A closed wooden crate: what is inside is only written on its label (read it). */
+function CrateArt() {
+  return (
+    <svg viewBox="0 0 48 40" width="44" height="36" className="crate-art" aria-hidden>
+      <rect x="2" y="6" width="44" height="32" fill="#c49a5e" stroke="#5a3418" strokeWidth="2.5" />
+      <path d="M2 16 H46 M2 28 H46 M14 6 V38 M34 6 V38" stroke="#8a5a2e" strokeWidth="2" />
+      <rect x="10" y="14" width="28" height="12" fill="#fbf6ea" stroke="#5a3418" strokeWidth="1" />
+    </svg>
   );
 }
 
@@ -186,12 +202,12 @@ export function TradeBench({ task, jc, result, onSubmit }: BenchProps) {
           <span className="hand small">お客さんが出したお金</span>
           <span className="tradeb-coins">
             {paid.map((v, i) => (
-              <CoinDisc key={i} v={v} size={36} />
+              <CoinDisc key={i} v={v} size={44} />
             ))}
           </span>
         </div>
         <div className="tradeb-tray" aria-label="カウンターの上">
-          {goods.flatMap((t) => Array.from({ length: counts[t.id] ?? 0 }, (_, i) => <ThingArt key={`${t.id}${i}`} art={t.art} size={34} />))}
+          {goods.flatMap((t) => Array.from({ length: counts[t.id] ?? 0 }, (_, i) => <ThingArt key={`${t.id}${i}`} art={t.art} size={54} />))}
           {!Object.values(counts).some((n) => n > 0) ? <span className="hand muted small">品物をここに出す</span> : null}
         </div>
         <div className="tradeb-till">

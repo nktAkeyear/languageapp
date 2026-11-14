@@ -323,7 +323,8 @@ export interface JobLine {
 /** Make bench configuration (vessels / methods / the pantry). */
 export interface MakeBench {
   vessels?: { id: string; word: string; art: string }[];
-  methods?: { id: string; word: string; art: string }[];
+  /** `surface`: how a request says it ("fried" for fry). */
+  methods?: { id: string; word: string; art: string; surface?: string }[];
   /** Max portions of one thing on the bench. */
   max: number;
 }

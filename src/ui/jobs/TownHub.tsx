@@ -22,6 +22,8 @@ import { JobBoard } from './JobBoard';
 import { GoodsShelf, LevelTag } from './bits';
 
 const PART_T = [0.08, 0.36, 0.68, 0.86];
+/** The day's notes are shown once (per language and day), not again after each shift. */
+const notesShown = new Set<string>();
 
 export function TownHub({ onSettings }: { onSettings: () => void }) {
   const g = useGame();
@@ -29,7 +31,7 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
   const { ref, scale } = useStageScale(HUB_W, 1000);
   const [sel, setSel] = useState<string | null>(null);
   const [board, setBoard] = useState(false);
-  const [notesSeen, setNotesSeen] = useState('');
+  const [, setNotesSeen] = useState('');
   const { data, progress } = g;
   const day = progress ? jobDay(progress) : null;
   if (!data || !progress || !day) return null;
@@ -37,8 +39,8 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
   const sky = skyAt(PART_T[Math.min(3, day.part)]);
   const over = day.part > 2;
   const jobs = jobsOf(data);
-  const notesKey = `${progress.day}`;
-  const showNotes = day.notes.length > 0 && notesSeen !== notesKey && !sel && !board;
+  const notesKey = `${data.lang}:${progress.day}`;
+  const showNotes = day.notes.length > 0 && !notesShown.has(notesKey) && !sel && !board;
   const status = (
     <div className="hub-status">
       <div className="hub-when">
@@ -82,7 +84,15 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
       {day.notes.map((n) => (
         <p key={n}>{n}</p>
       ))}
-      <button type="button" className="btn btn-primary" onClick={() => (sfx('page'), setNotesSeen(notesKey))}>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={() => {
+          sfx('page');
+          notesShown.add(notesKey);
+          setNotesSeen(notesKey);
+        }}
+      >
         わかった
       </button>
     </div>

@@ -21,6 +21,9 @@
  *       one run, one line per day (stage, customers, new words, budget, first-try accuracy, adj …)
  *   npm run simulate -- --table [--days=45] [--buy]
  *       the comparison table: legacy vs each setting, for both languages and several accuracies
+ *
+ * Jobs (src/jobs) — see scripts/simJobs.ts:
+ *   npm run simulate -- --jobs [--days=20] [--acc=0.85] [--seed=1] [--yard=eiken|toeic] [--log]
  */
 import { currentSegment, describeDay, endTownDay, nextSegment, serveInTown, startTownDay, stockOf } from '../src/activities/day';
 import { solveDelivery } from '../src/activities/delivery/engine';
@@ -37,6 +40,7 @@ import { storyLog } from './storyLog';
 import { arrivedToday, renoShared } from '../src/renovation/engine';
 import { buyFromCatalogue } from '../src/activities/simPlayer';
 import { runDifficulty } from './simDifficulty';
+import { runJobs } from './simJobs';
 import { applyStartLevel, setDifficultyOptions, type Pace } from '../src/core/difficulty';
 
 // Difficulty options (--start / --pace / --acc / --adaptive / --table) switch to the settings simulator
@@ -44,6 +48,10 @@ import { applyStartLevel, setDifficultyOptions, type Pace } from '../src/core/di
 // --log asks for this detailed log with those settings.
 const args = process.argv.slice(2);
 const flagArgs = args.filter((a) => a.startsWith('--'));
+if (flagArgs.includes('--jobs')) {
+  runJobs(args);
+  process.exit(0);
+}
 if (flagArgs.length && !flagArgs.includes('--log')) {
   runDifficulty(args);
   process.exit(0);

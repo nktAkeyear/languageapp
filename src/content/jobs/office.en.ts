@@ -24,7 +24,7 @@ const QA: QaItem[] = [
   { q: 'Where is the meeting?', a: 'In the big meeting room.', fn: 'place', rank: 1, grammar: ['gr-5-013'] },
   { q: 'Can you send me the price list, please?', a: 'Sure. I will send it this afternoon.', fn: 'request', rank: 1, grammar: ['gr-4-002'] },
   { q: 'Thank you for your help.', a: 'You are welcome.', fn: 'thanks', rank: 1 },
-  { q: 'How many chairs do you need?', a: 'We need twelve chairs.', fn: 'number', rank: 1, grammar: ['gr-5-014'] },
+  { q: 'How many chairs do you need?', a: 'We need ten chairs.', fn: 'number', rank: 1, grammar: ['gr-5-014'] },
   { q: 'What time does the office open?', a: 'At nine in the morning.', fn: 'time', rank: 1 },
   { q: 'Can I speak to the manager?', a: 'Just a moment, please.', fn: 'phone', rank: 1, phrases: ['ph-5-0105'] },
   { q: 'Sorry, the boxes are late.', a: 'No problem. When will they come?', fn: 'apology', rank: 2, phrases: ['ph-4-0016'], grammar: ['gr-4-002'] },
@@ -36,6 +36,23 @@ const QA: QaItem[] = [
   { q: 'The client wants to meet next week. Are you free?', a: 'I am free on Wednesday afternoon.', fn: 'time', rank: 3 },
   { q: 'Have you sent the order to the supplier?', a: 'Yes, I sent it yesterday.', fn: 'confirm', rank: 3, grammar: ['gr-3-002', 'gr-5-018'] },
 ];
+
+/** The week calendar of the office (rows = days, columns = times); `busy` marks the occupied cells. */
+const DAYS = [
+  { id: 'mon', label: 'Monday' },
+  { id: 'tue', label: 'Tuesday' },
+  { id: 'wed', label: 'Wednesday' },
+  { id: 'thu', label: 'Thursday' },
+  { id: 'fri', label: 'Friday' },
+];
+const TIMES = [
+  { id: 't9', label: '9:00' },
+  { id: 't11', label: '11:00' },
+  { id: 't2', label: '2:00' },
+  { id: 't4', label: '4:00' },
+];
+const week = (busy: Record<string, string>) =>
+  DAYS.flatMap((d) => TIMES.map((t) => ({ id: `${d.id}-${t.id}`, row: d.id, col: t.id, tags: [d.id, t.id], ...(busy[`${d.id}-${t.id}`] ? { busy: busy[`${d.id}-${t.id}`] } : {}) })));
 
 const EN: JobContent = {
   sign: '{Marlow|@} Trading Company',
@@ -69,7 +86,7 @@ const EN: JobContent = {
     W('unit', 'unit', '単位・1個あたり', 'noun', '4', 'jp_off_fields', '1️⃣'),
     W('date', 'date', '日付', 'noun', '5', 'jp_off_fields', '📅', ['dates']),
     W('list', 'list', '一覧表', 'noun', '4', 'jp_off_fields', '📃', ['lists']),
-    W('paper', 'paper', '紙', 'noun', '5', 'jp_off_goods', '📄'),
+    W('paper', 'paper', '紙・書類', 'noun', '5', 'jp_off_goods', '📄', ['papers']),
     W('pen', 'pen', 'ペン', 'noun', '4', 'jp_off_goods', '🖊️', ['pens']),
     W('ink', 'ink', 'インク', 'noun', '準2', 'jp_off_goods', '🖋️'),
     W('chair', 'chair', '椅子', 'noun', '4', 'jp_off_goods', '🪑', ['chairs']),
@@ -135,11 +152,27 @@ const EN: JobContent = {
       target: 1,
       wrong: 'qty',
     },
-    { id: 'o1_q1', rank: 1, seq: 2, arch: 'respond', person: 'c_merchant', say: 'When is the meeting?', mode: 'choose', msg: { kind: 'speech', lines: ['When is the meeting?'] }, options: ['In the big meeting room.', 'It is on Tuesday at ten.', 'You are welcome.'], answer: 1, grammar: ['gr-5-013'] },
+    {
+      id: 'o1_meet',
+      rank: 1,
+      seq: 2,
+      arch: 'respond',
+      say: 'An email from a client. Look at the week, please.',
+      mode: 'slot',
+      msg: { kind: 'email', lines: ['Dear {Ms. Park|@},', 'Can we meet on Tuesday?', 'The morning is good for me.', 'Thank you.'] },
+      slot: {
+        layout: 'calendar',
+        rows: DAYS,
+        cols: TIMES,
+        cells: week({ 'mon-t9': 'Meeting', 'tue-t9': 'Sales meeting', 'tue-t2': 'Busy', 'wed-t11': 'Lunch with a client', 'thu-t4': 'Meeting', 'fri-t9': 'Busy' }),
+        answer: 'tue-t11',
+      },
+    },
+    { id: 'o1_q1', rank: 1, seq: 3, arch: 'respond', person: 'c_merchant', say: 'When is the meeting?', mode: 'choose', msg: { kind: 'speech', lines: ['When is the meeting?'] }, options: ['In the big meeting room.', 'It is on Tuesday at ten.', 'You are welcome.'], answer: 1, grammar: ['gr-5-013'] },
     {
       id: 'o1_ok',
       rank: 1,
-      seq: 3,
+      seq: 4,
       arch: 'check',
       say: 'And this one, please.',
       docs: [
@@ -163,7 +196,6 @@ const EN: JobContent = {
         { id: 'when', label: 'Call back', options: ['before three', 'after three', 'tomorrow'], answer: 'after three' },
         { id: 'about', label: 'About', options: ['the invoice', 'the meeting', 'the chairs'], answer: 'the invoice' },
       ],
-      phrases: ['ph-3-0137'],
     },
     {
       id: 'o2_phone2',
@@ -204,7 +236,7 @@ const EN: JobContent = {
       arch: 'check',
       say: 'Please check this bill.',
       fields: [
-        { id: 'item', label: 'Item', values: ['paper', 'pens', 'envelopes', 'cups', 'stamps'] },
+        { id: 'item', label: 'Item', values: ['paper', 'pens', 'cups', 'ink', 'chairs'] },
         { id: 'qty', label: 'Boxes', values: ['10', '12', '20', '30', '50'] },
         { id: 'price', label: 'Price', values: ['$2', '$3', '$4', '$5', '$8'] },
       ],
@@ -261,19 +293,8 @@ const EN: JobContent = {
       kind: 'email',
       say: 'An email from a client. Look at the week, please.',
       layout: 'calendar',
-      rows: [
-        { id: 'mon', label: 'Monday' },
-        { id: 'tue', label: 'Tuesday' },
-        { id: 'wed', label: 'Wednesday' },
-        { id: 'thu', label: 'Thursday' },
-        { id: 'fri', label: 'Friday' },
-      ],
-      cols: [
-        { id: 't9', label: '9:00' },
-        { id: 't11', label: '11:00' },
-        { id: 't2', label: '2:00' },
-        { id: 't4', label: '4:00' },
-      ],
+      rows: DAYS,
+      cols: TIMES,
       cellTags: { t9: ['morning'], t11: ['morning'], t2: ['afternoon'], t4: ['afternoon'] },
       want: [
         { tag: 'mon', text: 'Can we meet on Monday?' },
@@ -333,7 +354,7 @@ export const OFFICE_JOB: JobDef = {
     { rank: 3, need: { good: 22, words: 30 }, level: { eiken: '2', toeic: 730 }, unlocks: ['multiStep', 'audioOnly', 'timed'], tasks: 5, reward: { coins: 20 }, noteJa: '発注書・納品書・請求書の三枚（納品日も）。違う欄を見つけたら正しい値も選んで直す。電話を耳だけで聞く。時間制限（選んだときだけ）。' },
     { rank: 4, need: { good: 45, words: 44 }, level: { eiken: 'pre1', toeic: 860 }, tasks: 6, reward: { coins: 30 }, noteJa: 'この先の新しい内容は準備中（報告書・契約書・会議の議事録などを予定）。' },
   ],
-  wage: { perfect: 5, minor: 3, fail: 1, bad: 0 },
+  wage: { perfect: 3, minor: 2, fail: 0, bad: 0 },
   opensAfter: 2,
   building: 'office',
   links: { produce: [{ good: 'parcels', perPerfect: 1 }], use: [{ good: 'tea', bonus: 1, line: 'And thank you for the tea from the tea house!' }] },

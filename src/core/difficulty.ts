@@ -30,6 +30,9 @@ import { tokenIds } from './tokenize';
 import { EIKEN_GRADES, type Lang, type LexEntry, type OrderInstance, type Outcome } from './types';
 import { lineCovered, stockFromMarket } from '../activities/market/rules';
 import { hashString } from './rng';
+import { listsLoaded } from '../curriculum/lists';
+import { yardstickReport } from '../curriculum/curriculum';
+import { isMastered as isMasteredState } from './srs';
 
 // ---------------------------------------------------------------------------
 // State
@@ -248,6 +251,22 @@ export interface TargetProgress {
 export function targetProgress(data: GameData, p: LangProgress, level: number): TargetProgress {
   const lang = data.lang;
   const key = levelKey(lang, level);
+  // en with the compiled lists (data/english): the 英検 list itself is the yardstick.
+  if (lang === 'en' && listsLoaded()) {
+    const row = yardstickReport(data, p, 'eiken').rows[level - 1];
+    if (row) {
+      const listSize = Math.max(1, row.list);
+      const own = row.own;
+      const ceiling = Math.min(1, row.inGame / listSize);
+      const available = own > 0 && row.inGame - (level > 1 ? (yardstickReport(data, p, 'eiken').rows[level - 2]?.inGame ?? 0) : 0) >= TARGET_MIN_OWN && ceiling >= TARGET_MIN_COVERAGE;
+      const label = levelName(lang, level);
+      const seeded = wordsUpTo(data, level).filter((e) => p.words[e.id]?.seeded && isMasteredState(p.words[e.id])).length;
+      let note = '';
+      if (!available) note = `未対応：${label}の語彙一覧（${listSize}語）のうち、ゲームで出会えるのはまだ ${row.inGame} 語（約${Math.round(ceiling * 100)}%）です。`;
+      else if (ceiling < REACHED) note = `このゲームの今の内容は${label}の語彙一覧（${listSize}語）のうち ${row.inGame} 語（約${Math.round(ceiling * 100)}%）です。残りの ${listSize - row.inGame} 語はまだどの仕事でも学べません。`;
+      return { level, label, listSize, inGame: row.inGame, mastered: row.mastered, seeded, remainingInGame: row.inGame - row.mastered, notInGame: Math.max(0, listSize - row.inGame), ratio: Math.min(1, row.mastered / listSize), ceiling, available, note };
+    }
+  }
   const listSize = data.content.levelTargets.exam[key] ?? 1;
   const words = wordsUpTo(data, level);
   const own = words.filter((e) => wordLevel(lang, e) === level).length;
@@ -820,8 +839,10 @@ export function applyStartLevel(data: GameData, p: LangProgress, level: number):
 }
 
 /** Change pace / adaptive / assists / target. Switching the controller off resets its adjustment. */
-export function setDifficultyOptions(p: LangProgress, opts: Partial<Pick<DifficultyState, 'pace' | 'adaptive' | 'target'>> & { assists?: Partial<Assists> }): void {
+export function setDifficultyOptions(p: LangProgress, opts: Partial<Pick<DifficultyState, 'pace' | 'adaptive' | 'target' | 'yardstick' | 'toeicTarget'>> & { assists?: Partial<Assists> }): void {
   const d = difficultyState(p);
+  if (opts.yardstick) d.yardstick = opts.yardstick;
+  if (opts.toeicTarget !== undefined) d.toeicTarget = opts.toeicTarget;
   if (opts.pace && opts.pace !== d.pace) {
     d.pace = opts.pace;
     d.changes.push({ day: p.day, start: d.start, pace: d.pace });
