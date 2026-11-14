@@ -70,6 +70,8 @@ export interface GameApi {
   openWord(id: string | null): void;
   /** Move on to the next segment of the day (after the current one is done). */
   nextSegment(): void;
+  /** Generic progress mutation (used by the story layer's own components). */
+  mutateProgress(fn: (p: LangProgress, d: GameData) => void): void;
   market: {
     openStall(id: string): void;
     leaveStall(): void;
@@ -188,7 +190,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
       },
       closeDay: () => {
         withProgress((p, d) => {
-          endTownDay(p);
+          endTownDay(p, d);
           if (!p.townDay) startTownDay(d, p, rng());
         });
         setBrew(emptyBrew());
@@ -252,6 +254,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
         setBrew(emptyBrew());
         setLastServe(null);
       },
+      mutateProgress: (fn) => withProgress(fn),
       market: {
         openStall: (id) => withProgress((p, d) => market.openStall(d, p, id, rng())),
         leaveStall: () => withProgress((p) => market.leaveStall(p)),

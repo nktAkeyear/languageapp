@@ -30,7 +30,8 @@ npm run build             # type-check + build → dist/index.html (single file,
 npm test                  # vitest (engine unit tests + seed-content validation)
 npm run validate-content  # content validator; exits 1 on errors
 npm run simulate -- zh 10 # simulated playthrough for content review: market notes + vendor talk, orders +
-                          # reactions, delivery slips + reactions (args: lang days seed failEvery)
+                          # reactions, delivery slips + reactions, story beats 📖 as they fire, the nightly
+                          # ledger (args: lang days seed failEvery choice; e.g. `-- en 45 1 4 0`)
 ```
 
 `dist/index.html` is self-contained (relative base + `vite-plugin-singlefile`): copy it anywhere
@@ -52,6 +53,9 @@ src/
     save.ts             versioned save, migration, export/import
     validate.ts         content validator (used by script + tests)
     validateTown.ts     validator part for market / delivery content
+  story/                story layer (UI-agnostic): types.ts (schema + save state), engine.ts (day hooks,
+                        conditions, effects, cards), text.ts (name-aware tokens, readability),
+                        vocab.ts (words met by stage), validate.ts, merge.ts (content merge)
   activities/
     index.ts            activity registry
     day.ts              day orchestration: segment planner (unlocks), stock-aware serving, end of day
@@ -81,6 +85,14 @@ src/
     components/         settings, title, word text (gloss on hover/tap), market / delivery panels
     desktop/  mobile/   layouts per device (the shop scene; market / delivery panels)
 scripts/                validate-content.ts, simulate.ts
+    components/         small presentational components shared by both layouts
+    components/town/    Market.tsx (note, purse, stalls, vendor talk, coins), Delivery.tsx (slip, map, door)
+    components/story/   StoryLayer.tsx (scene / choice / chapter / document / ledger cards, 書類箱),
+                        StoryText.tsx, story.css — mounted once per layout
+    desktop/            PC layout (panels side by side)
+    mobile/             phone layout (one panel + bottom tabs)
+    useGame.tsx         React state/actions over the core
+scripts/                validate-content.ts, simulate.ts (+ storyLog.ts)
 ```
 
 The layout is chosen by viewport width (≤ 820px → mobile), overridable in settings.
@@ -300,9 +312,85 @@ price / total, and are bought completely by a solver; every reachable destinatio
 knock / absence phrase and 40 generated slips per level tokenize and are solvable. Town texts
 count for the "every word appears somewhere" check.
 
+## Story: regulars, the predecessor's letters, chapters, the nightly ledger
+
+The story is told only through in-world target-language text: what regulars order, what they
+say after being served, small talk, notes for deliveries, and documents the player finds. The
+Japanese chrome is limited to chapter titles, the player-character's short observations
+(narration) and the ledger.
+
+**Outline.** Ada (zh 梅姨), who kept the shop for thirty years, left one winter night on Nora's
+ship with a single ticket: a letter Grant had carried from the south told her that her younger
+sister — twenty years of silence since a quarrel — was ill. She stays with her. Regulars: Rose
+(Ada's oldest friend), Joe (dockworker; saw her leave; becomes a father, falls ill, cannot pay),
+Tom (runs errands for his sick grandmother, Old Mrs. Hill; his mother Anna), Nora (the ship's
+cook who carries the letters), Grant (pushy merchant who carried the fateful letter), Hale (the
+schoolteacher, fond of Ada). Five chapters follow the stages softly (1, 5, 10, 15, 20).
+
+### Schema (`src/story/types.ts`)
+
+Language-neutral structure in `src/content/shared/story.ts` (`StoryShared`), words per language
+in `src/content/{en,zh}/story.ts` (`StoryText`, same ids), merged by `src/content/index.ts`.
+
+- **characters** `{ id, customer? | avatar? }` — a regular *is* an existing customer (name and
+  avatar come from the customer list); others get a name in `StoryText.characters`.
+- **beats** `{ id, character, kind: visit|delivery|moment, when, group?, gap?, rule|recipe (visit),
+  slip (delivery), at: morning|evening (moment), choice?: [{ id, effects? }], effects?: { good, poor, seen } }`.
+  - visit: the regular joins today's shop queue; outcome `good` (perfect / minor) or `poor`.
+  - delivery: replaces today's slip (needs the delivery activity open); outcome by the delivery result.
+  - moment: a short scene at the start / end of the day; outcome `seen`.
+  - `when` (`StoryCond`): `stage`, `day`, `rep` (minimums), `after: [beat]`, `outcome: { beat: [good|poor|seen] }`,
+    `choice: { beat: [option] }`, `flags`, `notFlags`, `docs` (found). `group`: alternatives, only one fires.
+    `gap`: days since the character's previous beat (default 2).
+  - effects (`StoryEffect`): `rep`, `money`, `flags`, `docs` (hand over a document).
+- **documents** `{ id, kind, icon, readable }` — `readable` = the stage by which all its words have
+  been met (validated). Document lines may carry a `when` condition (postscripts that follow choices).
+- **chapters** `{ id, stage }`, **talk** `{ id, character, when }` (small talk appended to a
+  regular's reaction after a good ordinary cup).
+- Per language (`StoryText`): `names` (proper names in texts, never tokenised as words),
+  `characters`, `recipients` (story-only delivery recipients; merged into the town list with
+  `storyOnly`, never picked for random slips), `chapters { titleJa, introJa }`,
+  `beats { order, request, recipient, good, poor, lines|linesGood|linesPoor: ({ say, who? } | { ja })[],
+  prompt, options: { [id]: { text, reply, ja? } }, hookJa|hookGoodJa|hookPoorJa }`,
+  `docs { titleJa, lines, foundJa? }`, `talk`, plus story words: `lexicon`, `pages` (検証ページ)
+  and `forms` (extra surface forms for existing ids, e.g. en `is → was, were`).
+
+### Engine (`src/story/engine.ts`)
+
+Hooks called by `src/activities/day.ts`: `storyPlanShop` (after the shop plans: chapter card,
+morning moment, a visit injected into the queue — before the market plans its note),
+`storyPlanTown` (a delivery beat), `storyAfterServe` (resolves a visit: reaction line, effects,
+scene; or small talk), `storyEndDay` (evening moment + the ledger card); `storySync` resolves a
+story delivery once handed over (called by the UI and at the end of the day). Planning is
+idempotent per day, so a resumed or migrated day joins in. A planned beat that did not happen
+waits for another day. Story texts count as encounters (tokenised like all in-world text);
+reading a document counts once a day — before its `readable` stage only words already in the
+notebook count. UI actions: `storyDismiss`, `storyChoose`, `storyReadDoc`. Pending cards
+(`chapter | scene | reply | doc | ledger`) live in the save, so a reload shows them again.
+
+The ledger: takings / market expenses / purse / reputation / cups, the regulars met, words
+confirmed today, documents found, and the day's hook lines. Documents show confirmed words with
+their gloss underneath and barely-met words faint, with the share of confirmed words now vs. when
+found — re-reading an old letter visibly reveals more.
+
+### What the validator checks (story)
+
+References resolve (characters, beats, outcomes valid for the beat's kind, choice options,
+flags that some effect sets, documents that some beat gives, groups); every beat is reachable
+(fixpoint over the facts the story can produce); visits are satisfiable with the shelf and
+features of their stage and their customer exists by then; delivery slips point at exactly one
+place, recipients exist, deliveries are open by then; every story text tokenises fully (names
+aside); every beat / talk line uses only words met by its stage (non-story content, see
+`src/story/vocab.ts`, plus words earlier story items introduced) plus at most 2 new ones; every
+document is readable by its `readable` stage under the same rule. The vitest suite also plays 45
+days on three paths (good player; clumsy player; failing every story cup) and checks that every
+beat fires on some path and the good player reaches the end.
+
 ## Learning model notes
 
-- **Saves**: version 2 adds `town` (money, unlocks, runs, curriculum log) and `townDay` (today's
+- **Saves**: version 3 adds `story` (beats, documents, flags, chapter, pending cards, today's
+  bookkeeping, last ledger); version 2 saves get a fresh story that starts with the current day.
+  Version 2 added `town` (money, unlocks, runs, curriculum log) and `townDay` (today's
   segments, stock, market / delivery state) to each language's progress. Version 1 saves migrate;
   a day in progress continues as a shop-only day.
 - **Hidden SRS** (`core/srs.ts`): per-word seen / correct / wrong / interval / ease / due.

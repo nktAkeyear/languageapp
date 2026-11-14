@@ -1,0 +1,425 @@
+/* Story layer (cards, documents, ledger). Self-contained; falls back to plain colours when the
+   app's CSS variables are absent. Sits below the app's own .overlay (z-index 50), so the word
+   detail opens on top of a story card. */
+.st-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  background: rgba(40, 28, 16, 0.42);
+}
+.st-overlay-modal {
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.st-overlay-sheet {
+  align-items: flex-end;
+}
+.st-panel {
+  background: var(--paper-2, #fbf5e6);
+  color: var(--ink, #3a2e22);
+  border: 1px solid var(--line, #c8b28a);
+  box-shadow: 0 10px 30px rgba(40, 28, 16, 0.3);
+  overflow: auto;
+}
+.st-panel-modal {
+  width: min(520px, 100%);
+  max-height: 88vh;
+  border-radius: 14px;
+  padding: 18px 22px;
+}
+.st-panel-modal.st-panel-wide {
+  width: min(620px, 100%);
+}
+.st-panel-sheet {
+  width: 100%;
+  max-height: 88vh;
+  border-radius: 16px 16px 0 0;
+  padding: 14px 16px calc(16px + env(safe-area-inset-bottom));
+}
+
+.st-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.st-card > .st-btn.st-primary {
+  align-self: flex-end;
+  margin-top: 4px;
+}
+.st-kicker {
+  font-size: 0.85em;
+  color: var(--ink-soft, #6b5a45);
+  letter-spacing: 0.05em;
+}
+.st-narration {
+  margin: 0;
+  font-family: var(--font-serif, serif);
+  color: var(--ink-soft, #6b5a45);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* buttons */
+.st-btn {
+  font: inherit;
+  font-family: var(--font-ja, sans-serif);
+  color: var(--ink, #3a2e22);
+  background: var(--paper-2, #fbf5e6);
+  border: 1px solid var(--line, #c8b28a);
+  border-radius: 8px;
+  padding: 6px 14px;
+  min-height: 40px;
+  cursor: pointer;
+}
+.st-btn:hover:not(:disabled) {
+  border-color: var(--ink-soft, #6b5a45);
+}
+.st-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.st-primary {
+  background: var(--accent, #9b3f26);
+  border-color: #7a2f1b;
+  color: #fff8ef;
+}
+.st-primary:hover:not(:disabled) {
+  background: #8a361f;
+}
+.st-speak {
+  min-height: 30px;
+  padding: 0 8px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* speech */
+.st-say {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.st-avatar {
+  font-size: 2em;
+  line-height: 1;
+}
+.st-bubble {
+  background: #fffaf0;
+  border: 1px solid var(--line, #c8b28a);
+  border-radius: 12px;
+  padding: 8px 12px;
+  flex: 1;
+  font-size: 1.1em;
+  line-height: 1.9;
+}
+.st-me {
+  justify-content: flex-end;
+}
+.st-bubble-me {
+  flex: 0 1 auto;
+  background: var(--green-soft, #dfe8cf);
+}
+.st-who {
+  font-size: 0.75em;
+  color: var(--ink-soft, #6b5a45);
+  line-height: 1.3;
+}
+.st-note {
+  background: #fffdf6;
+  border: 1px dashed var(--line, #c8b28a);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 1.1em;
+}
+
+/* words */
+.st-text {
+  overflow-wrap: anywhere;
+}
+.st-w {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0 1px;
+  margin: 0;
+  cursor: pointer;
+  border-radius: 3px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: top;
+  line-height: inherit;
+}
+.st-w:hover {
+  background: rgba(184, 137, 47, 0.18);
+}
+.st-ok .st-surface {
+  border-bottom: 2px solid #8aa66f;
+}
+.st-glossed .st-unseen .st-surface {
+  opacity: 0.45;
+}
+.st-gloss {
+  font-family: var(--font-ja, sans-serif);
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--green, #4d6a38);
+  white-space: nowrap;
+  max-width: 7em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.st-name {
+  font-weight: 600;
+}
+
+/* choices */
+.st-options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.st-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #fffaf0;
+  border: 1px solid var(--line, #c8b28a);
+  border-radius: 10px;
+  padding: 6px 8px 6px 12px;
+  font-size: 1.05em;
+}
+
+/* chapter */
+.st-chapter {
+  text-align: center;
+  padding: 18px 4px 6px;
+}
+.st-chapter-no {
+  font-family: var(--font-serif, serif);
+  color: var(--accent, #9b3f26);
+  letter-spacing: 0.3em;
+}
+.st-chapter-title {
+  font-family: var(--font-serif, serif);
+  font-size: 1.7em;
+  margin: 0;
+}
+.st-chapter .st-btn {
+  align-self: center !important;
+}
+
+/* documents */
+.st-doc {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.st-doc-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.st-doc-icon {
+  font-size: 1.4em;
+}
+.st-doc-title {
+  font-family: var(--font-serif, serif);
+  font-weight: 600;
+}
+.st-doc-kind {
+  font-size: 0.8em;
+  color: var(--ink-soft, #6b5a45);
+}
+.st-paper {
+  background: #fffdf4;
+  background-image: repeating-linear-gradient(0deg, transparent 0 33px, rgba(120, 140, 170, 0.18) 33px 34px);
+  border: 1px solid #d9c9a3;
+  border-radius: 4px;
+  padding: 12px 18px;
+  box-shadow: 2px 3px 0 rgba(70, 45, 20, 0.08);
+  font-size: 1.12em;
+  transform: rotate(-0.4deg);
+}
+.st-paper-receipt {
+  background: #f6f1e4;
+  border-style: dashed;
+  font-family: ui-monospace, monospace;
+  clip-path: polygon(0 0, 100% 0, 100% 86%, 93% 100%, 80% 88%, 64% 100%, 47% 90%, 30% 100%, 14% 89%, 0 100%);
+  padding-bottom: 26px;
+}
+.st-paper-postcard {
+  background: #fff8ec;
+  border-left: 6px solid #6d9bc3;
+}
+.st-paper-diary {
+  background: #fbf3df;
+}
+.st-paper-gift {
+  background: #fff6f0;
+}
+.st-doc-line {
+  margin: 4px 0;
+  line-height: 2.1;
+}
+.st-meter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.85em;
+  color: var(--ink-soft, #6b5a45);
+}
+.st-meter-bar {
+  width: 110px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--paper-3, #eadbb9);
+  overflow: hidden;
+}
+.st-meter-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--green, #4d6a38);
+}
+
+/* collection */
+.st-collection-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.st-collection-head h2 {
+  margin: 0;
+  font-family: var(--font-serif, serif);
+}
+.st-doc-list {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.st-doc-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: #fffaf0;
+  border: 1px solid var(--line, #c8b28a);
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  min-height: 44px;
+}
+.st-doc-item-title {
+  flex: 1;
+}
+.st-doc-item-meta {
+  font-size: 0.8em;
+  color: var(--ink-soft, #6b5a45);
+}
+.st-new {
+  margin-left: 6px;
+  font-size: 0.7em;
+  color: #fff;
+  background: var(--accent, #9b3f26);
+  border-radius: 8px;
+  padding: 0 6px;
+}
+
+/* floating button */
+.st-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 30;
+  font: inherit;
+  font-family: var(--font-ja, sans-serif);
+  background: var(--paper-2, #fbf5e6);
+  color: var(--ink, #3a2e22);
+  border: 1px solid var(--line, #c8b28a);
+  border-radius: 22px;
+  padding: 8px 14px;
+  min-height: 44px;
+  box-shadow: 0 3px 10px rgba(40, 28, 16, 0.2);
+  cursor: pointer;
+}
+.st-fab-sheet {
+  bottom: calc(76px + env(safe-area-inset-bottom));
+  right: 10px;
+  padding: 6px 12px;
+}
+.st-fab-sheet .st-fab-label {
+  display: none;
+}
+.st-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent, #9b3f26);
+  margin-left: 4px;
+  vertical-align: top;
+}
+
+/* ledger */
+.st-ledger-title {
+  font-family: var(--font-serif, serif);
+  margin: 0;
+  border-bottom: 1px solid var(--line, #c8b28a);
+}
+.st-ledger-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.st-ledger-table th,
+.st-ledger-table td {
+  text-align: left;
+  padding: 3px 4px;
+  border-bottom: 1px dotted var(--line, #c8b28a);
+  font-weight: normal;
+}
+.st-ledger-table td {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.st-ledger-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.st-ledger-label {
+  font-size: 0.8em;
+  color: var(--ink-soft, #6b5a45);
+}
+.st-faces,
+.st-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+.st-face {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.st-word-gloss {
+  font-size: 0.8em;
+  color: var(--green, #4d6a38);
+}
+.st-hooks {
+  border-top: 1px solid var(--line, #c8b28a);
+  padding-top: 8px;
+}

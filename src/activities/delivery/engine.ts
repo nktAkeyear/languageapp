@@ -170,7 +170,7 @@ function instance(data: GameData, p: LangProgress, town: Town, spec: SlipSpec, s
   return {
     key: source.type === 'authored' ? source.id : `${source.id}:${sig}`,
     source,
-    recipient: pick(rng, town.text.delivery.recipients).id,
+    recipient: pick(rng, town.text.delivery.recipients.filter((r) => !r.storyOnly)).id,
     lines,
     spec,
     rule,

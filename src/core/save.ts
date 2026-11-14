@@ -1,8 +1,9 @@
 import type { Face, Lang, OrderInstance, Outcome } from './types';
 import type { WordMap } from './srs';
 import type { TownDayState, TownProgress } from './townTypes';
+import { newStoryState, type StoryState } from '../story/types';
 
-export const SAVE_VERSION = 2;
+export const SAVE_VERSION = 3;
 export const STORAGE_KEY = 'minato-chabou-save';
 
 export type LayoutPref = 'auto' | 'desktop' | 'mobile';
@@ -58,6 +59,8 @@ export interface LangProgress {
   town: TownProgress;
   /** Today's activity segments (market → shop → delivery). null = not planned yet. */
   townDay: TownDayState | null;
+  /** Story layer (v3): regulars' beats, documents, chapter, pending scene cards. */
+  story: StoryState;
 }
 
 export interface SaveFile {
@@ -89,6 +92,7 @@ export function newProgress(lang: Lang): LangProgress {
     stats: { served: 0, perfect: 0 },
     town: newTownProgress(),
     townDay: null,
+    story: newStoryState(),
   };
 }
 
@@ -130,6 +134,15 @@ const migrations: Record<number, (s: AnyObj) => AnyObj> = {
     }
     return { ...s, version: 2, progress };
   },
+  // v2 → v3: story layer. Progress gets a fresh `story`; the story starts with the next day.
+  2: (s) => {
+    const progress = { ...((s.progress as AnyObj) ?? {}) };
+    for (const k of Object.keys(progress)) {
+      const p = progress[k] as AnyObj | undefined;
+      if (p && typeof p === 'object') progress[k] = { ...p, story: newStoryState() };
+    }
+    return { ...s, version: 3, progress };
+  },
 };
 
 export class SaveError extends Error {}
@@ -160,7 +173,7 @@ function normalise(s: SaveFile): SaveFile {
     const p = s.progress?.[lang];
     if (p) {
       const base = newProgress(lang);
-      out.progress[lang] = { ...base, ...p, lang, town: { ...base.town, ...(p.town ?? {}) }, townDay: p.townDay ?? null };
+      out.progress[lang] = { ...base, ...p, lang, town: { ...base.town, ...(p.town ?? {}) }, townDay: p.townDay ?? null, story: { ...base.story, ...(p.story ?? {}) } };
     }
   }
   return out;

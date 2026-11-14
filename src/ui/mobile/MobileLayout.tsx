@@ -8,6 +8,7 @@ import { MarketNote, Purse, Stalls, TownNotice } from '../components/town/Market
 import { MobileShop } from '../scene/MobileShop';
 import { BenchProvider } from '../scene/workbench';
 import { useGame } from '../useGame';
+import { StoryLayer } from '../components/story/StoryLayer';
 import { useUi } from '../uiState';
 
 type MTab = 'note' | 'stalls' | 'slip' | 'map' | 'notebook' | 'recipe';
@@ -139,6 +140,7 @@ export function MobileLayout() {
           <SettingsPanel onClose={() => setSettings(false)} />
         </Overlay>
       ) : null}
+      <StoryLayer variant="sheet" />
     </>
   );
 }

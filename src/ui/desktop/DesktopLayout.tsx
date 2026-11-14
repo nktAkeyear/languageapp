@@ -8,6 +8,7 @@ import { BookProps } from '../scene/parts';
 import { ShopScene } from '../scene/ShopScene';
 import { BenchProvider } from '../scene/workbench';
 import { useGame } from '../useGame';
+import { StoryLayer } from '../components/story/StoryLayer';
 
 /** Market / delivery keep their panels for now; the books lie on a small desk on the side. */
 function DeskPanel() {
@@ -88,6 +89,7 @@ export function DesktopLayout() {
           <SettingsPanel onClose={() => setSettings(false)} />
         </Overlay>
       ) : null}
+      <StoryLayer variant="modal" />
     </div>
   );
 }

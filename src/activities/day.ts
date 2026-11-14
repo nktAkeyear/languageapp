@@ -13,6 +13,7 @@ import { planDelivery, deliveryLevel } from './delivery/engine';
 import { ingredientMarkup, marketLevel, planMarket } from './market/engine';
 import { currentOrder, endDay, serve, startDay, type ServeOutcome } from './shop/engine';
 import { chooseText, fill, textWords, townOf, type Town } from './town/text';
+import { storyAfterServe, storyEndDay, storyPlanShop, storyPlanTown } from '../story/engine';
 
 /** Is the activity open by now? (day + reputation, or grace days after minDay — no hard gate) */
 export function unlockReady(u: TownUnlock, day: number, reputation: number): boolean {
@@ -71,6 +72,7 @@ function levelNotes(town: Town, p: LangProgress, segments: ActivityKind[]): stri
 /** Open the day: the shop plans its customers first (the market needs them), then the town. */
 export function startTownDay(data: GameData, p: LangProgress, rng: Rng): void {
   startDay(data, p, rng);
+  storyPlanShop(data, p, rng); // story: a regular's visit joins the queue before the market plans
   const town = townOf(data);
   const { segments, notes } = planSegments(town, p, rng);
   const td: TownDayState = { day: p.day, segments, seg: 0, notes, stock: {}, moneyStart: p.town.money };
@@ -93,12 +95,15 @@ export function startTownDay(data: GameData, p: LangProgress, rng: Rng): void {
   // Notes appear in the first segment; the shop shows its own when it comes first.
   if (td.segments[0] === 'shop' && p.today) p.today.notes.push(...td.notes);
   p.townDay = td;
+  storyPlanTown(data, p, rng); // story: a regular's delivery
 }
 
 /** Make sure a running day has its segment state (saves from v1 continue as shop-only days). */
 export function ensureTownDay(data: GameData, p: LangProgress, rng: Rng): void {
   if (!p.today) startTownDay(data, p, rng);
   else if (!p.townDay || p.townDay.day !== p.day) p.townDay = { day: p.day, segments: ['shop'], seg: 0, notes: [], stock: {}, moneyStart: p.town.money };
+  storyPlanShop(data, p, rng); // story (idempotent per day): a resumed / migrated day joins in
+  storyPlanTown(data, p, rng);
 }
 
 export function currentSegment(p: LangProgress): ActivityKind {
@@ -168,14 +173,16 @@ export function serveInTown(data: GameData, p: LangProgress, brew: Brew, rng: Rn
       }
     }
   }
+  storyAfterServe(data, p, out, rng); // story: a regular's reaction line / small talk
   return out;
 }
 
 /** After the last segment: advance the calendar; the next startTownDay plans the new day. */
-export function endTownDay(p: LangProgress): void {
+export function endTownDay(p: LangProgress, data?: GameData): void {
   if (p.today?.phase !== 'closed') return;
   if (hasNextSegment(p)) return;
   if (currentSegment(p) !== 'shop' && !segmentDone(p)) return;
+  if (data) storyEndDay(data, p); // story: evening scene + the night's ledger
   endDay(p);
   p.townDay = null;
 }
