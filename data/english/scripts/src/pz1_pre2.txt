@@ -1,0 +1,161 @@
+# ---- pre2 additions: phrasal verbs
+pre2|500|phrasal_verb|throw away|捨てる|Please don't throw away the boxes. We can reuse them.|その箱は捨てないでください。再利用できます。|instruction|housing
+pre2|500|phrasal_verb|cheer up|元気づける・元気を出す|Cheer up! The weather will be better tomorrow.|元気を出して。明日は天気がよくなりますよ。|sympathy|emotion
+pre2|500|phrasal_verb|calm down|落ち着く|Please calm down and tell me what happened.|落ち着いて、何があったか話してください。|instruction|emotion
+pre2|600|phrasal_verb|cut off|切断する・遮断する|The storm cut off the power to the whole village.|嵐で村全体の電気が止まりました。|description|weather
+pre2|500|phrasal_verb|fill up|満タンにする・いっぱいにする|Could you fill up the tank, please?|ガソリンを満タンにしてください。|request|transport
+pre2|600|phrasal_verb|hang out|(友達と)よく過ごす・たむろする|My friends and I often hang out at the café after school.|友達と私は放課後よくそのカフェで過ごします。|description|society
+pre2|500|phrasal_verb|look around|見て回る|May I look around the shop before I decide?|決める前に店内を見て回ってもいいですか。|permission|shopping
+pre2|600|phrasal_verb|move out|引っ越して出る|The tenant is moving out at the end of the month.|その入居者は月末に引っ越して出ます。|reporting|housing
+pre2|500|phrasal_verb|pay back|返済する|I'll pay you back on Friday.|金曜日にお返しします。|offer|money
+pre2|600|phrasal_verb|put out|(火を)消す|The fire fighters put out the fire in ten minutes.|消防士たちは10分で火を消しました。|narration|society
+pre2|600|phrasal_verb|show around|案内して回る|Mr. Ito will show you around the factory.|伊藤さんが工場をご案内します。|offer|office
+pre2|500|phrasal_verb|take away|持ち去る・持ち帰る|Would you like to eat here or take it away?|こちらで召し上がりますか、お持ち帰りですか。|inquiry|food
+pre2|500|phrasal_verb|turn around|向きを変える・振り返る|Turn around at the next corner and go back.|次の角で引き返してください。|directions|transport
+pre2|600|phrasal_verb|turn into|…に変わる|The rain turned into snow in the evening.|雨は夕方に雪に変わりました。|description|weather
+pre2|-|phrasal_verb|warm up|体を温める・準備運動をする|Warm up before you swim in the sea.|海で泳ぐ前に準備運動をしてください。|instruction|health
+pre2|-|phrasal_verb|run away|逃げる|The cat ran away when the dog came.|犬が来ると猫は逃げていきました。|narration|nature
+pre2|500|phrasal_verb|slow down|速度を落とす|Please slow down. There are children here.|速度を落としてください。ここには子どもがいます。|warning|transport
+pre2|600|phrasal_verb|speed up|速める・スピードを上げる|We need to speed up the work to finish today.|今日終えるには作業を速める必要があります。|obligation|office
+pre2|600|phrasal_verb|go up|上がる|Vegetable prices went up after the typhoon.|台風のあと野菜の値段が上がりました。|reporting|farming
+pre2|600|phrasal_verb|come out|発売される・出る|The new model comes out next month.|新型は来月発売されます。|announcement|technology
+pre2|400|phrasal_verb|get in|(車などに)乗り込む|Get in. I'll take you to the station.|乗って。駅まで送るよ。|offer|transport
+pre2|600|phrasal_verb|get out of|(場所・乗り物)から出る|Please get out of the car here.|ここで車から降りてください。|instruction|transport
+pre2|600|phrasal_verb|log in|ログインする|You need a password to log in.|ログインにはパスワードが必要です。|instruction|technology
+pre2|600|phrasal_verb|give out|配る|The staff gave out free maps at the gate.|スタッフは入口で無料の地図を配りました。|description|travel
+pre2|600|phrasal_verb|drop out|中途退学する・脱落する|He dropped out of college and opened a bakery.|彼は大学を中退してパン屋を開きました。|narration|school
+pre2|-|phrasal_verb|join in|仲間に加わる|Come and join in the game!|おいで、ゲームに加わろう。|invitation|society
+pre2|-|phrasal_verb|cut up|切り分ける|Cut up the onions into small pieces.|玉ねぎを小さく切り分けてください。|instruction|cooking
+pre2|-|phrasal_verb|fall off|落ちる|The cup fell off the shelf and broke.|カップが棚から落ちて割れました。|narration|housing
+pre2|600|phrasal_verb|pass by|通り過ぎる|The bus passes by the library every ten minutes.|そのバスは10分ごとに図書館の前を通ります。|description|transport
+pre2|600|phrasal_verb|look through|ざっと目を通す|Please look through the document before the meeting.|会議の前にその書類に目を通してください。|request|meetings
+# ---- pre2 additions: idioms
+pre2|500|idiom|in a row|続けて|It rained for five days in a row.|5日続けて雨が降りました。|description|weather
+pre2|600|idiom|at once|すぐに・同時に|Please come here at once.|すぐにここへ来てください。|request|abstract
+pre2|-|idiom|by oneself|ひとりで|My grandfather lives by himself in the mountains.|祖父は山でひとりで暮らしています。|description|family
+pre2|500|idiom|for a while|しばらくの間|Please wait for a while. I'll bring your coffee.|しばらくお待ちください。コーヒーをお持ちします。|request|food
+pre2|600|idiom|in the middle of|…の真ん中で・…の最中で|I'm in the middle of a meeting right now.|今ちょうど会議の最中です。|description|meetings
+pre2|500|idiom|for free|無料で|You can try the cheese for free.|チーズは無料で試食できます。|offer|shopping
+pre2|600|idiom|by chance|偶然に|I met an old friend at the station by chance.|駅で偶然、昔の友人に会いました。|narration|society
+pre2|500|idiom|for sure|確実に|I don't know for sure when the ship will arrive.|船がいつ着くか確かなことはわかりません。|hedging|sea
+pre2|600|idiom|all of a sudden|突然|All of a sudden, the lights went out.|突然、明かりが消えました。|narration|housing
+pre2|500|idiom|in public|人前で・公共の場で|Please don't smoke in public.|人前では喫煙しないでください。|instruction|society
+pre2|600|idiom|in danger|危険にさらされて|The small boat was in danger in the storm.|その小舟は嵐の中で危険な状態でした。|description|sea
+pre2|600|idiom|in trouble|困って・面倒なことになって|If you're in trouble, call this number.|困ったときはこの番号に電話してください。|offer|society
+pre2|-|idiom|out of breath|息を切らして|He was out of breath when he reached the top.|彼は頂上に着いたとき息を切らしていました。|description|body
+pre2|600|idiom|on my own|自分で・独力で|I fixed the roof on my own.|屋根は自分で直しました。|description|housing
+pre2|-|idiom|in a good mood|上機嫌で|The farmer was in a good mood after the big harvest.|農家の人は豊作で上機嫌でした。|description|farming
+pre2|-|idiom|side by side|並んで|The two boats sat side by side in the port.|2隻の船が港に並んで停まっていました。|description|sea
+pre2|600|idiom|step by step|一歩ずつ|I'll explain the machine step by step.|その機械を順を追って説明します。|instruction|technology
+pre2|-|idiom|little by little|少しずつ|Little by little, my English is getting better.|少しずつ私の英語は上達しています。|description|school
+pre2|600|idiom|one by one|ひとつずつ|Please come in one by one.|ひとりずつお入りください。|instruction|office
+pre2|730|idiom|on average|平均して|On average, we get fifty customers a day.|平均すると、1日に50人のお客さんが来ます。|reporting|sales
+pre2|500|idiom|a couple of|2、3の|I'll be back in a couple of minutes.|2、3分で戻ります。|description|abstract
+# ---- pre2 additions: collocations
+pre2|500|collocation|take a break|休憩を取る|Let's take a break for ten minutes.|10分休憩しましょう。|suggestion|office
+pre2|500|collocation|take a seat|席に着く|Please take a seat. The doctor will be with you soon.|おかけください。先生がすぐ参ります。|instruction|health
+pre2|600|collocation|take a day off|1日休みを取る|I'd like to take a day off next Friday.|来週の金曜日にお休みをいただきたいのですが。|request|hr
+pre2|500|collocation|take a message|伝言を受ける|Can I take a message?|伝言を承りましょうか。|offer|office
+pre2|600|collocation|take notes|メモを取る|Please take notes during the meeting.|会議中はメモを取ってください。|instruction|meetings
+pre2|500|collocation|take a test|試験を受ける|I'm going to take an English test next month.|来月、英語の試験を受けます。|narration|school
+pre2|500|collocation|make a phone call|電話をかける|I need to make a phone call.|電話をかけなければなりません。|description|office
+pre2|600|collocation|make a plan|計画を立てる|Let's make a plan for the trip.|旅行の計画を立てましょう。|suggestion|travel
+pre2|600|collocation|make an announcement|発表(アナウンス)をする|The captain made an announcement about the weather.|船長が天気についてアナウンスをしました。|announcement|sea
+pre2|500|collocation|make a list|リストを作る|I made a list of things to buy.|買うものをリストにしました。|description|shopping
+pre2|730|collocation|make a difference|違いを生む・重要である|Your help made a big difference to us.|あなたの助けは私たちにとって大きな力になりました。|praise|society
+pre2|730|collocation|make a profit|利益を上げる|The shop made a small profit last year.|その店は昨年、小さな利益を出しました。|reporting|finance
+pre2|-|collocation|make a wish|願い事をする|Close your eyes and make a wish.|目を閉じて願い事をしてごらん。|instruction|emotion
+pre2|600|collocation|have an accident|事故に遭う|My brother had an accident on his bike.|兄は自転車で事故に遭いました。|narration|health
+pre2|400|collocation|have fun|楽しむ|Have fun at the beach!|海辺で楽しんできてね。|farewell|travel
+pre2|600|collocation|give a speech|スピーチをする|The mayor gave a short speech at the opening.|市長は開会式で短いスピーチをしました。|description|society
+pre2|500|collocation|give someone a hand|手を貸す|Could you give me a hand with this box?|この箱を運ぶのを手伝ってもらえますか。|request|housing
+pre2|600|collocation|give advice|助言をする|The nurse gave me some good advice.|看護師さんがいい助言をしてくれました。|description|health
+pre2|600|collocation|give a presentation|プレゼンをする|She gave a presentation about the new menu.|彼女は新メニューについてプレゼンをしました。|description|meetings
+pre2|600|collocation|give someone a ride|車で送る|Can you give me a ride to the station?|駅まで車で送ってもらえますか。|request|transport
+pre2|600|collocation|pay a visit|訪問する|I'll pay a visit to the clinic tomorrow.|明日、診療所を訪ねます。|narration|health
+pre2|500|collocation|pay a bill|請求書を支払う|I need to pay the water bill today.|今日、水道料金を払わなければなりません。|obligation|money
+pre2|730|collocation|pay a fine|罰金を払う|You have to pay a fine if you return the book late.|本を遅れて返すと罰金を払わなければなりません。|warning|law
+pre2|600|collocation|set a goal|目標を立てる|We set a goal of selling a hundred cakes a day.|私たちは1日100個ケーキを売るという目標を立てました。|description|sales
+pre2|500|collocation|set the table|食卓の用意をする|Could you set the table for four?|4人分の食卓を用意してくれますか。|request|food
+pre2|600|collocation|break a promise|約束を破る|He never breaks a promise.|彼は決して約束を破りません。|description|society
+pre2|600|collocation|break a record|記録を破る|The shop broke its sales record in December.|その店は12月に売上記録を更新しました。|reporting|sales
+pre2|600|collocation|break the law|法律を破る|Fishing here without a license breaks the law.|許可なくここで釣りをするのは法律違反です。|warning|law
+pre2|500|collocation|miss a chance|チャンスを逃す|Don't miss this chance to see the festival.|お祭りを見るこのチャンスをお見逃しなく。|suggestion|travel
+pre2|500|collocation|lose weight|やせる|He walks every day to lose weight.|彼は体重を減らすため毎日歩いています。|description|health
+pre2|600|collocation|win a prize|賞を取る|Her cheese won a prize at the fair.|彼女のチーズは品評会で賞を取りました。|praise|farming
+pre2|500|collocation|tell the truth|本当のことを言う|Please tell me the truth.|本当のことを話してください。|request|society
+pre2|-|collocation|tell a joke|冗談を言う|My uncle likes to tell jokes at dinner.|おじは夕食の席で冗談を言うのが好きです。|description|family
+pre2|600|collocation|run a business|事業を営む|My parents run a small business in the town.|両親は町で小さな商売を営んでいます。|description|sales
+pre2|730|collocation|hold a meeting|会議を開く|We hold a staff meeting every Monday.|毎週月曜日にスタッフ会議を開きます。|description|meetings
+pre2|600|collocation|hold an event|イベントを開催する|The town holds an event every spring.|町は毎年春にイベントを開催します。|description|society
+pre2|730|collocation|offer a discount|割引を提供する|We offer a discount to students.|学生には割引を提供しています。|offer|sales
+pre2|600|collocation|offer help|助けを申し出る|The neighbors offered help after the flood.|洪水のあと近所の人たちが手助けを申し出ました。|description|society
+# ---- pre2 additions: patterns
+pre2|600|pattern|such ... that ...|とても…なので…|It was such a hot day that we stayed inside.|とても暑い日だったので、私たちは屋内にいました。|cause/effect|weather
+pre2|600|pattern|not ... until ...|…して初めて…|I didn't notice the mistake until I got home.|家に着くまで間違いに気づきませんでした。|narration|abstract
+pre2|600|pattern|by the time ...|…するまでに|By the time we arrived, the shop was closed.|私たちが着くまでに、店は閉まっていました。|narration|shopping
+pre2|600|pattern|ever since ...|…以来ずっと|I've lived here ever since I was born.|生まれてからずっとここに住んでいます。|description|housing
+pre2|500|pattern|each other|お互い|They help each other every day.|彼らは毎日お互いに助け合っています。|description|society
+pre2|730|pattern|have something done|…してもらう|I'd like to have my watch repaired.|腕時計を修理してもらいたいのですが。|request|crafts
+pre2|730|pattern|get someone to ...|…してもらう・させる|I'll get my brother to drive us.|兄に車を出してもらいます。|description|family
+pre2|600|pattern|keep someone waiting|人を待たせる|I'm sorry to keep you waiting so long.|長くお待たせしてすみません。|apology|office
+pre2|730|pattern|find it ... to ...|…するのは…だと思う|I find it difficult to get up early.|早起きは難しいと思います。|opinion|health
+pre2|600|pattern|There used to be ...|以前は…があった|There used to be a cinema near the station.|以前、駅の近くに映画館がありました。|description|society
+pre2|500|pattern|be sure to ...|必ず…する|Be sure to bring your ticket.|チケットを必ずお持ちください。|instruction|travel
+pre2|600|pattern|be afraid that ...|(残念ながら)…と思う|I'm afraid that the shop is closed today.|あいにく今日はお店が閉まっていると思います。|refusal|shopping
+pre2|500|pattern|It's too early to ...|…するにはまだ早い|It's too early to say if it will rain.|雨が降るかどうかを言うのはまだ早いです。|hedging|weather
+pre2|500|pattern|It's time to ...|…する時間です|It's time to close the shop.|そろそろお店を閉める時間です。|announcement|sales
+pre2|600|pattern|the first time I ...|初めて私が…したとき|The first time I visited this town, it was snowing.|初めてこの町を訪れたとき、雪が降っていました。|narration|travel
+pre2|600|pattern|how long it takes to ...|…するのにどれくらいかかるか|Do you know how long it takes to get there?|そこへ行くのにどのくらいかかるかご存じですか。|inquiry|travel
+pre2|600|pattern|whether to ...|…すべきかどうか|I can't decide whether to buy it or not.|それを買うかどうか決められません。|hedging|shopping
+pre2|600|pattern|what to ...|何を…すべきか|I don't know what to say.|何と言えばいいのかわかりません。|hedging|emotion
+pre2|600|pattern|No one but ...|…以外だれも〜ない|No one but the owner has the key.|オーナー以外はだれも鍵を持っていません。|description|office
+# ---- pre2 additions: discourse
+pre2|600|discourse|for instance|たとえば|Many fruits grow here, for instance, apples and pears.|ここでは多くの果物が育ちます。たとえばリンゴや梨です。|exemplifying|farming
+pre2|600|discourse|such as|たとえば…のような|We sell local products such as honey and tea.|はちみつやお茶など、地元の品を販売しています。|exemplifying|shopping
+pre2|600|discourse|in short|要するに|In short, we need more staff.|要するに、もっと人手が必要です。|summarizing|office
+pre2|730|discourse|after all|結局・何といっても|It rained, but we had a good time after all.|雨でしたが、結局楽しく過ごせました。|contrast|travel
+pre2|600|discourse|in general|一般に|In general, shops here close at six.|一般に、ここの店は6時に閉まります。|summarizing|society
+pre2|600|discourse|actually|実は|Actually, I've never been to the sea.|実は、海に行ったことがありません。|clarification|society
+pre2|500|discourse|anyway|とにかく・それはさておき|Anyway, let's start the lesson.|とにかく、授業を始めましょう。|sequencing|school
+pre2|600|discourse|at the same time|同時に・その一方で|The job is hard, but at the same time it's fun.|その仕事は大変ですが、同時に楽しくもあります。|contrast|office
+pre2|500|discourse|lastly|最後に|Lastly, please turn off your phones.|最後に、携帯電話の電源をお切りください。|sequencing|meetings
+pre2|-|discourse|personally|個人的には|Personally, I prefer the blue one.|個人的には青いほうが好きです。|opinion|shopping
+pre2|600|discourse|That's because ...|それは…だからです|That's because the store is new.|それはお店が新しいからです。|cause/effect|shopping
+# ---- pre2 additions: formulas
+pre2|500|formula|How may I help you?|いかがなさいましたか|Good morning. How may I help you?|おはようございます。どうなさいましたか。|offer|office
+pre2|500|formula|Would you like a bag?|袋はお付けしますか|That's 800 yen. Would you like a bag?|800円です。袋はお付けしますか。|offer|shopping
+pre2|500|formula|Is that all?|以上でよろしいですか|Is that all? — Yes, that's all.|以上でよろしいですか。—はい、以上です。|confirmation|shopping
+pre2|500|formula|I'll be right with you.|すぐに参ります|I'll be right with you. Please wait a moment.|すぐに参りますので少しお待ちください。|offer|shopping
+pre2|500|formula|What can I get you?|何をお持ちしましょうか|What can I get you? — A coffee, please.|何をお持ちしましょう。—コーヒーをお願いします。|offer|food
+pre2|500|formula|Do you have a reservation?|ご予約はありますか|Do you have a reservation for tonight?|今夜のご予約はございますか。|inquiry|hotel
+pre2|500|formula|Could you speak more slowly?|もっとゆっくり話してもらえますか|Could you speak more slowly? My English is not good.|もっとゆっくり話してもらえますか。英語が得意でなくて。|request|school
+pre2|500|formula|How do you spell that?|それはどう綴りますか|How do you spell your last name?|名字はどう綴りますか。|inquiry|office
+pre2|400|formula|What does ... mean?|…はどういう意味ですか|What does this sign mean?|この標識はどういう意味ですか。|inquiry|school
+pre2|500|formula|It's my first time here.|ここは初めてです|It's my first time here. Can you show me around?|ここは初めてなんです。案内してもらえますか。|introduction|travel
+pre2|500|formula|Let me know if you need anything.|何かあれば言ってください|Let me know if you need anything.|何か必要なことがあれば言ってください。|offer|hotel
+pre2|500|formula|I'll think about it.|考えておきます|It's a good price. I'll think about it.|いい値段ですね。考えておきます。|hedging|shopping
+pre2|600|formula|What a pity!|なんて残念な|What a pity! The festival was canceled.|なんて残念なの。お祭りが中止になったなんて。|sympathy|emotion
+pre2|600|formula|That makes sense.|なるほど、筋が通っていますね|Oh, that makes sense. Thank you.|ああ、なるほど。ありがとうございます。|agreement|school
+pre2|500|formula|I don't mind.|かまいません|Which seat do you want? — I don't mind.|どの席がいいですか。—どこでもかまいません。|preference|food
+pre2|500|formula|I can't make it.|行けません(都合がつきません)|Sorry, I can't make it on Saturday.|すみません、土曜日は行けません。|refusal|society
+pre2|600|formula|Count me in.|私も入れて・参加します|We're going to the beach. — Count me in!|海に行くんだ。—私も入れて。|agreement|society
+pre2|500|formula|Let's meet at ...|…で会いましょう|Let's meet at the station at ten.|10時に駅で会いましょう。|suggestion|society
+pre2|500|formula|I'm new here.|私はここの新人です|I'm new here, so please help me.|ここは新人なので、手伝ってください。|introduction|office
+pre2|500|formula|That's a shame.|それは残念です|The beach is closed? That's a shame.|ビーチが閉鎖中?それは残念です。|sympathy|emotion
+# ---- pre2 additions: business
+pre2|500|business|Please hold the line.|電話を切らずにお待ちください|Please hold the line. I'll get the manager.|電話を切らずにお待ちください。店長を呼びます。|instruction|office
+pre2|500|business|I'll transfer you.|おつなぎします|I'll transfer you to the sales department.|営業部におつなぎします。|offer|office
+pre2|600|business|We offer a money-back guarantee.|返金保証をしています|We offer a money-back guarantee on all our shoes.|当店の靴はすべて返金保証をお付けしています。|offer|sales
+pre2|500|business|Please present your ticket.|チケットをご提示ください|Please present your ticket at the gate.|入口でチケットをご提示ください。|instruction|arts
+pre2|500|business|Please wait to be seated.|席へご案内するまでお待ちください|Please wait to be seated.|席へご案内するまでお待ちください。|instruction|food
+pre2|500|business|Please take a number.|番号札をお取りください|Please take a number and wait.|番号札を取ってお待ちください。|instruction|office
+pre2|500|business|Please line up here.|こちらに並んでください|Please line up here for the tickets.|チケットはこちらにお並びください。|instruction|travel
+pre2|600|business|The store is closing in ten minutes.|あと10分で閉店します|Attention shoppers, the store is closing in ten minutes.|お客様にお知らせします。あと10分で閉店いたします。|announcement|shopping
+pre2|500|business|Would you like a receipt?|レシートはご入り用ですか|Would you like a receipt?|レシートはご入り用ですか。|offer|shopping
+pre2|500|business|Do you have a membership card?|会員カードはお持ちですか|Do you have a membership card?|会員カードはお持ちですか。|inquiry|shopping
+pre2|600|business|We deliver for free.|無料で配達します|We deliver for free within the town.|町内なら無料で配達します。|offer|logistics
+pre2|600|business|Please remove your shoes.|靴をお脱ぎください|Please remove your shoes at the entrance.|玄関で靴をお脱ぎください。|instruction|hotel
+pre2|500|business|Please keep to the left.|左側を歩いてください|Please keep to the left on the stairs.|階段では左側をお通りください。|instruction|society
+pre2|600|business|Your order will arrive within three days.|ご注文は3日以内に届きます|Your order will arrive within three days.|ご注文は3日以内に届きます。|announcement|logistics
+pre2|600|business|The meeting is about to start.|会議がまもなく始まります|The meeting is about to start. Please sit down.|会議がまもなく始まります。着席してください。|announcement|meetings

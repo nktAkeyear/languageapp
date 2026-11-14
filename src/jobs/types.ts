@@ -304,6 +304,8 @@ export interface JobReaction {
   face: Face;
   /** Lowest rank the line is used at. */
   rank?: number;
+  /** Only for tasks of this archetype (the boss checks sorting, a customer reacts to a sale). */
+  arch?: ArchetypeId;
 }
 
 /** Lines of the job's boss / place (start of shift, end, rank-up, a link good used). */

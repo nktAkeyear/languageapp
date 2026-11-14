@@ -6,6 +6,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { activityDef } from '../../activities';
 import { hasNextSegment } from '../../activities/day';
+import { canGoToTown } from '../../jobs/engine';
 import { currentOrder } from '../../activities/shop/engine';
 import { plain, wordMarkup } from '../../core/gamedata';
 import type { IngredientId, Method, Temp } from '../../core/types';
@@ -683,6 +684,19 @@ export function DayEnd() {
           <span>閉店</span>
         </div>
         <p className="closing-line hand">最後のお客さんが帰っていった。</p>
+        {canGoToTown(progress) ? (
+          <button
+            type="button"
+            className="cv-btn closing-btn"
+            data-testid="to-town"
+            onClick={() => {
+              sfx('steps');
+              g.jobs.toTown();
+            }}
+          >
+            店を閉めて町へ出る（夕方の仕事）
+          </button>
+        ) : null}
         <button
           type="button"
           className="cv-btn cv-next closing-btn"

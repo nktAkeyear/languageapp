@@ -1,68 +1,68 @@
 2|600|business|I'm writing in response to ...|…に関してご連絡します|I'm writing in response to your advertisement in the paper.|新聞の広告を拝見してご連絡しています。|reporting|office,hr
 2|730|business|I'm writing to inquire about ...|…についてお問い合わせします|I'm writing to inquire about the room rates for May.|5月の部屋の料金についてお問い合わせします。|inquiry|hotel,office
-2|730|business|I'm writing to confirm ...|…を確認するためご連絡します|I'm writing to confirm our meeting on Friday.|金曜日の打ち合わせを確認するためご連絡します。|confirmation|meetings
+2|600|business|I'm writing to confirm ...|…を確認するためご連絡します|I'm writing to confirm our meeting on Friday.|金曜日の打ち合わせを確認するためご連絡します。|confirmation|meetings
 2|730|business|I would like to apologize for ...|…についてお詫びいたします|I would like to apologize for the mistake in your bill.|請求書の誤りをお詫びいたします。|apology|finance
 2|730|business|Please be advised that ...|…ということをご承知おきください|Please be advised that the office will be closed on Monday.|月曜日は事務所が休みになりますのでご承知おきください。|announcement|office
 2|730|business|Please be informed that ...|…をお知らせいたします|Please be informed that the schedule has changed.|予定が変更になりましたのでお知らせします。|announcement|office
 2|730|business|We regret to inform you that ...|残念ながら…をお知らせします|We regret to inform you that the position has been filled.|残念ながら、その職はすでに決まりました。|announcement|hr
 2|730|business|We are pleased to announce that ...|…をお知らせできることを嬉しく思います|We are pleased to announce that our new shop will open in May.|5月に新店舗が開店することをお知らせできて嬉しく思います。|announcement|sales
-2|730|business|Thank you for your inquiry.|お問い合わせありがとうございます|Thank you for your inquiry about our tours.|ツアーへのお問い合わせありがとうございます。|thanks|sales
+2|500|business|Thank you for your inquiry.|お問い合わせありがとうございます|Thank you for your inquiry about our tours.|ツアーへのお問い合わせありがとうございます。|thanks|sales
 2|730|business|Thank you for your prompt attention to this matter.|迅速なご対応に感謝します|Thank you for your prompt attention to this matter.|この件への迅速なご対応に感謝します。|thanks|office
-2|730|business|Please let me know if you have any questions.|ご質問があればお知らせください|Please let me know if you have any questions about the contract.|契約についてご質問があればお知らせください。|offer|office
-2|730|business|Please do not hesitate to contact us.|お気軽にご連絡ください|Please do not hesitate to contact us if you need help.|お困りの際はお気軽にご連絡ください。|offer|office
-2|730|business|Feel free to call me.|お気軽にお電話ください|Feel free to call me at any time.|いつでもお気軽にお電話ください。|offer|office
+2|500|business|Please let me know if you have any questions.|ご質問があればお知らせください|Please let me know if you have any questions about the contract.|契約についてご質問があればお知らせください。|offer|office
+2|600|business|Please do not hesitate to contact us.|お気軽にご連絡ください|Please do not hesitate to contact us if you need help.|お困りの際はお気軽にご連絡ください。|offer|office
+2|500|business|Feel free to call me.|お気軽にお電話ください|Feel free to call me at any time.|いつでもお気軽にお電話ください。|offer|office
 2|730|business|I would be grateful if you could ...|…していただけると幸いです|I would be grateful if you could send the documents today.|本日書類を送っていただけると幸いです。|request|office
-2|730|business|At your earliest convenience|ご都合のつき次第|Please reply at your earliest convenience.|ご都合のつき次第ご返信ください。|request|office
+2|860|business|At your earliest convenience|ご都合のつき次第|Please reply at your earliest convenience.|ご都合のつき次第ご返信ください。|request|office
 2|730|business|effective immediately|直ちに有効で|The new rule is effective immediately.|新しい規則は直ちに有効です。|announcement|law,office
 2|730|business|effective as of ...|…付けで有効|The price change is effective as of June 1.|価格改定は6月1日付けで有効です。|announcement|finance
 2|730|business|as of today|本日現在|As of today, we accept online orders.|本日よりオンライン注文を承ります。|announcement|sales
 2|730|business|until further notice|追って通知があるまで|The pool is closed until further notice.|プールは追って通知があるまで閉鎖されます。|announcement|society
 2|730|business|subject to change|変更されることがあります|The schedule is subject to change.|予定は変更されることがあります。|hedging|office
-2|730|business|in accordance with ...|…に従って|The work was done in accordance with the plan.|作業は計画に従って行われました。|description|law
-2|730|business|in compliance with ...|…に準拠して|All boats must be in compliance with safety rules.|すべての船は安全規則に従わなければなりません。|instruction|law
-2|730|business|pursuant to ...|…に基づき|Pursuant to the contract, payment is due in 30 days.|契約に基づき、支払いは30日以内です。|reporting|law,finance
-2|730|business|Attached is ...|添付は…です|Attached is the revised schedule.|添付は改訂版の予定表です。|reporting|office
+pre1|860|business|in accordance with ...|…に従って|The work was done in accordance with the plan.|作業は計画に従って行われました。|description|law
+pre1|860|business|in compliance with ...|…に準拠して|All boats must be in compliance with safety rules.|すべての船は安全規則に従わなければなりません。|instruction|law
+1|860|business|pursuant to ...|…に基づき|Pursuant to the contract, payment is due in 30 days.|契約に基づき、支払いは30日以内です。|reporting|law,finance
+2|600|business|Attached is ...|添付は…です|Attached is the revised schedule.|添付は改訂版の予定表です。|reporting|office
 2|730|business|For further information, please ...|詳細は…してください|For further information, please visit our website.|詳細は当社のウェブサイトをご覧ください。|instruction|office
-2|730|business|Please refer to ...|…をご参照ください|Please refer to the attached map.|添付の地図をご参照ください。|instruction|office
+2|600|business|Please refer to ...|…をご参照ください|Please refer to the attached map.|添付の地図をご参照ください。|instruction|office
 2|730|business|I'm pleased to offer you the position.|貴殿に職をご提供できて嬉しく思います|I'm pleased to offer you the position of manager.|マネージャー職をご提供できて嬉しく思います。|offer|hr
 2|730|business|We would like to invite you to ...|…にご招待いたします|We would like to invite you to our opening party.|開店記念パーティーにご招待いたします。|invitation|sales
-2|730|business|Your reservation has been confirmed.|ご予約が確認されました|Your reservation has been confirmed for June 3.|6月3日のご予約が確認されました。|confirmation|hotel
-2|730|business|Your request has been received.|ご依頼を受け付けました|Your request has been received. We will contact you.|ご依頼を受け付けました。ご連絡します。|confirmation|office
-2|730|business|The shipment is expected to arrive on ...|荷物は…に到着予定です|The shipment is expected to arrive on Thursday.|荷物は木曜日に到着予定です。|prediction|logistics
-2|730|business|We have received your payment.|お支払いを確認しました|We have received your payment. Thank you.|お支払いを確認しました。ありがとうございます。|confirmation|money
-2|730|business|There seems to be a mistake.|間違いがあるようです|There seems to be a mistake in this bill.|この請求書に間違いがあるようです。|complaint|finance
-2|730|business|I'd like to file a complaint.|苦情を申し立てたい|I'd like to file a complaint about the service.|サービスについて苦情を申し立てたいのですが。|complaint|sales
+2|500|business|Your reservation has been confirmed.|ご予約が確認されました|Your reservation has been confirmed for June 3.|6月3日のご予約が確認されました。|confirmation|hotel
+2|500|business|Your request has been received.|ご依頼を受け付けました|Your request has been received. We will contact you.|ご依頼を受け付けました。ご連絡します。|confirmation|office
+2|600|business|The shipment is expected to arrive on ...|荷物は…に到着予定です|The shipment is expected to arrive on Thursday.|荷物は木曜日に到着予定です。|prediction|logistics
+2|500|business|We have received your payment.|お支払いを確認しました|We have received your payment. Thank you.|お支払いを確認しました。ありがとうございます。|confirmation|money
+2|600|business|There seems to be a mistake.|間違いがあるようです|There seems to be a mistake in this bill.|この請求書に間違いがあるようです。|complaint|finance
+2|600|business|I'd like to file a complaint.|苦情を申し立てたい|I'd like to file a complaint about the service.|サービスについて苦情を申し立てたいのですが。|complaint|sales
 2|730|business|We will look into the matter.|その件を調べます|We will look into the matter right away.|直ちにその件を調べます。|offer|office
-2|730|business|We will issue a refund.|返金いたします|We will issue a full refund.|全額返金いたします。|offer|sales,finance
+2|600|business|We will issue a refund.|返金いたします|We will issue a full refund.|全額返金いたします。|offer|sales,finance
 2|730|business|The item you ordered is no longer available.|ご注文の品はもう入手できません|The item you ordered is no longer available.|ご注文の品はもう入手できません。|reporting|sales
-2|730|business|We are experiencing a delay.|遅れが生じております|We are experiencing a delay due to bad weather.|悪天候のため遅れが生じております。|announcement|logistics
-2|730|business|due to unforeseen circumstances|予期せぬ事情により|The ferry was canceled due to unforeseen circumstances.|予期せぬ事情によりフェリーは欠航しました。|cause/effect|transport
-2|730|business|owing to ...|…のため|Owing to heavy snow, the road is closed.|大雪のため道路は閉鎖されています。|cause/effect|weather
-2|730|business|on behalf of ...|…を代表して|On behalf of the staff, thank you.|スタッフを代表して御礼申し上げます。|thanks|office
+2|600|business|We are experiencing a delay.|遅れが生じております|We are experiencing a delay due to bad weather.|悪天候のため遅れが生じております。|announcement|logistics
+2|860|business|due to unforeseen circumstances|予期せぬ事情により|The ferry was canceled due to unforeseen circumstances.|予期せぬ事情によりフェリーは欠航しました。|cause/effect|transport
+2|860|business|owing to ...|…のため|Owing to heavy snow, the road is closed.|大雪のため道路は閉鎖されています。|cause/effect|weather
+2|860|business|on behalf of ...|…を代表して|On behalf of the staff, thank you.|スタッフを代表して御礼申し上げます。|thanks|office
 2|730|business|in charge of|…を担当して|Who is in charge of the schedule?|予定はだれの担当ですか。|inquiry|office
 2|730|business|Let me put you through to ...|…におつなぎします|Let me put you through to the manager.|マネージャーにおつなぎします。|offer|office
-2|730|business|He's on another line.|別の電話に出ています|He's on another line. Would you like to hold?|別の電話に出ています。お待ちになりますか。|reporting|office
-2|730|business|Could you spell that, please?|綴りを教えてください|Could you spell your last name, please?|お名前の綴りを教えてください。|request|office
-2|730|business|Can I take your name and number?|お名前と電話番号を伺えますか|Can I take your name and number?|お名前と電話番号を伺えますか。|request|office
-2|730|business|The line is busy.|話し中です|The line is busy. I'll try again.|話し中です。またかけます。|reporting|office
-2|730|business|I'll pass the message on.|伝言をお伝えします|I'll pass the message on to him.|彼に伝言をお伝えします。|offer|office
-2|730|business|Let's schedule a meeting.|会議の予定を組みましょう|Let's schedule a meeting for next week.|来週の会議の予定を組みましょう。|suggestion,scheduling|meetings
-2|730|business|Are you available on ...?|…はご都合いかがですか|Are you available on Wednesday afternoon?|水曜日の午後はご都合いかがですか。|inquiry|meetings
-2|730|business|That works for me.|それで大丈夫です|Tuesday at two? That works for me.|火曜日の2時?それで大丈夫です。|agreement|meetings
-2|730|business|I have a conflict.|予定が重なっています|I have a conflict on Monday.|月曜日は予定が重なっています。|refusal|meetings
-2|730|business|Let's go over the agenda.|議題を確認しましょう|Let's go over the agenda.|議題を確認しましょう。|instruction|meetings
-2|730|business|The first item on the agenda is ...|最初の議題は…です|The first item on the agenda is the budget.|最初の議題は予算です。|instruction|meetings
-2|730|business|Let's call it a day.|今日はここまでにしましょう|It's late. Let's call it a day.|遅いので、今日はここまでにしましょう。|suggestion|meetings
-2|730|business|I'd like to propose ...|…を提案したい|I'd like to propose a new schedule.|新しい予定を提案したいと思います。|suggestion|meetings
-2|730|business|I'd like to bring up a point.|ひとつ指摘したい|I'd like to bring up a point about the cost.|費用について一つ指摘したいです。|opinion|meetings
+2|600|business|He's on another line.|別の電話に出ています|He's on another line. Would you like to hold?|別の電話に出ています。お待ちになりますか。|reporting|office
+2|600|business|Could you spell that, please?|綴りを教えてください|Could you spell your last name, please?|お名前の綴りを教えてください。|request|office
+2|600|business|Can I take your name and number?|お名前と電話番号を伺えますか|Can I take your name and number?|お名前と電話番号を伺えますか。|request|office
+2|600|business|The line is busy.|話し中です|The line is busy. I'll try again.|話し中です。またかけます。|reporting|office
+2|600|business|I'll pass the message on.|伝言をお伝えします|I'll pass the message on to him.|彼に伝言をお伝えします。|offer|office
+2|600|business|Let's schedule a meeting.|会議の予定を組みましょう|Let's schedule a meeting for next week.|来週の会議の予定を組みましょう。|suggestion,scheduling|meetings
+2|600|business|Are you available on ...?|…はご都合いかがですか|Are you available on Wednesday afternoon?|水曜日の午後はご都合いかがですか。|inquiry|meetings
+2|600|business|That works for me.|それで大丈夫です|Tuesday at two? That works for me.|火曜日の2時?それで大丈夫です。|agreement|meetings
+2|600|business|I have a conflict.|予定が重なっています|I have a conflict on Monday.|月曜日は予定が重なっています。|refusal|meetings
+2|600|business|Let's go over the agenda.|議題を確認しましょう|Let's go over the agenda.|議題を確認しましょう。|instruction|meetings
+2|600|business|The first item on the agenda is ...|最初の議題は…です|The first item on the agenda is the budget.|最初の議題は予算です。|instruction|meetings
+2|600|business|Let's call it a day.|今日はここまでにしましょう|It's late. Let's call it a day.|遅いので、今日はここまでにしましょう。|suggestion|meetings
+2|860|business|I'd like to propose ...|…を提案したい|I'd like to propose a new schedule.|新しい予定を提案したいと思います。|suggestion|meetings
+2|860|business|I'd like to bring up a point.|ひとつ指摘したい|I'd like to bring up a point about the cost.|費用について一つ指摘したいです。|opinion|meetings
 2|730|business|I'm in favor of ...|…に賛成です|I'm in favor of the new plan.|新しい計画に賛成です。|opinion|meetings
 2|730|business|I'm opposed to ...|…に反対です|I'm opposed to raising prices.|値上げに反対です。|disagreement|meetings
-2|730|business|Let's put it to a vote.|採決しましょう|Let's put it to a vote.|採決しましょう。|suggestion|meetings
-2|730|business|The motion is carried.|動議は可決されました|The motion is carried.|動議は可決されました。|announcement|meetings
-2|730|business|We need to cut costs.|費用を削減する必要があります|We need to cut costs this year.|今年は費用を削減する必要があります。|opinion|finance
-2|730|business|We're running behind schedule.|予定より遅れています|We're running behind schedule.|予定より遅れています。|reporting|meetings
-2|730|business|We're on schedule.|予定どおりです|The work is on schedule.|作業は予定どおりです。|reporting|meetings
-2|730|business|ahead of schedule|予定より早く|The bridge was finished ahead of schedule.|橋は予定より早く完成しました。|reporting|logistics
+2|860|business|Let's put it to a vote.|採決しましょう|Let's put it to a vote.|採決しましょう。|suggestion|meetings
+pre1|860|business|The motion is carried.|動議は可決されました|The motion is carried.|動議は可決されました。|announcement|meetings
+2|600|business|We need to cut costs.|費用を削減する必要があります|We need to cut costs this year.|今年は費用を削減する必要があります。|opinion|finance
+2|600|business|We're running behind schedule.|予定より遅れています|We're running behind schedule.|予定より遅れています。|reporting|meetings
+2|600|business|We're on schedule.|予定どおりです|The work is on schedule.|作業は予定どおりです。|reporting|meetings
+2|600|business|ahead of schedule|予定より早く|The bridge was finished ahead of schedule.|橋は予定より早く完成しました。|reporting|logistics
 2|730|business|within budget|予算内で|The repairs were completed within budget.|修理は予算内で完了しました。|reporting|finance
 2|730|business|over budget|予算超過|The project went over budget.|計画は予算を超過しました。|reporting|finance
 2|730|business|Sales have increased by ...|売上は…増えました|Sales have increased by ten percent.|売上は10%増えました。|reporting|sales
@@ -71,124 +71,124 @@
 2|730|business|a slight decrease in ...|…の微減|There was a slight decrease in prices.|価格がわずかに下がりました。|reporting|finance
 2|730|business|fiscal year|会計年度|The fiscal year ends in March.|会計年度は3月に終わります。|description|finance
 2|730|business|quarterly report|四半期報告|Please read the quarterly report.|四半期報告書を読んでください。|instruction|finance
-2|730|business|annual meeting|年次総会|The annual meeting is held in May.|年次総会は5月に開かれます。|description|meetings
+2|600|business|annual meeting|年次総会|The annual meeting is held in May.|年次総会は5月に開かれます。|description|meetings
 2|730|business|the board of directors|取締役会|The board of directors will decide.|取締役会が決定します。|description|meetings
-2|730|business|head office|本社|Please send it to our head office.|本社へお送りください。|instruction|office
-2|730|business|branch office|支店|The branch office is on Main Street.|支店はメインストリートにあります。|directions|office
-2|730|business|customer service|顧客サービス|Please call customer service.|顧客サービスにお電話ください。|instruction|sales
+2|600|business|head office|本社|Please send it to our head office.|本社へお送りください。|instruction|office
+2|600|business|branch office|支店|The branch office is on Main Street.|支店はメインストリートにあります。|directions|office
+pre2|500|business|customer service|顧客サービス|Please call customer service.|顧客サービスにお電話ください。|instruction|sales
 2|730|business|product line|製品ライン|We have a new product line.|新しい製品ラインがあります。|description|sales
-2|730|business|a limited-time offer|期間限定の特典|This is a limited-time offer.|これは期間限定の特典です。|announcement|sales
-2|730|business|terms and conditions|契約条件|Please read the terms and conditions.|契約条件をお読みください。|instruction|law
-2|730|business|warranty period|保証期間|The warranty period is one year.|保証期間は1年です。|description|sales,law
-2|730|business|The warranty has expired.|保証が切れています|I'm sorry, the warranty has expired.|申し訳ありませんが、保証が切れています。|reporting|sales
-2|730|business|a full refund|全額返金|You can get a full refund within 30 days.|30日以内なら全額返金されます。|offer|sales
-2|730|business|proof of purchase|購入証明|Please bring proof of purchase.|購入証明をお持ちください。|instruction|shopping
-2|730|business|a job opening|求人|We have a job opening at the front desk.|フロントで求人があります。|announcement|hr
-2|730|business|a letter of recommendation|推薦状|I need a letter of recommendation.|推薦状が必要です。|request|hr
-2|730|business|a job interview|就職面接|I have a job interview on Monday.|月曜日に就職面接があります。|description|hr
-2|730|business|work experience|職歴|Do you have any work experience?|職歴はありますか。|inquiry|hr
-2|730|business|a retirement party|退職祝いの会|We're having a retirement party for Mr. Ono.|小野さんの退職祝いの会を開きます。|announcement|hr
-2|730|business|a pay raise|昇給|She got a pay raise.|彼女は昇給しました。|reporting|hr,money
+2|600|business|a limited-time offer|期間限定の特典|This is a limited-time offer.|これは期間限定の特典です。|announcement|sales
+2|860|business|terms and conditions|契約条件|Please read the terms and conditions.|契約条件をお読みください。|instruction|law
+2|860|business|warranty period|保証期間|The warranty period is one year.|保証期間は1年です。|description|sales,law
+2|600|business|The warranty has expired.|保証が切れています|I'm sorry, the warranty has expired.|申し訳ありませんが、保証が切れています。|reporting|sales
+2|600|business|a full refund|全額返金|You can get a full refund within 30 days.|30日以内なら全額返金されます。|offer|sales
+2|600|business|proof of purchase|購入証明|Please bring proof of purchase.|購入証明をお持ちください。|instruction|shopping
+2|600|business|a job opening|求人|We have a job opening at the front desk.|フロントで求人があります。|announcement|hr
+2|860|business|a letter of recommendation|推薦状|I need a letter of recommendation.|推薦状が必要です。|request|hr
+pre2|500|business|a job interview|就職面接|I have a job interview on Monday.|月曜日に就職面接があります。|description|hr
+2|600|business|work experience|職歴|Do you have any work experience?|職歴はありますか。|inquiry|hr
+2|600|business|a retirement party|退職祝いの会|We're having a retirement party for Mr. Ono.|小野さんの退職祝いの会を開きます。|announcement|hr
+2|600|business|a pay raise|昇給|She got a pay raise.|彼女は昇給しました。|reporting|hr,money
 2|730|business|be promoted to ...|…に昇進する|He was promoted to manager.|彼はマネージャーに昇進しました。|reporting|hr
 2|730|business|take over|引き継ぐ|She will take over the shop next year.|来年は彼女が店を引き継ぎます。|reporting|hr
 2|730|business|step down|辞任する|The president will step down in May.|社長は5月に退任します。|reporting|hr
 2|730|business|go over budget|予算を超える|Try not to go over budget.|予算を超えないようにしてください。|instruction|finance
-2|730|business|draw up a contract|契約書を作成する|We need to draw up a contract.|契約書を作成する必要があります。|obligation|law
+2|860|business|draw up a contract|契約書を作成する|We need to draw up a contract.|契約書を作成する必要があります。|obligation|law
 2|730|business|sign a contract|契約に署名する|Please sign the contract today.|本日契約書に署名してください。|instruction|law
 2|730|business|reach an agreement|合意に達する|We reached an agreement yesterday.|昨日合意に達しました。|reporting|meetings
-2|730|business|a prior engagement|先約|I'm sorry. I have a prior engagement.|申し訳ありません。先約があります。|refusal|meetings
-2|730|business|a conference call|電話会議|We'll have a conference call at ten.|10時に電話会議をします。|scheduling|meetings
-2|730|business|a business trip|出張|I'm going on a business trip next week.|来週出張に行きます。|description|travel,office
-2|730|business|an expense report|経費報告書|Please submit your expense report.|経費報告書を提出してください。|instruction|finance
-2|730|business|be reimbursed for ...|…の払い戻しを受ける|You will be reimbursed for travel costs.|交通費は払い戻されます。|description|finance
-2|730|business|the maintenance staff|保守担当者|The maintenance staff will fix it today.|保守担当者が今日直します。|reporting|office
-2|730|business|under construction|工事中|The road is under construction.|道路は工事中です。|description|transport
-2|730|business|Pardon the dust.|散らかっていてすみません|We're renovating. Pardon the dust.|改装中です。散らかっていてすみません。|apology|housing
-2|730|business|a power outage|停電|There was a power outage last night.|昨夜停電がありました。|reporting|technology
-2|730|business|an emergency exit|非常口|The emergency exit is on your left.|非常口は左側です。|directions|society
-2|730|business|a fire drill|避難訓練|We will have a fire drill at ten.|10時に避難訓練をします。|announcement|society
-2|730|business|a safety inspection|安全点検|A safety inspection will be held on Friday.|金曜日に安全点検が行われます。|announcement|law
-2|730|business|a leaflet|チラシ|Please take a leaflet.|チラシをお取りください。|offer|media
-2|730|business|a brochure|パンフレット|I'll send you a brochure.|パンフレットをお送りします。|offer|sales
-2|730|business|a business card|名刺|May I have your business card?|名刺をいただけますか。|request|office
-2|730|business|a press release|プレスリリース|The company issued a press release.|会社はプレスリリースを出しました。|reporting|media
-2|730|formula|It's a pleasure to meet you.|お会いできて光栄です|It's a pleasure to meet you, Mr. White.|ホワイトさん、お会いできて光栄です。|greeting|society
-2|730|formula|Thank you for having me.|お招きいただきありがとうございます|Thank you for having me. It was a lovely evening.|お招きありがとうございます。素敵な夜でした。|thanks|society
-2|730|formula|I can't thank you enough.|感謝しきれません|You saved my boat. I can't thank you enough.|私の船を助けていただき感謝しきれません。|thanks|sea
-2|730|formula|I'm terribly sorry.|本当に申し訳ありません|I'm terribly sorry for the mess.|散らかしていて本当に申し訳ありません。|apology|society
+2|860|business|a prior engagement|先約|I'm sorry. I have a prior engagement.|申し訳ありません。先約があります。|refusal|meetings
+2|600|business|a conference call|電話会議|We'll have a conference call at ten.|10時に電話会議をします。|scheduling|meetings
+pre2|600|business|a business trip|出張|I'm going on a business trip next week.|来週出張に行きます。|description|travel,office
+2|600|business|an expense report|経費報告書|Please submit your expense report.|経費報告書を提出してください。|instruction|finance
+2|860|business|be reimbursed for ...|…の払い戻しを受ける|You will be reimbursed for travel costs.|交通費は払い戻されます。|description|finance
+2|600|business|the maintenance staff|保守担当者|The maintenance staff will fix it today.|保守担当者が今日直します。|reporting|office
+2|600|business|under construction|工事中|The road is under construction.|道路は工事中です。|description|transport
+2|-|business|Pardon the dust.|散らかっていてすみません|We're renovating. Pardon the dust.|改装中です。散らかっていてすみません。|apology|housing
+2|600|business|a power outage|停電|There was a power outage last night.|昨夜停電がありました。|reporting|technology
+pre2|500|business|an emergency exit|非常口|The emergency exit is on your left.|非常口は左側です。|directions|society
+2|600|business|a fire drill|避難訓練|We will have a fire drill at ten.|10時に避難訓練をします。|announcement|society
+2|600|business|a safety inspection|安全点検|A safety inspection will be held on Friday.|金曜日に安全点検が行われます。|announcement|law
+pre2|500|business|a leaflet|チラシ|Please take a leaflet.|チラシをお取りください。|offer|media
+2|500|business|a brochure|パンフレット|I'll send you a brochure.|パンフレットをお送りします。|offer|sales
+pre2|500|business|a business card|名刺|May I have your business card?|名刺をいただけますか。|request|office
+2|600|business|a press release|プレスリリース|The company issued a press release.|会社はプレスリリースを出しました。|reporting|media
+pre2|500|formula|It's a pleasure to meet you.|お会いできて光栄です|It's a pleasure to meet you, Mr. White.|ホワイトさん、お会いできて光栄です。|greeting|society
+2|600|formula|Thank you for having me.|お招きいただきありがとうございます|Thank you for having me. It was a lovely evening.|お招きありがとうございます。素敵な夜でした。|thanks|society
+2|600|formula|I can't thank you enough.|感謝しきれません|You saved my boat. I can't thank you enough.|私の船を助けていただき感謝しきれません。|thanks|sea
+pre2|500|formula|I'm terribly sorry.|本当に申し訳ありません|I'm terribly sorry for the mess.|散らかしていて本当に申し訳ありません。|apology|society
 2|730|formula|Please accept my apologies.|お詫び申し上げます|Please accept my apologies for the delay.|遅れたことをお詫び申し上げます。|apology|society
 2|730|formula|I'm afraid there's been a misunderstanding.|行き違いがあったようです|I'm afraid there's been a misunderstanding.|行き違いがあったようです。|clarification|society
 2|730|formula|If I'm not mistaken, ...|間違っていなければ…|If I'm not mistaken, the shop is closed on Mondays.|間違っていなければ、店は月曜定休です。|hedging|shopping
-2|730|formula|To be honest, ...|正直に言うと|To be honest, I'm not hungry.|正直に言うと、おなかがすいていません。|opinion|food
-2|730|formula|As far as I know, ...|私の知る限り|As far as I know, the bus runs every hour.|私の知る限り、バスは1時間おきです。|hedging|transport
+2|600|formula|To be honest, ...|正直に言うと|To be honest, I'm not hungry.|正直に言うと、おなかがすいていません。|opinion|food
+2|600|formula|As far as I know, ...|私の知る限り|As far as I know, the bus runs every hour.|私の知る限り、バスは1時間おきです。|hedging|transport
 2|730|formula|As far as I'm concerned, ...|私に関する限り|As far as I'm concerned, any day is fine.|私はいつでもかまいません。|opinion|office
-2|730|formula|I'd say ...|…だと思います|I'd say it's about a ten-minute walk.|歩いて10分くらいだと思います。|hedging|transport
-2|730|formula|I see what you mean.|おっしゃる意味はわかります|I see what you mean, but it's too expensive.|おっしゃる意味はわかりますが、高すぎます。|agreement|society
-2|730|formula|You have a point.|一理ありますね|You have a point. Let's wait.|一理ありますね。待ちましょう。|agreement|society
-2|730|formula|That's exactly what I was thinking.|私もちょうどそう思っていました|That's exactly what I was thinking.|私もちょうどそう思っていました。|agreement|society
-2|730|formula|I'm not so sure.|あまり確信がありません|I'm not so sure about that plan.|その計画にはあまり確信がありません。|hedging|society
+2|600|formula|I'd say ...|…だと思います|I'd say it's about a ten-minute walk.|歩いて10分くらいだと思います。|hedging|transport
+2|600|formula|I see what you mean.|おっしゃる意味はわかります|I see what you mean, but it's too expensive.|おっしゃる意味はわかりますが、高すぎます。|agreement|society
+2|600|formula|You have a point.|一理ありますね|You have a point. Let's wait.|一理ありますね。待ちましょう。|agreement|society
+2|600|formula|That's exactly what I was thinking.|私もちょうどそう思っていました|That's exactly what I was thinking.|私もちょうどそう思っていました。|agreement|society
+2|600|formula|I'm not so sure.|あまり確信がありません|I'm not so sure about that plan.|その計画にはあまり確信がありません。|hedging|society
 2|730|formula|I see it differently.|私は違う見方をします|I see it differently. We need more time.|私は違う見方です。もっと時間が必要です。|disagreement|society
 2|730|formula|Let me get this straight.|整理させてください|Let me get this straight. You want it by Friday?|整理させてください。金曜日までに必要ということですか。|clarification|office
-2|730|formula|Could you clarify that?|それを明確にしてもらえますか|Could you clarify that point, please?|その点を明確にしてもらえますか。|request|meetings
-2|730|formula|What I mean is ...|つまり…|What I mean is, we need more staff.|つまり、スタッフがもっと必要です。|clarification|meetings
+2|600|formula|Could you clarify that?|それを明確にしてもらえますか|Could you clarify that point, please?|その点を明確にしてもらえますか。|request|meetings
+2|600|formula|What I mean is ...|つまり…|What I mean is, we need more staff.|つまり、スタッフがもっと必要です。|clarification|meetings
 2|730|formula|Would you care for ...?|…はいかがですか|Would you care for some dessert?|デザートはいかがですか。|offer|food
-2|730|formula|Can I take your order?|ご注文を伺ってよろしいですか|Can I take your order?|ご注文を伺ってよろしいですか。|ordering|food
-2|730|formula|Are you ready to order?|ご注文はお決まりですか|Are you ready to order?|ご注文はお決まりですか。|ordering|food
-2|730|formula|How would you like your steak?|ステーキの焼き加減は?|How would you like your steak? — Medium, please.|ステーキの焼き加減は?—ミディアムで。|ordering|food,cooking
-2|730|formula|Is there anything I can do for you?|何かお手伝いできますか|Is there anything I can do for you?|何かお手伝いできることはありますか。|offer|hotel
-2|730|formula|Make yourself comfortable.|楽にしてください|Please come in and make yourself comfortable.|どうぞお入りになってお楽にしてください。|offer|hotel
-2|730|formula|I'll show you to your room.|お部屋にご案内します|I'll show you to your room.|お部屋にご案内します。|offer|hotel
-2|730|formula|Enjoy your stay.|ご滞在をお楽しみください|Here is your key. Enjoy your stay.|こちらが鍵です。ご滞在をお楽しみください。|farewell|hotel
-2|730|formula|There's a problem with ...|…に問題があります|There's a problem with the shower.|シャワーに問題があります。|complaint|hotel
-2|730|formula|It's not what I ordered.|注文したものと違います|This is not what I ordered.|これは注文したものと違います。|complaint|food
-2|730|formula|I'd like to speak to the manager.|責任者と話したい|I'd like to speak to the manager, please.|責任者と話したいのですが。|request|sales
-2|730|formula|What seems to be the problem?|どうなさいましたか|What seems to be the problem?|どうなさいましたか。|inquiry|health
-2|730|formula|How long will it take?|どのくらいかかりますか(所要)|How long will it take to repair this?|これの修理にどのくらいかかりますか。|inquiry|crafts
+pre2|500|formula|Can I take your order?|ご注文を伺ってよろしいですか|Can I take your order?|ご注文を伺ってよろしいですか。|ordering|food
+pre2|500|formula|Are you ready to order?|ご注文はお決まりですか|Are you ready to order?|ご注文はお決まりですか。|ordering|food
+2|600|formula|How would you like your steak?|ステーキの焼き加減は?|How would you like your steak? — Medium, please.|ステーキの焼き加減は?—ミディアムで。|ordering|food,cooking
+pre2|500|formula|Is there anything I can do for you?|何かお手伝いできますか|Is there anything I can do for you?|何かお手伝いできることはありますか。|offer|hotel
+2|500|formula|Make yourself comfortable.|楽にしてください|Please come in and make yourself comfortable.|どうぞお入りになってお楽にしてください。|offer|hotel
+2|600|formula|I'll show you to your room.|お部屋にご案内します|I'll show you to your room.|お部屋にご案内します。|offer|hotel
+pre2|500|formula|Enjoy your stay.|ご滞在をお楽しみください|Here is your key. Enjoy your stay.|こちらが鍵です。ご滞在をお楽しみください。|farewell|hotel
+2|500|formula|There's a problem with ...|…に問題があります|There's a problem with the shower.|シャワーに問題があります。|complaint|hotel
+2|600|formula|It's not what I ordered.|注文したものと違います|This is not what I ordered.|これは注文したものと違います。|complaint|food
+2|600|formula|I'd like to speak to the manager.|責任者と話したい|I'd like to speak to the manager, please.|責任者と話したいのですが。|request|sales
+2|600|formula|What seems to be the problem?|どうなさいましたか|What seems to be the problem?|どうなさいましたか。|inquiry|health
+3|500|formula|How long will it take?|どのくらいかかりますか(所要)|How long will it take to repair this?|これの修理にどのくらいかかりますか。|inquiry|crafts
 2|730|formula|Is it covered by insurance?|保険は適用されますか|Is it covered by insurance?|保険は適用されますか。|inquiry|health,finance
-2|730|formula|You need to see a specialist.|専門医に診てもらう必要があります|You need to see a specialist.|専門医に診てもらう必要があります。|instruction|health
-2|730|formula|Get plenty of rest.|十分に休んでください|Get plenty of rest and drink water.|十分に休んで水を飲んでください。|instruction|health
-2|730|formula|Take it easy.|無理しないで|You look tired. Take it easy.|疲れているようですね。無理しないで。|sympathy|health
+2|600|formula|You need to see a specialist.|専門医に診てもらう必要があります|You need to see a specialist.|専門医に診てもらう必要があります。|instruction|health
+pre2|500|formula|Get plenty of rest.|十分に休んでください|Get plenty of rest and drink water.|十分に休んで水を飲んでください。|instruction|health
+pre2|500|formula|Take it easy.|無理しないで|You look tired. Take it easy.|疲れているようですね。無理しないで。|sympathy|health
 2|730|formula|Hang in there.|がんばって|Hang in there. It'll get better.|がんばって。きっとよくなります。|sympathy|emotion
-2|730|formula|Congratulations on your new job!|新しい仕事おめでとう|Congratulations on your new job!|新しい仕事おめでとう!|congratulation|hr
-2|730|formula|Good for you!|よかったね|You passed? Good for you!|受かったの?よかったね。|praise|school
+pre2|500|formula|Congratulations on your new job!|新しい仕事おめでとう|Congratulations on your new job!|新しい仕事おめでとう!|congratulation|hr
+pre2|600|formula|Good for you!|よかったね|You passed? Good for you!|受かったの?よかったね。|praise|school
 2|730|formula|You must be joking.|冗談でしょう|A thousand yen for this? You must be joking.|これで千円?冗談でしょう。|complaint|shopping
-2|730|formula|That's a relief.|ほっとしました|The bus came. That's a relief.|バスが来ました。ほっとしました。|emotion|transport
+2|600|formula|That's a relief.|ほっとしました|The bus came. That's a relief.|バスが来ました。ほっとしました。|emotion|transport
 2|730|formula|I couldn't help it.|仕方なかったんです|I'm sorry. I couldn't help it.|ごめんなさい。仕方なかったんです。|apology|society
 2|730|formula|I'll keep my fingers crossed.|幸運を祈っています|Good luck. I'll keep my fingers crossed.|頑張って。幸運を祈っています。|farewell|emotion
-2|730|formula|Let's keep in touch.|連絡を取り合いましょう(別れ際)|It was great to see you. Let's keep in touch.|会えてよかった。連絡を取り合いましょう。|farewell|society
-2|730|pattern|It is essential that ...|…が不可欠だ|It is essential that you arrive on time.|時間通りに到着することが不可欠です。|obligation|office
+pre2|500|formula|Let's keep in touch.|連絡を取り合いましょう(別れ際)|It was great to see you. Let's keep in touch.|会えてよかった。連絡を取り合いましょう。|farewell|society
+2|860|pattern|It is essential that ...|…が不可欠だ|It is essential that you arrive on time.|時間通りに到着することが不可欠です。|obligation|office
 2|730|pattern|It is recommended that ...|…が推奨されます|It is recommended that you book early.|早めの予約をお勧めします。|suggestion|travel
 2|730|pattern|I suggest that you ...|あなたが…することを提案します|I suggest that you take the morning ferry.|午前のフェリーに乗ることをお勧めします。|suggestion|transport
-2|730|pattern|It's important to ...|…することが重要だ|It's important to check the weather.|天気を確認することが重要です。|opinion|weather
-2|730|pattern|as long as ...|…である限り|You can stay as long as you like.|好きなだけいていいですよ。|condition|hotel
-2|730|pattern|provided that ...|…という条件で|You can go provided that you finish first.|先に終わらせるなら行っていいです。|condition|school
-2|730|pattern|unless ...|…でない限り|We'll sail unless it rains.|雨が降らない限り出航します。|condition|sea
-2|730|pattern|in order to ...|…するために|We left early in order to catch the ferry.|フェリーに乗るために早く出発しました。|cause/effect|transport
+2|600|pattern|It's important to ...|…することが重要だ|It's important to check the weather.|天気を確認することが重要です。|opinion|weather
+2|600|pattern|as long as ...|…である限り|You can stay as long as you like.|好きなだけいていいですよ。|condition|hotel
+2|860|pattern|provided that ...|…という条件で|You can go provided that you finish first.|先に終わらせるなら行っていいです。|condition|school
+2|600|pattern|unless ...|…でない限り|We'll sail unless it rains.|雨が降らない限り出航します。|condition|sea
+2|600|pattern|in order to ...|…するために|We left early in order to catch the ferry.|フェリーに乗るために早く出発しました。|cause/effect|transport
 2|730|pattern|so as not to ...|…しないように|Speak softly so as not to wake the baby.|赤ちゃんを起こさないように小声で話して。|instruction|family
 2|730|pattern|no later than ...|遅くとも…までに|Please arrive no later than noon.|遅くとも正午までに到着してください。|instruction|office
-2|730|pattern|no sooner than ...|…より早くはない|The results will be out no sooner than May.|結果は5月より早くは出ません。|prediction|office
-2|730|pattern|I'm afraid that ...|残念ながら…|I'm afraid that we have no rooms left.|残念ながら空き部屋がありません。|apology|hotel
-2|730|pattern|as ... as possible|できるだけ…|Please come as soon as possible.|できるだけ早く来てください。|request|society
-2|730|pattern|the number of ...|…の数|The number of visitors has increased.|観光客の数が増えました。|reporting|travel
-2|730|pattern|It is not until ... that ...|…になって初めて…|It was not until noon that the fog cleared.|正午になってやっと霧が晴れました。|narration|weather
-2|730|pattern|Having ... , ...|…したので、…|Having finished my work, I went home.|仕事を終えたので帰宅しました。|narration|office
+2|860|pattern|no sooner than ...|…より早くはない|The results will be out no sooner than May.|結果は5月より早くは出ません。|prediction|office
+2|600|pattern|I'm afraid that ...|残念ながら…|I'm afraid that we have no rooms left.|残念ながら空き部屋がありません。|apology|hotel
+2|500|pattern|as ... as possible|できるだけ…|Please come as soon as possible.|できるだけ早く来てください。|request|society
+2|600|pattern|the number of ...|…の数|The number of visitors has increased.|観光客の数が増えました。|reporting|travel
+2|860|pattern|It is not until ... that ...|…になって初めて…|It was not until noon that the fog cleared.|正午になってやっと霧が晴れました。|narration|weather
+2|860|pattern|Having ... , ...|…したので、…|Having finished my work, I went home.|仕事を終えたので帰宅しました。|narration|office
 2|730|pattern|The reason why ... is that ...|…な理由は…だ|The reason why I'm late is that the road was closed.|遅れた理由は道が閉鎖されていたからです。|cause/effect|transport
-2|730|pattern|What I want to say is ...|私が言いたいのは…|What I want to say is thank you.|私が言いたいのはありがとうということです。|clarification|society
+2|600|pattern|What I want to say is ...|私が言いたいのは…|What I want to say is thank you.|私が言いたいのはありがとうということです。|clarification|society
 2|730|pattern|... , which means ...|それは…を意味する|The ferry is canceled, which means we can't go.|フェリーが欠航なので、行けないということです。|cause/effect|transport
-2|730|pattern|It's up to you.|あなた次第です|Tea or coffee? It's up to you.|お茶かコーヒー?あなた次第です。|permission|food
-2|730|pattern|be likely to ...|…しそうだ|It is likely to rain this evening.|今夕は雨になりそうです。|prediction|weather
-2|730|pattern|be expected to ...|…すると予想される|The new bridge is expected to open in May.|新しい橋は5月に開通する見込みです。|prediction|transport
+2|600|pattern|It's up to you.|あなた次第です|Tea or coffee? It's up to you.|お茶かコーヒー?あなた次第です。|permission|food
+2|600|pattern|be likely to ...|…しそうだ|It is likely to rain this evening.|今夕は雨になりそうです。|prediction|weather
+2|600|pattern|be expected to ...|…すると予想される|The new bridge is expected to open in May.|新しい橋は5月に開通する見込みです。|prediction|transport
 2|730|pattern|be scheduled to ...|…する予定だ|The bus is scheduled to leave at ten.|バスは10時に出発する予定です。|scheduling|transport
 2|730|pattern|be required to ...|…する必要がある|Visitors are required to sign in.|訪問者は記帳する必要があります。|obligation|office
-2|730|pattern|be allowed to ...|…することを許されている|Pets are not allowed to enter.|ペットは入れません。|permission|hotel
-2|730|pattern|be responsible for ...|…に責任がある|Who is responsible for this?|これはだれの責任ですか。|inquiry|office
-2|730|pattern|be capable of ...ing|…する能力がある|This boat is capable of carrying ten people.|この船は10人乗れます。|description|sea
-2|730|pattern|be eligible for ...|…の資格がある|Students are eligible for a discount.|学生は割引を受けられます。|description|sales
-2|730|pattern|be satisfied with ...|…に満足している|We are satisfied with the service.|サービスに満足しています。|opinion|sales
+2|600|pattern|be allowed to ...|…することを許されている|Pets are not allowed to enter.|ペットは入れません。|permission|hotel
+2|600|pattern|be responsible for ...|…に責任がある|Who is responsible for this?|これはだれの責任ですか。|inquiry|office
+2|860|pattern|be capable of ...ing|…する能力がある|This boat is capable of carrying ten people.|この船は10人乗れます。|description|sea
+2|860|pattern|be eligible for ...|…の資格がある|Students are eligible for a discount.|学生は割引を受けられます。|description|sales
+2|600|pattern|be satisfied with ...|…に満足している|We are satisfied with the service.|サービスに満足しています。|opinion|sales
 2|730|pattern|be concerned about ...|…を心配している|I'm concerned about the weather.|天気が心配です。|emotion|weather
 2|730|pattern|be aware of ...|…に気づいている|Are you aware of the problem?|その問題に気づいていますか。|inquiry|office
 2|730|pattern|be familiar with ...|…に詳しい|I'm familiar with this area.|この辺りには詳しいです。|ability|travel
-2|730|pattern|be accustomed to ...|…に慣れている|She is accustomed to hard work.|彼女は重労働に慣れています。|description|hr
+2|860|pattern|be accustomed to ...|…に慣れている|She is accustomed to hard work.|彼女は重労働に慣れています。|description|hr
 2|730|collocation|keep an eye on|…を見張る|Could you keep an eye on my bag?|かばんを見ていてもらえますか。|request|society
 2|730|collocation|make a good impression|好印象を与える|He made a good impression on the manager.|彼はマネージャーに好印象を与えました。|description|hr
 2|730|collocation|make progress|進歩する|We are making progress.|順調に進んでいます。|reporting|office
@@ -198,14 +198,14 @@
 2|730|collocation|make a deal|取引をする|We made a deal with the fish market.|魚市場と取引をしました。|reporting|sales,meetings
 2|730|collocation|take advantage of|…を活用する|Take advantage of our summer sale.|夏のセールをご利用ください。|suggestion|sales
 2|730|collocation|take responsibility for|…の責任を取る|I'll take responsibility for the mistake.|その間違いの責任は私が取ります。|apology|office
-2|730|collocation|take into account|考慮に入れる|Please take the weather into account.|天気を考慮に入れてください。|instruction|weather
+2|860|collocation|take into account|考慮に入れる|Please take the weather into account.|天気を考慮に入れてください。|instruction|weather
 2|730|collocation|play a role in|…で役割を果たす|He played a big role in the project.|彼は計画で大きな役割を果たしました。|praise|office
 2|730|collocation|come up with|思いつく|We came up with a good idea.|いい考えを思いつきました。|reporting|meetings
 2|730|collocation|a wide range of|幅広い|We offer a wide range of services.|幅広いサービスを提供しています。|description|sales
 2|730|collocation|on a regular basis|定期的に|We check the engines on a regular basis.|エンジンを定期的に点検します。|description|office
 2|730|collocation|in person|直接|Please apply in person.|直接お申し込みください。|instruction|office
 2|730|collocation|in writing|書面で|Please confirm in writing.|書面でご確認ください。|instruction|law
-2|730|collocation|in cash|現金で|I'll pay in cash.|現金で払います。|payment|money
+2|500|collocation|in cash|現金で|I'll pay in cash.|現金で払います。|payment|money
 2|730|collocation|on credit|クレジットで|You can buy it on credit.|クレジットで買えます。|payment|money
 2|730|collocation|in installments|分割で|Can I pay in installments?|分割で払えますか。|inquiry|money
 2|730|collocation|in bulk|大量に|We buy rice in bulk.|米を大量に買います。|description|sales
@@ -214,30 +214,30 @@
 2|730|collocation|at no extra cost|追加費用なしで|Delivery is at no extra cost.|配達は追加費用なしです。|description|sales
 2|730|collocation|a long-term plan|長期計画|We have a long-term plan for the harbor.|港の長期計画があります。|description|society
 2|730|collocation|a tight schedule|厳しい日程|I have a tight schedule this week.|今週は日程が厳しいです。|description|office
-2|730|collocation|a minor problem|小さな問題|It's only a minor problem.|小さな問題にすぎません。|description|technology
+2|500|collocation|a minor problem|小さな問題|It's only a minor problem.|小さな問題にすぎません。|description|technology
 2|730|collocation|a serious accident|重大な事故|There was a serious accident on the bridge.|橋で重大な事故がありました。|reporting|transport
 2|730|collocation|a severe storm|激しい嵐|A severe storm hit the coast.|激しい嵐が海岸を襲いました。|reporting|weather
-2|730|collocation|a good deal|お買い得|This is a good deal.|これはお買い得です。|opinion|shopping
+2|500|collocation|a good deal|お買い得|This is a good deal.|これはお買い得です。|opinion|shopping
 2|730|collocation|a bargain price|お買い得価格|It's a bargain price for fresh fish.|新鮮な魚としてはお買い得価格です。|description|shopping
 2|730|collocation|a reasonable price|手頃な価格|The rooms are at a reasonable price.|部屋は手頃な価格です。|description|hotel
-2|730|collocation|heavy luggage|重い荷物|I have heavy luggage.|重い荷物があります。|description|travel
-2|730|collocation|a round trip|往復|It's a two-hour round trip.|往復2時間です。|description|transport
-2|730|collocation|rush hour|ラッシュアワー|Avoid the rush hour.|ラッシュアワーを避けてください。|suggestion|transport
+2|500|collocation|heavy luggage|重い荷物|I have heavy luggage.|重い荷物があります。|description|travel
+2|500|collocation|a round trip|往復|It's a two-hour round trip.|往復2時間です。|description|transport
+2|500|collocation|rush hour|ラッシュアワー|Avoid the rush hour.|ラッシュアワーを避けてください。|suggestion|transport
 2|730|collocation|a direct flight|直行便|Is there a direct flight to Osaka?|大阪への直行便はありますか。|inquiry|transport
 2|730|collocation|a connecting flight|乗り継ぎ便|I missed my connecting flight.|乗り継ぎ便に乗り遅れました。|reporting|transport
 2|730|collocation|carry-on baggage|機内持ち込み手荷物|Carry-on baggage must be small.|機内持ち込み手荷物は小さくなければなりません。|instruction|transport
-2|730|phrasal_verb|bring about|引き起こす|The new bridge brought about many changes.|新しい橋は多くの変化をもたらしました。|cause/effect|society
+2|860|phrasal_verb|bring about|引き起こす|The new bridge brought about many changes.|新しい橋は多くの変化をもたらしました。|cause/effect|society
 2|730|phrasal_verb|come across|偶然出会う|I came across an old photo.|古い写真を偶然見つけました。|narration|family
 2|730|phrasal_verb|come up|持ち上がる|Something came up. I can't come.|用事ができて行けません。|apology|society
 2|730|phrasal_verb|count on|頼りにする|You can count on me.|私にお任せください。|offer|society
-2|730|phrasal_verb|do without|なしで済ます|We can do without a car.|車がなくても大丈夫です。|opinion|transport
+2|860|phrasal_verb|do without|なしで済ます|We can do without a car.|車がなくても大丈夫です。|opinion|transport
 2|730|phrasal_verb|end up|結局…になる|We ended up taking a taxi.|結局タクシーに乗りました。|narration|transport
 2|730|phrasal_verb|fall behind|遅れる|We're falling behind schedule.|予定より遅れています。|reporting|meetings
 2|730|phrasal_verb|follow up|その後対応する|I'll follow up with an email.|あとでメールで連絡します。|offer|office
 2|730|phrasal_verb|get around|動き回る|It's easy to get around by bike.|自転車なら移動は簡単です。|description|transport
 2|730|phrasal_verb|get through|切り抜ける・電話が通じる|I couldn't get through to him.|彼に電話がつながりませんでした。|complaint|office
 2|730|phrasal_verb|go ahead|どうぞ・進める|Go ahead and start.|どうぞ始めてください。|permission|meetings
-2|730|phrasal_verb|hold on|待つ|Please hold on a moment.|少々お待ちください。|request|office
+2|500|phrasal_verb|hold on|待つ|Please hold on a moment.|少々お待ちください。|request|office
 2|730|phrasal_verb|keep on ...ing|…し続ける|Keep on going straight.|そのまままっすぐ行ってください。|directions|transport
 2|730|phrasal_verb|look into|調べる|We will look into it.|調べてみます。|offer|office
 2|730|phrasal_verb|look over|目を通す|Please look over this contract.|この契約書に目を通してください。|request|law
@@ -247,44 +247,44 @@
 2|730|phrasal_verb|rely on|頼る|We rely on the harbor for work.|私たちは港の仕事に頼っています。|description|sea
 2|730|phrasal_verb|run into|偶然会う|I ran into Mr. Ito at the market.|市場で伊藤さんにばったり会いました。|narration|society
 2|730|phrasal_verb|sell out|売り切れる|The tickets sold out in an hour.|切符は1時間で売り切れました。|reporting|arts
-2|730|phrasal_verb|set aside|取っておく|Could you set aside two loaves?|パンを2斤取っておいてもらえますか。|request|shopping
-2|730|phrasal_verb|settle down|落ち着く|He settled down in the town.|彼はその町に落ち着きました。|narration|housing
+2|860|phrasal_verb|set aside|取っておく|Could you set aside two loaves?|パンを2斤取っておいてもらえますか。|request|shopping
+2|-|phrasal_verb|settle down|落ち着く|He settled down in the town.|彼はその町に落ち着きました。|narration|housing
 2|730|phrasal_verb|speak up|大きな声で話す|Could you speak up, please?|もう少し大きな声でお願いします。|request|society
 2|730|phrasal_verb|stand for|表す|What does this sign stand for?|この標識は何を表しますか。|inquiry|transport
 2|730|phrasal_verb|take up|始める・占める|I took up fishing last year.|去年釣りを始めました。|narration|sea
 2|730|phrasal_verb|think over|熟考する|Let me think it over.|よく考えさせてください。|hedging|society
 2|730|phrasal_verb|try out|試す|Why don't you try it out?|試してみたらどう?|suggestion|shopping
 2|730|phrasal_verb|wear out|すり減る|My shoes are worn out.|靴がすり減りました。|description|clothing
-2|730|phrasal_verb|work on|取り組む|I'm working on a new menu.|新しいメニューに取り組んでいます。|description|cooking
+2|500|phrasal_verb|work on|取り組む|I'm working on a new menu.|新しいメニューに取り組んでいます。|description|cooking
 2|730|idiom|in the long run|長い目で見れば|In the long run, it saves money.|長い目で見れば節約になります。|opinion|finance
 2|730|idiom|on the other hand|他方で(句)|He is slow. On the other hand, he is careful.|彼は遅いが、慎重です。|contrast|hr
 2|730|idiom|to some extent|ある程度|To some extent, you are right.|ある程度、あなたは正しいです。|hedging|society
 2|730|idiom|as a matter of fact|実のところ|As a matter of fact, I live next door.|実は隣に住んでいます。|clarification|society
-2|730|idiom|to make matters worse|さらに悪いことに|To make matters worse, it started to rain.|さらに悪いことに雨が降り出しました。|narration|weather
+2|860|idiom|to make matters worse|さらに悪いことに|To make matters worse, it started to rain.|さらに悪いことに雨が降り出しました。|narration|weather
 2|730|idiom|on second thought|考え直すと|On second thought, I'll take the bus.|考え直すと、バスで行きます。|hedging|transport
-2|730|idiom|at the moment|現在|He's out at the moment.|彼は今外出中です。|reporting|office
+2|500|idiom|at the moment|現在|He's out at the moment.|彼は今外出中です。|reporting|office
 2|730|idiom|in the meantime|その間に|In the meantime, please have a seat.|その間におかけください。|instruction|office
 2|730|idiom|before long|まもなく|The shop will open before long.|店はまもなく開きます。|prediction|shopping
 2|730|idiom|on and off|断続的に|It rained on and off all day.|一日中降ったりやんだりでした。|description|weather
 2|730|idiom|once in a while|ときどき|I eat out once in a while.|ときどき外食します。|description|food
 2|730|idiom|every other day|1日おきに|The bus runs every other day.|バスは1日おきに走ります。|description|transport
-2|730|idiom|up and down|上下に|Prices go up and down with the season.|価格は季節で上下します。|description|money
+2|-|idiom|up and down|上下に|Prices go up and down with the season.|価格は季節で上下します。|description|money
 2|730|idiom|for the time being|当分の間|The shop is closed for the time being.|店は当分の間休業です。|announcement|shopping
-2|730|idiom|in the wake of ...|…の後に|Prices rose in the wake of the storm.|嵐のあと物価が上がりました。|cause/effect|weather
+2|860|idiom|in the wake of ...|…の後に|Prices rose in the wake of the storm.|嵐のあと物価が上がりました。|cause/effect|weather
 2|730|discourse|moreover|さらに|It's cheap. Moreover, the food is good.|安いです。さらに、料理もおいしいです。|addition|food
 2|730|discourse|furthermore|その上|Furthermore, the staff are friendly.|その上、スタッフも親切です。|addition|hotel
-2|730|discourse|nevertheless|それにもかかわらず|It was raining. Nevertheless, they went out.|雨でした。それにもかかわらず出かけました。|concession|weather
-2|730|discourse|nonetheless|それでもなお|The cost is high; nonetheless, it is worth it.|費用は高いが、それでも価値があります。|concession|finance
+2|860|discourse|nevertheless|それにもかかわらず|It was raining. Nevertheless, they went out.|雨でした。それにもかかわらず出かけました。|concession|weather
+2|860|discourse|nonetheless|それでもなお|The cost is high; nonetheless, it is worth it.|費用は高いが、それでも価値があります。|concession|finance
 2|730|discourse|consequently|その結果|Consequently, the road was closed.|その結果、道路は閉鎖されました。|cause/effect|transport
-2|730|discourse|accordingly|それに応じて|Plan your trip accordingly.|それに応じて旅行を計画してください。|instruction|travel
+2|860|discourse|accordingly|それに応じて|Plan your trip accordingly.|それに応じて旅行を計画してください。|instruction|travel
 2|730|discourse|thus|したがって|Thus, we decided to wait.|したがって、待つことにしました。|cause/effect|abstract
-2|730|discourse|hence|それゆえ|Prices are low; hence, many people come.|価格が安いので、多くの人が来ます。|cause/effect|shopping
+2|860|discourse|hence|それゆえ|Prices are low; hence, many people come.|価格が安いので、多くの人が来ます。|cause/effect|shopping
 2|730|discourse|in contrast|対照的に|In contrast, the north is cold.|対照的に、北は寒いです。|contrast|weather
 2|730|discourse|on the contrary|それどころか|It isn't cheap. On the contrary, it's expensive.|安くありません。それどころか高いです。|contrast|money
-2|730|discourse|even so|それでも|Even so, I'd like to try.|それでも試してみたいです。|concession|society
+2|860|discourse|even so|それでも|Even so, I'd like to try.|それでも試してみたいです。|concession|society
 2|730|discourse|in particular|特に|I like fish, in particular tuna.|魚、特にマグロが好きです。|emphasis|food
 2|730|discourse|that is|すなわち|We open early, that is, at six.|開店は早く、すなわち6時です。|clarification|shopping
-2|730|discourse|namely|すなわち|Two things matter, namely time and cost.|大切なのは時間と費用の2つです。|clarification|abstract
+2|860|discourse|namely|すなわち|Two things matter, namely time and cost.|大切なのは時間と費用の2つです。|clarification|abstract
 2|730|discourse|to begin with|まず初めに|To begin with, let me explain the rules.|まず初めに、規則を説明します。|sequencing|meetings
 2|730|discourse|to sum up|要約すると|To sum up, we need more time.|要約すると、もっと時間が必要です。|summarizing|meetings
 2|730|discourse|all in all|概して|All in all, it was a good year.|概して、いい年でした。|summarizing|abstract

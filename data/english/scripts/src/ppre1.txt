@@ -1,56 +1,56 @@
-pre1|860|business|I'm writing with regard to ...|…の件でご連絡いたします|I'm writing with regard to your recent order.|最近のご注文の件でご連絡いたします。|reporting|office,sales
-pre1|860|business|Further to our conversation, ...|先日のお話に続き|Further to our conversation, I'm sending the contract.|先日のお話に続き、契約書をお送りします。|reporting|office
-pre1|860|business|I'm pleased to confirm that ...|…を確認でき嬉しく存じます|I'm pleased to confirm that your booking is complete.|ご予約が完了したことをお知らせします。|confirmation|hotel
-pre1|860|business|Please be assured that ...|…とご安心ください|Please be assured that we are working on the problem.|問題に対応中ですのでご安心ください。|offer|office
-pre1|860|business|We appreciate your understanding.|ご理解に感謝します|We appreciate your understanding during the repairs.|修理中のご理解に感謝します。|thanks|office
+pre1|730|business|I'm writing with regard to ...|…の件でご連絡いたします|I'm writing with regard to your recent order.|最近のご注文の件でご連絡いたします。|reporting|office,sales
+pre1|730|business|Further to our conversation, ...|先日のお話に続き|Further to our conversation, I'm sending the contract.|先日のお話に続き、契約書をお送りします。|reporting|office
+pre1|730|business|I'm pleased to confirm that ...|…を確認でき嬉しく存じます|I'm pleased to confirm that your booking is complete.|ご予約が完了したことをお知らせします。|confirmation|hotel
+pre1|730|business|Please be assured that ...|…とご安心ください|Please be assured that we are working on the problem.|問題に対応中ですのでご安心ください。|offer|office
+pre1|730|business|We appreciate your understanding.|ご理解に感謝します|We appreciate your understanding during the repairs.|修理中のご理解に感謝します。|thanks|office
 pre1|860|business|We sincerely apologize for any inconvenience this may cause.|ご迷惑をおかけしたことを深くお詫びします|We sincerely apologize for any inconvenience this may cause.|ご迷惑をおかけしたことを深くお詫びします。|apology|office
 pre1|860|business|Rest assured that ...|ご安心ください、…|Rest assured that your goods will be safe.|商品の安全はご安心ください。|offer|logistics
 pre1|860|business|Should you require any further assistance, ...|さらにお手伝いが必要な場合は|Should you require any further assistance, call us.|さらにお手伝いが必要な場合はお電話ください。|offer|office
-pre1|860|business|Please allow ... business days for ...|…には営業日で…日かかります|Please allow five business days for delivery.|配達には営業日で5日かかります。|instruction|logistics
-pre1|860|business|The deadline has been extended to ...|締め切りは…に延長されました|The deadline has been extended to the 20th.|締め切りは20日に延長されました。|announcement|office
-pre1|860|business|Registration is required.|登録が必要です|Registration is required for all participants.|参加者全員の登録が必要です。|instruction|office
-pre1|860|business|Admission is free.|入場無料|Admission is free for children.|子どもは入場無料です。|announcement|arts
-pre1|860|business|Seating is limited.|席数に限りがあります|Seating is limited, so please reserve early.|席数に限りがありますので早めにご予約ください。|warning|arts
-pre1|860|business|Doors open at ...|開場は…|Doors open at six thirty.|開場は6時30分です。|announcement|arts
+pre1|730|business|Please allow ... business days for ...|…には営業日で…日かかります|Please allow five business days for delivery.|配達には営業日で5日かかります。|instruction|logistics
+pre1|730|business|The deadline has been extended to ...|締め切りは…に延長されました|The deadline has been extended to the 20th.|締め切りは20日に延長されました。|announcement|office
+2|600|business|Registration is required.|登録が必要です|Registration is required for all participants.|参加者全員の登録が必要です。|instruction|office
+2|600|business|Admission is free.|入場無料|Admission is free for children.|子どもは入場無料です。|announcement|arts
+2|600|business|Seating is limited.|席数に限りがあります|Seating is limited, so please reserve early.|席数に限りがありますので早めにご予約ください。|warning|arts
+2|600|business|Doors open at ...|開場は…|Doors open at six thirty.|開場は6時30分です。|announcement|arts
 pre1|860|business|Proceeds will go to ...|収益は…に寄付されます|Proceeds will go to the local school.|収益は地元の学校に寄付されます。|announcement|society,finance
-pre1|860|business|Please complete the attached survey.|添付のアンケートにご記入ください|Please complete the attached survey.|添付のアンケートにご記入ください。|instruction|sales
-pre1|860|business|We value your feedback.|ご意見を大切にしています|We value your feedback and read every comment.|ご意見を大切にしており、すべて拝読しています。|thanks|sales
-pre1|860|business|Your satisfaction is our priority.|お客様の満足が最優先です|Your satisfaction is our priority.|お客様の満足が私たちの最優先事項です。|announcement|sales
-pre1|860|business|We look forward to serving you.|ご利用をお待ちしております|We look forward to serving you again.|またのご利用をお待ちしております。|farewell|sales
-pre1|860|business|a complimentary ...|無料の…|Guests receive a complimentary breakfast.|宿泊客には無料の朝食が出ます。|offer|hotel
-pre1|860|business|Reservations are recommended.|予約をお勧めします|Reservations are recommended on weekends.|週末は予約をお勧めします。|suggestion|food
-pre1|860|business|Valid for ... days|…日間有効|This ticket is valid for three days.|この切符は3日間有効です。|description|transport
-pre1|860|business|expire on ...|…に期限切れになる|This coupon expires on March 31.|このクーポンは3月31日に期限が切れます。|description|sales
-pre1|860|business|renew your membership|会員資格を更新する|Please renew your membership by May.|5月までに会員資格を更新してください。|instruction|sales
+2|600|business|Please complete the attached survey.|添付のアンケートにご記入ください|Please complete the attached survey.|添付のアンケートにご記入ください。|instruction|sales
+2|600|business|We value your feedback.|ご意見を大切にしています|We value your feedback and read every comment.|ご意見を大切にしており、すべて拝読しています。|thanks|sales
+pre1|730|business|Your satisfaction is our priority.|お客様の満足が最優先です|Your satisfaction is our priority.|お客様の満足が私たちの最優先事項です。|announcement|sales
+2|600|business|We look forward to serving you.|ご利用をお待ちしております|We look forward to serving you again.|またのご利用をお待ちしております。|farewell|sales
+pre1|730|business|a complimentary ...|無料の…|Guests receive a complimentary breakfast.|宿泊客には無料の朝食が出ます。|offer|hotel
+2|600|business|Reservations are recommended.|予約をお勧めします|Reservations are recommended on weekends.|週末は予約をお勧めします。|suggestion|food
+2|730|business|Valid for ... days|…日間有効|This ticket is valid for three days.|この切符は3日間有効です。|description|transport
+2|730|business|expire on ...|…に期限切れになる|This coupon expires on March 31.|このクーポンは3月31日に期限が切れます。|description|sales
+2|600|business|renew your membership|会員資格を更新する|Please renew your membership by May.|5月までに会員資格を更新してください。|instruction|sales
 pre1|860|business|Non-refundable|返金不可|The deposit is non-refundable.|手付金は返金不可です。|warning|finance
-pre1|860|business|a security deposit|保証金|A security deposit is required.|保証金が必要です。|description|housing,finance
-pre1|860|business|a late fee|延滞料|A late fee will be charged.|延滞料がかかります。|warning|finance
-pre1|860|business|outstanding balance|未払い残高|You have an outstanding balance of ten thousand yen.|1万円の未払い残高があります。|reporting|finance
-pre1|860|business|a billing error|請求の誤り|I think there's a billing error.|請求に誤りがあると思います。|complaint|finance
-pre1|860|business|overdue payment|支払い期限超過|This is a reminder of your overdue payment.|支払期限を過ぎている件のご連絡です。|reporting|finance
-pre1|860|business|a down payment|頭金|We need a down payment of ten percent.|頭金として10%が必要です。|payment|finance
-pre1|860|business|a wire transfer|電信送金|Please pay by wire transfer.|電信送金でお支払いください。|instruction|finance
+pre1|730|business|a security deposit|保証金|A security deposit is required.|保証金が必要です。|description|housing,finance
+2|600|business|a late fee|延滞料|A late fee will be charged.|延滞料がかかります。|warning|finance
+pre1|730|business|outstanding balance|未払い残高|You have an outstanding balance of ten thousand yen.|1万円の未払い残高があります。|reporting|finance
+pre1|730|business|a billing error|請求の誤り|I think there's a billing error.|請求に誤りがあると思います。|complaint|finance
+pre1|730|business|overdue payment|支払い期限超過|This is a reminder of your overdue payment.|支払期限を過ぎている件のご連絡です。|reporting|finance
+pre1|730|business|a down payment|頭金|We need a down payment of ten percent.|頭金として10%が必要です。|payment|finance
+pre1|730|business|a wire transfer|電信送金|Please pay by wire transfer.|電信送金でお支払いください。|instruction|finance
 pre1|860|business|an automatic withdrawal|自動引き落とし|Your fee is paid by automatic withdrawal.|料金は自動引き落としで支払われます。|description|finance
-pre1|860|business|a market share|市場占有率|We want to increase our market share.|市場占有率を高めたいです。|description|sales
-pre1|860|business|a target audience|対象顧客層|Who is our target audience?|私たちの対象顧客層はだれですか。|inquiry|sales
-pre1|860|business|a marketing campaign|販促キャンペーン|We will launch a marketing campaign in spring.|春に販促キャンペーンを始めます。|announcement|sales
-pre1|860|business|launch a product|製品を発売する|We plan to launch the product in June.|6月に製品を発売する予定です。|announcement|sales
-pre1|860|business|a competitive price|競争力のある価格|We offer competitive prices.|競争力のある価格を提供しています。|description|sales
-pre1|860|business|a steady increase|着実な増加|There has been a steady increase in tourists.|観光客が着実に増えています。|reporting|travel
-pre1|860|business|a sharp decline|急激な減少|There was a sharp decline in sales.|売上が急激に減りました。|reporting|sales
-pre1|860|business|remain stable|安定している|Prices remained stable this year.|今年は価格が安定していました。|reporting|finance
-pre1|860|business|exceed expectations|期待を超える|Sales exceeded expectations.|売上は期待を超えました。|reporting|sales
-pre1|860|business|fall short of ...|…に届かない|Sales fell short of the target.|売上は目標に届きませんでした。|reporting|sales
-pre1|860|business|meet the deadline|締め切りに間に合う|We must meet the deadline.|締め切りに間に合わせなければなりません。|obligation|office
-pre1|860|business|meet the requirements|要件を満たす|Applicants must meet the requirements.|応募者は要件を満たす必要があります。|obligation|hr
-pre1|860|business|a candidate for the position|その職の候補者|She is a strong candidate for the position.|彼女はその職の有力な候補者です。|description|hr
-pre1|860|business|Please submit your résumé.|履歴書を提出してください|Please submit your résumé by Friday.|金曜日までに履歴書を提出してください。|instruction|hr
-pre1|860|business|a reference|推薦人・照会先|Can you give me a reference?|推薦人になっていただけますか。|request|hr
-pre1|860|business|an employee handbook|従業員ハンドブック|Please read the employee handbook.|従業員ハンドブックをお読みください。|instruction|hr
-pre1|860|business|a performance review|人事評価|Your performance review is next week.|人事評価は来週です。|scheduling|hr
-pre1|860|business|a training session|研修|A training session will be held on Monday.|月曜日に研修が行われます。|announcement|hr
-pre1|860|business|attend a workshop|ワークショップに出席する|All staff must attend the workshop.|全スタッフがワークショップに出席する必要があります。|instruction|hr
-pre1|860|business|be transferred to ...|…に異動する|He was transferred to the Osaka branch.|彼は大阪支店に異動しました。|reporting|hr
+pre1|730|business|a market share|市場占有率|We want to increase our market share.|市場占有率を高めたいです。|description|sales
+pre1|730|business|a target audience|対象顧客層|Who is our target audience?|私たちの対象顧客層はだれですか。|inquiry|sales
+pre1|730|business|a marketing campaign|販促キャンペーン|We will launch a marketing campaign in spring.|春に販促キャンペーンを始めます。|announcement|sales
+2|730|business|launch a product|製品を発売する|We plan to launch the product in June.|6月に製品を発売する予定です。|announcement|sales
+2|730|business|a competitive price|競争力のある価格|We offer competitive prices.|競争力のある価格を提供しています。|description|sales
+2|730|business|a steady increase|着実な増加|There has been a steady increase in tourists.|観光客が着実に増えています。|reporting|travel
+pre1|730|business|a sharp decline|急激な減少|There was a sharp decline in sales.|売上が急激に減りました。|reporting|sales
+pre1|730|business|remain stable|安定している|Prices remained stable this year.|今年は価格が安定していました。|reporting|finance
+pre1|730|business|exceed expectations|期待を超える|Sales exceeded expectations.|売上は期待を超えました。|reporting|sales
+pre1|730|business|fall short of ...|…に届かない|Sales fell short of the target.|売上は目標に届きませんでした。|reporting|sales
+2|730|business|meet the deadline|締め切りに間に合う|We must meet the deadline.|締め切りに間に合わせなければなりません。|obligation|office
+2|730|business|meet the requirements|要件を満たす|Applicants must meet the requirements.|応募者は要件を満たす必要があります。|obligation|hr
+2|730|business|a candidate for the position|その職の候補者|She is a strong candidate for the position.|彼女はその職の有力な候補者です。|description|hr
+2|730|business|Please submit your résumé.|履歴書を提出してください|Please submit your résumé by Friday.|金曜日までに履歴書を提出してください。|instruction|hr
+2|730|business|a reference|推薦人・照会先|Can you give me a reference?|推薦人になっていただけますか。|request|hr
+pre1|730|business|an employee handbook|従業員ハンドブック|Please read the employee handbook.|従業員ハンドブックをお読みください。|instruction|hr
+pre1|730|business|a performance review|人事評価|Your performance review is next week.|人事評価は来週です。|scheduling|hr
+2|600|business|a training session|研修|A training session will be held on Monday.|月曜日に研修が行われます。|announcement|hr
+2|600|business|attend a workshop|ワークショップに出席する|All staff must attend the workshop.|全スタッフがワークショップに出席する必要があります。|instruction|hr
+pre1|730|business|be transferred to ...|…に異動する|He was transferred to the Osaka branch.|彼は大阪支店に異動しました。|reporting|hr
 pre1|860|business|a merger|合併|The two companies announced a merger.|2社は合併を発表しました。|reporting|finance
 pre1|860|business|a subsidiary|子会社|It is a subsidiary of a large firm.|それは大企業の子会社です。|description|finance
 pre1|860|business|an acquisition|買収|The acquisition was completed in May.|買収は5月に完了しました。|reporting|finance
@@ -60,194 +60,194 @@ pre1|860|business|a profit margin|利益率|The profit margin is low.|利益率�
 pre1|860|business|a tax refund|税金の還付|I'm waiting for my tax refund.|税金の還付を待っています。|description|finance,law
 pre1|860|business|a mortgage|住宅ローン|We took out a mortgage on the house.|その家のために住宅ローンを組みました。|description|finance,housing
 pre1|860|business|a lease agreement|賃貸契約|Please read the lease agreement carefully.|賃貸契約書をよくお読みください。|instruction|housing,law
-pre1|860|business|a tenant|入居者|The tenant has moved out.|入居者は引っ越しました。|description|housing
-pre1|860|business|a landlord|大家|The landlord will repair the roof.|大家が屋根を修理します。|description|housing
-pre1|860|business|The property is available for rent.|その物件は賃貸できます|The property is available for rent from May.|その物件は5月から賃貸できます。|announcement|housing
-pre1|860|business|a work order|作業指示書|A work order has been issued.|作業指示書が出されました。|reporting|office
-pre1|860|business|a supplier|供給業者|We have found a new supplier.|新しい供給業者が見つかりました。|reporting|logistics
+pre1|730|business|a tenant|入居者|The tenant has moved out.|入居者は引っ越しました。|description|housing
+pre1|730|business|a landlord|大家|The landlord will repair the roof.|大家が屋根を修理します。|description|housing
+2|600|business|The property is available for rent.|その物件は賃貸できます|The property is available for rent from May.|その物件は5月から賃貸できます。|announcement|housing
+pre1|730|business|a work order|作業指示書|A work order has been issued.|作業指示書が出されました。|reporting|office
+pre1|730|business|a supplier|供給業者|We have found a new supplier.|新しい供給業者が見つかりました。|reporting|logistics
 pre1|860|business|a shipping manifest|積荷目録|Please check the shipping manifest.|積荷目録を確認してください。|instruction|logistics
 pre1|860|business|customs clearance|通関手続き|The goods are waiting for customs clearance.|商品は通関待ちです。|reporting|logistics
 pre1|860|business|a freight charge|運送料|The freight charge is not included.|運送料は含まれていません。|description|logistics
 pre1|860|business|a backorder|入荷待ちの注文|The item is on backorder.|その商品は入荷待ちです。|reporting|logistics,sales
-pre1|860|business|inventory|在庫|We are counting inventory today.|今日は在庫を数えています。|description|logistics
-pre1|860|business|a delivery confirmation|配達確認|You will receive a delivery confirmation.|配達確認が届きます。|reporting|logistics
-pre1|860|business|a tracking number|追跡番号|Here is your tracking number.|こちらが追跡番号です。|offer|logistics
-pre1|860|business|Fragile. Handle with care.|こわれもの、取扱注意|Fragile. Handle with care.|こわれもの。取扱注意。|warning|logistics
-pre1|860|business|a user manual|取扱説明書|Please read the user manual first.|まず取扱説明書をお読みください。|instruction|technology
-pre1|860|business|troubleshoot|不具合を診断する|Let's troubleshoot the problem together.|いっしょに問題を診断しましょう。|offer|technology
-pre1|860|business|update the software|ソフトを更新する|Please update the software.|ソフトウェアを更新してください。|instruction|technology
-pre1|860|business|back up your files|ファイルをバックアップする|Please back up your files first.|まずファイルをバックアップしてください。|instruction|technology
-pre1|860|business|a system malfunction|システムの不具合|A system malfunction caused the delay.|システムの不具合で遅れが出ました。|cause/effect|technology
-pre1|860|business|Please restart the computer.|コンピューターを再起動してください|Please restart the computer.|コンピューターを再起動してください。|instruction|technology
-pre1|860|business|a password reset|パスワードの再設定|You can request a password reset online.|パスワードの再設定はオンラインでできます。|instruction|technology
-pre1|860|business|a technical support team|技術サポートチーム|Our technical support team will help you.|技術サポートチームがお手伝いします。|offer|technology
-pre1|860|business|Thank you for your continued support.|いつもご愛顧ありがとうございます|Thank you for your continued support.|いつもご愛顧ありがとうございます。|thanks|sales
-pre1|860|business|On behalf of the entire team, ...|チーム一同を代表して|On behalf of the entire team, welcome.|チーム一同を代表して、ようこそ。|greeting|office
-pre1|860|business|I'd like to propose a toast.|乾杯を提案します|I'd like to propose a toast to our new shop.|新しい店に乾杯したいと思います。|suggestion|office
+pre1|730|business|inventory|在庫|We are counting inventory today.|今日は在庫を数えています。|description|logistics
+2|730|business|a delivery confirmation|配達確認|You will receive a delivery confirmation.|配達確認が届きます。|reporting|logistics
+2|600|business|a tracking number|追跡番号|Here is your tracking number.|こちらが追跡番号です。|offer|logistics
+2|600|business|Fragile. Handle with care.|こわれもの、取扱注意|Fragile. Handle with care.|こわれもの。取扱注意。|warning|logistics
+2|600|business|a user manual|取扱説明書|Please read the user manual first.|まず取扱説明書をお読みください。|instruction|technology
+pre1|730|business|troubleshoot|不具合を診断する|Let's troubleshoot the problem together.|いっしょに問題を診断しましょう。|offer|technology
+2|600|business|update the software|ソフトを更新する|Please update the software.|ソフトウェアを更新してください。|instruction|technology
+2|600|business|back up your files|ファイルをバックアップする|Please back up your files first.|まずファイルをバックアップしてください。|instruction|technology
+pre1|730|business|a system malfunction|システムの不具合|A system malfunction caused the delay.|システムの不具合で遅れが出ました。|cause/effect|technology
+pre2|600|business|Please restart the computer.|コンピューターを再起動してください|Please restart the computer.|コンピューターを再起動してください。|instruction|technology
+2|730|business|a password reset|パスワードの再設定|You can request a password reset online.|パスワードの再設定はオンラインでできます。|instruction|technology
+2|730|business|a technical support team|技術サポートチーム|Our technical support team will help you.|技術サポートチームがお手伝いします。|offer|technology
+pre1|730|business|Thank you for your continued support.|いつもご愛顧ありがとうございます|Thank you for your continued support.|いつもご愛顧ありがとうございます。|thanks|sales
+pre1|730|business|On behalf of the entire team, ...|チーム一同を代表して|On behalf of the entire team, welcome.|チーム一同を代表して、ようこそ。|greeting|office
+pre1|730|business|I'd like to propose a toast.|乾杯を提案します|I'd like to propose a toast to our new shop.|新しい店に乾杯したいと思います。|suggestion|office
 pre1|860|business|It is with great pleasure that I ...|…できることを大変嬉しく存じます|It is with great pleasure that I introduce our speaker.|講演者をご紹介できることを大変嬉しく存じます。|introduction|meetings
-pre1|860|business|a keynote speech|基調講演|The keynote speech starts at nine.|基調講演は9時に始まります。|announcement|meetings
-pre1|860|business|a panel discussion|パネルディスカッション|There will be a panel discussion on tourism.|観光に関するパネルディスカッションがあります。|announcement|meetings
-pre1|860|business|a trade show|見本市|We will exhibit at the trade show.|見本市に出展します。|announcement|sales
+pre1|730|business|a keynote speech|基調講演|The keynote speech starts at nine.|基調講演は9時に始まります。|announcement|meetings
+pre1|730|business|a panel discussion|パネルディスカッション|There will be a panel discussion on tourism.|観光に関するパネルディスカッションがあります。|announcement|meetings
+pre1|730|business|a trade show|見本市|We will exhibit at the trade show.|見本市に出展します。|announcement|sales
 pre1|860|business|a ribbon-cutting ceremony|テープカット式|The ribbon-cutting ceremony is at noon.|テープカット式は正午です。|announcement|society
-pre1|860|business|a grand opening|グランドオープン|Our grand opening is on Saturday.|グランドオープンは土曜日です。|announcement|sales
-pre1|860|business|a renovation project|改装計画|The renovation project begins in June.|改装計画は6月に始まります。|announcement|housing
-pre1|860|business|a feasibility study|実現可能性調査|We ordered a feasibility study.|実現可能性調査を依頼しました。|reporting|science
-pre1|860|business|a proposal|提案書|We submitted a proposal to the town office.|町役場に提案書を提出しました。|reporting|office
+2|600|business|a grand opening|グランドオープン|Our grand opening is on Saturday.|グランドオープンは土曜日です。|announcement|sales
+pre1|730|business|a renovation project|改装計画|The renovation project begins in June.|改装計画は6月に始まります。|announcement|housing
+pre1|730|business|a feasibility study|実現可能性調査|We ordered a feasibility study.|実現可能性調査を依頼しました。|reporting|science
+2|600|business|a proposal|提案書|We submitted a proposal to the town office.|町役場に提案書を提出しました。|reporting|office
 pre1|860|business|be in session|会議中である|The council is in session.|議会は開会中です。|description|law
-pre1|860|business|a quorum|定足数|We have a quorum.|定足数に達しています。|description|meetings
+pre1|990|business|a quorum|定足数|We have a quorum.|定足数に達しています。|description|meetings
 pre1|860|business|table the discussion|議論を先送りする|Let's table this discussion until next week.|この議論は来週まで先送りしましょう。|suggestion|meetings
-pre1|860|business|Let's circle back to this later.|あとでこの件に戻りましょう|Let's circle back to this later.|この件はあとでまた戻りましょう。|suggestion|meetings
-pre1|860|business|touch base|連絡を取り合う|Let's touch base next week.|来週連絡を取り合いましょう。|suggestion|office
-pre1|860|business|keep me posted|経過を知らせてください|Please keep me posted.|経過を知らせてください。|request|office
-pre1|860|business|bear with me|少々お付き合いください|Please bear with me for a moment.|少々お待ちください。|request|office
-pre1|860|business|I'll get back to you by ...|…までに折り返します|I'll get back to you by noon.|正午までに折り返します。|scheduling|office
-pre1|860|business|Would you be able to ...?|…していただくことは可能ですか|Would you be able to come on Friday?|金曜日にいらっしゃることは可能ですか。|request|meetings
-pre1|860|business|I'd be happy to ...|喜んで…します|I'd be happy to show you around.|喜んでご案内します。|offer|travel
-pre1|860|business|That would be great.|それは助かります|Could you send it today? — That would be great.|今日送ってくれますか。—それは助かります。|thanks|office
-pre1|860|business|I'm afraid that won't be possible.|それは難しいと思います|I'm afraid that won't be possible by Friday.|金曜日までには難しいと思います。|refusal|office
+pre1|730|business|Let's circle back to this later.|あとでこの件に戻りましょう|Let's circle back to this later.|この件はあとでまた戻りましょう。|suggestion|meetings
+pre1|730|business|touch base|連絡を取り合う|Let's touch base next week.|来週連絡を取り合いましょう。|suggestion|office
+2|600|business|keep me posted|経過を知らせてください|Please keep me posted.|経過を知らせてください。|request|office
+2|600|business|bear with me|少々お付き合いください|Please bear with me for a moment.|少々お待ちください。|request|office
+pre1|730|business|I'll get back to you by ...|…までに折り返します|I'll get back to you by noon.|正午までに折り返します。|scheduling|office
+pre2|600|business|Would you be able to ...?|…していただくことは可能ですか|Would you be able to come on Friday?|金曜日にいらっしゃることは可能ですか。|request|meetings
+pre2|600|business|I'd be happy to ...|喜んで…します|I'd be happy to show you around.|喜んでご案内します。|offer|travel
+3|600|formula|That would be great.|それは助かります|Could you send it today? — That would be great.|今日送ってくれますか。—それは助かります。|thanks|office
+2|730|business|I'm afraid that won't be possible.|それは難しいと思います|I'm afraid that won't be possible by Friday.|金曜日までには難しいと思います。|refusal|office
 pre1|860|business|We'd like to counter with ...|…で逆提案したい|We'd like to counter with a lower price.|もっと低い価格で逆提案したいです。|negotiation|meetings,sales
-pre1|860|business|meet you halfway|歩み寄る|We can meet you halfway on the price.|価格では歩み寄れます。|negotiation|meetings
-pre1|860|business|That's our final offer.|それが最終提示です|That's our final offer.|それが私たちの最終提示です。|negotiation|meetings
+pre1|730|business|meet you halfway|歩み寄る|We can meet you halfway on the price.|価格では歩み寄れます。|negotiation|meetings
+pre1|730|business|That's our final offer.|それが最終提示です|That's our final offer.|それが私たちの最終提示です。|negotiation|meetings
 pre1|860|business|a mutually beneficial arrangement|双方に有益な取り決め|We want a mutually beneficial arrangement.|双方に有益な取り決めを望みます。|negotiation|meetings
 pre1|860|business|a binding agreement|拘束力のある合意|It is a binding agreement.|それは拘束力のある合意です。|description|law
 pre1|860|business|a legal requirement|法的要件|Wearing a life jacket is a legal requirement.|ライフジャケットの着用は法的要件です。|obligation|law,sea
 pre1|860|business|a violation of the rules|規則違反|That is a violation of the rules.|それは規則違反です。|warning|law
-pre1|860|business|a permit|許可証|You need a permit to fish here.|ここで釣るには許可証が必要です。|obligation|law,sea
-pre1|860|business|a license|免許|Do you have a driver's license?|運転免許はお持ちですか。|inquiry|law
+pre1|730|business|a permit|許可証|You need a permit to fish here.|ここで釣るには許可証が必要です。|obligation|law,sea
+2|730|business|a license|免許|Do you have a driver's license?|運転免許はお持ちですか。|inquiry|law
 pre1|860|business|an inspection certificate|検査証明書|Please show the inspection certificate.|検査証明書を提示してください。|instruction|law
-pre1|860|collocation|a vital role|重要な役割|The harbor plays a vital role in the town.|港は町で重要な役割を果たしています。|description|sea,society
+pre1|730|collocation|a vital role|重要な役割|The harbor plays a vital role in the town.|港は町で重要な役割を果たしています。|description|sea,society
 pre1|860|collocation|a decisive factor|決定的な要因|Price was a decisive factor.|価格が決定的な要因でした。|description|abstract
-pre1|860|collocation|reach a conclusion|結論に達する|We reached a conclusion after long talks.|長い話し合いのあと結論に達しました。|reporting|meetings
-pre1|860|collocation|draw attention to|注意を引く|The sign draws attention to the danger.|標識は危険に注意を促します。|description|society
-pre1|860|collocation|raise awareness|意識を高める|We want to raise awareness of the sea.|海への意識を高めたいです。|description|society
+pre1|730|collocation|reach a conclusion|結論に達する|We reached a conclusion after long talks.|長い話し合いのあと結論に達しました。|reporting|meetings
+pre1|730|collocation|draw attention to|注意を引く|The sign draws attention to the danger.|標識は危険に注意を促します。|description|society
+pre1|730|collocation|raise awareness|意識を高める|We want to raise awareness of the sea.|海への意識を高めたいです。|description|society
 pre1|860|collocation|pose a threat|脅威となる|The storm poses a threat to the coast.|嵐は海岸に脅威を与えます。|description|weather
-pre1|860|collocation|come to a decision|決定に至る|We came to a decision at last.|ついに決定に至りました。|narration|meetings
-pre1|860|collocation|make a contribution|貢献する|He made a great contribution to the town.|彼は町に大きく貢献しました。|praise|society
+pre1|730|collocation|come to a decision|決定に至る|We came to a decision at last.|ついに決定に至りました。|narration|meetings
+pre1|730|collocation|make a contribution|貢献する|He made a great contribution to the town.|彼は町に大きく貢献しました。|praise|society
 pre1|860|collocation|bear in mind|心に留める|Bear in mind that the shop closes early.|店は早く閉まることを心に留めておいてください。|instruction|shopping
-pre1|860|collocation|give priority to|優先する|We give priority to safety.|私たちは安全を優先します。|description|society
-pre1|860|collocation|take the initiative|主導権を取る|She took the initiative in the project.|彼女は計画で主導権を取りました。|praise|office
-pre1|860|collocation|take effect|効力を生じる|The new law takes effect in April.|新しい法律は4月に施行されます。|description|law
+pre1|730|collocation|give priority to|優先する|We give priority to safety.|私たちは安全を優先します。|description|society
+pre1|730|collocation|take the initiative|主導権を取る|She took the initiative in the project.|彼女は計画で主導権を取りました。|praise|office
+pre1|730|collocation|take effect|効力を生じる|The new law takes effect in April.|新しい法律は4月に施行されます。|description|law
 pre1|860|collocation|go into effect|施行される|The rule goes into effect tomorrow.|規則は明日施行されます。|announcement|law
-pre1|860|collocation|come into force|発効する|The agreement came into force last year.|協定は昨年発効しました。|description|law
+pre1|990|collocation|come into force|発効する|The agreement came into force last year.|協定は昨年発効しました。|description|law
 pre1|860|collocation|in the interest of ...|…のために|In the interest of safety, please stay back.|安全のため、下がってください。|instruction|society
 pre1|860|collocation|in light of ...|…を考慮して|In light of the weather, we canceled it.|天候を考慮して中止にしました。|cause/effect|weather
-pre1|860|collocation|in terms of ...|…の点で|In terms of price, it's very good.|価格の点で、とてもいいです。|clarification|shopping
+pre1|730|collocation|in terms of ...|…の点で|In terms of price, it's very good.|価格の点で、とてもいいです。|clarification|shopping
 pre1|860|collocation|in view of ...|…を考えると|In view of the cost, we decided not to buy.|費用を考えて買わないことにしました。|cause/effect|money
 pre1|860|collocation|with the exception of ...|…を除いて|With the exception of Monday, we are open daily.|月曜日を除き毎日営業しています。|description|shopping
-pre1|860|collocation|on the grounds that ...|…という理由で|He refused on the grounds that it was too risky.|彼は危険すぎるという理由で断りました。|cause/effect|abstract
+pre1|990|collocation|on the grounds that ...|…という理由で|He refused on the grounds that it was too risky.|彼は危険すぎるという理由で断りました。|cause/effect|abstract
 pre1|860|collocation|at the expense of ...|…を犠牲にして|He worked at the expense of his health.|彼は健康を犠牲にして働きました。|description|health
 pre1|860|collocation|for the sake of ...|…のために|For the sake of the children, we moved.|子どものために引っ越しました。|cause/effect|family
 pre1|860|collocation|by means of ...|…によって|We cross the bay by means of a ferry.|フェリーで湾を渡ります。|description|transport
 pre1|860|collocation|at one's own risk|自己責任で|Swim at your own risk.|遊泳は自己責任で。|warning|sea
-pre1|860|collocation|in the event of ...|…の場合は|In the event of rain, the event will be moved indoors.|雨天の場合、行事は屋内に移ります。|condition|weather
-pre1|860|collocation|with a view to ...ing|…する目的で|He bought a boat with a view to starting a business.|彼は事業を始める目的で船を買いました。|cause/effect|sea
+pre1|730|collocation|in the event of ...|…の場合は|In the event of rain, the event will be moved indoors.|雨天の場合、行事は屋内に移ります。|condition|weather
+pre1|990|collocation|with a view to ...ing|…する目的で|He bought a boat with a view to starting a business.|彼は事業を始める目的で船を買いました。|cause/effect|sea
 pre1|860|collocation|on the verge of ...|まさに…しようとして|The shop is on the verge of closing.|その店は閉店寸前です。|description|shopping
 pre1|860|collocation|heavy industry|重工業|The city depends on heavy industry.|その市は重工業に依存しています。|description|society
-pre1|860|collocation|renewable energy|再生可能エネルギー|The island uses renewable energy.|その島は再生可能エネルギーを使っています。|description|science
+pre1|730|collocation|renewable energy|再生可能エネルギー|The island uses renewable energy.|その島は再生可能エネルギーを使っています。|description|science
 pre1|860|collocation|public opinion|世論|Public opinion is against the plan.|世論はその計画に反対です。|description|society
-pre1|860|collocation|a growing number of ...|増え続ける…|A growing number of tourists visit the village.|ますます多くの観光客が村を訪れます。|description|travel
+pre1|730|collocation|a growing number of ...|増え続ける…|A growing number of tourists visit the village.|ますます多くの観光客が村を訪れます。|description|travel
 pre1|860|collocation|an aging population|高齢化する人口|An aging population is a problem in many towns.|高齢化は多くの町で問題です。|description|society
 pre1|860|collocation|a local economy|地域経済|Fishing supports the local economy.|漁業は地域経済を支えています。|description|society,sea
 pre1|860|collocation|a natural resource|天然資源|Water is a precious natural resource.|水は貴重な天然資源です。|description|nature
-pre1|860|collocation|an endangered species|絶滅危惧種|This bird is an endangered species.|この鳥は絶滅危惧種です。|description|nature
+pre1|-|collocation|an endangered species|絶滅危惧種|This bird is an endangered species.|この鳥は絶滅危惧種です。|description|nature
 pre1|860|phrasal_verb|account for|説明する・占める|Tourism accounts for half of our income.|観光が収入の半分を占めます。|reporting|finance
-pre1|860|phrasal_verb|back up|裏付ける・支える|Can you back up your claim?|その主張を裏付けられますか。|request|meetings
+2|730|phrasal_verb|back up|裏付ける・支える|Can you back up your claim?|その主張を裏付けられますか。|request|meetings
 pre1|860|phrasal_verb|break out|発生する|A fire broke out in the kitchen.|台所で火事が起きました。|reporting|society
 pre1|860|phrasal_verb|bring forward|前倒しにする|We brought the meeting forward to Monday.|会議を月曜日に前倒ししました。|reporting|meetings
 pre1|860|phrasal_verb|call for|必要とする・求める|The work calls for great care.|その作業には細心の注意が必要です。|description|office
 pre1|860|phrasal_verb|come down with|(病気に)かかる|I came down with the flu.|インフルエンザにかかりました。|reporting|health
 pre1|860|phrasal_verb|cut back on|削減する|We must cut back on costs.|費用を削減しなければなりません。|obligation|finance
-pre1|860|phrasal_verb|drop off|届ける・減る|Could you drop off this parcel?|この小包を届けてもらえますか。|request|post
+2|730|phrasal_verb|drop off|届ける・減る|Could you drop off this parcel?|この小包を届けてもらえますか。|request|post
 pre1|860|phrasal_verb|fall through|だめになる|The deal fell through.|取引はだめになりました。|reporting|meetings
 pre1|860|phrasal_verb|fill in for|代役を務める|Can you fill in for me on Friday?|金曜日に代わってもらえますか。|request|hr
 pre1|860|phrasal_verb|get across|伝える|I couldn't get my point across.|言いたいことが伝わりませんでした。|complaint|meetings
-pre1|860|phrasal_verb|get rid of|処分する|We need to get rid of old stock.|古い在庫を処分する必要があります。|obligation|sales
-pre1|860|phrasal_verb|hold up|遅らせる|The accident held up traffic.|事故で交通が遅れました。|cause/effect|transport
-pre1|860|phrasal_verb|iron out|解決する|We need to iron out the details.|細部を詰める必要があります。|obligation|meetings
+pre2|730|phrasal_verb|get rid of|処分する|We need to get rid of old stock.|古い在庫を処分する必要があります。|obligation|sales
+pre1|730|phrasal_verb|hold up|遅らせる|The accident held up traffic.|事故で交通が遅れました。|cause/effect|transport
+pre1|990|phrasal_verb|iron out|解決する|We need to iron out the details.|細部を詰める必要があります。|obligation|meetings
 pre1|860|phrasal_verb|lay off|解雇する|The factory laid off fifty workers.|工場は50人を解雇しました。|reporting|hr
 pre1|860|phrasal_verb|live up to|期待に応える|The hotel lived up to its reputation.|そのホテルは評判どおりでした。|praise|hotel
-pre1|860|phrasal_verb|look out for|気をつける・探す|Look out for signs of damage.|損傷の兆候に注意してください。|instruction|office
+2|730|phrasal_verb|look out for|気をつける・探す|Look out for signs of damage.|損傷の兆候に注意してください。|instruction|office
 pre1|860|phrasal_verb|make out|聞き取る・理解する|I can't make out the writing.|文字が読み取れません。|complaint|post
-pre1|860|phrasal_verb|pull off|やり遂げる|They pulled off a great festival.|彼らは素晴らしい祭りをやり遂げました。|praise|arts
+pre1|990|phrasal_verb|pull off|やり遂げる|They pulled off a great festival.|彼らは素晴らしい祭りをやり遂げました。|praise|arts
 pre1|860|phrasal_verb|rule out|除外する|We can't rule out rain.|雨の可能性は否定できません。|hedging|weather
-pre1|860|phrasal_verb|run into trouble|問題に直面する|The project ran into trouble.|計画は問題に直面しました。|reporting|office
-pre1|860|phrasal_verb|see off|見送る|I went to the port to see him off.|彼を見送りに港へ行きました。|narration|sea
-pre1|860|phrasal_verb|shut down|閉鎖する|The factory shut down last year.|工場は昨年閉鎖しました。|reporting|society
-pre1|860|phrasal_verb|stand out|目立つ|Her work stands out.|彼女の作品は際立っています。|praise|arts
+pre1|730|phrasal_verb|run into trouble|問題に直面する|The project ran into trouble.|計画は問題に直面しました。|reporting|office
+2|730|phrasal_verb|see off|見送る|I went to the port to see him off.|彼を見送りに港へ行きました。|narration|sea
+2|730|phrasal_verb|shut down|閉鎖する|The factory shut down last year.|工場は昨年閉鎖しました。|reporting|society
+2|730|phrasal_verb|stand out|目立つ|Her work stands out.|彼女の作品は際立っています。|praise|arts
 pre1|860|phrasal_verb|stand by|待機する・支持する|Please stand by for an announcement.|お知らせまでお待ちください。|instruction|office
-pre1|860|phrasal_verb|take on|引き受ける・雇う|We took on two new workers.|新しく2人を雇いました。|reporting|hr
-pre1|860|phrasal_verb|wrap up|終える|Let's wrap up the meeting.|会議を終わりにしましょう。|suggestion|meetings
-pre1|860|phrasal_verb|turn out|…とわかる|The rumor turned out to be false.|その噂はうそだとわかりました。|reporting|media
-pre1|860|phrasal_verb|bring up a topic|話題を持ち出す|I'd like to bring up a topic for today.|今日の話題を一つ持ち出したいです。|opinion|meetings
-pre1|860|phrasal_verb|look down on|見下す|Don't look down on others.|人を見下してはいけません。|instruction|society
-pre1|860|phrasal_verb|look up to|尊敬する|I look up to my grandfather.|祖父を尊敬しています。|emotion|family
+2|730|phrasal_verb|take on|引き受ける・雇う|We took on two new workers.|新しく2人を雇いました。|reporting|hr
+2|730|phrasal_verb|wrap up|終える|Let's wrap up the meeting.|会議を終わりにしましょう。|suggestion|meetings
+pre2|730|phrasal_verb|turn out|…とわかる|The rumor turned out to be false.|その噂はうそだとわかりました。|reporting|media
+pre1|730|phrasal_verb|bring up a topic|話題を持ち出す|I'd like to bring up a topic for today.|今日の話題を一つ持ち出したいです。|opinion|meetings
+pre1|-|phrasal_verb|look down on|見下す|Don't look down on others.|人を見下してはいけません。|instruction|society
+pre1|-|phrasal_verb|look up to|尊敬する|I look up to my grandfather.|祖父を尊敬しています。|emotion|family
 pre1|860|idiom|a blessing in disguise|不幸中の幸い|The storm was a blessing in disguise.|あの嵐は不幸中の幸いでした。|opinion|weather
-pre1|860|idiom|break the ice|緊張をほぐす|A joke can break the ice.|冗談は場を和ませます。|description|society
-pre1|860|idiom|call it a night|今夜は終わりにする|It's late. Let's call it a night.|遅いので今夜は終わりにしましょう。|suggestion|society
-pre1|860|idiom|cost an arm and a leg|ものすごく高い|That boat cost an arm and a leg.|あの船はものすごく高かったです。|complaint|money
-pre1|860|idiom|get the hang of it|コツをつかむ|You'll get the hang of it soon.|すぐコツをつかめますよ。|praise|school
-pre1|860|idiom|hit the road|出発する|Let's hit the road before noon.|正午前に出発しましょう。|suggestion|travel
+pre1|730|idiom|break the ice|緊張をほぐす|A joke can break the ice.|冗談は場を和ませます。|description|society
+pre1|730|idiom|call it a night|今夜は終わりにする|It's late. Let's call it a night.|遅いので今夜は終わりにしましょう。|suggestion|society
+pre1|730|idiom|cost an arm and a leg|ものすごく高い|That boat cost an arm and a leg.|あの船はものすごく高かったです。|complaint|money
+pre1|730|idiom|get the hang of it|コツをつかむ|You'll get the hang of it soon.|すぐコツをつかめますよ。|praise|school
+pre1|730|idiom|hit the road|出発する|Let's hit the road before noon.|正午前に出発しましょう。|suggestion|travel
 pre1|860|idiom|in the nick of time|ぎりぎり間に合って|We caught the ferry in the nick of time.|ぎりぎりフェリーに間に合いました。|narration|transport
 pre1|860|idiom|keep a low profile|目立たないようにする|He kept a low profile in town.|彼は町で目立たないようにしていました。|description|society
-pre1|860|idiom|on the house|店のおごりで|The dessert is on the house.|デザートは店のおごりです。|offer|food
+pre1|730|idiom|on the house|店のおごりで|The dessert is on the house.|デザートは店のおごりです。|offer|food
 pre1|860|idiom|once in a blue moon|ごくまれに|He visits once in a blue moon.|彼はごくまれにしか訪れません。|description|society
-pre1|860|idiom|under the weather|体調が悪い|I'm a little under the weather.|少し体調が悪いです。|description|health
-pre1|860|idiom|up in the air|未定で|Our plans are still up in the air.|予定はまだ未定です。|hedging|office
+pre1|730|idiom|under the weather|体調が悪い|I'm a little under the weather.|少し体調が悪いです。|description|health
+pre1|730|idiom|up in the air|未定で|Our plans are still up in the air.|予定はまだ未定です。|hedging|office
 pre1|860|idiom|hit the nail on the head|的を射る|You hit the nail on the head.|まさに的を射ています。|agreement|society
 pre1|860|idiom|the last straw|堪忍袋の緒が切れる原因|The delay was the last straw.|遅れが決定的でした。|complaint|emotion
-pre1|860|idiom|out of the blue|突然|He called me out of the blue.|彼から突然電話がありました。|narration|society
+pre1|730|idiom|out of the blue|突然|He called me out of the blue.|彼から突然電話がありました。|narration|society
 pre1|860|idiom|a rule of thumb|経験則|As a rule of thumb, add a little salt.|経験則として、塩を少し足します。|description|cooking
 pre1|860|idiom|at a loss|途方に暮れて|I was at a loss what to do.|どうしていいかわかりませんでした。|emotion|emotion
-pre1|860|idiom|be on the safe side|念のため|To be on the safe side, take a coat.|念のためコートを持っていって。|suggestion|weather
+pre1|730|idiom|be on the safe side|念のため|To be on the safe side, take a coat.|念のためコートを持っていって。|suggestion|weather
 pre1|860|idiom|by and large|概して|By and large, the town is quiet.|概して、町は静かです。|summarizing|society
-pre1|860|idiom|come to think of it|そういえば|Come to think of it, I saw him at the harbor.|そういえば、港で彼を見ました。|narration|society
-pre1|860|idiom|for good|永久に|He left the town for good.|彼は町を永久に去りました。|narration|society
-pre1|860|idiom|in the first place|そもそも|Why did you go there in the first place?|そもそもなぜそこへ行ったのですか。|inquiry|society
-pre1|860|idiom|no matter what|何があっても|I'll be there no matter what.|何があってもそこへ行きます。|emphasis|society
+2|730|idiom|come to think of it|そういえば|Come to think of it, I saw him at the harbor.|そういえば、港で彼を見ました。|narration|society
+2|730|idiom|for good|永久に|He left the town for good.|彼は町を永久に去りました。|narration|society
+2|730|idiom|in the first place|そもそも|Why did you go there in the first place?|そもそもなぜそこへ行ったのですか。|inquiry|society
+pre2|600|idiom|no matter what|何があっても|I'll be there no matter what.|何があってもそこへ行きます。|emphasis|society
 pre1|860|idiom|more often than not|たいてい|More often than not, it rains in June.|たいてい6月は雨です。|description|weather
-pre1|860|idiom|to say the least|控えめに言っても|It was surprising, to say the least.|控えめに言っても驚きでした。|emphasis|emotion
+pre1|990|idiom|to say the least|控えめに言っても|It was surprising, to say the least.|控えめに言っても驚きでした。|emphasis|emotion
 pre1|860|idiom|sooner rather than later|なるべく早く|We should fix it sooner rather than later.|なるべく早く直すべきです。|suggestion|housing
-pre1|860|formula|Be my guest.|どうぞご自由に|May I use your phone? — Be my guest.|電話を借りてもいいですか。—どうぞ。|permission|society
-pre1|860|formula|I owe you one.|借りができました|Thanks for the ride. I owe you one.|乗せてくれてありがとう。借りができました。|thanks|society
+2|730|formula|Be my guest.|どうぞご自由に|May I use your phone? — Be my guest.|電話を借りてもいいですか。—どうぞ。|permission|society
+pre1|730|formula|I owe you one.|借りができました|Thanks for the ride. I owe you one.|乗せてくれてありがとう。借りができました。|thanks|society
 pre1|860|formula|Don't take it personally.|悪く取らないで|Don't take it personally.|悪く取らないでね。|sympathy|society
-pre1|860|formula|I'm all ears.|ぜひ聞かせて|What's your idea? I'm all ears.|どんな考え?ぜひ聞かせて。|offer|society
-pre1|860|formula|I'm afraid I have to disagree.|残念ながら賛成できません|I'm afraid I have to disagree with you there.|その点では残念ながら賛成できません。|disagreement|meetings
+pre1|730|formula|I'm all ears.|ぜひ聞かせて|What's your idea? I'm all ears.|どんな考え?ぜひ聞かせて。|offer|society
+pre1|730|formula|I'm afraid I have to disagree.|残念ながら賛成できません|I'm afraid I have to disagree with you there.|その点では残念ながら賛成できません。|disagreement|meetings
 pre1|860|formula|With all due respect, ...|失礼ながら|With all due respect, I think the plan is risky.|失礼ながら、その計画は危険だと思います。|disagreement|meetings
 pre1|860|formula|Let's agree to disagree.|意見の違いは認めましょう|Let's agree to disagree.|意見の違いは認め合いましょう。|negotiation|society
 pre1|860|formula|It's a long shot, but ...|望みは薄いけど|It's a long shot, but let's try.|望みは薄いけど、やってみよう。|hedging|society
-pre1|860|formula|Let me sleep on it.|一晩考えさせてください|Let me sleep on it and tell you tomorrow.|一晩考えて明日お返事します。|hedging|society
-pre1|860|formula|It slipped my mind.|うっかり忘れていました|I'm sorry. It slipped my mind.|ごめんなさい。うっかり忘れていました。|apology|society
-pre1|860|formula|I'll make it up to you.|埋め合わせをします|I'll make it up to you next time.|今度埋め合わせをします。|apology|society
-pre1|860|formula|It couldn't be better.|最高です|How is the new shop? — It couldn't be better.|新しい店はどう?—最高です。|opinion|shopping
+pre1|730|formula|Let me sleep on it.|一晩考えさせてください|Let me sleep on it and tell you tomorrow.|一晩考えて明日お返事します。|hedging|society
+pre1|730|formula|It slipped my mind.|うっかり忘れていました|I'm sorry. It slipped my mind.|ごめんなさい。うっかり忘れていました。|apology|society
+pre1|730|formula|I'll make it up to you.|埋め合わせをします|I'll make it up to you next time.|今度埋め合わせをします。|apology|society
+pre2|600|formula|It couldn't be better.|最高です|How is the new shop? — It couldn't be better.|新しい店はどう?—最高です。|opinion|shopping
 pre1|860|pattern|It goes without saying that ...|…は言うまでもない|It goes without saying that safety comes first.|安全が第一なのは言うまでもありません。|emphasis|abstract
-pre1|860|pattern|There is no denying that ...|…は否定できない|There is no denying that prices are rising.|物価が上がっているのは否定できません。|concession|finance
+pre1|990|pattern|There is no denying that ...|…は否定できない|There is no denying that prices are rising.|物価が上がっているのは否定できません。|concession|finance
 pre1|860|pattern|It is no wonder that ...|…も不思議ではない|It is no wonder that he is tired.|彼が疲れているのも不思議ではありません。|cause/effect|society
 pre1|860|pattern|It has been proved that ...|…が証明されている|It has been proved that sleep helps memory.|睡眠が記憶に役立つことが証明されています。|reporting|science
 pre1|860|pattern|It is widely believed that ...|…と広く信じられている|It is widely believed that fish is healthy.|魚は健康によいと広く信じられています。|reporting|health
-pre1|860|pattern|What matters is ...|大切なのは…|What matters is that you try.|大切なのは挑戦することです。|opinion|abstract
-pre1|860|pattern|The point is that ...|要点は…|The point is that we lack time.|要点は時間が足りないことです。|clarification|meetings
-pre1|860|pattern|What is more, ...|さらに|What is more, the room is cheap.|さらに、部屋は安いです。|addition|hotel
+pre1|730|pattern|What matters is ...|大切なのは…|What matters is that you try.|大切なのは挑戦することです。|opinion|abstract
+pre1|730|pattern|The point is that ...|要点は…|The point is that we lack time.|要点は時間が足りないことです。|clarification|meetings
+pre1|730|pattern|What is more, ...|さらに|What is more, the room is cheap.|さらに、部屋は安いです。|addition|hotel
 pre1|860|pattern|be bound to ...|必ず…する|The price is bound to rise.|価格は必ず上がります。|prediction|finance
 pre1|860|pattern|be about to ... when ...|…しようとしたとき|I was about to leave when it rained.|出かけようとしたとき雨が降り出しました。|narration|weather
-pre1|860|pattern|hardly ... when ...|…するやいなや|I had hardly sat down when the phone rang.|座るやいなや電話が鳴りました。|narration|office
-pre1|860|pattern|as long as I can remember|私の記憶にある限り|As long as I can remember, the festival has been held here.|私の記憶にある限り、祭りはここで開かれています。|narration|arts
-pre1|860|pattern|the sooner, the better|早ければ早いほどいい|The sooner, the better.|早ければ早いほどいいです。|suggestion|society
-pre1|860|pattern|whatever you like|お好きなものを|Order whatever you like.|お好きなものを注文してください。|offer|food
-pre1|860|pattern|whoever comes first|最初に来た人|Whoever comes first gets the seat.|最初に来た人が席を取れます。|description|society
-pre1|860|pattern|whenever possible|可能な限り|Whenever possible, use local fish.|可能な限り地元の魚を使ってください。|instruction|food
+pre1|990|pattern|hardly ... when ...|…するやいなや|I had hardly sat down when the phone rang.|座るやいなや電話が鳴りました。|narration|office
+2|-|pattern|as long as I can remember|私の記憶にある限り|As long as I can remember, the festival has been held here.|私の記憶にある限り、祭りはここで開かれています。|narration|arts
+pre2|600|pattern|the sooner, the better|早ければ早いほどいい|The sooner, the better.|早ければ早いほどいいです。|suggestion|society
+2|600|pattern|whatever you like|お好きなものを|Order whatever you like.|お好きなものを注文してください。|offer|food
+pre1|730|pattern|whoever comes first|最初に来た人|Whoever comes first gets the seat.|最初に来た人が席を取れます。|description|society
+2|730|pattern|whenever possible|可能な限り|Whenever possible, use local fish.|可能な限り地元の魚を使ってください。|instruction|food
 pre1|860|pattern|regardless of ...|…にかかわらず|The fee is the same regardless of age.|料金は年齢にかかわらず同じです。|description|money
-pre1|860|pattern|apart from ...|…を除いて・…のほかに|Apart from the price, it's perfect.|価格を除けば完璧です。|concession|shopping
-pre1|860|pattern|in spite of ...|…にもかかわらず|In spite of the rain, we had fun.|雨にもかかわらず楽しみました。|concession|weather
-pre1|860|pattern|despite ...|…にもかかわらず|Despite the delay, we arrived on time.|遅れにもかかわらず時間通りに着きました。|concession|transport
+2|730|pattern|apart from ...|…を除いて・…のほかに|Apart from the price, it's perfect.|価格を除けば完璧です。|concession|shopping
+2|730|pattern|in spite of ...|…にもかかわらず|In spite of the rain, we had fun.|雨にもかかわらず楽しみました。|concession|weather
+2|730|pattern|despite ...|…にもかかわらず|Despite the delay, we arrived on time.|遅れにもかかわらず時間通りに着きました。|concession|transport
 pre1|860|discourse|as a consequence|その結果として|As a consequence, we lost money.|その結果として損失が出ました。|cause/effect|finance
 pre1|860|discourse|by contrast|対照的に|By contrast, the south is warm.|対照的に、南部は暖かいです。|contrast|weather
 pre1|860|discourse|likewise|同様に|Likewise, the shop will close early.|同様に、店も早く閉まります。|addition|shopping
-pre1|860|discourse|similarly|同様に|Similarly, the bank opens at nine.|同様に、銀行は9時に開きます。|addition|money
-pre1|860|discourse|conversely|逆に|Conversely, prices may fall.|逆に、価格が下がるかもしれません。|contrast|finance
-pre1|860|discourse|admittedly|確かに|Admittedly, it is expensive.|確かに、それは高いです。|concession|money
-pre1|860|discourse|granted|確かに(認めて)|Granted, he is young, but he works hard.|確かに若いが、彼はよく働きます。|concession|hr
+2|730|discourse|similarly|同様に|Similarly, the bank opens at nine.|同様に、銀行は9時に開きます。|addition|money
+pre1|990|discourse|conversely|逆に|Conversely, prices may fall.|逆に、価格が下がるかもしれません。|contrast|finance
+pre1|990|discourse|admittedly|確かに|Admittedly, it is expensive.|確かに、それは高いです。|concession|money
+pre1|990|discourse|granted|確かに(認めて)|Granted, he is young, but he works hard.|確かに若いが、彼はよく働きます。|concession|hr
 pre1|860|discourse|all things considered|あらゆる点を考えると|All things considered, it was a success.|あらゆる点を考えると、成功でした。|summarizing|abstract
-pre1|860|discourse|above all|何よりも|Above all, stay safe.|何よりも、安全に。|emphasis|society
+2|730|discourse|above all|何よりも|Above all, stay safe.|何よりも、安全に。|emphasis|society
 pre1|860|discourse|that said|そうは言っても|That said, I'd still like to go.|そうは言っても、やはり行きたいです。|concession|society
-pre1|860|discourse|notwithstanding|…にもかかわらず|Notwithstanding the cost, we went ahead.|費用にもかかわらず、進めました。|concession|finance
+pre1|990|discourse|notwithstanding|…にもかかわらず|Notwithstanding the cost, we went ahead.|費用にもかかわらず、進めました。|concession|finance
 pre1|860|idiom|to the best of my knowledge|私の知る限りでは|To the best of my knowledge, the road is open.|私の知る限りでは道は通れます。|hedging|transport

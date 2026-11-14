@@ -1,0 +1,76 @@
+# ---- pre1 additions: workplace / business
+pre1|730|business|a job offer|内定・採用の申し出|She accepted the job offer from the hotel.|彼女はそのホテルからの採用の申し出を受けました。|reporting|hr
+pre1|860|business|a probationary period|試用期間|New staff have a three-month probationary period.|新しいスタッフには3か月の試用期間があります。|description|hr
+pre1|860|business|a notice period|退職予告期間|You must give a one-month notice period.|退職は1か月前に予告しなければなりません。|obligation|hr
+pre1|860|business|a severance package|退職金(割増退職金を含む)|The company offered a generous severance package.|会社は手厚い退職金を提示しました。|reporting|hr
+pre1|730|business|a performance bonus|業績ボーナス|Staff received a performance bonus in December.|スタッフは12月に業績ボーナスを受け取りました。|reporting|hr
+pre1|730|business|annual leave|年次休暇|You get twenty days of annual leave.|年に20日の年次休暇があります。|description|hr
+pre1|730|business|sick leave|病気休暇|She is on sick leave this week.|彼女は今週、病気休暇中です。|reporting|hr
+pre1|860|business|overtime pay|残業代|Overtime pay is added to your salary.|残業代は給料に加算されます。|description|hr
+pre1|730|business|a shift schedule|シフト表|The shift schedule is posted on the wall.|シフト表は壁に貼ってあります。|description|hr
+pre1|730|business|a pay slip|給与明細|Please check your pay slip carefully.|給与明細をよく確認してください。|instruction|hr
+pre1|730|business|a resignation letter|辞表|He handed in his resignation letter on Monday.|彼は月曜日に辞表を出しました。|reporting|hr
+pre1|730|business|a job description|職務内容説明|The job description is on our website.|職務内容は当社のウェブサイトに載っています。|description|hr
+pre1|730|business|a bank statement|銀行の取引明細|Please bring a recent bank statement.|最近の銀行の取引明細をお持ちください。|instruction|finance
+pre1|860|business|a credit limit|利用限度額|Your credit limit is five hundred thousand yen.|利用限度額は50万円です。|reporting|finance
+pre1|860|business|an overdraft|当座貸越|The bank charges a fee for an overdraft.|銀行は当座貸越に手数料を取ります。|description|finance
+pre1|730|business|a monthly payment|月々の支払い|The monthly payment is ten thousand yen.|月々の支払いは1万円です。|reporting|finance
+pre1|860|business|a loan application|ローンの申込書|Please fill out the loan application.|ローンの申込書にご記入ください。|instruction|finance
+pre1|860|business|a tax return|確定申告書|Farmers must file a tax return every year.|農家は毎年、確定申告をしなければなりません。|obligation|finance
+pre1|860|business|a balance sheet|貸借対照表|The accountant checked the balance sheet.|会計士が貸借対照表を確認しました。|reporting|finance
+pre1|730|business|petty cash|小口現金|Use petty cash for small purchases.|小口の買い物には小口現金を使ってください。|instruction|finance
+pre1|860|business|a budget cut|予算削減|A budget cut forced us to close the library.|予算削減のため図書室を閉めざるをえませんでした。|reporting|finance
+pre1|730|business|a cost estimate|費用の見積もり|We need a cost estimate before we start.|始める前に費用の見積もりが必要です。|request|finance
+pre1|860|business|net profit|純利益|Our net profit rose by five percent.|当社の純利益は5%増えました。|reporting|finance
+pre1|730|business|a sales pitch|売り込みの話法|His sales pitch was short and clear.|彼の売り込みは短くて明快でした。|description|sales
+pre1|730|business|a sales target|売上目標|The sales target for May is two million yen.|5月の売上目標は200万円です。|reporting|sales
+pre1|730|business|a purchase order|発注書|Please send us a purchase order.|発注書をお送りください。|request|sales
+pre1|600|business|a price list|価格表|Could I have a price list?|価格表をいただけますか。|request|sales
+pre1|730|business|a unit price|単価|The unit price is two hundred yen.|単価は200円です。|reporting|sales
+pre1|730|business|a bulk discount|大口割引|We offer a bulk discount on large orders.|大口の注文には大口割引があります。|offer|sales
+pre1|730|business|a loyalty program|ポイント制度|Join our loyalty program and earn points.|当店のポイント制度に入会してポイントを貯めましょう。|invitation|shopping
+pre1|600|business|a clearance sale|在庫一掃セール|There is a clearance sale this weekend.|今週末は在庫一掃セールがあります。|announcement|shopping
+pre1|600|business|a gift certificate|商品券|I'd like to buy a gift certificate.|商品券を購入したいのですが。|request|shopping
+pre1|730|business|a return policy|返品規定|Please read our return policy.|返品規定をお読みください。|instruction|shopping
+pre1|730|business|a product recall|製品回収|The maker announced a product recall.|メーカーは製品の回収を発表しました。|announcement|sales
+pre1|730|business|a customer survey|顧客アンケート|The result of the customer survey was good.|顧客アンケートの結果は良好でした。|reporting|sales
+pre1|600|business|a delivery date|納期|Could you tell me the delivery date?|納期を教えていただけますか。|inquiry|logistics
+pre1|600|business|a shipping address|配送先住所|Please confirm your shipping address.|配送先住所をご確認ください。|instruction|logistics
+pre1|860|business|a bill of lading|船荷証券|The bill of lading arrives with the cargo.|船荷証券は貨物と一緒に届きます。|description|logistics
+pre1|600|business|express delivery|速達便|Express delivery takes one day.|速達便は1日で届きます。|description|logistics
+pre1|730|business|a courier service|宅配サービス|We use a courier service for small parcels.|小さな荷物には宅配サービスを使います。|description|logistics
+pre1|730|business|a loading dock|荷積み場|Trucks wait at the loading dock.|トラックは荷積み場で待機しています。|description|logistics
+pre1|730|business|the minutes of the meeting|議事録|Please send me the minutes of the meeting.|会議の議事録を送ってください。|request|meetings
+pre1|600|business|a follow-up meeting|フォローアップ会議|Let's hold a follow-up meeting next week.|来週フォローアップ会議を開きましょう。|suggestion|meetings
+pre1|730|business|a status update|進捗の最新報告|Can I get a status update on the order?|注文の状況を教えてもらえますか。|request|office
+pre1|730|business|a progress report|進捗報告書|The progress report is due on Friday.|進捗報告書の締め切りは金曜日です。|reporting|office
+pre1|860|business|a deadline extension|期限の延長|We requested a deadline extension.|期限の延長を求めました。|request|office
+pre1|730|business|a project manager|プロジェクトマネージャー|The project manager called a meeting.|プロジェクトマネージャーが会議を招集しました。|reporting|office
+pre1|600|business|a team leader|チームリーダー|Ms. Sato is our new team leader.|佐藤さんは私たちの新しいチームリーダーです。|introduction|office
+pre1|730|business|an action plan|行動計画|Let's draw up an action plan.|行動計画を作成しましょう。|suggestion|meetings
+pre1|730|business|a time frame|期間・スケジュール枠|What is the time frame for this work?|この作業の期間はどのくらいですか。|inquiry|office
+pre1|730|business|a company policy|社内規定|Gifts are against company policy.|贈り物は会社の規定に反します。|reporting|office
+pre1|600|business|a dress code|服装規定|Our hotel has a strict dress code.|当ホテルには厳しい服装規定があります。|description|hotel
+pre1|600|business|a conference room|会議室|The meeting is in the conference room.|会議は会議室で行います。|description|meetings
+pre1|730|business|a travel itinerary|旅程表|I'll send you the travel itinerary.|旅程表をお送りします。|offer|travel
+pre1|600|business|a boarding pass|搭乗券|Please show your boarding pass.|搭乗券をご提示ください。|instruction|travel
+pre1|730|business|a layover|乗り継ぎの待ち時間|We have a two-hour layover in Osaka.|大阪で2時間の乗り継ぎ待ちがあります。|description|travel
+pre1|500|business|a window seat|窓側の席|Could I have a window seat?|窓側の席をお願いできますか。|request|travel
+pre1|500|business|an aisle seat|通路側の席|I prefer an aisle seat.|通路側の席がいいです。|preference|travel
+pre1|730|business|baggage claim|手荷物受取所|Baggage claim is on the first floor.|手荷物受取所は1階です。|directions|travel
+pre1|730|business|a customs declaration|税関申告書|Please fill out a customs declaration.|税関申告書にご記入ください。|instruction|travel
+pre1|600|business|a guided tour|ガイド付きツアー|We offer a guided tour of the harbor.|港のガイド付きツアーを行っています。|offer|travel
+pre1|600|business|an admission fee|入場料|The admission fee is five hundred yen.|入場料は500円です。|reporting|arts
+pre1|730|business|a cancellation fee|キャンセル料|A cancellation fee applies after Friday.|金曜日以降はキャンセル料がかかります。|warning|hotel
+pre1|730|business|a refundable deposit|返金可能な保証金|The deposit is refundable.|保証金は返金されます。|description|hotel
+pre1|730|business|a business proposal|事業提案|She presented a business proposal to the bank.|彼女は銀行に事業提案を提出しました。|reporting|finance
+pre1|860|business|a conflict of schedule|予定の重複|Sorry, there's a conflict of schedule.|すみません、予定が重なってしまいます。|apology|office
+pre1|730|business|a customer complaint|顧客の苦情|We received a customer complaint about the noise.|騒音について顧客の苦情が寄せられました。|reporting|sales
+pre1|730|business|a service agreement|サービス契約|Please sign the service agreement.|サービス契約書に署名してください。|instruction|law
+pre1|730|business|a maintenance contract|保守契約|We have a maintenance contract for the printer.|プリンターの保守契約を結んでいます。|description|technology
+pre1|860|business|a safety regulation|安全規則|Every worker must follow the safety regulations.|従業員はみな安全規則に従わなければなりません。|obligation|law
+pre1|730|business|a floor plan|間取り図|Here is the floor plan of the building.|こちらが建物の間取り図です。|offer|housing
+pre1|860|business|an inspection report|検査報告書|The inspection report will be ready tomorrow.|検査報告書は明日できあがります。|reporting|law
+pre1|730|business|a head count|人数・従業員数|We need a head count for the lunch.|昼食のため人数を確認する必要があります。|request|meetings
+pre1|730|business|an out-of-office message|不在通知|I set up an out-of-office message.|不在通知を設定しました。|reporting|technology
+pre1|860|business|a seating chart|座席表|The staff made a seating chart for the party.|スタッフはパーティーの座席表を作りました。|description|hotel

@@ -31,6 +31,7 @@ tsl,bsl,nawl=lists['tsl'],lists['bsl'],lists['nawl']
 def lemma_of(w):
     o=set()
     for pos,ls in getAllLemmas(w).items():
+        if pos in ('ADJ','ADV'): continue
         for l in ls:
             if l!=w and l in freq and freq[l][1]>=freq[w][1]-3.0: o.add(l)
     return o
@@ -169,8 +170,8 @@ for i,e in enumerate(rows):
 def tscore(e):
     w=e['word'].lower(); r=e['freqrank']
     s=math.log(r)
-    if w in tsl: s-=0.6+0.6*(1-min(tsl[w] or 1300,1300)/1300)
-    if w in bsl: s-=0.5+0.4*(1-min(bsl[w] or 1200,1200)/1200)
+    if w in tsl: s-=0.8+0.7*(1-min(tsl[w] or 1300,1300)/1300)
+    if w in bsl: s-=0.8+0.5*(1-min(bsl[w] or 1200,1200)/1200)
     if w in nawl and w not in tsl and w not in bsl: s+=0.35
     return s
 for e in rows: e['ts']=tscore(e)
@@ -186,6 +187,7 @@ for e in rows:
     w=e['word'].lower()
     cap=EKEYCAP.get(e['eiken'])
     if cap and (e['toeic'] is None or e['toeic']>cap): e['toeic']=cap
+    if e['toeic'] is None and (w in tsl or w in bsl): e['toeic']=990
     if e['eiken'] in('pre2','2') and e['toeic'] is None: e['toeic']=990 if e['eiken']=='2' else 860
 # ---- gloss + domains
 manual={ (w.lower(),p):ja for w,p,ja in tsv("gloss.tsv",3)}
@@ -201,19 +203,33 @@ for fn_ in sorted(_g.glob(os.path.join(OV,"gloss_*.txt"))):
         manual[(w_.lower(),_AB.get(p_,p_))]=ja_
 dom_over={ (w.lower(),p):[d for d in ds.split(',')] for w,p,ds in tsv("domains.tsv",3)}
 final=[]; missing=[]; mismatch=[]
+def _adv_from_adj(g):
+    g=g.split('；')[0]
+    if g.endswith('な'): return g[:-1]+'に'
+    if g.endswith('い'): return g[:-1]+'く'
+    if g.endswith('の'): return g[:-1]+'に'
+    if g.endswith('的'): return g+'に'
+    if g.endswith(('た','る','う','て')): return g+'ように'
+    return g+'に'
+def _noun_from_adj(g):
+    g=g.split('；')[0]
+    if g.endswith(('い','な')): return g[:-1]+'さ'
+    if g.endswith('の'): return g[:-1]+'であること'
+    return g+'であること'
 def fallback_gloss(w,pos):
-    # derived forms from base entries
-    for suf,rep,kind in (("ly","","adv"),("ily","y","adv"),("ness","","n"),("ment","","n")):
+    # derived forms built from the base entry's gloss
+    for suf,rep in (("ily","y"),("ly",""),("ness",""),("iness","y")):
         if w.endswith(suf) and len(w)>len(suf)+2:
             b=w[:-len(suf)]+rep
             for bb in (b,b+"e"):
-                e=ej_entry(bb)
-                if e:
-                    pp={'adv':'adjective','n':'adjective'}[kind]
-                    if kind=='n': pp='noun'
-                    g=make_gloss(e,pp)
-                    if g and kind=='adv': return g.split('；')[0]+"に" if not g.split('；')[0].endswith(("に","く")) else g.split('；')[0]
-                    if g and kind=='n': return g.split('；')[0]
+                ent=ej_entry(bb)
+                if not ent: continue
+                if suf.endswith("ly"):
+                    g=make_gloss(ent,'adjective')
+                    if g: return _adv_from_adj(g)
+                else:
+                    g=make_gloss(ent,'adjective')
+                    if g: return _noun_from_adj(g)
     return None
 for e in rows:
     w=e['word']; pos=e['pos']; k=(w.lower(),pos)
@@ -228,7 +244,7 @@ for e in rows:
         missing.append((w,pos,g)); 
         if not g: continue
     ent=ej_entry(w,e['variants'])
-    ds=dom_over.get(k) or D.infer(w,pos,ent,w.lower() in tsl,w.lower() in bsl)
+    ds=dom_over.get(k) or D.infer(w,pos,ent,w.lower() in tsl,w.lower() in bsl,first_only=(e['eiken'] in ('5','4','3')))
     eik,toe=e['eiken'],e['toeic']
     if k in lev_over:
         eik=lev_over[k][0]; toe=None if lev_over[k][1] in('null','') else int(lev_over[k][1])
@@ -237,7 +253,7 @@ for x_ in final: pass
 with open(os.path.join(OUT,"build","mismatch.tsv"),"w",encoding="utf-8") as f:
     for w,p,g in mismatch: f.write(f"{w}\t{p}\t{g}\n")
 final.sort(key=lambda x:(EIKEN.index(x['eiken']),x['freq'],x['word']))
-json.dump(final,open(os.path.join(OUT,"vocab.json"),"w",encoding="utf-8"),ensure_ascii=False,indent=0)
+open(os.path.join(OUT,"vocab.json"),"w",encoding="utf-8").write("[\n"+",\n".join(json.dumps(x,ensure_ascii=False) for x in final)+"\n]\n")
 with open(os.path.join(OUT,"build","missing_gloss.txt"),"w",encoding="utf-8") as f:
     for w,p,g in missing: f.write(f"{w}\t{p}\t{g or ''}\n")
 print("entries",len(final),"missing/flagged",len(missing),file=sys.stderr)

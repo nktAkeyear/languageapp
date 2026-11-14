@@ -3,171 +3,171 @@
 1|990|business|We are in receipt of your letter dated ...|…付の書簡を受領しました|We are in receipt of your letter dated May 3.|5月3日付のお手紙を受領しました。|confirmation|office
 1|990|business|Enclosed herewith is ...|同封しております|Enclosed herewith is a copy of the agreement.|契約書の写しを同封しております。|reporting|law
 1|990|business|Pursuant to our agreement, ...|合意に従い|Pursuant to our agreement, we shall deliver by June 1.|合意に従い、6月1日までに納品いたします。|reporting|law
-1|990|business|We wish to draw your attention to ...|…にご注意を促したく存じます|We wish to draw your attention to clause five.|第5条にご注意を促したく存じます。|warning|law
+1|860|business|We wish to draw your attention to ...|…にご注意を促したく存じます|We wish to draw your attention to clause five.|第5条にご注意を促したく存じます。|warning|law
 1|990|business|We hereby reserve the right to ...|…する権利を留保します|We hereby reserve the right to cancel the order.|注文を取り消す権利を留保します。|warning|law
-1|990|business|in the event that ...|万一…の場合|In the event that you cannot attend, please inform us.|万一ご出席できない場合はお知らせください。|condition|meetings
+1|860|business|in the event that ...|万一…の場合|In the event that you cannot attend, please inform us.|万一ご出席できない場合はお知らせください。|condition|meetings
 1|990|business|shall be liable for ...|…の責任を負う|The seller shall be liable for any damage.|売り手はいかなる損害にも責任を負います。|description|law
 1|990|business|shall not be held responsible for ...|…の責任を負わない|The hotel shall not be held responsible for lost items.|ホテルは紛失物の責任を負いません。|warning|law,hotel
 1|990|business|is hereby terminated|ここに終了する|The contract is hereby terminated.|契約はここに終了します。|announcement|law
-1|990|business|a breach of contract|契約違反|Late delivery is a breach of contract.|納品の遅れは契約違反です。|description|law
+pre1|860|business|a breach of contract|契約違反|Late delivery is a breach of contract.|納品の遅れは契約違反です。|description|law
 1|990|business|due diligence|デューデリジェンス(適正評価)|We carried out due diligence before the purchase.|購入前にデューデリジェンスを行いました。|reporting|finance,law
-1|990|business|a non-disclosure agreement|秘密保持契約|Please sign a non-disclosure agreement.|秘密保持契約に署名してください。|instruction|law
+1|860|business|a non-disclosure agreement|秘密保持契約|Please sign a non-disclosure agreement.|秘密保持契約に署名してください。|instruction|law
 1|990|business|a letter of intent|基本合意書|They signed a letter of intent.|彼らは基本合意書に署名しました。|reporting|meetings,law
 1|990|business|a force majeure clause|不可抗力条項|The contract includes a force majeure clause.|契約には不可抗力条項があります。|description|law
-1|990|business|a stakeholder|利害関係者|We must consult every stakeholder.|すべての利害関係者に相談しなければなりません。|description|society
+pre1|860|business|a stakeholder|利害関係者|We must consult every stakeholder.|すべての利害関係者に相談しなければなりません。|description|society
 1|990|business|a fiduciary duty|受託者責任|Directors have a fiduciary duty to shareholders.|取締役は株主に対する受託者責任を負います。|description|law,finance
-1|990|business|a cash flow problem|資金繰りの問題|The firm has a cash flow problem.|その会社は資金繰りに問題があります。|description|finance
-1|990|business|a revenue stream|収益源|Tourism is our main revenue stream.|観光が主な収益源です。|description|finance
-1|990|business|a return on investment|投資利益|We expect a good return on investment.|良い投資利益を期待しています。|prediction|finance
-1|990|business|the bottom line|最終損益・要点|The bottom line is that we lost money.|要するに、損失が出ました。|summarizing|finance
-1|990|business|a fiscal deficit|財政赤字|The town faces a fiscal deficit.|町は財政赤字に直面しています。|description|finance
-1|990|business|downsize|規模を縮小する|The company plans to downsize next year.|会社は来年規模を縮小する予定です。|reporting|hr
-1|990|business|outsource|外注する|We outsource our accounting.|会計を外注しています。|description|office
-1|990|business|a succession plan|後継者計画|The inn has no succession plan.|その旅館には後継者計画がありません。|description|hr
-1|990|business|due for review|見直し時期である|The policy is due for review.|その方針は見直し時期です。|description|law
-1|990|business|on a case-by-case basis|個別に|We handle refunds on a case-by-case basis.|返金は個別に対応します。|description|sales
+pre1|860|business|a cash flow problem|資金繰りの問題|The firm has a cash flow problem.|その会社は資金繰りに問題があります。|description|finance
+pre1|860|business|a revenue stream|収益源|Tourism is our main revenue stream.|観光が主な収益源です。|description|finance
+pre1|860|business|a return on investment|投資利益|We expect a good return on investment.|良い投資利益を期待しています。|prediction|finance
+pre1|860|business|the bottom line|最終損益・要点|The bottom line is that we lost money.|要するに、損失が出ました。|summarizing|finance
+pre1|990|business|a fiscal deficit|財政赤字|The town faces a fiscal deficit.|町は財政赤字に直面しています。|description|finance
+pre1|860|business|downsize|規模を縮小する|The company plans to downsize next year.|会社は来年規模を縮小する予定です。|reporting|hr
+pre1|860|business|outsource|外注する|We outsource our accounting.|会計を外注しています。|description|office
+pre1|990|business|a succession plan|後継者計画|The inn has no succession plan.|その旅館には後継者計画がありません。|description|hr
+2|860|business|due for review|見直し時期である|The policy is due for review.|その方針は見直し時期です。|description|law
+pre1|860|business|on a case-by-case basis|個別に|We handle refunds on a case-by-case basis.|返金は個別に対応します。|description|sales
 1|990|business|at the discretion of ...|…の裁量で|It is at the discretion of the manager.|それはマネージャーの裁量です。|description|office
-1|990|business|subject to approval|承認を条件として|The plan is subject to approval.|計画は承認を条件とします。|condition|office
+pre1|860|business|subject to approval|承認を条件として|The plan is subject to approval.|計画は承認を条件とします。|condition|office
 1|990|business|contingent upon ...|…を条件として|The offer is contingent upon a medical check.|その申し出は健康診断を条件とします。|condition|hr
-1|990|business|we are unable to accommodate ...|…に対応できません|We are unable to accommodate large groups.|大人数の団体には対応できません。|refusal|hotel
+pre1|860|business|we are unable to accommodate ...|…に対応できません|We are unable to accommodate large groups.|大人数の団体には対応できません。|refusal|hotel
 1|990|business|We would be remiss not to ...|…しなければ手落ちになります|We would be remiss not to thank the volunteers.|ボランティアの方々に感謝しなければ手落ちです。|thanks|society
-1|990|business|Kindly ...|…してください(丁寧)|Kindly return the form by Friday.|金曜日までに用紙をご返送ください。|request|office
-1|990|business|Your prompt response would be greatly appreciated.|早急なご返答をいただければ幸甚です|Your prompt response would be greatly appreciated.|早急なご返答をいただければ幸甚です。|request|office
-1|990|business|We take this opportunity to ...|この機会に…いたします|We take this opportunity to thank you for your support.|この機会に日頃のご支援に御礼申し上げます。|thanks|office
-1|990|business|Please accept our heartfelt condolences.|心よりお悔やみ申し上げます|Please accept our heartfelt condolences.|心よりお悔やみ申し上げます。|sympathy|society
-1|990|business|We cordially invite you to ...|謹んでご招待申し上げます|We cordially invite you to the anniversary dinner.|周年記念の晩餐会に謹んでご招待申し上げます。|invitation|society
-1|990|business|R.S.V.P.|ご返事をお願いします|R.S.V.P. by the tenth of June.|6月10日までにご返事をお願いします。|request|society
-1|990|business|a retrospective|回顧展|The museum is holding a retrospective.|美術館は回顧展を開いています。|description|arts
-1|990|business|a cease-and-desist letter|停止要求書|The firm received a cease-and-desist letter.|その会社は停止要求書を受け取りました。|reporting|law
+pre1|860|business|Kindly ...|…してください(丁寧)|Kindly return the form by Friday.|金曜日までに用紙をご返送ください。|request|office
+pre1|860|business|Your prompt response would be greatly appreciated.|早急なご返答をいただければ幸甚です|Your prompt response would be greatly appreciated.|早急なご返答をいただければ幸甚です。|request|office
+pre1|990|business|We take this opportunity to ...|この機会に…いたします|We take this opportunity to thank you for your support.|この機会に日頃のご支援に御礼申し上げます。|thanks|office
+pre1|990|business|Please accept our heartfelt condolences.|心よりお悔やみ申し上げます|Please accept our heartfelt condolences.|心よりお悔やみ申し上げます。|sympathy|society
+pre1|990|business|We cordially invite you to ...|謹んでご招待申し上げます|We cordially invite you to the anniversary dinner.|周年記念の晩餐会に謹んでご招待申し上げます。|invitation|society
+pre1|990|business|R.S.V.P.|ご返事をお願いします|R.S.V.P. by the tenth of June.|6月10日までにご返事をお願いします。|request|society
+pre1|860|business|a retrospective|回顧展|The museum is holding a retrospective.|美術館は回顧展を開いています。|description|arts
+1|-|business|a cease-and-desist letter|停止要求書|The firm received a cease-and-desist letter.|その会社は停止要求書を受け取りました。|reporting|law
 1|990|business|an environmental impact assessment|環境影響評価|An environmental impact assessment is required.|環境影響評価が必要です。|obligation|science,law
 1|990|business|a tender|入札|The town invited tenders for the repairs.|町は修理の入札を募りました。|announcement|law,finance
-1|990|business|a quote|見積もり|Could you send a quote for the work?|作業の見積もりを送ってもらえますか。|request|finance
-1|990|business|a rebate|払戻金|You may be eligible for a rebate.|払戻金を受けられる可能性があります。|description|finance
-1|990|business|a surcharge|追加料金|A surcharge applies on holidays.|祝日は追加料金がかかります。|description|finance
+2|730|business|a quote|見積もり|Could you send a quote for the work?|作業の見積もりを送ってもらえますか。|request|finance
+pre1|860|business|a rebate|払戻金|You may be eligible for a rebate.|払戻金を受けられる可能性があります。|description|finance
+pre1|860|business|a surcharge|追加料金|A surcharge applies on holidays.|祝日は追加料金がかかります。|description|finance
 1|990|collocation|a far-reaching impact|広範囲に及ぶ影響|The decision had a far-reaching impact.|その決定は広範囲に影響を及ぼしました。|description|abstract
 1|990|collocation|a stark contrast|際立った対照|There is a stark contrast between the two villages.|2つの村には際立った対照があります。|contrast|society
-1|990|collocation|a pressing issue|差し迫った問題|Housing is a pressing issue.|住宅は差し迫った問題です。|description|society
-1|990|collocation|a moot point|議論の余地のある点|Whether it helps is a moot point.|それが役立つかは議論の余地があります。|hedging|abstract
-1|990|collocation|a double-edged sword|もろ刃の剣|Tourism is a double-edged sword.|観光はもろ刃の剣です。|opinion|society
-1|990|collocation|widespread support|幅広い支持|The plan has widespread support.|その計画は幅広い支持を得ています。|description|society
-1|990|collocation|public outcry|世論の抗議|There was public outcry over the closure.|閉鎖に対して世論の抗議がありました。|reporting|society
+pre1|860|collocation|a pressing issue|差し迫った問題|Housing is a pressing issue.|住宅は差し迫った問題です。|description|society
+1|-|collocation|a moot point|議論の余地のある点|Whether it helps is a moot point.|それが役立つかは議論の余地があります。|hedging|abstract
+pre1|990|collocation|a double-edged sword|もろ刃の剣|Tourism is a double-edged sword.|観光はもろ刃の剣です。|opinion|society
+pre1|860|collocation|widespread support|幅広い支持|The plan has widespread support.|その計画は幅広い支持を得ています。|description|society
+1|-|collocation|public outcry|世論の抗議|There was public outcry over the closure.|閉鎖に対して世論の抗議がありました。|reporting|society
 1|990|collocation|bring to light|明るみに出す|The inquiry brought the problem to light.|調査で問題が明るみに出ました。|reporting|law
-1|990|collocation|shed light on|解明する|The study sheds light on the cause.|その研究は原因を解明します。|description|science
+pre1|860|collocation|shed light on|解明する|The study sheds light on the cause.|その研究は原因を解明します。|description|science
 1|990|collocation|call into question|疑問を投げかける|The results call the method into question.|結果はその方法に疑問を投げかけます。|opinion|science
 1|990|collocation|set a precedent|前例を作る|The ruling set a precedent.|その判決は前例となりました。|description|law
-1|990|collocation|strike a balance|バランスを取る|We must strike a balance between work and rest.|仕事と休息のバランスを取らなければなりません。|suggestion|society
+pre1|860|collocation|strike a balance|バランスを取る|We must strike a balance between work and rest.|仕事と休息のバランスを取らなければなりません。|suggestion|society
 1|990|collocation|reach a stalemate|行き詰まる|The talks reached a stalemate.|交渉は行き詰まりました。|reporting|meetings
-1|990|collocation|reach a consensus|合意に達する|They reached a consensus on the plan.|彼らは計画で合意に達しました。|reporting|meetings
-1|990|collocation|foster cooperation|協力を促進する|The festival fosters cooperation among villages.|祭りは村同士の協力を促します。|description|society
-1|990|collocation|alleviate poverty|貧困を和らげる|The program aims to alleviate poverty.|その計画は貧困を和らげることを目指します。|description|society
+pre1|860|collocation|reach a consensus|合意に達する|They reached a consensus on the plan.|彼らは計画で合意に達しました。|reporting|meetings
+pre1|860|collocation|foster cooperation|協力を促進する|The festival fosters cooperation among villages.|祭りは村同士の協力を促します。|description|society
+1|-|collocation|alleviate poverty|貧困を和らげる|The program aims to alleviate poverty.|その計画は貧困を和らげることを目指します。|description|society
 1|990|collocation|curb inflation|インフレを抑える|The bank raised rates to curb inflation.|銀行はインフレを抑えるため金利を上げました。|description|finance
-1|990|collocation|stem the tide|流れを食い止める|They tried to stem the tide of young people leaving.|彼らは若者の流出を食い止めようとしました。|description|society
+1|-|collocation|stem the tide|流れを食い止める|They tried to stem the tide of young people leaving.|彼らは若者の流出を食い止めようとしました。|description|society
 1|990|collocation|a vested interest|既得権益|He has a vested interest in the harbor.|彼は港に既得権益があります。|description|society
-1|990|collocation|a bone of contention|論争の種|The new road is a bone of contention.|新しい道路は論争の種です。|description|society
-1|990|collocation|a grey area|あいまいな領域|The rule is a grey area.|その規則はあいまいな領域です。|description|law
-1|990|collocation|a vicious circle|悪循環|Debt and low sales form a vicious circle.|借金と売上不振は悪循環です。|description|finance
+1|-|collocation|a bone of contention|論争の種|The new road is a bone of contention.|新しい道路は論争の種です。|description|society
+pre1|860|collocation|a grey area|あいまいな領域|The rule is a grey area.|その規則はあいまいな領域です。|description|law
+pre1|860|collocation|a vicious circle|悪循環|Debt and low sales form a vicious circle.|借金と売上不振は悪循環です。|description|finance
 1|990|collocation|a pivotal moment|重大な局面|This is a pivotal moment for the town.|今は町にとって重大な局面です。|description|society
-1|990|collocation|a watershed moment|転換点|The bridge was a watershed moment for the island.|橋は島にとって転換点でした。|description|society
-1|990|collocation|a bumper crop|豊作|The farmers had a bumper crop.|農家は豊作でした。|description|farming
-1|990|collocation|a poor harvest|不作|A poor harvest raised rice prices.|不作で米価が上がりました。|cause/effect|farming
-1|990|collocation|fallow land|休耕地|Much of the land lies fallow.|土地の多くが休耕地になっています。|description|farming
-1|990|collocation|a fishing quota|漁獲割当|The fishing quota was cut this year.|今年は漁獲割当が減らされました。|reporting|sea,law
-1|990|collocation|the tide is turning|潮目が変わる|The tide is turning in our favor.|潮目が私たちに有利に変わっています。|description|sea
-1|990|phrasal_verb|abide by|従う|All visitors must abide by the rules.|訪問者は全員規則に従わなければなりません。|obligation|law
-1|990|phrasal_verb|allow for|考慮に入れる|Allow for delays in bad weather.|悪天候での遅れを考慮に入れてください。|instruction|weather
+1|-|collocation|a watershed moment|転換点|The bridge was a watershed moment for the island.|橋は島にとって転換点でした。|description|society
+2|-|collocation|a bumper crop|豊作|The farmers had a bumper crop.|農家は豊作でした。|description|farming
+2|-|collocation|a poor harvest|不作|A poor harvest raised rice prices.|不作で米価が上がりました。|cause/effect|farming
+1|-|collocation|fallow land|休耕地|Much of the land lies fallow.|土地の多くが休耕地になっています。|description|farming
+pre1|-|collocation|a fishing quota|漁獲割当|The fishing quota was cut this year.|今年は漁獲割当が減らされました。|reporting|sea,law
+pre1|-|collocation|the tide is turning|潮目が変わる|The tide is turning in our favor.|潮目が私たちに有利に変わっています。|description|sea
+pre1|990|phrasal_verb|abide by|従う|All visitors must abide by the rules.|訪問者は全員規則に従わなければなりません。|obligation|law
+pre1|860|phrasal_verb|allow for|考慮に入れる|Allow for delays in bad weather.|悪天候での遅れを考慮に入れてください。|instruction|weather
 1|990|phrasal_verb|bank on|当てにする|Don't bank on good weather.|好天を当てにしないで。|warning|weather
-1|990|phrasal_verb|bear out|裏付ける|The data bear out his claim.|データは彼の主張を裏付けます。|reporting|science
-1|990|phrasal_verb|brush up on|復習する|I need to brush up on my English.|英語を復習する必要があります。|obligation|school
+1|-|phrasal_verb|bear out|裏付ける|The data bear out his claim.|データは彼の主張を裏付けます。|reporting|science
+pre1|860|phrasal_verb|brush up on|復習する|I need to brush up on my English.|英語を復習する必要があります。|obligation|school
 1|990|phrasal_verb|clamp down on|取り締まる|The police clamped down on illegal fishing.|警察は違法な漁を取り締まりました。|reporting|law
-1|990|phrasal_verb|cope with|対処する|How do you cope with the stress?|ストレスにどう対処していますか。|inquiry|emotion
-1|990|phrasal_verb|dwell on|くよくよ考える|Don't dwell on the past.|過去にこだわらないで。|suggestion|emotion
+2|730|phrasal_verb|cope with|対処する|How do you cope with the stress?|ストレスにどう対処していますか。|inquiry|emotion
+1|-|phrasal_verb|dwell on|くよくよ考える|Don't dwell on the past.|過去にこだわらないで。|suggestion|emotion
 1|990|phrasal_verb|fend off|撃退する|The wall fends off the waves.|その壁は波を防ぎます。|description|sea
-1|990|phrasal_verb|gloss over|うわべを取り繕う|He glossed over the problem.|彼は問題をうやむやにしました。|reporting|society
-1|990|phrasal_verb|hand down|受け継ぐ|The recipe was handed down for generations.|そのレシピは代々受け継がれてきました。|description|cooking
+1|-|phrasal_verb|gloss over|うわべを取り繕う|He glossed over the problem.|彼は問題をうやむやにしました。|reporting|society
+1|-|phrasal_verb|hand down|受け継ぐ|The recipe was handed down for generations.|そのレシピは代々受け継がれてきました。|description|cooking
 1|990|phrasal_verb|hinge on|…次第である|Everything hinges on the weather.|すべては天気次第です。|description|weather
-1|990|phrasal_verb|hold out for|粘って待つ|They held out for a better price.|彼らは粘ってよりよい価格を待ちました。|negotiation|meetings
-1|990|phrasal_verb|knuckle down|本気で取り組む|We must knuckle down and finish.|本気で取り組んで終わらせなければなりません。|obligation|school
+1|-|phrasal_verb|hold out for|粘って待つ|They held out for a better price.|彼らは粘ってよりよい価格を待ちました。|negotiation|meetings
+1|-|phrasal_verb|knuckle down|本気で取り組む|We must knuckle down and finish.|本気で取り組んで終わらせなければなりません。|obligation|school
 1|990|phrasal_verb|mull over|じっくり考える|I'll mull it over tonight.|今夜じっくり考えます。|hedging|society
-1|990|phrasal_verb|phase out|段階的に廃止する|The shop will phase out plastic bags.|その店はレジ袋を段階的に廃止します。|announcement|shopping
-1|990|phrasal_verb|pore over|熟読する|She pored over the map.|彼女は地図を熟視しました。|description|travel
+pre1|990|phrasal_verb|phase out|段階的に廃止する|The shop will phase out plastic bags.|その店はレジ袋を段階的に廃止します。|announcement|shopping
+1|-|phrasal_verb|pore over|熟読する|She pored over the map.|彼女は地図を熟視しました。|description|travel
 1|990|phrasal_verb|rein in|抑制する|We need to rein in spending.|支出を抑える必要があります。|obligation|finance
-1|990|phrasal_verb|scale back|縮小する|The company scaled back its plans.|会社は計画を縮小しました。|reporting|finance
-1|990|phrasal_verb|smooth over|丸く収める|He tried to smooth things over.|彼は事を丸く収めようとしました。|description|society
-1|990|phrasal_verb|stave off|食い止める|We tried to stave off the closure.|閉鎖を食い止めようとしました。|description|society
-1|990|phrasal_verb|tide over|しのがせる|This money will tide us over.|このお金でしばらくしのげます。|description|money
-1|990|phrasal_verb|weed out|取り除く|They weeded out the weak plans.|彼らは弱い計画を除きました。|description|office
-1|990|idiom|bite the bullet|苦しいのを我慢して実行する|We had to bite the bullet and raise prices.|苦渋の決断で値上げしなければなりませんでした。|description|finance
-1|990|idiom|burn the midnight oil|夜遅くまで働く|He burned the midnight oil to finish.|彼は夜遅くまで働いて仕上げました。|description|office
-1|990|idiom|cut corners|手を抜く|Don't cut corners on safety.|安全で手を抜かないで。|warning|office
-1|990|idiom|face the music|報いを受ける|He had to face the music.|彼は責任を取らなければなりませんでした。|description|society
-1|990|idiom|go the extra mile|余計に努力する|She always goes the extra mile.|彼女はいつも人一倍努力します。|praise|hr
-1|990|idiom|have a lot on one's plate|多くの仕事を抱える|I have a lot on my plate this week.|今週はやることが山積みです。|complaint|office
+pre1|860|phrasal_verb|scale back|縮小する|The company scaled back its plans.|会社は計画を縮小しました。|reporting|finance
+1|-|phrasal_verb|smooth over|丸く収める|He tried to smooth things over.|彼は事を丸く収めようとしました。|description|society
+1|-|phrasal_verb|stave off|食い止める|We tried to stave off the closure.|閉鎖を食い止めようとしました。|description|society
+1|-|phrasal_verb|tide over|しのがせる|This money will tide us over.|このお金でしばらくしのげます。|description|money
+1|-|phrasal_verb|weed out|取り除く|They weeded out the weak plans.|彼らは弱い計画を除きました。|description|office
+pre1|860|idiom|bite the bullet|苦しいのを我慢して実行する|We had to bite the bullet and raise prices.|苦渋の決断で値上げしなければなりませんでした。|description|finance
+1|860|idiom|burn the midnight oil|夜遅くまで働く|He burned the midnight oil to finish.|彼は夜遅くまで働いて仕上げました。|description|office
+pre1|860|idiom|cut corners|手を抜く|Don't cut corners on safety.|安全で手を抜かないで。|warning|office
+1|860|idiom|face the music|報いを受ける|He had to face the music.|彼は責任を取らなければなりませんでした。|description|society
+pre1|860|idiom|go the extra mile|余計に努力する|She always goes the extra mile.|彼女はいつも人一倍努力します。|praise|hr
+1|860|idiom|have a lot on one's plate|多くの仕事を抱える|I have a lot on my plate this week.|今週はやることが山積みです。|complaint|office
 1|990|idiom|jump the gun|早まる|Don't jump the gun. Wait for the results.|早まらないで。結果を待ちましょう。|warning|society
-1|990|idiom|let the cat out of the bag|うっかり秘密を漏らす|He let the cat out of the bag.|彼はうっかり秘密を漏らしました。|reporting|society
-1|990|idiom|miss the boat|機会を逃す|If you wait, you'll miss the boat.|待つと機会を逃しますよ。|warning|society
-1|990|idiom|play it by ear|成り行きに任せる|I don't have a plan. I'll play it by ear.|計画はありません。成り行きに任せます。|hedging|society
-1|990|idiom|pull someone's leg|からかう|You're pulling my leg!|からかっているんでしょう!|reporting|society
-1|990|idiom|rub salt in the wound|傷口に塩を塗る|Don't rub salt in the wound.|傷口に塩を塗らないで。|warning|emotion
-1|990|idiom|spill the beans|秘密を漏らす|Who spilled the beans?|だれが秘密を漏らしたの?|inquiry|society
+pre1|860|idiom|let the cat out of the bag|うっかり秘密を漏らす|He let the cat out of the bag.|彼はうっかり秘密を漏らしました。|reporting|society
+pre1|860|idiom|miss the boat|機会を逃す|If you wait, you'll miss the boat.|待つと機会を逃しますよ。|warning|society
+pre1|860|idiom|play it by ear|成り行きに任せる|I don't have a plan. I'll play it by ear.|計画はありません。成り行きに任せます。|hedging|society
+1|-|idiom|pull someone's leg|からかう|You're pulling my leg!|からかっているんでしょう!|reporting|society
+1|-|idiom|rub salt in the wound|傷口に塩を塗る|Don't rub salt in the wound.|傷口に塩を塗らないで。|warning|emotion
+pre1|860|idiom|spill the beans|秘密を漏らす|Who spilled the beans?|だれが秘密を漏らしたの?|inquiry|society
 1|990|idiom|steal the show|主役を食う|The young singer stole the show.|若い歌手が注目を集めました。|praise|arts
 1|990|idiom|take it with a grain of salt|割り引いて聞く|Take his story with a grain of salt.|彼の話は割り引いて聞いてください。|suggestion|society
-1|990|idiom|the tip of the iceberg|氷山の一角|These cases are only the tip of the iceberg.|これらの事例は氷山の一角にすぎません。|description|society
+pre1|860|idiom|the tip of the iceberg|氷山の一角|These cases are only the tip of the iceberg.|これらの事例は氷山の一角にすぎません。|description|society
 1|990|idiom|throw in the towel|あきらめる|After five years, he threw in the towel.|5年後、彼はあきらめました。|narration|emotion
-1|990|idiom|touch and go|危うい状況|It was touch and go for the boat.|その船は危うい状況でした。|description|sea
+1|-|idiom|touch and go|危うい状況|It was touch and go for the boat.|その船は危うい状況でした。|description|sea
 1|990|idiom|a drop in the bucket|焼け石に水|The money is a drop in the bucket.|そのお金は焼け石に水です。|opinion|money
-1|990|idiom|on the fence|態度を決めかねて|I'm still on the fence.|まだ態度を決めかねています。|hedging|society
-1|990|idiom|add insult to injury|さらに悪化させる|The rain added insult to injury.|雨がさらに追い打ちをかけました。|cause/effect|weather
-1|990|idiom|come rain or shine|晴れても雨でも|The market opens come rain or shine.|市場は晴れても雨でも開きます。|description|weather
-1|990|idiom|the lesser of two evils|二つの悪のうちましな方|It's the lesser of two evils.|それは二つのうちましなほうです。|opinion|abstract
-1|990|idiom|a stone's throw from|すぐ近くに|The inn is a stone's throw from the beach.|宿は浜辺のすぐ近くです。|description|hotel
-1|990|idiom|at the drop of a hat|すぐに|He will help at the drop of a hat.|彼はすぐに助けてくれます。|praise|society
-1|990|idiom|by no means|決して…ない|It is by no means easy.|それは決して簡単ではありません。|emphasis|abstract
-1|990|idiom|for the most part|大部分は|For the most part, the village is quiet.|その村は大部分が静かです。|summarizing|society
-1|990|idiom|in retrospect|振り返ってみると|In retrospect, it was a good choice.|振り返ってみると、いい選択でした。|opinion|abstract
-1|990|idiom|in the grand scheme of things|大局的に見れば|In the grand scheme of things, it's a small loss.|大局的に見れば小さな損失です。|opinion|abstract
-1|990|idiom|to a certain degree|ある程度は|To a certain degree, I agree.|ある程度は賛成です。|hedging|society
+1|860|idiom|on the fence|態度を決めかねて|I'm still on the fence.|まだ態度を決めかねています。|hedging|society
+1|-|idiom|add insult to injury|さらに悪化させる|The rain added insult to injury.|雨がさらに追い打ちをかけました。|cause/effect|weather
+1|-|idiom|come rain or shine|晴れても雨でも|The market opens come rain or shine.|市場は晴れても雨でも開きます。|description|weather
+1|-|idiom|the lesser of two evils|二つの悪のうちましな方|It's the lesser of two evils.|それは二つのうちましなほうです。|opinion|abstract
+1|-|idiom|a stone's throw from|すぐ近くに|The inn is a stone's throw from the beach.|宿は浜辺のすぐ近くです。|description|hotel
+1|-|idiom|at the drop of a hat|すぐに|He will help at the drop of a hat.|彼はすぐに助けてくれます。|praise|society
+pre1|860|idiom|by no means|決して…ない|It is by no means easy.|それは決して簡単ではありません。|emphasis|abstract
+2|860|idiom|for the most part|大部分は|For the most part, the village is quiet.|その村は大部分が静かです。|summarizing|society
+pre1|860|idiom|in retrospect|振り返ってみると|In retrospect, it was a good choice.|振り返ってみると、いい選択でした。|opinion|abstract
+1|860|idiom|in the grand scheme of things|大局的に見れば|In the grand scheme of things, it's a small loss.|大局的に見れば小さな損失です。|opinion|abstract
+2|860|idiom|to a certain degree|ある程度は|To a certain degree, I agree.|ある程度は賛成です。|hedging|society
 1|990|pattern|Not only did he ..., but he also ...|彼は…しただけでなく…も|Not only did he fix the boat, but he also painted it.|彼は船を直しただけでなく、塗装もしました。|addition|sea
-1|990|pattern|Little did I know that ...|…とは思いもしなかった|Little did I know that the shop was closed.|店が閉まっているとは思いもしませんでした。|narration|shopping
-1|990|pattern|Never have I seen ...|…を見たことがない|Never have I seen such a big fish.|こんな大きな魚は見たことがありません。|emphasis|sea
-1|990|pattern|Only then did I realize ...|そのとき初めて…と気づいた|Only then did I realize it was a holiday.|そのとき初めて祝日だと気づきました。|narration|society
+1|-|pattern|Little did I know that ...|…とは思いもしなかった|Little did I know that the shop was closed.|店が閉まっているとは思いもしませんでした。|narration|shopping
+1|-|pattern|Never have I seen ...|…を見たことがない|Never have I seen such a big fish.|こんな大きな魚は見たことがありません。|emphasis|sea
+1|-|pattern|Only then did I realize ...|そのとき初めて…と気づいた|Only then did I realize it was a holiday.|そのとき初めて祝日だと気づきました。|narration|society
 1|990|pattern|Had I known ..., I would have ...|…と知っていたら…した|Had I known, I would have come earlier.|知っていたらもっと早く来たのに。|regret|abstract
 1|990|pattern|Were it not for ...|…がなければ|Were it not for your help, I would have failed.|あなたの助けがなければ失敗していました。|thanks|abstract
 1|990|pattern|Should you need ..., please ...|万一…が必要なら|Should you need help, please call us.|万一お困りの際はお電話ください。|offer|hotel
-1|990|pattern|so ... as to ...|…するほど…|He was so kind as to carry my bags.|彼は親切にもかばんを運んでくれました。|thanks|hotel
-1|990|pattern|be inclined to ...|…しがちだ|I'm inclined to agree.|賛成したい気持ちです。|opinion|society
-1|990|pattern|be reluctant to ...|…したがらない|He is reluctant to sell the house.|彼は家を売りたがりません。|description|housing
+1|-|pattern|so ... as to ...|…するほど…|He was so kind as to carry my bags.|彼は親切にもかばんを運んでくれました。|thanks|hotel
+pre1|990|pattern|be inclined to ...|…しがちだ|I'm inclined to agree.|賛成したい気持ちです。|opinion|society
+pre1|860|pattern|be reluctant to ...|…したがらない|He is reluctant to sell the house.|彼は家を売りたがりません。|description|housing
 1|990|pattern|be prone to ...|…しやすい|The coast is prone to flooding.|その海岸は洪水が起こりやすいです。|description|weather
-1|990|pattern|be apt to ...|…しがちだ|Prices are apt to rise in summer.|夏は価格が上がりがちです。|description|money
-1|990|pattern|be oblivious to ...|…に気づかない|He was oblivious to the danger.|彼は危険に気づいていませんでした。|description|society
+1|-|pattern|be apt to ...|…しがちだ|Prices are apt to rise in summer.|夏は価格が上がりがちです。|description|money
+1|-|pattern|be oblivious to ...|…に気づかない|He was oblivious to the danger.|彼は危険に気づいていませんでした。|description|society
 1|990|pattern|be conducive to ...|…に役立つ|A quiet room is conducive to sleep.|静かな部屋は睡眠によいです。|description|health
-1|990|pattern|be indicative of ...|…を示している|The signs are indicative of a storm.|その兆候は嵐を示しています。|description|weather
-1|990|pattern|be tantamount to ...|…に等しい|Refusing is tantamount to quitting.|断ることは辞めることに等しいです。|opinion|abstract
-1|990|pattern|It is incumbent on you to ...|…するのはあなたの務めだ|It is incumbent on you to inform them.|彼らに知らせるのはあなたの務めです。|obligation|law
-1|990|pattern|What with A and B, ...|AやらBやらで|What with the rain and the wind, we stayed home.|雨やら風やらで家にいました。|cause/effect|weather
+1|-|pattern|be indicative of ...|…を示している|The signs are indicative of a storm.|その兆候は嵐を示しています。|description|weather
+1|-|pattern|be tantamount to ...|…に等しい|Refusing is tantamount to quitting.|断ることは辞めることに等しいです。|opinion|abstract
+1|-|pattern|It is incumbent on you to ...|…するのはあなたの務めだ|It is incumbent on you to inform them.|彼らに知らせるのはあなたの務めです。|obligation|law
+1|-|pattern|What with A and B, ...|AやらBやらで|What with the rain and the wind, we stayed home.|雨やら風やらで家にいました。|cause/effect|weather
 1|990|pattern|If it hadn't been for ..., ...|…がなかったら|If it hadn't been for the storm, we would have arrived.|嵐がなかったら着いていたのに。|regret|weather
-1|990|pattern|I'd have thought that ...|…と思っていたのに|I'd have thought that the shop would be open.|店は開いていると思っていたのに。|hedging|shopping
-1|990|pattern|Suffice it to say that ...|…と言えば十分だ|Suffice it to say that we were not happy.|私たちは不満だったと言えば十分でしょう。|summarizing|abstract
-1|990|pattern|As is often the case, ...|よくあることだが|As is often the case, the fish was cheaper at the harbor.|よくあることだが、魚は港のほうが安かった。|description|sea
-1|990|pattern|so to speak|いわば|He is, so to speak, the town's guardian.|彼はいわば町の守り神です。|clarification|society
-1|990|pattern|needless to say|言うまでもなく|Needless to say, we were delighted.|言うまでもなく、私たちは大喜びでした。|emphasis|emotion
+1|-|pattern|I'd have thought that ...|…と思っていたのに|I'd have thought that the shop would be open.|店は開いていると思っていたのに。|hedging|shopping
+1|-|pattern|Suffice it to say that ...|…と言えば十分だ|Suffice it to say that we were not happy.|私たちは不満だったと言えば十分でしょう。|summarizing|abstract
+pre1|990|pattern|As is often the case, ...|よくあることだが|As is often the case, the fish was cheaper at the harbor.|よくあることだが、魚は港のほうが安かった。|description|sea
+pre1|860|pattern|so to speak|いわば|He is, so to speak, the town's guardian.|彼はいわば町の守り神です。|clarification|society
+2|860|pattern|needless to say|言うまでもなく|Needless to say, we were delighted.|言うまでもなく、私たちは大喜びでした。|emphasis|emotion
 1|990|discourse|albeit|…ではあるが|It was a small, albeit useful, gift.|小さいながらも役に立つ贈り物でした。|concession|abstract
-1|990|discourse|whereas|…である一方|He likes the sea, whereas she likes the hills.|彼は海が好きだが、彼女は丘が好きです。|contrast|nature
+2|860|discourse|whereas|…である一方|He likes the sea, whereas she likes the hills.|彼は海が好きだが、彼女は丘が好きです。|contrast|nature
 1|990|discourse|insofar as ...|…である限りにおいて|Insofar as I know, he is honest.|私の知る限り、彼は正直です。|hedging|abstract
-1|990|discourse|inasmuch as ...|…であるから|Inasmuch as it was free, I took one.|無料だったので一つ取りました。|cause/effect|shopping
+1|-|discourse|inasmuch as ...|…であるから|Inasmuch as it was free, I took one.|無料だったので一つ取りました。|cause/effect|shopping
 1|990|discourse|henceforth|今後は|Henceforth, the shop will open at eight.|今後、店は8時に開きます。|announcement|shopping
 1|990|discourse|thereby|それによって|The wall rose, thereby reducing floods.|壁が上がり、それによって洪水が減りました。|cause/effect|nature
 1|990|discourse|whereby|それによって|They set up a system whereby fish are shared.|彼らは魚を分け合う仕組みを作りました。|description|sea
-1|990|discourse|notwithstanding that|…にもかかわらず|Notwithstanding that it rained, we sailed.|雨にもかかわらず出航しました。|concession|sea
+1|-|discourse|notwithstanding that|…にもかかわらず|Notwithstanding that it rained, we sailed.|雨にもかかわらず出航しました。|concession|sea
 1|990|discourse|to this end|この目的で|To this end, we will hold a meeting.|この目的のため、会議を開きます。|cause/effect|meetings
 1|990|discourse|by the same token|同じ理由で|By the same token, small shops need help.|同じ理由で小さな店も支援が必要です。|addition|shopping
-1|990|discourse|for all that|それにもかかわらず|For all that, the trip was good.|それにもかかわらず旅はよかったです。|concession|travel
-1|990|discourse|in a nutshell|要するに|In a nutshell, we need more help.|要するに、もっと助けが必要です。|summarizing|meetings
+1|-|discourse|for all that|それにもかかわらず|For all that, the trip was good.|それにもかかわらず旅はよかったです。|concession|travel
+pre1|860|discourse|in a nutshell|要するに|In a nutshell, we need more help.|要するに、もっと助けが必要です。|summarizing|meetings
 1|990|discourse|on balance|総合的に見て|On balance, the plan is a good one.|総合的に見て、いい計画です。|summarizing|abstract
 1|990|discourse|be that as it may|それはそうとして|Be that as it may, we must go on.|それはそうとして、続けなければなりません。|concession|abstract
-1|990|formula|Pardon my French.|下品な言葉をお許しください|Pardon my French, but that was awful.|下品ですが、ひどいものでした。|apology|society
-1|990|formula|I stand corrected.|ご指摘のとおりでした|You're right. I stand corrected.|おっしゃるとおりです。訂正します。|agreement|society
-1|990|formula|I couldn't have said it better myself.|私が言いたかったことそのままです|I couldn't have said it better myself.|まったく同感です。|agreement|society
-1|990|formula|Far be it from me to ...|私が…するなどとんでもない|Far be it from me to complain, but it's cold.|文句を言うつもりはないのですが、寒いです。|hedging|society
-1|990|formula|If you'll excuse me, ...|失礼ですが|If you'll excuse me, I have to go.|失礼ですが、行かなければなりません。|farewell|society
-1|990|formula|I beg your pardon?|何とおっしゃいましたか(丁寧)|I beg your pardon? I didn't catch that.|恐れ入りますが、聞き取れませんでした。|clarification|society
-1|990|formula|It's been an honor.|光栄でした|It's been an honor to work with you.|ご一緒できて光栄でした。|farewell|office
+1|-|formula|Pardon my French.|下品な言葉をお許しください|Pardon my French, but that was awful.|下品ですが、ひどいものでした。|apology|society
+1|860|formula|I stand corrected.|ご指摘のとおりでした|You're right. I stand corrected.|おっしゃるとおりです。訂正します。|agreement|society
+1|860|formula|I couldn't have said it better myself.|私が言いたかったことそのままです|I couldn't have said it better myself.|まったく同感です。|agreement|society
+1|-|formula|Far be it from me to ...|私が…するなどとんでもない|Far be it from me to complain, but it's cold.|文句を言うつもりはないのですが、寒いです。|hedging|society
+1|860|formula|If you'll excuse me, ...|失礼ですが|If you'll excuse me, I have to go.|失礼ですが、行かなければなりません。|farewell|society
+2|600|formula|I beg your pardon?|何とおっしゃいましたか(丁寧)|I beg your pardon? I didn't catch that.|恐れ入りますが、聞き取れませんでした。|clarification|society
+pre1|860|formula|It's been an honor.|光栄でした|It's been an honor to work with you.|ご一緒できて光栄でした。|farewell|office

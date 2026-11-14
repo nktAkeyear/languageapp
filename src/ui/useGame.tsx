@@ -26,12 +26,16 @@ import { storySync } from '../story/engine';
 import { difficultyOnRetry, difficultyOrderTime } from '../core/difficulty';
 import { currentOrder } from '../activities/shop/engine';
 import { applyBrewAction, emptyBrew, portionLimit, type BrewAction } from './brewing';
+import * as jobs from '../jobs/engine';
+import type { TaskAnswer } from '../jobs/types';
+import { withLists } from '../curriculum/apply';
 
 const dataCache = new Map<Lang, GameData>();
 export function gameData(lang: Lang): GameData {
   let d = dataCache.get(lang);
   if (!d) {
-    d = buildGameData(CONTENT[lang], SHARED);
+    // en: the lexicon reconciled with the compiled lists (data/english), when they are loaded.
+    d = buildGameData(withLists(CONTENT[lang]), SHARED);
     dataCache.set(lang, d);
   }
   return d;
@@ -110,6 +114,20 @@ export interface GameApi {
     knock(n: number): void;
     handOver(to: { person?: PersonId; absent?: AbsentAction }): void;
   };
+  /** Jobs (src/jobs/engine.ts): the town, the job board, shifts. */
+  jobs: {
+    view: 'teahouse' | 'hub' | 'job';
+    /** Work at a job for the current part of the day; returns a Japanese reason when not possible. */
+    choose(id: string): string | null;
+    /** The tea house closed with part of the day left: out into the town. */
+    toTown(): void;
+    begin(): void;
+    submit(a: TaskAnswer, late?: boolean): void;
+    next(): void;
+    leave(): void;
+    setTimed(on: boolean): void;
+    last: jobs.SubmitOutcome | null;
+  };
 }
 
 const Ctx = createContext<GameApi | null>(null);
@@ -138,6 +156,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
   const [lastServe, setLastServe] = useState<ServeOutcome | null>(null);
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
   const [lastDay, setLastDay] = useState<DaySnapshot | null>(null);
+  const [lastJob, setLastJob] = useState<jobs.SubmitOutcome | null>(null);
   const saveRef = useRef(save);
   saveRef.current = save;
   // Retry assist: the state just before the last cup (memory only), and when the current order appeared.
@@ -269,9 +288,11 @@ export function GameProvider({ children }: { children: ReactNode }) {
             returning: progress.returns.length,
           });
         withProgress((p, d) => {
+          jobs.jobsCloseDay(d, p); // jobs: a tea house not worked today stays closed
           endTownDay(p, d);
           if (!p.townDay) startTownDay(d, p, rng());
         });
+        setLastJob(null);
         setBrew(emptyBrew());
         setLastServe(null);
       },
@@ -345,6 +366,38 @@ export function GameProvider({ children }: { children: ReactNode }) {
         cancel: () => withProgress((p) => market.cancelPurchase(p)),
         finish: () => withProgress((p, d) => market.finishMarket(d, p)),
       },
+      jobs: {
+        view: progress ? jobs.jobView(progress) : 'teahouse',
+        last: lastJob,
+        choose: (id) => {
+          let why: string | null = null;
+          withProgressNoRetry((p, d) => {
+            why = jobs.chooseJob(d, p, id, rng());
+          });
+          setBrew(emptyBrew());
+          setLastServe(null);
+          setLastJob(null);
+          return why;
+        },
+        toTown: () => withProgressNoRetry((p) => jobs.teaToTown(p)),
+        begin: () => withProgressNoRetry((p, d) => jobs.beginShift(d, p)),
+        submit: (a, late) => {
+          const box: { out: jobs.SubmitOutcome | null } = { out: null };
+          withProgressNoRetry((p, d) => {
+            box.out = jobs.submitTask(d, p, a, rng(), late);
+          });
+          setLastJob(box.out);
+        },
+        next: () => {
+          withProgressNoRetry((p, d) => jobs.nextTask(d, p));
+          setLastJob(null);
+        },
+        leave: () => {
+          withProgressNoRetry((p) => jobs.leaveShift(p));
+          setLastJob(null);
+        },
+        setTimed: (on) => withProgressNoRetry((p) => void (jobs.jobsState(p).timed = on)),
+      },
       delivery: {
         choosePlace: (id) => withProgress((p) => delivery.choosePlace(p, id)),
         chooseHour: (h) => withProgress((p) => delivery.chooseHour(p, h)),
@@ -357,7 +410,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
           }),
       },
     };
-  }, [save, lang, data, progress, brew, lastServe, selectedWord, lastDay, mutate]);
+  }, [save, lang, data, progress, brew, lastServe, selectedWord, lastDay, lastJob, mutate]);
 
   return <Ctx.Provider value={api}>{children}</Ctx.Provider>;
 }

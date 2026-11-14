@@ -3,7 +3,7 @@
 5|400|formula|Good morning.|おはようございます|Good morning, Mr. Sato.|おはようございます、佐藤さん。|greeting|society
 5|400|formula|Good afternoon.|こんにちは(午後)|Good afternoon. Welcome to our shop.|こんにちは。ようこそ当店へ。|greeting|shopping
 5|400|formula|Good evening.|こんばんは|Good evening. Do you have a reservation?|こんばんは。ご予約はありますか。|greeting|hotel
-5|400|formula|Good night.|おやすみなさい|Good night, Mom.|おやすみ、お母さん。|farewell|family
+5|-|formula|Good night.|おやすみなさい|Good night, Mom.|おやすみ、お母さん。|farewell|family
 5|400|formula|Goodbye.|さようなら|Goodbye. See you tomorrow.|さようなら。また明日。|farewell|society
 5|400|formula|See you.|またね|See you at the harbor.|港でね。|farewell|society
 5|400|formula|See you tomorrow.|また明日|Thank you for your help. See you tomorrow.|手伝ってくれてありがとう。また明日。|farewell|school
@@ -27,14 +27,14 @@
 5|400|formula|Welcome.|ようこそ|Welcome to our town.|私たちの町へようこそ。|greeting|travel
 5|400|formula|Come in.|お入りください|Come in. It's cold outside.|お入りください。外は寒いです。|invitation|housing
 5|400|formula|Sit down, please.|おかけください|Sit down, please. The doctor is coming.|おかけください。先生が来ます。|instruction|health
-5|400|formula|Stand up, please.|立ってください|Stand up, please, everyone.|みなさん、立ってください。|instruction|school
-5|400|formula|Open your book.|本を開いて|Open your book to page ten.|本の10ページを開いてください。|instruction|school
+5|-|formula|Stand up, please.|立ってください|Stand up, please, everyone.|みなさん、立ってください。|instruction|school
+5|-|formula|Open your book.|本を開いて|Open your book to page ten.|本の10ページを開いてください。|instruction|school
 5|400|formula|Look at this.|これを見て|Look at this fish. It's big!|この魚を見て。大きい!|instruction|sea
 5|400|formula|Listen to me.|私の話を聞いて|Listen to me, please.|私の話を聞いてください。|instruction|school
 5|400|formula|Wait a minute.|ちょっと待って|Wait a minute. I'll get it.|ちょっと待って。取ってきます。|request|society
 5|400|formula|Let's go.|行こう|Let's go to the beach.|浜辺へ行こう。|suggestion|sea
-5|400|formula|Let's play.|遊ぼう|Let's play soccer after school.|放課後サッカーをしよう。|suggestion|school
-5|400|formula|Let's eat.|食べよう|Dinner is ready. Let's eat.|夕食ができたよ。食べよう。|suggestion|food
+5|-|formula|Let's play.|遊ぼう|Let's play soccer after school.|放課後サッカーをしよう。|suggestion|school
+5|-|formula|Let's eat.|食べよう|Dinner is ready. Let's eat.|夕食ができたよ。食べよう。|suggestion|food
 5|400|formula|Can I help you?|いらっしゃいませ・何かご用ですか|Can I help you? — Yes, I want a hat.|いらっしゃいませ。—はい、帽子がほしいです。|offer|shopping
 5|400|formula|What's your name?|お名前は?|What's your name? — I'm Aya.|お名前は?—アヤです。|inquiry|society
 5|400|formula|My name is ...|私の名前は…です|My name is Tom. I'm from Canada.|私の名前はトムです。カナダ出身です。|introduction|society
@@ -63,13 +63,13 @@
 5|400|formula|OK.|いいですよ|OK. Let's go.|いいよ。行こう。|agreement|society
 5|400|formula|Great!|すごい!|Great! You're a good singer.|すごい!歌が上手ですね。|praise|emotion
 5|400|formula|Good job.|よくやったね|Good job, Ken!|よくやった、ケン!|praise|school
-5|400|formula|Happy birthday!|誕生日おめでとう|Happy birthday, Mom!|お母さん、誕生日おめでとう!|congratulation|family
-5|400|formula|Merry Christmas!|メリークリスマス|Merry Christmas! This is for you.|メリークリスマス!これをどうぞ。|congratulation|family
-5|400|formula|Happy New Year!|新年おめでとう|Happy New Year! See you this year.|あけましておめでとう。今年もよろしく。|congratulation|family
+5|-|formula|Happy birthday!|誕生日おめでとう|Happy birthday, Mom!|お母さん、誕生日おめでとう!|congratulation|family
+5|-|formula|Merry Christmas!|メリークリスマス|Merry Christmas! This is for you.|メリークリスマス!これをどうぞ。|congratulation|family
+5|-|formula|Happy New Year!|新年おめでとう|Happy New Year! See you this year.|あけましておめでとう。今年もよろしく。|congratulation|family
 5|400|formula|Have a nice day.|よい一日を|Thank you. Have a nice day.|ありがとう。よい一日を。|farewell|shopping
 5|400|formula|Have a good time.|楽しんで|Have a good time at the festival.|お祭りを楽しんでね。|farewell|arts
 5|400|formula|Take care.|気をつけて|Take care. It's dark.|気をつけて。暗いよ。|farewell|health
-5|400|formula|Me, please.|私にお願いします|Who wants tea? — Me, please.|だれかお茶いる?—私にお願いします。|offer|food
+5|-|formula|Me, please.|私にお願いします|Who wants tea? — Me, please.|だれかお茶いる?—私にお願いします。|offer|food
 5|400|formula|I'm hungry.|おなかがすきました|I'm hungry. Let's eat lunch.|おなかがすいた。昼ごはんを食べよう。|description|food,body
 5|400|formula|I'm thirsty.|のどがかわきました|I'm thirsty. Water, please.|のどがかわいた。水をください。|description|food,body
 5|400|formula|I'm tired.|疲れました|I'm tired. I want to sleep.|疲れた。寝たい。|description|body
@@ -91,7 +91,7 @@
 5|400|formula|Where are you going?|どこへ行くの?|Where are you going? — To the market.|どこへ行くの?—市場へ。|inquiry|society
 5|400|formula|What's this?|これは何ですか|What's this? — It's a shell.|これは何?—貝殻です。|inquiry|sea
 5|400|formula|Who is that?|あれはだれですか|Who is that man? — He is my uncle.|あの男の人はだれ?—おじです。|inquiry|family
-5|400|formula|Whose bag is this?|これはだれのかばん?|Whose bag is this? — It's mine.|これはだれのかばん?—私のです。|inquiry|clothing
+5|-|formula|Whose bag is this?|これはだれのかばん?|Whose bag is this? — It's mine.|これはだれのかばん?—私のです。|inquiry|clothing
 5|400|formula|Go straight.|まっすぐ行って|Go straight and turn left.|まっすぐ行って左に曲がってください。|directions|transport
 5|400|formula|Turn left.|左に曲がって|Turn left at the bank.|銀行で左に曲がってください。|directions|transport
 5|400|formula|Turn right.|右に曲がって|Turn right at the school.|学校で右に曲がってください。|directions|transport
@@ -115,10 +115,10 @@
 5|400|formula|It's fine today.|今日は晴れています|It's fine today. Let's go out.|今日は晴れだ。出かけよう。|description|weather
 5|400|formula|How's the weather?|天気はどうですか|How's the weather? — It's rainy.|天気はどう?—雨です。|inquiry|weather
 5|400|formula|Time to go.|行く時間です|It's seven. Time to go to school.|7時。学校へ行く時間です。|scheduling|school
-5|400|formula|Time for bed.|寝る時間です|Time for bed, Yuki.|ユキ、寝る時間よ。|instruction|family
+5|-|formula|Time for bed.|寝る時間です|Time for bed, Yuki.|ユキ、寝る時間よ。|instruction|family
 5|400|formula|Let's have lunch.|昼ごはんを食べよう|It's noon. Let's have lunch.|正午だ。昼ごはんを食べよう。|suggestion|food
-5|400|formula|I'm home.|ただいま|I'm home, Mom.|ただいま、お母さん。|greeting|family
-5|400|formula|Welcome home.|おかえりなさい|Welcome home. Dinner is ready.|おかえり。夕食ができているよ。|greeting|family
+5|-|formula|I'm home.|ただいま|I'm home, Mom.|ただいま、お母さん。|greeting|family
+5|-|formula|Welcome home.|おかえりなさい|Welcome home. Dinner is ready.|おかえり。夕食ができているよ。|greeting|family
 5|400|formula|Help!|助けて!|Help! My boat is sinking!|助けて!ボートが沈む!|warning|sea
 5|400|formula|Here we are.|着きましたよ|Here we are. This is the station.|着きました。ここが駅です。|directions|transport
 5|400|pattern|This is a ...|これは…です|This is a pen.|これはペンです。|description|school
@@ -133,15 +133,15 @@
 5|400|pattern|on Monday|月曜日に|The shop is closed on Monday.|店は月曜日が休みです。|scheduling|shopping
 5|400|pattern|in the morning|朝に|I walk in the morning.|朝に散歩します。|scheduling|health
 5|400|collocation|go to school|学校へ行く|I go to school at eight.|8時に学校へ行きます。|description|school
-5|400|collocation|play soccer|サッカーをする|I play soccer on Sunday.|日曜日にサッカーをします。|description|school
-5|400|collocation|play the piano|ピアノを弾く|My sister plays the piano.|妹はピアノを弾きます。|description|arts
+5|-|collocation|play soccer|サッカーをする|I play soccer on Sunday.|日曜日にサッカーをします。|description|school
+5|-|collocation|play the piano|ピアノを弾く|My sister plays the piano.|妹はピアノを弾きます。|description|arts
 5|400|collocation|watch TV|テレビを見る|We watch TV after dinner.|夕食のあとテレビを見ます。|description|media
-5|400|collocation|do my homework|宿題をする|I do my homework after school.|放課後に宿題をします。|description|school
-5|400|collocation|go to bed|寝る|I go to bed at ten.|10時に寝ます。|description|body
+5|-|collocation|do my homework|宿題をする|I do my homework after school.|放課後に宿題をします。|description|school
+5|-|collocation|go to bed|寝る|I go to bed at ten.|10時に寝ます。|description|body
 5|400|collocation|eat breakfast|朝ごはんを食べる|We eat breakfast at seven.|7時に朝ごはんを食べます。|description|food
-5|400|collocation|take a bath|おふろに入る|I take a bath every night.|毎晩おふろに入ります。|description|housing
+5|-|collocation|take a bath|おふろに入る|I take a bath every night.|毎晩おふろに入ります。|description|housing
 5|400|collocation|wash my hands|手を洗う|Wash your hands before lunch.|昼ごはんの前に手を洗って。|instruction|health
-5|400|collocation|brush my teeth|歯をみがく|I brush my teeth after meals.|食後に歯をみがきます。|description|health,body
+5|-|collocation|brush my teeth|歯をみがく|I brush my teeth after meals.|食後に歯をみがきます。|description|health,body
 5|400|collocation|speak English|英語を話す|Can you speak English?|英語を話せますか。|ability|school
 5|400|collocation|read a book|本を読む|I read a book every day.|毎日本を読みます。|description|school
 5|400|collocation|listen to music|音楽を聞く|I listen to music at night.|夜に音楽を聞きます。|description|arts

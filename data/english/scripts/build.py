@@ -37,13 +37,7 @@ def build_phrases():
             if len(p) > 9 and p[9].strip():
                 d["notes"] = p[9].strip()
             items.append(d)
-    # TOEIC-band spreading rule (documented in PHRASES.md): the source files give a first-pass band;
-    # lexical/idiomatic items of a grade are tested a band lower than the grade's business/formula items.
-    for d in items:
-        if d["eiken"] == "3" and d["toeic"] == 400 and d["type"] in ("phrasal_verb", "idiom", "discourse", "pattern"):
-            d["toeic"] = 500
-        if d["eiken"] == "2" and d["toeic"] == 730 and d["type"] in ("phrasal_verb", "idiom", "collocation", "discourse"):
-            d["toeic"] = 600
+    # TOEIC bands are assigned item by item in the source files (no mechanical adjustment here).
     items.sort(key=lambda d: ORDER.index(d["eiken"]))  # stable: keeps file order within grade
     counters = {}
     out = []

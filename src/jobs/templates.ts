@@ -296,16 +296,22 @@ function buildSort(ctx: GenCtx, t: TaskTemplate & SortTemplate): Built | null {
   if (!bench) return null;
   const extra = ctx.feats.has('long') ? 1 : 0;
   const n = t.count[0] + Math.floor(ctx.rng() * (t.count[1] - t.count[0] + 1)) + extra;
+  const max = maxOf(ctx, t.level);
+  // Bins whose labels are within the rank's level.
+  const binOk = (b: string) => {
+    const def = bench.bins.find((x) => x.id === b);
+    return !!def && tokenIds(ctx.data.tokens(`${def.label} ${def.ref}`)).every((id) => levelOk(ctx.data, id, max));
+  };
+  const allowed = t.bins.filter(binOk);
   const items: { id: string; text: string; thing?: string; bin: string }[] = [];
   const seen = new Set<string>();
-  const max = maxOf(ctx, t.level);
   for (let tries = 0; items.length < n && tries < n * 12; tries++) {
     const pat = pick(ctx.rng, t.patterns);
     const values: Record<string, string> = {};
     let bin: string | undefined;
     let thing: string | undefined;
     if (pat.text.includes('{thing}') || pat.text.includes('{Thing}')) {
-      const cands = ctx.jc.things.filter((x) => x.bin && t.bins.includes(x.bin) && (!pat.tags?.length || pat.tags.some((g) => x.tags?.includes(g))) && levelOk(ctx.data, x.word, max));
+      const cands = ctx.jc.things.filter((x) => x.bin && allowed.includes(x.bin) && (!pat.tags?.length || pat.tags.some((g) => x.tags?.includes(g))) && levelOk(ctx.data, x.word, max));
       if (!cands.length) continue;
       const th = pick(ctx.rng, cands);
       values.thing = thingName(ctx.data, th);
@@ -313,22 +319,33 @@ function buildSort(ctx: GenCtx, t: TaskTemplate & SortTemplate): Built | null {
       thing = th.id;
     }
     if (pat.text.includes('{bin}') || pat.text.includes('{Bin}')) {
-      const b = pick(ctx.rng, pat.bins ?? t.bins);
-      const def = bench.bins.find((x) => x.id === b);
-      if (!def) continue;
-      values.bin = def.ref;
+      const pool = (pat.bins ?? allowed).filter((b) => allowed.includes(b));
+      if (!pool.length) continue;
+      const b = pick(ctx.rng, pool);
+      values.bin = bench.bins.find((x) => x.id === b)!.ref;
       bin = b;
+    }
+    if (pat.text.includes('{num}')) values.num = String(1 + Math.floor(ctx.rng() * 40));
+    if (!bin && pat.bins?.length) {
+      const pool = pat.bins.filter((b) => allowed.includes(b));
+      if (!pool.length) continue;
+      bin = pick(ctx.rng, pool);
     }
     if (pat.text.includes('{name}') || pat.text.includes('{Name}')) values.name = personName(ctx.data, ctx.jc, pick(ctx.rng, clientPeople(ctx)));
     if (!bin) continue;
     const text = fill(pat.text, values);
     if (!text || seen.has(text)) continue;
+    if (!tokenIds(ctx.data.tokens(text)).every((id) => levelOk(ctx.data, id, max))) continue;
     seen.add(text);
     items.push({ id: `i${items.length + 1}`, text: capitalizeFirst(text), thing, bin });
   }
   if (items.length < Math.min(n, 2)) return null;
-  if (new Set(items.map((i) => i.bin)).size < 2) return null;
-  return { say: fillSay(t.say, {}) ?? '', spec: { arch: 'sort', bins: [...t.bins], items: shuffle(ctx.rng, items) } };
+  const used = [...new Set(items.map((i) => i.bin))];
+  if (used.length < 2) return null;
+  // The cabinet: the bins the letters need plus one or two others (at most 6), in the template's order.
+  const others = shuffle(ctx.rng, allowed.filter((b) => !used.includes(b))).slice(0, Math.max(0, Math.min(2, 6 - used.length)));
+  const bins = allowed.filter((b) => used.includes(b) || others.includes(b));
+  return { say: fillSay(t.say, {}) ?? '', spec: { arch: 'sort', bins, items: shuffle(ctx.rng, items) } };
 }
 
 function buildCheck(ctx: GenCtx, t: TaskTemplate & CheckTemplate): Built | null {

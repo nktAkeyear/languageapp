@@ -12,6 +12,7 @@ import type { IssueKind, LanguageContent, OrderRule, ReactionKind, SharedContent
 import { validateTownLanguage, validateTownShared } from './validateTown';
 import { validateStoryLanguage, validateStoryShared } from '../story/validate';
 import { validateRenovationLanguage, validateRenovationShared } from '../renovation/validate';
+import { validateJobsLanguage } from '../jobs/validate';
 
 export interface ValidationReport {
   errors: string[];
@@ -284,6 +285,7 @@ export function validateLanguage(content: LanguageContent, shared: SharedContent
   const townStats = validateTownLanguage(data, { err, warn, checkText, lexRef });
   const storyStats = validateStoryLanguage(data, { err, warn, checkText, lexRef });
   const renoStats = validateRenovationLanguage(data, { err, warn, checkText });
+  const jobStats = validateJobsLanguage(data, { err, warn, checkText, lexRef });
 
   // --- reachability: every word must be encounterable, or its 検証ページ never opens
   for (const e of content.lexicon) if (!reachable.has(e.id)) err(`lexicon ${e.id} («${e.text}») never appears in any content text`);
@@ -302,6 +304,7 @@ export function validateLanguage(content: LanguageContent, shared: SharedContent
       ...townStats,
       ...storyStats,
       ...renoStats,
+      ...jobStats,
     },
   };
 }

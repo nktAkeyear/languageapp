@@ -36,7 +36,7 @@ def sense_class(raw):
 def _terms(sense):
     """Return list of key terms (strings) for a sense."""
     s=_clean_noise(sense)
-    keys=[x for k in re.findall(r"『([^』]+)』",s) for x in re.split(r"[,、]",k)]
+    keys=[x for k in re.findall(r"『([^』]+)』",s) for x in re.split(r"[,、]|(?<![ァ-ヶー])・|・(?![ァ-ヶー])",k)]
     base=s
     base=re.sub(r"〈[^〉]*〉","",base)
     if keys:
@@ -50,10 +50,12 @@ def _terms(sense):
         b=BRK.sub("",base)
         b=re.sub(r"[『』]","",b)
         b=re.split(r"[:：]",b)[0]
-        terms=[t.strip() for t in re.split(r"[,;、]",b) if t.strip()]
+        terms=[t.strip() for t in re.split(r"[,;、]|(?<![ァ-ヶー])・|・(?![ァ-ヶー])",b) if t.strip()]
     res=[]
     for t in terms:
-        t=re.sub(r"^…[をにがとへで]\s*","",t)
+        t=re.sub(r"^…(?:[をがとへで]|に(?!も))\s*","",t)
+        t=t.lstrip("…")
+        t=re.sub(r"^{[^}]*}","",t)
         t=re.sub(r"^を(?=[ぁ-んァ-ヶ一-龥])","",t)
         t=t.strip("…・ ").strip()
         t=re.sub(r"^[をにがと](?=[^\s])","",t) if False else t
@@ -62,7 +64,16 @@ def _terms(sense):
         if t and len(t)<=18: res.append(t)
     return res
 LAST_MATCH=[True]
-def make_gloss(entry, pos, maxlen=26, want=3):
+VERBISH=re.compile(r"[ぁ-ん][るうくぐすつぬぶむ]$")
+def good_term(t,pos):
+    if t.startswith(("の過去","過去","形","動")) and len(t)<=8 and "分詞" in t or t.startswith("の過去"): return False
+    if "." in t or "．" in t: return False
+    if "=" in t or t.strip() in ("の","を","に","が","で","と") or len(t)<2 and not re.search(r"[一-龥]",t): return False
+    if re.search(r"[)）(（《》〈〉『』]",t): return False
+    if re.fullmatch(r"[A-Za-z .'\-]+",t): return False
+    if pos=='noun' and VERBISH.search(t) and not t.endswith(("ある","いる")): return False
+    return True
+def make_gloss(entry, pos, maxlen=26, want=3, strict=True):
     LAST_MATCH[0]=True
     if entry is None: return None
     senses=split_senses(entry)
@@ -76,6 +87,7 @@ def make_gloss(entry, pos, maxlen=26, want=3):
     out=[]
     for s in pick[:4]:
         ts=_terms(s)
+        ts=[t for t in ts if (good_term(t,pos) if strict else True)]
         if not ts: continue
         # first sense can contribute 2 terms, others 1
         take=2 if not out else 1
@@ -85,4 +97,5 @@ def make_gloss(entry, pos, maxlen=26, want=3):
     g="；".join(out[:want])
     while len("；".join(out))>maxlen and len(out)>1: out.pop()
     g="；".join(out)
+    if not g and strict: return make_gloss(entry,pos,maxlen,want,strict=False)
     return g or None

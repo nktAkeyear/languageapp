@@ -211,7 +211,7 @@ export function canGoToTown(p: LangProgress): boolean {
  * Before the day ends from the town: a tea house that was not worked today stays closed (its
  * customers come another day; its stage clock holds still for the day).
  */
-export function jobsCloseDay(data: GameData, p: LangProgress): void {
+export function jobsCloseDay(_data: GameData, p: LangProgress): void {
   const d = jobDay(p);
   if (!d) return;
   if (d.tea === 'none' && p.today) {
@@ -503,7 +503,7 @@ function reactionText(data: GameData, jc: JobContent, inst: TaskInstance, ev: Jo
   values.name = personName(data, jc, inst.person);
   const pickFrom = (k: string | undefined) =>
     jc.reactions
-      .filter((r) => r.kind === k && (r.rank ?? 1) <= rank)
+      .filter((r) => r.kind === k && (r.rank ?? 1) <= rank && (!r.arch || r.arch === inst.spec.arch))
       .map((r) => ({ r, text: fill(r.text, values) }))
       .filter((x): x is { r: (typeof jc.reactions)[number]; text: string } => !!x.text);
   let cands = pickFrom(kind);
