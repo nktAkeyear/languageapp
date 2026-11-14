@@ -198,15 +198,15 @@ export function LampGroup({ x, y }: { x: number; y: number }) {
  * bell, lamp flame) and what changes with the time of day, so animation frames never re-run
  * the expensive texture filters.
  */
-export function ShopBackdrop({ sky, closed = false, align = 'xMidYMid' }: { sky: SkyColours; closed?: boolean; align?: string }) {
+export function ShopBackdrop({ sky, closed = false, align = 'xMidYMid', paint = false }: { sky: SkyColours; closed?: boolean; align?: string; paint?: boolean }) {
   const W = STAGE_W;
   const H = STAGE_H;
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio={`${align} slice`} aria-hidden>
-      {/* wall */}
-      <rect x="0" y="0" width={W} height={COUNTER_Y + 10} fill="url(#g-wall)" filter="url(#tx-plaster)" />
+      {/* wall (painted white and blue after the renovation) */}
+      <rect x="0" y="0" width={W} height={COUNTER_Y + 10} fill={paint ? 'url(#g-wall-paint)' : 'url(#g-wall)'} filter="url(#tx-plaster)" />
       {/* wainscot */}
-      <rect x="0" y="440" width={W} height={COUNTER_Y - 430} fill="url(#g-wainscot)" filter="url(#tx-wood-v)" />
+      <rect x="0" y="440" width={W} height={COUNTER_Y - 430} fill={paint ? 'url(#g-wainscot-paint)' : 'url(#g-wainscot)'} filter="url(#tx-wood-v)" />
       <rect x="0" y="432" width={W} height="12" fill="#8e5a2e" stroke="#4a2c12" />
       {Array.from({ length: 16 }, (_, i) => (
         <rect key={i} x={20 + i * 100} y="458" width="80" height="90" rx="3" fill="none" stroke="#3a1f0e" strokeWidth="2" opacity="0.5" />
@@ -249,14 +249,14 @@ export function ShopLive({ sky, ringing, align = 'xMidYMid' }: { sky: SkyColours
 }
 
 /** Phone: the wall strip behind the customer (static textured layer + a small live layer). */
-export function MobileWall({ sky, ringing, closed = false }: { sky: SkyColours; ringing: boolean; closed?: boolean }) {
+export function MobileWall({ sky, ringing, closed = false, paint = false }: { sky: SkyColours; ringing: boolean; closed?: boolean; paint?: boolean }) {
   const W = 400;
   const H = 320;
   return (
     <>
       <svg viewBox={`0 0 ${W} ${H}`} className="backdrop" preserveAspectRatio="xMidYMax slice" aria-hidden>
-        <rect x="0" y="0" width={W} height={H} fill="url(#g-wall)" filter="url(#tx-plaster)" />
-        <rect x="0" y={H - 70} width={W} height="70" fill="url(#g-wainscot)" filter="url(#tx-wood-v)" />
+        <rect x="0" y="0" width={W} height={H} fill={paint ? 'url(#g-wall-paint)' : 'url(#g-wall)'} filter="url(#tx-plaster)" />
+        <rect x="0" y={H - 70} width={W} height="70" fill={paint ? 'url(#g-wainscot-paint)' : 'url(#g-wainscot)'} filter="url(#tx-wood-v)" />
         <rect x="0" y={H - 76} width={W} height="8" fill="#8e5a2e" />
         <rect x="0" y="0" width={W} height="18" fill="url(#g-beam)" />
         <DoorGroup sky={sky} x={34} y={84} w={124} h={H - 84} closed={closed} />

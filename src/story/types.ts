@@ -206,6 +206,8 @@ export interface Ledger {
   day: number;
   takings: number;
   expenses: number;
+  /** Coins spent on the renovation catalogue today (optional: older ledgers have none). */
+  purchases?: number;
   money: number;
   repDelta: number;
   served: number;

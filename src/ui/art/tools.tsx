@@ -4,7 +4,8 @@
  * Each is a standalone SVG; `active` shows the tool in use (steam, flame, sand running…).
  */
 
-export function KettleArt({ active }: { active: boolean }) {
+/** `big`: the big copper kettle from the renovation catalogue (larger, with a brass band). */
+export function KettleArt({ active, big = false }: { active: boolean; big?: boolean }) {
   return (
     <svg viewBox="0 0 160 200" className="tool-art" aria-hidden>
       <ellipse cx="80" cy="192" rx="62" ry="7" fill="#1d0e05" opacity="0.35" />
@@ -16,12 +17,21 @@ export function KettleArt({ active }: { active: boolean }) {
         <rect key={x} x={x} y="150" width="8" height="20" rx="3" fill="#1a1612" />
       ))}
       {/* kettle */}
+      <g transform={big ? 'translate(76 130) scale(1.12) translate(-80 -128)' : undefined}>
       <path d="M118 70 Q150 60 152 40" stroke="url(#g-copper)" strokeWidth="9" fill="none" strokeLinecap="round" />
       <path d="M40 128 Q32 92 48 74 Q80 56 112 74 Q128 92 120 128 Z" fill="url(#g-copper)" stroke="#5a2a10" strokeWidth="2" />
       <path d="M50 84 Q46 104 52 122" stroke="#ffd7a8" strokeWidth="6" opacity="0.4" fill="none" strokeLinecap="round" />
       <ellipse cx="80" cy="72" rx="26" ry="6" fill="#8e4520" stroke="#5a2a10" strokeWidth="2" />
       <circle cx="80" cy="64" r="6" fill="#3a2010" />
       <path d="M52 76 Q80 20 108 76" stroke="#3a2010" strokeWidth="6" fill="none" strokeLinecap="round" />
+      {big ? (
+        <g>
+          <path d="M41 108 Q80 118 119 108" stroke="url(#g-brass)" strokeWidth="5" fill="none" />
+          <path d="M52 76 Q80 20 108 76" stroke="#e8c46a" strokeWidth="2" fill="none" opacity="0.7" />
+          <circle cx="80" cy="64" r="4" fill="url(#g-brass)" />
+        </g>
+      ) : null}
+      </g>
       {active && (
         <g className="steam" fill="none" stroke="#fff" strokeWidth="5" strokeLinecap="round" opacity="0.8">
           <path className="steam-wisp" d="M152 36 q-8 -12 0 -24 q8 -12 0 -24" />
@@ -149,15 +159,6 @@ export function SlopBowlArt({ tipping }: { tipping: boolean }) {
       <path d="M8 24 Q12 64 60 64 Q108 64 112 24 Z" fill="url(#gl-blackglaze)" stroke="#120c08" strokeWidth="2" />
       <ellipse cx="60" cy="24" rx="52" ry="9" fill="#3a2a20" stroke="#120c08" strokeWidth="2" />
       <ellipse cx="60" cy="25" rx="42" ry="6" fill={tipping ? '#b98a50' : '#6a5440'} />
-    </svg>
-  );
-}
-
-export function TongsArt() {
-  return (
-    <svg viewBox="0 0 60 120" className="tool-art" aria-hidden>
-      <path d="M22 6 L14 110 M38 6 L46 110" stroke="url(#g-iron)" strokeWidth="5" strokeLinecap="round" />
-      <path d="M22 6 Q30 0 38 6" stroke="#2f2b28" strokeWidth="5" fill="none" />
     </svg>
   );
 }

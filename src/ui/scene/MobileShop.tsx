@@ -30,18 +30,23 @@ import { useSky } from './ShopScene';
 import { useBench } from './workbench';
 import { useGame } from '../useGame';
 import { DocBoxProp, Keepsakes } from '../story/Documents';
+import { RenoMobileWall } from '../art/reno';
+import { CatalogueButton } from '../reno/CatalogueProp';
+import { useReno } from '../reno/useReno';
 
 export function MobileShop({ onSettings }: { onSettings: () => void }) {
   const b = useBench();
   const sky = useSky();
   const phase = useGame().progress?.today?.phase;
   const [drawer, setDrawer] = useState(true);
+  const reno = useReno();
   const half = Math.ceil(b.shelf.length / 2);
   const rows = b.shelf.length > 6 ? [b.shelf.slice(0, half), b.shelf.slice(half)] : [b.shelf];
   return (
     <div className="m-shop" data-phase={phase} data-stage={b.stage}>
       <section className="m-wall">
-        <MobileWall sky={sky} ringing={b.ringing} />
+        <MobileWall sky={sky} ringing={b.ringing} paint={reno.has('paint')} />
+        <RenoMobileWall owned={reno.owned} fresh={reno.fresh} catAwake={b.stage === 'react'} />
         <div className="lamp-glow m-lamp" style={{ opacity: sky.lamp }} aria-hidden />
         <div className="m-plaque">
           <Plaque />
@@ -72,6 +77,7 @@ export function MobileShop({ onSettings }: { onSettings: () => void }) {
           <div className="m-docbox">
             <DocBoxProp />
           </div>
+          <CatalogueButton className="m-catalogue" />
         </div>
         <div className="m-coinjar">
           <CoinJar />
@@ -116,16 +122,17 @@ export function MobileShop({ onSettings }: { onSettings: () => void }) {
           <div className="m-drawer-scroll">
             {rows.map((r, i) => (
               <div key={i} className="m-drawer-row" role="list">
-                {r.map((ing) => (
-                  <div key={ing} className="m-slot" role="listitem">
-                    <ShelfJar ing={ing} />
-                  </div>
-                ))}
+                {/* the blue cup and the carved ship stand first on the shelf, in view without scrolling */}
                 {i === 0 ? (
                   <div className="m-keepsakes" role="listitem">
                     <Keepsakes />
                   </div>
                 ) : null}
+                {r.map((ing) => (
+                  <div key={ing} className="m-slot" role="listitem">
+                    <ShelfJar ing={ing} />
+                  </div>
+                ))}
               </div>
             ))}
           </div>

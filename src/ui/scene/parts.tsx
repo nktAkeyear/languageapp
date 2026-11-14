@@ -23,6 +23,7 @@ import { useUi } from '../uiState';
 import { useStoryHold } from '../story/StoryUi';
 import { useMobile } from '../layout';
 import { useBench, useBenchOptional } from './workbench';
+import { owns } from '../../renovation/engine';
 
 // ------------------------------------------------------------------------------------- shelf
 
@@ -258,15 +259,16 @@ type ToolKind = { temp: Temp } | { method: Method };
 
 export function ToolButton({ tool, className = '' }: { tool: ToolKind; className?: string }) {
   const b = useBench();
-  const { data } = useGame();
+  const { data, progress } = useGame();
   if (!data) return null;
   const isTemp = 'temp' in tool;
   const on = isTemp ? b.brew.temp === tool.temp : b.brew.method === tool.method;
   const wordId = isTemp ? data.content.temperatureWords[tool.temp] : data.content.methodWords[tool.method];
   const id = isTemp ? tool.temp : tool.method;
+  const big = id === 'hot' && owns(progress, 'kettle'); // renovation: the big copper kettle
   const art =
     id === 'hot' ? (
-      <KettleArt active={on} />
+      <KettleArt active={on} big={big} />
     ) : id === 'cold' ? (
       <ColdBasinArt active={on} />
     ) : id === 'steep' ? (
@@ -399,7 +401,8 @@ export function Bubble() {
   const b = useBench();
   const { lang, settings } = g;
   const voice = useSpeechAvailable(lang ?? 'en');
-  const { order, result, t } = useCustomer();
+  const { order, result, t, customer } = useCustomer();
+  const mobile = useMobile();
   const spokenKey = useRef('');
   // Audio-only orders are read out when the customer arrives.
   useEffect(() => {
@@ -424,6 +427,12 @@ export function Bubble() {
     >
       {reacting ? (
         <>
+          {/* phone: the name card steps aside for the cup in hand, so the bubble says who speaks */}
+          {mobile && customer ? (
+            <div className="bubble-who" lang={lang === 'zh' ? 'zh-CN' : 'en'}>
+              {customer.name}
+            </div>
+          ) : null}
           <div className="bubble-prev">
             <WordText text={order.text} />
           </div>
@@ -575,6 +584,7 @@ export function QueueTickets() {
 
 export function BookProps({ compact = false }: { compact?: boolean }) {
   const ui = useUi();
+  const ribbon = owns(useGame().progress, 'ribbon'); // renovation: the review ribbon
   const glow = ui.newPages.length > 0;
   const prevGlow = useRef(glow);
   useEffect(() => {
@@ -606,7 +616,7 @@ export function BookProps({ compact = false }: { compact?: boolean }) {
         aria-label={glow ? '手帳を開く（新しく検証できるページがある）' : '手帳を開く'}
         data-testid="open-notebook"
       >
-        <NotebookProp glow={glow} />
+        <NotebookProp glow={glow} ribbon={ribbon} />
         <span className="desk-tag">手帳</span>
       </button>
     </>
@@ -725,8 +735,4 @@ export function CornerHooks({ onSettings }: { onSettings: () => void }) {
       </button>
     </div>
   );
-}
-
-export function ContainerFor({ ing }: { ing: IngredientId }) {
-  return <ContainerArt ing={ing} />;
 }

@@ -64,6 +64,16 @@ export function ArtDefs() {
           <stop offset="0" stopColor="#7a4a28" />
           <stop offset="1" stopColor="#5a3218" />
         </linearGradient>
+        {/* the shop after the renovation's paint (white plaster, blue wainscot) */}
+        <linearGradient id="g-wall-paint" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#e4e2da" />
+          <stop offset="0.55" stopColor="#f3f1ea" />
+          <stop offset="1" stopColor="#dcd8cc" />
+        </linearGradient>
+        <linearGradient id="g-wainscot-paint" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#3d6c9e" />
+          <stop offset="1" stopColor="#2a4e78" />
+        </linearGradient>
         <linearGradient id="g-beam" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#4a2a14" />
           <stop offset="1" stopColor="#3a1f0e" />

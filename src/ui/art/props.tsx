@@ -33,7 +33,7 @@ export function RecipeBookProp() {
   );
 }
 
-export function NotebookProp({ glow }: { glow: boolean }) {
+export function NotebookProp({ glow, ribbon = false }: { glow: boolean; ribbon?: boolean }) {
   return (
     <svg viewBox="0 0 180 230" className="prop-art" aria-hidden>
       <ellipse cx="92" cy="218" rx="80" ry="9" fill="#1d0e05" opacity="0.35" />
@@ -51,6 +51,8 @@ export function NotebookProp({ glow }: { glow: boolean }) {
         <path d="M180 187.5 L184 189 L180 190.5 Z" fill="#2a1a10" />
         <rect x="64" y="184" width="8" height="10" fill="#c46a5a" />
       </g>
+      {/* the review ribbon (renovation) hangs out at the bottom */}
+      {ribbon ? <path d="M58 200 L58 228 L64 222 L70 230 L70 200 Z" fill="#c8402a" stroke="#6b1a10" strokeWidth="1.5" /> : null}
       {/* bookmark sticking out when something new is ready */}
       {glow && <path className="nb-bookmark" d="M96 10 L96 -24 L106 -16 L116 -24 L116 10 Z" fill="#c8402a" stroke="#6b1a10" strokeWidth="1.5" />}
     </svg>

@@ -36,6 +36,9 @@ export function DayTransition() {
     if (was.split('|')[0] !== key.split('|')[0]) return; // language switch
     const a = was.split('|')[1];
     const b = key.split('|')[1];
+    // A new chapter opens the morning with its own title card over the harbour: no dawn passage on
+    // top of it (it would hide the card for its first seconds).
+    if (b !== 'night' && p?.story?.cards[0]?.kind === 'chapter') return;
     let next: { kind: Kind; label: string; sub: string; t: number };
     if (b === 'night') next = { kind: 'dusk', label: '夜', sub: '店じまい', t: 1 };
     else if (a === 'night' || a.split(':')[0] !== b.split(':')[0]) next = { kind: 'dawn', label: `${p!.day}日目`, sub: `朝・${seg === 'market' ? '市場へ' : '茶房を開ける'}`, t: 0 };

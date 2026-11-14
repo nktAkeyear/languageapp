@@ -959,6 +959,25 @@
   background: #0e0a10;
   animation: cv-fade 0.8s ease-out both;
 }
+.night-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+}
+.night-shelf {
+  position: absolute;
+  display: grid;
+}
+.night-jar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 4px 6px;
+}
+.night-jar .container-art {
+  width: 78px;
+}
 .night-wash {
   position: absolute;
   inset: 0;
@@ -986,8 +1005,10 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr 26px 1fr;
-  width: min(1080px, 94vw);
-  height: min(560px, 70vh);
+  width: min(820px, 64vw);
+  height: min(440px, 56vh);
+  align-self: flex-end;
+  margin-right: 3vw;
   padding: 14px;
   border-radius: 10px;
   background: linear-gradient(135deg, #6b2a1a, #3e140a);
@@ -1007,8 +1028,10 @@
 .lg-book-single {
   grid-template-columns: 1fr;
   overflow-y: auto;
-  height: min(78vh, 720px);
+  height: min(56dvh, 520px);
   transform: none;
+  align-self: center;
+  margin-right: 0;
 }
 .lg-page {
   position: relative;
@@ -1355,8 +1378,9 @@
   min-height: 52px;
 }
 [data-layout='mobile'] .lg-stage {
-  justify-content: flex-start;
-  padding-top: 2vh;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 0 0 calc(10px + env(safe-area-inset-bottom)) !important;
 }
 [data-layout='mobile'] .lg-book {
   width: 96vw;
@@ -1385,4 +1409,32 @@
 }
 [data-layout='mobile'] .chapter-intro {
   font-size: 16px;
+}
+
+/* the ledger's own pages scroll inside the smaller book */
+.lg-stage:not(.lg-past) .lg-book .lg-page {
+  font-size: 16px;
+  line-height: 32px;
+}
+.lg-stage:not(.lg-past) .lg-day {
+  font-size: 26px;
+  line-height: 40px;
+}
+.lg-stage .lg-lamp-btn {
+  align-self: flex-end;
+  margin-right: calc(3vw + min(410px, 32vw) - 90px);
+}
+[data-layout='mobile'] .lg-stage .lg-lamp-btn {
+  align-self: center;
+  margin-right: 0;
+}
+/* chrome hooks (sound, settings) stay reachable over story cards and the night */
+.st-hooks {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+}
+.st-hooks .corner-hooks {
+  position: static;
 }

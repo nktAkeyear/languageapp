@@ -4,6 +4,9 @@
  *   npm run simulate -- [en|zh] [days] [seed] [failEvery] [choice]
  * Story beats are printed as they fire (📖); `choice` = which option the player picks in story
  * choices (0 = the first, default; n picks option n mod count).
+ * `buy` (6th argument) = the player orders from the renovation catalogue after the shop closes:
+ * every affordable entry in catalogue order while keeping coins for the market (🛠 lines, and an
+ * economy summary at the end). Without it nothing is bought.
  * The simulated player solves everything correctly, except every `failEvery`-th customer gets a
  * deliberately wrong cup, every `failEvery`-th market buys one unit too few, and every
  * `failEvery`-th delivery goes to the wrong house — so failure reactions and consequences show up.
@@ -20,8 +23,12 @@ import { newProgress } from '../src/core/save';
 import type { Brew, IngredientId, Lang } from '../src/core/types';
 import { storySync } from '../src/story/engine';
 import { storyLog } from './storyLog';
+import { arrivedToday, catalogue, renoOrder, renoShared } from '../src/renovation/engine';
 
-const [langArg = 'en', daysArg = '10', seedArg = '1', failArg = '4', choiceArg = '0'] = process.argv.slice(2);
+const [langArg = 'en', daysArg = '10', seedArg = '1', failArg = '4', choiceArg = '0', buyArg = ''] = process.argv.slice(2);
+const buy = buyArg === 'buy';
+const bought: { day: number; id: string; price: number }[] = [];
+let earned = 0;
 const lang = (langArg === 'zh' ? 'zh' : 'en') as Lang;
 const data = buildGameData(CONTENT[lang], SHARED);
 const p = newProgress(lang);
@@ -36,6 +43,8 @@ for (let d = 0; d < Number(daysArg); d++) {
     `\n[${lang}] day ${p.day}  stage ${p.stage}  rep ${p.reputation}  coins ${p.town.money}  plan: ${describeDay(p)}  new words: ${p.today!.newWords.join(' ') || '-'}`,
   );
   for (const note of p.townDay!.notes) console.log(`  ※ ${note}`);
+  for (const id of arrivedToday(p)) console.log(`  🛠 arrived: ${id}`);
+  const moneyAtStart = p.town.money;
   storyLog(data, p, Number(choiceArg));
   for (;;) {
     const seg = currentSegment(p);
@@ -62,6 +71,14 @@ for (let d = 0; d < Number(daysArg); d++) {
         storyLog(data, p, Number(choiceArg));
         nextCustomer(data, p);
       }
+      if (buy) {
+        const keep = renoShared(data)?.keepForMarket ?? 0;
+        for (const e of catalogue(data, p))
+          if (e.status === 'available' && p.town.money - e.def.price >= keep && !renoOrder(data, p, e.def.id)) {
+            bought.push({ day: p.day, id: e.def.id, price: e.def.price });
+            console.log(`  🛠 ordered ${e.def.id} (${e.def.price})  coins left ${p.town.money}`);
+          }
+      }
     } else {
       const x = p.townDay!.delivery!;
       const wrong = failEvery > 0 && ++deliveries % failEvery === 0;
@@ -75,6 +92,16 @@ for (let d = 0; d < Number(daysArg); d++) {
     if (!p.townDay || p.townDay.seg >= p.townDay.segments.length - 1) break;
     nextSegment(p);
   }
+  earned += p.town.money - moneyAtStart + bought.filter((b) => b.day === p.day).reduce((a, b) => a + b.price, 0);
   endTownDay(p, data);
   storyLog(data, p, Number(choiceArg));
+}
+if (buy) {
+  const all = renoShared(data)?.upgrades ?? [];
+  const total = all.reduce((a, u) => a + u.price, 0);
+  console.log(`\n🛠 economy: earned (net of market) ${earned} coins in ${daysArg} days; catalogue ${all.length} entries, ${total} coins`);
+  console.log(`   bought ${bought.length}/${all.length} (${bought.reduce((a, b) => a + b.price, 0)} coins): ${bought.map((b) => `d${b.day} ${b.id}`).join(', ')}`);
+  const missing = all.filter((u) => !bought.some((b) => b.id === u.id)).map((u) => u.id);
+  if (missing.length) console.log(`   not bought: ${missing.join(', ')}`);
+  console.log(`   purse at the end: ${p.town.money}, reputation ${p.reputation}, stage ${p.stage}`);
 }

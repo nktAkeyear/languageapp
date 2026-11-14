@@ -46,6 +46,8 @@ export interface WordTextProps {
   glossed?: boolean;
   /** Words to mark as newly readable (confirmed since the paper was last read). */
   fresh?: ReadonlySet<string>;
+  /** A word to mark wherever it occurs (the notebook's magnifying glass). */
+  highlight?: string;
 }
 
 /**
@@ -53,7 +55,7 @@ export interface WordTextProps {
  * A tap opens the notebook at the word. Confirmed words (検証ページで確定) are drawn in "inked"
  * style and show their official gloss on hover, or on a first tap on touch screens.
  */
-export function WordText({ text, className, interactive = true, story = false, glossed = false, fresh }: WordTextProps) {
+export function WordText({ text, className, interactive = true, story = false, glossed = false, fresh, highlight }: WordTextProps) {
   const { data, progress, settings, openWord } = useGame();
   const peek = usePeek();
   const [inst] = useState(() => `wt${++seq}`);
@@ -105,7 +107,7 @@ export function WordText({ text, className, interactive = true, story = false, g
       );
     const isFresh = !!fresh?.has(t.id) && confirmed;
     const faint = glossed && !confirmed && (!st || st.seen < 3);
-    const cls = `w ${confirmed ? 'w-ok' : ''} ${st?.memo ? 'w-memo' : ''} ${peek === key ? 'w-peek' : ''} ${isFresh ? 'w-fresh' : ''} ${faint ? 'w-faint' : ''}`;
+    const cls = `w ${confirmed ? 'w-ok' : ''} ${st?.memo ? 'w-memo' : ''} ${peek === key ? 'w-peek' : ''} ${isFresh ? 'w-fresh' : ''} ${faint ? 'w-faint' : ''} ${highlight === t.id ? 'w-hl' : ''}`;
     // In glossed text the gloss is written under the word, so no hover tooltip.
     const gloss = confirmed && !glossed ? e?.gloss : undefined;
     const inner = glossed ? (

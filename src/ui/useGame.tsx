@@ -77,6 +77,8 @@ export interface GameApi {
   verify(pageId: string, assignment: Record<string, string | undefined>): boolean;
   updateSettings(s: Partial<Settings>): void;
   exportFile(): void;
+  /** The save as JSON text (export fallback where downloads do not work). */
+  exportText(): string;
   importText(json: string): string | null;
   resetLanguage(lang: Lang): void;
   openWord(id: string | null): void;
@@ -243,6 +245,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
         a.remove();
         setTimeout(() => URL.revokeObjectURL(a.href), 1000);
       },
+      exportText: () => exportSave(saveRef.current),
       importText: (json) => {
         try {
           const s = importSave(json);

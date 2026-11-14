@@ -11,9 +11,12 @@ import { useGame } from '../useGame';
 import { useMobile } from '../layout';
 import { useUi } from '../uiState';
 import { BookShell, type Ribbon } from './BookShell';
+import { owns } from '../../renovation/engine';
+import { isDue, isWeak, reviewWeight } from '../../core/srs';
+import { tokenIds } from '../../core/tokenize';
 import { VerifyPage } from './VerifyPage';
 
-type Filter = 'all' | 'open' | 'ok' | 'memo';
+type Filter = 'all' | 'open' | 'ok' | 'memo' | 'due';
 
 export function NotebookView() {
   const ui = useUi();
@@ -70,20 +73,30 @@ export function NotebookView() {
 function WordList() {
   const { data, progress } = useGame();
   const ui = useUi();
-  const [filter, setFilter] = useState<Filter>('all');
+  // Renovation: the red ribbon marks the words due for review today (hidden SRS made visible).
+  const ribbon = owns(progress, 'ribbon');
+  const [filter, setFilter] = useState<Filter>(ribbon ? 'due' : 'all');
   const [q, setQ] = useState('');
   if (!data || !progress) return null;
   const zh = data.lang === 'zh';
+  const due = (id: string) => isDue(progress.words[id], progress.day) || isWeak(progress.words[id]);
+  const dueCount = ribbon ? Object.keys(progress.words).filter(due).length : 0;
   const entries = data.content.lexicon
     .filter((e) => progress.words[e.id])
     .map((e) => ({ e, st: progress.words[e.id] }))
-    .filter(({ st }) => (filter === 'open' ? !st.confirmed : filter === 'ok' ? st.confirmed : filter === 'memo' ? !!st.memo : true))
+    .filter(({ e, st }) =>
+      filter === 'open' ? !st.confirmed : filter === 'ok' ? st.confirmed : filter === 'memo' ? !!st.memo : filter === 'due' ? due(e.id) : true,
+    )
     .filter(({ e, st }) => {
       if (!q) return true;
       const hay = [e.text, e.pinyin ?? '', st.memo, st.confirmed ? e.gloss : ''].join(' ').toLowerCase();
       return hay.includes(q.toLowerCase());
     })
-    .sort((a, b) => b.st.firstDay - a.st.firstDay || b.st.seen - a.st.seen);
+    .sort((a, b) =>
+      filter === 'due'
+        ? reviewWeight(b.st, progress.day) - reviewWeight(a.st, progress.day) || a.st.lastDay - b.st.lastDay
+        : b.st.firstDay - a.st.firstDay || b.st.seen - a.st.seen,
+    );
   const total = Object.keys(progress.words).length;
   const confirmed = Object.values(progress.words).filter((w) => w.confirmed).length;
   return (
@@ -94,13 +107,21 @@ function WordList() {
         <div className="index-tabs small-tabs" role="group" aria-label="表示">
           {(
             [
+              ...(ribbon ? ([['due', `復習 ${dueCount}`]] as [Filter, string][]) : []),
               ['all', 'すべて'],
               ['open', '未確定'],
               ['ok', '確定'],
               ['memo', 'メモ'],
             ] as [Filter, string][]
           ).map(([k, l]) => (
-            <button key={k} type="button" className={`index-tab ${filter === k ? 'on' : ''}`} aria-pressed={filter === k} onClick={() => setFilter(k)}>
+            <button
+              key={k}
+              type="button"
+              className={`index-tab ${filter === k ? 'on' : ''} ${k === 'due' ? 'index-tab-ribbon' : ''}`}
+              aria-pressed={filter === k}
+              onClick={() => setFilter(k)}
+              data-filter={k}
+            >
               {l}
             </button>
           ))}
@@ -135,7 +156,8 @@ function WordList() {
           </li>
         ))}
       </ul>
-      {entries.length === 0 ? <p className="hand muted small">まだ何もありません。</p> : null}
+      {filter === 'due' ? <p className="hand muted small">赤いしおりの言葉：今日もう一度出会いたい言葉（しばらく見ていない・まちがえた）。</p> : null}
+      {entries.length === 0 ? <p className="hand muted small">{filter === 'due' ? '今日、見直す言葉はない。' : 'まだ何もありません。'}</p> : null}
     </div>
   );
 }
@@ -159,8 +181,18 @@ function WordsIntro() {
 
 function WordPage({ id }: { id: string }) {
   const { data, progress, setMemo } = useGame();
+  const ui = useUi();
   const entry = data?.lex.byId.get(id);
   const st = progress?.words[id];
+  // Renovation: the magnifying glass — the word marked in its sentences, and the words that keep
+  // appearing with it (a closer look for guessing its meaning).
+  const closer = owns(progress, 'magnifier');
+  const neighbours: [string, number][] = [];
+  if (closer && data && st) {
+    const count = new Map<string, number>();
+    for (const c of st.contexts) for (const w of new Set(tokenIds(data.tokens(c)))) if (w !== id) count.set(w, (count.get(w) ?? 0) + 1);
+    neighbours.push(...[...count].filter(([, n]) => n >= 2 || st.contexts.length <= 2).sort((a, b) => b[1] - a[1]).slice(0, 6));
+  }
   const [memo, setLocal] = useState(st?.memo ?? '');
   useEffect(() => setLocal(st?.memo ?? ''), [id, st?.memo]);
   if (!data || !entry) return null;
@@ -204,16 +236,33 @@ function WordPage({ id }: { id: string }) {
         </button>
       ) : null}
       {st?.contexts.length ? (
-        <div className="wp-contexts">
-          <div className="hand small muted">見かけた文</div>
+        <div className={`wp-contexts ${closer ? 'wp-closer' : ''}`}>
+          <div className="hand small muted">{closer ? '見かけた文（虫めがねで）' : '見かけた文'}</div>
           <ul>
             {st.contexts.map((c) => (
               <li key={c}>
-                <WordText text={c} />
+                <WordText text={c} highlight={closer ? id : undefined} />
                 <SpeakButton text={c} label="" className="speak-round speak-small" />
               </li>
             ))}
           </ul>
+        </div>
+      ) : null}
+      {closer && neighbours.length ? (
+        <div className="wp-neighbours" data-testid="word-neighbours">
+          <div className="hand small muted">いっしょに出てくる言葉</div>
+          <div className="wp-nb-list">
+            {neighbours.map(([nid, n]) => {
+              const ne = data.lex.byId.get(nid);
+              const ns = progress?.words[nid];
+              return (
+                <button key={nid} type="button" className={`wp-nb ${ns?.confirmed ? 'ok' : ''}`} onClick={() => ui.setWord(nid)} lang={zh ? 'zh-CN' : 'en'}>
+                  <span className="wp-nb-text">{ne?.text}</span>
+                  <span className="wp-nb-meta">{ns?.confirmed ? ne?.gloss : ns?.memo ? `メモ：${ns.memo}` : `×${n}`}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       ) : null}
     </div>

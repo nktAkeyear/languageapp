@@ -91,7 +91,14 @@ export function variantText(town: Town, v: VariantId): string {
  * Plan today's market from the shop queue. Marks newly available features as seen (they are
  * introduced the first time they can be). Returns null when the content has no market.
  */
-export function planMarket(data: GameData, p: LangProgress, queue: Pick<OrderInstance, 'rule'>[], rng: Rng): MarketDay | null {
+export function planMarket(
+  data: GameData,
+  p: LangProgress,
+  queue: Pick<OrderInstance, 'rule'>[],
+  rng: Rng,
+  /** Portions already in the shop (kept overnight, see renovation): the note asks only for the rest. */
+  have: Partial<Record<IngredientId, number>> = {},
+): MarketDay | null {
   const town = townOf(data);
   if (!town) return null;
   const m = town.shared.market;
@@ -104,6 +111,11 @@ export function planMarket(data: GameData, p: LangProgress, queue: Pick<OrderIns
 
   // 1. What is short today
   const needs = computeNeeds(queue, goods);
+  for (const [ing, n] of [...needs]) {
+    const rest = n - (have[ing] ?? 0);
+    if (rest > 0) needs.set(ing, rest);
+    else needs.delete(ing);
+  }
   let picks = [...needs.entries()].sort((a, b) => b[1] - a[1] || (rng() < 0.5 ? -1 : 1)).slice(0, level.maxItems);
   if (!picks.length) picks = [[pick(rng, goods), 2]];
   // Prefer a multi-stall good when a stall event is to be introduced.
@@ -378,7 +390,10 @@ export function finishMarket(data: GameData, p: LangProgress): void {
   const md = md0(p);
   if (!town || !md || !p.townDay) return;
   const stock = stockFromMarket(town.shared.market, md.lines, md.basket);
-  p.townDay.stock = { ...p.townDay.stock, ...stock };
+  // Bought portions join what the shop already had (0, or goods kept overnight).
+  const merged = { ...p.townDay.stock };
+  for (const [ing, n] of Object.entries(stock) as [IngredientId, number][]) merged[ing] = (merged[ing] ?? 0) + n;
+  p.townDay.stock = merged;
   for (const l of md.lines) {
     const ids = textWords(data, l.text);
     if (lineCovered(l, stock)) ids.forEach((id) => recordSuccess(p.words, id, p.day));

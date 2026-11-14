@@ -2,6 +2,7 @@ import type { Face, Lang, OrderInstance, Outcome } from './types';
 import type { WordMap } from './srs';
 import type { TownDayState, TownProgress } from './townTypes';
 import { newStoryState, type StoryState } from '../story/types';
+import type { RenoState } from '../renovation/types';
 
 export const SAVE_VERSION = 3;
 export const STORAGE_KEY = 'minato-chabou-save';
@@ -61,6 +62,8 @@ export interface LangProgress {
   townDay: TownDayState | null;
   /** Story layer (v3): regulars' beats, documents, chapter, pending scene cards. */
   story: StoryState;
+  /** Shop renovation (optional, no version bump: absent = nothing bought yet; see renovation/engine.ts renoOf). */
+  reno?: RenoState;
 }
 
 export interface SaveFile {

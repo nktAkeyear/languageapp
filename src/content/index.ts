@@ -10,6 +10,10 @@ import { STORY_EN } from './en/story';
 import { STORY_SHARED } from './shared/story';
 import { STORY_ZH } from './zh/story';
 import { withStory } from '../story/merge';
+import { withRenovation } from '../renovation/merge';
+import { RENO_SHARED } from './shared/renovation';
+import { RENO_EN } from './en/renovation';
+import { RENO_ZH } from './zh/renovation';
 
 /** Town activities live in their own files; merge their lexicon / verification pages here. */
 function withTown(c: LanguageContent, town: TownContent): LanguageContent {
@@ -21,9 +25,9 @@ function withTown(c: LanguageContent, town: TownContent): LanguageContent {
   };
 }
 
-export const SHARED: SharedContent = { ...BASE_SHARED, town: TOWN_SHARED, story: STORY_SHARED };
+export const SHARED: SharedContent = { ...BASE_SHARED, town: TOWN_SHARED, story: STORY_SHARED, renovation: RENO_SHARED };
 
 export const CONTENT: Record<Lang, LanguageContent> = {
-  en: withStory(withTown(en, enTown), STORY_EN),
-  zh: withStory(withTown(zh, zhTown), STORY_ZH),
+  en: withRenovation(withStory(withTown(en, enTown), STORY_EN), RENO_EN),
+  zh: withRenovation(withStory(withTown(zh, zhTown), STORY_ZH), RENO_ZH),
 };

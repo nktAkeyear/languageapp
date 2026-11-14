@@ -27,7 +27,7 @@ export function BookShell({
   turnKey,
   onClose,
 }: {
-  kind: 'recipe' | 'notebook';
+  kind: 'recipe' | 'notebook' | 'catalogue';
   label: string;
   ribbons?: Ribbon[];
   left: ReactNode;

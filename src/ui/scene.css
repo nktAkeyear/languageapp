@@ -1819,12 +1819,7 @@
 .ledger-line strong.down {
   color: var(--danger);
 }
-.ledger-stock {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  margin: 0 6px;
-}
+
 .ledger .btn {
   margin-top: 12px;
   font-family: var(--font-ja);
@@ -2491,3 +2486,23 @@
   }
 }
 .m-keepsakes:empty { display: none; }
+
+/* phone: while the customer holds the cup, the name card steps aside (the bubble names them) */
+.m-name {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+.m-shop[data-stage='sipping'] .m-name,
+.m-shop[data-stage='react'] .m-name {
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+}
+.bubble-who {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  color: #7a4a26;
+  margin-bottom: 2px;
+}

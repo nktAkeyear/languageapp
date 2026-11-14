@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import type { LayoutPref } from '../../core/save';
 import { LANGS, type Lang } from '../../core/types';
 import { useGame } from '../useGame';
+import { SaveTextTransfer } from './SaveText';
 
 export const LANG_JA: Record<Lang, string> = { en: '英語', zh: '中国語' };
 
@@ -115,6 +116,7 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
             }}
           />
         </div>
+        <SaveTextTransfer onImported={setMsg} />
         {msg ? <p className="small">{msg}</p> : null}
         {lang ? (
           <button

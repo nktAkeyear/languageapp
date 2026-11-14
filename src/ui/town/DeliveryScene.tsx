@@ -6,7 +6,7 @@
  *
  * Logic is the delivery engine's (src/activities/delivery/engine.ts) through GameApi.delivery.
  */
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { hasNextSegment } from '../../activities/day';
 import { someoneHome } from '../../activities/delivery/engine';
 import { townOf } from '../../activities/town/text';
@@ -39,6 +39,8 @@ import { useStoryHold } from '../story/StoryUi';
 import { useGame } from '../useGame';
 import { useUi } from '../uiState';
 import { TownNoticePaper } from './common';
+import { UpgradeArt } from '../art/reno';
+import { useReno } from '../reno/useReno';
 
 const AFTERNOON = skyAt(0.62);
 
@@ -96,12 +98,37 @@ export function SlipPaper({ compact = false }: { compact?: boolean }) {
 
 // ------------------------------------------------------------------------------------- map
 
-/** The illustrated town map; houses and landmarks are buttons (choose where to go). */
+/** Zoom of the phone map when a district is opened (signs ~2.2× larger). */
+const PHONE_ZOOM = 2.2;
+
+/**
+ * The illustrated town map; houses and landmarks are buttons (choose where to go).
+ * On a phone the map first shows the whole town; a tap zooms into that district (signs become
+ * legible, the map can be panned with a finger) and then a tap chooses the house. 全体 goes back.
+ */
 export function TownMapScene({ walking }: { walking: boolean }) {
   const g = useGame();
   const x = useDelivery();
   const town = useTown();
   const ui = useUi();
+  const mobile = useMobile();
+  const reno = useReno();
+  const [zoom, setZoom] = useState(1);
+  const frame = useRef<HTMLDivElement>(null);
+  const focus = useRef<{ fx: number; fy: number } | null>(null);
+  // Centre the tapped point after zooming in.
+  useLayoutEffect(() => {
+    const el = frame.current;
+    const f = focus.current;
+    if (!el) return;
+    if (zoom === 1) {
+      el.scrollTo({ left: 0, top: 0 });
+      return;
+    }
+    if (!f) return;
+    el.scrollTo({ left: f.fx * el.scrollWidth - el.clientWidth / 2, top: f.fy * el.scrollHeight - el.clientHeight / 2 });
+    focus.current = null;
+  }, [zoom]);
   const { data } = g;
   if (!x || !town || !data) return null;
   const d = town.shared.delivery;
@@ -109,6 +136,7 @@ export function TownMapScene({ walking }: { walking: boolean }) {
   const temple = data.lang === 'en' ? 'church' : 'pagoda';
   const dest = x.choice.place ? d.map.find((c) => c.id === x.choice.place) : undefined;
   const pct = (v: number, of: number) => `${(v / of) * 100}%`;
+  const vehicle = reno.has('bicycle') ? 'bicycle' : reno.has('cart') ? 'cart' : null;
   // Walking path: from the shop along the main street to the column, then to the door.
   let path = '';
   if (dest) {
@@ -118,8 +146,18 @@ export function TownMapScene({ walking }: { walking: boolean }) {
     const doorY = dest.row <= 1 ? b.y + ROW_H - 10 : b.y + 40;
     path = `M${SHOP_POINT.x} ${SHOP_POINT.y} L${cx} ${street} L${cx} ${doorY}`;
   }
-  return (
-    <div className="dv-map" data-testid="town-map">
+  const zoomable = mobile && plan;
+  const zoomed = zoomable && zoom > 1;
+  const zoomAt = (e: React.MouseEvent) => {
+    const el = frame.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    focus.current = { fx: (e.clientX - r.left) / r.width, fy: (e.clientY - r.top) / r.height };
+    sfx('page');
+    setZoom(PHONE_ZOOM);
+  };
+  const map = (
+    <div className={`dv-map ${zoomed ? 'dv-map-zoomed' : ''}`} data-testid="town-map" style={zoomed ? { width: `${zoom * 100}%` } : undefined}>
       <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="dv-map-art" aria-hidden>
         <MapGroundArt tint="#ffb070" />
         {/* our shop at the west end of the main street */}
@@ -131,6 +169,11 @@ export function TownMapScene({ walking }: { walking: boolean }) {
             <circle r="10" fill="#f6ecd2" stroke="#7a2f1b" strokeWidth="2" />
             <path d="M-5 -1 q5 7 10 0 Z M5 -2 q4 0 3 3" fill="#7a2f1b" stroke="#7a2f1b" strokeWidth="1" />
           </g>
+          {vehicle && !(walking && dest) ? (
+            <g transform={`translate(-36 ${vehicle === 'bicycle' ? 6 : 4}) scale(0.44)`} className="dv-vehicle">
+              <UpgradeArt id={vehicle} />
+            </g>
+          ) : null}
         </g>
         {d.map.map((c) => {
           const b = cellBox(c.col, c.row);
@@ -143,11 +186,16 @@ export function TownMapScene({ walking }: { walking: boolean }) {
         {dest && walking && !ui.reducedMotion ? (
           <g className="dv-walker">
             <g>
+              {vehicle ? (
+                <g transform={`translate(${vehicle === 'bicycle' ? -26 : -24} -34) scale(0.34)`}>
+                  <UpgradeArt id={vehicle} />
+                </g>
+              ) : null}
               <circle cy="-30" r="9" fill="#f3d2b3" stroke="#3a2a1a" strokeWidth="2" />
               <path d="M-8 -20 h16 l3 22 h-22 Z" fill="#3e5a7a" stroke="#2a3e57" strokeWidth="2" />
-              <rect x="6" y="-14" width="14" height="12" fill="#c49a5e" stroke="#6b4a22" strokeWidth="1.5" />
+              {vehicle ? null : <rect x="6" y="-14" width="14" height="12" fill="#c49a5e" stroke="#6b4a22" strokeWidth="1.5" />}
               <path d="M-5 2 l-3 10 M5 2 l3 10" stroke="#2a1a10" strokeWidth="3" strokeLinecap="round" />
-              <animateMotion dur="1.6s" fill="freeze" path={path} />
+              <animateMotion dur={vehicle === 'bicycle' ? '1s' : '1.6s'} fill="freeze" path={path} />
             </g>
           </g>
         ) : null}
@@ -164,7 +212,11 @@ export function TownMapScene({ walking }: { walking: boolean }) {
             className={`dv-cell ${c.landmark ? 'dv-landmark' : 'dv-house'} ${on ? 'on' : ''}`}
             style={{ left: pct(b.x, MAP_W), top: pct(b.y, MAP_H), width: pct(b.w, MAP_W), height: pct(b.h, MAP_H) }}
             disabled={!plan}
-            onClick={() => {
+            onClick={(e) => {
+              if (zoomable && !zoomed) {
+                zoomAt(e);
+                return;
+              }
               sfx('pickup');
               g.delivery.choosePlace(c.id);
             }}
@@ -181,6 +233,30 @@ export function TownMapScene({ walking }: { walking: boolean }) {
           </button>
         );
       })}
+    </div>
+  );
+  if (!zoomable) return map;
+  return (
+    <div className={`dv-map-frame ${zoomed ? 'zoomed' : ''}`}>
+      <div className="dv-map-scroll" ref={frame}>
+        {map}
+      </div>
+      <button
+        type="button"
+        className="dv-zoom-btn"
+        data-testid="map-zoom"
+        onClick={() => {
+          sfx('page');
+          if (zoomed) setZoom(1);
+          else {
+            focus.current = { fx: 0.5, fy: 0.5 };
+            setZoom(PHONE_ZOOM);
+          }
+        }}
+      >
+        {zoomed ? '全体を見る' : '拡大する'}
+      </button>
+      {!zoomed ? <span className="dv-zoom-hint hand">地図をタップすると、その辺りが大きく見える</span> : null}
     </div>
   );
 }

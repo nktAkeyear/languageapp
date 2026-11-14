@@ -117,11 +117,7 @@ h4 {
   min-height: 28px;
   font-size: 0.9em;
 }
-.btn-icon {
-  min-width: 44px;
-  min-height: 44px;
-  font-size: 1.2em;
-}
+
 .speak {
   padding: 2px 8px;
   min-height: 30px;
@@ -138,20 +134,6 @@ h4 {
   background: var(--paper-3);
   border: 1px solid var(--line);
   font-size: 0.85em;
-}
-.chip-small {
-  font-size: 0.75em;
-  padding: 0 6px;
-  margin-left: 6px;
-}
-.chip-ok {
-  background: var(--green-soft);
-  border-color: #9fb486;
-  color: #2f4520;
-}
-.chip-new {
-  background: var(--accent-soft);
-  border-color: #cf9a7f;
 }
 
 /* ---------------------------------------------------------------- words */
@@ -272,14 +254,7 @@ ruby rt {
   display: flex;
   flex-direction: column;
 }
-.desk-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 8px 16px;
-  border-bottom: 2px solid var(--line);
-  background: var(--paper-3);
-}
+
 .brand {
   font-size: 1.3em;
   margin: 0;
@@ -291,26 +266,7 @@ ruby rt {
   flex: 1;
   flex-wrap: wrap;
 }
-.status-item {
-  background: var(--paper-2);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 1px 10px;
-  font-size: 0.9em;
-  white-space: nowrap;
-}
-.desk-grid {
-  flex: 1;
-  min-height: 0;
-  display: grid;
-  grid-template-columns: minmax(360px, 1.25fr) minmax(280px, 1fr) minmax(280px, 1fr);
-  grid-template-rows: auto minmax(0, 1fr);
-  grid-template-areas:
-    'customer book notebook'
-    'bench book notebook';
-  gap: 12px;
-  padding: 12px;
-}
+
 .panel {
   background: var(--paper-2);
   border: 1px solid var(--line);
@@ -320,34 +276,9 @@ ruby rt {
   overflow: auto;
   min-height: 0;
 }
-.panel-customer {
-  grid-area: customer;
-  max-height: 62vh;
-}
-.panel-bench {
-  grid-area: bench;
-}
-.panel-book {
-  grid-area: book;
-}
-.panel-notebook {
-  grid-area: notebook;
-}
-.panel-title {
-  font-size: 1em;
-  color: var(--ink-soft);
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 4px;
-  margin-bottom: 8px;
-  letter-spacing: 0.1em;
-}
 
 /* ---------------------------------------------------------------- customer */
-.customer-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+
 .notice {
   background: #fff6dc;
   border: 1px solid var(--gold);
@@ -357,20 +288,7 @@ ruby rt {
 .notice p {
   margin: 4px 0;
 }
-.notice-title {
-  font-weight: 600;
-  font-family: var(--font-serif);
-}
-.queue-dots {
-  margin-left: auto;
-  display: flex;
-  gap: 4px;
-  color: var(--ink-soft);
-  font-size: 0.9em;
-}
-.dot-cur {
-  color: var(--accent);
-}
+
 .customer {
   display: flex;
   align-items: center;
@@ -387,10 +305,7 @@ ruby rt {
   place-items: center;
   flex: none;
 }
-.avatar-emoji {
-  font-size: 40px;
-  line-height: 1;
-}
+
 .face {
   position: absolute;
   right: -8px;
@@ -404,9 +319,7 @@ ruby rt {
   display: grid;
   place-items: center;
 }
-.customer-name {
-  font-size: 1.1em;
-}
+
 .bubble {
   background: #fffdf6;
   border: 1px solid var(--line);
@@ -423,15 +336,7 @@ ruby rt {
   border-top: 0;
   border-bottom-color: var(--line);
 }
-.bubble-reply {
-  background: #fff3e6;
-}
-.order-line {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
+
 .order-text,
 .reaction-text {
   font-size: 1.45em;
@@ -448,30 +353,9 @@ ruby rt {
   flex-direction: column;
   gap: 8px;
 }
-.rep-delta {
-  font-weight: 600;
-  color: var(--ink-soft);
-}
-.rep-delta.up {
-  color: var(--green);
-}
-.rep-delta.down {
-  color: var(--danger);
-}
+
 .summary {
   text-align: center;
-}
-.summary-faces {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  font-size: 1.8em;
-}
-.summary-face {
-  display: inline-flex;
-  flex-direction: column;
-  line-height: 1.2;
 }
 
 /* ---------------------------------------------------------------- workbench */
@@ -489,65 +373,12 @@ ruby rt {
   border-radius: 8px;
   border: 1px solid #a88c5c;
 }
-.shelf-item {
-  background: var(--paper-2);
-  border-radius: 8px;
-  border: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-.shelf-item-on {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px var(--accent-soft);
-}
-.shelf-add {
-  font: inherit;
-  background: none;
-  border: none;
-  padding: 6px 4px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  min-height: 84px;
-  color: var(--ink);
-}
-.shelf-add:disabled {
-  cursor: default;
-  opacity: 0.7;
-}
-.shelf-label {
-  font-size: 0.95em;
-  text-align: center;
-  line-height: 1.6;
-}
-.shelf-count {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 6px 6px;
-}
+
 .count {
   font-weight: 700;
   font-size: 1.1em;
 }
-.ing-icon {
-  display: inline-grid;
-  place-items: center;
-  line-height: 1;
-}
-.ing-icon svg {
-  width: 100%;
-  height: 100%;
-}
-.bench-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  align-items: stretch;
-}
+
 .cup {
   flex: 1 1 200px;
 }
@@ -578,50 +409,12 @@ ruby rt {
 .cup-n {
   font-weight: 600;
 }
-.bench-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1 1 200px;
-}
+
 .seg {
   display: flex;
   border: 1px solid var(--line);
   border-radius: 8px;
   overflow: hidden;
-}
-.seg-btn {
-  flex: 1;
-  font: inherit;
-  background: var(--paper-2);
-  border: none;
-  border-right: 1px solid var(--line);
-  padding: 6px 8px;
-  cursor: pointer;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  color: var(--ink);
-}
-.seg-btn:last-child {
-  border-right: none;
-}
-.seg-on {
-  background: var(--accent);
-  color: #fff8ef;
-}
-.seg-on rt {
-  color: #fbe6d6;
-}
-.bench-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-.serve-btn {
-  min-width: 140px;
 }
 
 /* ---------------------------------------------------------------- recipe book */
@@ -631,35 +424,7 @@ ruby rt {
   gap: 6px;
   margin: 6px 0 8px;
 }
-.chip-btn {
-  font: inherit;
-  font-size: 0.9em;
-  background: #fffaf0;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 4px 12px;
-  min-height: 36px;
-  cursor: pointer;
-  color: var(--ink);
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.chip-btn-on {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff8ef;
-}
-.chip-count {
-  font-size: 0.8em;
-  background: var(--accent-soft);
-  color: var(--ink);
-  border-radius: 999px;
-  padding: 0 6px;
-}
-[data-layout='mobile'] .chip-btn {
-  min-height: 40px;
-}
+
 .book-index {
   list-style: none;
   padding: 0;
@@ -770,19 +535,8 @@ ruby rt {
   color: var(--ink);
   min-height: 40px;
 }
-.tab-on {
-  background: #fffaf0;
-  font-weight: 600;
-}
-.wl-tools {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 4px;
-}
-.wl-tools input,
-.wl-tools select,
+
 .field select,
-.verify-card select,
 textarea {
   font: inherit;
   border: 1px solid var(--line);
@@ -792,149 +546,18 @@ textarea {
   color: var(--ink);
   min-height: 36px;
 }
-.wl-tools input {
-  flex: 1;
-  min-width: 0;
-}
+
 .wl {
   list-style: none;
   padding: 0;
   margin: 6px 0 0;
 }
-.wl-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 0;
-  border-bottom: 1px dotted var(--line);
-}
-.wl-word {
-  font: inherit;
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  min-width: 6.5em;
-  padding: 2px 4px;
-  color: var(--ink);
-}
-.wl-text {
-  font-size: 1.1em;
-}
-.wl-pinyin {
-  font-size: 0.75em;
-  color: var(--ink-soft);
-  font-family: var(--font-en);
-}
-.wl-meaning {
-  flex: 1;
-  text-align: right;
-}
-.wl-memo {
-  font-size: 0.85em;
-  color: var(--gold);
-}
-.verify-solved {
-  margin-top: 10px;
-}
-.verify-solved summary {
-  cursor: pointer;
-  padding: 8px 4px;
-  min-height: 40px;
-  color: var(--ink-soft);
-}
-.verify-list ul {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  gap: 6px;
-}
-.verify-item {
-  font: inherit;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  background: #fffaf0;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 8px 10px;
-  cursor: pointer;
-  color: var(--ink);
-  min-height: 44px;
-}
-.verify-item:disabled {
-  cursor: default;
-  opacity: 0.7;
-}
-.verify-available {
-  border-color: var(--accent);
-}
-.verify-solved {
-  background: var(--green-soft);
-}
-.verify-words {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 10px;
-}
-.verify-word {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: #fffaf0;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 2px 6px;
-  font-size: 1.1em;
-}
-.verify-word small {
-  font-size: 0.65em;
-  color: var(--ink-soft);
-}
-.verify-word.used {
-  opacity: 0.55;
-}
-.verify-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 8px;
-  margin-bottom: 10px;
-}
-.verify-card {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  align-items: center;
-  background: #fffaf0;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 8px;
-  text-align: center;
-}
-.vc-emoji {
-  font-size: 1.6em;
-}
-.vc-gloss {
-  font-size: 0.95em;
-}
-.verify-card select {
-  width: 100%;
-}
-.vc-answer {
-  font-size: 1.2em;
-  color: var(--green);
-}
+
 .ok-msg {
   color: var(--green);
   font-weight: 600;
 }
-.ng-msg {
-  color: var(--danger);
-}
+
 .level-statement {
   background: #fffaf0;
   border: 1px solid var(--line);
@@ -1027,49 +650,7 @@ textarea {
   border-radius: 16px 16px 0 0;
   padding: 14px 16px calc(16px + env(safe-area-inset-bottom));
 }
-.word-detail {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.wd-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.wd-head > div:first-child {
-  flex: 1;
-}
-.wd-text {
-  font-size: 2em;
-  line-height: 1.2;
-}
-.wd-pinyin {
-  font-family: var(--font-en);
-  color: var(--ink-soft);
-}
-.wd-status {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.wd-memo {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.wd-memo textarea {
-  width: 100%;
-  resize: vertical;
-}
-.wd-contexts ul {
-  margin: 4px 0 0;
-  padding-left: 1.2em;
-}
-.wd-contexts li {
-  margin: 4px 0;
-}
+
 .settings section {
   border-top: 1px solid var(--line);
   padding: 10px 0;
@@ -1101,77 +682,7 @@ textarea {
   display: flex;
   flex-direction: column;
 }
-.mob-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
-  padding-top: calc(6px + env(safe-area-inset-top));
-  background: var(--paper-3);
-  border-bottom: 2px solid var(--line);
-}
-.mob-main {
-  flex: 1;
-  overflow: auto;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.mob-tabs {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  background: var(--paper-3);
-  border-top: 2px solid var(--line);
-  padding-bottom: env(safe-area-inset-bottom);
-}
-.mob-tab {
-  font: inherit;
-  font-size: 0.8em;
-  background: none;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 58px;
-  cursor: pointer;
-  position: relative;
-  color: var(--ink-soft);
-}
-.mob-tab-icon {
-  font-size: 1.5em;
-  line-height: 1.1;
-}
-.mob-tab-on {
-  color: var(--accent);
-  font-weight: 700;
-  background: var(--paper-2);
-}
-.badge {
-  position: absolute;
-  top: 6px;
-  right: 22%;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 999px;
-  font-size: 0.75em;
-  padding: 0 6px;
-}
-.order-strip {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #fffdf6;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 6px 10px;
-  font-size: 1.15em;
-  flex-wrap: wrap;
-}
-.mob-go {
-  align-self: stretch;
-}
+
 [data-layout='mobile'] .btn {
   min-height: 44px;
 }
@@ -1193,96 +704,23 @@ textarea {
   padding: 2px 2px;
 }
 
-/* keep the cup, temperature / method and serve button reachable while the shelf scrolls */
-.bench-dock {
-  position: sticky;
-  bottom: -10px;
-  z-index: 3;
+/* settings: save as text (export / import fallback) */
+.save-text {
+  margin: 10px 0;
+}
+.save-text-box {
+  margin-top: 8px;
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-  grid-template-areas:
-    'cup controls'
-    'cup actions';
-  gap: 8px 10px;
-  margin: 0 -14px -10px;
-  padding: 8px 14px 10px;
-  background: var(--paper-2);
-  border-top: 1px solid var(--line);
-  box-shadow: 0 -6px 10px -8px rgba(60, 40, 20, 0.35);
+  gap: 8px;
 }
-.bench-dock .bench-row {
-  display: contents;
-}
-.bench-dock .cup {
-  grid-area: cup;
-  min-width: 0;
-  display: flex;
-}
-.bench-dock .cup-title {
-  display: none;
-}
-.bench-dock .cup-body {
-  flex: 1;
-  min-height: 56px;
-  border-top: 2px solid var(--ink-soft);
-  border-radius: 6px 6px 28px 28px;
-  padding: 4px 8px 8px;
-}
-.bench-dock .bench-controls {
-  grid-area: controls;
-  gap: 6px;
-}
-.bench-dock .bench-controls:empty {
-  display: none;
-}
-.bench-dock .bench-actions {
-  grid-area: actions;
-  align-self: end;
-}
-.bench-dock .seg-btn {
-  min-height: 40px;
-}
-.bench-dock .serve-btn {
-  min-width: 0;
-  flex: 1;
-}
-[data-layout='mobile'] .bench-dock {
-  bottom: -12px;
-  margin: 0 -12px -12px;
-  padding: 8px 12px 12px;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  gap: 6px 8px;
-}
-[data-layout='mobile'] .bench-dock .seg-btn {
-  padding: 4px 4px;
-  gap: 2px;
-  font-size: 0.9em;
-  flex-direction: column;
-  line-height: 1.1;
-}
-.shelf-dense {
-  grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
-  gap: 6px;
-  padding: 6px;
-}
-.shelf-dense .shelf-add {
-  min-height: 64px;
-  padding: 4px 2px;
-}
-.shelf-dense .shelf-label {
-  font-size: 0.85em;
-  line-height: 1.45;
-}
-.shelf-dense .stock-chip {
-  font-size: 0.7em;
-}
-[data-layout='mobile'] .shelf-dense {
-  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
-}
-/* focus / scrollIntoView should not hide shelf items under the sticky bench dock */
-.panel-bench {
-  scroll-padding-bottom: 170px;
-}
-[data-layout='mobile'] .mob-main:has(.bench-dock) {
-  scroll-padding-bottom: 190px;
+.save-text-area {
+  width: 100%;
+  box-sizing: border-box;
+  font: 12px/1.4 ui-monospace, Menlo, Consolas, monospace;
+  padding: 8px;
+  border: 1px solid #b89a6a;
+  border-radius: 6px;
+  background: #fffdf6;
+  color: #2b2118;
+  resize: vertical;
 }

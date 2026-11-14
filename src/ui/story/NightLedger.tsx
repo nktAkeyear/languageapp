@@ -2,14 +2,19 @@
  * Night in the shop: the window is dark, the lamp is lit, the ledger book lies open on the
  * counter and the day's entries are written in one by one. Blowing out the lamp ends the day.
  */
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { storyDismiss } from '../../story/engine';
 import { storyOf } from '../../story/text';
 import type { Ledger } from '../../story/types';
+import type { IngredientId } from '../../core/types';
 import { CustomerArt, lookFor } from '../art/customer';
 import { DocObjectArt, docLook } from '../art/documents';
-import { PieceArt } from '../art/ingredients';
-import { ShopBackdrop, ShopLive } from '../art/shop';
+import { ContainerArt, PieceArt } from '../art/ingredients';
+import { RenoRoom } from '../art/reno';
+import { ingredientsAtStage } from '../../core/gamedata';
+import { useReno } from '../reno/useReno';
+import { renoView } from '../../renovation/engine';
+import { SHELF, STAGE_H, STAGE_W, ShopBackdrop, ShopLive } from '../art/shop';
 import { NIGHT_SKY } from '../art/sky';
 import { shortGloss } from '../components/WordText';
 import { useMobile } from '../layout';
@@ -19,13 +24,44 @@ import { useUi } from '../uiState';
 import { personOf } from './people';
 import type { Act } from './StoryStage';
 
+/**
+ * The night shop behind the ledger: the same drawn shop as by day (1600×1000 design units), scaled
+ * to cover the screen — dark window, lamp lit, the shelf stocked (jars drawn, not interactive) and
+ * everything the renovation added. On a phone the left part (window, door, lamp light) shows.
+ */
 export function NightBackdrop() {
-  // On a phone the tall crop keeps the window (moon, stars), the door and the lamp in view.
-  const align = useMobile() ? 'xMinYMid' : 'xMidYMid';
+  const mobile = useMobile();
+  const g = useGame();
+  const reno = useReno();
+  const ref = useRef<HTMLDivElement>(null);
+  const [box, setBox] = useState({ w: 1280, h: 800 });
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const fit = () => setBox({ w: el.clientWidth || 1280, h: el.clientHeight || 800 });
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const scale = Math.max(box.w / STAGE_W, box.h / STAGE_H);
+  const left = mobile ? 0 : (box.w - STAGE_W * scale) / 2;
+  const top = (box.h - STAGE_H * scale) / 2;
+  const shelf = g.data && g.progress ? ingredientsAtStage(g.data, g.progress.stage).slice(0, SHELF.rows * SHELF.cols) : [];
   return (
-    <div className="night-bg" aria-hidden>
-      <ShopBackdrop sky={NIGHT_SKY} closed align={align} />
-      <ShopLive sky={NIGHT_SKY} ringing={false} align={align} />
+    <div className="night-bg" ref={ref} aria-hidden>
+      <div className="night-stage" style={{ width: STAGE_W, height: STAGE_H, transform: `translate(${left}px, ${top}px) scale(${scale})` }}>
+        <ShopBackdrop sky={NIGHT_SKY} closed paint={reno.has('paint')} />
+        <ShopLive sky={NIGHT_SKY} ringing={false} />
+        <RenoRoom owned={reno.owned} fresh={new Set()} />
+        <div className="night-shelf" style={{ left: SHELF.x, top: SHELF.y, width: SHELF.w, height: SHELF.rows * SHELF.rowH, gridTemplateColumns: `repeat(${SHELF.cols}, 1fr)`, gridTemplateRows: `repeat(${SHELF.rows}, ${SHELF.rowH}px)` }}>
+          {shelf.map((ing) => (
+            <div key={ing} className="night-jar">
+              <ContainerArt ing={ing} />
+            </div>
+          ))}
+        </div>
+      </div>
       <div className="night-wash" />
       <div className="night-lamp" />
     </div>
@@ -60,6 +96,8 @@ export function LedgerBook({ ledger, act, onClose }: { ledger: Ledger; act?: Act
   }, [written, rows]);
   if (!data || !story) return null;
   const lang = data.lang === 'zh' ? 'zh-CN' : 'en';
+  // Market goods kept overnight on the new shelf / in the cellar / in the ice box (renovation).
+  const kept = Object.entries(renoView(g.progress).carry).filter(([, n]) => (n ?? 0) > 0) as [IngredientId, number][];
   const w = (i: number) => (i < written ? 'lg-in' : 'lg-wait');
   const blowOut = () => {
     if (!act || closing) return;
@@ -84,6 +122,14 @@ export function LedgerBook({ ledger, act, onClose }: { ledger: Ledger; act?: Act
               <span className="coin-glyph" aria-hidden /> −{ledger.expenses}
             </td>
           </tr>
+          {ledger.purchases ? (
+            <tr className={w(1)} data-testid="ledger-purchases">
+              <th>注文</th>
+              <td>
+                <span className="coin-glyph" aria-hidden /> −{ledger.purchases}
+              </td>
+            </tr>
+          ) : null}
           <tr className={`${w(2)} lg-sum`}>
             <th>財布</th>
             <td>
@@ -118,6 +164,19 @@ export function LedgerBook({ ledger, act, onClose }: { ledger: Ledger; act?: Act
         <p className={`lg-note ${w(5)}`}>
           在庫の残り
           {snap.stock.map(([ing, n]) => (
+            <span key={ing} className="lg-stock">
+              <svg viewBox="-20 -20 40 40" aria-hidden>
+                <PieceArt ing={ing} />
+              </svg>
+              {n}
+            </span>
+          ))}
+        </p>
+      ) : null}
+      {live && kept.length ? (
+        <p className={`lg-note ${w(5)}`} data-testid="ledger-kept">
+          明日に取っておく
+          {kept.map(([ing, n]) => (
             <span key={ing} className="lg-stock">
               <svg viewBox="-20 -20 40 40" aria-hidden>
                 <PieceArt ing={ing} />

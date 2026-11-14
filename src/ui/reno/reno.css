@@ -1,0 +1,441 @@
+/* 店の改装: the carpenter's catalogue, its prop on the counter, the installed items in the scene. */
+
+/* ------------------------------------------------------------ the catalogue (a kraft-paper booklet) */
+.book-catalogue .book-cover {
+  background:
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.04) 0 3px, transparent 3px 9px),
+    linear-gradient(135deg, #a8783e, #6b4422);
+}
+.book-catalogue .paper {
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 62%, rgba(120, 80, 30, 0.18) 100%),
+    linear-gradient(#f4e9cf, #e9d8b0);
+}
+.ct-head {
+  border-bottom: 3px double #6b4422;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  position: relative;
+}
+.ct-title {
+  font-family: var(--font-serif);
+  font-size: 1.7em;
+  font-weight: 700;
+  color: #4a2a12;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ct-sub {
+  font-size: 1.05em;
+  color: #6b4422;
+  margin-top: 2px;
+}
+.ct-purse {
+  position: absolute;
+  right: 0;
+  top: 4px;
+  font-family: var(--font-serif);
+  font-size: 1.15em;
+  font-weight: 700;
+  color: #4a2a12;
+  background: #fbf3dc;
+  border: 1px solid #b8945a;
+  border-radius: 14px;
+  padding: 2px 10px;
+}
+.ct-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+.ct-card {
+  position: relative;
+  width: 100%;
+  font: inherit;
+  display: grid;
+  grid-template-rows: 84px auto auto;
+  justify-items: center;
+  gap: 2px;
+  padding: 8px 6px 8px;
+  background: #fbf5e2;
+  border: 1px solid #c8a870;
+  border-radius: 6px;
+  box-shadow: 0 2px 0 #b8945a;
+  cursor: pointer;
+  color: #2b2118;
+  min-height: 150px;
+}
+.ct-card:hover {
+  background: #fff9ea;
+}
+.ct-card.on {
+  outline: 3px solid #b8452f;
+  outline-offset: 1px;
+}
+.ct-card:focus-visible {
+  outline: 3px solid #f2c94c;
+}
+.ct-pic {
+  width: 100%;
+  height: 84px;
+}
+.ct-name {
+  font-size: 15px;
+  line-height: 1.25;
+  text-align: center;
+}
+.ct-price {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: #7a2f1b;
+  background: #f6e7c0;
+  border: 1px dashed #a8783e;
+  border-radius: 3px;
+  padding: 0 6px;
+}
+.ct-dear .ct-price {
+  color: #8a7a6a;
+}
+.ct-owned {
+  background: #efe6cf;
+}
+.ct-owned .ct-pic,
+.ct-ordered .ct-pic {
+  opacity: 0.75;
+}
+.ct-stamp {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 4px;
+  border: 3px solid #b8452f;
+  border-radius: 50%;
+  color: #b8452f;
+  font-weight: 700;
+  font-size: 14px;
+  display: grid;
+  place-items: center;
+  transform: rotate(-12deg);
+  background: rgba(255, 245, 230, 0.7);
+}
+.ct-stamp-ordered {
+  border-radius: 6px;
+  border-color: #3d6c9e;
+  color: #3d6c9e;
+  font-size: 12px;
+}
+.ct-new {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  background: #b8452f;
+  color: #fff7e6;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 1px 5px;
+}
+.ct-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.ct-big {
+  width: min(320px, 80%);
+  height: 220px;
+}
+.ct-page-name {
+  font-family: var(--font-serif);
+  font-size: 1.7em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4a2a12;
+}
+.ct-lines {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.35em;
+  line-height: 1.6;
+}
+.ct-lines li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ct-tag {
+  font-family: var(--font-serif);
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #7a2f1b;
+  background: #f6e7c0;
+  border: 2px dashed #a8783e;
+  padding: 2px 16px;
+  transform: rotate(-2deg);
+}
+.ct-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+.ct-order {
+  min-width: 200px;
+}
+.ct-note {
+  margin: 0;
+  color: #5a4430;
+}
+.ct-err {
+  color: #a8261f;
+}
+.ct-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-top: 30px;
+  text-align: center;
+}
+.ct-intro-pic {
+  width: 220px;
+  height: 120px;
+  opacity: 0.8;
+}
+.book-mobile .ct-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+.book-mobile .ct-title {
+  font-size: 1.4em;
+}
+.book-mobile .ct-purse {
+  position: static;
+  display: inline-block;
+  margin-top: 4px;
+}
+.book-mobile .ct-big {
+  height: 170px;
+}
+.book-mobile .ct-lines {
+  font-size: 1.2em;
+}
+
+/* ------------------------------------------------------------ the catalogue on the counter */
+.catalogue-prop {
+  position: absolute;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.catalogue-prop .prop-art {
+  width: 100%;
+  display: block;
+  filter: drop-shadow(0 4px 4px rgba(20, 8, 2, 0.35));
+  transition: transform 0.15s;
+}
+.catalogue-prop:hover .prop-art {
+  transform: translateY(-3px) rotate(-1deg);
+}
+.catalogue-prop .desk-tag {
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%) rotate(-2deg);
+}
+.catalogue-prop.glowing .prop-art {
+  animation: reno-glow 1.6s ease-in-out infinite alternate;
+}
+@keyframes reno-glow {
+  from {
+    filter: drop-shadow(0 0 2px rgba(255, 220, 120, 0.4));
+  }
+  to {
+    filter: drop-shadow(0 0 12px rgba(255, 220, 120, 0.95));
+  }
+}
+.d-catalogue {
+  left: 258px;
+  top: 548px;
+  width: 150px;
+  z-index: 3;
+}
+.m-catalogue {
+  left: 2px;
+  top: 252px;
+  width: 68px;
+}
+.m-catalogue .desk-tag {
+  font-size: 10px;
+}
+
+/* ------------------------------------------------------------ installed items in the scene */
+.reno-room {
+  pointer-events: none;
+}
+.reno-fresh {
+  animation: reno-arrive 2.4s ease-in-out 3;
+}
+@keyframes reno-arrive {
+  0%,
+  100% {
+    filter: none;
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(255, 236, 160, 0.95));
+  }
+}
+.reno-cat-tail {
+  transform-box: fill-box;
+  transform-origin: 0% 100%;
+  animation: reno-tail 3.2s ease-in-out infinite;
+}
+@keyframes reno-tail {
+  0%,
+  70%,
+  100% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(-8deg);
+  }
+  90% {
+    transform: rotate(5deg);
+  }
+}
+.reno-cat-z {
+  animation: reno-z 3s ease-in-out infinite;
+}
+@keyframes reno-z {
+  0% {
+    opacity: 0;
+    transform: translate(0, 4px);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(6px, -8px);
+  }
+}
+.reno-cat-eyes {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: reno-blink 4.2s infinite;
+}
+@keyframes reno-blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+.reno-chime-strip {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: reno-sway 2.8s ease-in-out infinite alternate;
+}
+@keyframes reno-sway {
+  from {
+    transform: rotate(-6deg);
+  }
+  to {
+    transform: rotate(6deg);
+  }
+}
+.reno-lantern-glow {
+  animation: reno-flicker 2.2s ease-in-out infinite alternate;
+}
+@keyframes reno-flicker {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+.st-night .reno-lantern-glow,
+[data-phase='closed'] .reno-lantern-glow {
+  opacity: 0.9;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reno-fresh,
+  .reno-cat-tail,
+  .reno-cat-z,
+  .reno-cat-eyes,
+  .reno-chime-strip,
+  .reno-lantern-glow,
+  .catalogue-prop.glowing .prop-art {
+    animation: none;
+  }
+  .reno-fresh {
+    filter: drop-shadow(0 0 6px rgba(255, 236, 160, 0.9));
+  }
+}
+
+/* ------------------------------------------------------------ notebook upgrades */
+.index-tab-ribbon {
+  background: linear-gradient(#d8543a, #a8301e) !important;
+  color: #fff7e6 !important;
+  border-color: #6b1a10 !important;
+}
+.index-tab-ribbon:not(.on) {
+  opacity: 0.85;
+}
+.w.w-hl {
+  background: rgba(255, 214, 90, 0.55);
+  box-shadow: 0 0 0 2px rgba(200, 140, 30, 0.5);
+  border-radius: 3px;
+}
+.wp-neighbours {
+  margin-top: 12px;
+}
+.wp-nb-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.wp-nb {
+  font: inherit;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  padding: 3px 10px;
+  border: 1px dashed #8a7350;
+  border-radius: 6px;
+  background: #fffaf0;
+  cursor: pointer;
+  color: #2b2118;
+}
+.wp-nb.ok {
+  border-style: solid;
+  border-color: #4f6b45;
+}
+.wp-nb-text {
+  font-size: 1.1em;
+}
+.wp-nb-meta {
+  font-size: 0.75em;
+  color: #6b5a45;
+}

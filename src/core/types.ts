@@ -8,6 +8,7 @@
 
 import type { TownContent, TownShared } from './townTypes';
 import type { StoryShared, StoryText } from '../story/types';
+import type { RenoShared, RenoText } from '../renovation/types';
 
 export type Lang = 'en' | 'zh';
 export const LANGS: Lang[] = ['en', 'zh'];
@@ -319,6 +320,8 @@ export interface LanguageContent {
   town?: TownContent;
   /** Story layer text (regulars, documents). Merged in by src/content/index.ts; absent = no story. */
   story?: StoryText;
+  /** Renovation catalogue text. Merged in by src/content/index.ts; absent = no catalogue. */
+  renovation?: RenoText;
 }
 
 export interface SharedContent {
@@ -330,6 +333,8 @@ export interface SharedContent {
   town?: TownShared;
   /** Story layer structure (language-neutral). Absent = no story. */
   story?: StoryShared;
+  /** Renovation catalogue (language-neutral). Absent = no catalogue. */
+  renovation?: RenoShared;
 }
 
 // ---------------------------------------------------------------------------

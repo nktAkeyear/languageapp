@@ -29,11 +29,12 @@ import { DocBoxView, DocFound } from './Documents';
 import { LedgerBook, NightBackdrop } from './NightLedger';
 import { personOf } from './people';
 import { useStoryHold, useStoryUi } from './StoryUi';
+import { CornerHooks } from '../scene/parts';
 import './story.css';
 
 export type Act = (fn: (p: LangProgress, d: GameData) => void) => void;
 
-export function StoryStage() {
+export function StoryStage({ onSettings }: { onSettings?: () => void }) {
   const g = useGame();
   const su = useStoryUi();
   const hold = useStoryHold();
@@ -46,10 +47,28 @@ export function StoryStage() {
   const card = cards[0];
   const night = cards.some((c) => c.kind === 'ledger');
   if (!card || hold.held) return su.box || su.reading ? <DocBoxView /> : null;
-  return <StoryCardStage card={card} cards={cards} data={data} story={story} p={p} act={act} night={night} />;
+  return <StoryCardStage card={card} cards={cards} data={data} story={story} p={p} act={act} night={night} onSettings={onSettings} />;
 }
 
-function StoryCardStage({ card, cards, data, story, p, act, night }: { card: StoryCard; cards: StoryCard[]; data: GameData; story: Story; p: LangProgress; act: Act; night: boolean }) {
+function StoryCardStage({
+  card,
+  cards,
+  data,
+  story,
+  p,
+  act,
+  night,
+  onSettings,
+}: {
+  card: StoryCard;
+  cards: StoryCard[];
+  data: GameData;
+  story: Story;
+  p: LangProgress;
+  act: Act;
+  night: boolean;
+  onSettings?: () => void;
+}) {
   // While a story card is up, the shop's own customer steps out of view (the close-up replaces them).
   useEffect(() => {
     document.documentElement.dataset.story = card.kind;
@@ -61,6 +80,11 @@ function StoryCardStage({ card, cards, data, story, p, act, night }: { card: Sto
     <div className={`st-root ${night ? 'st-night' : ''}`} data-testid="story-stage" data-card={card.kind}>
       {night ? <NightBackdrop /> : null}
       <CardView key={cardKey(card, cards.length)} card={card} data={data} story={story} p={p} act={act} night={night} />
+      {onSettings ? (
+        <div className="st-hooks">
+          <CornerHooks onSettings={onSettings} />
+        </div>
+      ) : null}
     </div>
   );
 }

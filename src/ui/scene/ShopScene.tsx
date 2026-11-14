@@ -33,6 +33,9 @@ import {
 } from './parts';
 import { useBench } from './workbench';
 import { DocBoxProp, Keepsakes } from '../story/Documents';
+import { RenoRoom } from '../art/reno';
+import { CatalogueButton } from '../reno/CatalogueProp';
+import { useReno } from '../reno/useReno';
 
 export function useStageScale(w: number, h: number) {
   const ref = useRef<HTMLDivElement>(null);
@@ -64,11 +67,13 @@ export function ShopScene({ onSettings }: { onSettings: () => void }) {
   const slots = SHELF.rows * SHELF.cols;
   const shelf = b.shelf.slice(0, slots);
   const phase = useGame().progress?.today?.phase;
+  const reno = useReno();
   return (
     <div className="scene-viewport" ref={ref} data-phase={phase} data-stage={b.stage}>
       <div className="stage" style={{ width: STAGE_W, height: STAGE_H, transform: `translate(-50%, -50%) scale(${scale})` }}>
-        <ShopBackdrop sky={sky} />
+        <ShopBackdrop sky={sky} paint={reno.has('paint')} />
         <ShopLive sky={sky} ringing={b.ringing} />
+        <RenoRoom owned={reno.owned} fresh={reno.fresh} catAwake={b.stage === 'react'} />
         <div className="lamp-glow" style={{ opacity: sky.lamp }} aria-hidden />
         <div className="d-plaque">
           <Plaque />
@@ -116,6 +121,7 @@ export function ShopScene({ onSettings }: { onSettings: () => void }) {
         <div className="d-keepsakes">
           <Keepsakes />
         </div>
+        <CatalogueButton className="d-catalogue" />
         <div className="d-coinjar">
           <CoinJar />
         </div>

@@ -10,7 +10,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import { pageStatus } from '../core/verification';
 import { useGame } from './useGame';
 
-export type BookKind = 'recipe' | 'notebook';
+export type BookKind = 'recipe' | 'notebook' | 'catalogue';
 export type NbTab = 'words' | 'verify' | 'level';
 
 export interface UiApi {
@@ -22,6 +22,8 @@ export interface UiApi {
   recipePage: string | null;
   openRecipe(pageId?: string | null): void;
   openNotebook(tab?: NbTab, opts?: { word?: string | null; verifyPage?: string | null }): void;
+  /** The renovation catalogue (carpenter's order sheet). */
+  openCatalogue(): void;
   closeBook(): void;
   setNbTab(t: NbTab): void;
   setWord(id: string | null): void;
@@ -141,6 +143,7 @@ export function UiProvider({ children }: { children: ReactNode }) {
         if (opts?.word !== undefined) setWord(opts.word);
         if (opts?.verifyPage !== undefined) setVerifyPage(opts.verifyPage);
       },
+      openCatalogue: () => setBook('catalogue'),
       closeBook: () => setBook(null),
       setNbTab,
       setWord,

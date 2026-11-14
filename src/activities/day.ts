@@ -14,6 +14,7 @@ import { ingredientMarkup, marketLevel, planMarket } from './market/engine';
 import { currentOrder, endDay, serve, startDay, type ServeOutcome } from './shop/engine';
 import { chooseText, fill, textWords, townOf, type Town } from './town/text';
 import { storyAfterServe, storyEndDay, storyPlanShop, storyPlanTown } from '../story/engine';
+import { renoAfterServe, renoCarry, renoEndDay, renoPlanShop, renoPlanTown } from '../renovation/engine';
 
 /** Is the activity open by now? (day + reputation, or grace days after minDay — no hard gate) */
 export function unlockReady(u: TownUnlock, day: number, reputation: number): boolean {
@@ -72,6 +73,7 @@ function levelNotes(town: Town, p: LangProgress, segments: ActivityKind[]): stri
 /** Open the day: the shop plans its customers first (the market needs them), then the town. */
 export function startTownDay(data: GameData, p: LangProgress, rng: Rng): void {
   startDay(data, p, rng);
+  renoPlanShop(data, p, rng); // renovation: yesterday's orders arrive; a bench brings one more customer
   storyPlanShop(data, p, rng); // story: a regular's visit joins the queue before the market plans
   const town = townOf(data);
   const { segments, notes } = planSegments(town, p, rng);
@@ -79,11 +81,13 @@ export function startTownDay(data: GameData, p: LangProgress, rng: Rng): void {
   if (town) {
     td.notes.push(...levelNotes(town, p, segments));
     if (segments.includes('market')) {
-      const md = planMarket(data, p, p.today!.queue, rng);
+      const kept = renoCarry(data, p); // renovation: goods kept overnight (shelf / cellar / ice box)
+      const md = planMarket(data, p, p.today!.queue, rng, kept);
       if (md) {
         td.market = md;
-        // Until the shopping is done, today's short goods are empty.
+        // Until the shopping is done, today's short goods are empty (or what was kept overnight).
         for (const l of md.lines) td.stock[l.good] = 0;
+        Object.assign(td.stock, kept);
       } else td.segments = td.segments.filter((s) => s !== 'market');
     }
     if (segments.includes('delivery')) {
@@ -95,6 +99,7 @@ export function startTownDay(data: GameData, p: LangProgress, rng: Rng): void {
   // Notes appear in the first segment; the shop shows its own when it comes first.
   if (td.segments[0] === 'shop' && p.today) p.today.notes.push(...td.notes);
   p.townDay = td;
+  renoPlanTown(data, p, rng, td); // renovation: with the cart, a delivery every day
   storyPlanTown(data, p, rng); // story: a regular's delivery
 }
 
@@ -173,7 +178,9 @@ export function serveInTown(data: GameData, p: LangProgress, brew: Brew, rng: Rn
       }
     }
   }
+  const said = p.today!.results[p.today!.results.length - 1]?.reaction;
   storyAfterServe(data, p, out, rng); // story: a regular's reaction line / small talk
+  renoAfterServe(data, p, out, rng, p.today!.results[p.today!.results.length - 1]?.reaction !== said); // renovation: bonuses, remarks
   return out;
 }
 
@@ -182,6 +189,7 @@ export function endTownDay(p: LangProgress, data?: GameData): void {
   if (p.today?.phase !== 'closed') return;
   if (hasNextSegment(p)) return;
   if (currentSegment(p) !== 'shop' && !segmentDone(p)) return;
+  if (data) renoEndDay(data, p); // renovation: signboard reputation, stock kept overnight
   if (data) storyEndDay(data, p); // story: evening scene + the night's ledger
   endDay(p);
   p.townDay = null;

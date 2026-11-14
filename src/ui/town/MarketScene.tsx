@@ -169,14 +169,19 @@ function StallFront({ st, onOpen }: { st: StallDay; onOpen: () => void }) {
   const town = data ? townOf(data) : null;
   if (!town) return null;
   const def = town.shared.market.stalls.find((x) => x.id === st.id)!;
+  const shown = [...new Map(st.offers.map((o) => [o.good, o] as const)).keys()].map((g) => st.offers.find((o) => o.good === g)!);
+  const n = shown.length + st.soldOut.length;
+  const cols = n > 3 ? Math.ceil(n / 2) : Math.max(1, n);
   return (
     <button type="button" className={`mk-stall mk-stall-${def.colour}`} onClick={onOpen} data-stall={st.id} aria-label={`${def.colour} の屋台へ行く`}>
       <StallFrameArt colour={def.colour} />
       <span className="mk-stall-vendor" aria-hidden>
         <CustomerArt look={lookFor(`v_${st.id}`, def.vendor)} ex="happy" />
       </span>
-      <span className="mk-stall-goods">
-        {st.offers.map((o) => (
+      {/* From the street: one jar per good with the price of its usual kind (the other kinds are on
+          the counter when you walk up). Up to three per row; a busy stall gets a second row. */}
+      <span className={`mk-stall-goods ${shown.length + st.soldOut.length > 3 ? 'mk-two-rows' : ''}`} style={{ ['--cols' as string]: cols }}>
+        {shown.map((o) => (
           <span key={o.id} className="mk-good">
             <ContainerArt ing={o.good} />
             <PriceTag town={town} o={o} interactive={false} />

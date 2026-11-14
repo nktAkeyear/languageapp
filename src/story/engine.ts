@@ -465,13 +465,15 @@ export function storyEndDay(data: GameData, p: LangProgress): void {
   fireMoments(data, story, p, 'evening', 1);
   const md = p.townDay?.market;
   const expenses = md?.spent ?? 0;
+  const purchases = p.reno?.spent?.day === p.day ? p.reno.spent.coins : 0; // renovation catalogue
   const money = p.town.money;
   const results = p.today?.results ?? [];
   const before = new Set(today.confirmedAtStart);
   const ledger: Ledger = {
     day: p.day,
-    takings: Math.max(0, money - (p.townDay?.moneyStart ?? today.moneyStart) + expenses),
+    takings: Math.max(0, money - (p.townDay?.moneyStart ?? today.moneyStart) + expenses + purchases),
     expenses,
+    ...(purchases ? { purchases } : {}),
     money,
     repDelta: p.reputation - today.repStart,
     served: results.length,

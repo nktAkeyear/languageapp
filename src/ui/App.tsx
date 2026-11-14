@@ -52,7 +52,7 @@ function Shell() {
             <>
               {/* Keyed by language so per-scene UI state resets on switching. */}
               {mobile ? <MobileLayout key={g.lang} onSettings={() => setSettings(true)} /> : <DesktopLayout key={g.lang} onSettings={() => setSettings(true)} />}
-              <StoryStage key={`story-${g.lang}`} />
+              <StoryStage key={`story-${g.lang}`} onSettings={() => setSettings(true)} />
               <BookLayer />
               <DayTransition />
             </>

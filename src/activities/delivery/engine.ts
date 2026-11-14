@@ -26,6 +26,7 @@ import type {
 } from '../../core/townTypes';
 import { chooseText, fill, numberText, textWords, townOf, type Town } from '../town/text';
 import { clockNumber, descriptionsOf, evaluateDelivery, ruleFor, slotsFor, witnessChoice } from './rules';
+import { renoTipBonus } from '../../renovation/engine';
 
 /** Reputation change per delivery (one a day at most, so a perfect one counts double a cup). */
 export const DELIVERY_REP_DELTA: Record<Outcome, number> = { perfect: 2, minor: 0, fail: -1, bad: -2 };
@@ -314,7 +315,7 @@ export function handOver(data: GameData, p: LangProgress, to: { person?: PersonI
       : ['perfect_absent', 'perfect'];
   const r = reactionFor(data, p, town, x, kinds, rng);
   const repDelta = DELIVERY_REP_DELTA[ev.outcome];
-  const tip = ev.outcome === 'perfect' ? town.shared.delivery.tip : 0;
+  const tip = ev.outcome === 'perfect' ? town.shared.delivery.tip + renoTipBonus(data, p) : 0; // + bicycle (renovation)
   p.reputation = Math.max(0, p.reputation + repDelta);
   p.town.money += tip;
   // Hidden SRS: a perfect delivery confirms every slip word; a mistake points at its line.
