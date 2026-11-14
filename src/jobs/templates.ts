@@ -10,6 +10,7 @@ import { tokenIds } from '../core/tokenize';
 import { EIKEN_GRADES } from '../core/types';
 import { fill } from '../activities/town/text';
 import { eikenFromKey, eikenIndex, type EikenKey } from '../curriculum/yardsticks';
+import { evalExpr } from './expr';
 import { postage as postageOf, slotFits } from './rules';
 import type {
   AuthoredTask,
@@ -125,8 +126,13 @@ function maxOf(ctx: GenCtx, k?: EikenKey): number {
   return k ? eikenIndex(eikenFromKey(k)) : rankLevelIndex(ctx.job, ctx.rank);
 }
 
+/** A thing's tags for slot selection: its own tags plus 'mass' (a mass noun) or 'count' (a counted one). */
+export function thingTags(t: ThingDef): string[] {
+  return [...(t.tags ?? []), t.mass ? 'mass' : 'count'];
+}
+
 function thingsFor(ctx: GenCtx, tags: string[] | undefined, max: number, used: Set<string>): ThingDef[] {
-  return ctx.jc.things.filter((t) => !used.has(t.id) && (!tags?.length || tags.some((g) => t.tags?.includes(g))) && levelOk(ctx.data, t.word, max));
+  return ctx.jc.things.filter((t) => !used.has(t.id) && !t.tags?.includes('delivery') && (!tags?.length || tags.some((g) => thingTags(t).includes(g))) && levelOk(ctx.data, t.word, max));
 }
 
 /** Plain-word slot: a lexicon word typed by domain / POS / level. */
@@ -214,13 +220,21 @@ export function makeInstance(ctx: GenCtx, source: TaskInstance['source'], meta: 
   // a task / template may name a person, or 'client' for any client (a guest at the inn's desk).
   const clients = clientPeople(ctx).length ? clientPeople(ctx) : [ctx.jc.boss];
   const bossTask = spec.arch === 'sort' || spec.arch === 'check' || (spec.arch === 'respond' && spec.msg.kind !== 'speech');
-  let person = meta.person === 'client' ? pick(ctx.rng, clients) : (meta.person ?? (bossTask ? ctx.jc.boss : pick(ctx.rng, clients)));
+  const named = (id: string) => {
+    const nm = personOf(ctx.data, ctx.jc, id).name;
+    return [say, ...specTexts(spec)].some((t) => t.includes(`{${nm}|@}`));
+  };
+  const others = clients.filter((id) => !named(id));
+  const anyClient = () => pick(ctx.rng, others.length ? others : clients);
+  let person = meta.person === 'client' ? anyClient() : (meta.person ?? (bossTask ? ctx.jc.boss : anyClient()));
   // A speaker who names themselves is that person (their own face): "Hello, I am {Mr. Lin|@}."
   if (!handover) {
     const self = selfNamed(ctx.data, ctx.jc, say);
     if (self?.id && (!meta.person || meta.person === 'client' || !bossTask)) person = self.id;
   }
-  const texts = [...(say ? [say] : []), ...specTexts(spec)];
+  // The cabinet's labels are read too (they count as met words and in the shift's new-word budget).
+  const binLabels = spec.arch === 'sort' ? spec.bins.map((b) => ctx.jc.sort?.bins.find((x) => x.id === b)?.label ?? '').filter(Boolean) : [];
+  const texts = [...(say ? [say] : []), ...specTexts(spec), ...binLabels];
   const focus = spec.arch === 'make' || spec.arch === 'trade' ? [say] : spec.arch === 'respond' ? spec.msg.lines : spec.arch === 'sort' ? spec.items.map((i) => i.text) : texts.filter((t) => t !== say || !handover);
   return {
     key,
@@ -311,20 +325,21 @@ function fillSlots(ctx: GenCtx, slots: Record<string, SlotDef>, maxCount: number
         values[key] = txt;
         want.push({ thing: th.id, n });
       } else if (s.kind === 'thing') {
-        values[key] = thingName(ctx.data, th);
-        want.push({ thing: th.id, min: 1, max: Math.min(th.max ?? maxCount, maxCount) });
+        // "a salad" / "sausages" / "bread": a counted thing is named in the plural unless it is served as one.
+        values[key] = th.one ? th.one.replace(/(\S+)$/, (w) => wordMarkup(ctx.data, th.word, w)) : thingName(ctx.data, th, !th.mass);
+        want.push(th.one ? { thing: th.id, n: 1 } : { thing: th.id, min: 1, max: Math.min(th.max ?? maxCount, maxCount) });
       } else {
         values[key] = thingName(ctx.data, th, true);
         (s.kind === 'forbid' ? forbid : dislike).push(th.id);
       }
     } else if (s.kind === 'method') {
-      const ms = (ctx.jc.make?.methods ?? []).filter((m) => levelOk(ctx.data, m.word, maxOf(ctx)));
+      const ms = (ctx.jc.make?.methods ?? []).filter((m) => (!s.only || s.only.includes(m.id)) && levelOk(ctx.data, m.word, maxOf(ctx)));
       if (!ms.length) return null;
       const m = pick(ctx.rng, ms);
       method = m.id;
       values[key] = wordMarkup(ctx.data, m.word, m.surface);
     } else if (s.kind === 'vessel') {
-      const vs = (ctx.jc.make?.vessels ?? []).filter((v) => levelOk(ctx.data, v.word, maxOf(ctx)));
+      const vs = (ctx.jc.make?.vessels ?? []).filter((v) => (!s.only || s.only.includes(v.id)) && levelOk(ctx.data, v.word, maxOf(ctx)));
       if (!vs.length) return null;
       const v = pick(ctx.rng, vs);
       vessel = v.id;
@@ -342,6 +357,19 @@ function fillSlots(ctx: GenCtx, slots: Record<string, SlotDef>, maxCount: number
     } else if (s.kind === 'pick') {
       if (!s.values.length) return null;
       values[key] = pick(ctx.rng, s.values);
+    }
+  }
+  // The method must suit every wanted thing that says how it can be cooked (no grilled eggs, no fried salad).
+  if (method) {
+    const mSlot = Object.entries(slots).find(([, d]) => d.kind === 'method');
+    const ok = (m: string) => want.every((w) => !thingById(ctx.jc, w.thing)?.cook || thingById(ctx.jc, w.thing)!.cook!.includes(m));
+    if (!ok(method)) {
+      const only = mSlot && mSlot[1].kind === 'method' ? mSlot[1].only : undefined;
+      const ms = (ctx.jc.make?.methods ?? []).filter((m) => (!only || only.includes(m.id)) && ok(m.id) && levelOk(ctx.data, m.word, maxOf(ctx)));
+      if (!ms.length) return null;
+      const m = pick(ctx.rng, ms);
+      method = m.id;
+      values[mSlot![0].toLowerCase()] = wordMarkup(ctx.data, m.word, m.surface);
     }
   }
   return { values, want, forbid, dislike, bySlot, method, vessel, self };
@@ -422,18 +450,20 @@ function buildSort(ctx: GenCtx, t: TaskTemplate & SortTemplate): Built | null {
   // Bins whose labels are within the rank's level.
   const binOk = (b: string) => {
     const def = bench.bins.find((x) => x.id === b);
-    return !!def && tokenIds(ctx.data.tokens(`${def.label} ${def.ref}`)).every((id) => levelOk(ctx.data, id, max));
+    return !!def && (!!def.art || tokenIds(ctx.data.tokens(`${def.label} ${def.ref}`)).every((id) => levelOk(ctx.data, id, max)));
   };
   const allowed = t.bins.filter(binOk);
   const items: { id: string; text: string; thing?: string; bin: string }[] = [];
   const seen = new Set<string>();
+  // A name is used once per tray (two letters for one person with two different places would contradict each other).
+  const usedNames = new Set<string>();
   for (let tries = 0; items.length < n && tries < n * 12; tries++) {
     const pat = pick(ctx.rng, t.patterns);
     const values: Record<string, string> = {};
     let bin: string | undefined;
     let thing: string | undefined;
     if (pat.text.includes('{thing}') || pat.text.includes('{Thing}')) {
-      const cands = ctx.jc.things.filter((x) => x.bin && allowed.includes(x.bin) && (!pat.tags?.length || pat.tags.some((g) => x.tags?.includes(g))) && levelOk(ctx.data, x.word, max));
+      const cands = ctx.jc.things.filter((x) => x.bin && allowed.includes(x.bin) && (!pat.tags?.length || pat.tags.some((g) => thingTags(x).includes(g))) && levelOk(ctx.data, x.word, max));
       if (!cands.length) continue;
       const th = pick(ctx.rng, cands);
       values.thing = thingName(ctx.data, th);
@@ -454,12 +484,19 @@ function buildSort(ctx: GenCtx, t: TaskTemplate & SortTemplate): Built | null {
       if (!pool.length) continue;
       bin = pick(ctx.rng, pool);
     }
-    if (pat.text.includes('{name}') || pat.text.includes('{Name}')) values.name = personName(ctx.data, ctx.jc, pick(ctx.rng, clientPeople(ctx)));
+    let nameId: string | undefined;
+    if (pat.text.includes('{name}') || pat.text.includes('{Name}')) {
+      const free = clientPeople(ctx).filter((id) => !usedNames.has(id));
+      if (!free.length) continue;
+      nameId = pick(ctx.rng, free);
+      values.name = personName(ctx.data, ctx.jc, nameId);
+    }
     if (!bin) continue;
     const text = fill(pat.text, values);
     if (!text || seen.has(text)) continue;
     if (!tokenIds(ctx.data.tokens(text)).every((id) => levelOk(ctx.data, id, max))) continue;
     seen.add(text);
+    if (nameId) usedNames.add(nameId);
     items.push({ id: `i${items.length + 1}`, text: capitalizeFirst(text), thing, bin });
   }
   if (items.length < Math.min(n, 2)) return null;
@@ -480,11 +517,15 @@ function numIn(v: string): number {
 function fieldText(f: CheckField, n: number): string {
   if (f.names) return f.names[n] ?? String(n);
   const num = Number.isInteger(n) ? String(n) : n.toFixed(2);
-  return (f.fmt ?? '{n}').replace('{n}', num);
+  return (f.fmt ?? '{n}').replace('{n,}', Number.isInteger(n) ? n.toLocaleString('en-US') : num).replace('{n}', num);
 }
 
 /** A believable wrong number for a field: a slip of the pen (digits swapped, one off, a step off, doubled). */
-function nearMiss(ctx: GenCtx, f: CheckField, n: number): number | null {
+function nearMiss(ctx: GenCtx, f: CheckField, n: number, all: Record<string, number> = {}): number | null {
+  if (f.alts) {
+    const a = [...new Set(f.alts.map((e) => evalExpr(e, all)))].filter((x) => x !== n && fieldText(f, x) !== fieldText(f, n));
+    return a.length ? pick(ctx.rng, a) : null;
+  }
   const step = f.range?.[2] ?? 1;
   const cands = new Set<number>();
   const d = String(n);
@@ -494,10 +535,8 @@ function nearMiss(ctx: GenCtx, f: CheckField, n: number): number | null {
   }
   cands.add(n + step);
   if (n - step > 0) cands.add(n - step);
-  if (!f.names) {
-    cands.add(n + 10 * step);
-    if (n * 2 !== n) cands.add(n * 2);
-  }
+  if (!f.names && n >= 10) cands.add(n + 10 * step);
+  if (!f.names && n * 2 !== n && n > 2) cands.add(n * 2);
   const ok = [...cands].filter((x) => x !== n && x > 0 && (!f.names || (f.names[x] !== undefined && f.names[x] !== '')) && fieldText(f, x) !== fieldText(f, n));
   return ok.length ? pick(ctx.rng, ok) : null;
 }
@@ -510,7 +549,7 @@ function buildCheck(ctx: GenCtx, t: TaskTemplate & CheckTemplate): Built | null 
   const values: Record<string, string> = {};
   for (const f of t.fields) {
     if (f.calc) {
-      num[f.id] = f.calc(num);
+      num[f.id] = evalExpr(f.calc, num);
       values[f.id] = fieldText(f, num[f.id]);
     } else if (f.range) {
       const [lo, hi, step = 1] = f.range;
@@ -546,7 +585,7 @@ function buildCheck(ctx: GenCtx, t: TaskTemplate & CheckTemplate): Built | null 
       let alt: string | null = null;
       let altNum = NaN;
       if (f.calc || f.range) {
-        const m = nearMiss(ctx, f, num[id]);
+        const m = nearMiss(ctx, f, num[id], num);
         if (m === null) continue;
         altNum = m;
         alt = fieldText(f, m);
@@ -560,7 +599,7 @@ function buildCheck(ctx: GenCtx, t: TaskTemplate & CheckTemplate): Built | null 
       const s2: Record<string, string> = { ...values, [id]: alt };
       for (const g of t.fields)
         if (g.calc && g.id !== id) {
-          n2[g.id] = g.calc(n2);
+          n2[g.id] = evalExpr(g.calc, n2);
           s2[g.id] = fieldText(g, n2[g.id]);
         }
       const differs = [...targetShows].filter((k) => s2[k] !== values[k] && (refShows.has(k) || k === id));
@@ -584,7 +623,7 @@ function buildCheck(ctx: GenCtx, t: TaskTemplate & CheckTemplate): Built | null 
     let third: string | undefined;
     if (f.calc || f.range) {
       for (let k = 0; k < 6 && !third; k++) {
-        const m = nearMiss(ctx, f, num[wrong]);
+        const m = nearMiss(ctx, f, num[wrong], num);
         const tx = m === null ? null : fieldText(f, m);
         if (tx && tx !== values[wrong] && tx !== shown[wrong]) third = tx;
       }
@@ -592,7 +631,9 @@ function buildCheck(ctx: GenCtx, t: TaskTemplate & CheckTemplate): Built | null 
     spec.fixOptions = shuffle(ctx.rng, [values[wrong], shown[wrong], ...(third ? [third] : [])]);
     spec.fix = values[wrong];
   }
-  return { say: fillSay(t.say, lower(values)) ?? '', spec };
+  // The guest whose name is on the papers is the one at the desk (the face matches the book).
+  const named = values.name ? selfNamed(ctx.data, ctx.jc, `I am ${values.name}`) : null;
+  return { say: fillSay(t.say, lower(values)) ?? '', spec, person: t.person === 'client' && named?.id ? named.id : undefined };
 }
 
 function buildChoose(ctx: GenCtx, t: TaskTemplate & RespondTemplate): Built | null {

@@ -15,7 +15,7 @@ import { RENO_SHARED } from './shared/renovation';
 import { RENO_EN } from './en/renovation';
 import { RENO_ZH } from './zh/renovation';
 import { withJobs } from '../jobs/merge';
-import { JOBS } from './jobs';
+import { JOBS, JOBS_COMMON } from './jobs';
 
 /** Town activities live in their own files; merge their lexicon / verification pages here. */
 function withTown(c: LanguageContent, town: TownContent): LanguageContent {
@@ -30,6 +30,6 @@ function withTown(c: LanguageContent, town: TownContent): LanguageContent {
 export const SHARED: SharedContent = { ...BASE_SHARED, town: TOWN_SHARED, story: STORY_SHARED, renovation: RENO_SHARED };
 
 export const CONTENT: Record<Lang, LanguageContent> = {
-  en: withJobs(withRenovation(withStory(withTown(en, enTown), STORY_EN), RENO_EN), JOBS),
-  zh: withJobs(withRenovation(withStory(withTown(zh, zhTown), STORY_ZH), RENO_ZH), JOBS),
+  en: withJobs(withRenovation(withStory(withTown(en, enTown), STORY_EN), RENO_EN), JOBS, JOBS_COMMON.en),
+  zh: withJobs(withRenovation(withStory(withTown(zh, zhTown), STORY_ZH), RENO_ZH), JOBS, JOBS_COMMON.zh),
 };

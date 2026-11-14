@@ -10,6 +10,7 @@ import type { TownContent, TownShared } from './townTypes';
 import type { StoryShared, StoryText } from '../story/types';
 import type { RenoShared, RenoText } from '../renovation/types';
 import type { JobDef } from '../jobs/types';
+import type { JobRegistry } from '../jobs/lexicon';
 
 export type Lang = 'en' | 'zh';
 export const LANGS: Lang[] = ['en', 'zh'];
@@ -331,6 +332,8 @@ export interface LanguageContent {
   renovation?: RenoText;
   /** Jobs playable in this language (the tea house first). Merged in by src/content/index.ts. */
   jobs?: JobDef[];
+  /** Who defines each job word, and duplicate definitions found (src/jobs/lexicon.ts). */
+  jobRegistry?: JobRegistry;
 }
 
 export interface SharedContent {

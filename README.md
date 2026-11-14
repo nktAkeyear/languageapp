@@ -92,9 +92,11 @@ src/
     validate.ts         content validator (used by script + tests)
     validateTown.ts     validator part for market / delivery content
   jobs/                 the jobs framework (UI-agnostic): types.ts (schema + runtime + save state) ← start here
-                        for jobs, rules.ts (the archetypes' rules + solvers), templates.ts (task generator:
-                        typed slots → instances), engine.ts (board, parts of the day, shifts, planner, ranks,
-                        wages, links), vocab.ts (job vocabularies, where words were met), validate.ts, merge.ts
+                        for jobs, rules.ts (the archetypes' rules + solvers, postage), templates.ts (task
+                        generator: typed slots → instances; quantities and agreement), expr.ts (computed check
+                        fields), engine.ts (board, hours, parts of the day, shifts, planner, ranks, wages,
+                        links), lexicon.ts (the job lexicon registry), vocab.ts (job vocabularies, where words
+                        were met), validate.ts, merge.ts
   curriculum/           the compiled English lists: lists.ts (types, tolerant reading, packing), node.ts
                         (disk), browser.ts (bundled, gzip + base64), curriculum.ts (reconciliation, 英検 / TOEIC
                         reports, next-word selection), yardsticks.ts, apply.ts
@@ -117,7 +119,8 @@ src/
     shared/town.ts      language-neutral town data: goods, stalls, map, time slots, curriculum, unlocks
     shared/renovation.ts the catalogue: upgrades, prices, gates, effects; {en,zh}/renovation.ts its text + words
     jobs/               the jobs: teahouse.ts (the first job + the shared goods), post.en.ts, kitchen.en.ts,
-                        inn.en.ts, office.en.ts (English-only), index.ts (the list)
+                        inn.en.ts, office.en.ts (English-only), common.en.ts (words several jobs share),
+                        index.ts (the list + the common lists)
     en/  zh/            lexicon.ts + index.ts (shop); town.ts = lexicon.town.ts + market.ts + delivery.ts
   ui/
     App.tsx             shell: layout choice, settings sheet, art defs, sound settings, story stage, books,
@@ -146,11 +149,14 @@ src/
                         the reaction has been read), people.ts
     book/               recipe book and notebook as physical books (BookShell, page turns, 検証 puzzle)
     reno/               the renovation catalogue (a booklet like the books), its prop on the counter
-    jobs/               TownHub.tsx (the town: map + east quarter, workplaces, the day's parts), JobBoard.tsx
-                        (仕事の掲示板), JobScene.tsx (a workplace: backdrop, person, bubble, shift frame),
-                        benches.tsx (sort, trade) + benches2.tsx (make, check, respond), art.tsx / art2.tsx
-                        (hub, interiors, things, documents), Yardsticks.tsx (現在地 by 英検 / TOEIC, the per-job
-                        record), bits.tsx, jobs.css
+    jobs/               TownHub.tsx (the town: map + east quarter, workplaces with open / rank / new badges,
+                        the phone's zoomable map), JobBoard.tsx (仕事の掲示板), JobScene.tsx (a workplace:
+                        rasterised interior, ambient life, person, bubble, shift frame), benches.tsx (sort,
+                        trade) + benches2.tsx (make, check, respond) drawn as furniture, furniture.tsx (bins,
+                        envelopes, parcel, scale, till, stations, telephone, stamps, pen, key), papers.tsx
+                        (documents as what they are, pen circle, stamp imprint), ambient.tsx, drag.ts (pointer
+                        drag & drop), art.tsx / art2.tsx (hub, interiors, things, food), Yardsticks.tsx
+                        (現在地 by 英検 / TOEIC, the per-job record), bits.tsx, jobs.css + scene.css
     difficulty/         レベル設定 sheet, 腕だめし, 学習の記録 page + SVG charts, notebook bits (既 mark, peek,
                         目標 panel), scene assists (mistake marks, retry slip, slower speech)
     components/         settings, title, word text (gloss on hover/tap; story names; glossed documents; word-by-word
@@ -173,13 +179,25 @@ compositions of the same pieces), and moving between them is a short passage of 
   awning, chimney smoke), a building site for the jobs to come; the inn and the tea house where they always
   were; the job board on the main street. Signs in the target language with a small Japanese label. The
   light follows the part of the day (朝 / 昼 / 夕方 / evening). Phone: overview map + signboard list.
-- **Workplaces**: each job has its own drawn interior (post office: green tiles, the harbour window, the
-  clock, the post's flag; kitchen: white tiles, hanging pans, the range, the hatch; inn: the key board,
-  the stairs, a fern; office: the coast map, a wall calendar, filing cabinets) with the person at the
-  counter (drawn, talking, reacting with face and arms) and the bench of the task's archetype on a paper
-  panel: letters and a cabinet of brass-labelled cubbies, the price chalkboard / drawers / the till, the
-  pantry / dish / pan-pot-grill, papers side by side with a stamp, reply slips / message pad / a week
-  calendar / the inn's floors. Phone: the same pieces stacked.
+- **Workplaces** (`src/ui/jobs/`): each job is a drawn interior (pre-rasterised once per shift, like the
+  shop) with ambient life on top (`ambient.tsx`: gulls and waves in the post office window and its cat asleep
+  in a parcel box, steam and a swaying pan in the kitchen, the inn's pendulum clock and fern, clouds and the
+  office clock's second hand), the person at the counter (drawn, talking, reacting with face and arms) and
+  the work drawn as the room's own furniture, acted on directly (`benches*.tsx`, `furniture.tsx`,
+  `papers.tsx`): letters as envelopes dragged (or tapped) into a wooden pigeon-hole cabinet with brass name
+  plates; crates with their labels into the cold box / shelf / basket / freezer / bin / sink / stove …
+  (each drawn); suitcases with luggage tags to the inn's floors, the luggage room, the laundry; the post
+  counter's chalk price board, goods drawers, a felt mat, the brass letter scale with the customer's parcel
+  and the framed postage rate card, the coin tray and the till; the kitchen's pantry shelves (labelled jars
+  and crates — what the pantry is out of today stands empty), the stove (pan / pot / steamer), grill and
+  oven, a rack of plates, bowls, cups, glasses, trays and bags, the dish on the pass with the order things
+  went in numbered, a recipe card / menu / chef's note pinned up as that paper; papers as the documents they
+  are (an invoice with its letterhead band and double-underlined total, an order form with boxed fields, the
+  inn's register book in handwriting, a letter, a notice pinned to the board, an index card, a parcel tag,
+  an e-mail on a screen) checked with a red pen (tap a line: it is circled) and rubber stamps (✓ / ✗, an
+  imprint, no words); a ringing telephone (pick up the receiver), the message pad, reply slips, the wall
+  calendar, the inn's floor board (the key hangs on the room chosen). Phone: the same pieces stacked
+  (pieces still drag with a finger; tap-tap works everywhere).
 - **The shop**: the customer stands behind the counter in front of the door, the shelf is on the
   right wall. Reputation is the plaque above the door, the day is the wall calendar ("40日目", with
   today's plan), customers are order tickets on a nail, money is the coin jar. The window light follows
@@ -262,12 +280,18 @@ compositions of the same pieces), and moving between them is a short passage of 
   delivery map, extended across the bridge by an east quarter where the new workplaces stand (post office,
   harbour kitchen, the trading company's office; the inn is the map's inn; a building site with scaffolding
   stands for the jobs still to come). Tap a building → its card (job, rank, the level of its material, what
-  it teaches) → **ここで働く**. Phone: the map as an overview with markers, and the workplaces as signboards.
+  it teaches, its hours) → **ここで働く**. Every workplace shows at a glance whether it is open now (営業中 or
+  its hours), the player's rank there (●●○○○) and 「新」 when something new waits (a job not visited yet,
+  or authored tasks of the player's rank not met yet). **Hours** (`JobDef.hours`): post office and office
+  朝・昼, inn 朝・夕方 (check-out / check-in), kitchen all day, tea house all day. Phone: the map as an
+  overview — a tap zooms into that spot (signs legible, pan with a finger), 全体を見る zooms out, as on the
+  delivery map — and the workplaces as signboards with the same badges.
 - **Parts of the day**: 朝 / 昼 / 夕方. A job's **shift** (4–6 tasks) fills one part; each job at most once a
-  day. The **tea house** is planned every morning as before and, when chosen, runs its own segments from the
-  current part on: started in the morning it is the original day (market 朝, shop 昼, delivery 夕); started
-  at noon there is no market that day (the shop uses what is in the back); started in the evening it is the
-  shop only. After the shop closes with no delivery planned, 「店を閉めて町へ出る」 leaves the evening for
+  day, and only in its hours. The **tea house** is planned every morning as before and, when chosen, runs its
+  own segments from the current part on: started in the morning it is the original day (market 朝, shop 昼,
+  delivery 夕); started at noon there is no market that day (the shop serves from the back room, which costs
+  `BACK_ROOM_COST` = 1 coin a cup, so skipping the market is no cheaper than shopping); started in the evening
+  it is the shop only. After the shop closes with no delivery planned, 「店を閉めて町へ出る」 leaves the evening for
   another job. 「今日はもう帰る」 ends the day from the town; the night's ledger lists the shifts (お給金, tasks,
   how many went well) next to the shop's accounts.
 - A day **without the tea house** leaves it closed: its planned customers come another day, its **stage
@@ -282,27 +306,34 @@ compositions of the same pieces), and moving between them is a short passage of 
 
 ### Ranks
 
-One ladder for every job, with original names (the tide coming in, then the lighthouse): **さざ波 → 潮だまり
-→ 満ち潮 → 大潮 → 灯台**. A job's next rank needs `good` tasks done well (perfect / minor) in that job and
-`words` of the job's vocabulary confirmed in the notebook. A rank-up comes at the end of a shift (a badge,
-the reward — coins or goods — and what changes). Each rank is annotated with the level of its material
+One ladder for every job — every job has the same five ranks — with original names (the tide coming in, then
+the lighthouse): **さざ波 → 潮だまり → 満ち潮 → 大潮 → 灯台**. **Ladder policy** (`checkRankUp`): the next rank opens
+when its thresholds are met — `good` tasks done well (perfect / minor) in that job and `words` of the job's
+vocabulary confirmed in the notebook — **and** most of the authored spine so far has been met (`SPINE_SEEN` =
+80 % of the authored tasks of the current rank and below tried at least once), so a quick player never skips
+a rank's own material. Thresholds are set per job at ~0.6 × the authored tasks of the ranks below. The planner
+fills a shift with the spine first (all places of a 4-task shift; one place kept for template review in a
+5–6-task shift), within the new-word budget (6 + rank). A rank-up comes at the end of a shift (a badge, the
+reward — coins or goods — and what changes). Each rank is annotated with the level of its material
 (`level: { eiken, toeic }`) and **unlocks harder variants**, not just more words: `long` (more letters,
 more fields, a second condition), `audioOnly` (the request is only heard; shown as text where the browser
 has no voice), `multiStep` (check → also choose the right value), `timed` (optional time pressure: only if
 the player switched it on at the board; late = at best "minor"). The planner prefers the rank's own
 templates (×3) over the previous rank's (×1.5) and older ones (×0.6, review).
 
-| job | archetypes | domains | rank 1 / 2 / 3 / 4 material |
-| --- | --- | --- | --- |
-| 茶房 tea house (en + zh) | make, trade, deliver | food, cooking, health, shopping, money, family, weather, transport | 英検5 / 4 / 3・TOEIC〜400 / 準2・〜500 (= shop stages 1–6 / 7–12 / 13–18 / 19–23) |
-| 郵便局 post office | sort, trade | post, transport, money, shopping, housing | 英検4 / 3・〜400 / 準2・〜500 / 2・〜600 |
-| 港の食堂 harbour kitchen | make, sort | food, cooking, health, shopping | 英検4 / 3 / 準2・〜400 / 2・〜500 |
-| 宿の帳場 inn front desk | check, respond, sort | hotel, travel, housing | 英検4 / 3・〜400 / 準2・〜500 / 2・〜600 |
-| 商会の事務 trading office | check, respond | office, meetings, sales, finance, logistics | TOEIC〜400 (英検3) / 〜600 / 〜730 / 〜860 |
+| job | archetypes | domains | rank 1 / 2 / 3 / 4 / 5 material | authored tasks per rank |
+| --- | --- | --- | --- | --- |
+| 茶房 tea house (en + zh) | make, trade, deliver | food, cooking, health, shopping, money, family, weather, transport | 英検5 / 4 / 3・TOEIC〜400 / 準2・〜500 (= shop stages 1–6 / 7–12 / 13–18 / 19–23) | (the shop's orders) |
+| 郵便局 post office | sort, trade, check, respond | post, transport, money, shopping, housing | 英検4 / 3・〜400 / 準2・〜500 / 2・〜600 / 準1・〜730 | 38 / 43 / 47 / 35 / 28 |
+| 港の食堂 harbour kitchen | make, sort | food, cooking, health, shopping | 英検4 / 3 / 準2・〜400 / 2・〜500 / 準1・〜600 | 31 / 63 / 67 / 72 / — |
+| 宿の帳場 inn front desk | check, respond, sort | hotel, travel, housing | 英検4 / 3・〜400 / 準2・〜500 / 2・〜600 / 準1・〜730 | 41 / 40 / 46 / 50 / — |
+| 商会の事務 trading office | check, respond | office, meetings, sales, finance, logistics | TOEIC〜400 (英検3) / 〜600 / 〜730 / 〜860 / 〜990 | 33 / 36 / 32 / 32 / — |
 
-Ranks 1–3 of each new job have authored + templated content; rank 4 is reachable and says honestly that its
-new material is still to come (the job then repeats ranks 1–3 as review). The tea house's ranks follow its
-existing progress (cups served well + its words confirmed); its harder material comes with the shop stages.
+Every new job has authored + templated content for ranks 1–4 (the post office also for rank 5). Rank 5 of the
+kitchen, the inn and the office is reachable and its note says honestly that its new material is still to
+come (「準備中」; the job then keeps serving ranks 1–4 as review; a test checks that every rank without
+material of its own says so). The tea house's ranks follow its existing progress (cups served well + its
+words confirmed); its harder material comes with the shop stages.
 
 ### Task archetypes (`src/jobs/rules.ts`, benches in `src/ui/jobs/benches*.tsx`)
 
@@ -312,20 +343,32 @@ Outcomes follow the tea house: perfect, minor (small slip, ±0), fail, bad (harm
 a wrong document approved).
 
 1. **make** (kitchen; the tea house's brewing is its specialised ancestor): pantry → the dish; things and
-   counts, vessel (plate / bowl / box), method (fried / boiled / grilled), "no onions", "I can't eat eggs".
-   Issues: empty, forbidden (bad), missing, extra, too_much / too_little, wrong_vessel (minor), wrong_method.
+   counts, vessel (plate / bowl / box / cup / glass / tray / bag), method (fried / boiled / grilled / steamed /
+   baked / roasted, at the stove / grill / oven), "no onions" (a dislike: a plain mistake) vs "I can't eat
+   eggs" (an allergy / doctor's order: harmful), a recipe card's **order** (`order`: the things it names must
+   go in in that order — first / then are real), what the pantry is **out of** today (`out`: "if there is no
+   fish, give chicken" is a real decision). Issues: empty, forbidden (bad), disliked, missing, extra,
+   too_much / too_little, wrong_vessel (minor), wrong_method, wrong_order.
 2. **sort & route** (post office, kitchen's deliveries, inn's luggage): a tray of letters / crates / bags
    with their labels, a cabinet of labelled cubbies; tap (or drag) and place, hand in, wrong ones are marked.
    One wrong of ≥ 4 is minor. Crates show only their label (reading, not the picture, decides).
-3. **check documents** (inn, office): papers side by side (or what the guest just said vs the booking book);
-   stamp 問題なし or mark the line that disagrees (and at rank 3 choose the right value). Missed → bad;
-   false alarm / wrong line → fail; right line, wrong value → minor.
-4. **respond** (inn, office): a person / letter / e-mail / phone call; reply by choosing a reply slip
-   (distractors are answers of *other* communicative functions), filling a message pad with chips, or
-   picking the one free slot that fits on a week calendar or on the inn's floors (the generator makes
-   exactly one cell fit the constraints; the validator re-checks it).
+3. **check documents** (inn, office, post): papers side by side (or what the guest just said vs the booking
+   book); stamp ✓ (問題なし) or circle the line that disagrees and stamp ✗ (at rank 3 also choose the right
+   value). Generated papers are consistent: computed fields (totals, refunds, the last night of a stay) follow
+   the values the paper shows, and a wrong paper has exactly one deliberate discrepancy (a wrong value against
+   the other papers, or an arithmetic slip in a computed line). Missed → bad; false alarm / wrong line → fail;
+   right line, wrong value → minor.
+4. **respond** (inn, office, post): a person / letter / e-mail / phone call (the telephone rings; picked up,
+   the call is read — or only heard at higher ranks); reply by choosing a reply slip (distractors are answers
+   of *other* communicative functions), writing the message pad (each field offers near misses), or picking
+   the one free slot that fits on a week calendar or on the inn's floors (the generator makes exactly one cell
+   fit the constraints; the validator re-checks it). A paper or call is handed over by the boss with a line
+   of its own (`handover` lines), never in silence.
 5. **trade** (post office counter; the tea house's market is the buying side): price board, goods drawers,
    the customer's coins, the till; hand over the goods and count the change. Rank 2: customers round up.
+   Rank 3: parcels — put the parcel on the scale, read the weight, tap the postage for its destination and
+   weight on the rate card (`TradeBench.rates`), charge it with the goods. Issues: wrong_goods,
+   wrong_postage, change_short / change_over.
 6. **go & deliver** (the tea house's delivery; the framework lists it for future jobs).
 
 ### Cross-job glue
@@ -388,35 +431,63 @@ Register it in `src/content/jobs/index.ts`; run `npm run validate-content` and `
 
 - **JobDef**: `id`, `nameJa`, `blurbJa`, `icon`, `domains[]` (the data/english taxonomy), `archetypes[]`,
   `ranks[]` (`{ rank, need: { good, words }, level: { eiken: '5'|'4'|'3'|'pre2'|'2'|'pre1'|'1', toeic }, unlocks?,
-  tasks (per shift), reward?, noteJa }`), `wage` (coins per outcome), `opensAfter` (days after the board
-  opens), `building` (hub art + hotspot in `src/ui/jobs/art.tsx` `BUILDINGS`), `links?`
-  (`produce: [{ good, perPerfect }]`, `use: [{ good, bonus, line }]`; goods in `content/jobs/teahouse.ts` `GOODS`),
-  `flavour: 'school' | 'work'` (work = measured in TOEIC bands by the validator, recommended for TOEIC).
-- **JobContent**: `sign` (in-world sign), `lexicon` (`LexEntry` without required gloss / level: the list
-  fills them; write a gloss when you want a better card), `pages` (検証ページ), `forms` (extra surface forms of
-  existing ids, e.g. `{ want: ['wants', 'wanted'] }`), `people` (`{ id, name, avatar }`; a regular is listed by
-  its customer id with an empty name), `boss`, `things` (`{ id, word, art, tags?, plural?, unit?, price?, bin?, max? }`),
-  the benches (`make: { vessels, methods (surface: 'fried'), max }`, `sort: { bins: { id, label, ref, art }, item }`,
-  `trade: { coins, board }`), `tasks` (authored: the job's curriculum spine, served in rank / seq order until
-  done perfectly), `templates`, `qa` (question / answer banks for reply choices: `{ q, a, fn, rank, phrases?, grammar? }`),
-  `reactions` (`{ id, kind, text, face, rank?, arch? }`; kinds: `perfect minor any_fail` + the archetypes' issue
-  kinds; placeholders `{thing} {bin} {field} {vessel} {name}`), `lines` (the boss's `start / end / rankup`).
+  tasks (per shift), reward?, noteJa }`; five ranks), `wage` (coins per outcome), `opensAfter` (days after the
+  board opens), `hours?` (parts of the day it is open: 0 朝 / 1 昼 / 2 夕), `building` (hub art + hotspot in
+  `src/ui/jobs/art.tsx` `BUILDINGS`), `links?` (`produce: [{ good, perPerfect }]`, `use: [{ good, bonus, line }]`;
+  goods in `content/jobs/teahouse.ts` `GOODS`), `flavour: 'school' | 'work'` (work = measured in TOEIC bands by
+  the validator, recommended for TOEIC).
+- **JobContent**: `sign` (in-world sign), `lexicon` (the words this job defines — see the registry below; gloss /
+  level may be left to the list), `pages` (検証ページ), `forms` (extra surface forms of *any* existing id, wherever
+  it is defined, e.g. `{ want: ['wants', 'wanted'], rate: ['rates'] }`), `people` (`{ id, name, avatar }`; a regular
+  is listed by its customer id with an empty name), `boss`, `things`, the benches (`make: { vessels, methods:
+  { id, word, art, surface: 'fried', where: 'stove'|'grill'|'oven' }, max }`, `sort: { bins: { id, label, ref, art },
+  item }`, `trade: { coins, board, rates? }`), `tasks` (authored: the job's curriculum spine, served in rank / seq
+  order until done perfectly), `templates`, `qa` (question / answer banks for reply choices: `{ q, a, fn, rank,
+  phrases?, grammar? }`), `reactions` (`{ id, kind, text, face, rank?, arch? }`; kinds: `perfect minor any_fail` +
+  the archetypes' issue kinds; placeholders `{bin} {field} {vessel} {name}` and, for a thing, `{thing}` (in the
+  number the sentence needs: "the bread", "eggs"), `{is}` (is / are), `{much}` (much / many), `{it}` (it /
+  them), `{this}` — e.g. `'Where {is} the {thing}?'`, `"So {much} {thing}! I can't eat {it}."`), `lines` (the boss's
+  `start / end / rankup`, and `handover` lines — what is said when a paper / call / tray of letters is handed
+  over without a spoken request; `msg` limits one to `phone | email | letter | memo | check | sort`).
+- **ThingDef**: `{ id, word, art, tags?, plural?, mass?, unit?, one?, cook?, price?, bin?, max?, kilos? }`.
+  `mass: true` for an uncountable noun (bread, rice, soup, milk): never a plural; counted by its `unit`
+  (`'{n} pieces of bread'` — the unit noun is made singular for one: "one piece of bread"; or `{ one, other }`);
+  reactions say "too much bread". A counted thing named in a `thing` slot is plural ("I love sausages!"), or
+  `one` when it is served as one ("a salad"). `cook` lists the methods that suit it (no grilled eggs, no fried
+  salad). Template slot tags also match `count` / `mass` automatically.
 - **Text**: every in-world text is tokenised against the lexicon; proper names are written `{Mrs. Wren|@}`
   (shown as a name, never a word); `{surface|id}` forces a mapping (`{change|change_v}`). Digits and prices
   ("$4", "12") are free.
-- **Tags**: a task / template / QA item may list `phrases` (ids in phrases.json the text uses — validated:
-  the text must contain the phrase) and `grammar` (ids in grammar.json it exercises), and `level` (declared
-  英検 grade; default: its rank's).
-- **Template slots** (typed): `qty` (a counted thing: "two eggs", "three slices of bread"), `thing`, `forbid`,
-  `method`, `vessel`, `word` (any lexicon word by `domain` / `pos` / `maxLevel`), `name`. Things are filtered by
-  `tags` and by level (the rank's 英検 grade + 1). Sort templates: `patterns` with `{bin}` (the target bin's
-  `ref`), `{thing}` (its `bin` decides), `{name}`, `{num}`, `{digit}`, or fixed `bins`. Check templates:
-  `fields` (`{ id, label, values[] }`), `docs` (which fields each paper shows, or `lines` with `{fieldId}`),
-  `target`, `pWrong`, `wrongable`. Respond templates: `mode: 'choose'` + a QA `bank`, or `mode: 'slot'` with
-  `rows`, `cols`, `cellTags`, `want` / `avoid` constraint sentences and `busy` texts.
+- **Tags**: a task / template / QA item may list `phrases` (ids in phrases.json one of its texts uses —
+  validated against all of the task's texts: request, options, lines, papers) and `grammar` (ids in
+  grammar.json it exercises). (There is no per-task `level`: a task is measured at its rank, and a word that
+  stands next to its drawing — a thing, a method, a vessel, a bin with a picture — is exempt, the picture
+  carries it.)
+- **Authored make tasks**: `want`, `forbid` (allergy: harmful), `dislike` (not wanted: a mistake), `allow`,
+  `vessel`, `method`, `order` (a recipe card's steps), `out` (the pantry is out of these today). **Trade**:
+  `want`, `pay`, `post: { dest, kilos }` (a parcel to weigh; postage from the rate table).
+- **Template slots** (typed): `qty` (a counted thing: "two eggs", "one piece of bread"), `thing`, `forbid`
+  (allergy), `dislike` (preference), `method` / `vessel` (`only: [...]` when the sentence fits only some),
+  `word` (a lexicon word by `ids` / `domain` / `pos` / `maxLevel`), `name` (`self: true`: the speaker names
+  themselves — the person drawn is that person), `pick` (one of fixed `values`). Things are filtered by `tags`
+  and by level (the rank's 英検 grade + 1); a method must suit every wanted thing's `cook`. Make templates may
+  add `order` (slot names, in order) and `ifOut: { first, then, p }` ("if there is no {first}, {then}": with
+  probability p the pantry is out of the first and the dish wants the second). Trade templates: `pay:
+  'exact'|'round'`, `post: { dests: [{ id, text }], kilos: [lo, hi] }` (`{dest}` in the text). Sort templates:
+  `patterns` with `{bin}` (the target bin's `ref`), `{thing}` (its `bin` decides), `{name}` (each name once per
+  tray), `{num}`, `{digit}`, or fixed `bins`. Check templates: `fields` (`{ id, label, values? | range?: [lo, hi,
+  step?] + fmt? ('{n} boxes', '${n,}' with thousands) | names? (1 → 'Monday') | calc?: expression, alts?:
+  expressions }`), `docs` (which fields each paper shows, or `lines` with `{fieldId}`), `target`, `pWrong`,
+  `wrongable`. A `calc` is an arithmetic expression over the fields listed before it (`src/jobs/expr.ts`:
+  `'qty * price'`, `'(arrive - 1 + nights) % 7 + 1'`, `'days > 7 ? price : days >= 3 ? price / 2 : 0'`; content
+  stays plain data). Respond templates: `mode: 'choose'` + a QA `bank`; `mode: 'form'` (the message pad) with
+  `lines` using `{fieldId}`, `fields: { id, label, values[] }` (the other values are the near misses), optional
+  `slots`, `from`, `subject`; or `mode: 'slot'` with `rows`, `cols`, `cellTags`, `want` / `avoid` constraint
+  sentences, `busy` texts and `open` / `close` lines (one of each is chosen).
 
 **Worked example** — a job's rank-1 sorting task, a template that varies it, and a counter template
-(from `src/content/jobs/post.en.ts`):
+(from `src/content/jobs/post.en.ts`); then a parcel at the scale, a phone message pad, a computed invoice and a
+recipe card with an "if there is no …" decision:
 
 ```ts
 tasks: [
@@ -441,19 +512,65 @@ reactions: [
   { id: 'pr_short', kind: 'change_short', text: 'My change is not right. I need more.', face: 'angry' },
   { id: 'pr_fail', kind: 'any_fail', text: 'Oh, no. That is wrong.', face: 'sad' },
 ],
+// post: weigh the parcel, read the rate card, charge postage + goods, give change
+{ id: 'pt_post3b', rank: 3, arch: 'trade', say: 'This parcel is for {dest}. And {qty1}, please.',
+  slots: { qty1: { kind: 'qty', tags: ['counter'], min: 1, max: 3 } }, pay: 'round',
+  post: { dests: [{ id: 'island', text: 'the island' }, { id: 'abroad', text: 'another country' }], kilos: [1, 6] } },
+// post: the message pad by the telephone (the boss hands the call over with a `handover` line)
+{ id: 'pt_pad2', rank: 2, arch: 'respond', mode: 'form', kind: 'phone', lines: ['Hello, this is {who}.', 'Please call me back {when}.'],
+  fields: [{ id: 'who', label: 'Who', values: ['{Mr. Grant|@}', '{Ivy|@}', '{Nora|@}'] },
+           { id: 'when', label: 'Call back', values: ['before three', 'after three', 'tomorrow'] }] },
+// office: an invoice that adds up; when it is wrong, exactly one line disagrees
+{ id: 'ot_inv1', rank: 1, arch: 'check', say: 'Please check this bill.', fields: [
+    { id: 'item', label: 'Item', values: ['paper', 'pens', 'cups'] },
+    { id: 'qty', label: 'Boxes', range: [2, 12] },
+    { id: 'price', label: 'Price', range: [2, 9], fmt: '${n}' },
+    { id: 'total', label: 'Total', calc: 'qty * price', fmt: '${n}' },
+  ], docs: [{ kind: 'order', title: 'Order', fields: ['item', 'qty', 'price'] },
+            { kind: 'invoice', title: 'Bill', fields: ['item', 'qty', 'price', 'total'] }], target: 1, pWrong: 0.6 },
+// kitchen: a real decision (sometimes there is no fish) and a recipe card whose steps are judged
+{ id: 'kt_ifno', rank: 3, arch: 'make', say: '{Thing1} and {thing3}, please. If there is no {thing1}, {thing2} is fine.',
+  slots: { thing1: { kind: 'thing', tags: ['fish', 'chicken'] }, thing2: { kind: 'thing', tags: ['fish', 'chicken'] },
+           thing3: { kind: 'thing', tags: ['rice', 'bread', 'salad'] } }, ifOut: { first: 'thing1', then: 'thing2', p: 0.5 } },
+mk('k4_crack', 4, 'p_chef', 'Recipe card: Crack two eggs into a bowl. Add some cheese, then fry it. Serve it on a plate.',
+   [n(E, 2), r(CHE, 1, 2)], { method: 'fry', vessel: 'plate', order: [E, CHE] }),
 ```
 
-**What the validator checks (jobs)**: ids; rank ladders (1..n, growing needs, valid 英検 keys); links → goods;
-people / boss / persons exist (regulars by customer id); things → lexicon; counter goods have prices; every
-content text tokenises (names aside) — this also makes the job's words "appear somewhere"; reactions'
-placeholders, a rank-1 `perfect` and `any_fail`, a `perfect` usable by each archetype, `start` / `end` lines;
-QA banks (≥ 3 items, ≥ 2 functions); every authored task and 30 instances of every template at every rank
-it can come at: references resolve (bins, things, fields, vessels, methods, options), solved perfectly by the
-archetype's own solver, a customer never pays less than the total, and **level**: words above the declared
-level + 1 grade are a warning, + 3 an error (work-life jobs: TOEIC bands where the word has one). Lists:
+### The job lexicon registry (`src/jobs/lexicon.ts`)
+
+Every word the jobs use is defined **once**: in the job that teaches it (`JobContent.lexicon` + its 検証ページ),
+or — when several jobs use it — in `src/content/jobs/common.en.ts` (the shared list: everyday verbs and
+connectives, the weekdays, the telephone and e-mail phrases …). Every job may use every word of the registry
+(the language's lexicon is one list), and any job may add surface forms to any word wherever it is defined
+(`forms: { rate: ['rates'] }` from the post office onto the office's `rate`). Job files never import each other:
+`withJobs` (`src/jobs/merge.ts`) builds the registry from the common list and all jobs in any order. The
+validator reports a word defined twice (same id, or a form that is already another entry's surface) as an
+error naming both owners; a headword shared on purpose by a second sense written with markup (`{change|change_v}`)
+is the usual ambiguity warning. Which words a job **introduces** is derived from use (`jobIntroduces`: the job's
+texts and template slots at the rank they first appear), not from where a word is written; the notebook's job
+filter and the board count use (`jobVocab`). Ids and 検証ページ ids are stable (saves refer to them): moving a
+word to the common list keeps its id and page.
+
+**What the validator checks (jobs)**: the lexicon registry (a word defined twice, forms on unknown ids); ids;
+rank ladders (1..n, growing needs, valid 英検 keys, every job the same number of ranks); links → goods;
+people / boss / persons exist (regulars by customer id); things → lexicon, units have `{n}`, mass nouns have no
+plural; counter goods have prices; the rate table is dests × bands; every content text tokenises (names aside),
+and the words that come only through template slots count as used; reactions' placeholders, a rank-1 `perfect`
+and `any_fail`, a `perfect` usable by each archetype, `start` / `end` lines; QA banks (≥ 3 items, ≥ 2
+functions); computed check fields (their expressions name earlier fields); every authored task and 30
+instances of every template at every rank it can come at: references resolve (bins, things, fields, vessels,
+methods, options, pantry `out` / recipe `order` against the wanted things, postage on the rate table), solved
+perfectly by the archetype's own solver, a customer never pays less than the total (postage included), the
+papers of a check agree except on the one field marked wrong, a paper / call task has something said (a
+`handover` line), a speaker who names themselves is a person of the job and the one drawn; **level**: words
+above the rank's level + 1 grade are a warning, + 3 an error (work-life jobs: TOEIC bands where the word has
+one; pictured words exempt) — for tasks, template instances, bin labels (at the first rank a bin is used),
+reactions and the boss's lines (at their rank); **new words along the spine**: an authored task should bring
+at most `SPINE_NEW` (4) words not met in the job's earlier tasks (the tea house's words count as known). Lists:
 job words missing from `vocab.json` are listed (warning: tolerant but loud while the lists are being
 compiled), phrase / grammar tags are checked against the lists when present, a word without gloss needs one
-in the list. The jobs simulator (`npm run simulate -- --jobs`) plays the town end to end.
+in the list. Template warnings are printed once per template and rank (with a count). The jobs simulator
+(`npm run simulate -- --jobs [--buy]`) plays the town end to end.
 
 ### Roadmap: jobs the framework is ready for
 
@@ -508,12 +625,16 @@ Goods kept overnight start the next market day in stock and the shopping note as
 not when a regular already made small talk; a remark may be marked `notWhen: ['cold' | 'hot']` so nobody
 says "very warm here" over an iced tea). The arrival note is on the day's first notice (the market's paper
 when the day starts there). An entry that has appeared stays listed even if reputation dips below its gate.
-Jobs add wages (2–3 coins a task done well, about 8–15 a shift), so an English player who works in the
-town owns the catalogue earlier than the tea-house-only calibration below (zh has no other jobs and is
-unchanged). Calibration (`npm run simulate -- en 45 1 0 0 buy`): a
-player who serves everything right earns ~950–1050 coins net of the market in 45 days (en; zh ~770) and,
-buying whatever is affordable while keeping 20 coins for the market, owns the whole catalogue (842 coins)
-around day 39–42; a player who fails every 3rd–4th cup earns ~480–620 and gets 13–15 of the 18 entries.
+**Economy with the jobs (en).** Jobs pay wages (3 coins a task done well, the office 4; 12–24 a shift) and rank
+rewards, on top of the tea house's takings, so English prices are the shared prices × `RenoText.priceScale` =
+2.6 (rounded to 5: the catalogue costs 2185 coins in all; zh has no jobs and keeps the shared prices, 842).
+Calibration (`npm run simulate -- --jobs --days=70 --acc=… --buy`: the board opens on day 4; a job in the
+morning, the tea house at noon, another job in the evening; buying what is affordable): earned in 70 days
+(jobs + tea house net) — acc 0.95: 1384 + 1870, the whole catalogue owned on **day 48**; acc 0.85: 1297 + 1634,
+**day 52**; acc 0.7: 1058 + 1350, **day 61**. Ranks after 70 days at 0.85: post 2, kitchen 3, inn 3, office 2
+(the spine gate keeps each rank's material in play). The tea-house-only calibration (zh, and en before the
+board opens): a player who serves everything right earns ~770 coins net of the market in 45 days (zh) and owns
+the whole zh catalogue (842) around day 39–42.
 
 ### Schema (`src/renovation/types.ts`)
 
@@ -866,6 +987,10 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
 
 ## Learning model notes
 
+- **Saves after the jobs' second pass**: no version bump — the new fields are optional (`TaskInstance.handover`,
+  answers' `seq` / `postage`, `TownDayState.fromBack`; a shift saved mid-way with older task instances plays on).
+  The job lexicon kept every id and 検証ページ id (the registry reproduces the earlier lexicon exactly), so
+  notebook and verification progress carry over.
 - **Saves (v4, jobs)**: the v3 → v4 migration adds `jobs` to each language's progress: the tea house becomes
   the first job with its served / perfect cups as the job's task log (its rank is worked out once at load
   from that and its confirmed words; rewards paid), an empty goods store, and the board opens the next

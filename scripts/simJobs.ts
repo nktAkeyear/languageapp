@@ -11,8 +11,9 @@ import { buildGameData } from '../src/core/gamedata';
 import { makeRng } from '../src/core/rng';
 import { newProgress } from '../src/core/save';
 import { endTownDay, startTownDay } from '../src/activities/day';
-import { playJobShift, playTeaHouse } from '../src/activities/simPlayer';
-import { chooseJob, jobDay, jobOffered, jobsCloseDay, jobsOf, rankName, recommendJobs, teaToTown, canGoToTown } from '../src/jobs/engine';
+import { buyFromCatalogue, playJobShift, playTeaHouse } from '../src/activities/simPlayer';
+import { catalogue } from '../src/renovation/engine';
+import { chooseJob, jobDay, jobOffered, jobOpenAt, jobsCloseDay, jobsOf, rankName, rankStatus, recommendJobs, spineSeen, teaToTown, canGoToTown } from '../src/jobs/engine';
 import { storyAutoPlay } from '../src/story/engine';
 import { pageStatus, pageWords, submitVerification } from '../src/core/verification';
 import { setDifficultyOptions } from '../src/core/difficulty';
@@ -28,6 +29,12 @@ export function runJobs(args: string[]): void {
   const seed = Number(opt('seed', '1'));
   const yard = opt('yard', 'eiken') as 'eiken' | 'toeic';
   const log = args.includes('--log');
+  const buy = args.includes('--buy');
+  const quiet = args.includes('--quiet');
+  let earnedJobs = 0;
+  let earnedTea = 0;
+  let spent = 0;
+  let allOwnedDay: number | null = null;
   loadEnglishListsFromDisk();
   const data = buildGameData(withLists(CONTENT.en), SHARED);
   const p = newProgress('en');
@@ -41,15 +48,30 @@ export function runJobs(args: string[]): void {
     const parts: string[] = [];
     const jd = jobDay(p);
     if (!jd) {
+      const before = p.town.money;
       const t = playTeaHouse(data, p, acc, rng, prng);
+      earnedTea += p.town.money - before;
       parts.push(`茶房 ${t.perfect}/${t.cups}`);
     } else {
       const offered = jobsOf(data).filter((j) => !j.legacy && jobOffered(p, j)).map((j) => j.id);
       const rec = recommendJobs(data, p);
       const order = [...rec, ...offered.filter((x) => !rec.includes(x))];
-      const pickJob = () => order[rot++ % order.length];
+      // The next job (rotating) that is open in this part of the day.
+      const pickJob = () => {
+        const part = jobDay(p)?.part ?? 0;
+        for (let k = 0; k < order.length; k++) {
+          const id = order[(rot + k) % order.length];
+          if (jobOpenAt(jobsOf(data).find((j) => j.id === id)!, part)) {
+            rot += k + 1;
+            return id;
+          }
+        }
+        return order[rot++ % order.length];
+      };
       const shift = (id: string) => {
+        const before = p.town.money;
         const r = playJobShift(data, p, id, acc, rng, prng);
+        earnedJobs += p.town.money - before;
         if (!r) return;
         const j = jobsOf(data).find((x) => x.id === id)!;
         parts.push(`${j.nameJa} ${r.outcomes.filter((o) => o === 'perfect').length}/${r.outcomes.length}${r.rankUp ? ` ★${rankName(r.rankUp)}` : ''}`);
@@ -57,7 +79,9 @@ export function runJobs(args: string[]): void {
       };
       shift(pickJob());
       if (!chooseJob(data, p, 'teahouse', rng)) {
+        const before = p.town.money;
         const t = playTeaHouse(data, p, acc, rng, prng);
+        earnedTea += p.town.money - before;
         parts.push(`茶房 ${t.perfect}/${t.cups}`);
         if (canGoToTown(p)) {
           teaToTown(p);
@@ -69,7 +93,12 @@ export function runJobs(args: string[]): void {
     // 検証ページ: sealed with probability acc
     for (const pg of data.content.verificationPages)
       if (pageStatus(data, p, pg) === 'available' && prng() < acc) submitVerification(data, p, pg.id, Object.fromEntries(pageWords(data, pg.id).map((w) => [w.id, w.id])));
+    if (buy) for (const b of buyFromCatalogue(data, p)) {
+      spent += b.price;
+      parts.push(`🛠${b.id}`);
+    }
     const day = p.day;
+    if (buy && allOwnedDay === null && catalogue(data, p).filter((e) => e.status === 'owned' || e.status === 'ordered').length === (data.shared.renovation?.upgrades.length ?? -1)) allOwnedDay = day;
     endTownDay(p, data);
     storyAutoPlay(data, p, (b) => b.choice?.[0]?.id ?? '');
     const met = Object.values(p.words).filter((w) => w.seen > 0).length;
@@ -78,8 +107,16 @@ export function runJobs(args: string[]): void {
     const e = yardstickReport(data, p, 'eiken').rows;
     const t = yardstickReport(data, p, 'toeic').rows;
     const pc = (x: number) => `${Math.round(x * 1000) / 10}%`;
-    console.log(`day ${String(day).padStart(2)} ${parts.join(' | ').padEnd(56)} 🪙${String(p.town.money).padStart(4)} met ${met} conf ${conf} | ${ranks} | 英検5級 ${pc(e[0].ratio)} 4級 ${pc(e[1].ratio)} | TOEIC〜400 ${pc(t[0].ratio)} 〜600 ${pc(t[2].ratio)}`);
+    if (!quiet) console.log(`day ${String(day).padStart(2)} ${parts.join(' | ').padEnd(56)} 🪙${String(p.town.money).padStart(4)} met ${met} conf ${conf} | ${ranks} | 英検5級 ${pc(e[0].ratio)} 4級 ${pc(e[1].ratio)} | TOEIC〜400 ${pc(t[0].ratio)} 〜600 ${pc(t[2].ratio)}`);
   }
+  const total = catalogue(data, p).reduce((a, x) => a + x.def.price, 0);
+  const owned = catalogue(data, p).filter((x) => x.status === 'owned' || x.status === 'ordered').length;
+  for (const j of jobsOf(data)) {
+    const rs = rankStatus(data, p, j);
+    const jp = p.jobs?.jobs[j.id];
+    console.log(`  ${j.id.padEnd(9)} rank ${rs.rank} good ${rs.good}${rs.next ? `/${rs.next.need.good}` : ''} words ${rs.words}${rs.next ? `/${rs.next.need.words}` : ''} of ${rs.vocab} shifts ${jp?.shifts ?? 0}${j.legacy ? '' : ` spine ${Math.round(spineSeen(data, p, j, rs.rank).share * 100)}%`}`);
+  }
+  console.log(`\neconomy: earned ${earnedJobs} from jobs (wages, bonuses, rank rewards) + ${earnedTea} at the tea house (net of the market) in ${days} days; spent ${spent} on the catalogue (${owned}/${catalogue(data, p).length} entries, ${total} coins in all${allOwnedDay ? `, all owned on day ${allOwnedDay}` : ''}); purse ${p.town.money}; ranks ${Object.entries(p.jobs?.jobs ?? {}).map(([id, j]) => `${id}${j.rank}`).join(' ')}`);
   const e = yardstickReport(data, p, 'eiken');
   console.log(`\nceilings (what the content can teach of each list): ${e.rows.map((r) => `${r.label} ${Math.round(r.ceiling * 100)}%`).join(' ')}`);
 }

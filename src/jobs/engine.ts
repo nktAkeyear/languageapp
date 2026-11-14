@@ -22,8 +22,8 @@ import { difficultyOnTask, difficultyState } from '../core/difficulty';
 import { selectNext } from '../curriculum/curriculum';
 import type { Yardstick } from '../curriculum/yardsticks';
 import { fill } from '../activities/town/text';
-import { evaluateTask, type RuleCtx } from './rules';
-import { authoredInstance, personName, rankLevelIndex, templateInstance, thingById, thingName, type GenCtx } from './templates';
+import { evaluateTask, postage, type RuleCtx } from './rules';
+import { authoredInstance, personName, rankLevelIndex, templateInstance, thingAgreement, thingById, thingName, type GenCtx } from './templates';
 import { jobVocab } from './vocab';
 import type {
   JobContent,
@@ -98,6 +98,29 @@ export function jobProgress(p: LangProgress, id: string): JobProgress {
   return (s.jobs[id] ??= newJobProgress(p.day));
 }
 
+/** Is the workplace open in this part of the day (its hours)? */
+export function jobOpenAt(job: JobDef, part: number): boolean {
+  return job.legacy || !job.hours || job.hours.includes(part);
+}
+
+/** The workplace's hours in words (Japanese chrome), e.g. 「朝・昼」. */
+export function jobHoursJa(job: JobDef): string {
+  return (job.hours ?? [0, 1, 2]).map((h) => PART_NAMES[h]).join('・');
+}
+
+/**
+ * Something new is waiting there: a job newly offered (not yet visited), or authored tasks of the player's rank
+ * not met yet (the rank's own new material).
+ */
+export function jobHasNew(data: GameData, p: LangProgress, job: JobDef): boolean {
+  if (job.legacy || !jobOffered(p, job)) return false;
+  const s = p.jobs;
+  if (!s?.seen.includes(job.id)) return true;
+  const jp = s.jobs[job.id];
+  const rank = jp?.rank ?? 1;
+  return (job.content[data.lang]?.tasks ?? []).some((t) => t.rank === rank && !(jp?.authored[t.id]?.attempts ?? 0));
+}
+
 /** Is the job offered on the board today? */
 export function jobOffered(p: LangProgress, job: JobDef): boolean {
   const s = p.jobs;
@@ -159,6 +182,7 @@ export function chooseJob(data: GameData, p: LangProgress, jobId: string, rng: R
   if (!d || !job) return '今日は選べません';
   if (d.view !== 'hub' || d.part > 2) return 'もう今日の仕事は終わりです';
   if (!jobOffered(p, job)) return 'まだ募集していません';
+  if (!jobOpenAt(job, d.part)) return `今は閉まっています（${jobHoursJa(job)}に開いています）`;
   const s = jobsState(p);
   if (!s.seen.includes(job.id)) s.seen.push(job.id);
   if (job.legacy) {
@@ -168,8 +192,10 @@ export function chooseJob(data: GameData, p: LangProgress, jobId: string, rng: R
       const keep = td.segments.filter((seg) => SEG_PART[seg] >= d.part || seg === 'shop');
       if (!keep.includes('market') && td.market && !td.market.done) {
         delete td.market;
-        // No shopping today: the shop uses what is in the back (goods are not counted).
+        // No shopping today: the shop uses what is in the back (goods are not counted; supplies from the back
+        // room are paid per cup, so skipping the market is no cheaper than shopping).
         td.stock = {};
+        td.fromBack = true;
       }
       if (!keep.includes('delivery')) delete td.delivery;
       td.segments = keep;
@@ -306,6 +332,23 @@ export function rankStatus(data: GameData, p: LangProgress, job: JobDef): RankSt
   return { rank, def, next, good: jp?.good ?? 0, words: confirmedJobWords(data, p, job), vocab: jobVocab(data, job).size };
 }
 
+/**
+ * The ladder policy (every job): the next rank opens when its thresholds are met — tasks done well and the
+ * job's words confirmed — AND most of the current rank's authored spine has been met (SPINE_SEEN of the
+ * authored tasks of this rank and below have been tried at least once), so a rank's own material is not
+ * skipped by a quick player. The tea house (legacy) has no authored spine here: thresholds only.
+ */
+export const SPINE_SEEN = 0.8;
+
+/** Share of the authored tasks up to `rank` that have been tried (1 when there are none). */
+export function spineSeen(data: GameData, p: LangProgress, job: JobDef, rank: number): { seen: number; total: number; share: number } {
+  const jc = job.content[data.lang];
+  const jp = p.jobs?.jobs[job.id];
+  const all = (jc?.tasks ?? []).filter((t) => t.rank <= rank);
+  const seen = all.filter((t) => (jp?.authored[t.id]?.attempts ?? 0) > 0).length;
+  return { seen, total: all.length, share: all.length ? seen / all.length : 1 };
+}
+
 /** Rank up while the next rank's needs are met; rewards are paid. Returns the new rank or null. */
 export function checkRankUp(data: GameData, p: LangProgress, job: JobDef): number | null {
   const jp = jobProgress(p, job.id);
@@ -314,6 +357,7 @@ export function checkRankUp(data: GameData, p: LangProgress, job: JobDef): numbe
     const next = job.ranks.find((r) => r.rank === jp.rank + 1);
     if (!next) break;
     if (jp.good < next.need.good || confirmedJobWords(data, p, job) < next.need.words) break;
+    if (!job.legacy && spineSeen(data, p, job, jp.rank).share < SPINE_SEEN) break;
     jp.rank = next.rank;
     jp.rankDays[next.rank] = p.day;
     if (next.reward?.coins) p.town.money += next.reward.coins;
@@ -346,7 +390,7 @@ function unseen(data: GameData, p: LangProgress, inst: TaskInstance): string[] {
 
 /** New words a shift may introduce (grows a little with rank). */
 export function newWordBudget(rank: number): number {
-  return 4 + rank;
+  return 6 + rank;
 }
 
 /**
@@ -368,8 +412,10 @@ export function planShift(data: GameData, p: LangProgress, job: JobDef, part: nu
   let fresh = 0;
   const hasTemplates = jc.templates.some((t) => t.rank <= rank);
   const spine = jc.tasks.filter((t) => t.rank <= rank && !jp.authored[t.id]?.perfect).sort((a, b) => a.rank - b.rank || (a.seq ?? 0) - (b.seq ?? 0));
+  // The spine fills the shift; a longer shift (5–6 tasks) keeps one place for review from the templates.
+  const spineSlots = hasTemplates && n >= 5 ? n - 1 : n;
   for (const t of spine) {
-    if (tasks.length >= (hasTemplates ? n - 1 : n)) break;
+    if (tasks.length >= spineSlots) break;
     const inst = authoredInstance(ctx, t);
     const nw = unseen(data, p, inst).length;
     // The first two of the spine always come (a new job must show its new kinds of task); then the budget.
@@ -482,6 +528,7 @@ export function ruleCtx(data: GameData, jc: JobContent): RuleCtx {
       const th = thingById(jc, t);
       return th ? [thingName(data, th), thingName(data, th, true)] : [];
     },
+    rate: (spec) => (spec.post ? postage(jc.trade?.rates, spec.post.dest, spec.post.kilos) : null),
   };
 }
 
@@ -491,11 +538,21 @@ function reactionText(data: GameData, jc: JobContent, inst: TaskInstance, ev: Jo
   const values: Record<string, string> = {};
   if (prim?.thing) {
     const th = thingById(jc, prim.thing);
-    if (th) values.thing = thingName(data, th);
+    if (th) {
+      // Number agreement: "Where is the bread?" / "Where are the eggs?", "too much rice" / "too many eggs";
+      // singular only when exactly one was asked for (a missing egg when one egg was ordered).
+      const w = inst.spec.arch === 'make' ? inst.spec.want.find((x) => x.thing === prim.thing) : undefined;
+      const one = prim.kind === 'missing' && w?.n === 1;
+      Object.assign(values, thingAgreement(data, th, one));
+    }
   }
   if (prim?.field && inst.spec.arch === 'check') {
     const f = inst.spec.docs[inst.spec.target]?.fields?.find((x) => x.id === prim.field);
-    if (f) values.field = f.label;
+    // A label quoted (“Kind”) stays as written on the paper; in running text ("the kind") it is lowercased.
+    if (f) {
+      values.field = f.label;
+      values.fieldLow = /^[A-Z][a-z]/.test(f.label) ? f.label[0].toLowerCase() + f.label.slice(1) : f.label;
+    }
   }
   if (prim?.item && inst.spec.arch === 'sort') {
     const it = inst.spec.items.find((x) => x.id === prim.item);
@@ -510,9 +567,12 @@ function reactionText(data: GameData, jc: JobContent, inst: TaskInstance, ev: Jo
   const pickFrom = (k: string | undefined) =>
     jc.reactions
       .filter((r) => r.kind === k && (r.rank ?? 1) <= rank && (!r.arch || r.arch === inst.spec.arch))
-      .map((r) => ({ r, text: fill(r.text, values) }))
+      .map((r) => ({ r, text: fill(r.text.replace(/\b(the|right|wrong) \{field\}/g, '$1 {fieldLow}'), values) }))
       .filter((x): x is { r: (typeof jc.reactions)[number]; text: string } => !!x.text);
   let cands = pickFrom(kind);
+  // Newer issue kinds fall back to the nearest older one (content written before them still reacts sensibly).
+  const near: Partial<Record<string, string>> = { disliked: 'extra', wrong_order: 'wrong_method', wrong_postage: 'change_short' };
+  if (!cands.length && kind && near[kind]) cands = pickFrom(near[kind]);
   if (!cands.length && ev.outcome === 'minor') cands = pickFrom('minor');
   if (!cands.length && ev.outcome !== 'perfect') cands = pickFrom('any_fail');
   if (!cands.length) cands = pickFrom('perfect');
@@ -624,7 +684,13 @@ export function recommendJobs(data: GameData, p: LangProgress): string[] {
   const y = yardstickOf(p);
   const jobs = jobsOf(data).filter((j) => !j.legacy && jobOffered(p, j));
   const lvl = (j: JobDef) => ['5', '4', '3', 'pre2', '2', 'pre1', '1'].indexOf(j.ranks[0]?.level.eiken ?? '5');
-  const sorted = [...jobs].sort((a, b) => (y === 'toeic' ? Number(b.flavour === 'work') - Number(a.flavour === 'work') : 0) || lvl(a) - lvl(b));
+  // Within the yardstick's order, a workplace open now (and not yet worked today) comes first: a recommendation
+  // the player can act on in this part of the day.
+  const d = jobDay(p);
+  const now = (j: JobDef) => (d && d.part < 3 && jobOpenAt(j, d.part) && !d.log.some((l) => l.job === j.id) ? 1 : 0);
+  const sorted = [...jobs].sort(
+    (a, b) => now(b) - now(a) || (y === 'toeic' ? Number(b.flavour === 'work') - Number(a.flavour === 'work') : 0) || lvl(a) - lvl(b),
+  );
   return sorted.slice(0, 2).map((j) => j.id);
 }
 

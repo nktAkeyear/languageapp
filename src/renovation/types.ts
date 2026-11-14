@@ -123,6 +123,11 @@ export interface RenoText {
   subtitle: string;
   /** Price on the sheet with digits: `{d}` (e.g. "{d} coins" / "{d}块"). */
   price: { one?: string; other: string };
+  /**
+   * Prices in this language are the shared prices × this (rounded to 5). English has the town's jobs (wages) on
+   * top of the tea house's takings, so its catalogue costs more to keep the same arc. Default 1.
+   */
+  priceScale?: number;
   upgrades: Record<UpgradeId, UpgradeText>;
   /** New words (with their 検証ページ). */
   lexicon: LexEntry[];

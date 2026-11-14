@@ -1,6 +1,5 @@
 import type { AuthoredTask, CheckDoc, JobContent, JobDef, JobLexEntry, QaItem, TaskFeature, TaskTemplate } from '../../jobs/types';
 import type { Pos, VerificationPage } from '../../core/types';
-import { KITCHEN_JOB } from './kitchen.en';
 
 /**
  * The inn's front desk (宿の帳場): check documents (what the guest says / writes ↔ the booking book
@@ -131,462 +130,310 @@ const SEA_SINGLE_DOUBLE: Axis[] = [
   { id: 't1', label: 'Street side, single', tags: ['street', 'single'] },
   { id: 't2', label: 'Street side, double', tags: ['street', 'double'] },
 ];
-const LEXICON: JobLexEntry[] = [];
-const PAGES: VerificationPage[] = [];
-
 // 検証ページ: [id, 日本語の見出し, 語]。levels / TOEIC bands / domains come from data/english/vocab.json when the word is listed.
+// The inn's own words: a word another job or the common list defines is simply used (src/jobs/lexicon.ts).
 const WORD_PAGES: [string, string, Entry[]][] = [
-  ['ji_desk', '帳場の言葉', [
-    ['in_guest', 'guest', '泊まり客', '🧳', ['guests']],
-    ['in_key', 'key', '鍵', '🔑', ['keys']],
-    ['in_name', 'name', '名前', '📛', ['names']],
-    ['in_book_v', 'book', '予約する・予約帳', '📖', ['booked', 'booking']],
-  ]],
-  ['ji_floors', '何階？', [
-    ['in_floor', 'floor', '階', '🏢', ['floors']],
-    ['in_first', 'first', '1番目の', '1️⃣', undefined, 'adj'],
-    ['in_second', 'second', '2番目の', '2️⃣', undefined, 'adj'],
-    ['in_third', 'third', '3番目の', '3️⃣', undefined, 'adj'],
-    ['in_top', 'top', 'いちばん上', '🔝'],
-  ]],
-  ['ji_room', 'どんな部屋？', [
-    ['in_single', 'single', '一人用の', '🛏️', undefined, 'adj'],
-    ['in_double', 'double', '二人用の', '🛏️', undefined, 'adj'],
-    ['in_view', 'view', '眺め', '🌅', ['views']],
-    ['in_side', 'side', '側（がわ）', '↔️', ['sides']],
-    ['in_stairs', 'stairs', '階段', '🪜', undefined, 'noun', '4'],
-  ]],
-  ['ji_care', '泊まり客の頼みごと', [
-    ['in_towel', 'towel', 'タオル', '🧻', ['towels']],
-    ['in_bath', 'bath', '風呂', '🛁', ['baths']],
-    ['in_blanket', 'blanket', '毛布', '🛌', ['blankets']],
-    ['in_stay', 'stay', '滞在（する）・泊まる', '🏨', ['stays', 'stayed', 'staying'], 'verb'],
-  ]],
-  ['ji_words', '宿の主人の口ぐせ', [
-    ['in_enjoy', 'enjoy', '楽しむ', '😊', ['enjoys', 'enjoyed'], 'verb'],
-    ['in_near', 'near', '近くに', '📍', undefined, 'prep'],
-    ['in_use', 'use', '使う', '🛠️', ['uses', 'used'], 'verb'],
-    ['in_seen', 'seen', '見た（see の過去分詞）', '👀', undefined, 'verb'],
-    ['in_well', 'well', 'よく・じょうずに', '👌', undefined, 'adv'],
-  ]],
-  ['ji_house', '建物のつくり', [
-    ['in_window', 'window', '窓', '🪟', ['windows']],
-    ['in_garden', 'garden', '庭', '🌳', ['gardens']],
-    ['in_toilet', 'toilet', 'トイレ', '🚻', ['toilets']],
-    ['in_front', 'front', '前の・正面の', '⏩', undefined, 'adj'],
-  ]],
-  ['ji_tidy', 'きれい？ きたない？', [
-    ['in_clean', 'clean', 'きれいな・掃除する', '✨', ['cleans', 'cleaned'], 'adj'],
-    ['in_dirty', 'dirty', '汚れた', '🟤', undefined, 'adj'],
-    ['in_soap', 'soap', 'せっけん', '🧼'],
-    ['in_bathroom', 'bathroom', '浴室・洗面所', '🪥', ['bathrooms']],
-  ]],
-  ['ji_talk1', '客のことば（やさしい）', [
-    ['in_kind', 'kind', '親切な', '😌', undefined, 'adj'],
-    ['in_alone', 'alone', 'ひとりで', '🧍', undefined, 'adj'],
-    ['in_slowly', 'slowly', 'ゆっくり', '🐢', undefined, 'adv'],
-    ['in_understand', 'understand', 'わかる・理解する', '💡', ['understands', 'understood'], 'verb'],
-    ['in_all', 'all', 'すべての・全部', '', undefined, 'det'],
-  ]],
-  ['ji_go1', '町を歩く', [
-    ['in_straight', 'straight', 'まっすぐ', '➡️', undefined, 'adv'],
-    ['in_map', 'map', '地図', '🗺️', ['maps']],
-    ['in_town', 'town', '町', '🏘️', ['towns']],
-    ['in_place', 'place', '場所', '📌', ['places']],
-  ]],
-  ['ji_ride1', '乗り物', [
-    ['in_bus', 'bus', 'バス', '🚌', ['buses']],
-    ['in_stop', 'stop', '止まる', '🛑', ['stops', 'stopped', 'stopping'], 'verb'],
-    ['in_train', 'train', '列車', '🚆', ['trains']],
-    ['in_taxi', 'taxi', 'タクシー', '🚕', ['taxis']],
-  ]],
-  ['ji_room2', '部屋の中のもの', [
-    ['in_lamp', 'lamp', 'ランプ・明かり', '🪔', ['lamps']],
-    ['in_clock', 'clock', '時計', '🕰️', ['clocks']],
-    ['in_wall', 'wall', '壁', '🧱', ['walls']],
-    ['in_phone', 'phone', '電話', '📞', ['phones']],
-  ]],
-  ['ji_misc1', '町のあれこれ', [
-    ['in_son', 'son', '息子', '🧒', ['sons']],
-    ['in_cafe', 'cafe', '喫茶店', '☕', ['cafes']],
-    ['in_city', 'city', '都市・大きな町', '🏙️', ['cities']],
-  ]],
-  ['ji_dates', 'いつ着く？', [
-    ['in_arrive', 'arrive', '到着する', '🛬', ['arrives', 'arrived', 'arriving'], 'verb'],
-    ['in_saturday', 'Saturday', '土曜日', '🗓️'],
-    ['in_sunday', 'Sunday', '日曜日', '🗓️'],
-    ['in_tonight', 'tonight', '今夜', '🌙', undefined, 'adv'],
-  ]],
-  ['ji_time2', '時をあらわす', [
-    ['in_noon', 'noon', '正午', '🕛'],
-    ['in_ago', 'ago', '〜前に', '⏪', undefined, 'adv'],
-    ['in_until', 'until', '〜まで', '⏳', undefined, 'prep'],
-    ['in_by', 'by', '〜で・〜のそばで', '🚏', undefined, 'prep'],
-  ]],
-  ['ji_bill', '勘定', [
-    ['in_include', 'include', '含む', '➕', ['includes', 'included', 'including'], 'verb'],
-    ['in_total', 'total', '合計', '🧮'],
-    ['in_pay', 'pay', '払う', '💰', ['pays', 'paid', 'paying'], 'verb'],
-    ['in_rent', 'rent', '借りる', '🏘️', ['rents', 'rented'], 'verb'],
-  ]],
-  ['ji_wash', '洗って、分ける', [
-    ['in_wash', 'wash', '洗う・洗いもの', '🫧', ['washes', 'washed', 'washing'], 'verb'],
-    ['in_sheet', 'sheet', 'シーツ', '📄', ['sheets']],
-    ['in_shower', 'shower', 'シャワー', '🚿', ['showers']],
-  ]],
-  ['ji_forget', 'わすれもの', [
-    ['in_wake', 'wake', '起こす・目をさます', '⏰', ['wakes', 'woke', 'waking'], 'verb'],
-    ['in_forget', 'forget', '忘れる', '🧠', ['forgets', 'forgot', 'forgotten', 'forgetting'], 'verb'],
-    ['in_umbrella', 'umbrella', '傘', '☂️', ['umbrellas']],
-    ['in_hall', 'hall', '廊下・ホール', '🚶', ['halls']],
-  ]],
-  ['ji_quiet', '静かにすごす', [
-    ['in_noise', 'noise', '騒音', '🔊'],
-    ['in_quiet', 'quiet', '静かな', '🤫', ['quieter', 'quietly'], 'adj'],
-    ['in_many', 'many', 'たくさんの', '', undefined, 'det'],
-    ['in_long', 'long', '長い・長く', '📏', ['longer'], 'adj'],
-  ]],
-  ['ji_sights', '町の見どころ', [
-    ['in_museum', 'museum', '博物館', '🏛️', ['museums']],
-    ['in_lighthouse', 'lighthouse', '灯台', '🗼', undefined, 'noun', '3'],
-    ['in_boat', 'boat', '船', '⛵', ['boats']],
-    ['in_photo', 'photo', '写真', '📷', ['photos']],
-  ]],
-  ['ji_way', '道をたずねる', [
-    ['in_foot', 'foot', '足・徒歩', '🦶'],
-    ['in_way', 'way', '道・方法', '🛤️', ['ways']],
-    ['in_turn', 'turn', '曲がる', '↩️', ['turns', 'turned', 'turning'], 'verb'],
-    ['in_walk', 'walk', '歩く', '🚶', ['walks', 'walked', 'walking'], 'verb'],
-  ]],
-  ['ji_stay2', '泊まりのいろいろ', [
-    ['in_visit', 'visit', '訪れる', '🏞️', ['visits', 'visited', 'visiting'], 'verb'],
-    ['in_sir', 'sir', 'お客様・旦那様', '🎩'],
-    ['in_under', 'under', '〜の下に・〜未満', '⬇️', undefined, 'prep'],
-    ['in_stand', 'stand', '立つ', '🧍', ['stands', 'stood', 'standing'], 'verb'],
-    ['in_hotel', 'hotel', 'ホテル', '🏨', ['hotels']],
-  ]],
-  ['ji_gift2', '貸し物とお祝い', [
-    ['in_timetable', 'timetable', '時刻表', '📅'],
-    ['in_cake', 'cake', 'ケーキ', '🍰', ['cakes']],
-    ['in_birthday', 'birthday', '誕生日', '🎂'],
-  ]],
-  ['ji_family2', '家族と週末', [
-    ['in_aunt', 'aunt', 'おば', '👩'],
-    ['in_uncle', 'uncle', 'おじ', '👨'],
-    ['in_weekend', 'weekend', '週末', '📆'],
-    ['in_special', 'special', '特別な', '⭐', undefined, 'adj'],
-  ]],
-  ['ji_amount', '量をあらわす', [
-    ['in_half', 'half', '半分（の）', '🌗', undefined, 'adj'],
-    ['in_little', 'little', '小さい・少しの', '🔹', undefined, 'adj'],
-    ['in_people', 'people', '人々', '👥'],
-  ]],
-  ['ji_months1', '月の名前（その1）', [
-    ['in_march', 'March', '3月', '3️⃣'],
-    ['in_april', 'April', '4月', '4️⃣'],
-    ['in_august', 'August', '8月', '8️⃣'],
-    ['in_september', 'September', '9月', '9️⃣'],
-  ]],
-  ['ji_months2', '月の名前（その2）', [
-    ['in_october', 'October', '10月', '🔟'],
-    ['in_november', 'November', '11月', '🍂'],
-    ['in_december', 'December', '12月', '🎄'],
-  ]],
-  ['ji_change', '予約を変える', [
-    ['in_cancel', 'cancel', '取り消す', '❌', ['cancels', 'cancelled', 'cancelling'], 'verb'],
-    ['in_confirm', 'confirm', '確認する', '✅', ['confirms', 'confirmed', 'confirming'], 'verb'],
-    ['in_reservation', 'reservation', '予約', '📝', ['reservations']],
-    ['in_delay', 'delay', '遅れる・遅れ', '⏱️', ['delays', 'delayed']],
-  ]],
-  ['ji_polite3', 'ていねいな言い方', [
-    ['in_mind', 'mind', '気にする・いやがる', '🧩', ['minds'], 'verb'],
-    ['in_close', 'close', '閉める', '🚪', ['closes', 'closed', 'closing'], 'verb'],
-    ['in_certainly', 'certainly', 'かしこまりました・もちろん', '👍', undefined, 'adv'],
-    ['in_helpful', 'helpful', '助けになる', '🙌', undefined, 'adj'],
-  ]],
-  ['ji_lost3', '落とし物', [
-    ['in_wallet', 'wallet', '財布', '👛', ['wallets']],
-    ['in_lose', 'lose', 'なくす', '😟', ['loses', 'lost', 'losing'], 'verb'],
-    ['in_find', 'find', '見つける', '🔍', ['finds', 'found', 'finding'], 'verb'],
-    ['in_glasses', 'glasses', 'めがね', '👓'],
-  ]],
-  ['ji_charge3', '料金のきまり', [
-    ['in_extra', 'extra', '余分の・追加の', '🆕', undefined, 'adj'],
-    ['in_charge', 'charge', '料金・請求する', '💴', ['charges', 'charged']],
-    ['in_receipt', 'receipt', '領収書', '🧾', ['receipts']],
-    ['in_rule', 'rule', '規則', '📏', ['rules']],
-    ['in_status', 'status', '状態', '🔖'],
-  ]],
-  ['ji_advice3', 'おすすめと断り', [
-    ['in_recommend', 'recommend', 'すすめる', '🌟', ['recommends', 'recommended'], 'verb'],
-    ['in_restaurant', 'restaurant', 'レストラン', '🍴', ['restaurants']],
-    ['in_allow', 'allow', '許す', '✔️', ['allows', 'allowed', 'allowing'], 'verb'],
-    ['in_afraid', 'afraid', '残念ながら・こわがって', '😨', undefined, 'adj'],
-  ]],
-  ['ji_bag3', '手荷物', [
-    ['in_suitcase', 'suitcase', 'スーツケース', '💼', ['suitcases']],
-    ['in_luggage', 'luggage', '荷物', '🎒'],
-    ['in_scarf', 'scarf', 'スカーフ', '🧣', ['scarves']],
-    ['in_coat', 'coat', 'コート', '🧥', ['coats']],
-  ]],
-  ['ji_night3', '夜ふけの客', [
-    ['in_midnight', 'midnight', '真夜中', '🌃'],
-    ['in_ring', 'ring', '鳴らす', '📣', ['rings', 'rang', 'ringing'], 'verb'],
-    ['in_bell', 'bell', 'ベル・呼び鈴', '🔔', ['bells']],
-    ['in_once', 'once', 'すぐに（at once）・一度', '⚡', undefined, 'adv'],
-  ]],
-  ['ji_sorry3', 'おわびとお礼', [
-    ['in_mistake', 'mistake', 'まちがい', '❗', ['mistakes']],
-    ['in_bother', 'bother', '迷惑をかける', '😅', ['bothers'], 'verb'],
-    ['in_pleasure', 'pleasure', 'よろこび', '💐'],
-    ['in_appreciate', 'appreciate', 'ありがたく思う', '🙏', ['appreciates'], 'verb'],
-  ]],
-  ['ji_hope3', '願いごと', [
-    ['in_hope', 'hope', '望む・願う', '🌈', ['hopes'], 'verb'],
-    ['in_forward', 'forward', '前へ・楽しみに', '⏭️', undefined, 'adv'],
-    ['in_let', 'let', '〜させる・〜させてください', '🤲', ['lets', 'letting'], 'verb'],
-    ['in_together', 'together', 'いっしょに', '🤝', undefined, 'adv'],
-  ]],
-  ['ji_people3', '人とものの言い方', [
-    ['in_man', 'man', '男の人', '🧔', ['men']],
-    ['in_boy', 'boy', '男の子', '👦', ['boys']],
-    ['in_young', 'young', '若い', '🌱', undefined, 'adj'],
-    ['in_thing', 'thing', 'もの・こと', '🔸', ['things']],
-    ['in_us', 'us', '私たちを・私たちに', '👥', undefined, 'pron'],
-  ]],
-  ['ji_modal3', 'ことばの小さな力', [
-    ['in_must', 'must', '〜しなければならない', '‼️', undefined, 'verb'],
-    ['in_should', 'should', '〜したほうがよい', '💭', undefined, 'verb'],
-    ['in_everything', 'everything', 'すべてのこと', '🌐', undefined, 'pron'],
-    ['in_high', 'high', '高い', '🏔️', undefined, 'adj'],
-  ]],
-  ['ji_talk3', '話しことば（3）', [
-    ['in_talk', 'talk', '話す', '💬', ['talks', 'talked', 'talking'], 'verb'],
-    ['in_end', 'end', '終わり・はし', '🔚', ['ends']],
-    ['in_noisy', 'noisy', 'うるさい', '🔉', undefined, 'adj'],
-  ]],
-  ['ji_extras3', '旅の持ちもの', [
-    ['in_sing', 'sing', '歌う', '🎤', ['sings', 'sang', 'singing'], 'verb'],
-    ['in_camera', 'camera', 'カメラ', '📸', ['cameras']],
-    ['in_clothes', 'clothes', '衣服', '👕'],
-    ['in_balcony', 'balcony', 'バルコニー', '🌇', ['balconies']],
-    ['in_grandson', 'grandson', '孫（男の子）', '👦', ['grandsons']],
-  ]],
-  ['ji_weather3', '寒い日', [
-    ['in_fog', 'fog', '霧', '🌫️'],
-    ['in_thick', 'thick', '厚い・濃い', '🟫', undefined, 'adj'],
-    ['in_degree', 'degree', '度（温度）', '🌡️', ['degrees']],
-    ['in_heater', 'heater', 'ヒーター', '🔥', ['heaters']],
-  ]],
-  ['ji_help3', '宿のサービス', [
-    ['in_tip', 'tip', 'チップ・心づけ', '🪙', ['tips']],
-    ['in_necessary', 'necessary', '必要な', '☑️', undefined, 'adj'],
-    ['in_pillow', 'pillow', 'まくら', '😴', ['pillows']],
-    ['in_neck', 'neck', '首', '🦒'],
-  ]],
-  ['ji_gate3', '門と旅の書類', [
-    ['in_gate', 'gate', '門', '⛩️', ['gates']],
-    ['in_lock', 'lock', '鍵をかける', '🔒', ['locks', 'locked', 'locking'], 'verb'],
-    ['in_passport', 'passport', 'パスポート', '🛂', ['passports']],
-    ['in_guide', 'guide', '案内人', '🧭', ['guides']],
-    ['in_checkout', 'check-out', 'チェックアウト', '🚪', undefined, 'noun', '3'],
-  ]],
-  ['ji_party3', 'お祝いの日', [
-    ['in_castle', 'castle', '城', '🏰', ['castles']],
-    ['in_anniversary', 'anniversary', '記念日', '🥂'],
-    ['in_wedding', 'wedding', '結婚式', '💒', ['weddings']],
-  ]],
-  ['ji_small3', '小さなことば', [
-    ['in_up', 'up', '上へ・上に', '⬆️', undefined, 'adv'],
-    ['in_out', 'out', '外へ・外に', '🚪', undefined, 'adv'],
-    ['in_into', 'into', '〜の中へ', '↪️', undefined, 'prep'],
-    ['in_however', 'however', 'しかしながら', '↔️', undefined, 'adv'],
-  ]],
-  ['ji_lostthings', '忘れ物の中身', [
-    ['in_hat', 'hat', '帽子', '👒', ['hats']],
-    ['in_shoe', 'shoe', 'くつ', '👟', ['shoes']],
-    ['in_jacket', 'jacket', '上着', '🧥', ['jackets']],
-    ['in_shirt', 'shirt', 'シャツ', '👕', ['shirts']],
-  ]],
-  ['ji_refund4', 'お金がもどる', [
-    ['in_advance', 'advance', '前もって・前進', '📆'],
-    ['in_refund', 'refund', '払いもどし', '💸', ['refunds']],
-    ['in_discount', 'discount', '割引', '🏷️', ['discounts']],
-    ['in_payment', 'payment', '支払い', '💳', ['payments']],
-  ]],
-  ['ji_cash4', 'お金とカード', [
-    ['in_cash', 'cash', '現金', '💵'],
-    ['in_card', 'card', 'カード', '🪪', ['cards']],
-    ['in_return', 'return', '戻る・返す', '🔙', ['returns', 'returned', 'returning'], 'verb'],
-    ['in_laundry', 'laundry', '洗濯物', '🧺', undefined, 'noun', '3'],
-  ]],
-  ['ji_sorry4', '苦情と返事', [
-    ['in_apologize', 'apologize', 'わびる', '🙇', ['apologise', 'apologizes'], 'verb'],
-    ['in_trouble', 'trouble', 'めんどう・困りごと', '⚠️'],
-    ['in_matter', 'matter', '事・問題', '📋', ['matters']],
-    ['in_disappointed', 'disappointed', 'がっかりした', '😞', undefined, 'adj'],
-  ]],
-  ['ji_paper4', '紙の上のことば', [
-    ['in_slip', 'slip', '伝票・紙きれ', '🧾', ['slips']],
-    ['in_fourth', 'fourth', '4番目の', '4️⃣', undefined, 'adj'],
-    ['in_brown', 'brown', '茶色の', '🟫', undefined, 'adj'],
-    ['in_due', 'due', '〜する予定の', '📅', undefined, 'adj'],
-  ]],
-  ['ji_say5', '手紙のことば', [
-    ['in_grateful', 'grateful', 'ありがたく思う', '🙏', undefined, 'adj'],
-    ['in_even', 'even', '〜でさえ', '‼️', undefined, 'adv'],
-    ['in_question', 'question', '質問', '❓', ['questions']],
-    ['in_answer', 'answer', '答える', '✍️', ['answers', 'answered', 'answering'], 'verb'],
-    ['in_difficult', 'difficult', 'むずかしい', '🧗', undefined, 'adj'],
-  ]],
-  ['ji_weather4', '荒れた海', [
-    ['in_storm', 'storm', '嵐', '⛈️', ['storms']],
-    ['in_forecast', 'forecast', '予報', '🌤️', ['forecasts']],
-    ['in_calm', 'calm', 'おだやかな', '🌊', ['calmer'], 'adj'],
-    ['in_rough', 'rough', '荒れた', '🌪️', undefined, 'adj'],
-    ['in_ferry', 'ferry', 'フェリー', '⛴️', ['ferries']],
-  ]],
-  ['ji_sights4', '町の案内（1）', [
-    ['in_history', 'history', '歴史', '📜'],
-    ['in_crowd', 'crowd', '人ごみ', '🧑‍🤝‍🧑', ['crowds', 'crowded']],
-    ['in_sunset', 'sunset', '夕日', '🌅', ['sunsets']],
-    ['in_interesting', 'interesting', 'おもしろい', '🤩', undefined, 'adj'],
-  ]],
-  ['ji_sights5', '町の案内（2）', [
-    ['in_nearby', 'nearby', '近くの', '🏘️', undefined, 'adj'],
-    ['in_visitor', 'visitor', '訪問者', '🧑', ['visitors']],
-    ['in_building', 'building', '建物', '🏢', ['buildings']],
-    ['in_beach', 'beach', '浜辺', '🏖️', ['beaches']],
-  ]],
-  ['ji_party4', '夜の食堂', [
-    ['in_dining_room', 'dining room', '食堂', '🪑', ['dining rooms'], 'noun', '4'],
-    ['in_musician', 'musician', '音楽家', '🎻', ['musicians']],
-    ['in_music', 'music', '音楽', '🎵'],
-    ['in_loud', 'loud', 'うるさい・大きな音の', '📢', undefined, 'adj'],
-    ['in_play', 'play', '演奏する・遊ぶ', '🎶', ['plays', 'played', 'playing'], 'verb'],
-  ]],
-  ['ji_event4', 'お祝いごと', [
-    ['in_congratulations', 'congratulations', 'おめでとう', '🎉', undefined, 'interj', '4'],
-    ['in_serve', 'serve', '出す・給仕する', '🍽️', ['serves', 'served', 'serving'], 'verb'],
-    ['in_prepare', 'prepare', '用意する', '🍳', ['prepares', 'prepared', 'preparing'], 'verb'],
-    ['in_marry', 'marry', '結婚する', '💍', ['marries', 'married', 'marrying'], 'verb'],
-    ['in_party', 'party', 'パーティー', '🎊', ['parties']],
-  ]],
-  ['ji_if4', '条件のことば', [
-    ['in_whether', 'whether', '〜かどうか', '❓', undefined, 'conj'],
-    ['in_unless', 'unless', '〜でない限り', '🚫', undefined, 'conj'],
-    ['in_provided', 'provided', '〜という条件で', '📑', undefined, 'conj'],
-    ['in_possible', 'possible', '可能な', '🆗', undefined, 'adj'],
-  ]],
-  ['ji_stuff4', '忘れ物と持ち主', [
-    ['in_post', 'post', '郵送する・郵便', '📮', ['posts', 'posted'], 'verb'],
-    ['in_owner', 'owner', '持ち主', '🧑‍💼', ['owners']],
-    ['in_pair', 'pair', 'ひと組・一対', '👯', ['pairs']],
-    ['in_watch', 'watch', '腕時計', '⌚', ['watches']],
-    ['in_toy', 'toy', 'おもちゃ', '🧸', ['toys']],
-  ]],
-  ['ji_plan4', '先の予定', [
-    ['in_live', 'live', '住む', '🏠', ['lives', 'lived', 'living'], 'verb'],
-    ['in_month', 'month', '月（つき）', '🈷️', ['months']],
-    ['in_plan', 'plan', '計画・予定する', '🗓️', ['plans', 'planned', 'planning'], 'verb'],
-    ['in_simple', 'simple', '単純な・簡単な', '➖', undefined, 'adj'],
-  ]],
-  ['ji_look4', 'ようすをいう', [
-    ['in_whole', 'whole', '全部の・まるごとの', '🌍', undefined, 'adj'],
-    ['in_safe', 'safe', '安全な', '🦺', undefined, 'adj'],
-    ['in_dry', 'dry', '乾いた', '🏜️', undefined, 'adj'],
-    ['in_face', 'face', '面している・顔', '🙂', ['faces', 'faced', 'facing'], 'verb'],
-  ]],
-  ['ji_feel4', '気持ちをいう', [
-    ['in_wonder', 'wonder', '〜かなと思う', '🤔', ['wonders', 'wondering', 'wondered'], 'verb'],
-    ['in_prefer', 'prefer', '〜のほうを好む', '👈', ['prefers', 'preferred'], 'verb'],
-    ['in_hate', 'hate', 'ひどくきらう', '😡', ['hates'], 'verb'],
-    ['in_ill', 'ill', '病気の', '🤒', undefined, 'adj'],
-  ]],
-  ['ji_say4', 'たずねる・伝える', [
-    ['in_ask', 'ask', 'たずねる・頼む', '🙋', ['asks', 'asked', 'asking'], 'verb'],
-    ['in_someone', 'someone', 'だれか', '🧑', undefined, 'pron'],
-    ['in_hear', 'hear', '聞こえる・聞く', '👂', ['hears', 'heard', 'hearing'], 'verb'],
-    ['in_tell', 'tell', '伝える・言う', '🗣️', ['tells', 'told', 'telling'], 'verb'],
-  ]],
-  ['ji_hold4', '申し出る', [
-    ['in_hold', 'hold', '開く・持つ', '✋', ['holds', 'held', 'holding'], 'verb'],
-    ['in_fix', 'fix', '直す', '🔧', ['fixes', 'fixed', 'fixing'], 'verb'],
-    ['in_suggest', 'suggest', '提案する', '💡', ['suggests', 'suggested'], 'verb'],
-    ['in_offer', 'offer', '申し出る・提供する', '🎁', ['offers', 'offered'], 'verb'],
-    ['in_carry', 'carry', '運ぶ', '🧳', ['carries', 'carried', 'carrying'], 'verb'],
-  ]],
-  ['ji_other4', '旅のいろいろ', [
-    ['in_low', 'low', '低い', '🔽', ['lower'], 'adj'],
-    ['in_dog', 'dog', '犬', '🐕', ['dogs']],
-    ['in_trip', 'trip', '旅', '🧭', ['trips']],
-    ['in_holiday', 'holiday', '休暇', '🏖️', ['holidays']],
-    ['in_travel', 'travel', '旅行する', '🧳', ['travels', 'travelled', 'travelling', 'traveled'], 'verb'],
-  ]],
-  ['ji_look5', '部屋のなか、紙の上', [
-    ['in_mirror', 'mirror', '鏡', '🪞', ['mirrors']],
-    ['in_newspaper', 'newspaper', '新聞', '📰', ['newspapers']],
-    ['in_seem', 'seem', '〜のようだ', '🧐', ['seems', 'seemed'], 'verb'],
-    ['in_anything', 'anything', '何か・何でも', '❔', undefined, 'pron'],
-  ]],
-  ['ji_job4', '宿の人たち', [
-    ['in_clerk', 'clerk', '係員', '🧑‍💼', ['clerks']],
-    ['in_lucky', 'lucky', '運のいい', '🍀', undefined, 'adj'],
-    ['in_vegetarian', 'vegetarian', '菜食の人', '🥬'],
-    ['in_vegetable', 'vegetable', '野菜', '🥕', ['vegetables']],
-    ['in_sit', 'sit', '座る', '🪑', ['sits', 'sat', 'sitting'], 'verb'],
-  ]],
-  ['ji_buy4', '買いものと案内', [
-    ['in_souvenir', 'souvenir', 'お土産', '🎁', ['souvenirs']],
-    ['in_guidebook', 'guidebook', '旅行案内書', '📘', ['guidebooks']],
-    ['in_difference', 'difference', '違い・差額', '⚖️'],
-    ['in_elevator', 'elevator', 'エレベーター', '🛗'],
+  ["ji_room", "どんな部屋？", [
+    ["in_single", "single", "一人用の", "🛏️", undefined, "adj"],
+    ["in_double", "double", "二人用の", "🛏️", undefined, "adj"],
+    ["in_view", "view", "眺め", "🌅", ["views"]],
+    ["in_side", "side", "側（がわ）", "↔️", ["sides"]],
+    ["in_stairs", "stairs", "階段", "🪜", undefined, undefined, "4"],
+  ]],
+  ["ji_care", "泊まり客の頼みごと", [
+    ["in_towel", "towel", "タオル", "🧻", ["towels"]],
+    ["in_bath", "bath", "風呂", "🛁", ["baths"]],
+    ["in_blanket", "blanket", "毛布", "🛌", ["blankets"]],
+    ["in_stay", "stay", "滞在（する）・泊まる", "🏨", ["stays","stayed","staying"], "verb"],
+  ]],
+  ["ji_words", "宿の主人の口ぐせ", [
+    ["in_enjoy", "enjoy", "楽しむ", "😊", ["enjoys","enjoyed"], "verb"],
+    ["in_near", "near", "近くに", "📍", undefined, "prep"],
+    ["in_seen", "seen", "見た（see の過去分詞）", "👀", undefined, "verb"],
+  ]],
+  ["ji_house", "建物のつくり", [
+    ["in_window", "window", "窓", "🪟", ["windows"]],
+    ["in_garden", "garden", "庭", "🌳", ["gardens"]],
+    ["in_toilet", "toilet", "トイレ", "🚻", ["toilets"]],
+    ["in_front", "front", "前の・正面の", "⏩", undefined, "adj"],
+  ]],
+  ["ji_talk1", "客のことば（やさしい）", [
+    ["in_kind", "kind", "親切な", "😌", undefined, "adj"],
+    ["in_alone", "alone", "ひとりで", "🧍", undefined, "adj"],
+    ["in_understand", "understand", "わかる・理解する", "💡", ["understands","understood"], "verb"],
+  ]],
+  ["ji_dates", "いつ着く？", [
+    ["in_arrive", "arrive", "到着する", "🛬", ["arrives","arrived","arriving"], "verb"],
+    ["in_saturday", "Saturday", "土曜日", "🗓️"],
+    ["in_tonight", "tonight", "今夜", "🌙", undefined, "adv"],
+  ]],
+  ["ji_time2", "時をあらわす", [
+    ["in_noon", "noon", "正午", "🕛"],
+    ["in_ago", "ago", "〜前に", "⏪", undefined, "adv"],
+    ["in_until", "until", "〜まで", "⏳", undefined, "prep"],
+    ["in_by", "by", "〜で・〜のそばで", "🚏", undefined, "prep"],
+  ]],
+  ["ji_bill", "勘定", [
+    ["in_include", "include", "含む", "➕", ["includes","included","including"], "verb"],
+    ["in_total", "total", "合計", "🧮"],
+    ["in_rent", "rent", "借りる", "🏘️", ["rents","rented"], "verb"],
+  ]],
+  ["ji_forget", "わすれもの", [
+    ["in_wake", "wake", "起こす・目をさます", "⏰", ["wakes","woke","waking"], "verb"],
+    ["in_umbrella", "umbrella", "傘", "☂️", ["umbrellas"]],
+    ["in_hall", "hall", "廊下・ホール", "🚶", ["halls"]],
+  ]],
+  ["ji_quiet", "静かにすごす", [
+    ["in_noise", "noise", "騒音", "🔊"],
+    ["in_quiet", "quiet", "静かな", "🤫", ["quieter","quietly"], "adj"],
+    ["in_long", "long", "長い・長く", "📏", ["longer"], "adj"],
+  ]],
+  ["ji_sights", "町の見どころ", [
+    ["in_museum", "museum", "博物館", "🏛️", ["museums"]],
+    ["in_lighthouse", "lighthouse", "灯台", "🗼", undefined, undefined, "3"],
+    ["in_boat", "boat", "船", "⛵", ["boats"]],
+    ["in_photo", "photo", "写真", "📷", ["photos"]],
+  ]],
+  ["ji_stay2", "泊まりのいろいろ", [
+    ["in_visit", "visit", "訪れる", "🏞️", ["visits","visited","visiting"], "verb"],
+    ["in_sir", "sir", "お客様・旦那様", "🎩"],
+    ["in_under", "under", "〜の下に・〜未満", "⬇️", undefined, "prep"],
+    ["in_stand", "stand", "立つ", "🧍", ["stands","stood","standing"], "verb"],
+    ["in_hotel", "hotel", "ホテル", "🏨", ["hotels"]],
+  ]],
+  ["ji_family2", "家族と週末", [
+    ["in_aunt", "aunt", "おば", "👩"],
+    ["in_uncle", "uncle", "おじ", "👨"],
+    ["in_weekend", "weekend", "週末", "📆"],
+    ["in_special", "special", "特別な", "⭐", undefined, "adj"],
+  ]],
+  ["ji_months1", "月の名前（その1）", [
+    ["in_march", "March", "3月", "3️⃣"],
+    ["in_april", "April", "4月", "4️⃣"],
+    ["in_august", "August", "8月", "8️⃣"],
+    ["in_september", "September", "9月", "9️⃣"],
+  ]],
+  ["ji_months2", "月の名前（その2）", [
+    ["in_october", "October", "10月", "🔟"],
+    ["in_november", "November", "11月", "🍂"],
+    ["in_december", "December", "12月", "🎄"],
+  ]],
+  ["ji_change", "予約を変える", [
+    ["in_cancel", "cancel", "取り消す", "❌", ["cancels","cancelled","cancelling"], "verb"],
+    ["in_confirm", "confirm", "確認する", "✅", ["confirms","confirmed","confirming"], "verb"],
+    ["in_reservation", "reservation", "予約", "📝", ["reservations"]],
+    ["in_delay", "delay", "遅れる・遅れ", "⏱️", ["delays","delayed"]],
+  ]],
+  ["ji_polite3", "ていねいな言い方", [
+    ["in_mind", "mind", "気にする・いやがる", "🧩", ["minds"], "verb"],
+    ["in_close", "closing", "閉める（close の変化形）", "🚪", undefined, "verb", "5"],
+    ["in_certainly", "certainly", "かしこまりました・もちろん", "👍", undefined, "adv"],
+    ["in_helpful", "helpful", "助けになる", "🙌", undefined, "adj"],
+  ]],
+  ["ji_charge3", "料金のきまり", [
+    ["in_extra", "extra", "余分の・追加の", "🆕", undefined, "adj"],
+    ["in_charge", "charge", "料金・請求する", "💴", ["charges","charged"]],
+    ["in_receipt", "receipt", "領収書", "🧾", ["receipts"]],
+    ["in_status", "status", "状態", "🔖"],
+  ]],
+  ["ji_advice3", "おすすめと断り", [
+    ["in_recommend", "recommend", "すすめる", "🌟", ["recommends","recommended"], "verb"],
+    ["in_restaurant", "restaurant", "レストラン", "🍴", ["restaurants"]],
+    ["in_afraid", "afraid", "残念ながら・こわがって", "😨", undefined, "adj"],
+  ]],
+  ["ji_bag3", "手荷物", [
+    ["in_suitcase", "suitcase", "スーツケース", "💼", ["suitcases"]],
+    ["in_luggage", "luggage", "荷物", "🎒"],
+    ["in_scarf", "scarf", "スカーフ", "🧣", ["scarves"]],
+    ["in_coat", "coat", "コート", "🧥", ["coats"]],
+  ]],
+  ["ji_night3", "夜ふけの客", [
+    ["in_midnight", "midnight", "真夜中", "🌃"],
+    ["in_ring", "ring", "鳴らす", "📣", ["rings","rang","ringing"], "verb"],
+    ["in_bell", "bell", "ベル・呼び鈴", "🔔", ["bells"]],
+    ["in_once", "once", "すぐに（at once）・一度", "⚡", undefined, "adv"],
+  ]],
+  ["ji_sorry3", "おわびとお礼", [
+    ["in_bother", "bother", "迷惑をかける", "😅", ["bothers"], "verb"],
+    ["in_pleasure", "pleasure", "よろこび", "💐"],
+    ["in_appreciate", "appreciate", "ありがたく思う", "🙏", ["appreciates"], "verb"],
+  ]],
+  ["ji_hope3", "願いごと", [
+    ["in_hope", "hope", "望む・願う", "🌈", ["hopes"], "verb"],
+    ["in_forward", "forward", "前へ・楽しみに", "⏭️", undefined, "adv"],
+    ["in_let", "let", "〜させる・〜させてください", "🤲", ["lets","letting"], "verb"],
+    ["in_together", "together", "いっしょに", "🤝", undefined, "adv"],
+  ]],
+  ["ji_extras3", "旅の持ちもの", [
+    ["in_sing", "sing", "歌う", "🎤", ["sings","sang","singing"], "verb"],
+    ["in_camera", "camera", "カメラ", "📸", ["cameras"]],
+    ["in_clothes", "clothes", "衣服", "👕"],
+    ["in_balcony", "balcony", "バルコニー", "🌇", ["balconies"]],
+    ["in_grandson", "grandson", "孫（男の子）", "👦", ["grandsons"]],
+  ]],
+  ["ji_weather3", "寒い日", [
+    ["in_fog", "fog", "霧", "🌫️"],
+    ["in_thick", "thick", "厚い・濃い", "🟫", undefined, "adj"],
+    ["in_degree", "degree", "度（温度）", "🌡️", ["degrees"]],
+    ["in_heater", "heater", "ヒーター", "🔥", ["heaters"]],
+  ]],
+  ["ji_help3", "宿のサービス", [
+    ["in_tip", "tip", "チップ・心づけ", "🪙", ["tips"]],
+    ["in_necessary", "necessary", "必要な", "☑️", undefined, "adj"],
+    ["in_pillow", "pillow", "まくら", "😴", ["pillows"]],
+    ["in_neck", "neck", "首", "🦒"],
+  ]],
+  ["ji_gate3", "門と旅の書類", [
+    ["in_gate", "gate", "門", "⛩️", ["gates"]],
+    ["in_lock", "lock", "鍵をかける", "🔒", ["locks","locked","locking"], "verb"],
+    ["in_passport", "passport", "パスポート", "🛂", ["passports"]],
+    ["in_guide", "guide", "案内人", "🧭", ["guides"]],
+    ["in_checkout", "check-out", "チェックアウト", "🚪", undefined, undefined, "3"],
+  ]],
+  ["ji_party3", "お祝いの日", [
+    ["in_castle", "castle", "城", "🏰", ["castles"]],
+    ["in_anniversary", "anniversary", "記念日", "🥂"],
+    ["in_wedding", "wedding", "結婚式", "💒", ["weddings"]],
+  ]],
+  ["ji_lostthings", "忘れ物の中身", [
+    ["in_hat", "hat", "帽子", "👒", ["hats"]],
+    ["in_shoe", "shoe", "くつ", "👟", ["shoes"]],
+    ["in_jacket", "jacket", "上着", "🧥", ["jackets"]],
+    ["in_shirt", "shirt", "シャツ", "👕", ["shirts"]],
+  ]],
+  ["ji_refund4", "お金がもどる", [
+    ["in_advance", "advance", "前もって・前進", "📆"],
+    ["in_refund", "refund", "払いもどし", "💸", ["refunds"]],
+    ["in_discount", "discount", "割引", "🏷️", ["discounts"]],
+    ["in_payment", "payment", "支払い", "💳", ["payments"]],
+  ]],
+  ["ji_cash4", "お金とカード", [
+    ["in_cash", "cash", "現金", "💵"],
+    ["in_return", "return", "戻る・返す", "🔙", ["returns","returned","returning"], "verb"],
+    ["in_laundry", "laundry", "洗濯物", "🧺", undefined, undefined, "3"],
+  ]],
+  ["ji_sorry4", "苦情と返事", [
+    ["in_apologize", "apologize", "わびる", "🙇", ["apologise","apologizes"], "verb"],
+    ["in_matter", "matter", "事・問題", "📋", ["matters"]],
+    ["in_disappointed", "disappointed", "がっかりした", "😞", undefined, "adj"],
+  ]],
+  ["ji_paper4", "紙の上のことば", [
+    ["in_slip", "slip", "伝票・紙きれ", "🧾", ["slips"]],
+    ["in_fourth", "fourth", "4番目の", "4️⃣", undefined, "adj"],
+    ["in_brown", "brown", "茶色の", "🟫", undefined, "adj"],
+    ["in_due", "due", "〜する予定の", "📅", undefined, "adj"],
+  ]],
+  ["ji_say5", "手紙のことば", [
+    ["in_grateful", "grateful", "ありがたく思う", "🙏", undefined, "adj"],
+    ["in_even", "even", "〜でさえ", "‼️", undefined, "adv"],
+    ["in_question", "question", "質問", "❓", ["questions"]],
+    ["in_answer", "answer", "答える", "✍️", ["answers","answered","answering"], "verb"],
+    ["in_difficult", "difficult", "むずかしい", "🧗", undefined, "adj"],
+  ]],
+  ["ji_weather4", "荒れた海", [
+    ["in_storm", "storm", "嵐", "⛈️", ["storms"]],
+    ["in_forecast", "forecast", "予報", "🌤️", ["forecasts"]],
+    ["in_calm", "calm", "おだやかな", "🌊", ["calmer"], "adj"],
+    ["in_rough", "rough", "荒れた", "🌪️", undefined, "adj"],
+    ["in_ferry", "ferry", "フェリー", "⛴️", ["ferries"]],
+  ]],
+  ["ji_sights4", "町の案内（1）", [
+    ["in_history", "history", "歴史", "📜"],
+    ["in_crowd", "crowd", "人ごみ", "🧑‍🤝‍🧑", ["crowds","crowded"]],
+    ["in_sunset", "sunset", "夕日", "🌅", ["sunsets"]],
+    ["in_interesting", "interesting", "おもしろい", "🤩", undefined, "adj"],
+  ]],
+  ["ji_sights5", "町の案内（2）", [
+    ["in_nearby", "nearby", "近くの", "🏘️", undefined, "adj"],
+    ["in_visitor", "visitor", "訪問者", "🧑", ["visitors"]],
+    ["in_building", "building", "建物", "🏢", ["buildings"]],
+    ["in_beach", "beach", "浜辺", "🏖️", ["beaches"]],
+  ]],
+  ["ji_party4", "夜の食堂", [
+    ["in_dining_room", "dining room", "食堂", "🪑", ["dining rooms"], undefined, "4"],
+    ["in_musician", "musician", "音楽家", "🎻", ["musicians"]],
+    ["in_music", "music", "音楽", "🎵"],
+    ["in_loud", "loud", "うるさい・大きな音の", "📢", undefined, "adj"],
+    ["in_play", "play", "演奏する・遊ぶ", "🎶", ["plays","played","playing"], "verb"],
+  ]],
+  ["ji_event4", "お祝いごと", [
+    ["in_congratulations", "congratulations", "おめでとう", "🎉", undefined, "interj", "4"],
+    ["in_prepare", "prepare", "用意する", "🍳", ["prepares","prepared","preparing"], "verb"],
+    ["in_marry", "marry", "結婚する", "💍", ["marries","married","marrying"], "verb"],
+    ["in_party", "party", "パーティー", "🎊", ["parties"]],
+  ]],
+  ["ji_stuff4", "忘れ物と持ち主", [
+    ["in_post", "post", "郵送する・郵便", "📮", ["posts","posted"], "verb"],
+    ["in_owner", "owner", "持ち主", "🧑‍💼", ["owners"]],
+    ["in_pair", "pair", "ひと組・一対", "👯", ["pairs"]],
+    ["in_watch", "watch", "腕時計", "⌚", ["watches"]],
+    ["in_toy", "toy", "おもちゃ", "🧸", ["toys"]],
+  ]],
+  ["ji_feel4", "気持ちをいう", [
+    ["in_wonder", "wonder", "〜かなと思う", "🤔", ["wonders","wondering","wondered"], "verb"],
+    ["in_hate", "hate", "ひどくきらう", "😡", ["hates"], "verb"],
+    ["in_ill", "ill", "病気の", "🤒", undefined, "adj"],
+  ]],
+  ["ji_other4", "旅のいろいろ", [
+    ["in_low", "low", "低い", "🔽", ["lower"], "adj"],
+    ["in_dog", "dog", "犬", "🐕", ["dogs"]],
+    ["in_trip", "trip", "旅", "🧭", ["trips"]],
+    ["in_holiday", "holiday", "休暇", "🏖️", ["holidays"]],
+    ["in_travel", "travel", "旅行する", "🧳", ["travels","travelled","travelling","traveled"], "verb"],
+  ]],
+  ["ji_job4", "宿の人たち", [
+    ["in_clerk", "clerk", "係員", "🧑‍💼", ["clerks"]],
+    ["in_lucky", "lucky", "運のいい", "🍀", undefined, "adj"],
+    ["in_sit", "sit", "座る", "🪑", ["sits","sat","sitting"], "verb"],
+  ]],
+  ["ji_buy4", "買いものと案内", [
+    ["in_souvenir", "souvenir", "お土産", "🎁", ["souvenirs"]],
+    ["in_guidebook", "guidebook", "旅行案内書", "📘", ["guidebooks"]],
+    ["in_difference", "difference", "違い・差額", "⚖️"],
+    ["in_elevator", "elevator", "エレベーター", "🛗"],
+  ]],
+  ["ji_more50", "帳場の言葉（つづき）", [
+    ["in_key", "key", "鍵", "🔑", ["keys"]],
+    ["in_book_v", "booked", "予約する・予約帳（book の変化形）", "📖", undefined, undefined, "3"],
+    ["in_second", "second", "2番目の", "2️⃣", undefined, "adj"],
+    ["in_third", "third", "3番目の", "3️⃣", undefined, "adj"],
+  ]],
+  ["ji_more51", "帳場の言葉（つづき）", [
+    ["in_bathroom", "bathroom", "浴室・洗面所", "🪥", ["bathrooms"]],
+    ["in_straight", "straight", "まっすぐ", "➡️", undefined, "adv"],
+    ["in_map", "map", "地図", "🗺️", ["maps"]],
+    ["in_cafe", "cafe", "喫茶店", "☕", ["cafes"]],
+  ]],
+  ["ji_more52", "帳場の言葉（つづき）", [
+    ["in_city", "city", "都市・大きな町", "🏙️", ["cities"]],
+    ["in_sheet", "sheet", "シーツ", "📄", ["sheets"]],
+    ["in_shower", "shower", "シャワー", "🚿", ["showers"]],
+    ["in_foot", "foot", "足・徒歩", "🦶"],
+  ]],
+  ["ji_more53", "帳場の言葉（つづき）", [
+    ["in_walk", "walk", "歩く", "🚶", ["walks","walked","walking"], "verb"],
+    ["in_timetable", "timetable", "時刻表", "📅"],
+    ["in_half", "half", "半分（の）", "🌗", undefined, "adj"],
+    ["in_little", "little", "小さい・少しの", "🔹", undefined, "adj"],
+  ]],
+  ["ji_more54", "帳場の言葉（つづき）", [
+    ["in_wallet", "wallet", "財布", "👛", ["wallets"]],
+    ["in_lose", "lose", "なくす", "😟", ["loses","lost","losing"], "verb"],
+    ["in_boy", "boy", "男の子", "👦", ["boys"]],
+    ["in_up", "up", "上へ・上に", "⬆️", undefined, "adv"],
+    ["in_however", "however", "しかしながら", "↔️", undefined, "adv"],
+  ]],
+  ["ji_more55", "帳場の言葉（つづき）", [
+    ["in_whether", "whether", "〜かどうか", "❓", undefined, "conj"],
+    ["in_possible", "possible", "可能な", "🆗", undefined, "adj"],
+    ["in_whole", "whole", "全部の・まるごとの", "🌍", undefined, "adj"],
+    ["in_mirror", "mirror", "鏡", "🪞", ["mirrors"]],
+    ["in_newspaper", "newspaper", "新聞", "📰", ["newspapers"]],
   ]],
 ];
-
-// The tokenizer gives a surface to the first job that lists it, and the kitchen is listed before the inn: a word the
-// kitchen already teaches is left to it (the post office, listed first, in turn leaves this job's words to us). Pages
-// are packed again when that leaves fewer than three words on one.
-const CLAIMED = new Set<string>();
-const kitchen = KITCHEN_JOB.content.en;
-for (const e of kitchen?.lexicon ?? []) for (const s of [e.text, ...(e.forms ?? [])]) CLAIMED.add(s.toLowerCase());
-for (const f of Object.values(kitchen?.forms ?? {})) for (const s of f) CLAIMED.add(s.toLowerCase());
-const claimed = (s: string): boolean => CLAIMED.has(s.toLowerCase());
-// An inflected form the kitchen's entry does not cover stays as a word of its own: id → [grade, surfaces used here].
-const SPLIT: Record<string, ['5' | '4' | '3', ...string[]]> = { in_book_v: ['3', 'booked'], in_tell: ['5', 'telling'], in_close: ['5', 'closing'] };
-function reshape(e: Entry): Entry | null {
-  if (!claimed(e[1])) return e;
-  const [grade, ...forms] = SPLIT[e[0]] ?? [];
-  const alt = forms.filter((s) => !claimed(s));
-  if (!grade || !alt.length) return null;
-  return [e[0], alt[0], `${e[2]}（${e[1]} の変化形）`, e[3], alt.slice(1), e[5], grade];
-}
-const kept: [string, string, Entry[]][] = [];
-const spare: Entry[] = [];
+const LEXICON: JobLexEntry[] = [];
+const PAGES: VerificationPage[] = [];
 for (const [id, labelJa, words] of WORD_PAGES) {
-  const mine = words.map(reshape).filter((e): e is Entry => !!e);
-  if (mine.length >= 3) kept.push([id, labelJa, mine]);
-  else spare.push(...mine);
-}
-if (spare.length && spare.length < 3) {
-  // too few for a page of their own: join a page with room, else borrow from the fullest page
-  const room = kept.find((k) => k[2].length + spare.length <= 5);
-  if (room) room[2].push(...spare);
-  else {
-    const fullest = kept.reduce((m, k) => (k[2].length > m[2].length ? k : m), kept[0]);
-    while (spare.length < 3 && fullest[2].length > 3) spare.unshift(fullest[2].pop()!);
-    if (spare.length >= 3) kept.push([`ji_more${kept.length}`, '帳場の言葉（つづき）', spare.splice(0)]);
-  }
-} else if (spare.length) {
-  const groups = Math.ceil(spare.length / 5);
-  let at = 0;
-  for (let g = 0; g < groups; g++) {
-    const size = Math.floor((spare.length - at) / (groups - g));
-    kept.push([`ji_more${kept.length}`, '帳場の言葉（つづき）', spare.slice(at, at + size)]);
-    at += size;
-  }
-}
-for (const [id, labelJa, words] of kept) {
   const p = page(id, labelJa, words);
   PAGES.push(p.page);
   LEXICON.push(...p.words);
@@ -747,10 +594,10 @@ const R3: AuthoredTask[] = [
   ask('i3_passport', 3, 38, 'c_student', 'Do you need my passport?', 'Yes. Please show it to me at the desk.', ['You are welcome.', 'It is across from the church.'], { grammar: ['gr-5-004', 'gr-5-011'] }),
   ask('i3_guide', 3, 39, 'c_scholar', 'Is there a guide for the old castle?', 'Yes, a guide takes our guests there at ten every day.', ['It is across from the church.', 'You are welcome.'], { grammar: ['gr-5-020', 'gr-5-003'] }),
   ask('i3_anniversary', 3, 40, 'p_bell', 'Today is our wedding anniversary. Could you put some flowers in our room?', 'How lovely! I will put some flowers in your room.', ['It is across from the church.', 'You are welcome.'], { grammar: ['gr-4-002', 'gr-5-023'], phrases: ['ph-4-0005'] }),
-  msg('i3_change_mail', 3, 41, 'c_merchant', 'email', { from: '{Mr. Grant|@}', subject: 'My room on Friday', say: 'There is an email from {Mr. Grant|@}.' }, ['Dear Sir, I would like to change my room from Friday to Saturday. Is that possible?', 'My ship will be a day late.'], 'Yes, that is possible. Your room is free on Saturday.', ['No, the ship has not left yet.', 'It is across from the church.'], { grammar: ['gr-4-019', 'gr-5-002'] }),
-  msg('i3_grandson', 3, 42, 'c_grandma', 'email', { from: '{Grandma Rose|@}', subject: 'My grandson', say: 'Rose has written to us again.' }, ['Dear Sir, my grandson will come with me next week. He is ten years old.', 'Can he have a bed in my room?'], 'Yes, we can put an extra bed in your room for ten coins a night.', ['You are welcome. Enjoy your stay.', 'Your reservation has been cancelled.'], { grammar: ['gr-5-015', 'gr-3-007'] }),
+  msg('i3_change_mail', 3, 41, 'p_olsen', 'email', { from: '{Mr. Grant|@}', subject: 'My room on Friday', say: 'There is an email from {Mr. Grant|@}.' }, ['Dear Sir, I would like to change my room from Friday to Saturday. Is that possible?', 'My ship will be a day late.'], 'Yes, that is possible. Your room is free on Saturday.', ['No, the ship has not left yet.', 'It is across from the church.'], { grammar: ['gr-4-019', 'gr-5-002'] }),
+  msg('i3_grandson', 3, 42, 'p_olsen', 'email', { from: '{Grandma Rose|@}', subject: 'My grandson', say: '{Grandma Rose|@} has written to us again.' }, ['Dear Sir, my grandson will come with me next week. He is ten years old.', 'Can he have a bed in my room?'], 'Yes, we can put an extra bed in your room for ten coins a night.', ['You are welcome. Enjoy your stay.', 'Your reservation has been cancelled.'], { grammar: ['gr-5-015', 'gr-3-007'] }),
   msg('i3_key_call', 3, 43, 'p_lin', 'phone', { say: 'Hello. This is {Mr. Lin|@}. I lost my key, and I cannot open my door. Could you help me?' }, ['Hello. This is {Mr. Lin|@}. I lost my key, and I cannot open my door. Could you help me?'], 'Of course. I will bring the other key at once.', ['I am afraid not. The hotel is full.', 'It is across from the church.'], { features: ['audioOnly'], grammar: ['gr-5-015', 'gr-4-002'] }),
-  msg('i3_train_late', 3, 44, 'c_scholar', 'letter', { from: '{Professor Hale|@}', say: 'A letter came for the front desk.' }, ['Dear Sir, my ship will be late, and I will arrive after midnight.', 'Please do not give my room to another guest.'], 'We will keep your room for you. Please knock at the door when you arrive.', ['Your reservation has been cancelled.', 'You are welcome. Enjoy your stay.'], { grammar: ['gr-4-002', 'gr-5-011'] }),
+  msg('i3_train_late', 3, 44, 'p_olsen', 'letter', { from: '{Professor Hale|@}', say: 'A letter came for the front desk.' }, ['Dear Sir, my ship will be late, and I will arrive after midnight.', 'Please do not give my room to another guest.'], 'We will keep your room for you. Please knock at the door when you arrive.', ['Your reservation has been cancelled.', 'You are welcome. Enjoy your stay.'], { grammar: ['gr-4-002', 'gr-5-011'] }),
   sort('i3_luggage2', 3, 45, 'Bags for guests who leave today go to the luggage room, and the others go to the rooms.', ['store', 'f1', 'f2', 'f3'], [['{Ms. Ruiz|@}, room 25, she leaves at five', 'store'], ['{Mr. Lin|@}, room 12, he stays two more nights', 'f1'], ['{Mrs. Dunn|@}, room 31, she leaves tonight', 'store'], ['{Mr. Bell|@}, room 33, he stays until Sunday', 'f3']], { grammar: ['gr-3-019', 'gr-3-031'] }),
   sort('i3_post2', 3, 46, 'Letters for the post office, keys for the desk, and bags for the guests. Please sort them.', ['post', 'desk', 'f2', 'store'], [['Letters to go to the post office', 'post'], ['The key from room 24, the guest left today', 'desk'], ['A bag for the guest in room 22', 'f2'], ['A suitcase for {Mr. Cole|@}, he comes back tonight', 'store']], { grammar: ['gr-3-019', 'gr-3-012'] }),
 ];
@@ -807,9 +654,9 @@ const R4: AuthoredTask[] = [
   ask('i4_upgrade', 4, 36, 'p_cole', 'Could I change to a bigger room? I will pay the difference.', 'Certainly. The difference is 20 coins a night.', ['The storm will be bad tomorrow.', 'We have found your bag.'], { grammar: ['gr-4-014', 'gr-4-002'] }),
   ask('i4_elevator', 4, 37, 'c_grandma', 'The elevator does not work.', 'I am very sorry. Please use the stairs, and I will carry your bag.', ['Thank you for your kind words.', 'We will send it by post.'], { grammar: ['gr-4-002', 'gr-5-011'] }),
   msg('i4_compliment', 4, 38, 'p_olsen', 'letter', { from: '{Mr. Grant|@}' }, ['Dear Sir, my room was always clean, and the breakfast was excellent. Even my cat liked the bread!', 'I will recommend your inn to all my friends.'], 'Thank you very much for your kind words. We hope to see you and your cat again.', ['Your reservation has been confirmed.', 'We will send it to you by post.'], { say: '{Mr. Grant|@} has written to us.', grammar: ['gr-4-020', 'gr-3-014'] }),
-  msg('i4_two_rooms', 4, 41, 'p_novak', 'email', { from: '{Ms. Novak|@}', subject: 'Two rooms for my friends', say: 'There is a long email from {Ms. Novak|@}.' }, ['Dear Sir, I would like to book two single rooms for my two friends. I read that two single rooms are free on the second floor.', 'If both rooms are on the same floor, they will stay for four nights.', 'If not, they will stay for only two nights.'], 'Both rooms are on the second floor, so we will keep them for four nights for you.', ['The two rooms are not on the same floor, so they will stay for only two nights.', 'Your reservation has been cancelled.'], { grammar: ['gr-3-018', 'gr-pre2-009'] }),
-  msg('i4_leave_early', 4, 42, 'c_sailor', 'letter', { from: '{Captain Reed|@}', say: '{Captain Reed|@} sent a note from the harbour.' }, ['Dear Sir, I booked a room for a week, but my ship will leave a day earlier because of the storm.', 'Your price list says that a guest who leaves early because of the weather pays only for the nights he stays. Could I pay for six nights only?'], 'Yes, that is right. We will change the bill to six nights.', ['No, you must pay for seven nights.', 'We have found your bag.'], { grammar: ['gr-4-019', 'gr-3-005'] }),
-  msg('i4_dining_big', 4, 43, 'c_merchant', 'email', { from: '{Mr. Grant|@}', subject: 'A dinner for forty', say: '{Mr. Grant|@} wants the dining room again.' }, ['Dear Sir, my friends and I would like a dinner for forty on Friday evening.', 'I know that your dining room holds only thirty people, but your garden is big. Is that possible?'], 'Yes, it is possible. Thirty can sit in the dining room, and the others can sit in the garden if the weather is good.', ['Yes, the dining room is big, so all forty can sit there.', 'Thank you very much for your kind words.'], { grammar: ['gr-4-022', 'gr-3-018'] }),
+  msg('i4_two_rooms', 4, 41, 'p_olsen', 'email', { from: '{Ms. Novak|@}', subject: 'Two rooms for my friends', say: 'There is a long email from {Ms. Novak|@}.' }, ['Dear Sir, I would like to book two single rooms for my two friends. I read that two single rooms are free on the second floor.', 'If both rooms are on the same floor, they will stay for four nights.', 'If not, they will stay for only two nights.'], 'Both rooms are on the second floor, so we will keep them for four nights for you.', ['The two rooms are not on the same floor, so they will stay for only two nights.', 'Your reservation has been cancelled.'], { grammar: ['gr-3-018', 'gr-pre2-009'] }),
+  msg('i4_leave_early', 4, 42, 'p_olsen', 'letter', { from: '{Captain Reed|@}', say: '{Captain Reed|@} sent a note from the harbour.' }, ['Dear Sir, I booked a room for a week, but my ship will leave a day earlier because of the storm.', 'Your price list says that a guest who leaves early because of the weather pays only for the nights he stays. Could I pay for six nights only?'], 'Yes, that is right. We will change the bill to six nights.', ['No, you must pay for seven nights.', 'We have found your bag.'], { grammar: ['gr-4-019', 'gr-3-005'] }),
+  msg('i4_dining_big', 4, 43, 'p_olsen', 'email', { from: '{Mr. Grant|@}', subject: 'A dinner for forty', say: '{Mr. Grant|@} wants the dining room again.' }, ['Dear Sir, my friends and I would like a dinner for forty on Friday evening.', 'I know that your dining room holds only thirty people, but your garden is big. Is that possible?'], 'Yes, it is possible. Thirty can sit in the dining room, and the others can sit in the garden if the weather is good.', ['Yes, the dining room is big, so all forty can sit there.', 'Thank you very much for your kind words.'], { grammar: ['gr-4-022', 'gr-3-018'] }),
   pad('i4_call_cancel', 4, 44, 'p_cole', 'phone', ['Hello. This is {Mr. Cole|@}. I am sorry, but I must cancel my room for next week, because I am ill. Could you send my money back?'], [['name', 'Name', '{Mr. Cole|@}', ['{Mr. Coal|@}', '{Mr. Lin|@}']], ['what', 'Please', 'cancel the room', ['change the room', 'keep the room']], ['why', 'Because', 'he is ill', ['the ship is late', 'the storm is bad']], ['money', 'Money', 'send it back', ['keep it', 'half now']]], { features: ['audioOnly'], grammar: ['gr-4-019', 'gr-3-005'] }),
   check('i4_bill_extra', 4, 45, 'p_dunn', 'I had an extra bed and a late check-out. I think the bill is wrong.', [paper('invoice', 'Bill', [['room', 'Room, 2 nights', '120 coins'], ['bed', 'Extra bed, 2 nights', '20 coins'], ['late', 'Late {check-out|in_checkout}', '10 coins'], ['total', 'Total', '160 coins']]), note('Prices', ['Double room: 60 coins a night', 'Extra bed: 10 coins a night', 'Late {check-out|in_checkout}: 10 coins'])], 'total', { grammar: ['gr-5-014', 'gr-3-005'], fix: ['150 coins', ['140 coins', '150 coins', '160 coins']] }),
   check('i4_letter_change', 4, 46, 'p_ruiz', 'I wrote to you to change the dates. Is the book right now?', [book([['name', 'Name', '{Ms. Ruiz|@}'], ['room', 'Room', 'single'], ['arrive', 'Arrive', 'Friday'], ['nights', 'Nights', '3']]), letterFrom('{Ms. Ruiz|@}', ['I would like to change my reservation.', 'I will arrive on Saturday, not on Friday, and I will stay for three nights.'])], 'arrive', { grammar: ['gr-3-018', 'gr-pre2-061'], fix: ['Saturday', ['Friday', 'Saturday', 'Sunday']] }),
@@ -829,7 +676,51 @@ const FLOOR_ROWS = FLOORS.map(({ id, label }) => ({ id, label }));
 const SIDE_COLS = SEA_SINGLE_DOUBLE.map(({ id, label }) => ({ id, label }));
 const SIDE_TAGS: Record<string, string[]> = { s1: ['sea', 'single'], s2: ['sea', 'double'], t1: ['street', 'single'], t2: ['street', 'double'] };
 
+const WEEK = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+/** Single room 40 coins a night, double 60, breakfast 5 a day (the inn's price list, PRICES); `room` 1 = single. */
+const ROOM_PRICE = '(room == 1 ? 40 : 60)';
+
 const TEMPLATES: TaskTemplate[] = [
+  // ---- papers that must agree with themselves: the last day of a stay, the bill's sums, the refund the rule allows
+  { id: 'it_stay2', rank: 2, arch: 'check', person: 'client', say: 'Good evening. I am {name}. I arrive on {arrive} and I will stay {nights} nights.',
+    fields: [nameField, { id: 'arrive', label: 'Arrive', range: [1, 5], names: WEEK }, { id: 'nights', label: 'Nights', range: [2, 4] }, { id: 'leave', label: 'Leave', calc: '(arrive - 1 + nights) % 7 + 1', names: WEEK }],
+    docs: bookOf('name', 'arrive', 'nights', 'leave'), target: 0, pWrong: 0.65, wrongable: ['arrive', 'nights', 'leave'], grammar: ['gr-5-021', 'gr-4-002'] },
+  { id: 'it_bill3', rank: 3, arch: 'check', person: 'client', say: 'Good morning. I am {name}, and I am leaving today. Could you check my bill, please?',
+    fields: [
+      nameField,
+      { id: 'room', label: 'Room', range: [1, 2], names: ['', 'single', 'double'] },
+      { id: 'nights', label: 'Nights', range: [2, 4] },
+      { id: 'roomtotal', label: 'Room', calc: `${ROOM_PRICE} * nights`, fmt: '{n} coins' },
+      { id: 'bftotal', label: 'Breakfast', calc: '5 * nights', fmt: '{n} coins' },
+      { id: 'total', label: 'Total', calc: 'roomtotal + bftotal', fmt: '{n} coins' },
+    ],
+    docs: [{ kind: 'note', title: PRICES.title, lines: PRICES.lines }, { kind: 'ledger', title: 'Book', fields: ['name', 'room', 'nights'] }, { kind: 'invoice', title: 'Bill', fields: ['name', 'nights', 'roomtotal', 'bftotal', 'total'] }],
+    target: 2, pWrong: 0.7, wrongable: ['nights', 'roomtotal', 'bftotal', 'total'], grammar: ['gr-4-001'] },
+  { id: 'it_refund4', rank: 4, arch: 'check', person: 'client', say: 'I am very sorry, but I must cancel my room. I was going to come in {days} days. How much will you give back?',
+    fields: [
+      nameField,
+      { id: 'days', label: 'Days before', range: [1, 12] },
+      { id: 'price', label: 'Price', values: ['80 coins', '120 coins', '180 coins'] },
+      { id: 'refund', label: 'Refund', calc: 'days > 7 ? price : days >= 3 ? price / 2 : 0', alts: ['price', 'price / 2', '0'], fmt: '{n} coins' },
+    ],
+    docs: [{ kind: 'note', title: POLICY.title, lines: POLICY.lines }, { kind: 'ledger', title: 'Book', fields: ['name', 'price'] }, { kind: 'invoice', title: 'Refund', fields: ['name', 'days', 'refund'] }],
+    target: 2, pWrong: 0.6, wrongable: ['refund'], grammar: ['gr-3-018'] },
+  // ---- the message pad: a call written down (the values are heard; each field offers near misses)
+  { id: 'it_pad2', rank: 2, arch: 'respond', mode: 'form', kind: 'phone',
+    lines: ['Hello, this is {who}.', 'I would like a {room} room for {nights} nights.', 'I will arrive on {day}.'],
+    fields: [
+      { id: 'who', label: 'Name', values: NAMES },
+      { id: 'room', label: 'Room', values: ['single', 'double', 'family'] },
+      { id: 'nights', label: 'Nights', values: ['2', '3', '4', '5'] },
+      { id: 'day', label: 'Arrive', values: DAYS_F },
+    ], grammar: ['gr-4-007'] },
+  { id: 'it_pad3', rank: 3, arch: 'respond', mode: 'form', kind: 'phone', features: ['audioOnly'],
+    lines: ['Good evening. This is {who}.', 'I have a room for {day}, but I will arrive late, at {time}.', 'Please keep my room for me.'],
+    fields: [
+      { id: 'who', label: 'Name', values: NAMES },
+      { id: 'day', label: 'Day', values: DAYS_F },
+      { id: 'time', label: 'Arrive at', values: ['9:00', '10:00', '11:00'] },
+    ], grammar: ['gr-4-008'] },
   // ---- rank 1
   { id: 'it_check1', rank: 1, arch: 'check', person: 'client', say: 'Hello. My name is {name}. I have a {room} room for {nights} nights.',
     fields: [nameField, roomField, { id: 'nights', label: 'Nights', values: ['2', '3', '4'] }], docs: bookOf('name', 'room', 'nights'), target: 0, pWrong: 0.6, wrongable: ['room', 'nights'], grammar: ['gr-5-003'], phrases: ['ph-5-0039'] },
@@ -838,7 +729,7 @@ const TEMPLATES: TaskTemplate[] = [
   { id: 'it_check_num', rank: 1, arch: 'check', person: 'client', say: 'Hello. I am {name}. My room is number {number}.',
     fields: [nameField, { id: 'number', label: 'Number', values: ROOM_NUMS }], docs: bookOf('name', 'number'), target: 0, pWrong: 0.6, wrongable: ['number'], grammar: ['gr-5-024'] },
   { id: 'it_check_day', rank: 1, arch: 'check', person: 'client', say: 'We come on {day}. We want a {room} room for {nights} nights.',
-    fields: [{ id: 'day', label: 'Day', values: DAYS_F }, roomField, { id: 'nights', label: 'Nights', values: ['1', '2', '3'] }], docs: bookOf('day', 'room', 'nights'), target: 0, pWrong: 0.6, wrongable: ['day', 'room', 'nights'], grammar: ['gr-5-021', 'gr-5-027'] },
+    fields: [{ id: 'day', label: 'Day', values: DAYS_F }, roomField, { id: 'nights', label: 'Nights', values: ['2', '3', '4'] }], docs: bookOf('day', 'room', 'nights'), target: 0, pWrong: 0.6, wrongable: ['day', 'room', 'nights'], grammar: ['gr-5-021', 'gr-5-027'] },
   { id: 'it_check_bf1', rank: 1, arch: 'check', person: 'client', say: 'A {room} room, {breakfast}, please. I am {name}.',
     fields: [nameField, roomField, { id: 'breakfast', label: 'Breakfast', values: ['with breakfast', 'no breakfast'] }], docs: bookOf('name', 'room', 'breakfast'), target: 0, pWrong: 0.6, wrongable: ['room', 'breakfast'], grammar: ['gr-5-002', 'gr-4-007'] },
   { id: 'it_q', rank: 1, arch: 'respond', mode: 'choose', kind: 'speech', bank: 'inn' },
@@ -859,7 +750,7 @@ const TEMPLATES: TaskTemplate[] = [
 
   // ---- rank 2
   { id: 'it_check2', rank: 2, arch: 'check', person: 'client', say: 'Good evening. I am {name}. I booked a {room} room for {nights} nights, {breakfast}.',
-    fields: [nameField, roomField, { id: 'nights', label: 'Nights', values: ['1', '2', '3', '4'] }, { id: 'breakfast', label: 'Breakfast', values: ['with breakfast', 'no breakfast'] }], docs: bookOf('name', 'room', 'nights', 'breakfast'), target: 0, pWrong: 0.65, wrongable: ['room', 'nights', 'breakfast'], grammar: ['gr-5-018'] },
+    fields: [nameField, roomField, { id: 'nights', label: 'Nights', values: ['2', '3', '4'] }, { id: 'breakfast', label: 'Breakfast', values: ['with breakfast', 'no breakfast'] }], docs: bookOf('name', 'room', 'nights', 'breakfast'), target: 0, pWrong: 0.65, wrongable: ['room', 'nights', 'breakfast'], grammar: ['gr-5-018'] },
   { id: 'it_check_dates', rank: 2, arch: 'check', person: 'client', say: 'I arrive on {arrive} and I leave on {leave}.',
     fields: [nameField, { id: 'arrive', label: 'Arrive', values: ['Thursday', 'Friday', 'Saturday'] }, { id: 'leave', label: 'Leave', values: ['Sunday', 'Monday', 'Tuesday', 'Wednesday'] }], docs: bookOf('name', 'arrive', 'leave'), target: 0, pWrong: 0.65, wrongable: ['arrive', 'leave'], grammar: ['gr-5-021', 'gr-5-003'] },
   { id: 'it_check_months', rank: 2, arch: 'check', person: 'client', say: 'Good morning. I would like a {room} room {stay}.',
@@ -870,8 +761,8 @@ const TEMPLATES: TaskTemplate[] = [
   { id: 'it_check_price', rank: 2, arch: 'check', person: 'client', say: 'The room is {price} a night, I think. I want it for {nights} nights.',
     fields: [{ id: 'price', label: 'Price', values: ['40 coins', '50 coins', '60 coins'] }, { id: 'nights', label: 'Nights', values: ['2', '3', '4'] }], docs: bookOf('price', 'nights'), target: 0, pWrong: 0.65, wrongable: ['price', 'nights'], grammar: ['gr-5-014', 'gr-4-020'] },
   { id: 'it_check_list', rank: 2, arch: 'check', person: 'client', say: 'Please check my bill. I had a {room} room.',
-    fields: [{ id: 'room', label: 'Room', values: ['single', 'double'] }, { id: 'p1', label: 'Room price', values: ['40 coins', '60 coins', '50 coins'] }, { id: 'p2', label: 'Breakfast price', values: ['5 coins', '10 coins'] }],
-    docs: [{ kind: 'invoice', title: 'Bill', fields: ['p1', 'p2'] }, { kind: 'note', title: 'Prices', lines: ['{room} room: {p1} a night', 'Breakfast: {p2} a day'] }], target: 0, pWrong: 0.65, wrongable: ['p1', 'p2'], grammar: ['gr-5-014'] },
+    fields: [{ id: 'room', label: 'Room', range: [1, 2], names: ['', 'single', 'double'] }, { id: 'p1', label: 'Room, a night', calc: ROOM_PRICE, alts: ['40', '50', '60'], fmt: '{n} coins' }, { id: 'p2', label: 'Breakfast, a day', calc: '5', alts: ['10', '15'], fmt: '{n} coins' }],
+    docs: [{ kind: 'invoice', title: 'Bill', fields: ['room', 'p1', 'p2'] }, { kind: 'note', title: 'Prices', lines: PRICES.lines }], target: 0, pWrong: 0.65, wrongable: ['p1', 'p2'], grammar: ['gr-5-014'] },
   { id: 'it_check_letter', rank: 2, arch: 'check', person: 'client', say: 'I sent you a letter. Is the book right?',
     fields: [nameField, { id: 'room', label: 'Room', values: ['single', 'double', 'family'] }, { id: 'nights', label: 'Nights', values: ['2', '3', '4'] }],
     docs: [{ kind: 'ledger', title: 'Book', fields: ['name', 'room', 'nights'] }, { kind: 'letter', title: 'Letter', lines: ['Dear Sir,', 'I want a {room} room for {nights} nights.', '{name}'] }], target: 0, pWrong: 0.65, wrongable: ['room', 'nights'], grammar: ['gr-3-002', 'gr-5-025'] },
@@ -901,8 +792,8 @@ const TEMPLATES: TaskTemplate[] = [
     fields: [nameField, { id: 'arrive', label: 'Arrive', values: ['Friday', 'Saturday', 'Sunday', 'Monday'] }, { id: 'nights', label: 'Nights', values: ['2', '3', '4', '5'] }],
     docs: [{ kind: 'ledger', title: 'Book', fields: ['name', 'arrive', 'nights'] }, { kind: 'letter', title: 'Letter', lines: ['Dear Sir,', 'Please change my reservation.', 'I will arrive on {arrive}, and I will stay for {nights} nights.', '{name}'] }], target: 0, pWrong: 0.7, wrongable: ['arrive', 'nights'], grammar: ['gr-3-001', 'gr-4-002'] },
   { id: 'it_check_bill3', rank: 3, arch: 'check', person: 'client', say: 'I think there is a mistake in my bill.',
-    fields: [{ id: 'p1', label: 'Room price', values: ['40 coins', '60 coins', '50 coins'] }, { id: 'p2', label: 'Breakfast price', values: ['5 coins', '10 coins'] }, { id: 'p3', label: 'Extra bed price', values: ['10 coins', '15 coins', '20 coins'] }],
-    docs: [{ kind: 'invoice', title: 'Bill', fields: ['p1', 'p2', 'p3'] }, { kind: 'note', title: 'Prices', lines: ['Room: {p1} a night', 'Breakfast: {p2} a day', 'Extra bed: {p3} a night'] }], target: 0, pWrong: 0.75, wrongable: ['p1', 'p2', 'p3'], grammar: ['gr-5-014', 'gr-4-014'] },
+    fields: [{ id: 'room', label: 'Room', range: [1, 2], names: ['', 'single', 'double'] }, { id: 'p1', label: 'Room, a night', calc: ROOM_PRICE, alts: ['40', '50', '60'], fmt: '{n} coins' }, { id: 'p2', label: 'Breakfast, a day', calc: '5', alts: ['10', '15'], fmt: '{n} coins' }, { id: 'p3', label: 'Extra bed, a night', calc: '10', alts: ['15', '20', '5'], fmt: '{n} coins' }],
+    docs: [{ kind: 'invoice', title: 'Bill', fields: ['room', 'p1', 'p2', 'p3'] }, { kind: 'note', title: 'Prices', lines: [...(PRICES.lines ?? []), 'Extra bed: 10 coins a night'] }], target: 0, pWrong: 0.75, wrongable: ['p1', 'p2', 'p3'], grammar: ['gr-5-014', 'gr-4-014'] },
   { id: 'it_check_rule', rank: 3, arch: 'check', person: 'client', say: 'I would like to stay longer. Is that all right?',
     fields: [{ id: 'out', label: 'Leave at', values: ['10:00', '11:00', '12:00'] }, { id: 'late', label: 'Late {check-out|in_checkout}', values: ['2:00', '3:00'] }],
     docs: [{ kind: 'ledger', title: 'Book', fields: ['out', 'late'] }, { kind: 'note', title: 'Rule', lines: ['We leave at {out}.', 'With a late {check-out|in_checkout}, we leave at {late}.'] }], target: 0, pWrong: 0.7, wrongable: ['out', 'late'], grammar: ['gr-4-007', 'gr-3-018'] },
@@ -933,8 +824,8 @@ const TEMPLATES: TaskTemplate[] = [
     fields: [nameField, { id: 'room', label: 'Room', values: ['single', 'double', 'family'] }, { id: 'nights', label: 'Nights', values: ['3', '4', '5'] }, { id: 'bf', label: 'Breakfast', values: ['with breakfast', 'no breakfast'] }],
     docs: [{ kind: 'ledger', title: 'Book', fields: ['name', 'room', 'nights', 'bf'] }, { kind: 'letter', title: 'Letter', lines: ['Dear Sir,', 'I would like a {room} room for {nights} nights, {bf}.', '{name}'] }], target: 0, pWrong: 0.7, wrongable: ['room', 'nights', 'bf'], grammar: ['gr-4-007', 'gr-3-014'] },
   { id: 'it_check_bill4', rank: 4, arch: 'check', person: 'client', say: 'There seems to be a mistake in my bill. Would you check it, please?',
-    fields: [{ id: 'p1', label: 'Room price', values: ['40 coins', '60 coins', '50 coins'] }, { id: 'p2', label: 'Breakfast price', values: ['5 coins', '10 coins'] }, { id: 'p3', label: 'Late {check-out|in_checkout}', values: ['10 coins', '20 coins'] }],
-    docs: [{ kind: 'invoice', title: 'Bill', fields: ['p1', 'p2', 'p3'] }, { kind: 'note', title: 'Prices', lines: ['Room: {p1} a night', 'Breakfast: {p2} a day', 'Late {check-out|in_checkout}: {p3}'] }], target: 0, pWrong: 0.75, wrongable: ['p1', 'p2', 'p3'], grammar: ['gr-3-005', 'gr-4-014'], phrases: ['ph-2-0040'] },
+    fields: [{ id: 'room', label: 'Room', range: [1, 2], names: ['', 'single', 'double'] }, { id: 'nights', label: 'Nights', range: [2, 5] }, { id: 'p1', label: 'Room', calc: `${ROOM_PRICE} * nights`, fmt: '{n} coins' }, { id: 'p3', label: 'Late {check-out|in_checkout}', calc: '10', alts: ['20', '15'], fmt: '{n} coins' }, { id: 'total', label: 'Total', calc: 'p1 + p3', fmt: '{n} coins' }],
+    docs: [{ kind: 'invoice', title: 'Bill', fields: ['room', 'nights', 'p1', 'p3', 'total'] }, { kind: 'note', title: 'Prices', lines: [...(PRICES.lines ?? []), 'Late {check-out|in_checkout}: 10 coins'] }], target: 0, pWrong: 0.75, wrongable: ['p1', 'p3', 'total'], grammar: ['gr-3-005', 'gr-4-014'], phrases: ['ph-2-0040'] },
   { id: 'it_q_mail4', rank: 4, arch: 'respond', mode: 'choose', kind: 'email', bank: 'inn_mail4' },
   { id: 'it_q_letter4', rank: 4, arch: 'respond', mode: 'choose', kind: 'letter', bank: 'inn_mail4' },
   { id: 'it_q_refuse', rank: 4, arch: 'respond', mode: 'choose', kind: 'speech', bank: 'inn_refuse' },
@@ -1205,6 +1096,10 @@ const EN: JobContent = {
     { id: 'il_s3', kind: 'start', rank: 2, text: 'Good morning! The sea is calm, and the guests are coming.' },
     { id: 'il_s4', kind: 'start', rank: 3, text: 'The morning ship is late, so the letters and the guests come together today.' },
     { id: 'il_s5', kind: 'start', rank: 4, text: 'Good morning. The forecast is bad, so we will have a lot of work today.' },
+    { id: 'il_h1', kind: 'handover', msg: 'phone', text: 'The phone is ringing. Can you answer it, please?' },
+    { id: 'il_h2', kind: 'handover', msg: 'letter', text: 'A letter came for the inn. Please read it and answer.' },
+    { id: 'il_h3', kind: 'handover', msg: 'email', text: 'We have an email from a guest. Please read it.' },
+    { id: 'il_h4', kind: 'handover', msg: 'memo', text: 'Please read this note.' },
     { id: 'il_e1', kind: 'end', text: 'Thank you. Good night!' },
     { id: 'il_e2', kind: 'end', text: 'Good work today. See you tomorrow!' },
     { id: 'il_e3', kind: 'end', rank: 3, text: 'The guests are happy, and the book is right. Thank you!' },
@@ -1224,12 +1119,14 @@ export const INN_JOB: JobDef = {
   archetypes: ['check', 'respond', 'sort'],
   ranks: [
     { rank: 1, need: { good: 0, words: 0 }, level: { eiken: '4', toeic: null }, tasks: 4, noteJa: '名前・部屋・泊数・階を予約帳と見比べる。客の短い質問や頼みごとに答える。希望（海側・広さ・階）に合う空き部屋を選ぶ。荷物を階へ運ぶ。' },
-    { rank: 2, need: { good: 12, words: 20 }, level: { eiken: '3', toeic: 400 }, unlocks: ['long'], tasks: 5, reward: { coins: 10 }, noteJa: '日付・時刻・値段を確かめる（泊数の数え方、請求書と料金表）。手紙の予約の確認。希望が2つになる。洗濯物の仕分け。伝言メモ。船の時間や天気の質問。' },
-    { rank: 3, need: { good: 30, words: 50 }, level: { eiken: 'pre2', toeic: 500 }, unlocks: ['multiStep', 'audioOnly', 'timed'], tasks: 5, reward: { coins: 15 }, noteJa: '予約の変更・取り消し・苦情の手紙とメール。直すときは正しい内容も選ぶ。耳だけの電話。落とし物と荷物置き場。やさしい断り方と道案内。時間制限（選んだときだけ）。' },
-    { rank: 4, need: { good: 60, words: 100 }, level: { eiken: '2', toeic: 600 }, tasks: 6, reward: { coins: 25 }, noteJa: '長い手紙とメール、取り消し規則と返金、請求書の間違い探し。満室の断りと代案、苦情への返事、天気や町の案内。条件つきの予約。' },
+    { rank: 2, need: { good: 25, words: 20 }, level: { eiken: '3', toeic: 400 }, unlocks: ['long'], tasks: 5, reward: { coins: 10 }, noteJa: '日付・時刻・値段を確かめる（泊数の数え方、請求書と料金表）。手紙の予約の確認。希望が2つになる。洗濯物の仕分け。伝言メモ。船の時間や天気の質問。' },
+    { rank: 3, need: { good: 49, words: 50 }, level: { eiken: 'pre2', toeic: 500 }, unlocks: ['multiStep', 'audioOnly', 'timed'], tasks: 5, reward: { coins: 15 }, noteJa: '予約の変更・取り消し・苦情の手紙とメール。直すときは正しい内容も選ぶ。耳だけの電話。落とし物と荷物置き場。やさしい断り方と道案内。時間制限（選んだときだけ）。' },
+    { rank: 4, need: { good: 77, words: 100 }, level: { eiken: '2', toeic: 600 }, tasks: 6, reward: { coins: 25 }, noteJa: '長い手紙とメール、取り消し規則と返金、請求書の間違い探し。満室の断りと代案、苦情への返事、天気や町の案内。条件つきの予約。' },
+    { rank: 5, need: { good: 107, words: 160 }, level: { eiken: 'pre1', toeic: 730 }, tasks: 6, reward: { coins: 40 }, noteJa: '灯台：帳場をまかされる。この位の新しい仕事（団体の予約・契約・苦情の交渉）はまだ準備中で、今はこれまでの仕事が復習として続く。' },
   ],
-  wage: { perfect: 2, minor: 1, fail: 0, bad: 0 },
+  wage: { perfect: 3, minor: 2, fail: 0, bad: 0 },
   opensAfter: 1,
+  hours: [0, 2],
   building: 'inn',
   links: { produce: [{ good: 'menus', perPerfect: 1 }], use: [{ good: 'bread', bonus: 1, line: 'And the bread for breakfast is here. Thank you!' }] },
   content: { en: EN },

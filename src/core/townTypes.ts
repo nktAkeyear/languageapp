@@ -430,6 +430,8 @@ export interface TownDayState {
   notes: string[];
   /** Tracked shop stock in portions; ingredients absent here are unlimited today. */
   stock: Partial<Record<IngredientId, number>>;
+  /** No market today (the tea house opened late): the shop serves from the back room, which costs `backRoomCost` a cup. */
+  fromBack?: boolean;
   moneyStart: number;
   market?: MarketDay;
   delivery?: DeliveryDay;

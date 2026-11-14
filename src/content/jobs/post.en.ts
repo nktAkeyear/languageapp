@@ -62,6 +62,20 @@ const T = (id: string, rank: number, seq: number, person: string, say: string, w
   ...m,
 });
 
+/** trade with a parcel to weigh and post: the scale shows `kilos`, the rate table gives the postage. */
+const TP = (id: string, rank: number, seq: number, person: string, say: string, dest: string, kilos: number, want: [string, number][], pay: number, m: Meta = {}): AuthoredTask => ({
+  id,
+  rank,
+  seq,
+  arch: 'trade',
+  person,
+  say,
+  want: want.map(([thing, n]) => ({ thing, n })),
+  pay,
+  post: { dest, kilos },
+  ...m,
+});
+
 /** One label / form line: [field id, label, value]. */
 type Line3 = [string, string, string];
 const doc = (kind: CheckDoc['kind'], title: string | undefined, fields: Line3[], lines?: string[]): CheckDoc => ({
@@ -192,6 +206,7 @@ const THEME_JA: Record<string, string> = {
   gif: 'おくりもの',
   fra: 'われものに気をつけて',
   mis: '郵便局のことば',
+  wei: '重さと料金',
 };
 function buildLexicon(rows: [number, string, string][]): { lex: JobLexEntry[]; pages: { id: string; labelJa: string }[]; wid: (text: string) => string } {
   const idOf = new Map<string, string>();
@@ -255,9 +270,6 @@ const WORDS: [number, string, string][] = [
   [1, 'mis', 'girl||n|👧|女の子'],
   [1, 'mis', 'teacher||n||先生'],
   [1, 'mis', 'woman|women|n|👩|女の人'],
-  [1, 'pla', 'library||n|📚|図書館'],
-  [1, 'pla', 'park||n|🌳|公園'],
-  [1, 'pla', 'post office|post offices|n||郵便局'],
   [2, 'gif', 'ball||n||ボール'],
   [2, 'gif', 'doll||n||人形'],
   [2, 'gif', 'dress||n||ドレス'],
@@ -273,6 +285,9 @@ const WORDS: [number, string, string][] = [
   [3, 'mai', 'parcel|parcels|n|📦|小包'],
   [3, 'mai', 'size||n||大きさ'],
   [3, 'mai', 'vase||n|🏺|花びん'],
+  [3, 'wei', 'scale||n|⚖️|重さを量る台'],
+  [3, 'wei', 'postage||n|📮|郵便料金'],
+  [3, 'wei', 'weigh|weighs,weighed|v|⚖️|重さを量る'],
   [3, 'mis', 'collect||v||受け取る・集める'],
   [3, 'mis', 'country|countries|n||国'],
   [3, 'mis', 'fill||v||記入する・満たす'],
@@ -336,7 +351,7 @@ const R1: AuthoredTask[] = [
   S('p1_nm2', 1, 23, 'Names and places again.', ['school', 'church', 'park', 'hospital'], [[`${LILY}, at the school`, 'school'], [`${REED}, at the church`, 'church'], [`${SAM}, at the park`, 'park'], [`${LANE}, at the hospital`, 'hospital']], { grammar: ['gr-5-021'] }),
   C('p1_ok2', 1, 24, 'c_boy', 'This letter is for {Lily|@}. Number 6, Park Street.', [doc('label', 'Letter', [['name', 'Name', LILY], ['number', 'Number', '6'], ['street', 'Street', 'Park Street']])], 0, null),
   T('p1_big', 1, 25, 'c_boy', 'Two envelopes, a stamp and a postcard, please.', [['t_envelope', 2], ['t_stamp', 1], ['t_postcard', 1]], 7, { grammar: ['gr-5-028'] }),
-  Q('p1_myname', 1, 26, 'c_docker', 'What is your name?', ['My name is {Joe|@}.', 'It is two coins.', 'To the school.'], 0, { grammar: ['gr-5-013'] }),
+  Q('p1_myname', 1, 26, 'c_docker', 'Are you new here?', ['Yes, I am. Nice to meet you.', 'It is two coins.', 'To the school.'], 0, { grammar: ['gr-5-001'] }),
   C('p1_num2', 1, 27, 'c_cook', 'This letter is for {Nora|@}. Number 12, Church Street.', [doc('label', 'Letter', [['name', 'Name', NORA], ['number', 'Number', '21'], ['street', 'Street', 'Church Street']])], 0, 'number'),
   T('p1_last', 1, 28, 'c_sailor', 'One box and one stamp, please.', [['t_box', 1], ['t_stamp', 1]], 7, { grammar: ['gr-5-024'] }),
   C('p1_color', 1, 29, 'c_boy', 'My envelope is red.', [doc('label', 'Envelope', [['name', 'Name', TOM], ['color', 'Color', 'blue']])], 0, 'color'),
@@ -418,6 +433,9 @@ const R3: AuthoredTask[] = [
   T('p3_audio', 3, 6, 'p_ivy', 'I would like four stamps and two envelopes, please.', [['t_stamp', 4], ['t_envelope', 2]], 20, { features: ['audioOnly'], grammar: ['gr-4-007'] }),
   T('p3_parcel', 3, 7, 'c_docker', 'I want to send a parcel. One box, please.', [['t_box', 1]], 5, { grammar: ['gr-4-008'] }),
   C('p3_weight', 3, 8, 'c_docker', 'My parcel is three kilos.', [doc('label', 'Parcel', [['to', 'To', BELL], ['weight', 'Weight', '5 kilos']])], 0, 'weight', { fixOptions: ['3 kilos', '5 kilos', '8 kilos'], fix: '3 kilos', grammar: ['gr-5-010'] }),
+  TP('p3_scale1', 3, 0, 'c_docker', 'Please send this parcel to the island. Put it on the scale.', 'island', 2, [], 10, { grammar: ['gr-5-011'] }),
+  TP('p3_scale2', 3, 0, 'c_grandma', 'This parcel is for my son. He lives in town. How much is it?', 'town', 4, [], 5, { grammar: ['gr-5-014'] }),
+  TP('p3_scale3', 3, 0, 'c_scholar', 'I want to send these books to another country. And one stamp, please.', 'abroad', 7, [['t_stamp', 1]], 20, { grammar: ['gr-4-008'] }),
   S('p3_heavy', 3, 9, 'Light parcels in the light box. Heavy parcels in the heavy box.', ['light', 'heavy'], [['1 kilo', 'light'], ['9 kilos', 'heavy'], ['2 kilos', 'light'], ['12 kilos', 'heavy']], { grammar: ['gr-5-011'] }),
   S('p3_boat', 3, 10, 'Island letters go by boat.', ['boat', 'north', 'south'], [[`To ${IVY}, on the island`, 'boat'], ['3 North Street', 'north'], [`${NORA}, on the island`, 'boat'], ['9 South Street', 'south']]),
   S('p3_plane', 3, 11, 'Letters for other countries go by plane.', ['boat', 'plane'], [[`To ${BELL}, abroad`, 'plane'], [`${IVY}, on the island`, 'boat'], [`To ${LILY}, in another country`, 'plane'], [`${NORA}, on the island`, 'boat']]),
@@ -466,6 +484,7 @@ const R3: AuthoredTask[] = [
 // "have it delivered", reported speech, conditions with "if ... would".
 const R4: AuthoredTask[] = [
   S('p4_exp', 4, 1, 'Some letters are express. Look for the word.', ['express', 'ordinary'], [['Express: I need it tomorrow.', 'express'], ['Hello from the island!', 'ordinary'], ['Express: it is for tomorrow.', 'express'], ['Thank you for the present.', 'ordinary']], { grammar: ['gr-5-011'] }),
+  TP('p4_scale', 4, 0, 'c_merchant', 'Could you weigh this parcel, please? It is going to the island, and I need a receipt.', 'island', 9, [], 10, { grammar: ['gr-4-007'] }),
   S('p4_reg', 4, 2, 'Some letters are registered.', ['registered', 'express', 'ordinary'], [['Registered: please sign here.', 'registered'], ['Express: I need it tomorrow.', 'express'], ['A postcard from the island.', 'ordinary'], ['Registered: please do not leave it at the door.', 'registered']], { grammar: ['gr-4-004'] }),
   T('p4_receipt', 4, 3, 'c_merchant', 'I would like a notebook and two stamps. Could I have a receipt, please?', [['t_notebook', 1], ['t_stamp', 2]], 10, { grammar: ['gr-4-007'] }),
   C('p4_track', 4, 4, 'c_scholar', 'The tracking number of my parcel is 4815.', [doc('label', 'Receipt', [['to', 'To', BELL], ['track', 'Tracking number', '4851']])], 0, 'track', { fixOptions: ['4815', '4851', '4518'], fix: '4815', grammar: ['gr-3-010'] }),
@@ -536,7 +555,7 @@ const R5: AuthoredTask[] = [
   Q('p5_neither', 5, 12, 'c_sailor', 'Neither the boat nor the plane can leave today because of the storm.', ['Then we will keep your parcel until the weather is better.', 'It is five kilos.', 'A stamp is two coins.'], 0, { grammar: ['gr-pre2-030'] }),
   S('p5_pass', 5, 13, 'These letters have been waiting for a long time. Where should they go?', ['back', 'hold', 'redirect'], [['Nobody has come for this parcel for a long time.', 'back'], ['The owner has asked for it to be kept until Friday.', 'hold'], ['The owner has moved to the island and has left a new address.', 'redirect'], ['The address was written so badly that nobody could read it.', 'back']], { grammar: ['gr-3-003', 'gr-pre2-032'] }),
   T('p5_dont', 5, 14, 'c_merchant', 'I do not need a box, but I would like the cheapest thing for my letters, and one stamp for each of the five letters.', [['t_envelope', 5], ['t_stamp', 5]], 20, { grammar: ['gr-4-015', 'gr-3-027'] }),
-  F('p5_phone', 5, 15, 'Please write the message.', ['Good morning. This is {Ms. Park|@} from the post office.', 'The parcels will arrive on Thursday, not on Wednesday.', 'Could you keep the parcels here? I will come for them after lunch.'], [
+  F('p5_phone', 5, 15, 'Please write the message.', ['Good morning. This is {Ms. Park|@} from the trading company.', 'The parcels will arrive on Thursday, not on Wednesday.', 'Could you keep the parcels here? I will come for them after lunch.'], [
     { id: 'when', label: 'Arrive', options: ['Wednesday', 'Thursday', 'Friday'], answer: 'Thursday' },
     { id: 'what', label: 'Please', options: ['keep the parcels', 'send the parcels back', 'send the parcels abroad'], answer: 'keep the parcels' },
     { id: 'collect', label: 'Come', options: ['before lunch', 'after lunch', 'tomorrow'], answer: 'after lunch' },
@@ -566,7 +585,29 @@ const R5: AuthoredTask[] = [
 const NAMES_LOC = ['school', 'hospital', 'bank', 'station', 'library', 'park', 'church'];
 const STREETS = ['north', 'south', 'east', 'west'];
 
+const PARCEL_DESTS = [
+  { id: 'town', text: 'my friend in town' },
+  { id: 'island', text: 'the island' },
+  { id: 'abroad', text: 'another country' },
+];
+
+const CALLERS = [GRANT, BELL, HALE, REED, IVY, NORA];
+
 const TEMPLATES: TaskTemplate[] = [
+  // ---- the message pad by the telephone
+  { id: 'pt_pad2', rank: 2, arch: 'respond', mode: 'form', kind: 'phone', lines: ['Hello, this is {who}.', 'Please call me back {when}.'],
+    fields: [{ id: 'who', label: 'Who', values: CALLERS }, { id: 'when', label: 'Call back', values: ['before three', 'after three', 'tomorrow', 'after lunch'] }], grammar: ['gr-5-011'] },
+  { id: 'pt_pad3', rank: 3, arch: 'respond', mode: 'form', kind: 'phone', features: ['audioOnly'], lines: ['Hello, this is {who}.', 'I want to send {what} to {where}.', 'Please call me back {when}.'],
+    fields: [
+      { id: 'who', label: 'Caller', values: CALLERS },
+      { id: 'what', label: 'Send', values: ['ten boxes', 'two parcels', 'five letters'] },
+      { id: 'where', label: 'To', values: ['the island', 'the station', 'another country'] },
+      { id: 'when', label: 'Call back', values: ['before noon', 'today', 'tomorrow'] },
+    ], grammar: ['gr-4-008'] },
+  // ---- parcels on the scale (rank 3+): weigh, read the rate table, charge the postage (+ goods), give change
+  { id: 'pt_post3', rank: 3, arch: 'trade', say: 'I want to send this parcel to {dest}.', slots: {}, pay: 'round', post: { dests: PARCEL_DESTS, kilos: [1, 9] }, grammar: ['gr-4-008'] },
+  { id: 'pt_post3b', rank: 3, arch: 'trade', say: 'This parcel is for {dest}. And {qty1}, please.', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 1, max: 3 } }, pay: 'round', post: { dests: PARCEL_DESTS, kilos: [1, 6] }, grammar: ['gr-5-007'] },
+  { id: 'pt_post4', rank: 4, arch: 'trade', say: 'Could you weigh this parcel, please? It is going to {dest}. I also need {qty1}.', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 1, max: 3 } }, pay: 'round', post: { dests: PARCEL_DESTS, kilos: [2, 10] }, grammar: ['gr-4-007'] },
   // ---- rank 1
   { id: 'pt_places', rank: 1, arch: 'sort', say: 'Put the letters in the boxes, please.', count: [3, 4], bins: NAMES_LOC, patterns: [{ text: 'To {bin}' }, { text: 'For {bin}' }, { text: '{Name}, at {bin}' }], grammar: ['gr-5-011', 'gr-5-021'] },
   { id: 'pt_places2', rank: 1, arch: 'sort', say: 'Look at each letter, please.', count: [4, 4], bins: NAMES_LOC, patterns: [{ text: 'A letter for {bin}' }, { text: 'To {Name}, at {bin}' }, { text: '{Name} is at {bin}' }], grammar: ['gr-5-001'] },
@@ -606,7 +647,7 @@ const TEMPLATES: TaskTemplate[] = [
     target: 0,
     pWrong: 0.6,
   },
-  { id: 'pt_gift1', rank: 1, arch: 'trade', say: '{Qty1}, please. I am sending a present to my {word1}.', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 1, max: 3 }, word1: { kind: 'word', ids: ['teacher', 'son', 'daughter', 'uncle', 'aunt', 'cousin'].map(wid) } }, pay: 'exact', grammar: ['gr-4-029'] },
+  { id: 'pt_gift1', rank: 1, arch: 'trade', say: '{Qty1}, please. I am sending a present to my {word1}.', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 1, max: 3 }, word1: { kind: 'word', ids: ['teacher', 'friend', 'uncle', 'aunt', 'cousin'].map(wid) } }, pay: 'exact', grammar: ['gr-4-029'] },
   {
     id: 'pt_c_color',
     rank: 1,
@@ -626,7 +667,7 @@ const TEMPLATES: TaskTemplate[] = [
   { id: 'pt_q1', rank: 1, arch: 'respond', mode: 'choose', bank: 'counter', kind: 'speech', person: 'client' },
   { id: 'pt_q1b', rank: 1, arch: 'respond', mode: 'choose', bank: 'counter', kind: 'speech', person: 'client', weight: 0.7 },
   // ---- rank 2
-  { id: 'pt_streets', rank: 2, arch: 'sort', count: [4, 4], bins: STREETS, patterns: [{ text: '{num} {bin}' }, { text: '{Name}, {num} {bin}' }, { text: '{Name}, Number {num}, {bin}' }], grammar: ['gr-5-024'] },
+  { id: 'pt_streets', rank: 2, arch: 'sort', say: 'Look at the street on each letter, please.', count: [4, 4], bins: STREETS, patterns: [{ text: '{num} {bin}' }, { text: '{Name}, {num} {bin}' }, { text: '{Name}, Number {num}, {bin}' }], grammar: ['gr-5-024'] },
   { id: 'pt_streets2', rank: 2, arch: 'sort', say: 'Look at the street and the number.', count: [4, 5], bins: STREETS, patterns: [{ text: 'A letter for {Name}, {bin}' }, { text: 'Number {num}, {bin}, please' }, { text: '{Name} lives at {num}, {bin}' }], grammar: ['gr-5-003'] },
   { id: 'pt_mix2', rank: 2, arch: 'sort', say: 'Places and streets today.', count: [4, 5], bins: [...STREETS, 'school', 'bank', 'station', 'library'], patterns: [{ text: 'To {bin}' }, { text: '{num} {bin}', bins: STREETS }, { text: '{Name}, {bin}' }] },
   { id: 'pt_d1', rank: 2, arch: 'sort', say: 'Today is Monday.', count: [4, 4], bins: ['mon', 'tue'], patterns: [{ text: 'For today', bins: ['mon'] }, { text: 'For tomorrow', bins: ['tue'] }, { text: '{Name}, for today', bins: ['mon'] }, { text: '{Name}, for tomorrow', bins: ['tue'] }], grammar: ['gr-5-027'] },
@@ -691,7 +732,7 @@ const TEMPLATES: TaskTemplate[] = [
     busy: [IVY, TOM, ROSE, JOE, NORA],
     grammar: ['gr-5-015'],
   },
-  { id: 'pt_gift2', rank: 2, arch: 'trade', say: 'I need {qty1}. I am sending a {word1} to my {word2}.', slots: { qty1: { kind: 'qty', tags: ['box', 'stamp'], min: 1, max: 3 }, word1: { kind: 'word', ids: ['hat', 'shirt', 'coat', 'dress', 'doll', 'toy', 'kite', 'ball', 'map', 'jacket'].map(wid) }, word2: { kind: 'word', ids: ['teacher', 'son', 'daughter', 'uncle', 'aunt', 'cousin'].map(wid) } }, pay: 'round', grammar: ['gr-5-016'] },
+  { id: 'pt_gift2', rank: 2, arch: 'trade', say: 'I need {qty1}. I am sending a {word1} to my {word2}.', slots: { qty1: { kind: 'qty', tags: ['box', 'stamp'], min: 1, max: 3 }, word1: { kind: 'word', ids: ['hat', 'shirt', 'coat', 'dress', 'doll', 'toy', 'kite', 'ball', 'map', 'jacket'].map(wid) }, word2: { kind: 'word', ids: ['friend', 'uncle', 'aunt', 'cousin'].map(wid) } }, pay: 'round', grammar: ['gr-5-016'] },
   { id: 'pt_q2', rank: 2, arch: 'respond', mode: 'choose', bank: 'counter', kind: 'speech', person: 'client' },
   // ---- rank 3
   { id: 'pt_isl', rank: 3, arch: 'sort', say: 'Some go to the island, and some go abroad.', count: [4, 5], bins: ['island', 'abroad', 'north', 'south', 'east', 'west'], patterns: [{ text: 'To {Name}, on the island', bins: ['island'] }, { text: '{Name}, on the island', bins: ['island'] }, { text: 'To {Name}, abroad', bins: ['abroad'] }, { text: 'To {Name}, in another country', bins: ['abroad'] }, { text: '{num} {bin}', bins: STREETS }], grammar: ['gr-5-021'] },
@@ -859,9 +900,9 @@ const TEMPLATES: TaskTemplate[] = [
   { id: 'pt_q5', rank: 5, arch: 'respond', mode: 'choose', bank: 'trouble', kind: 'speech', person: 'client' },
   { id: 'pt_q5b', rank: 5, arch: 'respond', mode: 'choose', bank: 'counter', kind: 'speech', person: 'client' },
   { id: 'pt_if5', rank: 5, arch: 'trade', say: 'I would like {qty1}, and I would like {qty2}, too. I will pay in cash.', slots: { qty1: { kind: 'qty', tags: ['counter'], min: 2, max: 3 }, qty2: { kind: 'qty', tags: ['counter'], min: 1, max: 2 } }, pay: 'round', grammar: ['gr-4-007'] },
-  { id: 'pt_q3c', rank: 3, arch: 'respond', mode: 'choose', bank: 'phone', kind: 'phone', person: 'client' },
+  { id: 'pt_q3c', rank: 3, arch: 'respond', mode: 'choose', bank: 'phone', kind: 'phone' },
   { id: 'pt_q4c', rank: 4, arch: 'respond', mode: 'choose', bank: 'notice', kind: 'memo', person: 'client' },
-  { id: 'pt_q4d', rank: 4, arch: 'respond', mode: 'choose', bank: 'phone', kind: 'phone', person: 'client' },
+  { id: 'pt_q4d', rank: 4, arch: 'respond', mode: 'choose', bank: 'phone', kind: 'phone' },
   {
     id: 'pt_cal4',
     rank: 4,
@@ -904,7 +945,7 @@ const TEMPLATES: TaskTemplate[] = [
   },
   { id: 'pt_rel4', rank: 4, arch: 'sort', say: 'Think about who lives where.', count: [4, 4], bins: ['school', 'hospital', 'bank', 'library', 'station'], patterns: [{ text: 'For {Name}, who works at {bin}', bins: ['hospital', 'bank', 'library', 'station'] }, { text: 'For {Name}, who studies at {bin}', bins: ['school', 'library'] }], grammar: ['gr-3-007'] },
   { id: 'pt_q5c', rank: 5, arch: 'respond', mode: 'choose', bank: 'notice', kind: 'memo', person: 'client' },
-  { id: 'pt_q5d', rank: 5, arch: 'respond', mode: 'choose', bank: 'phone', kind: 'phone', person: 'client' },
+  { id: 'pt_q5d', rank: 5, arch: 'respond', mode: 'choose', bank: 'phone', kind: 'phone' },
   {
     id: 'pt_c_date',
     rank: 5,
@@ -959,7 +1000,7 @@ const QA: Record<string, QaItem[]> = {
     { q: 'Thank you!', a: 'You are welcome.', fn: 'thanks', rank: 1, phrases: ['ph-5-0014', 'ph-5-0016'] },
     { q: 'Can I have an envelope, please?', a: 'Sure. Here you are.', fn: 'request', rank: 1, grammar: ['gr-5-015'], phrases: ['ph-4-0004'] },
     { q: 'I am sorry!', a: 'That is all right.', fn: 'apology', rank: 1, phrases: ['ph-5-0019', 'ph-5-0020'] },
-    { q: 'What is your name?', a: 'My name is {Mrs. Wren|@}.', fn: 'name', rank: 1, grammar: ['gr-5-013'], phrases: ['ph-5-0038'] },
+    { q: 'Where is {Mrs. Wren|@} today?', a: 'She is in the back room.', fn: 'name', rank: 1, grammar: ['gr-5-013'] },
     { q: 'Is the post office open today?', a: 'Yes, we are open until five.', fn: 'open', rank: 2, grammar: ['gr-5-002'] },
     { q: 'When is the post office open?', a: 'From nine until five.', fn: 'time', rank: 2, grammar: ['gr-5-013'] },
     { q: 'Is the post office open on Sunday?', a: 'No, we are closed on Sunday.', fn: 'closed', rank: 2, grammar: ['gr-5-002'] },
@@ -1098,6 +1139,8 @@ const THINGS = [
   { id: 't_postcard', word: 'postcard', art: 'postcard', tags: ['counter'], price: 3, max: 4 },
   { id: 't_box', word: 'box', art: 'box', tags: ['counter', 'box'], plural: 'boxes', price: 5, max: 2 },
   { id: 't_notebook', word: 'notebook', art: 'doc_book', tags: ['counter'], price: 4, max: 3 },
+  { id: 't_pen', word: 'pen', art: 'pen', tags: ['counter'], price: 1, max: 4 },
+  { id: 't_map', word: 'in_map', art: 'map', tags: ['counter'], price: 3, max: 2 },
 ];
 
 // ---------------------------------------------------------------------------- reactions and lines
@@ -1151,6 +1194,12 @@ const LINES: JobContent['lines'] = [
   { id: 'pl_e4', kind: 'end', text: 'You are a good help. The customers like you.', rank: 4 },
   { id: 'pl_e5', kind: 'end', text: 'You look tired. Go home and rest. Thank you for today.', rank: 5 },
   { id: 'pl_r1', kind: 'rankup', text: 'You are very good at this job now!' },
+  // handing over a paper / a call (said by whoever is at the counter: the boss for a call, a customer for a notice or a letter)
+  { id: 'pl_h0', kind: 'handover', msg: 'sort', text: 'Here are more letters. Please put them in the boxes.' },
+  { id: 'pl_h1', kind: 'handover', rank: 2, msg: 'phone', text: 'The telephone is ringing. Please answer it.' },
+  { id: 'pl_h2', kind: 'handover', rank: 4, msg: 'memo', text: 'Excuse me. I have a question about this notice.' },
+  { id: 'pl_h3', kind: 'handover', rank: 4, msg: 'letter', text: 'Excuse me. Please read this letter.' },
+  { id: 'pl_h4', kind: 'handover', rank: 4, msg: 'email', text: 'Excuse me. Please read my email.' },
 ];
 
 // ---------------------------------------------------------------------------- the job
@@ -1158,12 +1207,33 @@ const EN: JobContent = {
   sign: 'POST OFFICE',
   lexicon: LEX,
   pages: PAGES,
-  forms: { ...EXTRA_FORMS, is: ['be', 'been'], grandmother: ["grandmother's"], cheap: ['cheapest'] },
+  forms: { ...EXTRA_FORMS, is: ['be', 'been'], grandmother: ["grandmother's"], cheap: ['cheapest'], rate: ['rates'] },
   people: PEOPLE,
   boss: 'p_wren',
   things: THINGS,
   sort: { item: 'letter', bins: BINS },
-  trade: { coins: [1, 5, 10], board: 'Prices' },
+  trade: {
+    coins: [1, 5, 10],
+    board: 'Prices',
+    rates: {
+      title: 'Postage rates for parcels',
+      dests: [
+        { id: 'town', label: 'In town' },
+        { id: 'island', label: 'The island' },
+        { id: 'abroad', label: 'Abroad' },
+      ],
+      bands: [
+        { upTo: 1, label: 'Up to 1 kilo' },
+        { upTo: 3, label: 'Up to 3 kilos' },
+        { upTo: 10, label: 'Up to 10 kilos' },
+      ],
+      price: [
+        [2, 3, 5],
+        [4, 6, 9],
+        [6, 10, 15],
+      ],
+    },
+  },
   tasks: [R1, R2, R3, R4, R5].flatMap((rank) => rank.map((t, i) => ({ ...t, seq: i + 1 }))),
   templates: TEMPLATES,
   qa: QA,
@@ -1180,13 +1250,14 @@ export const POST_JOB: JobDef = {
   archetypes: ['sort', 'trade', 'check', 'respond'],
   ranks: [
     { rank: 1, need: { good: 0, words: 0 }, level: { eiken: '4', toeic: null }, tasks: 4, noteJa: '建物の名前で手紙を仕分ける。窓口ではお客さんがぴったりの代金を払う。宛名のラベルを確かめる。' },
-    { rank: 2, need: { good: 8, words: 12 }, level: { eiken: '3', toeic: 400 }, unlocks: ['long'], tasks: 5, reward: { coins: 10 }, noteJa: '通りの名前・東西南北・曜日・番地で仕分け（手紙が一通多い）。お客さんが多めに払うので、おつりを渡す。営業時間や電話のメモ。' },
-    { rank: 3, need: { good: 30, words: 60 }, level: { eiken: 'pre2', toeic: 500 }, unlocks: ['audioOnly', 'timed', 'multiStep'], tasks: 5, reward: { coins: 15 }, noteJa: '島へ・外国へ・差し戻しの手紙、重さと送り先の確認。窓口の注文を耳だけで聞くこともある（間違いを見つけたら正しい値も選ぶ）。' },
-    { rank: 4, need: { good: 70, words: 130 }, level: { eiken: '2', toeic: 600 }, tasks: 6, reward: { coins: 25 }, noteJa: '書留・速達・税関の書類・追跡番号。長いお知らせ文や、くいちがいを探す細かい読み。' },
-    { rank: 5, need: { good: 120, words: 210 }, level: { eiken: 'pre1', toeic: 730 }, tasks: 6, reward: { coins: 40 }, noteJa: '保険・補償・苦情の手紙・規則の文書。受け身や仮定法のはいった、局長のような仕事。' },
+    { rank: 2, need: { good: 23, words: 12 }, level: { eiken: '3', toeic: 400 }, unlocks: ['long'], tasks: 5, reward: { coins: 10 }, noteJa: '通りの名前・東西南北・曜日・番地で仕分け（手紙が一通多い）。お客さんが多めに払うので、おつりを渡す。営業時間や電話のメモ。' },
+    { rank: 3, need: { good: 49, words: 60 }, level: { eiken: 'pre2', toeic: 500 }, unlocks: ['audioOnly', 'timed', 'multiStep'], tasks: 5, reward: { coins: 15 }, noteJa: '島へ・外国へ・差し戻しの手紙、重さと送り先の確認。窓口の注文を耳だけで聞くこともある（間違いを見つけたら正しい値も選ぶ）。' },
+    { rank: 4, need: { good: 75, words: 130 }, level: { eiken: '2', toeic: 600 }, tasks: 6, reward: { coins: 25 }, noteJa: '書留・速達・税関の書類・追跡番号。長いお知らせ文や、くいちがいを探す細かい読み。' },
+    { rank: 5, need: { good: 96, words: 210 }, level: { eiken: 'pre1', toeic: 730 }, tasks: 6, reward: { coins: 40 }, noteJa: '保険・補償・苦情の手紙・規則の文書。受け身や仮定法のはいった、局長のような仕事。' },
   ],
-  wage: { perfect: 2, minor: 1, fail: 0, bad: 0 },
+  wage: { perfect: 3, minor: 2, fail: 0, bad: 0 },
   opensAfter: 0,
+  hours: [0, 1],
   building: 'post',
   links: { use: [{ good: 'parcels', bonus: 1, line: 'Oh, and the parcels from the office. Thank you!' }] },
   content: { en: EN },

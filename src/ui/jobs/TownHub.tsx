@@ -5,9 +5,9 @@
  * teaches. "家に帰る" ends the day (the night's ledger). Phone: the map as an overview with
  * markers, and the workplaces as a list of signboards.
  */
-import { useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { townOf } from '../../activities/town/text';
-import { jobDay, jobOffered, jobsOf, PART_NAMES, rankName, rankStatus, recommendJobs } from '../../jobs/engine';
+import { jobDay, jobHasNew, jobHoursJa, jobOffered, jobOpenAt, jobsOf, PART_NAMES, rankName, rankStatus, recommendJobs } from '../../jobs/engine';
 import type { JobDef } from '../../jobs/types';
 import { skyAt } from '../art/sky';
 import { MAP_W } from '../art/town';
@@ -106,11 +106,14 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
         const offered = jobOffered(progress, j);
         const done = day.log.some((l) => l.job === j.id) || (j.legacy && day.tea !== 'none');
         const sign = j.legacy ? null : j.content[data.lang]?.sign;
+        const open = offered && !over && jobOpenAt(j, day.part);
+        const fresh = jobHasNew(data, progress, j);
+        const rank = progress.jobs?.jobs[j.id]?.rank ?? 1;
         return (
           <button
             key={j.id}
             type="button"
-            className={`hub-spot ${offered ? '' : 'closed'} ${done ? 'done' : ''} ${sel === j.id ? 'on' : ''}`}
+            className={`hub-spot ${offered ? '' : 'closed'} ${done ? 'done' : ''} ${open ? 'open' : 'shut'} ${sel === j.id ? 'on' : ''}`}
             style={{ left: `${(b.x / HUB_W) * 100}%`, top: `${(b.y / HUB_H) * 100}%`, width: `${(b.w / HUB_W) * 100}%`, height: `${(b.h / HUB_H) * 100}%` }}
             onClick={() => {
               sfx('pickup');
@@ -122,6 +125,7 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
             <span className="hub-sign">
               {sign ? <WordText text={sign} interactive={false} /> : <span>{j.icon}</span>}
               <span className="hub-signja">{j.nameJa}</span>
+              {offered ? <SpotBadges open={open} done={!!done} fresh={fresh} rank={rank} hours={jobHoursJa(j)} /> : null}
             </span>
             {done ? <span className="hub-done" aria-hidden>✓</span> : null}
           </button>
@@ -163,7 +167,7 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
           <span className="m-hub-title">町</span>
           {status}
         </header>
-        {map}
+        <ZoomMap>{map}</ZoomMap>
         <section className="m-hub-list" aria-label="仕事場">
           {jobs.map((j) => (
             <WorkplaceRow key={j.id} job={j} onOpen={() => setSel(j.id)} />
@@ -198,6 +202,65 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
   );
 }
 
+/** At a glance on a workplace: open now (or its hours), the player's rank there, something new waiting. */
+function SpotBadges({ open, done, fresh, rank, hours }: { open: boolean; done: boolean; fresh: boolean; rank: number; hours: string }) {
+  return (
+    <span className="hub-badges">
+      <span className={`hub-badge ${open && !done ? 'b-open' : 'b-shut'}`}>{done ? '済' : open ? '営業中' : `${hours}`}</span>
+      <span className="hub-badge b-rank" title={`位：${rankName(rank)}`}>
+        {'●'.repeat(rank)}
+        <span className="b-rank-off">{'○'.repeat(Math.max(0, 5 - rank))}</span>
+      </span>
+      {fresh ? <span className="hub-badge b-new">新</span> : null}
+    </span>
+  );
+}
+
+/**
+ * The phone's town map: the whole town first; a tap zooms into that spot (signs legible, pan with a finger),
+ * 全体を見る zooms back out — as on the delivery map. A tap on a workplace while zoomed opens it.
+ */
+function ZoomMap({ children }: { children: React.ReactNode }) {
+  const [zoom, setZoom] = useState<{ x: number; y: number } | null>(null);
+  const box = useRef<HTMLDivElement>(null);
+  const Z = 2.6;
+  useLayoutEffect(() => {
+    const el = box.current;
+    if (!el || !zoom) return;
+    el.scrollLeft = zoom.x * el.scrollWidth - el.clientWidth / 2;
+    el.scrollTop = zoom.y * el.scrollHeight - el.clientHeight / 2;
+  }, [zoom]);
+  return (
+    <div className={`m-hub-zoom ${zoom ? 'zoomed' : ''}`}>
+      <div
+        ref={box}
+        className="m-hub-zoombox"
+        onClickCapture={(e) => {
+          if (zoom) return;
+          // First tap: zoom into the spot (do not open a workplace yet).
+          const r = e.currentTarget.getBoundingClientRect();
+          e.stopPropagation();
+          e.preventDefault();
+          sfx('whoosh');
+          setZoom({ x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height });
+        }}
+        data-testid="hub-zoom"
+      >
+        <div className="m-hub-zoominner" style={zoom ? { width: `${Z * 100}%` } : undefined}>
+          {children}
+        </div>
+      </div>
+      {zoom ? (
+        <button type="button" className="btn btn-small m-hub-zoomout" onClick={() => (sfx('whoosh'), setZoom(null))} data-testid="hub-zoom-out">
+          全体を見る
+        </button>
+      ) : (
+        <span className="m-hub-zoomhint">地図を押すと大きくなる</span>
+      )}
+    </div>
+  );
+}
+
 function WorkplaceRow({ job, onOpen }: { job: JobDef; onOpen: () => void }) {
   const g = useGame();
   const p = g.progress!;
@@ -207,8 +270,10 @@ function WorkplaceRow({ job, onOpen }: { job: JobDef; onOpen: () => void }) {
   const rs = rankStatus(data, p, job);
   const done = day.log.some((l) => l.job === job.id) || (job.legacy && day.tea !== 'none');
   const sign = job.legacy ? null : job.content[data.lang]?.sign;
+  const open = offered && day.part <= 2 && jobOpenAt(job, day.part);
+  const fresh = jobHasNew(data, p, job);
   return (
-    <button type="button" className={`m-hub-row ${offered ? '' : 'closed'} ${done ? 'done' : ''}`} onClick={() => (sfx('pickup'), onOpen())} data-job={job.id}>
+    <button type="button" className={`m-hub-row ${offered ? '' : 'closed'} ${done ? 'done' : ''} ${open ? 'open' : 'shut'}`} onClick={() => (sfx('pickup'), onOpen())} data-job={job.id}>
       <BuildingFront id={job.building} />
       <span className="m-hub-rowtext">
         <span className="m-hub-rowname">
@@ -220,6 +285,7 @@ function WorkplaceRow({ job, onOpen }: { job: JobDef; onOpen: () => void }) {
           ) : null}
         </span>
         <span className="m-hub-rowrank">{offered ? `位：${rankName(rs.rank)}（${rs.rank}）` : 'まだ募集していない'}</span>
+        {offered ? <SpotBadges open={open} done={!!done} fresh={fresh} rank={rs.rank} hours={jobHoursJa(job)} /> : null}
       </span>
       {done ? <span className="hub-done" aria-hidden>✓</span> : null}
     </button>
@@ -258,13 +324,20 @@ function WorkplaceCard({ id, onClose, onBoard }: { id: string; onClose: () => vo
         </div>
       </div>
       <p className="hub-card-blurb">{job.blurbJa}</p>
+      {!job.legacy ? (
+        <p className="hub-card-note">
+          開いている時間：{jobHoursJa(job)}
+          {!jobOpenAt(job, day.part) && !over ? '（今は閉まっている）' : ''}
+          {jobHasNew(data, p, job) ? '　・新しい仕事が待っている' : ''}
+        </p>
+      ) : null}
       {job.legacy && !doneToday && !over ? <p className="hub-card-note">今から開けると：{teaParts}</p> : null}
       {why ? <p className="hub-card-why">{why}</p> : null}
       <div className="hub-card-actions">
         <button type="button" className="btn" onClick={onBoard}>
           掲示板でくわしく
         </button>
-        {offered && !doneToday && !over ? (
+        {offered && !doneToday && !over && jobOpenAt(job, day.part) ? (
           <button
             type="button"
             className="btn btn-primary"
@@ -278,7 +351,7 @@ function WorkplaceCard({ id, onClose, onBoard }: { id: string; onClose: () => vo
             ここで働く（{PART_NAMES[day.part]}）
           </button>
         ) : (
-          <span className="hub-card-state">{!offered ? 'まだ募集していない' : doneToday ? '今日はここで働いた' : '今日の仕事はおしまい'}</span>
+          <span className="hub-card-state">{!offered ? 'まだ募集していない' : doneToday ? '今日はここで働いた' : over ? '今日の仕事はおしまい' : `今は閉まっている（${jobHoursJa(job)}）`}</span>
         )}
       </div>
     </div>

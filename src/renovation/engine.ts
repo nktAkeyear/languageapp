@@ -120,9 +120,16 @@ export function catalogue(data: GameData, p: LangProgress): CatalogueEntry[] {
     const shown = r.seen.includes(u.id) || gateOpen(data, p, u);
     const status: EntryStatus | null = r.owned[u.id] !== undefined ? 'owned' : r.orders.some((o) => o.id === u.id) ? 'ordered' : shown ? 'available' : null;
     if (!status) continue;
-    out.push({ def: u, status, fresh: status === 'available' && !r.seen.includes(u.id), affordable: p.town.money >= u.price });
+    const def = { ...u, price: upgradePrice(data, u) };
+    out.push({ def, status, fresh: status === 'available' && !r.seen.includes(u.id), affordable: p.town.money >= def.price });
   }
   return out;
+}
+
+/** An upgrade's price in this language (the shared price × the language's scale, rounded to 5). */
+export function upgradePrice(data: GameData, u: { price: number }): number {
+  const k = renoText(data)?.priceScale ?? 1;
+  return k === 1 ? u.price : Math.max(5, Math.round((u.price * k) / 5) * 5);
 }
 
 /** Number of entries that appeared since the catalogue was last opened. */
@@ -177,8 +184,9 @@ export function renoCancel(data: GameData, p: LangProgress, id: UpgradeId): bool
   const u = upgradeDef(data, id);
   if (i < 0 || !u) return false;
   r.orders.splice(i, 1);
-  p.town.money += u.price;
-  if (r.spent?.day === p.day) r.spent = { day: p.day, coins: Math.max(0, r.spent.coins - u.price) };
+  const price = upgradePrice(data, u);
+  p.town.money += price;
+  if (r.spent?.day === p.day) r.spent = { day: p.day, coins: Math.max(0, r.spent.coins - price) };
   return true;
 }
 

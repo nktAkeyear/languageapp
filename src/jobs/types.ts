@@ -56,6 +56,13 @@ export interface ThingDef {
   max?: number;
   /** Weight in kilos (post office parcels on the scale). */
   kilos?: number;
+  /**
+   * How a request names it when it means "one of them" in a thing slot ("a salad"); without it a counted thing is
+   * named in the plural ("I love sausages!") and a mass noun as it is ("bread").
+   */
+  one?: string;
+  /** The cooking methods that make sense for it (a template's method is chosen among them); default: any. */
+  cook?: string[];
 }
 
 export interface JobPerson {
@@ -231,9 +238,9 @@ export type SlotDef =
   | { kind: 'forbid'; tags?: string[]; maxLevel?: EikenKey }
   /** A thing that is not wanted: "no onions", "without", "instead of" (a mistake if served, not harmful). */
   | { kind: 'dislike'; tags?: string[]; maxLevel?: EikenKey }
-  /** A method / vessel of the make bench. */
-  | { kind: 'method' }
-  | { kind: 'vessel' }
+  /** A method / vessel of the make bench (`only`: limited to these ids, when the sentence fits only them). */
+  | { kind: 'method'; only?: string[] }
+  | { kind: 'vessel'; only?: string[] }
   /** A lexicon word typed by domain / POS / level (sentence variety; no rule effect). */
   | { kind: 'word'; domain?: string; pos?: string; ids?: string[]; maxLevel?: EikenKey }
   /**
@@ -290,8 +297,13 @@ export interface CheckField {
   fmt?: string;
   /** Number → word ("Monday" for 1 …): the field is written as names[n]. */
   names?: string[];
-  /** Computed from the numbers of the other fields (fields listed before it). */
-  calc?: (n: Record<string, number>) => number;
+  /**
+   * Computed from the numbers of the fields listed before it, as an expression (src/jobs/expr.ts):
+   * `'qty * price'`, `'(arrive - 1 + nights) % 7 + 1'`, `'days > 7 ? price : days >= 3 ? price / 2 : 0'`.
+   */
+  calc?: string;
+  /** The believable wrong values of a field, as expressions (e.g. the other refunds the rule allows); default: slips of the pen. */
+  alts?: string[];
 }
 
 export interface CheckTemplate {
@@ -472,6 +484,8 @@ export interface JobDef {
   wage: Record<Outcome, number>;
   /** Day (calendar, counted from the board opening) from which the job is offered. */
   opensAfter: number;
+  /** Parts of the day the workplace is open (0 朝, 1 昼, 2 夕; default: all). The town shows which are open now. */
+  hours?: number[];
   /** Building on the town map (src/ui/jobs/TownHub.tsx). */
   building: string;
   links?: JobLinks;

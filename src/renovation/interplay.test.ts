@@ -194,6 +194,7 @@ describe('renovation × difficulty', () => {
     expect(catalogue(d, p)).toEqual([]);
     p.day = 4;
     expect(catalogue(d, p).length).toBeGreaterThan(0);
+    p.town.money = 500;
     expect(renoOrder(d, p, 'signboard')).toBeNull();
   });
 });

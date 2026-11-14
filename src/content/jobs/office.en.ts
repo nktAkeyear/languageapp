@@ -1,8 +1,4 @@
 import type { VerificationPage } from '../../core/types';
-import { POST_JOB } from './post.en';
-import { KITCHEN_JOB } from './kitchen.en';
-import { INN_JOB } from './inn.en';
-import { jobContentTexts } from '../../jobs/vocab';
 import type { AuthoredTask, CheckDoc, DocField, JobContent, JobDef, JobLexEntry, QaItem, RespondSlotCell, RespondSpec, TaskFeature, TaskTemplate } from '../../jobs/types';
 
 /**
@@ -33,22 +29,14 @@ import type { AuthoredTask, CheckDoc, DocField, JobContent, JobDef, JobLexEntry,
 
 // ---------------------------------------------------------------------------------------------- lexicon
 
-/** The office's first words (kept as they were: saved progress refers to these ids). */
-const W = (id: string, text: string, gloss: string, pos: 'noun' | 'verb' | 'adj' | 'adv' | 'prep' | 'pron' | 'phrase', eiken: '5' | '4' | '3' | '準2' | '2' | '準1' | '1', group: string, emoji?: string, forms?: string[]): JobLexEntry => ({
-  id,
-  text,
-  gloss,
-  pos,
-  eiken,
-  cefr: (eiken === '5' || eiken === '4' ? 'A1' : eiken === '3' ? 'A2' : eiken === '準2' ? 'B1' : 'B2') as 'A1' | 'A2' | 'B1' | 'B2',
-  group,
-  ...(emoji ? { emoji } : {}),
-  ...(forms ? { forms } : {}),
-});
-
 const POS: Record<string, JobLexEntry['pos']> = { n: 'noun', v: 'verb', a: 'adj', d: 'adv', p: 'prep', c: 'conj', r: 'pron', t: 'det', i: 'interj', x: 'phrase' };
 
-/** Compact word table: `# pageId | 検証ページの見出し` opens a page; `text|pos|forms|gloss|emoji|id` is a word. */
+const CEFR_OF: Record<string, 'A1' | 'A2' | 'B1' | 'B2'> = { '5': 'A1', '4': 'A1', '3': 'A2', 準2: 'B1', '2': 'B2', 準1: 'B2', '1': 'B2' };
+
+/**
+ * Compact word table: `# pageId | 検証ページの見出し` opens a page; `text|pos|forms|gloss|emoji|id|eiken` is a word
+ * (id: when it is not the text; eiken: only for a word vocab.json lacks).
+ */
 function lex(src: string): { entries: JobLexEntry[]; pages: VerificationPage[] } {
   const entries: JobLexEntry[] = [];
   const pages: VerificationPage[] = [];
@@ -62,7 +50,7 @@ function lex(src: string): { entries: JobLexEntry[]; pages: VerificationPage[] }
       group = id;
       continue;
     }
-    const [text, pos, forms, gloss, emoji, id] = line.split('|').map((s) => s.trim());
+    const [text, pos, forms, gloss, emoji, id, eiken] = line.split('|').map((s) => s.trim());
     entries.push({
       id: id || text.toLowerCase().replace(/ /g, '_').replace(/[^a-z_]/g, ''),
       text,
@@ -71,6 +59,7 @@ function lex(src: string): { entries: JobLexEntry[]; pages: VerificationPage[] }
       ...(forms ? { forms: forms.split(',').map((s) => s.trim()) } : {}),
       ...(gloss ? { gloss } : {}),
       ...(emoji ? { emoji } : {}),
+      ...(eiken ? { eiken: eiken as JobLexEntry['eiken'], cefr: CEFR_OF[eiken] ?? 'B1' } : {}),
     });
   }
   return { entries, pages };
@@ -178,7 +167,7 @@ const R1: AuthoredTask[] = [
   slot('o1_early', 1, 16, 'Another email. Look at the week, please.', { kind: 'email', lines: ['Dear {Ms. Park|@},', 'Can we meet on Friday morning?', 'Nine is too early for me.', 'Thank you.'] }, WEEK, { 'fri-t2': 'Meeting', 'mon-t11': 'Busy', 'thu-t9': 'Busy' }, 'fri-t11', { grammar: ['gr-3-030'] }),
   reply('o1_help', 1, 22, 'Hello. I want to speak to {Ms. Park|@}, please.', { kind: 'speech', lines: ['Hello. I want to speak to {Ms. Park|@}, please.'] }, ['It is four dollars.', 'Just a moment, please.', 'On Tuesday.'], 1, { person: 'c_sailor', grammar: ['gr-5-025'] }),
   reply('o1_late', 1, 28, 'I am sorry. I am late.', { kind: 'speech', lines: ['I am sorry. I am late.'] }, ['You are welcome.', 'It is on Friday.', 'That is all right.'], 2, { person: 'p_lin' }),
-  reply('o1_busy', 1, 23, 'Hello. Can I speak to {Mr. Bell|@}?', { kind: 'phone', lines: ['Hello. Can I speak to {Mr. Bell|@}?', '{Mr. Bell|@} is busy now. Can I take a message?'] }, ['Yes, please. Tell him to phone me.', 'No, thank you. It is four dollars.', 'At nine in the morning.'], 0, { person: 'p_ruiz', grammar: ['gr-3-014'] }),
+  reply('o1_busy', 1, 23, 'Hello. Can I speak to {Mr. Bell|@}?', { kind: 'phone', lines: ['Hello. Can I speak to {Mr. Bell|@}?'] }, ['I am sorry, he is busy now. Can I take a message?', 'No, thank you. It is four dollars.', 'At nine in the morning.'], 0, { person: 'p_ruiz', grammar: ['gr-3-014'] }),
   reply('o1_lunch', 1, 29, 'Do you want to have lunch with us?', { kind: 'speech', lines: ['Do you want to have lunch with us?'] }, ['It is on Friday at ten.', 'In the big meeting room.', 'Yes, I do. Thank you.'], 2, { person: 'p_ruiz', grammar: ['gr-5-025'] }),
   reply('o1_sale', 1, 30, 'How much is a box of pens this week?', { kind: 'memo', lines: ['SALE this week!', 'Pens: $2', 'Paper: $3'] }, ['It is two dollars.', 'It is three dollars.', 'Yes, I do.'], 0, { person: 'p_ruiz', grammar: ['gr-5-014'], phrases: ['ph-5-0044'] }),
   check('o1_product', 1, 31, 'Is the price on the order the same as on the product list?', [D('card', 'Product list', [F('item', 'Product', 'tea'), F('price', 'Price', '$5')]), D('order', 'Order', [F('item', 'Item', 'tea'), F('price', 'Price', '$6')])], 1, 'price', { person: 'p_ruiz' }),
@@ -190,79 +179,44 @@ const R1: AuthoredTask[] = [
 ];
 
 // ---------------------------------------------------------------------------------------------- lexicon
-const OLD_LEX: JobLexEntry[] = [
-    W('office', 'office', '事務所・会社', 'noun', '5', 'jp_off_place', '🏢', ['offices']),
-    W('company', 'company', '会社', 'noun', '4', 'jp_off_place', '🏛️', ['companies']),
-    W('trade', 'trade', '貿易（する）・取引', 'noun', '4', 'jp_off_place', '⚖️', ['trading', 'trades', 'traded']),
-    W('manager', 'manager', '部長・責任者', 'noun', '4', 'jp_off_place', '👩‍💼', ['managers']),
-    W('meeting', 'meeting', '会議・打ち合わせ', 'noun', '4', 'jp_off_meet', '🗣️', ['meetings']),
-    W('meet', 'meet', '会う', 'verb', '5', 'jp_off_meet', '🤝', ['meets', 'met']),
-    W('free', 'free', '空いている・暇な', 'adj', '5', 'jp_off_meet', '🟩'),
-    W('busy', 'busy', '忙しい・ふさがっている', 'adj', '4', 'jp_off_meet', '🟥'),
-    W('room', 'room', '部屋', 'noun', '5', 'jp_off_meet', '🚪', ['rooms']),
-    W('monday', 'Monday', '月曜日', 'noun', '5', 'jp_off_days1', '🗓️'),
-    W('tuesday', 'Tuesday', '火曜日', 'noun', '5', 'jp_off_days1', '🗓️'),
-    W('wednesday', 'Wednesday', '水曜日', 'noun', '5', 'jp_off_days1', '🗓️'),
-    W('thursday', 'Thursday', '木曜日', 'noun', '5', 'jp_off_days2', '🗓️'),
-    W('friday', 'Friday', '金曜日', 'noun', '5', 'jp_off_days2', '🗓️'),
-    W('may_month', 'May', '5月', 'noun', '5', 'jp_off_days2', '5️⃣'),
-    W('june', 'June', '6月', 'noun', '5', 'jp_off_days2', '6️⃣'),
-    W('july', 'July', '7月', 'noun', '5', 'jp_off_days2', '7️⃣'),
-    W('invoice', 'invoice', '請求書（送り状）', 'noun', '1', 'jp_off_docs2', '🧾', ['invoices']),
-    W('order_doc', 'order', '注文（書）', 'noun', '5', 'jp_off_docs', '📝', ['orders']),
-    W('purchase', 'purchase', '購入', 'noun', '2', 'jp_off_docs2', '🛒'),
-    W('delivery', 'delivery', '配達・納品', 'noun', '準2', 'jp_off_docs2', '🚚'),
-    W('bill', 'bill', '勘定書・請求書', 'noun', '3', 'jp_off_docs', '💴', ['bills']),
-    W('as', 'as', '〜と（同じ）・〜として', 'prep', '5', 'jp_off_place', '↔️'),
-    W('note', 'note', 'メモ・伝票', 'noun', '5', 'jp_off_docs', '🗒️', ['notes']),
-    W('item', 'item', '品目・品物', 'noun', '4', 'jp_off_fields', '📦', ['items']),
-    W('quantity', 'quantity', '数量', 'noun', '2', 'jp_off_fields', '🔢'),
-    W('unit', 'unit', '単位・1個あたり', 'noun', '4', 'jp_off_fields', '1️⃣'),
-    W('date', 'date', '日付', 'noun', '5', 'jp_off_fields', '📅', ['dates']),
-    W('list', 'list', '一覧表', 'noun', '4', 'jp_off_fields', '📃', ['lists']),
-    W('paper', 'paper', '紙・書類', 'noun', '5', 'jp_off_goods', '📄', ['papers']),
-    W('pen', 'pen', 'ペン', 'noun', '4', 'jp_off_goods', '🖊️', ['pens']),
-    W('ink', 'ink', 'インク', 'noun', '準2', 'jp_off_goods', '🖋️'),
-    W('chair', 'chair', '椅子', 'noun', '4', 'jp_off_goods', '🪑', ['chairs']),
-    W('folder', 'folder', 'フォルダー（書類ばさみ）', 'noun', '準2', 'jp_off_goods', '🗂️', ['folders']),
-    W('dollar', 'dollar', 'ドル', 'noun', '4', 'jp_off_money', '💵', ['dollars']),
-    W('client', 'client', '取引先・顧客', 'noun', '2', 'jp_off_money', '🧑‍💼', ['clients']),
-    W('supplier', 'supplier', '仕入れ先', 'noun', '準1', 'jp_off_money', '🏭', ['suppliers']),
-    W('sales', 'sales', '営業・売り上げ', 'noun', '3', 'jp_off_money', '📈'),
-    W('call', 'call', '電話（する）', 'verb', '4', 'jp_off_phone', '📞', ['calls', 'called', 'calling']),
-    W('message', 'message', '伝言', 'noun', '4', 'jp_off_phone', '💬', ['messages']),
-    W('speak', 'speak', '話す', 'verb', '5', 'jp_off_phone', '🗨️', ['speaks', 'spoke']),
-    W('moment', 'moment', 'ちょっとの間', 'noun', '5', 'jp_off_phone', '⏱️'),
-    W('email', 'email', 'メール', 'noun', '4', 'jp_off_mail', '📧', ['emails']),
-    W('dear', 'dear', '（手紙で）〜様', 'adj', '4', 'jp_off_mail', '✉️'),
-    W('get', 'get', '受け取る・手に入れる', 'verb', '5', 'jp_off_mail', '📥', ['gets', 'got', 'getting']),
-    W('will', 'will', '〜するつもり・〜だろう', 'verb', '5', 'jp_off_mail', '🔜'),
-    W('open', 'open', '開く・開いている', 'verb', '5', 'jp_off_work', '🔓', ['opens', 'opened']),
-    W('change_v', 'change', '変える', 'verb', '4', 'jp_off_work', '🔁', ['changes', 'changed']),
-    W('fine', 'fine', '大丈夫な・結構な', 'adj', '4', 'jp_off_work', '👍'),
-    W('desk', 'desk', '机', 'noun', '5', 'jp_off_work', '🗄️', ['desks']),
-    W('they', 'they', '彼ら・それら', 'pron', '5', 'jp_off_work', '👥', ['them', 'their']),
-    W('about', 'about', '〜について', 'prep', '5', 'jp_off_money', '💡'),
-    W('caller', 'caller', '電話をかけてきた人', 'noun', '準1', 'jp_off_phone', '☎️', ['callers']),
-    W('write', 'write', '書く', 'verb', '5', 'jp_off_mail', '✍️', ['writes', 'wrote', 'writing']),
-];
-
-const OLD_PAGES: VerificationPage[] = [
-    { id: 'jp_off_place', labelJa: '商会という場所' },
-    { id: 'jp_off_meet', labelJa: '打ち合わせの都合' },
-    { id: 'jp_off_days1', labelJa: '週のはじめの曜日' },
-    { id: 'jp_off_days2', labelJa: '週の終わりと、月の名前' },
-    { id: 'jp_off_docs', labelJa: '書類の名前（はじめ）' },
-    { id: 'jp_off_docs2', labelJa: '書類の名前（取引）' },
-    { id: 'jp_off_fields', labelJa: '書類の欄の見出し' },
-    { id: 'jp_off_goods', labelJa: '事務用品' },
-    { id: 'jp_off_money', labelJa: '取引の相手とお金' },
-    { id: 'jp_off_phone', labelJa: '電話を受ける' },
-    { id: 'jp_off_mail', labelJa: 'メールの決まり文句' },
-    { id: 'jp_off_work', labelJa: '事務所の返事' },
-];
-
-const NEW_LEX_SRC = `
+// The office's own words (a word another job or the common list defines is simply used: see src/jobs/lexicon.ts).
+const LEX_SRC = `
+# jp_off_place | 商会という場所
+company|n|companies|会社|🏛️||4
+trade|n|trading,trades,traded|貿易（する）・取引|⚖️||4
+manager|n|managers|部長・責任者|👩‍💼||4
+# jp_off_meet | 打ち合わせの都合
+meeting|n|meetings|会議・打ち合わせ|🗣️||4
+meet|v|meets,met|会う|🤝||5
+free|a||空いている・暇な|🟩||5
+room|n|rooms|部屋|🚪||5
+# jp_off_days2 | 週の終わりと、月の名前
+Thursday|n||木曜日|🗓️||5
+Friday|n||金曜日|🗓️||5
+May|n||5月|5️⃣|may_month|5
+June|n||6月|6️⃣||5
+July|n||7月|7️⃣||5
+# jo_pool_0 | 事務所のことば（まとめ）
+order|n|orders,ordered,ordering|注文（書）|📝|order_doc|5
+invoice|n|invoices|請求書（送り状）|🧾||1
+purchase|n||購入|🛒||2
+# jp_off_fields | 書類の欄の見出し
+item|n|items|品目・品物|📦||4
+quantity|n||数量|🔢||2
+unit|n|units|単位・1個あたり|1️⃣||4
+date|n|dates|日付|📅||5
+list|n|lists|一覧表|📃||4
+# jp_off_goods | 事務用品
+paper|n|papers|紙・書類|📄||5
+pen|n|pens|ペン|🖊️||4
+ink|n||インク|🖋️||準2
+chair|n|chairs|椅子|🪑||4
+folder|n|folders|フォルダー（書類ばさみ）|🗂️||準2
+# jp_off_money | 取引の相手とお金
+dollar|n|dollars|ドル|💵||4
+client|n|clients|取引先・顧客|🧑‍💼||2
+supplier|n|suppliers|仕入れ先|🏭||準1
+sales|n||営業・売り上げ|📈||3
 # jo1_0 | 事務所のことば ①（TOEIC〜400）
 copy|n|copies|コピー
 form|n||用紙・申込書
@@ -353,7 +307,7 @@ possibly|d||ひょっとすると
 past|d||通り過ぎて
 # jo3_88 | つなぐことば ③（〜730）
 ahead|d||前方に
-few|t|fewer|より少ない
+fewer|t||より少ない
 through|p||～を通って
 since|p||～以来
 # jo3_93 | 人と仕事のことば ①（〜730）
@@ -378,7 +332,7 @@ track|n|tracking|追跡する
 expect|v||予期する
 fall|v|fell|落ちる
 regret|v||後悔する
-hope|v|hoping|望んでいる（hopeの-ing形）
+hoping|v||望んでいる（hopeの-ing形）
 begin|v|began|始める
 # jo3_117 | 機械とコンピューターのことば ①（〜730）
 port|n||港
@@ -483,7 +437,7 @@ contact|v||連絡をとる
 information|n||情報
 conversation|n||会話
 prompt|n||迅速な
-appreciate|v|appreciated|感謝する
+appreciated|v||感謝する
 # jo4_221 | 様子を表すことば ①（〜860）
 large|a||大きい
 latest|a||最新の
@@ -591,13 +545,13 @@ const R2: AuthoredTask[] = [
   ], 1, 'arrive', { person: 'p_lin' }),
   reply('o2_budget', 2, 21, 'The bill is $240. Is it within the budget?', { kind: 'memo', lines: ['Budget for paper', '$200 every week'] }, ['Yes, it is within the budget.', 'No, it is over the budget.', 'It is on Friday.'], 1, { person: 'p_bell', grammar: ['gr-pre2-037'] }),
   reply('o2_damaged', 2, 22, 'The package arrived broken.', { kind: 'email', from: '{Mr. Grant|@}', lines: ['Dear {Ms. Park|@},', 'The package arrived broken.', 'I would like a new one.'] }, ['Thank you for your help.', 'I am sorry. We will send you a new one.', 'The meeting is on Tuesday.'], 1, { person: 'p_park', grammar: ['gr-4-007'] }),
-  reply('o2_payment', 2, 23, 'We have received your payment.', { kind: 'email', from: '{Ms. Park|@}', lines: ['Dear {Mr. Grant|@},', 'We have received your payment.', 'Thank you.'] }, ['You are welcome. Please keep the receipt.', 'Sorry, I am late.', 'It is on the second floor.'], 0, { person: 'p_bell', phrases: ['ph-2-0039'], grammar: ['gr-3-002'] }),
+  reply('o2_payment', 2, 23, 'Please answer this email from {Mr. Grant|@}.', { kind: 'email', from: '{Mr. Grant|@}', lines: ['Dear {Ms. Park|@},', 'I sent the payment for the chairs on Monday.', 'Have you received it?'] }, ['Yes, we have received your payment. Thank you.', 'Sorry, I am late.', 'It is on the second floor.'], 0, { person: 'p_park', phrases: ['ph-2-0039'], grammar: ['gr-3-002'] }),
   pad('o2_phone3', 2, 24, '{Mr. Bell|@} called. Write the message for {Ms. Park|@}.', ['Hello, this is {Mr. Bell|@}.', 'The meeting on Thursday is now on Friday at two.', 'Please tell {Ms. Park|@}.'], [
     { id: 'who', label: 'Caller', options: ['{Mr. Bell|@}', '{Mr. Lin|@}', '{Ms. Ruiz|@}'], answer: '{Mr. Bell|@}' },
     { id: 'day', label: 'New day', options: ['Thursday', 'Friday', 'Monday'], answer: 'Friday' },
     { id: 'time', label: 'Time', options: ['2:00', '4:00', '12:00'], answer: '2:00' },
   ], { person: 'p_santos' }),
-  reply('o2_invite', 2, 25, 'Please write back.', { kind: 'email', from: '{Ms. Park|@}', subject: 'Meeting on March 5', lines: ['Dear {Mr. Grant|@},', 'We would like to invite you to our meeting on March 5.', 'Best regards,'] }, ['Thank you. I would be happy to come.', 'You are welcome.', 'It is four dollars.'], 0, { person: 'p_park', grammar: ['gr-4-007'] }),
+  reply('o2_invite', 2, 25, 'Please write back.', { kind: 'email', from: '{Mr. Grant|@}', subject: 'Meeting on March 5', lines: ['Dear {Ms. Park|@},', 'Thank you for inviting me to your meeting on March 5. I would be happy to come.', 'What time does it start?', 'Best regards,'] }, ['It starts at ten. We look forward to seeing you.', 'You are welcome. It is four dollars.', 'I am sorry, I am late.'], 0, { person: 'p_park', grammar: ['gr-4-007'] }),
   reply('o2_available', 2, 26, 'Are you available on Friday?', { kind: 'speech', lines: ['Are you available on Friday?'] }, ['Yes, Friday is fine.', 'It is four dollars.', 'You are welcome.'], 0, { person: 'p_ruiz', phrases: ['ph-2-0057'] }),
   reply('o2_cancel', 2, 27, 'I would like to cancel my order.', { kind: 'phone', lines: ['Hello. I would like to cancel my order.'] }, ['Of course. What is the order number?', 'You are welcome.', 'At nine in the morning.'], 0, { person: 'c_baker', grammar: ['gr-4-007'] }),
   slot('o2_wed2', 2, 28, 'An email from a client. Look at the week, please.', { kind: 'email', lines: ['Dear {Ms. Park|@},', 'I am not free on Monday or Tuesday.', 'Can we meet on Wednesday afternoon?', 'Thank you.'] }, WEEK, { 'wed-t2': 'Meeting', 'wed-t9': 'Busy', 'thu-t4': 'Busy' }, 'wed-t4', { grammar: ['gr-3-033'] }),
@@ -688,7 +642,7 @@ const R3: AuthoredTask[] = [
   check('o3_budget2', 3, 31, 'The budget says $300 for travel. Is the total on the report within it?', [
     D('card', 'Travel Budget', [F('budget', 'Budget', '$300'), F('month', 'Month', 'March')]),
     D('note', 'Travel Report', [F('budget', 'Budget', '$300'), F('month', 'Month', 'March'), F('total', 'Total', '$340')]),
-  ], 1, 'total', { person: 'p_bell', fixOptions: ['$240', '$300', '$340'], fix: '$300' }),
+  ], 1, 'total', { person: 'p_bell' }),
   reply('o3_deadline2', 3, 32, 'When is the new deadline?', { kind: 'email', from: '{Ms. Park|@}', lines: ['Dear all,', 'The deadline for the sales report has been moved to Monday.', 'Please send it by noon.'] }, ['Monday at noon.', 'Friday at noon.', 'Monday at night.'], 0, { person: 'p_ruiz', grammar: ['gr-3-005'] }),
 ];
 // ---------------------------------------------------------------------------------------------- rank 4 (TOEIC 〜860, 英検準1)
@@ -814,18 +768,29 @@ const QA_MEMO1: QaItem[] = [
 ];
 
 
+const OFFICE_CALLERS = ['{Mr. Grant|@}', '{Ms. Weber|@}', '{Mr. Santos|@}', '{Mr. Lin|@}', '{Ms. Ruiz|@}'];
+
 const T1: TaskTemplate[] = [
+  { id: 'ot_pad1', rank: 1, arch: 'respond', mode: 'form', kind: 'phone', lines: ['Hello, this is {who}.', 'It is about the meeting on {day}.', 'Please call me back {when}.'],
+    fields: [
+      { id: 'who', label: 'Name', values: OFFICE_CALLERS },
+      { id: 'day', label: 'Meeting', values: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] },
+      { id: 'when', label: 'Call back', values: ['before noon', 'after lunch', 'tomorrow'] },
+    ], grammar: ['gr-5-011'] },
   { id: 'ot_inv1', rank: 1, arch: 'check', say: 'Please check this bill.', fields: [
-    { id: 'item', label: 'Item', values: ['paper', 'pens', 'cups', 'ink', 'chairs'] },
-    { id: 'qty', label: 'Boxes', values: ['10', '12', '20', '30', '50'] },
-    { id: 'price', label: 'Price', values: ['$2', '$3', '$4', '$5', '$8'] },
-  ], docs: [{ kind: 'order', title: 'Order', fields: ['item', 'qty', 'price'] }, { kind: 'invoice', title: 'Bill', fields: ['item', 'qty', 'price'] }], target: 1, pWrong: 0.6 },
+    { id: 'item', label: 'Item', values: ['paper', 'pens', 'cups', 'chairs', 'tea'] },
+    { id: 'qty', label: 'Boxes', range: [2, 12] },
+    { id: 'price', label: 'Price', range: [2, 9], fmt: '${n}' },
+    { id: 'total', label: 'Total', calc: 'qty * price', fmt: '${n}' },
+  ], docs: [{ kind: 'order', title: 'Order', fields: ['item', 'qty', 'price'] }, { kind: 'invoice', title: 'Bill', fields: ['item', 'qty', 'price', 'total'] }], target: 1, pWrong: 0.6, wrongable: ['item', 'qty', 'price', 'total'] },
   { id: 'ot1_total', rank: 1, arch: 'check', say: 'Please check the total on the bill for {item}.', fields: [
-    { id: 'item', label: 'Item', values: ['paper', 'pens', 'chairs', 'tea', 'cups', 'ink'] },
-    { id: 'total', label: 'Total', values: ['$12', '$20', '$24', '$30', '$45', '$60'] },
-  ], docs: [{ kind: 'order', title: 'Order', fields: ['item', 'total'] }, { kind: 'invoice', title: 'Bill', fields: ['item', 'total'] }], target: 1, pWrong: 0.6 },
+    { id: 'item', label: 'Item', values: ['paper', 'pens', 'chairs', 'tea', 'cups'] },
+    { id: 'qty', label: 'Boxes', range: [2, 10] },
+    { id: 'price', label: 'Price', range: [2, 6], fmt: '${n}' },
+    { id: 'total', label: 'Total', calc: 'qty * price', fmt: '${n}' },
+  ], docs: [{ kind: 'order', title: 'Order', fields: ['item', 'qty', 'price'] }, { kind: 'invoice', title: 'Bill', fields: ['item', 'qty', 'price', 'total'] }], target: 1, pWrong: 0.6, wrongable: ['total'] },
   { id: 'ot1_dates', rank: 1, arch: 'check', say: 'Is the day on the bill right?', fields: [
-    { id: 'item', label: 'Item', values: ['paper', 'pens', 'chairs', 'tea', 'ink'] },
+    { id: 'item', label: 'Item', values: ['paper', 'pens', 'chairs', 'tea', 'cups'] },
     { id: 'day', label: 'Day', values: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] },
     { id: 'date', label: 'Date', values: ['March 3', 'March 13', 'May 5', 'May 15', 'June 2', 'June 12'] },
   ], docs: [{ kind: 'order', title: 'Order', fields: ['item', 'day', 'date'] }, { kind: 'invoice', title: 'Bill', fields: ['item', 'day', 'date'] }], target: 1, pWrong: 0.65 },
@@ -834,7 +799,7 @@ const T1: TaskTemplate[] = [
     { id: 'address', label: 'Address', values: ['12 Bridge Street', '21 Bridge Street', '5 Station Street', '15 Station Street', '8 Market Street', '18 Market Street'] },
   ], docs: [{ kind: 'order', title: 'Order form', fields: ['name', 'address'] }, { kind: 'invoice', title: 'Bill', fields: ['name', 'address'] }], target: 1, pWrong: 0.6 },
   { id: 'ot1_receipt', rank: 1, arch: 'check', say: 'Please check the receipt for {item}.', fields: [
-    { id: 'item', label: 'Item', values: ['lunch', 'tea', 'paper', 'pens', 'ink'] },
+    { id: 'item', label: 'Item', values: ['lunch', 'tea', 'paper', 'pens', 'cups'] },
     { id: 'price', label: 'Price', values: ['$9', '$18', '$19', '$28', '$35', '$53'] },
   ], docs: [{ kind: 'note', title: 'Note', fields: ['item', 'price'] }, { kind: 'card', title: 'Receipt', fields: ['item', 'price'] }], target: 1, pWrong: 0.6 },
   { id: 'ot1_pay', rank: 1, arch: 'check', say: 'Is the day to pay the same on both papers?', fields: [
@@ -955,10 +920,11 @@ const QA_GAP2: QaItem[] = [
 const T2: TaskTemplate[] = [
   { id: 'ot_inv2', rank: 2, arch: 'check', say: 'Please check the invoice with the purchase order.', fields: [
     { id: 'num', label: 'Order number', values: ['4512', '4521', '4152', '5412'] },
-    { id: 'item', label: 'Item', values: ['paper', 'pens', 'chairs', 'envelopes', 'ink', 'folders'] },
-    { id: 'units', label: 'Units', values: ['10', '12', '20', '30', '50'] },
-    { id: 'price', label: 'Unit price', values: ['$2', '$3', '$4', '$5', '$8'] },
-  ], docs: [{ kind: 'order', title: 'Purchase Order', fields: ['num', 'item', 'units', 'price'] }, { kind: 'invoice', title: 'Invoice', fields: ['num', 'item', 'units', 'price'] }], target: 1, pWrong: 0.65 },
+    { id: 'item', label: 'Item', values: ['paper', 'pens', 'chairs', 'envelopes', 'folders'] },
+    { id: 'units', label: 'Units', range: [10, 50, 5] },
+    { id: 'price', label: 'Unit price', range: [2, 8], fmt: '${n}' },
+    { id: 'total', label: 'Total', calc: 'units * price', fmt: '${n,}' },
+  ], docs: [{ kind: 'order', title: 'Purchase Order', fields: ['num', 'item', 'units', 'price'] }, { kind: 'invoice', title: 'Invoice', fields: ['num', 'item', 'units', 'price', 'total'] }], target: 1, pWrong: 0.65 },
   { id: 'ot2_deliv', rank: 2, arch: 'check', say: 'Please check the delivery note with the purchase order for {item}.', fields: [
     { id: 'num', label: 'Order number', values: ['4620', '4602', '4260', '6420'] },
     { id: 'item', label: 'Item', values: ['envelopes', 'folders', 'pens', 'paper', 'chairs'] },
@@ -971,9 +937,10 @@ const T2: TaskTemplate[] = [
   ], docs: [{ kind: 'card', title: 'Receipt', fields: ['date', 'item', 'total'] }, { kind: 'note', title: 'Expense Claim', fields: ['date', 'item', 'total'] }], target: 1, pWrong: 0.65 },
   { id: 'ot2_quote', rank: 2, arch: 'check', say: 'The quote and the order must have the same price. Please check.', fields: [
     { id: 'item', label: 'Item', values: ['chairs', 'desks', 'pens', 'paper', 'folders'] },
-    { id: 'units', label: 'Units', values: ['10', '20', '30', '50'] },
+    { id: 'units', label: 'Units', range: [10, 50, 10] },
     { id: 'price', label: 'Unit price', values: ['$12', '$20', '$30', '$45'] },
-  ], docs: [{ kind: 'card', title: 'Quote', fields: ['item', 'units', 'price'] }, { kind: 'order', title: 'Purchase Order', fields: ['item', 'units', 'price'] }], target: 1, pWrong: 0.6 },
+    { id: 'total', label: 'Total', calc: 'units * price', fmt: '${n,}' },
+  ], docs: [{ kind: 'card', title: 'Quote', fields: ['item', 'units', 'price'] }, { kind: 'order', title: 'Purchase Order', fields: ['item', 'units', 'price', 'total'] }], target: 1, pWrong: 0.6 },
   { id: 'ot2_ship', rank: 2, arch: 'check', say: 'The email says when the ship comes. Is the schedule right?', fields: [
     { id: 'leave', label: 'Leaves', values: ['Monday', 'Tuesday', 'Wednesday'] },
     { id: 'arrive', label: 'Arrives', values: ['Thursday', 'Friday', 'Saturday'] },
@@ -1100,19 +1067,29 @@ const QA_GAP3: QaItem[] = [
 ];
 
 const T3: TaskTemplate[] = [
+  { id: 'ot_pad3', rank: 3, arch: 'respond', mode: 'form', kind: 'phone', features: ['audioOnly'],
+    lines: ['Good morning. This is {who}.', 'I am calling about order number {num}.', 'We have not received the {item} yet. Please send them by {day}.'],
+    fields: [
+      { id: 'who', label: 'Name', values: OFFICE_CALLERS },
+      { id: 'num', label: 'Order number', values: ['4512', '4521', '4152', '5412'] },
+      { id: 'item', label: 'Item', values: ['chairs', 'desks', 'folders', 'envelopes'] },
+      { id: 'day', label: 'Send by', values: ['Monday', 'Wednesday', 'Thursday', 'Friday'] },
+    ], grammar: ['gr-3-002'] },
   { id: 'ot_inv3', rank: 3, arch: 'check', say: 'Check the invoice with the order and the delivery note, please.', fields: [
     { id: 'num', label: 'Order number', values: ['4512', '4521', '4152', '5412'] },
-    { id: 'item', label: 'Item', values: ['paper', 'pens', 'chairs', 'envelopes', 'ink', 'folders'] },
-    { id: 'qty', label: 'Quantity', values: ['10', '12', '20', '30', '50'] },
-    { id: 'price', label: 'Unit price', values: ['$2', '$3', '$4', '$5', '$8'] },
+    { id: 'item', label: 'Item', values: ['paper', 'pens', 'chairs', 'envelopes', 'folders'] },
+    { id: 'qty', label: 'Quantity', range: [10, 60, 5] },
+    { id: 'price', label: 'Unit price', range: [2, 9], fmt: '${n}' },
     { id: 'date', label: 'Delivery date', values: ['March 3', 'March 13', 'April 3', 'April 30', 'May 13'] },
-  ], docs: [{ kind: 'order', title: 'Purchase Order', fields: ['num', 'item', 'qty', 'price'] }, { kind: 'note', title: 'Delivery Note', fields: ['num', 'item', 'qty', 'date'] }, { kind: 'invoice', title: 'Invoice', fields: ['num', 'item', 'qty', 'price', 'date'] }], target: 2, pWrong: 0.65 },
+    { id: 'total', label: 'Total', calc: 'qty * price', fmt: '${n,}' },
+  ], docs: [{ kind: 'order', title: 'Purchase Order', fields: ['num', 'item', 'qty', 'price'] }, { kind: 'note', title: 'Delivery Note', fields: ['num', 'item', 'qty', 'date'] }, { kind: 'invoice', title: 'Invoice', fields: ['num', 'item', 'qty', 'price', 'date', 'total'] }], target: 2, pWrong: 0.65 },
   { id: 'ot3_quote', rank: 3, arch: 'check', say: 'Please check the invoice against the quote. Are the discount and the total right for the {item}?', fields: [
     { id: 'item', label: 'Item', values: ['chairs', 'desks', 'pens', 'paper'] },
-    { id: 'qty', label: 'Quantity', values: ['20', '40', '100'] },
-    { id: 'disc', label: 'Discount', values: ['5%', '10%', '15%'] },
-    { id: 'total', label: 'Total', values: ['$540', '$600', '$960', '$1,200'] },
-  ], docs: [{ kind: 'card', title: 'Quote', fields: ['item', 'qty', 'disc', 'total'] }, { kind: 'invoice', title: 'Invoice', fields: ['item', 'qty', 'disc', 'total'] }], target: 1, pWrong: 0.7 },
+    { id: 'qty', label: 'Quantity', range: [20, 100, 20] },
+    { id: 'price', label: 'Unit price', range: [10, 30, 10], fmt: '${n}' },
+    { id: 'disc', label: 'Discount', range: [5, 15, 5], fmt: '{n}%' },
+    { id: 'total', label: 'Total', calc: 'round(qty * price * (100 - disc) / 100)', fmt: '${n,}' },
+  ], docs: [{ kind: 'card', title: 'Quote', fields: ['item', 'qty', 'price', 'disc'] }, { kind: 'invoice', title: 'Invoice', fields: ['item', 'qty', 'price', 'disc', 'total'] }], target: 1, pWrong: 0.7 },
   { id: 'ot3_contract', rank: 3, arch: 'check', say: 'The contract must say what the client wrote. Is it right?', fields: [
     { id: 'pay', label: 'Payment due', values: ['15 days', '30 days', '60 days'] },
     { id: 'start', label: 'Start', values: ['March 1', 'April 1', 'May 1'] },
@@ -1257,18 +1234,18 @@ const QA_GAP4: QaItem[] = [
 const T4: TaskTemplate[] = [
   { id: 'ot4_audit', rank: 4, arch: 'check', say: 'The auditors are coming. Please check the invoice with the order and the bank statement.', fields: [
     { id: 'num', label: 'Order number', values: ['8841', '8814', '8481', '4881'] },
-    { id: 'qty', label: 'Quantity', values: ['100', '150', '200', '250'] },
-    { id: 'price', label: 'Unit price', values: ['$6', '$7', '$8', '$9'] },
-    { id: 'total', label: 'Total', values: ['$900', '$1,050', '$1,400', '$1,600', '$2,250'] },
+    { id: 'qty', label: 'Quantity', range: [100, 250, 50] },
+    { id: 'price', label: 'Unit price', range: [6, 9] , fmt: '${n}' },
+    { id: 'total', label: 'Total', calc: 'qty * price', fmt: '${n,}' },
   ], docs: [{ kind: 'order', title: 'Purchase Order', fields: ['num', 'qty', 'price'] }, { kind: 'card', title: 'Bank Statement', fields: ['num', 'total'] }, { kind: 'invoice', title: 'Invoice', fields: ['num', 'qty', 'price', 'total'] }], target: 2, pWrong: 0.7 },
   { id: 'ot4_contract', rank: 4, arch: 'check', say: 'The supplier wrote about the contract. Does the contract say the same?', fields: [
     { id: 'notice', label: 'Notice period', values: ['30 days', '60 days', '90 days'] },
     { id: 'pay', label: 'Payment due', values: ['15 days', '30 days', '45 days'] },
     { id: 'start', label: 'Start', values: ['March 1', 'May 1', 'July 1'] },
   ], docs: [{ kind: 'letter', title: 'Email', lines: ['The notice period must be {notice}.', 'Payment is due within {pay}.'] }, { kind: 'card', title: 'Contract', fields: ['notice', 'pay', 'start'] }], target: 1, pWrong: 0.7, wrongable: ['notice', 'pay'] },
-  { id: 'ot4_manifest', rank: 4, arch: 'check', say: 'The ship list must match the invoice. Please check it.', fields: [
-    { id: 'boxes', label: 'Boxes', values: ['80', '120', '160', '240'] },
-    { id: 'weight', label: 'Weight', values: ['1,600', '2,400', '2,800', '3,200'] },
+  { id: 'ot4_manifest', rank: 4, arch: 'check', say: 'The ship list must match the invoice. Every box weighs 20 kilos. Please check it.', fields: [
+    { id: 'boxes', label: 'Boxes', range: [60, 240, 20] },
+    { id: 'weight', label: 'Weight', calc: 'boxes * 20', fmt: '{n,} kilos' },
     { id: 'port', label: 'Port', values: ['{Lyon|@}', '{Dover|@}', '{Oslo|@}'] },
   ], docs: [{ kind: 'invoice', title: 'Invoice', fields: ['boxes', 'weight', 'port'] }, { kind: 'card', title: 'Ship List', fields: ['boxes', 'weight', 'port'] }], target: 1, pWrong: 0.7 },
   { id: 'ot4_resume', rank: 4, arch: 'check', say: 'Is the form the same as the job ad?', fields: [
@@ -1281,10 +1258,11 @@ const T4: TaskTemplate[] = [
     { id: 'day', label: 'Day', values: ['Monday', 'Wednesday', 'Thursday', 'Friday'] },
   ], docs: [{ kind: 'letter', title: 'Minutes', lines: ['{who} will send the numbers to {Ms. Park|@} on {day}.'] }, { kind: 'card', title: 'Action List', fields: ['who', 'day'] }], target: 1, pWrong: 0.7 },
   { id: 'ot4_quote', rank: 4, arch: 'check', say: 'The quote and the order must have the same terms. Please check.', fields: [
-    { id: 'qty', label: 'Quantity', values: ['100', '200', '400'] },
-    { id: 'price', label: 'Unit price', values: ['$8', '$9', '$10'] },
+    { id: 'qty', label: 'Quantity', range: [100, 400, 100] },
+    { id: 'price', label: 'Unit price', range: [8, 10], fmt: '${n}' },
     { id: 'pay', label: 'Payment due', values: ['30 days', '45 days', '60 days'] },
-  ], docs: [{ kind: 'card', title: 'Quote', fields: ['qty', 'price', 'pay'] }, { kind: 'order', title: 'Purchase Order', fields: ['qty', 'price', 'pay'] }], target: 1, pWrong: 0.7 },
+    { id: 'total', label: 'Total', calc: 'qty * price', fmt: '${n,}' },
+  ], docs: [{ kind: 'card', title: 'Quote', fields: ['qty', 'price', 'pay'] }, { kind: 'order', title: 'Purchase Order', fields: ['qty', 'price', 'pay', 'total'] }], target: 1, pWrong: 0.7 },
   {
     id: 'ot4_meet', rank: 4, arch: 'respond', mode: 'slot', kind: 'email', say: 'A client wants to meet. Read the email and look at the week.', layout: 'calendar', rows: DAYS, cols: TIMES2,
     cellTags: { t9: ['morning'], t11: ['morning'], t1: ['afternoon'], t3: ['afternoon'] },
@@ -1363,6 +1341,10 @@ const REACTIONS: JobContent['reactions'] = [
 
 const LINES: JobContent['lines'] = [
     { id: 'ol_s1', kind: 'start', text: 'Good morning. We have a lot of work today.' },
+    { id: 'ol_h1', kind: 'handover', msg: 'phone', text: 'Your phone is ringing. Could you take the call, please?' },
+    { id: 'ol_h2', kind: 'handover', msg: 'email', text: 'Please read this email and answer it.' },
+    { id: 'ol_h3', kind: 'handover', msg: 'memo', text: 'Please read this and find the best answer.' },
+    { id: 'ol_h4', kind: 'handover', msg: 'letter', text: 'A letter came for us. Please read it.' },
     { id: 'ol_s2', kind: 'start', text: 'Hello! The papers are on your desk.' },
     { id: 'ol_s3', kind: 'start', rank: 2, text: 'Good morning. Please check everything twice today.' },
     { id: 'ol_s4', kind: 'start', rank: 3, text: 'Good morning. The phone will not stop today, I am afraid.' },
@@ -1375,85 +1357,18 @@ const LINES: JobContent['lines'] = [
 
 // ---------------------------------------------------------------------------------------------- the job
 
-const NEW = lex(NEW_LEX_SRC);
+const LEXICON = lex(LEX_SRC);
 
 /** Extra surface forms of the tea house's base words (they keep their ids). */
 const BASE_FORMS: Record<string, string[]> = { can: ['could'], do: ['did'], want: ['wants', 'wanted'], hour: ['hours'] };
 const FORMS: Record<string, string[]> = Object.fromEntries(Object.keys({ ...BASE_FORMS, ...EXTRA_FORMS }).map((k) => [k, [...(BASE_FORMS[k] ?? []), ...(EXTRA_FORMS[k] ?? [])]]));
 
-/**
- * The office defines every word it uses that the tea house's base lexicon lacks. Other jobs may define
- * some of the same words (post, kitchen, inn): the lexicon is one shared list, so where another job
- * already has a word (same id or same surface) its entry is used and the office's copy is dropped; an
- * inflected form the other job lacks stays as an entry of its own. The 検証ページ are then re-cut so that
- * every page keeps 3–5 words.
- */
-const SHARED_WITH = [POST_JOB, KITCHEN_JOB, INN_JOB];
 const SIGN = '{Marlow|@} Trading Company';
-const USED_WORDS = new Set(
-  jobContentTexts({ sign: SIGN, tasks: [...R1, ...R2, ...R3, ...R4], templates: [...T1, ...T2, ...T3, ...T4], qa: BANKS, reactions: REACTIONS, lines: LINES } as unknown as JobContent)
-    .join(' ')
-    .toLowerCase()
-    .match(/[a-z']+/g) ?? [],
-);
-const LEXICON_AND_PAGES = (() => {
-  const ids = new Set<string>();
-  const surfaces = new Set<string>();
-  for (const j of SHARED_WITH) for (const e of j.content.en?.lexicon ?? []) {
-    ids.add(e.id);
-    for (const s of [e.text, ...(e.forms ?? [])]) surfaces.add(s.toLowerCase());
-  }
-  const all = [...OLD_LEX, ...NEW.entries].map((e) => (EXTRA_FORMS[e.id] ? { ...e, forms: [...(e.forms ?? []), ...EXTRA_FORMS[e.id]] } : e));
-  const keep: JobLexEntry[] = [];
-  for (const e of all) {
-    if (!ids.has(e.id) && !surfaces.has(e.text.toLowerCase())) {
-      keep.push({ ...e, ...(e.forms ? { forms: e.forms.filter((f) => !surfaces.has(f.toLowerCase())) } : {}) });
-      continue;
-    }
-    for (const f of e.forms ?? []) if (!surfaces.has(f.toLowerCase()) && !ids.has(f) && USED_WORDS.has(f.toLowerCase())) keep.push({ ...e, id: f, text: f, forms: undefined });
-  }
-  const pageList = [...OLD_PAGES, ...NEW.pages];
-  const kept: { page: VerificationPage; words: JobLexEntry[] }[] = [];
-  let carry: JobLexEntry[] = [];
-  const pooled: VerificationPage[] = [];
-  const pool = (list: JobLexEntry[], lab: string) => {
-    if (!list.length) return;
-    const k = Math.max(1, Math.ceil(list.length / 5));
-    let i = 0;
-    for (let n = 0; n < k; n++) {
-      const size = Math.floor(list.length / k) + (n < list.length % k ? 1 : 0);
-      const pg = { id: `jo_pool_${pooled.length}`, labelJa: k > 1 ? `${lab} ${n + 1}` : lab };
-      pooled.push(pg);
-      kept.push({ page: pg, words: list.slice(i, i + size) });
-      i += size;
-    }
-  };
-  for (const pg of pageList) {
-    const words = keep.filter((e) => e.group === pg.id);
-    if (words.length >= 3) kept.push({ page: pg, words });
-    else carry = [...carry, ...words];
-    if (carry.length >= 3) {
-      pool(carry, '事務所のことば（まとめ）');
-      carry = [];
-    }
-  }
-  if (carry.length) {
-    const last = kept[kept.length - 1];
-    if (last && last.words.length + carry.length <= 5) last.words = [...last.words, ...carry];
-    else if (last) {
-      const take = last.words.slice(-(3 - carry.length));
-      last.words = last.words.slice(0, last.words.length - take.length);
-      kept.push({ page: { id: 'jo_pool_end', labelJa: '事務所のことば（まとめ）' }, words: [...take, ...carry] });
-    }
-  }
-  const lexicon: JobLexEntry[] = kept.flatMap((k) => k.words.map((w) => ({ ...w, group: k.page.id })));
-  return { lexicon, pages: kept.map((k) => k.page) };
-})();
 
 const EN: JobContent = {
   sign: SIGN,
-  lexicon: LEXICON_AND_PAGES.lexicon,
-  pages: LEXICON_AND_PAGES.pages,
+  lexicon: LEXICON.entries,
+  pages: LEXICON.pages,
   forms: FORMS,
   people: [
     { id: 'p_park', name: 'Ms. Park', avatar: '🧑‍💼' },
@@ -1489,11 +1404,13 @@ export const OFFICE_JOB: JobDef = {
   ranks: [
     { rank: 1, need: { good: 0, words: 0 }, level: { eiken: '3', toeic: 400 }, tasks: 4, noteJa: '注文書と勘定書の二枚を見比べる（品物・箱の数・値段・日付）。短い掲示を読んで答える。メールの打ち合わせ日程（条件ひとつ〜ふたつ）。電話の伝言を書く。TOEIC 〜400。' },
     { rank: 2, need: { good: 20, words: 40 }, level: { eiken: 'pre2', toeic: 600 }, unlocks: ['long'], tasks: 5, reward: { coins: 12 }, noteJa: '発注書・請求書・納品書、経費の書類（注文番号・数量・単価・合計）。メールと掲示を読んで返事を選ぶ。語形・前置詞・接続詞を選ぶ穴埋めの下書き。日程の条件がふたつに。TOEIC 〜600。' },
-    { rank: 3, need: { good: 55, words: 110 }, level: { eiken: '2', toeic: 730 }, unlocks: ['multiStep', 'audioOnly', 'timed'], tasks: 5, reward: { coins: 20 }, noteJa: '三枚の書類（発注書・納品書・請求書、メールと見積もり）。違う欄を見つけたら正しい値も選んで直す。電話を耳だけで聞く。丁寧で遠回しな言い方の本当の用件を読む。時間制限（選んだときだけ）。TOEIC 〜730。' },
-    { rank: 4, need: { good: 100, words: 200 }, level: { eiken: 'pre1', toeic: 860 }, tasks: 6, reward: { coins: 30 }, noteJa: '長いメールのやりとり、議事録、契約書、報告書、求人広告、出荷予定。条件と期限（「〜の場合に限り」「〜までに」）を読み取る。耳だけの留守番電話。TOEIC 〜860。' },
+    { rank: 3, need: { good: 42, words: 110 }, level: { eiken: '2', toeic: 730 }, unlocks: ['multiStep', 'audioOnly', 'timed'], tasks: 5, reward: { coins: 20 }, noteJa: '三枚の書類（発注書・納品書・請求書、メールと見積もり）。違う欄を見つけたら正しい値も選んで直す。電話を耳だけで聞く。丁寧で遠回しな言い方の本当の用件を読む。時間制限（選んだときだけ）。TOEIC 〜730。' },
+    { rank: 4, need: { good: 61, words: 200 }, level: { eiken: 'pre1', toeic: 860 }, tasks: 6, reward: { coins: 30 }, noteJa: '長いメールのやりとり、議事録、契約書、報告書、求人広告、出荷予定。条件と期限（「〜の場合に限り」「〜までに」）を読み取る。耳だけの留守番電話。TOEIC 〜860。' },
+    { rank: 5, need: { good: 80, words: 280 }, level: { eiken: '1', toeic: 990 }, tasks: 6, reward: { coins: 50 }, noteJa: '灯台：商会の右腕。この位の新しい仕事（交渉・会議の進行・英文契約の確認）はまだ準備中で、今はこれまでの仕事が復習として続く。TOEIC 〜990。' },
   ],
-  wage: { perfect: 3, minor: 2, fail: 0, bad: 0 },
+  wage: { perfect: 4, minor: 2, fail: 0, bad: 0 },
   opensAfter: 2,
+  hours: [0, 1],
   building: 'office',
   links: { produce: [{ good: 'parcels', perPerfect: 1 }], use: [{ good: 'tea', bonus: 1, line: 'And thank you for the tea from the tea house!' }] },
   content: { en: EN },

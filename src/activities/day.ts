@@ -73,6 +73,9 @@ function levelNotes(town: Town, p: LangProgress, segments: ActivityKind[]): stri
 }
 
 /** Open the day: the shop plans its customers first (the market needs them), then the town. */
+/** Coins a cup costs on a day the shop serves from the back room (no market: the tea house opened late). */
+export const BACK_ROOM_COST = 1;
+
 export function startTownDay(data: GameData, p: LangProgress, rng: Rng): void {
   difficultyStartDay(data, p); // metrics: today's accumulator (due words, confirmed count)
   startDay(data, p, rng);
@@ -177,7 +180,7 @@ export function serveInTown(data: GameData, p: LangProgress, brew: Brew, rng: Rn
       if (n > 0 && td.stock[ing] !== undefined) td.stock[ing] = Math.max(0, td.stock[ing]! - n);
   }
   if (town) {
-    p.town.money += town.shared.market.income[out.evaluation.outcome];
+    p.town.money += town.shared.market.income[out.evaluation.outcome] - (td?.fromBack ? BACK_ROOM_COST : 0);
     if (outOf.length && out.evaluation.outcome !== 'perfect') {
       const ing = ingredientMarkup(data, outOf[0]);
       const cands = town.text.market.stockReactions

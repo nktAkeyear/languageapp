@@ -24,6 +24,7 @@ import {
   renoOrder,
   renoSpentToday,
   renoTipBonus,
+  upgradePrice,
 } from './engine';
 import { remarkText, type UpgradeId } from './types';
 
@@ -109,22 +110,25 @@ describe('catalogue', () => {
     const rng = makeRng(3);
     playDays(en, p, 3, rng);
     expect(p.day).toBe(4);
-    p.town.money = 100;
+    // English prices are the shared prices × priceScale (the jobs pay wages on top of the tea house)
+    const price = (id: string) => upgradePrice(en, SHARED.renovation!.upgrades.find((u) => u.id === id)!);
+    expect(price('plant')).toBe(40);
+    p.town.money = 200;
     expect(renoOrder(en, p, 'bench')).not.toBeNull(); // not in the catalogue yet
     expect(renoOrder(en, p, 'plant')).toBeNull();
-    expect(p.town.money).toBe(85);
+    expect(p.town.money).toBe(200 - price('plant'));
     expect(renoOrder(en, p, 'plant')).not.toBeNull(); // already ordered
     expect(renoOrder(en, p, 'signboard')).toBeNull();
-    expect(renoSpentToday(p)).toBe(40);
+    expect(renoSpentToday(p)).toBe(price('plant') + price('signboard'));
     expect(renoCancel(en, p, 'signboard')).toBe(true);
-    expect(p.town.money).toBe(85);
-    expect(renoSpentToday(p)).toBe(15);
+    expect(p.town.money).toBe(200 - price('plant'));
+    expect(renoSpentToday(p)).toBe(price('plant'));
     p.town.money = 3;
     expect(renoOrder(en, p, 'signboard')).toBe('お金が足りません');
     expect(catalogue(en, p).find((e) => e.def.id === 'plant')?.status).toBe('ordered');
     playDays(en, p, 1, rng);
     // the ledger counts the purchase apart from the takings
-    expect(p.story.lastLedger?.purchases).toBe(15);
+    expect(p.story.lastLedger?.purchases).toBe(price('plant'));
     startTownDay(en, p, rng);
     expect(owns(p, 'plant')).toBe(true);
     expect(arrivedToday(p)).toEqual(['plant']);

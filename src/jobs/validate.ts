@@ -29,6 +29,7 @@ import { EIKEN_GRADES } from '../core/types';
 import { englishLists, listsLoaded, vocabFor } from '../curriculum/lists';
 import { eikenIndex, EIKEN_KEYS, TOEIC_BANDS, toeicIndex } from '../curriculum/yardsticks';
 import { evaluateTask, postage, solveTask } from './rules';
+import { evalExpr } from './expr';
 import { authoredInstance, rankLevelIndex, selfNamed, specTexts, templateInstance, type GenCtx } from './templates';
 import { jobContentTexts, templateSlotWords, templateTexts } from './vocab';
 import { featuresAt, ruleCtx } from './engine';
@@ -163,18 +164,18 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
     /** Bin labels the player reads on a sort task's cabinet. */
     const binTexts = (spec: TaskSpec): string[] => (spec.arch === 'sort' ? spec.bins.map((b) => jc.sort?.bins.find((x) => x.id === b)?.label ?? '').filter(Boolean) : []);
 
-    const checkInstance = (w: string, inst: TaskInstance, ctx: GenCtx, agg?: { over: Set<string>; worst: number; label: string }) => {
+    const checkInstance = (w: string, inst: TaskInstance, ctx: GenCtx, agg?: { over: Set<string>; worst: number; label: string }, hk: Hooks = h) => {
       instances++;
       for (const txt of inst.texts) h.checkText(w, txt);
-      refsOk(w, inst.spec, jc, h);
-      consistencyOk(w, inst, data, jc, h);
+      refsOk(w, inst.spec, jc, hk);
+      consistencyOk(w, inst, data, jc, hk);
       const rc = ruleCtx(data, jc);
       const ev = evaluateTask(inst.spec, solveTask(inst.spec, rc), rc);
-      if (ev.outcome !== 'perfect') h.err(`${w}: not solvable (${ev.issues.map((i) => i.kind).join(', ')})`);
+      if (ev.outcome !== 'perfect') hk.err(`${w}: not solvable (${ev.issues.map((i) => i.kind).join(', ')})`);
       if (inst.spec.arch === 'trade') {
         const post = inst.spec.post ? (postage(jc.trade?.rates, inst.spec.post.dest, inst.spec.post.kilos) ?? NaN) : 0;
         const total = inst.spec.want.reduce((s, x) => s + x.n * rc.price(x.thing), 0) + post;
-        if (!(inst.spec.pay >= total)) h.err(`${w}: the customer pays ${inst.spec.pay} for ${total}`);
+        if (!(inst.spec.pay >= total)) hk.err(`${w}: the customer pays ${inst.spec.pay} for ${total}`);
       }
       const lv = levelOver([...inst.texts, ...binTexts(inst.spec)], ctx.rank);
       if (agg) {
@@ -214,18 +215,41 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
       taskIds.add(t.id);
       tagsOk(w, t, templateTexts(t), h);
       if (t.arch === 'respond' && 'bank' in t && !jc.qa?.[t.bank]) h.err(`${w}: unknown qa bank ${t.bank}`);
+      if (t.arch === 'check') {
+        // Computed fields: their expressions name only fields listed before them.
+        const before: Record<string, number> = {};
+        for (const f of t.fields) {
+          for (const e of [...(f.calc ? [f.calc] : []), ...(f.alts ?? [])])
+            try {
+              evalExpr(e, before);
+            } catch (x) {
+              h.err(`${w} field ${f.id}: ${(x as Error).message}`);
+            }
+          before[f.id] = 1;
+        }
+      }
       for (const r of job.ranks.filter((x) => x.rank >= t.rank)) {
         let ok = 0;
         const agg = { over: new Set<string>(), worst: 0, label: '' };
+        // One line per template and rank for what its instances share.
+        const said = new Map<string, { n: number; err: boolean }>();
+        const hh: Hooks = { ...h, warn: (m) => note(m, false), err: (m) => note(m, true) };
+        function note(m: string, isErr: boolean) {
+          const k = m.replace(/ «.*?»:/, ':');
+          const x = said.get(k) ?? { n: 0, err: isErr };
+          x.n++;
+          said.set(k, x);
+        }
         for (let seed = 1; seed <= 30; seed++) {
           const ctx = ctxAt(r.rank, seed * 7919 + r.rank);
           const inst = templateInstance(ctx, t);
           if (!inst) continue;
           ok++;
           const wi = `${w} @rank${r.rank} «${inst.say || specTexts(inst.spec)[0] || ''}»`;
-          speakerOk(wi, inst, undefined, data, jc, h);
-          checkInstance(wi, inst, ctx, agg);
+          speakerOk(wi, inst, undefined, data, jc, hh);
+          checkInstance(wi, inst, ctx, agg, hh);
         }
+        for (const [m, x] of said) (x.err ? h.err : h.warn)(`${m}${x.n > 1 ? ` (×${x.n})` : ''}`);
         if (agg.over.size) (agg.worst > LEVEL_SLACK_ERROR ? h.err : h.warn)(`${w} @rank${r.rank}: instances use words above the level (${agg.label}): ${[...agg.over].join(', ')}`);
         if (!ok) h.err(`${w}: cannot be instantiated at rank ${r.rank}`);
       }
@@ -246,19 +270,18 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
 
 /** A speaker who names themselves is a person of the job, and the task's person (their face) is them. */
 function speakerOk(w: string, inst: TaskInstance, declared: string | undefined, data: GameData, jc: JobContent, h: Hooks): void {
+  if (!inst.say && inst.spec.arch === 'respond' && inst.spec.msg.kind !== 'speech') h.warn(`${w}: a ${inst.spec.msg.kind} task with nothing said (add a "handover" line)`);
   if (inst.handover) return;
   const spoken = inst.spec.arch === 'respond' && inst.spec.msg.kind !== 'speech' ? inst.say : [inst.say, ...(inst.spec.arch === 'respond' && inst.spec.msg.kind === 'speech' ? inst.spec.msg.lines : [])].join(' ');
   const self = selfNamed(data, jc, spoken);
   if (!self) return;
   if (!self.id) h.warn(`${w}: the speaker calls themselves "${self.name}", who is not a person of the job (no face for the name)`);
   else if (self.id !== inst.person) h.err(`${w}: the speaker calls themselves "${self.name}" but the person drawn is ${declared ?? inst.person}`);
-  if (!inst.say && inst.spec.arch === 'respond' && inst.spec.msg.kind !== 'speech') h.warn(`${w}: a ${inst.spec.msg.kind} task with nothing said (add a "handover" line)`);
 }
 
 /** The papers of a check task agree except on the field marked wrong. */
 function consistencyOk(w: string, inst: TaskInstance, _data: GameData, _jc: JobContent, h: Hooks): void {
   const s = inst.spec;
-  if (s.arch === 'respond' && s.mode !== 'speech' && !inst.say && !inst.handover && s.msg.kind !== 'speech') h.warn(`${w}: a ${s.msg.kind} task with nothing said (add a "handover" line)`);
   if (s.arch !== 'check') return;
   const target = s.docs[s.target];
   if (!target?.fields) return;

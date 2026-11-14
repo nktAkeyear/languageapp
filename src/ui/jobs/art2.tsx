@@ -171,7 +171,7 @@ export function InnBackdrop({ sky }: { sky: Sky }) {
 
 // ------------------------------------------------------------------------------------- food
 
-export const KITCHEN_FOODS = new Set(['egg', 'bread', 'rice', 'fish', 'chicken', 'potato', 'carrot', 'onion', 'tomato', 'cheese', 'sausage', 'noodles', 'soup', 'milk', 'butter', 'salad', 'plate', 'bowl', 'lunchbox', 'pan', 'pot', 'grill', 'fridge', 'shelf', 'basket']);
+export const KITCHEN_FOODS = new Set(['egg', 'bread', 'rice', 'fish', 'chicken', 'potato', 'carrot', 'onion', 'tomato', 'cheese', 'sausage', 'noodles', 'soup', 'milk', 'butter', 'salad', 'plate', 'bowl', 'lunchbox', 'pan', 'pot', 'grill', 'fridge', 'shelf', 'basket', 'apple', 'juice', 'salt', 'sugar', 'honey', 'mushroom', 'cabbage', 'cup', 'glass', 'tray', 'bag', 'steamer', 'oven', 'roast']);
 
 export function FoodArt({ art, size = 64 }: { art: string; size?: number }) {
   const s = '#3a2a1a';
@@ -278,6 +278,105 @@ export function FoodArt({ art, size = 64 }: { art: string; size?: number }) {
       <g>
         <path d="M10 34 h44 q-4 20 -22 20 q-18 0 -22 -20 Z" fill="#e8e0d0" stroke={s} strokeWidth="2.5" />
         <path d="M14 34 q4 -16 12 -8 q4 -12 12 -2 q8 -10 12 10 Z" fill="#7aa63a" stroke="#4d7a3a" strokeWidth="2" />
+      </g>
+    ),
+    apple: (
+      <g>
+        <path d="M32 22 q-16 -8 -20 8 q-4 18 12 24 q4 2 8 0 q4 2 8 0 q16 -6 12 -24 q-4 -16 -20 -8 Z" fill="#c8322a" stroke={s} strokeWidth="2.5" />
+        <path d="M32 22 q0 -8 4 -12" stroke="#6b4a2a" strokeWidth="2.5" fill="none" />
+        <path d="M36 14 q8 -4 12 2 q-8 4 -12 -2 Z" fill="#4d7a3a" />
+        <ellipse cx="22" cy="32" rx="3" ry="6" fill="#fff" opacity="0.35" />
+      </g>
+    ),
+    juice: (
+      <g>
+        <path d="M18 14 h28 l-4 42 h-20 Z" fill="#fbfaf4" stroke={s} strokeWidth="2.5" opacity="0.9" />
+        <path d="M20 26 h24 l-3 28 h-18 Z" fill="#f2a040" />
+        <path d="M36 14 l8 -8" stroke="#c8322a" strokeWidth="3" />
+      </g>
+    ),
+    salt: (
+      <g>
+        <path d="M20 22 h24 v32 q0 4 -4 4 h-16 q-4 0 -4 -4 Z" fill="#fbfaf4" stroke={s} strokeWidth="2.5" />
+        <path d="M20 22 q0 -12 12 -12 q12 0 12 12 Z" fill="#c0c4c8" stroke={s} strokeWidth="2.5" />
+        {[[28, 16], [32, 13], [36, 16]].map(([x, y], i) => (
+          <circle key={i} cx={x} cy={y} r="1.5" fill={s} />
+        ))}
+        <rect x="22" y="34" width="20" height="10" fill="#5f9ab8" />
+      </g>
+    ),
+    sugar: (
+      <g>
+        <path d="M14 20 h36 l-4 36 h-28 Z" fill="#f2e8d0" stroke={s} strokeWidth="2.5" />
+        <path d="M14 20 q18 -10 36 0" stroke={s} strokeWidth="2" fill="#e8dcc0" />
+        <rect x="22" y="30" width="8" height="8" fill="#fff" stroke={s} strokeWidth="1.5" />
+        <rect x="32" y="36" width="8" height="8" fill="#fff" stroke={s} strokeWidth="1.5" />
+      </g>
+    ),
+    honey: (
+      <g>
+        <path d="M16 24 q0 -4 4 -4 h24 q4 0 4 4 v28 q0 6 -6 6 h-20 q-6 0 -6 -6 Z" fill="#e8a020" stroke={s} strokeWidth="2.5" opacity="0.95" />
+        <rect x="18" y="12" width="28" height="9" rx="2" fill="#8a5a2e" stroke={s} strokeWidth="2" />
+        <path d="M22 36 h20 l-4 8 h-12 Z" fill="#fbf6ea" opacity="0.8" />
+      </g>
+    ),
+    mushroom: (
+      <g>
+        <path d="M10 32 q2 -20 22 -20 q20 0 22 20 Z" fill="#a8764a" stroke={s} strokeWidth="2.5" />
+        <path d="M24 32 h16 l-2 20 q-6 4 -12 0 Z" fill="#f2e8d0" stroke={s} strokeWidth="2.5" />
+        <circle cx="24" cy="22" r="3" fill="#e8d0b0" />
+        <circle cx="38" cy="20" r="2.5" fill="#e8d0b0" />
+      </g>
+    ),
+    cabbage: (
+      <g>
+        <circle cx="32" cy="36" r="20" fill="#9cc860" stroke={s} strokeWidth="2.5" />
+        <path d="M32 18 q-10 10 -4 30 M32 18 q12 10 6 30 M16 30 q10 2 16 16 M48 30 q-10 2 -16 16" stroke="#5f8a3a" strokeWidth="2" fill="none" />
+      </g>
+    ),
+    cup: (
+      <g>
+        <path d="M14 22 h32 v18 q0 14 -16 14 q-16 0 -16 -14 Z" fill="#fbfaf4" stroke={s} strokeWidth="2.5" />
+        <path d="M46 26 q12 0 10 10 q-2 8 -10 6" stroke={s} strokeWidth="2.5" fill="none" />
+        <ellipse cx="32" cy="58" rx="22" ry="3" fill="#e8dcc8" stroke={s} strokeWidth="1.5" />
+      </g>
+    ),
+    glass: <path d="M18 10 h28 l-4 46 h-20 Z" fill="#e8f2f6" stroke={s} strokeWidth="2.5" opacity="0.9" />,
+    tray: (
+      <g>
+        <path d="M4 34 h56 l-6 14 h-44 Z" fill="#a8763e" stroke={s} strokeWidth="2.5" />
+        <rect x="2" y="30" width="60" height="6" rx="3" fill="#c49a5e" stroke={s} strokeWidth="2" />
+      </g>
+    ),
+    bag: (
+      <g>
+        <path d="M14 22 h36 l4 34 h-44 Z" fill="#d9b880" stroke={s} strokeWidth="2.5" />
+        <path d="M22 22 q0 -12 10 -12 q10 0 10 12" stroke={s} strokeWidth="2.5" fill="none" />
+        <path d="M14 30 h36" stroke="#a8885a" strokeWidth="2" />
+      </g>
+    ),
+    steamer: (
+      <g>
+        <rect x="12" y="34" width="40" height="18" rx="3" fill="#c0c4c8" stroke="#5a5a62" strokeWidth="2.5" />
+        <rect x="10" y="20" width="44" height="16" rx="3" fill="#d9b880" stroke={s} strokeWidth="2" />
+        <path d="M14 18 q18 -10 36 0" fill="#e8d4a0" stroke={s} strokeWidth="2" />
+        <path d="M24 12 q3 -5 0 -9 M34 10 q3 -5 0 -9" stroke="#b8c4cc" strokeWidth="2" fill="none" />
+      </g>
+    ),
+    oven: (
+      <g>
+        <rect x="8" y="10" width="48" height="46" rx="3" fill="#d8d0c0" stroke={s} strokeWidth="2.5" />
+        <rect x="14" y="22" width="36" height="26" rx="2" fill="#3a2a1a" />
+        <rect x="18" y="26" width="28" height="18" rx="2" fill="#e8742a" opacity="0.85" />
+        <circle cx="18" cy="16" r="2.5" fill={s} />
+        <circle cx="28" cy="16" r="2.5" fill={s} />
+      </g>
+    ),
+    roast: (
+      <g>
+        <ellipse cx="32" cy="44" rx="26" ry="10" fill="#5a5a62" stroke={s} strokeWidth="2.5" />
+        <path d="M14 40 q2 -16 18 -16 q16 0 18 16 Z" fill="#b8642a" stroke={s} strokeWidth="2.5" />
+        <path d="M24 30 q4 -2 8 0 M34 28 q4 -2 8 2" stroke="#e8a060" strokeWidth="2" fill="none" />
       </g>
     ),
     plate: <ellipse cx="32" cy="36" rx="26" ry="12" fill="#fbfaf4" stroke={s} strokeWidth="2.5" />,

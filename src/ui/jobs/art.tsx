@@ -319,6 +319,21 @@ export function ThingArt({ art, size = 64 }: { art: string; size?: number }) {
         <rect x="44" y="20" width="10" height="12" fill="#b8452f" />
       </g>
     ),
+    pen: (
+      <g>
+        <path d="M10 50 L46 14 L54 22 L18 58 Z" fill="#3d6c9e" stroke="#2a2a30" strokeWidth="2.5" />
+        <path d="M10 50 L18 58 L6 62 Z" fill="#e8d4a0" stroke="#2a2a30" strokeWidth="2" />
+        <path d="M42 18 L50 26" stroke="#e8c860" strokeWidth="3" />
+      </g>
+    ),
+    map: (
+      <g>
+        <path d="M6 16 L22 10 L42 16 L58 10 V48 L42 54 L22 48 L6 54 Z" fill="#f6e6b8" stroke="#8a7350" strokeWidth="2.5" />
+        <path d="M22 10 V48 M42 16 V54" stroke="#c8b08a" strokeWidth="2" />
+        <path d="M10 40 q8 -10 18 -4 q10 6 20 -8" stroke="#5f9ab8" strokeWidth="3" fill="none" />
+        <circle cx="34" cy="26" r="3" fill="#c8322a" />
+      </g>
+    ),
   };
   return (
     <svg viewBox="0 0 64 64" width={size} height={size} className="thing-art" aria-hidden>

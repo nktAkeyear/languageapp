@@ -21,6 +21,8 @@ import { useGame } from '../useGame';
 import { useReducedMotion } from '../uiState';
 import { lineMs, useTalkBurst } from '../useTalk';
 import { JobBackdrop } from './art';
+import { JobAmbient } from './ambient';
+import { Raster } from '../art/Raster';
 import { LevelTag, RankProgress } from './bits';
 import { SortBench, TradeBench } from './benches';
 import { CheckDesk, MakeBench, RespondDesk } from './benches2';
@@ -96,7 +98,7 @@ export function JobScene({ onSettings }: { onSettings: () => void }) {
     ) : null;
   if (mobile)
     return (
-      <div className={`m-job job-${job.id}`} data-testid="job-scene" data-job={job.id} data-phase={shift.phase}>
+      <div className={`m-job job-${job.id} ${task ? `arch-${task.spec.arch}` : ''}`} data-testid="job-scene" data-job={job.id} data-phase={shift.phase}>
         <div className="m-job-back">
           <JobBackdrop job={job.id} sky={sky} />
         </div>
@@ -112,9 +114,13 @@ export function JobScene({ onSettings }: { onSettings: () => void }) {
     );
   return (
     <div className="scene-viewport" ref={ref}>
-      <div className={`stage job-stage job-${job.id}`} style={{ width: 1600, height: 1000, transform: `translate(-50%, -50%) scale(${scale})` }} data-testid="job-scene" data-job={job.id} data-phase={shift.phase}>
+      <div className={`stage job-stage job-${job.id} ${task ? `arch-${task.spec.arch}` : ''}`} style={{ width: 1600, height: 1000, transform: `translate(-50%, -50%) scale(${scale})` }} data-testid="job-scene" data-job={job.id} data-phase={shift.phase}>
         <div className="js-backdrop">
-          <JobBackdrop job={job.id} sky={sky} />
+          {/* the interior never changes during a shift: shown as a pre-rasterised image under the moving life */}
+          <Raster className="job-backdrop" label={`job-${job.id}`}>
+            <JobBackdrop job={job.id} sky={sky} />
+          </Raster>
+          <JobAmbient job={job.id} />
         </div>
         {head}
         {body}

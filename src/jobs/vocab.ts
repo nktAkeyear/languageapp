@@ -45,7 +45,7 @@ export function templateTexts(t: TaskTemplate): string[] {
   const out: string[] = t.say ? [t.say] : [];
   if (t.arch === 'sort') out.push(...t.patterns.map((p) => p.text));
   if (t.arch === 'check') {
-    out.push(...t.fields.flatMap((f) => [f.label, ...(f.values ?? []), ...(f.fmt ? [f.fmt] : []), ...(f.names ?? []).filter(Boolean)]));
+    out.push(...t.fields.flatMap((f) => [f.label, ...(f.values ?? []), ...(f.fmt ? [f.fmt.replace(/\{n,?\}/g, ' ')] : []), ...(f.names ?? []).filter(Boolean)]));
     for (const d of t.docs) out.push(...(d.title ? [d.title] : []), ...(d.lines ?? []));
   }
   if (t.arch === 'respond' && 'want' in t) {
@@ -69,10 +69,10 @@ export function templateSlotWords(jc: JobContent, t: TaskTemplate): string[] {
   const out = new Set<string>();
   for (const sl of Object.values(t.slots)) {
     if (sl.kind === 'qty' || sl.kind === 'thing' || sl.kind === 'forbid' || sl.kind === 'dislike')
-      for (const th of jc.things) if (!sl.tags?.length || sl.tags.some((g) => th.tags?.includes(g))) out.add(th.word);
+      for (const th of jc.things) if (!sl.tags?.length || sl.tags.some((g) => [...(th.tags ?? []), th.mass ? 'mass' : 'count'].includes(g))) out.add(th.word);
     if (sl.kind === 'word') for (const id of sl.ids ?? []) out.add(id);
-    if (sl.kind === 'method') for (const m of jc.make?.methods ?? []) out.add(m.word);
-    if (sl.kind === 'vessel') for (const v of jc.make?.vessels ?? []) out.add(v.word);
+    if (sl.kind === 'method') for (const m of jc.make?.methods ?? []) if (!sl.only || sl.only.includes(m.id)) out.add(m.word);
+    if (sl.kind === 'vessel') for (const v of jc.make?.vessels ?? []) if (!sl.only || sl.only.includes(v.id)) out.add(v.word);
   }
   return [...out];
 }
@@ -89,8 +89,7 @@ export function jobVocab(data: GameData, job: JobDef): Set<string> {
   if (hit) return hit;
   const s = new Set<string>();
   if (job.legacy) {
-    const own = new Set<string>();
-    for (const j of data.content.jobs ?? []) for (const e of j.content[data.lang]?.lexicon ?? []) own.add(e.id);
+    const own = new Set<string>(Object.keys(data.content.jobRegistry?.owner ?? {}));
     for (const e of data.content.lexicon) if (!own.has(e.id)) s.add(e.id);
   } else {
     const jc = job.content[data.lang];

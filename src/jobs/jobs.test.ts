@@ -23,6 +23,8 @@ import {
   teaToTown,
   canGoToTown,
   featuresAt,
+  SPINE_SEEN,
+  spineSeen,
 } from './engine';
 import { templateInstance } from './templates';
 import { jobVocab, wordJobs } from './vocab';
@@ -169,22 +171,40 @@ describe('job day', () => {
     expect(jobDay(p)!.part).toBe(2);
     expect(jobView(p)).toBe('hub');
   });
-  it('ranks: good tasks + confirmed words of the job; rewards paid once', () => {
+  it('ranks: good tasks + confirmed words + most of the rank’s authored spine met; rewards paid once', () => {
     const data = en();
     const p = newProgress('en');
     const post = jobById(data, 'post')!;
+    const next = post.ranks[1];
     const jp = jobProgress(p, 'post');
-    jp.good = 8;
+    jp.good = next.need.good;
     expect(checkRankUp(data, p, post)).toBeNull(); // words missing
     let n = 0;
     for (const id of jobVocab(data, post)) {
-      if (n++ >= 12) break;
+      if (n++ >= next.need.words) break;
       p.words[id] = { seen: 3, correct: 1, wrong: 0, firstDay: 1, lastDay: 1, interval: 1, ease: 2.3, due: 2, contexts: [], memo: '', confirmed: true };
     }
+    // thresholds met, but the rank-1 spine has not been met yet: no rank-up while its own material is unseen
+    expect(checkRankUp(data, p, post)).toBeNull();
+    const spine = post.content.en!.tasks.filter((t) => t.rank === 1);
+    expect(spine.length).toBeGreaterThan(10);
+    for (const t of spine.slice(0, Math.ceil(spine.length * SPINE_SEEN) - 1)) jp.authored[t.id] = { attempts: 1, perfect: false };
+    expect(spineSeen(data, p, post, 1).share).toBeLessThan(SPINE_SEEN);
+    expect(checkRankUp(data, p, post)).toBeNull();
+    jp.authored[spine[spine.length - 1].id] = { attempts: 1, perfect: true };
     const money = p.town.money;
     expect(checkRankUp(data, p, post)).toBe(2);
-    expect(p.town.money).toBe(money + 10);
+    expect(p.town.money).toBe(money + (next.reward?.coins ?? 0));
     expect(checkRankUp(data, p, post)).toBeNull();
+  });
+  it('every job has the same ladder; ranks without new material say so', () => {
+    const jobs = CONTENT.en.jobs!.filter((j) => !j.legacy);
+    expect(new Set(jobs.map((j) => j.ranks.length))).toEqual(new Set([5]));
+    for (const j of jobs)
+      for (const r of j.ranks) {
+        const own = j.content.en!.tasks.some((t) => t.rank === r.rank) || j.content.en!.templates.some((t) => t.rank === r.rank);
+        if (!own) expect(r.noteJa).toMatch(/準備中/);
+      }
   });
   it('links: the kitchen bakes bread the inn uses', () => {
     const data = en();
@@ -193,6 +213,9 @@ describe('job day', () => {
     playJobShift(data, p, 'kitchen', 1, makeRng(2), makeRng(3));
     const bread = p.jobs!.goods.bread ?? 0;
     expect(bread).toBeGreaterThan(0);
+    // the inn's desk is open in the morning and the evening, not at noon
+    expect(chooseJob(data, p, 'inn', makeRng(1))).toMatch(/閉まって/);
+    playJobShift(data, p, 'post', 1, makeRng(6), makeRng(7));
     const r = playJobShift(data, p, 'inn', 1, makeRng(4), makeRng(5))!;
     expect(p.jobs!.goods.bread ?? 0).toBeLessThan(bread);
     expect(r.texts.some((t) => t.includes('bread for breakfast'))).toBe(true);
