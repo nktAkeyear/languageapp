@@ -22,7 +22,7 @@
  * (src/activities/day.ts), planKnobs (shop/dayplan.ts), stageDay (shop/engine.ts + day.ts),
  * difficultyOnVerify (core/verification.ts), storyCatchingUp (story/engine.ts).
  */
-import { stageDef, type GameData } from './gamedata';
+import { ingredientWordId, stageDef, type GameData } from './gamedata';
 import { examLabel, levelReport, REACHED } from './levels';
 import { accServe, newDayAcc, pushHistory, windowStats, type DayAcc, type DayMetrics } from './metrics';
 import type { LangProgress } from './save';
@@ -701,15 +701,33 @@ export function revertSeededWord(data: GameData, p: LangProgress, id: string): b
   return ok;
 }
 
-function orderKnown(data: GameData, p: LangProgress, text: string): boolean {
-  return tokenIds(data.tokens(text)).every((id) => isKnown(p.words[id]));
+/**
+ * Words written on the shelf and the tools (ingredient labels, hot / cold, the method words): an early
+ * order whose only unknown words are these is answered by reading a label ("Mint." → the jar labelled
+ * mint), so a level start skips it like an order of known words (the words still come in later orders).
+ */
+function labelWords(data: GameData): Set<string> {
+  const s = new Set<string>();
+  for (const i of data.shared.ingredients) {
+    const id = ingredientWordId(data, i.id);
+    if (id) s.add(id);
+  }
+  for (const id of Object.values(data.content.temperatureWords)) s.add(id);
+  for (const id of Object.values(data.content.methodWords)) s.add(id);
+  return s;
 }
 
-function reopenSeededOrders(data: GameData, p: LangProgress): number {
+function orderKnown(data: GameData, p: LangProgress, text: string, labels: Set<string> = labelWords(data)): boolean {
+  return tokenIds(data.tokens(text)).every((id) => isKnown(p.words[id]) || labels.has(id));
+}
+
+function reopenSeededOrders(data: GameData, p: LangProgress, level = p.difficulty?.start ?? 0): number {
   let n = 0;
+  // Label words count as read only while a start level is set (back at ゼロから every order comes again).
+  const labels = level > 0 ? labelWords(data) : new Set<string>();
   for (const o of data.content.orders) {
     const log = p.orders[o.id];
-    if (log?.seeded && !orderKnown(data, p, o.text)) {
+    if (log?.seeded && !orderKnown(data, p, o.text, labels)) {
       delete p.orders[o.id];
       n++;
     }
@@ -784,11 +802,12 @@ export function applyStartLevel(data: GameData, p: LangProgress, level: number):
   // 3. 検証ページ are never sealed by the start level: the player confirms assumed words in play
   //    (a page opens once its words have been met in play, see verification.ts pageStatus).
   // 4. curriculum orders before the start stage made only of known words are done
-  sum.ordersReopened = reopenSeededOrders(data, p);
+  sum.ordersReopened = reopenSeededOrders(data, p, level);
   const startStage = startStageFor(data, level);
+  const labels = labelWords(data);
   for (const o of data.content.orders) {
     if (o.stage >= startStage || p.orders[o.id]?.perfect) continue;
-    if (orderKnown(data, p, o.text)) {
+    if (orderKnown(data, p, o.text, labels)) {
       p.orders[o.id] = { attempts: p.orders[o.id]?.attempts ?? 0, perfect: true, seeded: true };
       sum.ordersSkipped++;
     }

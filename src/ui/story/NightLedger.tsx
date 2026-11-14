@@ -243,6 +243,7 @@ export function LedgerBook({ ledger, act, onClose }: { ledger: Ledger; act?: Act
                 <span key={id} className="lg-word">
                   <span lang={lang}>{e?.text}</span>
                   <span className="lg-gloss">{shortGloss(e?.gloss)}</span>
+                  {g.progress?.words[id]?.guess ? <span className="lg-own">（推：{g.progress.words[id]!.guess}）</span> : null}
                 </span>
               );
             })}

@@ -660,6 +660,10 @@ textarea {
   justify-content: space-between;
   align-items: center;
 }
+.settings-head .btn-ghost {
+  min-width: 44px;
+  min-height: 44px;
+}
 .settings h3 {
   font-size: 1em;
 }

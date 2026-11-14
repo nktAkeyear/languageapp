@@ -966,8 +966,9 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
   notebook, word card), the notebook lists them as 「知っているはず」 with an empty own-meaning field, and they are
   confirmed like any word — on their 検証ページ, which opens once the page's words have been met in play
   (`playSeen`: the level's 6 seeded encounters do not count) — nothing is sealed by the start level. Starting
-  higher marks earlier curriculum orders made only of known words as done (orders with unknown words — shelf
-  names, higher-level words — still come), and fast-forwards the shop to the level's stage (`START_STAGE`: zh 6 /
+  higher marks earlier curriculum orders made only of known words — or of words written on the shelf and the
+  tools (ingredient labels, hot / cold, the methods: "Mint." is answered by reading the jar) — as done (orders
+  with other unknown words — units like slice / cube, higher-level words — still come), and fast-forwards the shop to the level's stage (`START_STAGE`: zh 6 /
   11 / 16, en 7 / 13 — calibrated on the curriculum's structures, since level tags are spread over all stages),
   with its reputation, a stage-clock offset (`stageDay` = day + offset gates stages and town unlocks), market /
   delivery experience and money. Each assumed word can be taken back (学び直す) and is then not re-seeded. The

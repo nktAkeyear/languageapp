@@ -385,3 +385,10 @@
   margin-top: 2px;
   overflow-wrap: anywhere;
 }
+
+/* the night's ledger: the player's guess next to a word confirmed today */
+.lg-own {
+  font-size: 0.8em;
+  color: #4f5578;
+  margin-left: 2px;
+}

@@ -264,9 +264,11 @@ describe.each(LANGS)('starting level (%s)', (lang) => {
     expect(pageStatus(data, p, page)).toBe('available');
     expect(submitVerification(data, p, page.id, Object.fromEntries(ws.map((e) => [e.id, e.id])))).toBe(true);
     for (const e of ws) expect(p.words[e.id].confirmed).toBe(true);
-    // Early orders with unknown words (shelf names, higher-level words) still have to be served.
+    // Early orders with unknown words (higher-level words, units) still have to be served; an order whose
+    // only unknown words are written on the shelf ("Mint." → the jar labelled mint) is skipped.
     const early = data.content.orders.filter((o) => o.stage < stage);
     expect(early.some((o) => !p.orders[o.id]?.perfect)).toBe(true);
+    if (data.content.orders.some((o) => o.id === 'o1_mint')) expect(p.orders.o1_mint).toMatchObject({ perfect: true, seeded: true });
     // Town experience follows the fast-forward.
     if (stage >= 9) expect(p.town.marketRuns).toBeGreaterThan(0);
   });
