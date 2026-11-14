@@ -18,7 +18,7 @@
 3|500|if (conditional: real, type 1)|条件文(現実的)|if 節では未来のことも現在形を使う。|If + S + 現在形, S + will + V|If it rains tomorrow, we will stay home.=>明日雨なら家にいます。||If it will rain
 3|500|conjunctions: when / while / before / after|時の接続詞|時を表す節の中では未来のことも現在形。|when + S + V(現在);;before/after + S + V|When I arrive, I will call you.=>着いたら電話します。||When I will arrive
 3|600|prepositions vs conjunctions|前置詞と接続詞(during / while 等)|前置詞のあとは名詞、接続詞のあとは文(S + V)。|during + 名詞;;while + S + V|I read during the trip.=>旅行中に読書しました。;;I read while I was traveling.=>旅行中に読書しました。||during I was traveling / while the trip
-3|500|since / for / ago / during|時の前置詞 since / for / during|for + 期間、since + 起点、during + 特定の期間。|for two hours;;since 2020;;during summer|I have worked here since April.=>4月からここで働いています。||I worked here since April.
+3|500|since / for / ago / during|時の前置詞 since / for / during|for + 期間、since + 起点、ago は現在から数えた過去の時点(two years ago)、during + 特定の期間。|for two hours;;since 2020;;during summer|I have worked here since April.=>4月からここで働いています。||I worked here since April.
 3|600|for / to / of (preposition + gerund)|前置詞 + 動名詞|前置詞のあとの動詞は -ing 形。|be good at -ing;;be interested in -ing;;thank you for -ing|Thank you for helping me.=>手伝ってくれてありがとう。||Thank you for help me.
 3|600|used to / would (past habit)|used to(以前は…した)|過去の習慣・状態を表す。現在とのちがいを含む。|S + used to + V|I used to play tennis.=>以前はテニスをしていました。|be used to -ing|I used to playing tennis.
 3|600|be used to -ing|be used to -ing(…に慣れている)|used to + V との区別に注意。|be used to + -ing|I'm used to getting up early.=>早起きに慣れています。|used to + V
@@ -28,7 +28,7 @@
 3|500|few / a few / little / a little|few / a few / little / a little|数えられる名詞は few、数えられない名詞は little。a がつくと肯定。|a few + 複数;;a little + 不可算|I have a little money.=>少しお金があります。||a few water
 3|400|many / much / a lot of|many / much / a lot of|数は many、量は much。肯定文では a lot of が自然。|many + 複数;;much + 不可算;;a lot of|We have a lot of fish.=>魚がたくさんあります。||I have much friends.
 3|500|enough / too / very|enough / too / very|enough は形容詞の後ろ。|形容詞 + enough + to V|He is old enough to drive.=>彼は運転できる年齢です。||enough old
-3|500|as soon as / until / by|as soon as / until / by(時)|until は継続、by は期限。|wait until ...;;by + 時刻|Please finish by five.=>5時までに終えてください。;;I'll wait until five.=>5時まで待ちます。||finish until five
+3|500|as soon as / until / by|as soon as / until / by(時)|as soon as は「…するとすぐに」、until は継続(「…まで」)、by は期限(「…までに」)。|wait until ...;;by + 時刻|Please finish by five.=>5時までに終えてください。;;I'll wait until five.=>5時まで待ちます。||finish until five
 3|600|whether / if (indirect question)|whether / if(…かどうか)|…かどうか を表す。|I don't know whether/if + S + V|I don't know whether he will come.=>彼が来るかどうかわかりません。
 3|500|both A and B / either A or B|相関接続詞(基本)|both A and B は複数扱い、either A or B は動詞を近い方に合わせる。|both A and B;;either A or B;;neither A nor B|Both my brother and I like fish.=>弟も私も魚が好きです。
 pre2|600|past perfect|過去完了|had + p.p. で過去のある時点より前の動作を表す。|S + had + p.p.|The train had already left when I arrived.=>着いたときには電車はもう出ていました。|過去形|The train already left when I arrived.

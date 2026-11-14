@@ -2,55 +2,55 @@
 pre1|860|phrasal_verb|back out|(約束・計画から)手を引く|The buyer backed out at the last minute.|買い手は土壇場で手を引きました。|reporting|sales
 pre1|860|phrasal_verb|bring down|下げる・倒す|The new competitor brought down our prices.|新しい競合相手のせいで私たちの価格は下がりました。|cause/effect|sales
 pre1|-|phrasal_verb|brush off|(意見などを)はねつける・払いのける|He brushed off my advice and went ahead.|彼は私の忠告を聞き流して進めました。|description|society
-pre1|730|phrasal_verb|build up|築き上げる・増える|She built up the business from nothing.|彼女は無一文から事業を築き上げました。|narration|sales
+pre1|600|phrasal_verb|build up|築き上げる・増える|She built up the business from nothing.|彼女は無一文から事業を築き上げました。|narration|sales
 pre1|860|phrasal_verb|carry over|繰り越す|Unused vacation days can be carried over to next year.|使わなかった休暇は翌年に繰り越せます。|instruction|hr
-pre1|730|phrasal_verb|catch on|流行する・理解する|The new drink caught on quickly with young people.|その新しい飲み物は若者にすぐ人気が出ました。|reporting|food
-pre1|730|phrasal_verb|chip in|(お金を)出し合う・協力する|Everyone chipped in to buy her a gift.|みんなでお金を出し合って彼女に贈り物を買いました。|description|money
+pre1|600|phrasal_verb|catch on|流行する・理解する|The new drink caught on quickly with young people.|その新しい飲み物は若者にすぐ人気が出ました。|reporting|food
+pre1|600|phrasal_verb|chip in|(お金を)出し合う・協力する|Everyone chipped in to buy her a gift.|みんなでお金を出し合って彼女に贈り物を買いました。|description|money
 pre1|860|phrasal_verb|close down|閉鎖する・廃業する|The old cannery closed down last year.|その古い缶詰工場は昨年閉鎖されました。|reporting|sea
 pre1|860|phrasal_verb|come about|起こる|How did this problem come about?|この問題はどうして起きたのですか。|inquiry|abstract
 pre1|860|phrasal_verb|come down to|結局…になる|It all comes down to price.|結局は値段しだいです。|summarizing|sales
 pre1|600|phrasal_verb|cross out|線を引いて消す|Please cross out any mistakes with a single line.|間違いは1本線で消してください。|instruction|office
 pre1|860|phrasal_verb|cut short|途中で切り上げる|We had to cut the meeting short because of the storm.|嵐のため会議を途中で切り上げなければなりませんでした。|narration|meetings
 pre1|860|phrasal_verb|do away with|廃止する|The town did away with the old parking fee.|町は古い駐車料金を廃止しました。|reporting|society
-pre1|730|phrasal_verb|draw up|作成する|The lawyer drew up a new agreement.|弁護士が新しい合意書を作成しました。|reporting|law
+pre1|600|phrasal_verb|draw up|作成する|The lawyer drew up a new agreement.|弁護士が新しい合意書を作成しました。|reporting|law
 pre1|860|phrasal_verb|face up to|直視する・受け入れる|You have to face up to the facts.|事実を直視しなければなりません。|suggestion|abstract
 pre1|-|phrasal_verb|fall for|ほれ込む・だまされる|Don't fall for that trick.|その手に引っかからないで。|warning|society
-pre1|730|phrasal_verb|fit in|なじむ・都合をつける|Can you fit me in this afternoon?|今日の午後、私の予定を入れていただけますか。|request|office
+pre1|600|phrasal_verb|fit in|なじむ・都合をつける|Can you fit me in this afternoon?|今日の午後、私の予定を入れていただけますか。|request|office
 pre1|860|phrasal_verb|flesh out|肉付けする・詳しくする|Let's flesh out the plan before we show it to the boss.|上司に見せる前に計画を具体的に詰めましょう。|suggestion|meetings
 pre1|860|phrasal_verb|follow through|最後までやり遂げる|He always follows through on his promises.|彼はいつも約束を最後まで守ります。|praise|hr
 pre1|860|phrasal_verb|get away with|(悪事を)うまく逃れる|He got away with parking there for a month.|彼はそこに1か月駐車して、とがめられませんでした。|narration|law
-pre1|730|phrasal_verb|get back to|折り返し連絡する|I'll get back to you by noon.|昼までに折り返し連絡します。|offer|office
-pre1|730|phrasal_verb|get on with|(仕事などを)続ける・うまくやる|Let's get on with the work.|作業を続けましょう。|suggestion|office
+pre1|500|phrasal_verb|get back to|折り返し連絡する|I'll get back to you after lunch.|昼食のあとで折り返し連絡します。|offer|office
+pre1|600|phrasal_verb|get on with|(仕事などを)続ける・うまくやる|Let's get on with the work.|作業を続けましょう。|suggestion|office
 pre1|600|phrasal_verb|give away|ただで配る・漏らす|The shop gave away free samples.|その店は無料サンプルを配りました。|description|shopping
 pre1|860|phrasal_verb|give up on|…を見限る|Don't give up on your dream.|夢をあきらめないでください。|suggestion|emotion
 pre1|860|phrasal_verb|go about|(仕事に)取りかかる|How should we go about this task?|この仕事にどう取りかかればいいでしょうか。|inquiry|office
 pre1|990|phrasal_verb|go through with|(計画などを)やり通す|They went through with the plan despite the risk.|彼らはリスクがあってもその計画をやり遂げました。|narration|meetings
-pre1|730|phrasal_verb|hand over|引き渡す|Please hand over the keys at the front desk.|フロントで鍵を渡してください。|instruction|hotel
+pre1|500|phrasal_verb|hand over|引き渡す|Please hand over the keys at the front desk.|フロントで鍵を渡してください。|instruction|hotel
 pre1|860|phrasal_verb|hold off|延期する・見合わせる|Let's hold off on the decision until Monday.|決定は月曜日まで見合わせましょう。|suggestion|meetings
 pre1|860|phrasal_verb|hold on to|しっかりつかむ・手放さない|Hold on to your receipt in case you need a refund.|返金が必要な場合に備えてレシートを保管してください。|instruction|shopping
-pre1|730|phrasal_verb|jot down|書き留める|Let me jot down your phone number.|電話番号を書き留めさせてください。|offer|office
-pre1|730|phrasal_verb|kick off|始める|We'll kick off the meeting at ten.|会議は10時に始めます。|announcement|meetings
+pre1|500|phrasal_verb|jot down|書き留める|Let me jot down your phone number.|電話番号を書き留めさせてください。|offer|office
+pre1|600|phrasal_verb|kick off|始める|We'll kick off the meeting at ten.|会議は10時に始めます。|announcement|meetings
 pre1|860|phrasal_verb|lead to|…につながる|Poor sleep can lead to health problems.|睡眠不足は健康問題につながることがあります。|cause/effect|health
 pre1|860|phrasal_verb|make up for|埋め合わせをする|I'll work extra hours to make up for lost time.|失った時間を取り戻すため残業します。|offer|hr
 pre1|-|phrasal_verb|mess up|台無しにする|I messed up the order. I'm sorry.|注文を間違えてしまいました。すみません。|apology|food
 pre1|860|phrasal_verb|miss out on|(機会を)逃す|Don't miss out on this special offer.|この特別なお得情報をお見逃しなく。|suggestion|sales
-pre1|730|phrasal_verb|open up|開店する・打ち明ける|A new bakery will open up next to the station.|駅の隣に新しいパン屋が開店します。|announcement|food
-pre1|730|phrasal_verb|pass on|伝える・譲る|Please pass on my thanks to your mother.|お母様によろしくお礼をお伝えください。|request|family
+pre1|600|phrasal_verb|open up|開店する・打ち明ける|A new bakery will open up next to the station.|駅の隣に新しいパン屋が開店します。|announcement|food
+pre1|600|phrasal_verb|pass on|伝える・譲る|Please pass on my thanks to your mother.|お母様によろしくお礼をお伝えください。|request|family
 pre1|-|phrasal_verb|pass away|亡くなる|His grandfather passed away last winter.|彼の祖父は去年の冬に亡くなりました。|narration|family
 pre1|860|phrasal_verb|pick up on|(細かいことに)気づく|She picked up on the change in his voice.|彼女は彼の声の変化に気づきました。|description|emotion
 pre1|860|phrasal_verb|play down|軽く扱う・控えめに言う|The mayor played down the risk of flooding.|市長は洪水の危険を軽く扱いました。|reporting|society
 pre1|860|phrasal_verb|pull through|(危機を)乗り越える|The patient pulled through after the surgery.|その患者は手術のあと持ち直しました。|narration|health
-pre1|730|phrasal_verb|push back|延期する・押し返す|Can we push back the meeting to Thursday?|会議を木曜日に延ばせますか。|request|office
+pre1|600|phrasal_verb|push back|延期する・押し返す|Can we push back the meeting to Thursday?|会議を木曜日に延ばせますか。|request|office
 pre1|860|phrasal_verb|put across|(考えを)伝える|He is good at putting his ideas across.|彼は考えを伝えるのが上手です。|praise|meetings
 pre1|860|phrasal_verb|run down|衰える・けなす・(車で)ひく|The old factory has run down over the years.|その古い工場は年月とともに荒廃しました。|description|society
 pre1|860|phrasal_verb|set back|遅らせる|The rain set back the harvest by a week.|雨で収穫が1週間遅れました。|cause/effect|farming
 pre1|860|phrasal_verb|settle for|(妥協して)…で満足する|We had to settle for a smaller room.|私たちは小さい部屋で我慢しなければなりませんでした。|description|hotel
 pre1|990|phrasal_verb|sign off on|承認する|The director signed off on the budget.|部長が予算を承認しました。|reporting|meetings
-pre1|730|phrasal_verb|slip up|うっかり間違える|I slipped up and sent the wrong file.|うっかり間違ったファイルを送ってしまいました。|apology|office
-pre1|730|phrasal_verb|stand up for|擁護する|She stood up for her coworker.|彼女は同僚をかばいました。|praise|office
-pre1|730|phrasal_verb|stick to|守る・固執する|Let's stick to the schedule.|予定を守りましょう。|suggestion|office
-pre1|730|phrasal_verb|stop by|立ち寄る|Please stop by our shop anytime.|いつでも当店にお立ち寄りください。|invitation|shopping
-pre1|730|phrasal_verb|take down|書き留める・取り壊す|I'll take down your order.|ご注文を書き留めます。|offer|food
+pre1|600|phrasal_verb|slip up|うっかり間違える|I slipped up and sent the wrong file.|うっかり間違ったファイルを送ってしまいました。|apology|office
+pre1|600|phrasal_verb|stand up for|擁護する|She stood up for her coworker.|彼女は同僚をかばいました。|praise|office
+pre1|600|phrasal_verb|stick to|守る・固執する|Let's stick to the schedule.|予定を守りましょう。|suggestion|office
+pre1|500|phrasal_verb|stop by|立ち寄る|Please stop by our shop anytime.|いつでも当店にお立ち寄りください。|invitation|shopping
+pre1|500|phrasal_verb|take down|書き留める・取り壊す|I'll take down your order.|ご注文を書き留めます。|offer|food
 pre1|860|phrasal_verb|tear down|取り壊す|The old market will be torn down next year.|その古い市場は来年取り壊されます。|reporting|society
 pre1|730|phrasal_verb|tie up|縛る・(資金などを)拘束する|The big order tied up all our staff.|大口の注文で全スタッフが手一杯になりました。|description|sales
 pre1|860|phrasal_verb|tone down|和らげる|Please tone down the music a little.|音楽を少し小さくしてください。|request|arts
@@ -82,7 +82,7 @@ pre1|860|idiom|on the same page|認識が一致して|Let's make sure we're all 
 pre1|860|idiom|once and for all|きっぱりと|Let's settle this once and for all.|これをきっぱり決着させましょう。|emphasis|society
 pre1|860|idiom|pay through the nose|法外な金を払う|We paid through the nose for the hotel.|そのホテルには法外なお金を払いました。|complaint|hotel
 pre1|860|idiom|put one's foot down|断固として反対する|My mother put her foot down about the late nights.|母は夜更かしに断固反対しました。|description|family
-pre1|730|idiom|rain cats and dogs|土砂降りになる|It's raining cats and dogs outside.|外は土砂降りです。|description|weather
+pre1|600|idiom|rain cats and dogs|土砂降りになる|It's raining cats and dogs outside.|外は土砂降りです。|description|weather
 pre1|860|idiom|ring a bell|聞き覚えがある|That name rings a bell.|その名前は聞き覚えがあります。|clarification|society
 pre1|860|idiom|run out of steam|勢いを失う|The project ran out of steam last spring.|そのプロジェクトは去年の春に勢いを失いました。|description|office
 pre1|860|idiom|see eye to eye|意見が一致する|We don't always see eye to eye.|私たちはいつも意見が合うわけではありません。|disagreement|society
@@ -98,13 +98,13 @@ pre1|-|idiom|better late than never|遅くてもしないよりまし|Better lat
 pre1|860|idiom|by the book|規則どおりに|The inspector does everything by the book.|検査官はすべて規則どおりに行います。|description|law
 pre1|860|idiom|cross that bridge when we come to it|そのときになったら考える|Let's cross that bridge when we come to it.|その時になったら考えましょう。|suggestion|meetings
 pre1|860|idiom|get the ball rolling|始動させる|Let's get the ball rolling on the project.|プロジェクトを始動させましょう。|suggestion|meetings
-pre1|730|idiom|give it a shot|試してみる|I've never fished before, but I'll give it a shot.|釣りはしたことがないけど、やってみます。|agreement|sea
+pre1|600|idiom|give it a shot|試してみる|I've never fished before, but I'll give it a shot.|釣りはしたことがないけど、やってみます。|agreement|sea
 pre1|860|idiom|go all out|全力を尽くす|We went all out for the festival.|私たちはお祭りに全力を尽くしました。|description|arts
-pre1|730|idiom|lose one's temper|かっとなる|He lost his temper and shouted.|彼はかっとなって叫びました。|narration|emotion
+pre1|600|idiom|lose one's temper|かっとなる|He lost his temper and shouted.|彼はかっとなって叫びました。|narration|emotion
 pre1|860|idiom|make ends meet|生活をやりくりする|It's hard to make ends meet on this pay.|この給料でやりくりするのは大変です。|complaint|money
-pre1|730|idiom|on the go|忙しく動き回って|I've been on the go all day.|一日中忙しく動き回っていました。|description|office
+pre1|600|idiom|on the go|忙しく動き回って|I've been on the go all day.|一日中忙しく動き回っていました。|description|office
 pre1|860|idiom|out of touch|連絡が途絶えて・疎くて|I've been out of touch with my old friends.|昔の友達とは連絡が途絶えています。|regret|society
-pre1|730|idiom|play it safe|安全策を取る|Let's play it safe and take a taxi.|安全策でタクシーに乗りましょう。|suggestion|transport
+pre1|600|idiom|play it safe|安全策を取る|Let's play it safe and take a taxi.|安全策でタクシーに乗りましょう。|suggestion|transport
 pre1|860|idiom|wear many hats|いくつもの役目をこなす|In a small shop, everyone wears many hats.|小さな店では、だれもがいくつもの役をこなします。|description|hr
 pre1|860|idiom|have second thoughts|考え直す|I'm having second thoughts about the trip.|旅行について考え直しています。|hedging|travel
 pre1|860|idiom|learn the ropes|要領を覚える|It takes a month to learn the ropes here.|ここでは要領を覚えるのに1か月かかります。|description|hr
@@ -126,14 +126,14 @@ pre1|860|collocation|a fundamental change|根本的な変化|The town has seen a
 pre1|860|collocation|a radical change|抜本的な変化|The company made a radical change to its menu.|会社はメニューを抜本的に変えました。|reporting|food
 pre1|860|collocation|a growing concern|高まる懸念|Water pollution is a growing concern.|水質汚染への懸念が高まっています。|description|nature
 pre1|730|collocation|a serious shortage|深刻な不足|There is a serious shortage of nurses.|看護師が深刻に不足しています。|reporting|health
-pre1|730|collocation|a heavy workload|重い仕事量|She has a heavy workload this month.|彼女は今月、仕事量が多いです。|description|hr
+pre1|600|collocation|a heavy workload|重い仕事量|She has a heavy workload this month.|彼女は今月、仕事量が多いです。|description|hr
 pre1|860|collocation|mounting pressure|高まる圧力|The mayor is under mounting pressure to act.|市長は対応を求める圧力が高まっています。|description|society
 pre1|600|collocation|common sense|常識|It's common sense to lock the door.|ドアに鍵をかけるのは常識です。|opinion|society
 pre1|860|collocation|peer pressure|仲間からの圧力|Peer pressure is strong at that age.|その年齢では仲間からの圧力が強いです。|description|school
 pre1|-|collocation|conventional wisdom|通念|Conventional wisdom says that cheaper is better.|通念では、安いほうがよいとされています。|opinion|society
 pre1|860|collocation|mass production|大量生産|Mass production made cars cheaper.|大量生産で車は安くなりました。|description|crafts
-pre1|730|collocation|global warming|地球温暖化|Global warming is changing the sea level.|地球温暖化が海面を変えています。|description|nature
-pre1|730|collocation|climate change|気候変動|Farmers are worried about climate change.|農家は気候変動を心配しています。|description|nature
+pre1|600|collocation|global warming|地球温暖化|Global warming is changing the sea level.|地球温暖化が海面を変えています。|description|nature
+pre1|600|collocation|climate change|気候変動|Farmers are worried about climate change.|農家は気候変動を心配しています。|description|nature
 pre1|860|collocation|carbon emissions|二酸化炭素排出量|The town wants to cut carbon emissions.|町は二酸化炭素の排出を減らしたいと考えています。|description|nature
 pre1|860|collocation|sustainable development|持続可能な開発|Sustainable development is key for the island.|持続可能な開発はその島にとって重要です。|opinion|nature
 pre1|730|collocation|a natural disaster|自然災害|A natural disaster can happen at any time.|自然災害はいつでも起こりえます。|warning|weather
@@ -193,11 +193,11 @@ pre1|860|pattern|be faced with ...|…に直面している|The town is faced wi
 pre1|860|pattern|be engaged in ...|…に従事している|He is engaged in fishing.|彼は漁業に従事しています。|description|sea
 pre1|860|pattern|be involved in ...|…に関わっている|She is involved in the festival.|彼女はお祭りに関わっています。|description|society
 pre1|990|pattern|be superior to ...|…より優れている|This cloth is superior to that one.|この布のほうがあの布より優れています。|comparison|crafts
-pre1|730|pattern|prior to ...|…の前に|Prior to departure, please check your bag.|出発前に、かばんを確認してください。|instruction|travel
+pre1|600|pattern|prior to ...|…の前に|Prior to departure, please check your bag.|出発前に、かばんを確認してください。|instruction|travel
 pre1|860|pattern|with respect to ...|…に関して|With respect to your request, we need more time.|ご依頼に関しては、もう少し時間が必要です。|reporting|office
 pre1|860|pattern|in proportion to ...|…に比例して|The pay increases in proportion to the hours worked.|給料は労働時間に比例して増えます。|comparison|money
-pre1|730|pattern|in response to ...|…に応じて|In response to your request, we sent a sample.|ご依頼に応じてサンプルをお送りしました。|reporting|office
-pre1|730|pattern|in addition to ...|…に加えて|In addition to fish, we sell vegetables.|魚に加えて、野菜も売っています。|addition|shopping
+pre1|600|pattern|in response to ...|…に応じて|In response to your request, we sent a sample.|ご依頼に応じてサンプルをお送りしました。|reporting|office
+pre1|500|pattern|in addition to ...|…に加えて|In addition to fish, we sell vegetables.|魚に加えて、野菜も売っています。|addition|shopping
 pre1|860|pattern|in contrast to ...|…と対照的に|In contrast to last year, this summer is cool.|昨年とは対照的に、今年の夏は涼しいです。|contrast|weather
 pre1|860|pattern|in conjunction with ...|…と共同で|The event is held in conjunction with the town office.|そのイベントは町役場と共同で開催されます。|description|society
 pre1|990|pattern|by virtue of ...|…のおかげで・…により|He got the job by virtue of his experience.|彼は経験のおかげでその職を得ました。|cause/effect|hr
@@ -208,7 +208,7 @@ pre1|860|pattern|only if ...|…の場合に限り|You can enter only if you hav
 pre1|860|pattern|If only ...|…でさえあれば|If only I had more time!|もっと時間があればなあ。|regret|emotion
 pre1|860|pattern|be preoccupied with ...|…に気を取られている|She is preoccupied with the opening of her shop.|彼女は店の開店で頭がいっぱいです。|description|emotion
 # ---- pre1 additions: discourse
-pre1|730|discourse|as a rule|通常は|As a rule, we close at six.|通常は6時に閉店します。|summarizing|sales
+pre1|500|discourse|as a rule|通常は|As a rule, we close at six.|通常は6時に閉店します。|summarizing|sales
 pre1|730|discourse|for another|もう1つには|For another, the price is too high.|もう1つには、値段が高すぎます。|addition|shopping
 pre1|860|discourse|to be sure|確かに|To be sure, it's expensive, but it's worth it.|確かに高いですが、それだけの価値があります。|concession|shopping
 pre1|860|discourse|in a sense|ある意味で|In a sense, he is right.|ある意味、彼は正しいです。|hedging|abstract
@@ -216,13 +216,13 @@ pre1|860|discourse|alternatively|あるいは|Alternatively, we could go by boat
 pre1|860|discourse|in turn|今度は・順番に|Each guest spoke in turn.|客は順番に話しました。|sequencing|meetings
 pre1|860|discourse|ultimately|最終的に|Ultimately, the owner made the decision.|最終的に、オーナーが決定しました。|summarizing|sales
 pre1|860|discourse|subsequently|その後|Subsequently, the shop moved to a new address.|その後、店は新しい住所に移転しました。|sequencing|sales
-pre1|730|discourse|previously|以前は|Previously, this building was a school.|以前、この建物は学校でした。|narration|society
-pre1|730|discourse|at present|現在のところ|At present, we have no rooms available.|現在のところ、空室はありません。|reporting|hotel
-pre1|730|discourse|in my view|私の考えでは|In my view, the plan is too risky.|私の考えでは、その計画は危険すぎます。|opinion|meetings
-pre1|730|discourse|as I see it|私の見るところでは|As I see it, we have two choices.|私の見るところ、選択肢は2つです。|opinion|meetings
+pre1|600|discourse|previously|以前は|Previously, this building was a school.|以前、この建物は学校でした。|narration|society
+pre1|500|discourse|at present|現在のところ|At present, we have no rooms available.|現在のところ、空室はありません。|reporting|hotel
+pre1|600|discourse|in my view|私の考えでは|In my view, the plan is too risky.|私の考えでは、その計画は危険すぎます。|opinion|meetings
+pre1|600|discourse|as I see it|私の見るところでは|As I see it, we have two choices.|私の見るところ、選択肢は2つです。|opinion|meetings
 pre1|860|discourse|with that in mind|それを念頭に|With that in mind, let's begin the work.|それを念頭に、作業を始めましょう。|sequencing|meetings
-pre1|730|discourse|to conclude|結論として|To conclude, the event was a success.|結論として、そのイベントは成功でした。|summarizing|meetings
-pre1|730|discourse|in closing|最後に|In closing, I'd like to thank everyone.|最後に、皆さんに感謝します。|summarizing|meetings
+pre1|600|discourse|to conclude|結論として|To conclude, the event was a success.|結論として、そのイベントは成功でした。|summarizing|meetings
+pre1|600|discourse|in closing|最後に|In closing, I'd like to thank everyone.|最後に、皆さんに感謝します。|summarizing|meetings
 pre1|860|discourse|to illustrate|説明すると|To illustrate, let's look at last year's sales.|説明のために、昨年の売上を見てみましょう。|exemplifying|meetings
 # ---- pre1 additions: formulas
 pre1|860|formula|I'm afraid I'll have to ask you to ...|恐れ入りますが…していただけますか|I'm afraid I'll have to ask you to wait outside.|恐れ入りますが、外でお待ちいただけますか。|request|office

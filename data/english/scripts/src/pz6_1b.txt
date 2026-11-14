@@ -1,5 +1,5 @@
 # ---- 1 additions: collocations
-1|990|collocation|an unprecedented scale|前例のない規模|The storm caused damage on an unprecedented scale.|嵐は前例のない規模の被害をもたらしました。|reporting|weather
+1|860|collocation|an unprecedented scale|前例のない規模|The storm caused damage on an unprecedented scale.|嵐は前例のない規模の被害をもたらしました。|reporting|weather
 1|860|collocation|a growing divide|広がる格差|There is a growing divide between rich and poor.|貧富の差が広がっています。|description|society
 1|860|collocation|widen the gap|差を広げる|The new policy widened the gap between the towns.|新しい政策は町同士の差を広げました。|cause/effect|society
 1|860|collocation|bridge the gap|溝を埋める|The program aims to bridge the gap between schools.|そのプログラムは学校間の溝を埋めることを目指しています。|description|school
@@ -9,7 +9,7 @@
 1|990|collocation|an overhaul of ...|…の全面的な見直し|The system needs a complete overhaul.|そのシステムは全面的な見直しが必要です。|opinion|technology
 1|990|collocation|undergo a transformation|変貌を遂げる|The old port has undergone a transformation.|古い港は変貌を遂げました。|description|sea
 1|990|collocation|a mounting backlog|積み上がる未処理案件|We have a mounting backlog of orders.|注文の未処理分が積み上がっています。|complaint|sales
-1|990|collocation|a hefty fine|高額の罰金|He had to pay a hefty fine.|彼は高額の罰金を払わなければなりませんでした。|reporting|law
+1|860|collocation|a hefty fine|高額の罰金|He had to pay a hefty fine.|彼は高額の罰金を払わなければなりませんでした。|reporting|law
 1|860|collocation|a substantial amount|かなりの量・金額|A substantial amount of money was lost.|かなりの金額が失われました。|reporting|money
 1|860|collocation|a modest increase|わずかな増加|We expect a modest increase in sales.|売上のわずかな増加を見込んでいます。|prediction|sales
 1|860|collocation|a marginal improvement|わずかな改善|There was only a marginal improvement.|わずかな改善しかありませんでした。|reporting|science
@@ -17,15 +17,15 @@
 1|860|collocation|a dramatic fall|劇的な下落|The report shows a dramatic fall in fish catches.|報告書は漁獲量の劇的な減少を示しています。|reporting|sea
 1|990|collocation|plummeting prices|急落する価格|Plummeting prices hurt the farmers.|価格の急落が農家を直撃しました。|reporting|farming
 1|990|collocation|soaring costs|急騰するコスト|Soaring costs forced the inn to raise prices.|コストの急騰で宿は値上げを余儀なくされました。|cause/effect|hotel
-1|990|collocation|a surge in demand|需要の急増|There was a surge in demand for umbrellas.|傘の需要が急増しました。|reporting|sales
-1|990|collocation|a downturn in the economy|景気の後退|A downturn in the economy hit local shops.|景気後退が地元の商店を直撃しました。|reporting|finance
-1|990|collocation|an economic slump|経済の低迷|The town suffered a long economic slump.|その町は長い経済低迷に苦しみました。|description|finance
+1|860|collocation|a surge in demand|需要の急増|There was a surge in demand for umbrellas.|傘の需要が急増しました。|reporting|sales
+1|860|collocation|a downturn in the economy|景気の後退|A downturn in the economy hit local shops.|景気後退が地元の商店を直撃しました。|reporting|finance
+1|860|collocation|an economic slump|経済の低迷|The town suffered a long economic slump.|その町は長い経済低迷に苦しみました。|description|finance
 1|860|collocation|economic recovery|景気回復|Economic recovery is expected next year.|来年は景気回復が見込まれています。|prediction|finance
-1|990|collocation|a stimulus package|景気刺激策|The government announced a stimulus package.|政府は景気刺激策を発表しました。|announcement|finance
-1|990|collocation|fiscal policy|財政政策|Fiscal policy affects local budgets.|財政政策は地方予算に影響します。|description|finance
-1|990|collocation|monetary policy|金融政策|The bank changed its monetary policy.|銀行は金融政策を変更しました。|reporting|finance
-1|990|collocation|a budget surplus|黒字予算|The town has a budget surplus this year.|町は今年、予算が黒字です。|reporting|finance
-1|990|collocation|a trade surplus|貿易黒字|The country has a large trade surplus.|その国は大きな貿易黒字を抱えています。|reporting|finance
+1|860|collocation|a stimulus package|景気刺激策|The government announced a stimulus package.|政府は景気刺激策を発表しました。|announcement|finance
+1|860|collocation|fiscal policy|財政政策|Fiscal policy affects local budgets.|財政政策は地方予算に影響します。|description|finance
+1|860|collocation|monetary policy|金融政策|The bank changed its monetary policy.|銀行は金融政策を変更しました。|reporting|finance
+1|860|collocation|a budget surplus|黒字予算|The town has a budget surplus this year.|町は今年、予算が黒字です。|reporting|finance
+1|860|collocation|a trade surplus|貿易黒字|The country has a large trade surplus.|その国は大きな貿易黒字を抱えています。|reporting|finance
 1|990|collocation|a trade barrier|貿易障壁|High tariffs act as a trade barrier.|高い関税は貿易障壁になります。|description|finance
 1|990|collocation|import restrictions|輸入制限|Import restrictions raised fish prices.|輸入制限で魚の値段が上がりました。|cause/effect|sea
 1|-|collocation|a monopoly|独占|The company holds a monopoly on salt.|その会社は塩の独占権を持っています。|description|finance
@@ -38,7 +38,7 @@
 1|990|collocation|fraudulent claims|不正な請求|The insurer rejected the fraudulent claims.|保険会社は不正な請求を却下しました。|reporting|law
 1|990|collocation|a legal loophole|法の抜け穴|The company used a legal loophole to avoid tax.|その会社は法の抜け穴を使って税を逃れました。|description|law
 1|-|collocation|a landmark ruling|画期的な判決|The court issued a landmark ruling on fishing rights.|裁判所は漁業権について画期的な判決を出しました。|reporting|law
-1|990|collocation|a court order|裁判所命令|The court order bans entry to the site.|裁判所命令により現場への立ち入りが禁止されています。|reporting|law
+1|860|collocation|a court order|裁判所命令|The court order bans entry to the site.|裁判所命令により現場への立ち入りが禁止されています。|reporting|law
 1|-|collocation|a plea bargain|司法取引|He accepted a plea bargain.|彼は司法取引に応じました。|reporting|law
 1|-|collocation|serve a sentence|刑に服する|He served a three-year sentence.|彼は3年の刑に服しました。|reporting|law
 1|990|collocation|file a lawsuit|訴訟を起こす|The residents filed a lawsuit against the factory.|住民は工場を相手に訴訟を起こしました。|reporting|law
@@ -49,18 +49,18 @@
 1|860|collocation|voice concerns|懸念を表明する|Residents voiced concerns about the noise.|住民は騒音について懸念を表明しました。|reporting|society
 1|-|collocation|air grievances|不満を訴える|Workers aired their grievances at the meeting.|労働者は会議で不満を訴えました。|reporting|hr
 1|990|collocation|lodge a complaint|苦情を申し立てる|I would like to lodge a complaint about the service.|サービスについて苦情を申し立てたいのですが。|complaint|office
-1|-|collocation|launch an appeal|訴え(控訴)を起こす|The farmers launched an appeal for help.|農家は支援を訴えるキャンペーンを始めました。|request|society
-1|990|collocation|issue a statement|声明を出す|The company issued a statement about the accident.|会社は事故について声明を出しました。|announcement|media
+1|-|collocation|launch an appeal|(支援を求める)呼びかけを始める|The farmers launched an appeal for help.|農家は支援を訴えるキャンペーンを始めました。|request|society
+1|860|collocation|issue a statement|声明を出す|The company issued a statement about the accident.|会社は事故について声明を出しました。|announcement|media
 1|-|collocation|make a pledge|誓約する|The mayor made a pledge to protect the coast.|市長は海岸を守ると誓約しました。|description|society
 1|-|collocation|reach a verdict|評決に達する|The jury reached a verdict after two days.|陪審は2日後に評決に達しました。|reporting|law
 1|860|collocation|an upward trend|上昇傾向|The data shows an upward trend in tourism.|データは観光客の増加傾向を示しています。|reporting|travel
 1|860|collocation|a downward trend|下降傾向|There is a downward trend in fish prices.|魚価は下落傾向にあります。|reporting|sea
-1|990|collocation|gain momentum|勢いを増す|The campaign is gaining momentum.|キャンペーンは勢いを増しています。|reporting|sales
-1|990|collocation|lose momentum|勢いを失う|The recovery has lost momentum.|回復は勢いを失いました。|reporting|finance
+1|860|collocation|gain momentum|勢いを増す|The campaign is gaining momentum.|キャンペーンは勢いを増しています。|reporting|sales
+1|860|collocation|lose momentum|勢いを失う|The recovery has lost momentum.|回復は勢いを失いました。|reporting|finance
 1|860|collocation|a turning point|転機|The festival was a turning point for the town.|そのお祭りは町にとって転機でした。|description|society
 1|-|collocation|a paradigm shift|パラダイムシフト|The internet caused a paradigm shift in shopping.|インターネットは買い物に大きな変革をもたらしました。|description|technology
-1|990|collocation|cutting-edge technology|最先端技術|The farm uses cutting-edge technology.|その農場は最先端技術を使っています。|description|technology
-1|990|collocation|state-of-the-art equipment|最新鋭の設備|The clinic has state-of-the-art equipment.|その診療所には最新鋭の設備があります。|description|health
+1|860|collocation|cutting-edge technology|最先端技術|The farm uses cutting-edge technology.|その農場は最先端技術を使っています。|description|technology
+1|860|collocation|state-of-the-art equipment|最新鋭の設備|The clinic has state-of-the-art equipment.|その診療所には最新鋭の設備があります。|description|health
 1|-|collocation|a groundbreaking discovery|画期的な発見|Scientists announced a groundbreaking discovery.|科学者たちが画期的な発見を発表しました。|reporting|science
 1|860|collocation|a thorough investigation|徹底した調査|The police began a thorough investigation.|警察は徹底的な調査を始めました。|reporting|law
 1|-|collocation|exhaustive research|徹底的な研究|The book is based on exhaustive research.|その本は徹底的な研究に基づいています。|description|science
@@ -69,13 +69,13 @@
 1|860|collocation|a feasible solution|実現可能な解決策|We need a feasible solution to the problem.|その問題には実現可能な解決策が必要です。|request|meetings
 1|860|collocation|a viable alternative|実行可能な代替案|Is there a viable alternative to the plan?|その計画に代わる実行可能な案はありますか。|inquiry|meetings
 1|860|collocation|a tangible benefit|具体的な利益|The program brings tangible benefits.|そのプログラムは具体的な利益をもたらします。|description|society
-1|990|collocation|a lasting impression|消えない印象|The festival left a lasting impression on me.|そのお祭りは私に深い印象を残しました。|description|emotion
+1|860|collocation|a lasting impression|消えない印象|The festival left a lasting impression on me.|そのお祭りは私に深い印象を残しました。|description|emotion
 1|860|collocation|a profound effect|深い影響|The loss had a profound effect on her.|その喪失は彼女に深い影響を与えました。|description|emotion
-1|990|collocation|an acute shortage|深刻な不足|There is an acute shortage of fresh water.|淡水が深刻に不足しています。|reporting|society
-1|990|collocation|a dire need|切迫した必要|The village is in dire need of doctors.|その村は医師が切実に必要です。|description|health
+1|860|collocation|an acute shortage|深刻な不足|There is an acute shortage of fresh water.|淡水が深刻に不足しています。|reporting|society
+1|860|collocation|a dire need|切迫した必要|The village is in dire need of doctors.|その村は医師が切実に必要です。|description|health
 1|860|collocation|a pressing need|差し迫った必要|There is a pressing need for new housing.|新しい住宅が差し迫って必要です。|description|housing
-1|990|collocation|an overwhelming majority|圧倒的多数|An overwhelming majority supported the plan.|圧倒的多数がその計画を支持しました。|reporting|society
-1|990|collocation|a narrow margin|僅差|The team won by a narrow margin.|チームは僅差で勝ちました。|reporting|society
+1|860|collocation|an overwhelming majority|圧倒的多数|An overwhelming majority supported the plan.|圧倒的多数がその計画を支持しました。|reporting|society
+1|860|collocation|a narrow margin|僅差|The team won by a narrow margin.|チームは僅差で勝ちました。|reporting|society
 1|860|collocation|a slim chance|わずかな可能性|There is a slim chance of finding it.|見つかる可能性はわずかです。|prediction|society
 1|860|collocation|a fair share|相応の分け前|Everyone should get a fair share.|みんなが相応の分け前を得るべきです。|opinion|money
 1|860|collocation|a key player|重要な担い手|The company is a key player in the local economy.|その会社は地域経済の重要な担い手です。|description|finance
@@ -91,16 +91,16 @@
 1|860|collocation|a daunting task|気の遠くなる仕事|Cleaning the beach was a daunting task.|その海岸の掃除は気の遠くなる仕事でした。|description|nature
 1|-|collocation|a formidable opponent|強敵|The champion is a formidable opponent.|チャンピオンは強敵です。|description|society
 1|860|collocation|wholehearted support|心からの支持|The plan has my wholehearted support.|その計画を心から支持します。|agreement|meetings
-1|990|collocation|unanimous approval|満場一致の承認|The proposal won unanimous approval.|提案は満場一致で承認されました。|reporting|meetings
+1|860|collocation|unanimous approval|満場一致の承認|The proposal won unanimous approval.|提案は満場一致で承認されました。|reporting|meetings
 1|-|collocation|tacit approval|暗黙の了解|The owner gave his tacit approval.|オーナーは暗黙の了解を与えました。|description|office
 1|-|collocation|scathing criticism|痛烈な批判|The film received scathing criticism.|その映画は痛烈な批判を受けました。|reporting|media
 1|860|collocation|a glowing review|絶賛の評価|The inn received a glowing review.|その宿は絶賛の評価を受けました。|praise|hotel
 1|-|collocation|a lavish banquet|豪華な宴会|The mayor gave a lavish banquet.|市長は豪華な宴会を開きました。|description|food
 1|-|collocation|a frugal lifestyle|質素な暮らし|They lead a frugal lifestyle.|彼らは質素な暮らしをしています。|description|family
 1|-|collocation|meager wages|わずかな賃金|Workers received meager wages.|労働者はわずかな賃金しか受け取りませんでした。|complaint|hr
-1|990|collocation|sluggish growth|低迷する成長|The economy shows sluggish growth.|経済は成長が低迷しています。|reporting|finance
-1|990|collocation|robust growth|力強い成長|The company reported robust growth.|会社は力強い成長を報告しました。|reporting|finance
-1|990|collocation|buoyant sales|好調な売上|Buoyant sales lifted the shop's profits.|好調な売上で店の利益が上がりました。|reporting|sales
+1|860|collocation|sluggish growth|低迷する成長|The economy shows sluggish growth.|経済は成長が低迷しています。|reporting|finance
+1|860|collocation|robust growth|力強い成長|The company reported robust growth.|会社は力強い成長を報告しました。|reporting|finance
+1|860|collocation|buoyant sales|好調な売上|Buoyant sales lifted the shop's profits.|好調な売上で店の利益が上がりました。|reporting|sales
 1|-|collocation|give rise to|…を引き起こす|The heavy rain gave rise to many problems.|大雨は多くの問題を引き起こしました。|cause/effect|weather
 1|990|collocation|a far cry from|…とはほど遠いもの|The new shop is a far cry from the old one.|新しい店は昔の店とは大違いです。|contrast|shopping
 1|990|collocation|an inherent risk|本質的なリスク|Fishing has inherent risks.|漁業には本質的なリスクがあります。|description|sea

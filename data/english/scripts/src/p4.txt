@@ -29,7 +29,7 @@
 4|400|formula|What's your favorite food?|好きな食べ物は何ですか|What's your favorite food? — Sushi.|好きな食べ物は?—すしです。|inquiry|food
 4|400|formula|What time do you get up?|何時に起きますか|What time do you get up? — At six.|何時に起きますか。—6時です。|inquiry|school
 4|400|formula|How do you go to work?|どうやって仕事に行きますか|How do you go to work? — By bus.|どうやって仕事に行きますか。—バスです。|inquiry|transport
-4|400|formula|How long does it take?|どのくらいかかりますか|How long does it take to the station?|駅までどのくらいかかりますか。|inquiry|transport
+4|400|formula|How long does it take?|どのくらいかかりますか|How long does it take to get to the station?|駅までどのくらいかかりますか。|inquiry|transport
 4|400|formula|It takes ten minutes.|10分かかります|It takes ten minutes on foot.|歩いて10分かかります。|description|transport
 4|400|formula|How far is it?|どのくらい遠いですか|How far is it to the hospital?|病院までどのくらいですか。|inquiry,directions|transport
 4|400|formula|Which bus goes to the station?|どのバスが駅へ行きますか|Excuse me. Which bus goes to the station?|すみません。どのバスが駅へ行きますか。|inquiry,directions|transport

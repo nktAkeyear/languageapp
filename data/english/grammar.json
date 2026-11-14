@@ -1843,7 +1843,7 @@
   "nameJa": "時の前置詞 since / for / during",
   "eiken": "3",
   "toeic": 500,
-  "explainJa": "for + 期間、since + 起点、during + 特定の期間。",
+  "explainJa": "for + 期間、since + 起点、ago は現在から数えた過去の時点(two years ago)、during + 特定の期間。",
   "patterns": [
    "for two hours",
    "since 2020",
@@ -2059,7 +2059,7 @@
   "nameJa": "as soon as / until / by(時)",
   "eiken": "3",
   "toeic": 500,
-  "explainJa": "until は継続、by は期限。",
+  "explainJa": "as soon as は「…するとすぐに」、until は継続(「…まで」)、by は期限(「…までに」)。",
   "patterns": [
    "wait until ...",
    "by + 時刻"

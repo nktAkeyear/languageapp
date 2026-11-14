@@ -115,7 +115,7 @@ pre1|860|business|a violation of the rules|規則違反|That is a violation of t
 pre1|730|business|a permit|許可証|You need a permit to fish here.|ここで釣るには許可証が必要です。|obligation|law,sea
 2|730|business|a license|免許|Do you have a driver's license?|運転免許はお持ちですか。|inquiry|law
 pre1|860|business|an inspection certificate|検査証明書|Please show the inspection certificate.|検査証明書を提示してください。|instruction|law
-pre1|730|collocation|a vital role|重要な役割|The harbor plays a vital role in the town.|港は町で重要な役割を果たしています。|description|sea,society
+pre1|600|collocation|a vital role|重要な役割|The harbor plays a vital role in the town.|港は町で重要な役割を果たしています。|description|sea,society
 pre1|860|collocation|a decisive factor|決定的な要因|Price was a decisive factor.|価格が決定的な要因でした。|description|abstract
 pre1|730|collocation|reach a conclusion|結論に達する|We reached a conclusion after long talks.|長い話し合いのあと結論に達しました。|reporting|meetings
 pre1|730|collocation|draw attention to|注意を引く|The sign draws attention to the danger.|標識は危険に注意を促します。|description|society
@@ -182,16 +182,16 @@ pre1|730|phrasal_verb|bring up a topic|話題を持ち出す|I'd like to bring u
 pre1|-|phrasal_verb|look down on|見下す|Don't look down on others.|人を見下してはいけません。|instruction|society
 pre1|-|phrasal_verb|look up to|尊敬する|I look up to my grandfather.|祖父を尊敬しています。|emotion|family
 pre1|860|idiom|a blessing in disguise|不幸中の幸い|The storm was a blessing in disguise.|あの嵐は不幸中の幸いでした。|opinion|weather
-pre1|730|idiom|break the ice|緊張をほぐす|A joke can break the ice.|冗談は場を和ませます。|description|society
-pre1|730|idiom|call it a night|今夜は終わりにする|It's late. Let's call it a night.|遅いので今夜は終わりにしましょう。|suggestion|society
+pre1|600|idiom|break the ice|緊張をほぐす|A joke can break the ice.|冗談は場を和ませます。|description|society
+pre1|600|idiom|call it a night|今夜は終わりにする|It's late. Let's call it a night.|遅いので今夜は終わりにしましょう。|suggestion|society
 pre1|730|idiom|cost an arm and a leg|ものすごく高い|That boat cost an arm and a leg.|あの船はものすごく高かったです。|complaint|money
 pre1|730|idiom|get the hang of it|コツをつかむ|You'll get the hang of it soon.|すぐコツをつかめますよ。|praise|school
-pre1|730|idiom|hit the road|出発する|Let's hit the road before noon.|正午前に出発しましょう。|suggestion|travel
+pre1|600|idiom|hit the road|出発する|Let's hit the road before noon.|正午前に出発しましょう。|suggestion|travel
 pre1|860|idiom|in the nick of time|ぎりぎり間に合って|We caught the ferry in the nick of time.|ぎりぎりフェリーに間に合いました。|narration|transport
 pre1|860|idiom|keep a low profile|目立たないようにする|He kept a low profile in town.|彼は町で目立たないようにしていました。|description|society
-pre1|730|idiom|on the house|店のおごりで|The dessert is on the house.|デザートは店のおごりです。|offer|food
+pre1|600|idiom|on the house|店のおごりで|The dessert is on the house.|デザートは店のおごりです。|offer|food
 pre1|860|idiom|once in a blue moon|ごくまれに|He visits once in a blue moon.|彼はごくまれにしか訪れません。|description|society
-pre1|730|idiom|under the weather|体調が悪い|I'm a little under the weather.|少し体調が悪いです。|description|health
+pre1|600|idiom|under the weather|体調が悪い|I'm a little under the weather.|少し体調が悪いです。|description|health
 pre1|730|idiom|up in the air|未定で|Our plans are still up in the air.|予定はまだ未定です。|hedging|office
 pre1|860|idiom|hit the nail on the head|的を射る|You hit the nail on the head.|まさに的を射ています。|agreement|society
 pre1|860|idiom|the last straw|堪忍袋の緒が切れる原因|The delay was the last straw.|遅れが決定的でした。|complaint|emotion
@@ -200,7 +200,7 @@ pre1|860|idiom|a rule of thumb|経験則|As a rule of thumb, add a little salt.|
 pre1|860|idiom|at a loss|途方に暮れて|I was at a loss what to do.|どうしていいかわかりませんでした。|emotion|emotion
 pre1|730|idiom|be on the safe side|念のため|To be on the safe side, take a coat.|念のためコートを持っていって。|suggestion|weather
 pre1|860|idiom|by and large|概して|By and large, the town is quiet.|概して、町は静かです。|summarizing|society
-2|730|idiom|come to think of it|そういえば|Come to think of it, I saw him at the harbor.|そういえば、港で彼を見ました。|narration|society
+2|600|idiom|come to think of it|そういえば|Come to think of it, I saw him at the harbor.|そういえば、港で彼を見ました。|narration|society
 2|730|idiom|for good|永久に|He left the town for good.|彼は町を永久に去りました。|narration|society
 2|730|idiom|in the first place|そもそも|Why did you go there in the first place?|そもそもなぜそこへ行ったのですか。|inquiry|society
 pre2|600|idiom|no matter what|何があっても|I'll be there no matter what.|何があってもそこへ行きます。|emphasis|society
@@ -242,7 +242,7 @@ pre1|860|pattern|regardless of ...|…にかかわらず|The fee is the same reg
 pre1|860|discourse|as a consequence|その結果として|As a consequence, we lost money.|その結果として損失が出ました。|cause/effect|finance
 pre1|860|discourse|by contrast|対照的に|By contrast, the south is warm.|対照的に、南部は暖かいです。|contrast|weather
 pre1|860|discourse|likewise|同様に|Likewise, the shop will close early.|同様に、店も早く閉まります。|addition|shopping
-2|730|discourse|similarly|同様に|Similarly, the bank opens at nine.|同様に、銀行は9時に開きます。|addition|money
+2|600|discourse|similarly|同様に|Similarly, the bank opens at nine.|同様に、銀行は9時に開きます。|addition|money
 pre1|990|discourse|conversely|逆に|Conversely, prices may fall.|逆に、価格が下がるかもしれません。|contrast|finance
 pre1|990|discourse|admittedly|確かに|Admittedly, it is expensive.|確かに、それは高いです。|concession|money
 pre1|990|discourse|granted|確かに(認めて)|Granted, he is young, but he works hard.|確かに若いが、彼はよく働きます。|concession|hr

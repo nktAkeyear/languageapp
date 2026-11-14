@@ -49,7 +49,7 @@ pre2|-|idiom|side by side|並んで|The two boats sat side by side in the port.|
 pre2|600|idiom|step by step|一歩ずつ|I'll explain the machine step by step.|その機械を順を追って説明します。|instruction|technology
 pre2|-|idiom|little by little|少しずつ|Little by little, my English is getting better.|少しずつ私の英語は上達しています。|description|school
 pre2|600|idiom|one by one|ひとつずつ|Please come in one by one.|ひとりずつお入りください。|instruction|office
-pre2|730|idiom|on average|平均して|On average, we get fifty customers a day.|平均すると、1日に50人のお客さんが来ます。|reporting|sales
+pre2|600|idiom|on average|平均して|On average, we get fifty customers a day.|平均すると、1日に50人のお客さんが来ます。|reporting|sales
 pre2|500|idiom|a couple of|2、3の|I'll be back in a couple of minutes.|2、3分で戻ります。|description|abstract
 # ---- pre2 additions: collocations
 pre2|500|collocation|take a break|休憩を取る|Let's take a break for ten minutes.|10分休憩しましょう。|suggestion|office
@@ -62,8 +62,8 @@ pre2|500|collocation|make a phone call|電話をかける|I need to make a phone
 pre2|600|collocation|make a plan|計画を立てる|Let's make a plan for the trip.|旅行の計画を立てましょう。|suggestion|travel
 pre2|600|collocation|make an announcement|発表(アナウンス)をする|The captain made an announcement about the weather.|船長が天気についてアナウンスをしました。|announcement|sea
 pre2|500|collocation|make a list|リストを作る|I made a list of things to buy.|買うものをリストにしました。|description|shopping
-pre2|730|collocation|make a difference|違いを生む・重要である|Your help made a big difference to us.|あなたの助けは私たちにとって大きな力になりました。|praise|society
-pre2|730|collocation|make a profit|利益を上げる|The shop made a small profit last year.|その店は昨年、小さな利益を出しました。|reporting|finance
+pre2|600|collocation|make a difference|違いを生む・重要である|Your help made a big difference to us.|あなたの助けは私たちにとって大きな力になりました。|praise|society
+pre2|600|collocation|make a profit|利益を上げる|The shop made a small profit last year.|その店は昨年、小さな利益を出しました。|reporting|finance
 pre2|-|collocation|make a wish|願い事をする|Close your eyes and make a wish.|目を閉じて願い事をしてごらん。|instruction|emotion
 pre2|600|collocation|have an accident|事故に遭う|My brother had an accident on his bike.|兄は自転車で事故に遭いました。|narration|health
 pre2|400|collocation|have fun|楽しむ|Have fun at the beach!|海辺で楽しんできてね。|farewell|travel
@@ -74,7 +74,7 @@ pre2|600|collocation|give a presentation|プレゼンをする|She gave a presen
 pre2|600|collocation|give someone a ride|車で送る|Can you give me a ride to the station?|駅まで車で送ってもらえますか。|request|transport
 pre2|600|collocation|pay a visit|訪問する|I'll pay a visit to the clinic tomorrow.|明日、診療所を訪ねます。|narration|health
 pre2|500|collocation|pay a bill|請求書を支払う|I need to pay the water bill today.|今日、水道料金を払わなければなりません。|obligation|money
-pre2|730|collocation|pay a fine|罰金を払う|You have to pay a fine if you return the book late.|本を遅れて返すと罰金を払わなければなりません。|warning|law
+pre2|600|collocation|pay a fine|罰金を払う|You have to pay a fine if you return the book late.|本を遅れて返すと罰金を払わなければなりません。|warning|law
 pre2|600|collocation|set a goal|目標を立てる|We set a goal of selling a hundred cakes a day.|私たちは1日100個ケーキを売るという目標を立てました。|description|sales
 pre2|500|collocation|set the table|食卓の用意をする|Could you set the table for four?|4人分の食卓を用意してくれますか。|request|food
 pre2|600|collocation|break a promise|約束を破る|He never breaks a promise.|彼は決して約束を破りません。|description|society
@@ -86,9 +86,9 @@ pre2|600|collocation|win a prize|賞を取る|Her cheese won a prize at the fair
 pre2|500|collocation|tell the truth|本当のことを言う|Please tell me the truth.|本当のことを話してください。|request|society
 pre2|-|collocation|tell a joke|冗談を言う|My uncle likes to tell jokes at dinner.|おじは夕食の席で冗談を言うのが好きです。|description|family
 pre2|600|collocation|run a business|事業を営む|My parents run a small business in the town.|両親は町で小さな商売を営んでいます。|description|sales
-pre2|730|collocation|hold a meeting|会議を開く|We hold a staff meeting every Monday.|毎週月曜日にスタッフ会議を開きます。|description|meetings
+pre2|600|collocation|hold a meeting|会議を開く|We hold a staff meeting every Monday.|毎週月曜日にスタッフ会議を開きます。|description|meetings
 pre2|600|collocation|hold an event|イベントを開催する|The town holds an event every spring.|町は毎年春にイベントを開催します。|description|society
-pre2|730|collocation|offer a discount|割引を提供する|We offer a discount to students.|学生には割引を提供しています。|offer|sales
+pre2|600|collocation|offer a discount|割引を提供する|We offer a discount to students.|学生には割引を提供しています。|offer|sales
 pre2|600|collocation|offer help|助けを申し出る|The neighbors offered help after the flood.|洪水のあと近所の人たちが手助けを申し出ました。|description|society
 # ---- pre2 additions: patterns
 pre2|600|pattern|such ... that ...|とても…なので…|It was such a hot day that we stayed inside.|とても暑い日だったので、私たちは屋内にいました。|cause/effect|weather
@@ -114,7 +114,7 @@ pre2|600|pattern|No one but ...|…以外だれも〜ない|No one but the owner
 pre2|600|discourse|for instance|たとえば|Many fruits grow here, for instance, apples and pears.|ここでは多くの果物が育ちます。たとえばリンゴや梨です。|exemplifying|farming
 pre2|600|discourse|such as|たとえば…のような|We sell local products such as honey and tea.|はちみつやお茶など、地元の品を販売しています。|exemplifying|shopping
 pre2|600|discourse|in short|要するに|In short, we need more staff.|要するに、もっと人手が必要です。|summarizing|office
-pre2|730|discourse|after all|結局・何といっても|It rained, but we had a good time after all.|雨でしたが、結局楽しく過ごせました。|contrast|travel
+pre2|600|discourse|after all|結局・何といっても|It rained, but we had a good time after all.|雨でしたが、結局楽しく過ごせました。|contrast|travel
 pre2|600|discourse|in general|一般に|In general, shops here close at six.|一般に、ここの店は6時に閉まります。|summarizing|society
 pre2|600|discourse|actually|実は|Actually, I've never been to the sea.|実は、海に行ったことがありません。|clarification|society
 pre2|500|discourse|anyway|とにかく・それはさておき|Anyway, let's start the lesson.|とにかく、授業を始めましょう。|sequencing|school

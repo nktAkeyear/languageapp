@@ -17,7 +17,7 @@ import { makeRng } from '../core/rng';
 import { tokenIds } from '../core/tokenize';
 import { EIKEN_GRADES } from '../core/types';
 import { englishLists, listsLoaded, vocabFor } from '../curriculum/lists';
-import { eikenFromKey, eikenIndex, EIKEN_KEYS } from '../curriculum/yardsticks';
+import { eikenFromKey, eikenIndex, EIKEN_KEYS, TOEIC_BANDS, toeicIndex } from '../curriculum/yardsticks';
 import { evaluateTask, solveTask, slotFits } from './rules';
 import { authoredInstance, rankLevelIndex, specTexts, templateInstance, type GenCtx } from './templates';
 import { jobContentTexts } from './vocab';
@@ -104,19 +104,29 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
         const total = inst.spec.want.reduce((s, x) => s + x.n * rc.price(x.thing), 0);
         if (inst.spec.pay < total) h.err(`${w}: the customer pays ${inst.spec.pay} for ${total}`);
       }
-      // Level of the words against the declared level.
+      // Level of the words against the declared level: a work-life job (flavour 'work') with a TOEIC
+      // band on the rank is measured in TOEIC bands (a word without a band falls back to 英検).
       const over: string[] = [];
       let worst = 0;
+      const toeicDecl = job.flavour === 'work' ? toeicIndex(job.ranks.find((r) => r.rank === ctx.rank)?.level.toeic ?? null) : -1;
       for (const txt of inst.texts)
         for (const id of tokenIds(data.tokens(txt))) {
-          const g = eikenIndex(data.lex.byId.get(id)?.eiken ?? null);
+          const e = data.lex.byId.get(id);
+          const t = toeicIndex(e?.toeic ?? null);
+          if (toeicDecl >= 0 && t >= 0) {
+            if (t > toeicDecl + LEVEL_SLACK_WARN) {
+              over.push(`${e?.text}(TOEIC〜${TOEIC_BANDS[t]})`);
+              worst = Math.max(worst, t - toeicDecl);
+            }
+            continue;
+          }
+          const g = eikenIndex(e?.eiken ?? null);
           if (g > declared + LEVEL_SLACK_WARN) {
-            over.push(`${data.lex.byId.get(id)?.text}(${EIKEN_GRADES[g]})`);
+            over.push(`${e?.text}(${EIKEN_GRADES[g]})`);
             worst = Math.max(worst, g - declared);
           }
         }
-      if (over.length) (worst > LEVEL_SLACK_ERROR ? h.err : h.warn)(`${w}: words above its level (${EIKEN_GRADES[declared]}級 + ${LEVEL_SLACK_WARN}): ${[...new Set(over)].join(', ')}`);
-      void ctx;
+      if (over.length) (worst > LEVEL_SLACK_ERROR ? h.err : h.warn)(`${w}: words above its level (${toeicDecl >= 0 ? `TOEIC〜${TOEIC_BANDS[toeicDecl]}` : `${EIKEN_GRADES[declared]}級`} + ${LEVEL_SLACK_WARN}): ${[...new Set(over)].join(', ')}`);
     };
     const ctxAt = (rank: number, seed: number): GenCtx => ({ data, job, jc, rank, feats: featuresAt(job, rank), rng: makeRng(seed), timedOn: true });
     const taskIds = new Set<string>();

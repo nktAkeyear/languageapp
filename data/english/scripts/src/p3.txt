@@ -148,7 +148,7 @@
 3|600|phrasal_verb|work out|うまくいく・運動する|I hope everything works out.|すべてうまくいくといいですね。|hedging|abstract
 3|600|phrasal_verb|point out|指摘する|He pointed out a mistake.|彼は間違いを指摘しました。|reporting|school
 3|600|phrasal_verb|cut down|減らす|I'm cutting down on sugar.|砂糖を減らしています。|description|health
-3|730|idiom|a piece of cake|朝飯前|This test is a piece of cake.|このテストは朝飯前です。|opinion|school
+3|600|idiom|a piece of cake|朝飯前|This test is a piece of cake.|このテストは朝飯前です。|opinion|school
 3|400|idiom|in the end|結局|In the end, we took the train.|結局、電車で行きました。|narration|transport
 3|400|idiom|on time|時間どおりに|The bus came on time.|バスは時間どおりに来ました。|description|transport
 3|400|idiom|in time|間に合って|We arrived in time for the show.|ショーに間に合いました。|description|arts
@@ -161,11 +161,11 @@
 3|400|idiom|one day|ある日|One day, a big storm came.|ある日、大きな嵐が来ました。|narration|weather
 3|400|idiom|in the future|将来|I want to be a chef in the future.|将来は料理人になりたいです。|preference|cooking
 3|400|idiom|for the first time|初めて|I saw snow for the first time.|初めて雪を見ました。|narration|weather
-3|400|discourse|however|しかし|It was cold. However, we enjoyed it.|寒かったです。しかし楽しみました。|contrast|society
+3|500|discourse|however|しかし|It was cold. However, we enjoyed it.|寒かったです。しかし楽しみました。|contrast|society
 3|600|discourse|because of this|このため|Because of this, the bus was late.|このため、バスは遅れました。|cause/effect|transport
-3|400|discourse|in addition|加えて|In addition, breakfast is free.|加えて朝食は無料です。|addition|hotel
+3|500|discourse|in addition|加えて|In addition, breakfast is free.|加えて朝食は無料です。|addition|hotel
 3|400|discourse|finally|最後に|Finally, add some salt.|最後に塩を少し加えます。|sequencing|cooking
-3|400|discourse|though|…だが|Though it was late, he kept working.|遅かったが、彼は働き続けました。|concession|office
+3|500|discourse|though|…だが|Though it was late, he kept working.|遅かったが、彼は働き続けました。|concession|office
 3|400|discourse|I think that ...|私は…と思う|I think that this town is beautiful.|この町は美しいと思います。|opinion|society
-3|400|discourse|In my opinion, ...|私の意見では|In my opinion, it is a good plan.|私の意見では、いい計画です。|opinion|society
+3|500|discourse|In my opinion, ...|私の意見では|In my opinion, it is a good plan.|私の意見では、いい計画です。|opinion|society
 3|600|discourse|That's why ...|だから…|That's why I like this town.|だから私はこの町が好きです。|cause/effect|society

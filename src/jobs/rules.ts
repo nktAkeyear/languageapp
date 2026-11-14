@@ -124,7 +124,7 @@ export function evaluateCheck(spec: CheckSpec, a: Extract<TaskAnswer, { arch: 'c
     return finish([{ kind: 'false_alarm', field: a.field, about: fieldText(a.field) }], 'fail');
   }
   if (a.verdict === 'ok') return finish([{ kind: 'missed', field: spec.wrong, about: fieldText(spec.wrong) }], 'bad');
-  if (a.field !== spec.wrong) return finish([{ kind: 'wrong_field', field: a.field, about: [...fieldText(spec.wrong), ...fieldText(a.field)] }], 'fail');
+  if (a.field !== spec.wrong) return finish([{ kind: 'wrong_field', field: spec.wrong, item: a.field, about: [...fieldText(spec.wrong), ...fieldText(a.field)] }], 'fail');
   if (spec.fix !== undefined && spec.fixOptions?.length && a.fix !== spec.fix) return finish([{ kind: 'wrong_fix', field: spec.wrong, about: [spec.fix] }], 'minor');
   return finish([], 'perfect');
 }

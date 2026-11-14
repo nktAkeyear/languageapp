@@ -168,7 +168,7 @@ pre2|500|formula|Let's keep in touch.|連絡を取り合いましょう(別れ�
 2|730|pattern|no later than ...|遅くとも…までに|Please arrive no later than noon.|遅くとも正午までに到着してください。|instruction|office
 2|860|pattern|no sooner than ...|…より早くはない|The results will be out no sooner than May.|結果は5月より早くは出ません。|prediction|office
 2|600|pattern|I'm afraid that ...|残念ながら…|I'm afraid that we have no rooms left.|残念ながら空き部屋がありません。|apology|hotel
-2|500|pattern|as ... as possible|できるだけ…|Please come as soon as possible.|できるだけ早く来てください。|request|society
+pre2|500|pattern|as ... as possible|できるだけ…|Please come as soon as possible.|できるだけ早く来てください。|request|society
 2|600|pattern|the number of ...|…の数|The number of visitors has increased.|観光客の数が増えました。|reporting|travel
 2|860|pattern|It is not until ... that ...|…になって初めて…|It was not until noon that the fog cleared.|正午になってやっと霧が晴れました。|narration|weather
 2|860|pattern|Having ... , ...|…したので、…|Having finished my work, I went home.|仕事を終えたので帰宅しました。|narration|office
@@ -189,22 +189,22 @@ pre2|500|formula|Let's keep in touch.|連絡を取り合いましょう(別れ�
 2|730|pattern|be aware of ...|…に気づいている|Are you aware of the problem?|その問題に気づいていますか。|inquiry|office
 2|730|pattern|be familiar with ...|…に詳しい|I'm familiar with this area.|この辺りには詳しいです。|ability|travel
 2|860|pattern|be accustomed to ...|…に慣れている|She is accustomed to hard work.|彼女は重労働に慣れています。|description|hr
-2|730|collocation|keep an eye on|…を見張る|Could you keep an eye on my bag?|かばんを見ていてもらえますか。|request|society
+2|600|collocation|keep an eye on|…を見張る|Could you keep an eye on my bag?|かばんを見ていてもらえますか。|request|society
 2|730|collocation|make a good impression|好印象を与える|He made a good impression on the manager.|彼はマネージャーに好印象を与えました。|description|hr
 2|730|collocation|make progress|進歩する|We are making progress.|順調に進んでいます。|reporting|office
 2|730|collocation|make an effort|努力する|I'll make an effort to arrive early.|早く着くように努力します。|offer|office
 2|730|collocation|make an offer|申し出る|They made an offer on the house.|彼らは家に買い取りを申し出ました。|reporting|housing,meetings
 2|730|collocation|make a complaint|苦情を言う|I'd like to make a complaint.|苦情を申し上げたいのですが。|complaint|sales
 2|730|collocation|make a deal|取引をする|We made a deal with the fish market.|魚市場と取引をしました。|reporting|sales,meetings
-2|730|collocation|take advantage of|…を活用する|Take advantage of our summer sale.|夏のセールをご利用ください。|suggestion|sales
+2|600|collocation|take advantage of|…を活用する|Take advantage of our summer sale.|夏のセールをご利用ください。|suggestion|sales
 2|730|collocation|take responsibility for|…の責任を取る|I'll take responsibility for the mistake.|その間違いの責任は私が取ります。|apology|office
 2|860|collocation|take into account|考慮に入れる|Please take the weather into account.|天気を考慮に入れてください。|instruction|weather
 2|730|collocation|play a role in|…で役割を果たす|He played a big role in the project.|彼は計画で大きな役割を果たしました。|praise|office
-2|730|collocation|come up with|思いつく|We came up with a good idea.|いい考えを思いつきました。|reporting|meetings
-2|730|collocation|a wide range of|幅広い|We offer a wide range of services.|幅広いサービスを提供しています。|description|sales
-2|730|collocation|on a regular basis|定期的に|We check the engines on a regular basis.|エンジンを定期的に点検します。|description|office
+2|600|collocation|come up with|思いつく|We came up with a good idea.|いい考えを思いつきました。|reporting|meetings
+2|600|collocation|a wide range of|幅広い|We offer a wide range of services.|幅広いサービスを提供しています。|description|sales
+2|600|collocation|on a regular basis|定期的に|We check the engines on a regular basis.|エンジンを定期的に点検します。|description|office
 2|730|collocation|in person|直接|Please apply in person.|直接お申し込みください。|instruction|office
-2|730|collocation|in writing|書面で|Please confirm in writing.|書面でご確認ください。|instruction|law
+2|600|collocation|in writing|書面で|Please confirm in writing.|書面でご確認ください。|instruction|law
 2|500|collocation|in cash|現金で|I'll pay in cash.|現金で払います。|payment|money
 2|730|collocation|on credit|クレジットで|You can buy it on credit.|クレジットで買えます。|payment|money
 2|730|collocation|in installments|分割で|Can I pay in installments?|分割で払えますか。|inquiry|money
@@ -227,52 +227,52 @@ pre2|500|formula|Let's keep in touch.|連絡を取り合いましょう(別れ�
 2|730|collocation|a connecting flight|乗り継ぎ便|I missed my connecting flight.|乗り継ぎ便に乗り遅れました。|reporting|transport
 2|730|collocation|carry-on baggage|機内持ち込み手荷物|Carry-on baggage must be small.|機内持ち込み手荷物は小さくなければなりません。|instruction|transport
 2|860|phrasal_verb|bring about|引き起こす|The new bridge brought about many changes.|新しい橋は多くの変化をもたらしました。|cause/effect|society
-2|730|phrasal_verb|come across|偶然出会う|I came across an old photo.|古い写真を偶然見つけました。|narration|family
-2|730|phrasal_verb|come up|持ち上がる|Something came up. I can't come.|用事ができて行けません。|apology|society
+2|600|phrasal_verb|come across|偶然出会う|I came across an old photo.|古い写真を偶然見つけました。|narration|family
+2|600|phrasal_verb|come up|持ち上がる|Something came up. I can't come.|用事ができて行けません。|apology|society
 2|730|phrasal_verb|count on|頼りにする|You can count on me.|私にお任せください。|offer|society
 2|860|phrasal_verb|do without|なしで済ます|We can do without a car.|車がなくても大丈夫です。|opinion|transport
-2|730|phrasal_verb|end up|結局…になる|We ended up taking a taxi.|結局タクシーに乗りました。|narration|transport
-2|730|phrasal_verb|fall behind|遅れる|We're falling behind schedule.|予定より遅れています。|reporting|meetings
-2|730|phrasal_verb|follow up|その後対応する|I'll follow up with an email.|あとでメールで連絡します。|offer|office
-2|730|phrasal_verb|get around|動き回る|It's easy to get around by bike.|自転車なら移動は簡単です。|description|transport
-2|730|phrasal_verb|get through|切り抜ける・電話が通じる|I couldn't get through to him.|彼に電話がつながりませんでした。|complaint|office
+2|600|phrasal_verb|end up|結局…になる|We ended up taking a taxi.|結局タクシーに乗りました。|narration|transport
+2|600|phrasal_verb|fall behind|遅れる|We're falling behind schedule.|予定より遅れています。|reporting|meetings
+2|600|phrasal_verb|follow up|その後対応する|I'll follow up with an email.|あとでメールで連絡します。|offer|office
+2|600|phrasal_verb|get around|動き回る|It's easy to get around by bike.|自転車なら移動は簡単です。|description|transport
+2|600|phrasal_verb|get through|切り抜ける・電話が通じる|I couldn't get through to him.|彼に電話がつながりませんでした。|complaint|office
 2|730|phrasal_verb|go ahead|どうぞ・進める|Go ahead and start.|どうぞ始めてください。|permission|meetings
 2|500|phrasal_verb|hold on|待つ|Please hold on a moment.|少々お待ちください。|request|office
 2|730|phrasal_verb|keep on ...ing|…し続ける|Keep on going straight.|そのまままっすぐ行ってください。|directions|transport
 2|730|phrasal_verb|look into|調べる|We will look into it.|調べてみます。|offer|office
-2|730|phrasal_verb|look over|目を通す|Please look over this contract.|この契約書に目を通してください。|request|law
-2|730|phrasal_verb|pay off|完済する・報われる|I paid off the loan.|ローンを完済しました。|reporting|finance
-2|730|phrasal_verb|put together|組み立てる・まとめる|Can you put together a report?|報告書をまとめてもらえますか。|request|office
+2|600|phrasal_verb|look over|目を通す|Please look over this contract.|この契約書に目を通してください。|request|law
+2|600|phrasal_verb|pay off|完済する・報われる|I paid off the loan.|ローンを完済しました。|reporting|finance
+2|600|phrasal_verb|put together|組み立てる・まとめる|Can you put together a report?|報告書をまとめてもらえますか。|request|office
 2|730|phrasal_verb|put up with|我慢する|I can't put up with the noise.|その騒音には我慢できません。|complaint|housing
 2|730|phrasal_verb|rely on|頼る|We rely on the harbor for work.|私たちは港の仕事に頼っています。|description|sea
-2|730|phrasal_verb|run into|偶然会う|I ran into Mr. Ito at the market.|市場で伊藤さんにばったり会いました。|narration|society
+2|600|phrasal_verb|run into|偶然会う|I ran into Mr. Ito at the market.|市場で伊藤さんにばったり会いました。|narration|society
 2|730|phrasal_verb|sell out|売り切れる|The tickets sold out in an hour.|切符は1時間で売り切れました。|reporting|arts
 2|860|phrasal_verb|set aside|取っておく|Could you set aside two loaves?|パンを2斤取っておいてもらえますか。|request|shopping
 2|-|phrasal_verb|settle down|落ち着く|He settled down in the town.|彼はその町に落ち着きました。|narration|housing
 2|730|phrasal_verb|speak up|大きな声で話す|Could you speak up, please?|もう少し大きな声でお願いします。|request|society
 2|730|phrasal_verb|stand for|表す|What does this sign stand for?|この標識は何を表しますか。|inquiry|transport
-2|730|phrasal_verb|take up|始める・占める|I took up fishing last year.|去年釣りを始めました。|narration|sea
-2|730|phrasal_verb|think over|熟考する|Let me think it over.|よく考えさせてください。|hedging|society
+2|600|phrasal_verb|take up|始める・占める|I took up fishing last year.|去年釣りを始めました。|narration|sea
+2|600|phrasal_verb|think over|熟考する|Let me think it over.|よく考えさせてください。|hedging|society
 2|730|phrasal_verb|try out|試す|Why don't you try it out?|試してみたらどう?|suggestion|shopping
 2|730|phrasal_verb|wear out|すり減る|My shoes are worn out.|靴がすり減りました。|description|clothing
 2|500|phrasal_verb|work on|取り組む|I'm working on a new menu.|新しいメニューに取り組んでいます。|description|cooking
 2|730|idiom|in the long run|長い目で見れば|In the long run, it saves money.|長い目で見れば節約になります。|opinion|finance
-2|730|idiom|on the other hand|他方で(句)|He is slow. On the other hand, he is careful.|彼は遅いが、慎重です。|contrast|hr
+2|600|idiom|on the other hand|他方で(句)|He is slow. On the other hand, he is careful.|彼は遅いが、慎重です。|contrast|hr
 2|730|idiom|to some extent|ある程度|To some extent, you are right.|ある程度、あなたは正しいです。|hedging|society
 2|730|idiom|as a matter of fact|実のところ|As a matter of fact, I live next door.|実は隣に住んでいます。|clarification|society
 2|860|idiom|to make matters worse|さらに悪いことに|To make matters worse, it started to rain.|さらに悪いことに雨が降り出しました。|narration|weather
 2|730|idiom|on second thought|考え直すと|On second thought, I'll take the bus.|考え直すと、バスで行きます。|hedging|transport
 2|500|idiom|at the moment|現在|He's out at the moment.|彼は今外出中です。|reporting|office
-2|730|idiom|in the meantime|その間に|In the meantime, please have a seat.|その間におかけください。|instruction|office
-2|730|idiom|before long|まもなく|The shop will open before long.|店はまもなく開きます。|prediction|shopping
+2|600|idiom|in the meantime|その間に|In the meantime, please have a seat.|その間におかけください。|instruction|office
+2|600|idiom|before long|まもなく|The shop will open before long.|店はまもなく開きます。|prediction|shopping
 2|730|idiom|on and off|断続的に|It rained on and off all day.|一日中降ったりやんだりでした。|description|weather
-2|730|idiom|once in a while|ときどき|I eat out once in a while.|ときどき外食します。|description|food
-2|730|idiom|every other day|1日おきに|The bus runs every other day.|バスは1日おきに走ります。|description|transport
+2|600|idiom|once in a while|ときどき|I eat out once in a while.|ときどき外食します。|description|food
+2|600|idiom|every other day|1日おきに|The bus runs every other day.|バスは1日おきに走ります。|description|transport
 2|-|idiom|up and down|上下に|Prices go up and down with the season.|価格は季節で上下します。|description|money
-2|730|idiom|for the time being|当分の間|The shop is closed for the time being.|店は当分の間休業です。|announcement|shopping
-2|860|idiom|in the wake of ...|…の後に|Prices rose in the wake of the storm.|嵐のあと物価が上がりました。|cause/effect|weather
-2|730|discourse|moreover|さらに|It's cheap. Moreover, the food is good.|安いです。さらに、料理もおいしいです。|addition|food
-2|730|discourse|furthermore|その上|Furthermore, the staff are friendly.|その上、スタッフも親切です。|addition|hotel
+2|600|idiom|for the time being|当分の間|The shop is closed for the time being.|店は当分の間休業です。|announcement|shopping
+pre1|860|idiom|in the wake of ...|…の後に|Prices rose in the wake of the storm.|嵐のあと物価が上がりました。|cause/effect|weather
+2|600|discourse|moreover|さらに|It's cheap. Moreover, the food is good.|安いです。さらに、料理もおいしいです。|addition|food
+2|600|discourse|furthermore|その上|Furthermore, the staff are friendly.|その上、スタッフも親切です。|addition|hotel
 2|860|discourse|nevertheless|それにもかかわらず|It was raining. Nevertheless, they went out.|雨でした。それにもかかわらず出かけました。|concession|weather
 2|860|discourse|nonetheless|それでもなお|The cost is high; nonetheless, it is worth it.|費用は高いが、それでも価値があります。|concession|finance
 2|730|discourse|consequently|その結果|Consequently, the road was closed.|その結果、道路は閉鎖されました。|cause/effect|transport
@@ -283,11 +283,11 @@ pre2|500|formula|Let's keep in touch.|連絡を取り合いましょう(別れ�
 2|730|discourse|on the contrary|それどころか|It isn't cheap. On the contrary, it's expensive.|安くありません。それどころか高いです。|contrast|money
 2|860|discourse|even so|それでも|Even so, I'd like to try.|それでも試してみたいです。|concession|society
 2|730|discourse|in particular|特に|I like fish, in particular tuna.|魚、特にマグロが好きです。|emphasis|food
-2|730|discourse|that is|すなわち|We open early, that is, at six.|開店は早く、すなわち6時です。|clarification|shopping
+2|600|discourse|that is|すなわち|We open early, that is, at six.|開店は早く、すなわち6時です。|clarification|shopping
 2|860|discourse|namely|すなわち|Two things matter, namely time and cost.|大切なのは時間と費用の2つです。|clarification|abstract
-2|730|discourse|to begin with|まず初めに|To begin with, let me explain the rules.|まず初めに、規則を説明します。|sequencing|meetings
-2|730|discourse|to sum up|要約すると|To sum up, we need more time.|要約すると、もっと時間が必要です。|summarizing|meetings
-2|730|discourse|all in all|概して|All in all, it was a good year.|概して、いい年でした。|summarizing|abstract
-2|730|discourse|as for ...|…に関しては|As for the price, it's reasonable.|価格については手頃です。|clarification|shopping
-2|730|discourse|regarding|…に関して|Regarding your order, it will arrive Friday.|ご注文の件ですが、金曜日に届きます。|clarification|sales
+2|600|discourse|to begin with|まず初めに|To begin with, let me explain the rules.|まず初めに、規則を説明します。|sequencing|meetings
+2|600|discourse|to sum up|要約すると|To sum up, we need more time.|要約すると、もっと時間が必要です。|summarizing|meetings
+2|600|discourse|all in all|概して|All in all, it was a good year.|概して、いい年でした。|summarizing|abstract
+2|600|discourse|as for ...|…に関しては|As for the price, it's reasonable.|価格については手頃です。|clarification|shopping
+2|600|discourse|regarding|…に関して|Regarding your order, it will arrive Friday.|ご注文の件ですが、金曜日に届きます。|clarification|sales
 2|730|discourse|with regard to|…に関して|With regard to payment, we accept cards.|支払いに関しては、カードが使えます。|clarification|money

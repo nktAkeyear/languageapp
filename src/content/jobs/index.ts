@@ -6,7 +6,8 @@
 import type { JobDef } from '../../jobs/types';
 import { TEAHOUSE_JOB } from './teahouse';
 import { POST_JOB } from './post.en';
+import { OFFICE_JOB } from './office.en';
 
 export { GOODS } from './teahouse';
 
-export const JOBS: JobDef[] = [TEAHOUSE_JOB, POST_JOB];
+export const JOBS: JobDef[] = [TEAHOUSE_JOB, POST_JOB, OFFICE_JOB];

@@ -137,7 +137,7 @@ pre2|730|pattern|in case ...|…に備えて|Take an umbrella in case it rains.|
 pre2|600|pattern|according to ...|…によると|According to the news, a typhoon is coming.|ニュースによると台風が来ます。|reporting|weather,media
 pre2|730|pattern|depending on ...|…によって|The price changes depending on the season.|値段は季節によって変わります。|description|money
 pre2|600|pattern|instead of ...|…の代わりに|I'll have tea instead of coffee.|コーヒーの代わりにお茶にします。|preference|food
-pre2|730|pattern|rather than ...|…よりむしろ|I prefer the sea rather than the mountains.|山よりむしろ海が好きです。|preference|nature
+pre2|730|pattern|rather than ...|…よりむしろ|We took the train rather than the bus.|私たちはバスではなく電車に乗りました。|preference|nature
 pre2|730|pattern|I'd rather ... than ...|…するくらいなら…したい|I'd rather walk than take a taxi.|タクシーに乗るより歩きたいです。|preference|transport
 pre2|600|pattern|I prefer ... to ...|…より…が好き|I prefer fish to meat.|肉より魚が好きです。|preference|food
 pre2|600|pattern|I'd prefer to ...|…するほうがいい|I'd prefer to pay by card.|カードで払うほうがいいです。|preference|money
@@ -154,13 +154,13 @@ pre2|500|pattern|both ... and ...|…も…も両方|Both the bank and the post 
 pre2|600|pattern|would like you to ...|あなたに…していただきたい|I would like you to wait here.|ここでお待ちいただきたいです。|request|office
 pre2|730|pattern|I'd appreciate it if you could ...|…していただけるとありがたいです|I'd appreciate it if you could call back.|折り返しお電話いただけるとありがたいです。|request|office
 pre2|600|collocation|a wide variety of|幅広い種類の|We sell a wide variety of fish.|さまざまな種類の魚を売っています。|description|shopping
-pre2|730|collocation|fill a prescription|処方箋の薬を出す|Could you fill this prescription?|この処方箋の薬をお願いします。|request|health
+pre2|600|collocation|fill a prescription|処方箋の薬を出す|Could you fill this prescription?|この処方箋の薬をお願いします。|request|health
 pre2|500|collocation|make an appointment|予約をとる|I'd like to make an appointment with the doctor.|医者の予約をとりたいのですが。|request|health
 pre2|500|collocation|cancel an appointment|予約を取り消す|I need to cancel my appointment.|予約を取り消す必要があります。|request|health
 pre2|-|collocation|fall asleep|寝入る|I fell asleep on the bus.|バスで寝入ってしまいました。|narration|body
 pre2|600|collocation|get lost|道に迷う|Don't get lost.|道に迷わないでね。|warning|travel
 pre2|-|collocation|come true|実現する|I hope your dream comes true.|あなたの夢が実現しますように。|emotion|abstract
-pre2|730|collocation|raise money|お金を集める|We raised money for the school.|学校のためにお金を集めました。|narration|money
+pre2|600|collocation|raise money|お金を集める|We raised money for the school.|学校のためにお金を集めました。|narration|money
 pre2|600|collocation|run a shop|店を経営する|She runs a small shop.|彼女は小さな店を経営しています。|description|shopping
 pre2|600|collocation|run out of time|時間がなくなる|We're running out of time.|時間がなくなってきました。|warning|abstract
 pre2|600|collocation|get in touch with|…と連絡を取る|I'll get in touch with the shop.|店に連絡を取ります。|offer|office
@@ -171,11 +171,11 @@ pre2|500|collocation|for sale|売り物の|This house is for sale.|この家は�
 pre2|600|collocation|in stock|在庫あり|Is this size in stock?|このサイズは在庫がありますか。|inquiry|shopping
 pre2|500|collocation|on business|仕事で|He went to Tokyo on business.|彼は仕事で東京へ行きました。|description|office
 pre2|600|collocation|in advance|前もって|Please book in advance.|前もって予約してください。|instruction|hotel
-pre2|730|collocation|on purpose|わざと|I didn't do it on purpose.|わざとではありません。|apology|abstract
+pre2|600|collocation|on purpose|わざと|I didn't do it on purpose.|わざとではありません。|apology|abstract
 pre2|600|collocation|by mistake|間違って|I took your umbrella by mistake.|間違ってあなたの傘を持っていきました。|apology|society
 pre2|600|collocation|take place|行われる|The festival takes place in August.|お祭りは8月に行われます。|description|arts
-pre2|730|collocation|take turns|交代でする|We take turns cooking.|交代で料理します。|description|cooking
-pre2|730|collocation|make use of|…を利用する|Make use of the free bus.|無料バスを利用してください。|suggestion|transport
+pre2|600|collocation|take turns|交代でする|We take turns cooking.|交代で料理します。|description|cooking
+pre2|600|collocation|make use of|…を利用する|Make use of the free bus.|無料バスを利用してください。|suggestion|transport
 pre2|500|collocation|a number of|いくつかの|A number of people came to the market.|多くの人が市場に来ました。|description|society
 pre2|500|collocation|heavy traffic|交通渋滞|We were late because of heavy traffic.|交通渋滞で遅れました。|description|transport
 pre2|500|collocation|a traffic jam|渋滞|There is a traffic jam on the bridge.|橋で渋滞しています。|description|transport
@@ -219,13 +219,13 @@ pre2|730|idiom|sooner or later|遅かれ早かれ|Sooner or later, you'll get us
 pre2|500|idiom|first of all|まず第一に|First of all, thank you for coming.|まず、来てくださってありがとうございます。|sequencing|meetings
 pre2|600|idiom|as a result|その結果|As a result, sales went up.|その結果、売上が上がりました。|cause/effect|sales
 pre2|600|discourse|therefore|したがって|It rained all day. Therefore, the game was canceled.|一日中雨でした。したがって試合は中止です。|cause/effect|weather
-pre2|730|discourse|besides|その上|It's cheap. Besides, it's close.|安いです。その上近いです。|addition|shopping
+pre2|600|discourse|besides|その上|It's cheap. Besides, it's close.|安いです。その上近いです。|addition|shopping
 pre2|600|discourse|instead|代わりに|The shop was closed, so we went to the cafe instead.|店が閉まっていたので、代わりにカフェに行きました。|contrast|shopping
-pre2|730|discourse|otherwise|さもなければ|Hurry, otherwise you'll miss the bus.|急いで、さもないとバスに乗り遅れます。|condition|transport
+pre2|600|discourse|otherwise|さもなければ|Hurry, otherwise you'll miss the bus.|急いで、さもないとバスに乗り遅れます。|condition|transport
 pre2|600|discourse|in conclusion|結論として|In conclusion, I think we should go.|結論として、行くべきだと思います。|summarizing|meetings
-pre2|730|discourse|on the whole|全体として|On the whole, the trip was good.|全体として、旅はよかったです。|summarizing|travel
-pre2|730|discourse|for one thing|一つには|For one thing, it's too far.|一つには、遠すぎます。|opinion|society
+pre2|600|discourse|on the whole|全体として|On the whole, the trip was good.|全体として、旅はよかったです。|summarizing|travel
+pre2|600|discourse|for one thing|一つには|For one thing, it's too far.|一つには、遠すぎます。|opinion|society
 pre2|600|discourse|in other words|言い換えれば|In other words, we have no time.|言い換えれば、時間がありません。|clarification|abstract
 pre2|500|discourse|unfortunately|残念ながら|Unfortunately, the room is full.|残念ながら満室です。|apology|hotel
 pre2|600|discourse|luckily|運よく|Luckily, we found a room.|運よく部屋が見つかりました。|narration|hotel
-pre2|730|discourse|meanwhile|その間に|Meanwhile, I'll buy the tickets.|その間に切符を買っておきます。|sequencing|transport
+pre2|600|discourse|meanwhile|その間に|Meanwhile, I'll buy the tickets.|その間に切符を買っておきます。|sequencing|transport

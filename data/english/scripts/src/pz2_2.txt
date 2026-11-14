@@ -1,10 +1,10 @@
 # ---- 2 additions: phrasal verbs
-2|730|phrasal_verb|break in|侵入する・口をはさむ|Someone broke in through the back window last night.|昨夜、だれかが裏の窓から侵入しました。|reporting|law
+2|600|phrasal_verb|break in|侵入する・口をはさむ|Someone broke in through the back window last night.|昨夜、だれかが裏の窓から侵入しました。|reporting|law
 2|600|phrasal_verb|break up|解散する・別れる・砕く|The meeting broke up at noon.|会議は正午に散会しました。|narration|meetings
-2|730|phrasal_verb|bring out|出す・引き出す・発売する|The bakery brought out a new kind of bread this week.|そのパン屋は今週、新しい種類のパンを売り出しました。|announcement|food
+2|600|phrasal_verb|bring out|出す・引き出す・発売する|The bakery brought out a new kind of bread this week.|そのパン屋は今週、新しい種類のパンを売り出しました。|announcement|food
 2|600|phrasal_verb|call on|訪問する・(人)に頼む|The doctor calls on her patients once a week.|その医師は週に1回、患者を訪問します。|description|health
-2|730|phrasal_verb|carry on|続ける|Please carry on with your work.|どうぞ作業を続けてください。|instruction|office
-2|730|phrasal_verb|clear up|片付ける・解決する・晴れる|We need to clear up this misunderstanding.|この誤解を解く必要があります。|obligation|abstract
+2|600|phrasal_verb|carry on|続ける|Please carry on with your work.|どうぞ作業を続けてください。|instruction|office
+2|600|phrasal_verb|clear up|片付ける・解決する・晴れる|We need to clear up this misunderstanding.|この誤解を解く必要があります。|obligation|abstract
 2|600|phrasal_verb|come along|一緒に来る・進む|Why don't you come along to the market?|市場に一緒に来ませんか。|invitation|shopping
 2|-|phrasal_verb|die out|絶滅する・すたれる|Many local customs are dying out in this area.|この地域では多くの風習がすたれつつあります。|description|society
 2|600|phrasal_verb|dress up|着飾る|You don't have to dress up for the dinner.|夕食会のために着飾る必要はありません。|suggestion|clothing
@@ -17,71 +17,71 @@
 2|730|phrasal_verb|give in|屈する・降参する|The shop owner finally gave in and lowered the price.|店主はついに折れて値段を下げました。|narration|sales
 2|860|phrasal_verb|give off|(におい・熱などを)出す|The old stove gives off a strange smell.|その古いコンロは変なにおいを出します。|complaint|housing
 2|860|phrasal_verb|go along with|(提案などに)従う・賛成する|I'll go along with your plan.|あなたの計画に賛成します。|agreement|meetings
-2|730|phrasal_verb|go over|見直す・確認する|Let's go over the schedule once more.|もう一度スケジュールを確認しましょう。|suggestion|meetings
+2|600|phrasal_verb|go over|見直す・確認する|Let's go over the schedule once more.|もう一度スケジュールを確認しましょう。|suggestion|meetings
 2|600|phrasal_verb|hand out|配る|Please hand out these flyers at the station.|駅でこのチラシを配ってください。|request|sales
 2|860|phrasal_verb|hold back|抑える・控える|He held back his tears at the farewell.|彼は別れのとき涙をこらえました。|narration|emotion
 2|730|phrasal_verb|leave out|省く・除外する|Don't leave out the date on the form.|用紙の日付を書き忘れないでください。|instruction|office
 2|600|phrasal_verb|let in|入れる|Please don't let the cat in.|猫を入れないでください。|request|housing
 2|600|phrasal_verb|line up|並ぶ|Customers lined up outside the bakery.|お客さんがパン屋の外に並びました。|description|shopping
-2|730|phrasal_verb|mix up|取り違える・混同する|I mixed up the two orders.|2つの注文を取り違えてしまいました。|apology|sales
+2|600|phrasal_verb|mix up|取り違える・混同する|I mixed up the two orders.|2つの注文を取り違えてしまいました。|apology|sales
 2|860|phrasal_verb|narrow down|絞り込む|We narrowed the list down to three candidates.|候補を3人に絞り込みました。|reporting|hr
 2|600|phrasal_verb|pull over|(車を)路肩に寄せる|Please pull over by the gate.|門のそばに車を寄せてください。|instruction|transport
 2|860|phrasal_verb|put forward|提案する・提出する|She put forward a good idea at the meeting.|彼女は会議でいい案を出しました。|reporting|meetings
-2|730|phrasal_verb|put through|電話をつなぐ|Could you put me through to Ms. Ota?|太田さんにつないでいただけますか。|request|office
-2|730|phrasal_verb|run through|ざっと確認する・通し練習する|Let's run through the plan before the guests arrive.|お客さんが来る前に計画をざっと確認しましょう。|suggestion|meetings
+2|600|phrasal_verb|put through|電話をつなぐ|Could you put me through to Ms. Ota?|太田さんにつないでいただけますか。|request|office
+2|600|phrasal_verb|run through|ざっと確認する・通し練習する|Let's run through the plan before the guests arrive.|お客さんが来る前に計画をざっと確認しましょう。|suggestion|meetings
 2|600|phrasal_verb|set out|出発する・着手する|They set out for the mountains at dawn.|彼らは夜明けに山へ出発しました。|narration|travel
 2|600|phrasal_verb|show off|見せびらかす|He likes to show off his new boat.|彼は新しい船を見せびらかすのが好きです。|description|sea
-2|730|phrasal_verb|sort out|整理する・解決する|I'll sort out the problem by tomorrow.|明日までにその問題を解決します。|offer|office
+2|600|phrasal_verb|sort out|整理する・解決する|I'll sort out the problem by tomorrow.|明日までにその問題を解決します。|offer|office
 2|860|phrasal_verb|step in|介入する・代わりに入る|The manager stepped in to help the customer.|店長が介入してお客さんを助けました。|narration|sales
 2|-|phrasal_verb|take after|(親などに)似ている|She takes after her mother.|彼女は母親に似ています。|description|family
 2|730|phrasal_verb|take in|取り入れる・理解する・だます|It was too much information to take in at once.|一度に理解するには情報が多すぎました。|opinion|school
 2|860|phrasal_verb|tell off|叱る|The teacher told him off for being late.|先生は遅刻したことで彼を叱りました。|narration|school
-2|730|phrasal_verb|turn in|提出する・床につく|Please turn in your report by Friday.|金曜日までにレポートを提出してください。|instruction|school
-2|730|phrasal_verb|turn over|ひっくり返す・(事業を)売り上げる|Turn over the paper and begin.|用紙を裏返して始めてください。|instruction|school
+2|600|phrasal_verb|turn in|提出する・床につく|Please turn in your report by Friday.|金曜日までにレポートを提出してください。|instruction|school
+2|600|phrasal_verb|turn over|ひっくり返す・(事業を)売り上げる|Turn over the paper and begin.|用紙を裏返して始めてください。|instruction|school
 2|860|phrasal_verb|turn to|頼る・(ページを)開く|When I'm in trouble, I turn to my uncle.|困ったときは、おじを頼ります。|description|family
 2|500|phrasal_verb|watch out|気をつける|Watch out for the wet floor.|濡れた床にご注意ください。|warning|housing
 2|730|phrasal_verb|pick on|いじめる・難癖をつける|Don't pick on the new student.|新入生をいじめないで。|warning|school
 2|-|phrasal_verb|knock down|取り壊す・なぎ倒す|They are going to knock down the old warehouse.|その古い倉庫は取り壊される予定です。|reporting|housing
 2|860|phrasal_verb|lay out|配置する・広げる|The staff laid out the products on the table.|スタッフは商品をテーブルに並べました。|description|sales
 2|860|phrasal_verb|cut in|割り込む|Please don't cut in line.|列に割り込まないでください。|warning|society
-2|730|phrasal_verb|come through|(危機などを)乗り切る・届く|The package came through safely.|荷物は無事に届きました。|reporting|logistics
-2|730|phrasal_verb|check up on|調べる・確認する|I'll check up on the delivery for you.|配達の状況を確認しておきます。|offer|logistics
+2|600|phrasal_verb|come through|(危機などを)乗り切る・届く|The package came through safely.|荷物は無事に届きました。|reporting|logistics
+2|600|phrasal_verb|check up on|調べる・確認する|I'll check up on the delivery for you.|配達の状況を確認しておきます。|offer|logistics
 # ---- 2 additions: idioms
 2|860|idiom|on the spot|その場で|He was hired on the spot.|彼はその場で採用されました。|narration|hr
 2|860|idiom|at stake|危機に瀕して・かかって|Hundreds of jobs are at stake.|何百人もの職がかかっています。|warning|society
 2|860|idiom|at risk|危険にさらされて|Older people are at risk in the heat.|高齢の人は暑さで危険にさらされます。|warning|health
-2|730|idiom|in demand|需要がある|Fresh fish is always in demand here.|ここでは新鮮な魚はいつも需要があります。|description|sea
+2|600|idiom|in demand|需要がある|Fresh fish is always in demand here.|ここでは新鮮な魚はいつも需要があります。|description|sea
 2|860|idiom|in vain|むだに・かいもなく|We waited for hours in vain.|何時間も待ちましたがむだでした。|narration|emotion
-2|730|idiom|on the rise|増加している|The number of visitors is on the rise.|訪問者数は増加しています。|reporting|travel
+2|600|idiom|on the rise|増加している|The number of visitors is on the rise.|訪問者数は増加しています。|reporting|travel
 2|860|idiom|in the red|赤字で|The shop has been in the red for two years.|その店は2年間赤字が続いています。|reporting|finance
 2|860|idiom|behind the scenes|舞台裏で|Many people work behind the scenes at the festival.|お祭りでは多くの人が裏方として働いています。|description|arts
 2|600|idiom|by heart|暗記して|I learned the song by heart.|その歌を暗記しました。|description|school
 2|600|idiom|by all means|ぜひ・どうぞ|May I use your phone? — By all means.|電話をお借りしてもいいですか。—どうぞどうぞ。|agreement|office
-2|730|idiom|by far|はるかに|This is by far the best bakery in town.|ここは町で断トツにいいパン屋です。|praise|food
+2|600|idiom|by far|はるかに|This is by far the best bakery in town.|ここは町で断トツにいいパン屋です。|praise|food
 2|730|idiom|out of the question|問題外で・不可能で|Going out in this storm is out of the question.|この嵐の中を出かけるのは問題外です。|refusal|weather
 2|600|idiom|out of stock|在庫切れで|The blue shirt is out of stock.|青いシャツは在庫切れです。|reporting|sales
-2|730|idiom|under control|制御されて・収まって|Don't worry. The situation is under control.|ご心配なく。状況は収まっています。|reporting|society
+2|600|idiom|under control|制御されて・収まって|Don't worry. The situation is under control.|ご心配なく。状況は収まっています。|reporting|society
 2|730|idiom|under pressure|プレッシャーを受けて|He works well under pressure.|彼はプレッシャーの中でもよく働きます。|praise|hr
 2|860|idiom|within reach|手の届くところに|Keep medicine within reach in case of an emergency.|緊急時のため薬は手の届くところに置いてください。|instruction|health
 2|860|idiom|to date|現在までに|We have received fifty orders to date.|現在までに50件の注文がありました。|reporting|sales
 2|860|idiom|to a large extent|大部分は|The success depends to a large extent on the weather.|成功は大部分が天気しだいです。|hedging|farming
-2|730|idiom|all along|初めからずっと|I knew all along that he was lying.|彼がうそをついていると初めからわかっていました。|narration|abstract
-2|730|idiom|at the latest|遅くとも|Please arrive by nine at the latest.|遅くとも9時までに着いてください。|instruction|office
-2|730|idiom|at any rate|とにかく|At any rate, we should leave soon.|とにかく、そろそろ出発しましょう。|summarizing|travel
+2|600|idiom|all along|初めからずっと|I knew all along that he was lying.|彼がうそをついていると初めからわかっていました。|narration|abstract
+2|500|idiom|at the latest|遅くとも|Please arrive by nine at the latest.|遅くとも9時までに着いてください。|instruction|office
+2|600|idiom|at any rate|とにかく|At any rate, we should leave soon.|とにかく、そろそろ出発しましょう。|summarizing|travel
 2|600|idiom|no longer|もはや…ない|This bus no longer stops here.|このバスはもうここには停まりません。|reporting|transport
 2|860|idiom|in place of|…の代わりに|You can use honey in place of sugar.|砂糖の代わりにはちみつが使えます。|suggestion|cooking
-2|730|idiom|as a whole|全体として|As a whole, the town is quiet.|全体として、その町は静かです。|summarizing|society
+2|600|idiom|as a whole|全体として|As a whole, the town is quiet.|全体として、その町は静かです。|summarizing|society
 2|860|idiom|in exchange for|…と引き換えに|He gave us fish in exchange for rice.|彼は米と引き換えに魚をくれました。|description|farming
 2|600|idiom|on duty|勤務中で|The nurse is on duty tonight.|その看護師は今夜、勤務中です。|description|health
 2|600|idiom|off duty|非番で|I'm off duty after five.|5時以降は非番です。|description|hr
-2|730|idiom|on leave|休暇中で|Ms. Kato is on leave until next week.|加藤さんは来週まで休暇中です。|reporting|hr
-2|730|idiom|on top of that|それに加えて|It was cold, and on top of that, it rained.|寒かったうえに、雨も降りました。|addition|weather
+2|600|idiom|on leave|休暇中で|Ms. Kato is on leave until next week.|加藤さんは来週まで休暇中です。|reporting|hr
+2|600|idiom|on top of that|それに加えて|It was cold, and on top of that, it rained.|寒かったうえに、雨も降りました。|addition|weather
 2|860|idiom|at all costs|何としても|We must protect the children at all costs.|何としても子どもたちを守らなければなりません。|emphasis|society
 # ---- 2 additions: collocations
 2|730|collocation|raise a question|疑問を投げかける|The report raises an important question.|その報告書は重要な疑問を投げかけています。|reporting|meetings
 2|860|collocation|run a risk|危険を冒す|You run a risk if you swim here.|ここで泳ぐと危険があります。|warning|sea
-2|730|collocation|take a risk|危険を冒す・賭ける|Opening a shop here is taking a big risk.|ここで店を開くのは大きな賭けです。|opinion|sales
-2|730|collocation|take action|行動を起こす|We must take action before it is too late.|手遅れになる前に行動を起こさなければなりません。|obligation|society
+2|600|collocation|take a risk|危険を冒す・賭ける|Opening a shop here is taking a big risk.|ここで店を開くのは大きな賭けです。|opinion|sales
+2|600|collocation|take action|行動を起こす|We must take action before it is too late.|手遅れになる前に行動を起こさなければなりません。|obligation|society
 2|860|collocation|take measures|対策を講じる|The town took measures against floods.|町は洪水への対策を講じました。|reporting|society
 2|730|collocation|take steps|措置を取る|The company took steps to cut waste.|会社は無駄を減らす措置を取りました。|reporting|office
 2|860|collocation|take charge of|…を担当する|Ms. Mori will take charge of the new project.|森さんが新しいプロジェクトを担当します。|announcement|hr
@@ -92,20 +92,20 @@
 2|990|collocation|lose sight of|見失う|Don't lose sight of your goal.|目標を見失わないでください。|suggestion|abstract
 2|860|collocation|lose control|制御を失う|The driver lost control on the icy road.|運転手は凍った道で制御を失いました。|narration|transport
 2|730|collocation|lose interest|興味を失う|Children quickly lose interest in long speeches.|子どもは長い話にすぐ興味を失います。|description|school
-2|730|collocation|gain experience|経験を積む|Working here is a good way to gain experience.|ここで働くのは経験を積むいい方法です。|opinion|hr
+2|600|collocation|gain experience|経験を積む|Working here is a good way to gain experience.|ここで働くのは経験を積むいい方法です。|opinion|hr
 2|860|collocation|gain access to|…に接近する・アクセスを得る|Members can gain access to the library after nine.|会員は9時以降に図書室を利用できます。|description|technology
-2|730|collocation|make a living|生計を立てる|He makes a living by fishing.|彼は漁で生計を立てています。|description|sea
-2|730|collocation|make an exception|例外を認める|We can't make an exception, I'm sorry.|例外は認められません、すみません。|refusal|sales
+2|600|collocation|make a living|生計を立てる|He makes a living by fishing.|彼は漁で生計を立てています。|description|sea
+2|600|collocation|make an exception|例外を認める|We can't make an exception, I'm sorry.|例外は認められません、すみません。|refusal|sales
 2|-|collocation|make a mess|散らかす|The children made a mess in the kitchen.|子どもたちが台所を散らかしました。|complaint|housing
 2|730|collocation|make room for|…の場所を空ける|Let's make room for the new shelves.|新しい棚の場所を空けましょう。|suggestion|housing
 2|600|collocation|make sense|意味が通る|Your plan makes sense to me.|あなたの計画は筋が通っていると思います。|agreement|meetings
 2|600|collocation|make up one's mind|決心する|I can't make up my mind.|決められません。|hedging|shopping
-2|730|collocation|do research|調査をする|We did some research before buying the land.|土地を買う前に調査を行いました。|description|science
+2|600|collocation|do research|調査をする|We did some research before buying the land.|土地を買う前に調査を行いました。|description|science
 2|600|collocation|do a favor|頼みを聞く|Could you do me a favor?|ひとつお願いしてもいいですか。|request|society
 2|860|collocation|give way|道を譲る・屈する|Give way to buses at this corner.|この角ではバスに道を譲ってください。|instruction|transport
 2|860|collocation|have an effect on|…に影響を及ぼす|The weather has a big effect on our sales.|天気は私たちの売り上げに大きな影響を与えます。|reporting|sales
 2|860|collocation|have an influence on|…に影響を与える|Music can have an influence on our mood.|音楽は気分に影響を与えることがあります。|description|arts
-2|730|collocation|have access to|…を利用できる|All guests have access to the pool.|宿泊客はみなプールを利用できます。|description|hotel
+2|600|collocation|have access to|…を利用できる|All guests have access to the pool.|宿泊客はみなプールを利用できます。|description|hotel
 2|860|collocation|have a tendency to|…する傾向がある|Prices have a tendency to rise in summer.|夏は値段が上がる傾向があります。|reporting|sales
 2|730|collocation|cause damage|被害を引き起こす|The typhoon caused damage to many houses.|台風は多くの家に被害を与えました。|reporting|weather
 2|730|collocation|cause trouble|迷惑・問題を起こす|I'm sorry to cause you trouble.|ご迷惑をおかけしてすみません。|apology|society
@@ -114,10 +114,10 @@
 2|860|collocation|draw a conclusion|結論を出す|It's too early to draw a conclusion.|結論を出すのはまだ早いです。|hedging|science
 2|860|collocation|express an opinion|意見を述べる|Everyone is free to express an opinion.|だれでも自由に意見を述べられます。|opinion|meetings
 2|860|collocation|meet demand|需要に応える|We can't meet demand this month.|今月は需要に応えられません。|reporting|sales
-2|730|collocation|a large amount of|大量の|We need a large amount of water.|大量の水が必要です。|description|abstract
-2|730|collocation|a wide selection of|豊富な品ぞろえの|We offer a wide selection of teas.|豊富な種類のお茶を取りそろえています。|offer|shopping
-2|730|collocation|in good condition|良い状態で|The car is in good condition.|その車は状態が良いです。|description|sales
-2|730|collocation|in poor condition|状態が悪い|The old bridge is in poor condition.|その古い橋は状態が悪いです。|description|society
+2|600|collocation|a large amount of|大量の|We need a large amount of water.|大量の水が必要です。|description|abstract
+2|600|collocation|a wide selection of|豊富な品ぞろえの|We offer a wide selection of teas.|豊富な種類のお茶を取りそろえています。|offer|shopping
+2|600|collocation|in good condition|良い状態で|The car is in good condition.|その車は状態が良いです。|description|sales
+2|600|collocation|in poor condition|状態が悪い|The old bridge is in poor condition.|その古い橋は状態が悪いです。|description|society
 2|600|collocation|a vast majority of|大多数の|A vast majority of the guests were happy.|大多数のお客様が満足しました。|reporting|hotel
 # ---- 2 additions: patterns
 2|860|pattern|be in the habit of ...ing|…する習慣がある|He is in the habit of walking along the shore.|彼は海岸沿いを歩く習慣があります。|description|sea
@@ -127,33 +127,33 @@
 2|600|pattern|feel like ...ing|…したい気分だ|I feel like eating something sweet.|何か甘いものが食べたい気分です。|preference|food
 2|860|pattern|insist on ...ing|…すると言い張る|He insisted on paying for the meal.|彼は食事代を払うと言って聞きませんでした。|description|food
 2|860|pattern|prevent someone from ...ing|人が…するのを妨げる|The snow prevented us from leaving.|雪のせいで私たちは出発できませんでした。|cause/effect|weather
-2|730|pattern|thanks to ...|…のおかげで|Thanks to your help, we finished early.|あなたの助けのおかげで早く終わりました。|thanks|office
+2|600|pattern|thanks to ...|…のおかげで|Thanks to your help, we finished early.|あなたの助けのおかげで早く終わりました。|thanks|office
 2|860|pattern|on account of ...|…の理由で|The ferry was canceled on account of the storm.|嵐のためフェリーは欠航になりました。|cause/effect|sea
 2|860|pattern|as a result of ...|…の結果として|As a result of the heavy rain, the road is closed.|大雨の結果、道路は閉鎖されています。|cause/effect|weather
 2|730|pattern|What if ...?|もし…だったらどうする|What if it rains on the day?|当日雨が降ったらどうしますか。|inquiry|weather
 2|860|pattern|It occurs to me that ...|…という考えが浮かぶ|It occurs to me that we have no spare key.|予備の鍵がないことに気づきました。|opinion|office
 2|860|pattern|No matter how ...|どんなに…でも|No matter how hard I try, I can't open it.|どんなにがんばっても、開けられません。|concession|abstract
 2|860|pattern|the moment ...|…するとすぐに|The moment I saw the sea, I felt better.|海を見た瞬間、気分がよくなりました。|narration|emotion
-2|730|pattern|now that ...|今や…なので|Now that the work is done, we can go home.|仕事が終わったので、帰れます。|cause/effect|office
+2|600|pattern|now that ...|今や…なので|Now that the work is done, we can go home.|仕事が終わったので、帰れます。|cause/effect|office
 2|860|pattern|given that ...|…ということを考えると|Given that it's Sunday, the bank is closed.|日曜日なので、銀行は閉まっています。|cause/effect|finance
 2|860|pattern|on condition that ...|…という条件で|I'll lend you the car on condition that you drive carefully.|慎重に運転するという条件で車を貸します。|condition|transport
 2|860|pattern|the rest of ...|…の残り|I'll finish the rest of the work tomorrow.|仕事の残りは明日終わらせます。|description|office
 2|730|pattern|none of ...|…のうちどれも〜ない|None of the rooms has a sea view.|どの部屋も海は見えません。|description|hotel
 2|730|pattern|each of ...|…のそれぞれ|Each of the rooms has a small desk.|各部屋に小さな机があります。|description|hotel
 2|860|pattern|either of ...|…のどちらか|Either of the two roads leads to the port.|2つの道のどちらも港に通じています。|description|travel
-2|730|pattern|be known as ...|…として知られている|This town is known as the city of fish.|この町は魚の町として知られています。|description|sea
+2|600|pattern|be known as ...|…として知られている|This town is known as the city of fish.|この町は魚の町として知られています。|description|sea
 2|600|pattern|be known to ...|…に知られている|The cheese is known to many tourists.|そのチーズは多くの観光客に知られています。|description|food
 2|860|pattern|so far as ... is concerned|…に関する限り|So far as I'm concerned, the price is fine.|私に関する限り、値段は問題ありません。|opinion|money
 # ---- 2 additions: discourse
 2|860|discourse|that is to say|つまり|He is my uncle, that is to say, my mother's brother.|彼は私のおじ、つまり母の弟です。|clarification|family
 2|860|discourse|in effect|事実上|In effect, the shop is closed for the winter.|事実上、その店は冬のあいだ休業です。|summarizing|sales
-2|860|discourse|to be specific|具体的には|We need help, to be specific, two more workers.|助けが必要です。具体的にはあと2人です。|clarification|office
+2|860|discourse|to be specific|具体的には|We need more help. To be specific, we need two more workers.|もっと助けが必要です。具体的には、あと2人必要です。|clarification|office
 2|730|discourse|frankly speaking|率直に言うと|Frankly speaking, the food was not good.|率直に言って、料理はよくありませんでした。|opinion|food
 2|860|discourse|strictly speaking|厳密に言えば|Strictly speaking, this is not allowed.|厳密に言えば、これは許されていません。|clarification|law
 2|730|discourse|To be fair, ...|公平に言えば、…|To be fair, the staff was very busy that day.|公平に言えば、その日スタッフはとても忙しかったのです。|opinion|emotion
-2|730|discourse|in any case|いずれにせよ|In any case, call me when you arrive.|いずれにせよ、着いたら電話をください。|summarizing|travel
+2|600|discourse|in any case|いずれにせよ|In any case, call me when you arrive.|いずれにせよ、着いたら電話をください。|summarizing|travel
 2|860|discourse|on the one hand|一方では|On the one hand, the price is low.|一方では、値段は安いです。|contrast|shopping
-2|730|discourse|what's more|そのうえ|It's cheap, and what's more, it's delicious.|安いうえに、おいしいです。|addition|food
+2|600|discourse|what's more|そのうえ|It's cheap, and what's more, it's delicious.|安いうえに、おいしいです。|addition|food
 2|860|discourse|to put it another way|言い換えれば|To put it another way, we need more time.|言い換えれば、もっと時間が必要です。|clarification|office
 2|860|discourse|all the same|それでもやはり|It's raining, but I'll go all the same.|雨ですが、それでも行きます。|concession|weather
 2|730|discourse|for that reason|そのため|For that reason, the museum will be closed.|そのため、博物館は閉館となります。|cause/effect|arts

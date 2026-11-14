@@ -251,18 +251,19 @@ export function unpackLists(pk: PackedLists, notes: string[] = []): EnglishLists
   return indexLists(vocab, phrases, grammar, notes);
 }
 
-/** Look up a lexicon word in the vocab list (headword, then each surface form; first POS match wins). */
+/**
+ * Look up a lexicon word in the vocab list: its headword and every surface form are tried (a
+ * lexicon entry is a lemma with its forms: "is" also lists "be"); items of the same part of speech
+ * are preferred, and among the matches the easiest one wins (the lemma's level).
+ */
 export function vocabFor(lists: EnglishLists, text: string, pos?: string, forms: string[] = []): VocabItem | undefined {
-  for (const s of [text, ...forms]) {
-    const items = lists.byWord.get(s.toLowerCase());
-    if (!items?.length) continue;
-    if (pos) {
-      const m = items.find((v) => posMatches(v.pos, pos));
-      if (m) return m;
-    }
-    return items[0];
-  }
-  return undefined;
+  const all: VocabItem[] = [];
+  for (const s of [text, ...forms]) all.push(...(lists.byWord.get(s.toLowerCase()) ?? []));
+  if (!all.length) return undefined;
+  const same = pos ? all.filter((v) => posMatches(v.pos, pos)) : [];
+  const pool = same.length ? same : all.filter((v) => v.word.toLowerCase() === text.toLowerCase()).length ? all.filter((v) => v.word.toLowerCase() === text.toLowerCase()) : all;
+  const rank = (v: VocabItem) => (v.eiken ? ['5', '4', '3', '準2', '2', '準1', '1'].indexOf(v.eiken) : 9) * 10 + (v.toeic ? v.toeic / 1000 : 9);
+  return [...pool].sort((a, b) => rank(a) - rank(b))[0];
 }
 
 const POS_ALIASES: Record<string, string[]> = {
