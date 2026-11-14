@@ -7,6 +7,7 @@
  */
 
 import type { TownContent, TownShared } from './townTypes';
+import type { StoryShared, StoryText } from '../story/types';
 
 export type Lang = 'en' | 'zh';
 export const LANGS: Lang[] = ['en', 'zh'];
@@ -316,6 +317,8 @@ export interface LanguageContent {
   levelTargets: LevelTargets;
   /** Town activities (market, deliveries). Merged in by src/content/index.ts; absent = shop only. */
   town?: TownContent;
+  /** Story layer text (regulars, documents). Merged in by src/content/index.ts; absent = no story. */
+  story?: StoryText;
 }
 
 export interface SharedContent {
@@ -325,6 +328,8 @@ export interface SharedContent {
   graceDays: number;
   /** Town activities (language-neutral part). Absent = shop only. */
   town?: TownShared;
+  /** Story layer structure (language-neutral). Absent = no story. */
+  story?: StoryShared;
 }
 
 // ---------------------------------------------------------------------------

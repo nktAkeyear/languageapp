@@ -6,6 +6,10 @@ import { SHARED as BASE_SHARED } from './shared';
 import { TOWN_SHARED } from './shared/town';
 import zh from './zh';
 import zhTown from './zh/town';
+import { STORY_EN } from './en/story';
+import { STORY_SHARED } from './shared/story';
+import { STORY_ZH } from './zh/story';
+import { withStory } from '../story/merge';
 
 /** Town activities live in their own files; merge their lexicon / verification pages here. */
 function withTown(c: LanguageContent, town: TownContent): LanguageContent {
@@ -17,6 +21,9 @@ function withTown(c: LanguageContent, town: TownContent): LanguageContent {
   };
 }
 
-export const SHARED: SharedContent = { ...BASE_SHARED, town: TOWN_SHARED };
+export const SHARED: SharedContent = { ...BASE_SHARED, town: TOWN_SHARED, story: STORY_SHARED };
 
-export const CONTENT: Record<Lang, LanguageContent> = { en: withTown(en, enTown), zh: withTown(zh, zhTown) };
+export const CONTENT: Record<Lang, LanguageContent> = {
+  en: withStory(withTown(en, enTown), STORY_EN),
+  zh: withStory(withTown(zh, zhTown), STORY_ZH),
+};

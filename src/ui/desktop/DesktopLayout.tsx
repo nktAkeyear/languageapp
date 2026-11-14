@@ -10,6 +10,7 @@ import { MarketNote, Purse, Stalls, TownNotice } from '../components/town/Market
 import { WordDetail } from '../components/WordDetail';
 import { Workbench } from '../components/Workbench';
 import { useGame } from '../useGame';
+import { StoryLayer } from '../components/story/StoryLayer';
 
 function NotebookPanel() {
   return (
@@ -98,6 +99,7 @@ export function DesktopLayout() {
           <SettingsPanel onClose={() => setSettings(false)} />
         </Overlay>
       ) : null}
+      <StoryLayer variant="modal" />
       {g.selectedWord ? (
         <Overlay variant="modal" onClose={() => g.openWord(null)}>
           <WordDetail id={g.selectedWord} onClose={() => g.openWord(null)} />

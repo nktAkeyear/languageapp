@@ -53,7 +53,7 @@ describe('save', () => {
   it('migrates v1 saves: town progress added, running day kept', () => {
     const v1 = { version: 1, currentLang: 'en', settings: { layout: 'mobile' }, progress: { en: { lang: 'en', day: 7, reputation: 30, stage: 6, today: { day: 7 } } } };
     const s = migrateSave(v1);
-    expect(s.version).toBe(2);
+    expect(s.version).toBe(SAVE_VERSION);
     expect(s.settings.layout).toBe('mobile');
     expect(s.progress.en).toMatchObject({ day: 7, reputation: 30, stage: 6, townDay: null, today: { day: 7 } });
     expect(s.progress.en!.town).toMatchObject({ marketRuns: 0, deliveryRuns: 0, unlocked: {}, slips: {} });

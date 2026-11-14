@@ -283,7 +283,7 @@ export interface DeliveryText {
   knock: Record<number, string[]>;
   absent: Record<'door' | 'neighbour', string[]>;
   /** Recipients' names (target language, not tracked as vocabulary). */
-  recipients: { id: string; name: string; avatar: string }[];
+  recipients: { id: string; name: string; avatar: string; /** story layer only: never picked at random */ storyOnly?: boolean }[];
   reactions: DeliveryReaction[];
 }
 

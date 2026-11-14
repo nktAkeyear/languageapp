@@ -14,6 +14,7 @@ import { SpeakButton, WordText } from '../components/WordText';
 import { Workbench } from '../components/Workbench';
 import { useSpeechAvailable } from '../speech';
 import { useGame } from '../useGame';
+import { StoryLayer } from '../components/story/StoryLayer';
 
 type MTab = 'customer' | 'bench' | 'book' | 'notebook' | 'note' | 'stalls' | 'slip' | 'map';
 const TABS: Record<ActivityKind, { id: MTab; label: string; icon: string }[]> = {
@@ -187,6 +188,7 @@ export function MobileLayout() {
           <SettingsPanel onClose={() => setSettings(false)} />
         </Overlay>
       ) : null}
+      <StoryLayer variant="sheet" />
       {g.selectedWord ? (
         <Overlay variant="sheet" onClose={() => g.openWord(null)}>
           <WordDetail id={g.selectedWord} onClose={() => g.openWord(null)} />

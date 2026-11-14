@@ -10,6 +10,7 @@ import { makeRng } from './rng';
 import { tokenIds, unknownTokens } from './tokenize';
 import type { IssueKind, LanguageContent, OrderRule, ReactionKind, SharedContent } from './types';
 import { validateTownLanguage, validateTownShared } from './validateTown';
+import { validateStoryLanguage, validateStoryShared } from '../story/validate';
 
 export interface ValidationReport {
   errors: string[];
@@ -50,6 +51,9 @@ export function validateShared(shared: SharedContent): ValidationReport {
   const town = validateTownShared(shared);
   errors.push(...town.errors);
   warnings.push(...town.warnings);
+  const story = validateStoryShared(shared);
+  errors.push(...story.errors);
+  warnings.push(...story.warnings);
   const rids = new Set<string>();
   for (const r of shared.recipes) {
     if (rids.has(r.id)) errors.push(`shared: duplicate recipe ${r.id}`);
@@ -274,6 +278,7 @@ export function validateLanguage(content: LanguageContent, shared: SharedContent
 
   // --- town activities (market, deliveries)
   const townStats = validateTownLanguage(data, { err, warn, checkText, lexRef });
+  const storyStats = validateStoryLanguage(data, { err, warn, checkText, lexRef });
 
   // --- reachability: every word must be encounterable, or its 検証ページ never opens
   for (const e of content.lexicon) if (!reachable.has(e.id)) err(`lexicon ${e.id} («${e.text}») never appears in any content text`);
@@ -290,6 +295,7 @@ export function validateLanguage(content: LanguageContent, shared: SharedContent
       verificationPages: content.verificationPages.length,
       townWords: content.town?.lexicon.length ?? 0,
       ...townStats,
+      ...storyStats,
     },
   };
 }

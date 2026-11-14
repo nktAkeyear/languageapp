@@ -1,7 +1,9 @@
 /*
  * Content-author helper: simulate a player for N days and print every segment of each day:
  * market (shopping note, vendor talk), shop orders + reactions, deliveries (slip + reaction).
- *   npm run simulate -- [en|zh] [days] [seed] [failEvery]
+ *   npm run simulate -- [en|zh] [days] [seed] [failEvery] [choice]
+ * Story beats are printed as they fire (📖); `choice` = which option the player picks in story
+ * choices (0 = the first, default; n picks option n mod count).
  * The simulated player solves everything correctly, except every `failEvery`-th customer gets a
  * deliberately wrong cup, every `failEvery`-th market buys one unit too few, and every
  * `failEvery`-th delivery goes to the wrong house — so failure reactions and consequences show up.
@@ -16,8 +18,10 @@ import { buildGameData, ingredientsAtStage, plain } from '../src/core/gamedata';
 import { makeRng } from '../src/core/rng';
 import { newProgress } from '../src/core/save';
 import type { Brew, IngredientId, Lang } from '../src/core/types';
+import { storySync } from '../src/story/engine';
+import { storyLog } from './storyLog';
 
-const [langArg = 'en', daysArg = '10', seedArg = '1', failArg = '4'] = process.argv.slice(2);
+const [langArg = 'en', daysArg = '10', seedArg = '1', failArg = '4', choiceArg = '0'] = process.argv.slice(2);
 const lang = (langArg === 'zh' ? 'zh' : 'en') as Lang;
 const data = buildGameData(CONTENT[lang], SHARED);
 const p = newProgress(lang);
@@ -32,6 +36,7 @@ for (let d = 0; d < Number(daysArg); d++) {
     `\n[${lang}] day ${p.day}  stage ${p.stage}  rep ${p.reputation}  coins ${p.town.money}  plan: ${describeDay(p)}  new words: ${p.today!.newWords.join(' ') || '-'}`,
   );
   for (const note of p.townDay!.notes) console.log(`  ※ ${note}`);
+  storyLog(data, p, Number(choiceArg));
   for (;;) {
     const seg = currentSegment(p);
     if (seg === 'market') {
@@ -54,6 +59,7 @@ for (let d = 0; d < Number(daysArg); d++) {
         const r = serveInTown(data, p, brew, rng)!;
         const flags = `${o.audioOnly ? '🔊' : '  '}${o.returning ? '↩' : ' '}`;
         console.log(`  ${flags} ${plain(o.text).padEnd(50)} -> ${r.evaluation.outcome.padEnd(7)} ${plain(r.reaction.text)}`);
+        storyLog(data, p, Number(choiceArg));
         nextCustomer(data, p);
       }
     } else {
@@ -62,10 +68,13 @@ for (let d = 0; d < Number(daysArg); d++) {
       solveDelivery(data, p, rng, wrong ? 'place' : 'none');
       const who = CONTENT[lang].town!.delivery.recipients.find((r) => r.id === x.slip.recipient)?.name;
       console.log(`  📦 delivery (level ${x.level}) to ${who}: ${x.slip.lines.map((l) => plain(l.text)).join(' ')}  [${x.slip.rule.place}${x.slip.home ? '' : ', nobody home'}]`);
+      storySync(data, p);
       console.log(`     -> ${x.result!.outcome.padEnd(7)} ${plain(x.result!.reaction)}${wrong ? '  (went to the wrong house)' : ''}`);
+      storyLog(data, p, Number(choiceArg));
     }
     if (!p.townDay || p.townDay.seg >= p.townDay.segments.length - 1) break;
     nextSegment(p);
   }
-  endTownDay(p);
+  endTownDay(p, data);
+  storyLog(data, p, Number(choiceArg));
 }
