@@ -38,7 +38,7 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
   const over = day.part > 2;
   const jobs = jobsOf(data);
   const notesKey = `${progress.day}`;
-  const showNotes = day.notes.length > 0 && notesSeen !== notesKey;
+  const showNotes = day.notes.length > 0 && notesSeen !== notesKey && !sel && !board;
   const status = (
     <div className="hub-status">
       <div className="hub-when">

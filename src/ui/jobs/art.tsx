@@ -191,9 +191,10 @@ function BuildingLotArt({ x, y }: { x: number; y: number }) {
 
 /** Small front of a workplace (phone list, board cards). */
 export function BuildingFront({ id }: { id: string }) {
-  const art: Record<string, ReactNode> = {
-    teahouse: (
-      <g>
+  const views: Record<string, [string, ReactNode]> = {
+    teahouse: [
+      '0 0 120 112',
+      <g key="t">
         <rect x="14" y="40" width="92" height="66" fill="#e8d0a8" stroke="#3a2a1a" strokeWidth="3" />
         <path d="M4 42 L60 8 L116 42 Z" fill="#4d6a45" stroke="#2a3a22" strokeWidth="3" />
         <rect x="48" y="62" width="24" height="44" fill="#5e7a6a" stroke="#2a3a22" strokeWidth="2" />
@@ -202,33 +203,17 @@ export function BuildingFront({ id }: { id: string }) {
           <circle r="11" fill="#f6ecd2" stroke="#7a2f1b" strokeWidth="2" />
           <path d="M-5 -1 q5 8 10 0 Z" fill="#7a2f1b" />
         </g>
-      </g>
-    ),
-    post: (
-      <g transform="translate(-25 -6) scale(0.95)">
-        <PostOfficeArt x={20} y={0} />
-      </g>
-    ),
-    office: (
-      <g transform="translate(14 -2) scale(0.52 0.4)">
-        <OfficeArt x={0} y={0} />
-      </g>
-    ),
-    kitchen: (
-      <g transform="translate(-4 4) scale(0.66)">
-        <CanteenArt x={0} y={0} />
-      </g>
-    ),
-    inn: (
-      <g transform="translate(-30 -30) scale(1.0)">
-        <MapLandmarkArt lm="inn" x={20} y={20} temple="church" />
-      </g>
-    ),
+      </g>,
+    ],
+    post: ['-6 0 200 204', <PostOfficeArt key="p" x={0} y={0} />],
+    office: ['-60 -6 290 296', <OfficeArt key="o" x={0} y={0} />],
+    kitchen: ['-6 -46 200 230', <CanteenArt key="k" x={0} y={0} />],
+    inn: ['-6 -4 190 178', <MapLandmarkArt key="i" lm="inn" x={0} y={0} temple="church" />],
   };
+  const [vb, art] = views[id] ?? ['0 0 120 112', <rect key="x" x="20" y="30" width="80" height="74" fill="#d8c8a8" stroke="#5a4430" strokeWidth="2" />];
   return (
-    <svg viewBox="0 0 120 112" className="bfront" aria-hidden>
-      <rect x="0" y="104" width="120" height="8" fill="#cdb48a" />
-      {art[id] ?? <rect x="20" y="30" width="80" height="74" fill="#d8c8a8" stroke="#5a4430" strokeWidth="2" />}
+    <svg viewBox={vb} className="bfront" aria-hidden>
+      {art}
     </svg>
   );
 }
