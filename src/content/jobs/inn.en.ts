@@ -372,6 +372,7 @@ const WORD_PAGES: [string, string, Entry[]][] = [
     ['in_camera', 'camera', 'カメラ', '📸', ['cameras']],
     ['in_clothes', 'clothes', '衣服', '👕'],
     ['in_balcony', 'balcony', 'バルコニー', '🌇', ['balconies']],
+    ['in_grandson', 'grandson', '孫（男の子）', '👦', ['grandsons']],
   ]],
   ['ji_weather3', '寒い日', [
     ['in_fog', 'fog', '霧', '🌫️'],
@@ -535,6 +536,7 @@ const WORD_PAGES: [string, string, Entry[]][] = [
     ['in_lucky', 'lucky', '運のいい', '🍀', undefined, 'adj'],
     ['in_vegetarian', 'vegetarian', '菜食の人', '🥬'],
     ['in_vegetable', 'vegetable', '野菜', '🥕', ['vegetables']],
+    ['in_sit', 'sit', '座る', '🪑', ['sits', 'sat', 'sitting'], 'verb'],
   ]],
   ['ji_buy4', '買いものと案内', [
     ['in_souvenir', 'souvenir', 'お土産', '🎁', ['souvenirs']],
@@ -568,13 +570,23 @@ for (const [id, labelJa, words] of WORD_PAGES) {
   if (mine.length >= 3) kept.push([id, labelJa, mine]);
   else spare.push(...mine);
 }
-for (let i = 0; i < spare.length; ) {
-  const left = spare.length - i;
-  const n = left === 5 ? 5 : left <= 4 ? left : 4;
-  const chunk = spare.slice(i, i + n);
-  i += n;
-  if (chunk.length < 3 && kept.length) kept[kept.length - 1][2].push(...chunk);
-  else kept.push([`ji_more${kept.length}`, '帳場の言葉（つづき）', chunk]);
+if (spare.length && spare.length < 3) {
+  // too few for a page of their own: join a page with room, else borrow from the fullest page
+  const room = kept.find((k) => k[2].length + spare.length <= 5);
+  if (room) room[2].push(...spare);
+  else {
+    const fullest = kept.reduce((m, k) => (k[2].length > m[2].length ? k : m), kept[0]);
+    while (spare.length < 3 && fullest[2].length > 3) spare.unshift(fullest[2].pop()!);
+    if (spare.length >= 3) kept.push([`ji_more${kept.length}`, '帳場の言葉（つづき）', spare.splice(0)]);
+  }
+} else if (spare.length) {
+  const groups = Math.ceil(spare.length / 5);
+  let at = 0;
+  for (let g = 0; g < groups; g++) {
+    const size = Math.floor((spare.length - at) / (groups - g));
+    kept.push([`ji_more${kept.length}`, '帳場の言葉（つづき）', spare.slice(at, at + size)]);
+    at += size;
+  }
 }
 for (const [id, labelJa, words] of kept) {
   const p = page(id, labelJa, words);
@@ -607,7 +619,7 @@ const R1: AuthoredTask[] = [
   sort('i1_bags2', 1, 19, 'More bags! Look at the name and the room number.', ['f1', 'f2', 'f3'], [['{Captain Reed|@}, room 31', 'f3'], ['{Mr. Lin|@}, room 12', 'f1'], ['{Ms. Ruiz|@}, room 25', 'f2'], ['{Mr. Bell|@}, room 33', 'f3']], { grammar: ['gr-5-024'] }),
   ask('i1_stairs', 1, 20, 'c_grandma', "I can't use the stairs.", 'Of course. I have a room on the first floor.', ['From seven to nine.', 'It is forty coins.'], { grammar: ['gr-5-015'], phrases: ['ph-5-0084'] }),
   slot('i1_notstreet', 1, 21, 'p_ruiz', 'rooms', ['A double room, please.', 'Not on the street side, please.'], FLOORS, SEA_SINGLE_DOUBLE, ['double'], ['street'], 'f1-s2', ['{Mr. Bell|@}', '{Mr. Lin|@}', '{Captain Reed|@}', '{Grandma Rose|@}'], { grammar: ['gr-5-011', 'gr-5-002'] }),
-  ask('i1_thanks', 1, 22, 'p_ruiz', 'Thank you for the nice room.', 'You are welcome. Enjoy your stay.', ['That is all right.', 'At six in the evening.'], { phrases: ['ph-5-0015'] }),
+  ask('i1_thanks', 1, 22, 'p_ruiz', 'Thank you for the nice room.', 'You are welcome. Enjoy your stay.', ['Good night. See you tomorrow.', 'At six in the evening.'], { phrases: ['ph-5-0015'] }),
   check('i1_number', 1, 23, 'c_docker', 'I am {Big Joe|@}. My room is number 31.', book([['name', 'Name', '{Big Joe|@}'], ['number', 'Number', '13']]), 'number', { grammar: ['gr-5-024'] }),
   ask('i1_map', 1, 24, 'c_boy', 'Where is the market?', 'It is next to the bank.', ['Good night. See you tomorrow.', 'It is forty coins.'], { grammar: ['gr-5-013', 'gr-5-021'] }),
   slot('i1_topsingle', 1, 25, 'p_bell', 'rooms', ['I like the top floor.', 'A single room, please.'], FLOORS, SEA_SINGLE_DOUBLE, ['f3', 'single'], [], 'f3-t1', ['{Mr. Lin|@}', '{Ms. Ruiz|@}', '{Captain Reed|@}', '{Grandma Rose|@}'], { grammar: ['gr-5-025'] }),
@@ -616,7 +628,7 @@ const R1: AuthoredTask[] = [
   ask('i1_garden', 1, 28, 'c_mom', 'Is there a garden?', 'Yes, it is behind the kitchen.', ['Sure. Here you are.', 'That is all right.'], { grammar: ['gr-5-020', 'gr-5-021'] }),
   ask('i1_late', 1, 29, 'c_merchant', 'I am sorry. I am late.', 'That is all right. Here is your key.', ['It is next to the bank.', 'Yes, every room has a bath.'], {  }),
   check('i1_last', 1, 30, 'p_lin', 'Good evening. I am {Mr. Lin|@}. A double room for three nights, with breakfast, please.', book([['name', 'Name', '{Mr. Lin|@}'], ['room', 'Room', 'single'], ['nights', 'Nights', '3'], ['breakfast', 'Breakfast', 'with breakfast']]), 'room', { grammar: ['gr-5-003', 'gr-5-025'] }),
-  ask('i1_map2', 1, 31, 'c_boy', 'Do you have a map of the town?', 'Yes. Here is a map. We are here.', ['I am fine, thank you.', 'At six in the evening.'], { grammar: ['gr-5-004'] }),
+  ask('i1_map2', 1, 31, 'c_boy', 'Do you have a map of the town?', 'Yes. Here is a map. We are here.', ['Nice to meet you, too.', 'At six in the evening.'], { grammar: ['gr-5-004'] }),
   ask('i1_bus', 1, 32, 'c_student', 'Which bus goes to the station?', 'The number five bus.', ['It is forty coins.', 'No, thank you.'], { grammar: ['gr-5-013'], phrases: ['ph-4-0035'] }),
   ask('i1_lamp', 1, 33, 'p_lin', 'The lamp does not work.', 'Sorry! I will bring a new lamp.', ['Yes, every room has a bath.', 'You are welcome.'], { grammar: ['gr-5-004', 'gr-4-002'] }),
   ask('i1_train', 1, 34, 'c_scholar', 'What time is the train to the city?', 'At nine in the morning.', ['It is forty coins.', 'Nice to meet you, too.'], { grammar: ['gr-5-013'], phrases: ['ph-5-0042'] }),
@@ -624,6 +636,9 @@ const R1: AuthoredTask[] = [
   ask('i1_cafe', 1, 36, 'c_mom', 'Is there a cafe near here?', 'Yes, there is a cafe next to the bank.', ['From seven to nine.', 'That is all right.'], { grammar: ['gr-5-020'], phrases: ['ph-4-0036'] }),
   ask('i1_taxi', 1, 37, 'p_bell', 'Can you call a taxi for me?', 'Of course. It will be here in ten minutes.', ['It is forty coins.', 'Good night. See you tomorrow.'], { grammar: ['gr-5-015', 'gr-4-002'] }),
   ask('i1_soap', 1, 38, 'c_grandma', 'There is no soap in the bathroom.', 'Sorry! I will bring some.', ['At six in the evening.', 'Nice to meet you, too.'], { grammar: ['gr-5-020', 'gr-4-002'] }),
+  sort('i1_bags3', 1, 39, 'Four more bags. Look at the room number.', ['f1', 'f2', 'f3'], [['Room 14', 'f1'], ['Room 22', 'f2'], ['Room 38', 'f3'], ['Room 16', 'f1']], { grammar: ['gr-5-024'] }),
+  sort('i1_floors2', 1, 40, 'These bags have no number. Look at the floor.', ['f1', 'f2', 'f3'], [['For the third floor', 'f3'], ['A bag for the first floor', 'f1'], ['{Mr. Bell|@}, the second floor', 'f2']], { grammar: ['gr-5-021'] }),
+  sort('i1_trays2', 1, 41, 'Please take each one to the right place.', ['kitchen', 'desk', 'f2'], [['Bread for breakfast', 'kitchen'], ['The key of room 21', 'desk'], ['A bag for room 25', 'f2'], ['Tea and sugar', 'kitchen']], { grammar: ['gr-5-011'] }),
 ];
 
 // ---------------------------------------------------------------------------- rank 2 (英検3級): dates, prices, bills, directions, wishes
@@ -683,6 +698,8 @@ const R2: AuthoredTask[] = [
   ask('i2_bicycle', 2, 36, 'c_student', 'Can I rent a bicycle?', 'Yes, a bicycle is ten coins a day.', ['At six in the evening.', 'It is across from the bank.'], { grammar: ['gr-5-015'] }),
   ask('i2_timetable', 2, 37, 'p_cole', 'Do you have a timetable of the ships?', 'Yes. Here is the timetable. The next ship leaves at noon.', ['It is forty coins.', 'You are welcome.'], { grammar: ['gr-5-004', 'gr-5-003'] }),
   ask('i2_aunt', 2, 38, 'c_boy', 'My aunt and uncle arrive tomorrow. Can they have the room next to my room?', 'Yes, room 15 is next to your room.', ['At six in the evening.', 'It is forty coins.'], { grammar: ['gr-5-015', 'gr-5-008'] }),
+  sort('i2_wash2', 2, 39, 'The ship is in again. Dirty and clean things are on the same table. Please look at each one.', ['wash', 'f1', 'f2', 'f3'], [['A dirty blanket from room 12', 'wash'], ['A clean towel for room 24', 'f2'], ['Dirty sheets from room 31', 'wash'], ['Clean towels for room 33', 'f3']], { grammar: ['gr-5-026'] }),
+  sort('i2_mail', 2, 40, 'Please take each letter to the right place.', ['desk', 'post', 'f2', 'f3'], [['A letter for the post office', 'post'], ['A letter for {Ms. Ruiz|@}, room 25', 'f2'], ['A letter for {Mr. Cole|@}, room 33', 'f3'], ['The key of room 14', 'desk']], { grammar: ['gr-5-024', 'gr-5-021'] }),
 ];
 
 // ---------------------------------------------------------------------------- rank 3 (英検準2級): letters, changes, complaints, calls, lost things
@@ -700,7 +717,7 @@ const R3: AuthoredTask[] = [
   ask('i3_would_you_mind', 3, 6, 'p_ruiz', 'Would you mind closing the window? It is very cold.', 'Not at all. I will do it now.', ['Yes, every room has a bath.', 'It is forty coins.'], { grammar: ['gr-4-011', 'gr-3-018'], phrases: ['ph-3-0006'] }),
   ask('i3_indirect', 3, 7, 'c_scholar', 'Could you tell me where the museum is?', 'It is across from the church.', ['Yes, I have seen it.', 'It was very cold yesterday.'], { grammar: ['gr-3-010'], phrases: ['ph-3-0027'] }),
   ask('i3_wallet', 3, 8, 'p_bell', 'I have lost my wallet. I think I left it in the garden.', 'I will look for it. Please wait.', ['You are welcome.', 'It is forty coins.'], { grammar: ['gr-3-002', 'gr-5-018'] }),
-  sort('i3_lost', 3, 9, 'The lost bags go in the lost box, and the dirty towels go to the wash.', ['lost', 'wash', 'f2'], [['A black umbrella, found in the hall', 'lost'], ['A wallet, found on the stairs', 'lost'], ['Dirty towels from room 23', 'wash'], ['Breakfast for room 24', 'f2']], { grammar: ['gr-3-012'] }),
+  sort('i3_lost', 3, 9, 'The lost bags go in the lost box, and the dirty towels go to the wash.', ['lost', 'wash', 'f2'], [['A black umbrella, found in the garden', 'lost'], ['A wallet, found on the stairs', 'lost'], ['Dirty towels from room 23', 'wash'], ['Breakfast for room 24', 'f2']], { grammar: ['gr-3-012'] }),
   msg('i3_delay_call', 3, 10, 'c_sailor', 'phone', { say: 'Hello. This is {Captain Reed|@}. My ship has been delayed. I will arrive at night, not in the afternoon.' }, ['Hello. This is {Captain Reed|@}. My ship has been delayed. I will arrive at night, not in the afternoon.'], 'That is fine. We will keep your room for you.', ['Your reservation has been cancelled.', 'It is across from the church.'], { features: ['audioOnly'], grammar: ['gr-3-005', 'gr-4-002'] }),
   slot('i3_quiet', 3, 11, 'p_dunn', 'rooms', ['I do not like noise.', 'I want a single room, but not on the street side.'], FLOORS, SEA_SINGLE_DOUBLE, ['single'], ['street', 'f1'], 'f3-s1', GUESTS, { grammar: ['gr-3-030', 'gr-5-002'] }),
   ask('i3_sing', 3, 12, 'p_dunn', 'The guest in room 22 sings all night. I could not sleep.', 'I am very sorry. I will go to his room now.', ['That is fine. We will keep your room.', 'It is across from the church.'], { grammar: ['gr-4-019', 'gr-5-019'] }),
@@ -732,6 +749,12 @@ const R3: AuthoredTask[] = [
   ask('i3_passport', 3, 38, 'c_student', 'Do you need my passport?', 'Yes. Please show it to me at the desk.', ['You are welcome.', 'It is across from the church.'], { grammar: ['gr-5-004', 'gr-5-011'] }),
   ask('i3_guide', 3, 39, 'c_scholar', 'Is there a guide for the old castle?', 'Yes, a guide takes our guests there at ten every day.', ['It is across from the church.', 'You are welcome.'], { grammar: ['gr-5-020', 'gr-5-003'] }),
   ask('i3_anniversary', 3, 40, 'p_bell', 'Today is our wedding anniversary. Could you put some flowers in our room?', 'How lovely! I will put some flowers in your room.', ['It is across from the church.', 'You are welcome.'], { grammar: ['gr-4-002', 'gr-5-023'], phrases: ['ph-4-0005'] }),
+  msg('i3_change_mail', 3, 41, 'c_merchant', 'email', { from: '{Mr. Grant|@}', subject: 'My room on Friday', say: 'There is an email from {Mr. Grant|@}.' }, ['Dear Sir, I would like to change my room from Friday to Saturday. Is that possible?', 'My ship will be a day late.'], 'Yes, that is possible. Your room is free on Saturday.', ['No, the ship has not left yet.', 'It is across from the church.'], { grammar: ['gr-4-019', 'gr-5-002'] }),
+  msg('i3_grandson', 3, 42, 'c_grandma', 'email', { from: '{Grandma Rose|@}', subject: 'My grandson', say: 'Rose has written to us again.' }, ['Dear Sir, my grandson will come with me next week. He is ten years old.', 'Can he have a bed in my room?'], 'Yes, we can put an extra bed in your room for ten coins a night.', ['You are welcome. Enjoy your stay.', 'Your reservation has been cancelled.'], { grammar: ['gr-5-015', 'gr-3-007'] }),
+  msg('i3_key_call', 3, 43, 'p_lin', 'phone', { say: 'Hello. This is {Mr. Lin|@}. I lost my key, and I cannot open my door. Could you help me?' }, ['Hello. This is {Mr. Lin|@}. I lost my key, and I cannot open my door. Could you help me?'], 'Of course. I will bring the other key at once.', ['I am afraid not. The hotel is full.', 'It is across from the church.'], { features: ['audioOnly'], grammar: ['gr-5-015', 'gr-4-002'] }),
+  msg('i3_train_late', 3, 44, 'c_scholar', 'letter', { from: '{Professor Hale|@}', say: 'A letter came for the front desk.' }, ['Dear Sir, my ship will be late, and I will arrive after midnight.', 'Please do not give my room to another guest.'], 'We will keep your room for you. Please knock at the door when you arrive.', ['Your reservation has been cancelled.', 'You are welcome. Enjoy your stay.'], { grammar: ['gr-4-002', 'gr-5-011'] }),
+  sort('i3_luggage2', 3, 45, 'Bags for guests who leave today go to the luggage room, and the others go to the rooms.', ['store', 'f1', 'f2', 'f3'], [['{Ms. Ruiz|@}, room 25, she leaves at five', 'store'], ['{Mr. Lin|@}, room 12, he stays two more nights', 'f1'], ['{Mrs. Dunn|@}, room 31, she leaves tonight', 'store'], ['{Mr. Bell|@}, room 33, he stays until Sunday', 'f3']], { grammar: ['gr-3-019', 'gr-3-031'] }),
+  sort('i3_post2', 3, 46, 'Letters for the post office, keys for the desk, and bags for the guests. Please sort them.', ['post', 'desk', 'f2', 'store'], [['Letters to go to the post office', 'post'], ['The key from room 24, the guest left today', 'desk'], ['A bag for the guest in room 22', 'f2'], ['A suitcase for {Mr. Cole|@}, he comes back tonight', 'store']], { grammar: ['gr-3-019', 'gr-3-012'] }),
 ];
 
 // ---------------------------------------------------------------------------- rank 4 (英検2級): policies, refusals with alternatives, complaints, long letters
@@ -768,7 +791,7 @@ const R4: AuthoredTask[] = [
   slot('i4_dinner', 4, 20, 'c_cook', 'calendar', ['I would like to have a quiet dinner with my husband.', 'We cannot come on Friday, and we do not like a late table.'], DAYS4, STORM_TIMES, ['early'], ['fri'], 'sat-e6', ['{Mr. Cole|@}', '{Ms. Ruiz|@}', '{Captain Reed|@}', '{Mrs. Dunn|@}'], { grammar: ['gr-4-007', 'gr-5-002'] }),
   check('i4_long_letter', 4, 21, 'p_novak', 'I wrote a long letter. Please check the book.', [book([['name', 'Name', '{Ms. Novak|@}'], ['room', 'Room', 'single'], ['nights', 'Nights', '4'], ['bf', 'Breakfast', 'with breakfast'], ['pay', 'Pay', 'when she leaves']]), letterFrom('{Ms. Novak|@}', ['I would like a single room for four nights.', 'I do not need breakfast, because I will have it in town.', 'I will pay when I leave, not now.'])], 'bf', { grammar: ['gr-3-019', 'gr-pre2-033'], fix: ['no breakfast', ['no breakfast', 'with breakfast', 'late breakfast']] }),
   ask('i4_stranded', 4, 22, 'c_student', 'My ferry has been cancelled because of the storm. May I stay another night? I have only fifty coins.', 'Of course. A single room is forty coins, so you can stay.', ['The storm was very strong yesterday.', 'We will send it by post.'], { grammar: ['gr-pre2-045', 'gr-4-019'] }),
-  msg('i4_thanks', 4, 23, 'p_olsen', 'letter', { from: '{Grandma Rose|@}' }, ['Dear Sir, thank you very much for my stay. The room was lovely, and your clerk was always helpful and kind.', 'I hope to come again next year.'], 'Thank you very much for your kind words. We hope to see you again next year.', ['We will send it to you by post.', 'Your reservation has been confirmed.'], { say: 'Rose sent a letter after her stay.', grammar: ['gr-pre2-021', 'gr-4-020'] }),
+  msg('i4_thanks', 4, 23, 'p_olsen', 'letter', { from: '{Grandma Rose|@}' }, ['Dear Sir, thank you very much for my stay. The room was lovely, and you were always helpful and kind.', 'I hope to come again next year.'], 'Thank you very much for your kind words. We hope to see you again next year.', ['We will send it to you by post.', 'Your reservation has been confirmed.'], { say: 'Rose sent a letter after her stay.', grammar: ['gr-pre2-021', 'gr-4-020'] }),
   check('i4_discount_bill', 4, 24, 'c_docker', 'The fourth night is half price for guests who stay four nights, I think. Please check my bill.', [paper('invoice', 'Bill', [['nights', 'Single room, 4 nights', '160 coins'], ['discount', 'Discount', '0 coins'], ['total', 'Total', '160 coins']]), note('Offer', ['Stay four nights: the fourth night is half price.', 'Single room: 40 coins a night.'])], 'discount', { grammar: ['gr-3-018', 'gr-4-014'], fix: ['20 coins', ['0 coins', '20 coins', '40 coins']] }),
   ask('i4_glasses', 4, 25, 'c_scholar', 'I cannot find my glasses. I need them!', 'Please look in the mirror, {Professor|@}. They are on your head.', ['You are welcome. Enjoy your stay.', 'We will send it by post.'], { grammar: ['gr-pre2-001', 'gr-5-019'] }),
   msg('i4_wedding', 4, 26, 'p_olsen', 'email', { from: '{Nora|@}', subject: 'Dinner on Saturday' }, ['Dear Sir, my sister is getting married next month. We would like a dinner for twenty on Saturday evening.', 'Is the dining room free?'], 'Yes, the dining room is free on Saturday evening. How lovely!', ['Your reservation has been cancelled.', 'We have found your bag.'], { say: '{Nora|@} has written to us.', grammar: ['gr-3-032', 'gr-3-010'] }),
@@ -786,6 +809,15 @@ const R4: AuthoredTask[] = [
   ask('i4_upgrade', 4, 36, 'p_cole', 'Could I change to a bigger room? I will pay the difference.', 'Certainly. The difference is 20 coins a night.', ['The storm will be bad tomorrow.', 'We have found your bag.'], { grammar: ['gr-4-014', 'gr-4-002'] }),
   ask('i4_elevator', 4, 37, 'c_grandma', 'The elevator does not work.', 'I am very sorry. Please use the stairs, and I will carry your bag.', ['Thank you for your kind words.', 'We will send it by post.'], { grammar: ['gr-4-002', 'gr-5-011'] }),
   msg('i4_compliment', 4, 38, 'p_olsen', 'letter', { from: '{Mr. Grant|@}' }, ['Dear Sir, my room was always clean, and the breakfast was excellent. Even my cat liked the bread!', 'I will recommend your inn to all my friends.'], 'Thank you very much for your kind words. We hope to see you and your cat again.', ['Your reservation has been confirmed.', 'We will send it to you by post.'], { say: '{Mr. Grant|@} has written to us.', grammar: ['gr-4-020', 'gr-3-014'] }),
+  msg('i4_two_rooms', 4, 41, 'p_novak', 'email', { from: '{Ms. Novak|@}', subject: 'Two rooms for my friends', say: 'There is a long email from {Ms. Novak|@}.' }, ['Dear Sir, I would like to book two single rooms for my two friends. I read that two single rooms are free on the second floor.', 'If both rooms are on the same floor, they will stay for four nights.', 'If not, they will stay for only two nights.'], 'Both rooms are on the second floor, so we will keep them for four nights for you.', ['The two rooms are not on the same floor, so they will stay for only two nights.', 'Your reservation has been cancelled.'], { grammar: ['gr-3-018', 'gr-pre2-009'] }),
+  msg('i4_leave_early', 4, 42, 'c_sailor', 'letter', { from: '{Captain Reed|@}', say: '{Captain Reed|@} sent a note from the harbour.' }, ['Dear Sir, I booked a room for a week, but my ship will leave a day earlier because of the storm.', 'Your price list says that a guest who leaves early because of the weather pays only for the nights he stays. Could I pay for six nights only?'], 'Yes, that is right. We will change the bill to six nights.', ['No, you must pay for seven nights.', 'We have found your bag.'], { grammar: ['gr-4-019', 'gr-3-005'] }),
+  msg('i4_dining_big', 4, 43, 'c_merchant', 'email', { from: '{Mr. Grant|@}', subject: 'A dinner for forty', say: '{Mr. Grant|@} wants the dining room again.' }, ['Dear Sir, my friends and I would like a dinner for forty on Friday evening.', 'I know that your dining room holds only thirty people, but your garden is big. Is that possible?'], 'Yes, it is possible. Thirty can sit in the dining room, and the others can sit in the garden if the weather is good.', ['Yes, the dining room is big, so all forty can sit there.', 'Thank you very much for your kind words.'], { grammar: ['gr-4-022', 'gr-3-018'] }),
+  pad('i4_call_cancel', 4, 44, 'p_cole', 'phone', ['Hello. This is {Mr. Cole|@}. I am sorry, but I must cancel my room for next week, because I am ill. Could you send my money back?'], [['name', 'Name', '{Mr. Cole|@}', ['{Mr. Coal|@}', '{Mr. Lin|@}']], ['what', 'Please', 'cancel the room', ['change the room', 'keep the room']], ['why', 'Because', 'he is ill', ['the ship is late', 'the storm is bad']], ['money', 'Money', 'send it back', ['keep it', 'half now']]], { features: ['audioOnly'], grammar: ['gr-4-019', 'gr-3-005'] }),
+  check('i4_bill_extra', 4, 45, 'p_dunn', 'I had an extra bed and a late check-out. I think the bill is wrong.', [paper('invoice', 'Bill', [['room', 'Room, 2 nights', '120 coins'], ['bed', 'Extra bed, 2 nights', '20 coins'], ['late', 'Late {check-out|in_checkout}', '10 coins'], ['total', 'Total', '160 coins']]), note('Prices', ['Double room: 60 coins a night', 'Extra bed: 10 coins a night', 'Late {check-out|in_checkout}: 10 coins'])], 'total', { grammar: ['gr-5-014', 'gr-3-005'], fix: ['150 coins', ['140 coins', '150 coins', '160 coins']] }),
+  check('i4_letter_change', 4, 46, 'p_ruiz', 'I wrote to you to change the dates. Is the book right now?', [book([['name', 'Name', '{Ms. Ruiz|@}'], ['room', 'Room', 'single'], ['arrive', 'Arrive', 'Friday'], ['nights', 'Nights', '3']]), letterFrom('{Ms. Ruiz|@}', ['I would like to change my reservation.', 'I will arrive on Saturday, not on Friday, and I will stay for three nights.'])], 'arrive', { grammar: ['gr-3-018', 'gr-pre2-061'], fix: ['Saturday', ['Friday', 'Saturday', 'Sunday']] }),
+  sort('i4_found2', 4, 47, 'Please look at each note and put the thing in the right place.', ['lost', 'post', 'store', 'desk'], [['A blue coat; please send it by post', 'post'], ['A book, found in the hall; we do not know the guest', 'lost'], ['A camera; the guest will come back tomorrow', 'store'], ['The key of room 33, found in the garden', 'desk']], { grammar: ['gr-3-006', 'gr-3-012'] }),
+  sort('i4_ferry_list', 4, 48, 'The ferry leaves at ten. Please send the right things to the right places.', ['ferry', 'store', 'laundry', 'f2'], [['The bags of {Mr. Cole|@} and {Ms. Novak|@}, they are on the ferry', 'ferry'], ['The bag of {Mrs. Dunn|@}, she stays another night', 'store'], ['Sheets and towels from rooms 21 and 23', 'laundry'], ['Breakfast for room 24', 'f2']], { grammar: ['gr-3-019', 'gr-3-005'] }),
+  sort('i4_storm_bags', 4, 49, 'The storm is coming. The ferry will not leave, so please change the places.', ['store', 'f1', 'f2', 'f3'], [['{Mr. Cole|@}: the ferry is cancelled, so take his bag to room 31', 'f3'], ['{Ms. Novak|@}: she stays one more night, room 25', 'f2'], ['A suitcase for a guest who is not here', 'store'], ['{Mr. Lin|@}: the first floor is full, so he goes to room 12', 'f1']], { grammar: ['gr-3-018', 'gr-pre2-045'] }),
 ];
 
 // ---------------------------------------------------------------------------- templates
@@ -1064,6 +1096,7 @@ const QA: Record<string, QaItem[]> = {
     { q: 'Dear Sir, our ferry has been cancelled because of the storm. Do you have two rooms for tonight? We will pay in advance.', a: 'Yes, we have two rooms, and you may pay when you leave. Please come as soon as you can.', fn: 'storm', rank: 4, grammar: ['gr-pre2-045', 'gr-3-005'] },
     { q: 'Dear Sir, I will arrive on Friday, unless the weather is bad. If I cannot come, I will write to you.', a: 'Thank you for telling us. We will hold your room until Friday evening.', fn: 'unless', rank: 4, grammar: ['gr-3-018'] },
     { q: 'Dear Sir, we will be on holiday in your town next month. Do you have a family room?', a: 'Yes, we have a family room with four beds. How many nights will you stay?', fn: 'family', rank: 4, grammar: ['gr-5-004'] },
+    { q: 'Dear Sir, the clerk at the desk was not kind to me, and I would like to speak to the manager.', a: 'I am very sorry. The manager will write to you today.', fn: 'clerk', rank: 4, grammar: ['gr-3-002'] },
     { q: 'Dear Sir, I have a question about the price of a room. Is there a special price in winter?', a: 'Yes. In winter a double room is 50 coins a night.', fn: 'winter', rank: 4, grammar: ['gr-3-018'] },
     { q: 'Dear Sir, I want to write about a small matter. My room was clean, but there was no soap in the bathroom.', a: 'We are sorry about the soap. We will put some in every bathroom.', fn: 'soap', rank: 4, grammar: ['gr-pre2-009'] },
     { q: 'Dear Sir, could you tell me whether breakfast is served in the dining room every day? We are a family of four.', a: 'Yes, breakfast is served in the dining room every day from seven to nine.', fn: 'dining', rank: 4, grammar: ['gr-3-032', 'gr-3-005'] },
