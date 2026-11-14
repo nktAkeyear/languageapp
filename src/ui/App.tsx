@@ -14,6 +14,8 @@ import { StoryStage } from './story/StoryStage';
 import { StoryUiProvider } from './story/StoryUi';
 import { UiProvider } from './uiState';
 import { GameProvider, useGame } from './useGame';
+import { LevelSettingsHost } from './difficulty/LevelSettings';
+import { DifficultyEffects } from './difficulty/AssistUi';
 
 const MOBILE_QUERY = '(max-width: 820px)';
 
@@ -57,6 +59,8 @@ function Shell() {
               <DayTransition />
             </>
           )}
+          <LevelSettingsHost />
+          <DifficultyEffects />
           {settings ? (
             <Overlay variant={mobile ? 'sheet' : 'modal'} onClose={() => setSettings(false)}>
               <SettingsPanel onClose={() => setSettings(false)} />

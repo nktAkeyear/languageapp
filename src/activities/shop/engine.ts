@@ -12,14 +12,16 @@ import type { Brew, Evaluation, Issue, OrderInstance } from '../../core/types';
 import { planDay } from './dayplan';
 import { REP_DELTA, selectReaction, type ChosenReaction } from './reactions';
 import { evaluateBrew } from './rules';
+import { stageDay } from '../../core/difficulty';
 
 /** Highest stage whose conditions hold today (monotonic: never goes down). */
 export function computeStage(data: GameData, p: LangProgress): number {
   let stage = p.stage;
+  const day = stageDay(p); // calendar day + stage clock offset (レベル設定 / 進み方); = p.day by default
   for (const s of data.stages) {
     if (s.stage <= stage) continue;
     const ready =
-      p.day >= s.minDay && (p.reputation >= s.minReputation || p.day >= s.minDay + data.shared.graceDays);
+      day >= s.minDay && (p.reputation >= s.minReputation || day >= s.minDay + data.shared.graceDays);
     if (ready && s.stage === stage + 1) stage = s.stage;
   }
   return stage;

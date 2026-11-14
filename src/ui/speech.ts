@@ -27,6 +27,12 @@ export function findVoice(lang: Lang): SpeechSynthesisVoice | null {
   );
 }
 
+/** Multiplier on every speech rate (assist 「ゆっくり話す」, set by src/ui/difficulty). */
+let rateFactor = 1;
+export function setSpeechRateFactor(f: number): void {
+  rateFactor = f > 0 ? f : 1;
+}
+
 export function speak(text: string, lang: Lang, rate = 0.9): boolean {
   const s = synth();
   const voice = findVoice(lang);
@@ -40,7 +46,7 @@ export function speak(text: string, lang: Lang, rate = 0.9): boolean {
     } catch {
       /* some engines reject voices; the lang tag still selects one */
     }
-    u.rate = rate;
+    u.rate = rate * rateFactor;
     s.speak(u);
     return true;
   } catch (e) {

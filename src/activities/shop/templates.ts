@@ -26,6 +26,8 @@ export interface TemplateCtx {
   available: IngredientId[];
   features: Set<Feature>;
   rng: Rng;
+  /** Multiplier on audio-only probabilities (レベル設定 / 自動調整); default 1. */
+  audio?: number;
 }
 
 /** Recipes the player can actually make at this stage. */
@@ -204,7 +206,7 @@ export function instantiateTemplate(
       source: { type: 'template', id: tpl.id },
       text,
       rule,
-      audioOnly: ctx.features.has('audioOnly') && ctx.rng() < (tpl.audioOnly ?? 0),
+      audioOnly: ctx.features.has('audioOnly') && ctx.rng() < (tpl.audioOnly ?? 0) * (ctx.audio ?? 1),
       customer: tpl.customer ?? '',
       recipe,
       symptom: filled.some((f) => f.symptom),

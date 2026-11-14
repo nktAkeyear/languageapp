@@ -3,6 +3,7 @@ import { plain } from '../../core/gamedata';
 import { storyTokens, type StoryToken } from '../../story/text';
 import { speak, useSpeechAvailable } from '../speech';
 import { useGame } from '../useGame';
+import { pinyinShown } from '../difficulty/assists';
 
 /**
  * Peek state shared by all WordText instances: the confirmed word whose gloss is shown after a
@@ -46,6 +47,8 @@ export interface WordTextProps {
   glossed?: boolean;
   /** Words to mark as newly readable (confirmed since the paper was last read). */
   fresh?: ReadonlySet<string>;
+  /** Words to mark as what a mistake was about (assist, src/ui/difficulty). */
+  mark?: ReadonlySet<string>;
 }
 
 /**
@@ -53,7 +56,7 @@ export interface WordTextProps {
  * A tap opens the notebook at the word. Confirmed words (検証ページで確定) are drawn in "inked"
  * style and show their official gloss on hover, or on a first tap on touch screens.
  */
-export function WordText({ text, className, interactive = true, story = false, glossed = false, fresh }: WordTextProps) {
+export function WordText({ text, className, interactive = true, story = false, glossed = false, fresh, mark }: WordTextProps) {
   const { data, progress, settings, openWord } = useGame();
   const peek = usePeek();
   const [inst] = useState(() => `wt${++seq}`);
@@ -95,7 +98,7 @@ export function WordText({ text, className, interactive = true, story = false, g
     const title = confirmed ? undefined : st?.memo ? `メモ: ${st.memo}` : undefined;
     const key = `${inst}:${i}`;
     const surface =
-      zh && settings.showPinyin && e?.pinyin ? (
+      zh && pinyinShown(settings.showPinyin, progress, t.id) && e?.pinyin ? (
         <ruby>
           {t.text}
           <rt>{e.pinyin}</rt>
@@ -105,7 +108,7 @@ export function WordText({ text, className, interactive = true, story = false, g
       );
     const isFresh = !!fresh?.has(t.id) && confirmed;
     const faint = glossed && !confirmed && (!st || st.seen < 3);
-    const cls = `w ${confirmed ? 'w-ok' : ''} ${st?.memo ? 'w-memo' : ''} ${peek === key ? 'w-peek' : ''} ${isFresh ? 'w-fresh' : ''} ${faint ? 'w-faint' : ''}`;
+    const cls = `w ${confirmed ? 'w-ok' : ''} ${st?.memo ? 'w-memo' : ''} ${peek === key ? 'w-peek' : ''} ${isFresh ? 'w-fresh' : ''} ${faint ? 'w-faint' : ''} ${mark?.has(t.id) ? 'w-mark' : ''}`;
     // In glossed text the gloss is written under the word, so no hover tooltip.
     const gloss = confirmed && !glossed ? e?.gloss : undefined;
     const inner = glossed ? (

@@ -7,6 +7,12 @@
  * The simulated player solves everything correctly, except every `failEvery`-th customer gets a
  * deliberately wrong cup, every `failEvery`-th market buys one unit too few, and every
  * `failEvery`-th delivery goes to the wrong house — so failure reactions and consequences show up.
+ *
+ * Difficulty settings (レベル設定, src/core/difficulty.ts) — see scripts/simDifficulty.ts:
+ *   npm run simulate -- zh 45 --start=2 --pace=slow --acc=0.7 [--adaptive=0] [--seed=3]
+ *       one run, one line per day (stage, customers, new words, budget, first-try accuracy, adj …)
+ *   npm run simulate -- --table [--days=45]
+ *       the comparison table: legacy vs each setting, for both languages and several accuracies
  */
 import { currentSegment, describeDay, endTownDay, nextSegment, serveInTown, startTownDay, stockOf } from '../src/activities/day';
 import { solveDelivery } from '../src/activities/delivery/engine';
@@ -20,7 +26,14 @@ import { newProgress } from '../src/core/save';
 import type { Brew, IngredientId, Lang } from '../src/core/types';
 import { storySync } from '../src/story/engine';
 import { storyLog } from './storyLog';
+import { runDifficulty } from './simDifficulty';
 
+// Difficulty options (--start / --pace / --acc / --adaptive / --table) switch to the settings simulator.
+const flagArgs = process.argv.slice(2).filter((a) => a.startsWith('--'));
+if (flagArgs.length) {
+  runDifficulty(process.argv.slice(2));
+  process.exit(0);
+}
 const [langArg = 'en', daysArg = '10', seedArg = '1', failArg = '4', choiceArg = '0'] = process.argv.slice(2);
 const lang = (langArg === 'zh' ? 'zh' : 'en') as Lang;
 const data = buildGameData(CONTENT[lang], SHARED);

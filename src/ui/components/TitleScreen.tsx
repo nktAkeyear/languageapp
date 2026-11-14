@@ -3,6 +3,7 @@ import { TeapotEmblem } from '../art/props';
 import { HarbourPanorama } from '../story/StoryStage';
 import { useGame } from '../useGame';
 import { LANG_JA } from './Settings';
+import { openLevelSettings } from '../difficulty/LevelSettings';
 
 const LANG_DESC = {
   en: '港に来る船乗りや商人は英語で注文する。',
@@ -28,7 +29,7 @@ export function TitleScreen() {
         </p>
         <div className="title-langs">
           {LANGS.map((l) => (
-            <button key={l} type="button" className="btn btn-primary btn-big lang-btn" data-lang={l} onClick={() => g.chooseLanguage(l)}>
+            <button key={l} type="button" className="btn btn-primary btn-big lang-btn" data-lang={l} onClick={() => (g.save.progress[l] ? g.chooseLanguage(l) : openLevelSettings({ newLang: l }))}>
               <span className="lang-name">{LANG_JA[l]}</span>
               <span className="small">{g.save.progress[l] ? `続きから（${g.save.progress[l]!.day}日目）` : LANG_DESC[l]}</span>
             </button>

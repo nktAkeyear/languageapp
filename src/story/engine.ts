@@ -22,6 +22,8 @@ import { writeSlip } from '../activities/delivery/engine';
 import { townOf } from '../activities/town/text';
 import type { ServeOutcome } from '../activities/shop/engine';
 import { readability, storyOf, storyWordIds, type Story } from './text';
+import { beatBehind, catchUpChapter, storyFrontier, visitsToday } from './catchup';
+import { storyCatchingUp } from '../core/difficulty';
 import {
   newStoryState,
   type BeatDef,
@@ -308,7 +310,12 @@ export function storyPlanShop(data: GameData, p: LangProgress, rng: Rng): void {
   const today = st.today!;
   if (today.shopPlanned) return;
   today.shopPlanned = true;
-  const ch = chapterIndex(story, p.stage);
+  let ch = chapterIndex(story, p.stage);
+  if (storyCatchingUp(p)) {
+    // Started above zero: chapter cards follow the story's own progress (src/story/catchup.ts).
+    const front = storyFrontier(story.shared.beats, st, p, (b) => condHolds(b.when, p));
+    ch = catchUpChapter(ch, st.chapter, front === null ? null : chapterIndex(story, front));
+  }
   if (ch > st.chapter) {
     // An imported old save catches up on one card: the current chapter.
     st.chapter = ch;
@@ -317,8 +324,10 @@ export function storyPlanShop(data: GameData, p: LangProgress, rng: Rng): void {
   fireMoments(data, story, p, 'morning', 1);
   const t = p.today;
   if (!t || t.phase === 'closed') return;
+  let visits = 0;
   for (const b of ordered(story)) {
     if (b.kind !== 'visit' || !beatEligible(story, p, b)) continue;
+    if (visits > 0 && !beatBehind(p, b)) continue; // a second visit only to catch up (catchup.ts)
     const inst = visitInstance(data, story, b);
     if (!inst) continue;
     // Somewhere after the current customer, never first thing in the morning unless alone.
@@ -326,7 +335,7 @@ export function storyPlanShop(data: GameData, p: LangProgress, rng: Rng): void {
     const pos = from + Math.floor(rng() * (t.queue.length - from + 1));
     t.queue.splice(pos, 0, inst);
     fire(story, p, b, 'planned');
-    break;
+    if (++visits >= visitsToday(p)) break;
   }
 }
 

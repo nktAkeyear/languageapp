@@ -119,6 +119,14 @@ export function BenchProvider({ children }: { children: ReactNode }) {
     setServedBrew(null);
     setHeld(null);
   }, [custKey]);
+  // The same customer again (retry assist, src/ui/difficulty): back to taking the order.
+  const resultCount = progress?.today?.results.length ?? 0;
+  useEffect(() => {
+    if (phase === 'order') {
+      setStage('idle');
+      setServedBrew(null);
+    }
+  }, [phase, resultCount]);
   // Door bell when a customer comes in.
   const firstKey = useRef(custKey);
   useEffect(() => {

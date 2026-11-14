@@ -23,6 +23,11 @@ export interface WordState {
   memo: string;
   /** Meaning confirmed via a 検証ページ. */
   confirmed: boolean;
+  /**
+   * 既習扱い: confirmed by the chosen starting level (src/core/difficulty.ts), not by play.
+   * Records what seeding added so it can be taken back exactly. Absent in older saves.
+   */
+  seeded?: { day: number; seen: number; correct: number; fresh: boolean };
 }
 
 export const MAX_CONTEXTS = 6;

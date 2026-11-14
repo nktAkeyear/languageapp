@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import type { LayoutPref } from '../../core/save';
 import { LANGS, type Lang } from '../../core/types';
 import { useGame } from '../useGame';
+import { LevelSettingsSection, openLevelSettings } from '../difficulty/LevelSettings';
 
 export const LANG_JA: Record<Lang, string> = { en: '英語', zh: '中国語' };
 
@@ -29,7 +30,8 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
               type="button"
               className={`btn ${l === lang ? 'btn-primary' : ''}`}
               onClick={() => {
-                g.chooseLanguage(l);
+                if (save.progress[l]) g.chooseLanguage(l);
+                else openLevelSettings({ newLang: l }); // a new language starts with レベル設定
                 onClose();
               }}
             >
@@ -40,6 +42,8 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
         </div>
         <p className="small muted">進み具合は言語ごとに別々に保存されます。</p>
       </section>
+
+      <LevelSettingsSection onCloseSettings={onClose} />
 
       <section>
         <h3>表示</h3>

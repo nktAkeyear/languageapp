@@ -32,6 +32,9 @@ npm run validate-content  # content validator; exits 1 on errors
 npm run simulate -- zh 10 # simulated playthrough for content review: market notes + vendor talk, orders +
                           # reactions, delivery slips + reactions, story beats 📖 as they fire, the nightly
                           # ledger (args: lang days seed failEvery choice; e.g. `-- en 45 1 4 0`)
+npm run simulate -- zh 45 --start=2 --pace=slow --acc=0.7 [--adaptive=0] [--seed=3] [--legacy]
+                          # difficulty settings: a simulated player of that accuracy, one line per day
+npm run simulate -- --table   # settings comparison table (both languages, 45 days, mean of 3 seeds)
 ```
 
 `dist/index.html` is self-contained (relative base + `vite-plugin-singlefile`): copy it anywhere
@@ -50,6 +53,9 @@ src/
     srs.ts              hidden spaced repetition (per-word state)
     verification.ts     検証ページ logic
     levels.ts           現在地 (coverage per CEFR / 英検 / HSK level)
+    difficulty.ts       レベル設定: start level (seeding 既習扱い, fast-forward), target, pace, adaptive controller, assists
+    metrics.ts          学習の記録: per-day indicators, rolling windows
+    placement.ts        腕だめし: placement items (orders + labelled cups) and the suggestion
     save.ts             versioned save, migration, export/import
     validate.ts         content validator (used by script + tests)
     validateTown.ts     validator part for market / delivery content
@@ -93,6 +99,8 @@ src/
                         (the night shop and the ledger book), StoryUi.tsx (box state, holding a scene until
                         the reaction has been read), people.ts
     book/               recipe book and notebook as physical books (BookShell, page turns, 検証 puzzle)
+    difficulty/         レベル設定 sheet, 腕だめし, 学習の記録 page + SVG charts, notebook bits (既 mark, peek,
+                        目標 panel), scene assists (mistake marks, retry slip, slower speech)
     components/         settings, title, word text (gloss on hover/tap; story names; glossed documents)
     desktop/  mobile/   layouts per device: which scene the current segment shows
 scripts/                validate-content.ts, simulate.ts (+ storyLog.ts)
@@ -418,6 +426,53 @@ aside); every beat / talk line uses only words met by its stage (non-story conte
 document is readable by its `readable` stage under the same rule. The vitest suite also plays 45
 days on three paths (good player; clumsy player; failing every story cup) and checks that every
 beat fires on some path and the good player reaches the end.
+
+## Difficulty: レベル設定 and 学習の記録
+
+Per language, `LangProgress.difficulty` (optional; absent = the defaults ゼロから・ふつう・自動調整あり, which
+plan exactly like older saves — `planKnobs` returns the stage's own values and the stage clock offset is 0).
+Logic in `src/core/difficulty.ts`; the sheet opens at a new game (title screen / a new language in ⚙ 設定),
+from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) and 記録 pages.
+
+- **現在の実力の目安 (start)**: ゼロから / zh HSK1–3 (中検・CEFR shown) / en 英検5・4級 (CEFR・TOEIC shown); higher
+  levels are listed as 未対応 because the content does not reach them. Choosing a level seeds every lexicon word
+  tagged at or below it as **既習扱い** (`WordState.seeded`: confirmed, seen 6 / correct 2 added, first review
+  spread over 3–14 days so they come back now and then), seals 検証ページ whose words are all known, marks earlier
+  curriculum orders made only of known words as done (orders with unknown words — shelf names, higher-level
+  words — still come), and fast-forwards the shop to the level's stage (`START_STAGE`: zh 6 / 11 / 16, en 7 / 13 —
+  calibrated on the curriculum's structures, since level tags are spread over all stages), with its reputation,
+  a stage-clock offset (`stageDay` = day + offset gates stages and town unlocks), market / delivery experience and
+  money. The notebook marks seeded words 「既」; each can be taken back (学び直す) and is then not re-seeded.
+  Changing the level later is exact: down takes back only what seeding added (a word met in play since keeps
+  its own encounters), reopens sealed pages / skipped orders; up seeds more; the shop never goes back.
+- **Story when starting above zero**: nothing is skipped — the story starts with the first letter and plays
+  in order (the regulars' arcs and choices only make sense in sequence; the early beats use words the player
+  already knows). `src/story/catchup.ts` compresses it: up to two regulars' visits a day while their beats are
+  ≥ 3 stages behind the shop, and chapter title cards follow the story (one a day at most, the next only when no
+  earlier-stage beat is still pending). Simulated (85 % player): a HSK2 / 英検4級 start reaches the last beat on day 25–27, a zero start on day 41.
+- **目標**: the 現在地 page shows mastered words of that level's list, the share the game contains (the ceiling,
+  a dashed mark), what remains in the game and what is not in it, with an honest note; a level is offered only
+  if the game has ≥ 30 words of exactly that level and ≥ 15 % of its list (zh HSK1–3, en 英検5・4級).
+- **進み方**: ゆっくり (new words ×0.6, one customer fewer, ≥ ⅓ review orders, stage clock ×0.75) / ふつう (as
+  designed) / 速い (×1.4, one more customer, clock ×1.3; the clock never speeds past an unserved curriculum
+  backlog).
+- **自動調整** (`controllerStep`): after each day, from the last 4 days (only days after its previous step):
+  first-try accuracy < 60 % (or orders with new words < 45 %) → ease off one step; > 90 % with few review lapses
+  → one step brisker; 70–85 % → drift back to the preset; otherwise hold. A step needs the same verdict two
+  days running, a reversal waits 2 days, `adj` stays in [−1, +0.6]. `adj` scales the new-word budget, the
+  minimum review share, template choice (older, shorter templates when easing), audio-only frequency and the
+  stage clock. The reason is shown in Japanese on the 学習の記録 page.
+- **手助け** (all off by default): pinyin always / unconfirmed only / never (else 設定's switch); peek at the gloss
+  of an unconfirmed word on its notebook page (評判 −1); mark the order words a failed cup was about; retry the
+  same customer without penalty (state restored; the failed first try still counts in the indicators; not for
+  regulars' story visits); audio-only orders off / normal / many (also the market's spoken quotes); slower speech.
+- **腕だめし** (`src/core/placement.ts`): two curriculum orders per offered level, each with three cups labelled
+  like the shelf (one right, two near misses checked by the real rules) or わからない; the suggestion is the
+  highest level answered completely right from the first level up; the player confirms it in the sheet.
+- **学習の記録** (notebook ribbon 記録, `src/core/metrics.ts`): one record per day — first-try accuracy (all / with
+  new words / review), 検証 stamps per sealed page, market lines bought / deliveries made well, review lapse rate,
+  words confirmed, seconds per order (UI only), retries, peeks, the qualification estimate, stage and `adj` —
+  drawn as SVG charts with a table view, plus the current difficulty in words and the controller's last reason.
 
 ## Learning model notes
 
