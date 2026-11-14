@@ -2,8 +2,8 @@ import type { VerificationPage } from '../../core/types';
 import type { AuthoredTask, CheckDoc, DocField, JobContent, JobDef, JobLexEntry, QaItem, RespondSlotCell, RespondSpec, TaskFeature, TaskTemplate } from '../../jobs/types';
 
 /**
- * Trading company office (商会の事務): the TOEIC-oriented job. Ranks map to TOEIC 〜400 / 〜600 / 〜730 / 〜860
- * (英検 3 / 準2 / 2 / 準1).
+ * Trading company office (商会の事務): the TOEIC-oriented job. Ranks map to TOEIC 〜400 / 〜600 / 〜730 / 〜860 / 〜990
+ * (英検 3 / 準2 / 2 / 準1 / 1).
  *
  * - check: purchase orders, delivery notes, invoices, expense notes, schedules, e-mails and adverts
  *   side by side; find the field that disagrees (rank 3+: also choose the right value).
@@ -489,8 +489,73 @@ file|n|files|ファイル
 installation|n||設置
 server|n||ウェイター
 system|n||システム
+# jo5_a | 契約のきまり
+penalty|n|penalties|違約金・罰金|💸
+maximum|n||最大（限度）|⬆️
+agreement|n|agreements|合意・契約|🤝
+interest|n||利息・関心|📈
+tax|n|taxes|税金|🧾
+# jo5_b | 帳簿と監査
+ledger|n||元帳（帳簿）|📒
+goods|n||品物・商品|📦
+record|n|records|記録|🗂️
+discrepancy|n|discrepancies|食い違い|⚖️
+duplicate|n|duplicates|二重のもの・写し|👯
+# jo5_c | 荷物の遅れと損害
+customs|n||税関|🛃
+loss|n|losses|損失|📉
+risk|n|risks|危険・おそれ|⚠️
+cover|v|covers,covered|（保険などが）まかなう|☂️
+cause|v|causes,caused|引き起こす・原因|💥
+# jo5_d | 条件をつけることば
+owing|p||（owing to）〜のために|🔗
+whereas|c||〜である一方で|⚖️
+notwithstanding|p||〜にもかかわらず|🚧
+beyond|p||〜の及ばない・〜を超えて|🚀
+least|n||最小（at least：少なくとも）|🔻
+# jo5_e | 契約書の動詞
+breach|n|breaches|違反|🚫
+terminate|v|terminates,terminated|終了させる|🛑
+notify|v|notifies,notified|知らせる|📣
+inspect|v|inspects,inspected|検査する|🔍
+liable|a||責任がある|⛓️
+# jo5_f | 条項のきまり文句
+automatically|d||自動的に|🤖
+exclusive|a||（〜を）含まない・独占的な|🔒
+force|n||効力・力（in force：有効で）|💪
+fail|v|fails,failed,failing|失敗する・〜しない|❌
+title|n||所有権・題名|📜
+# jo5_g | 交渉のやりとり
+acceptable|a||受け入れられる|🆗
+request|n|requests|頼み・要求|🙏
+extend|v|extends,extended|延ばす|↔️
+withdraw|v|withdraws,withdrew,withdrawn|取り下げる|↩️
+reduce|v|reduces,reduced,reducing|減らす|🔻
+# jo5_h | 手紙のきまり文句
+attention|n||注意・注目|👀
+effect|n|effects|効力・影響|🎯
+convenience|n||都合|🕰️
+event|n|events|出来事|📅
+# jo5_i | 決めること
+decision|n|decisions|決定|⚖️
+decide|v|decides,decided|決める|🎯
+essential|a||不可欠な|⭐
+require|v|requires,required|必要とする|📋
+principle|n|principles|原則|📐
+# jo5_j | 倉庫と売り手
+warehouse|n|warehouses|倉庫|🏭
+seller|n|sellers|売り手|🧑‍💼
+vote|n|votes,voted|投票・票|🗳️
+renew|v|renews,renewed,renewal|更新する|🔄
+limit|n|limits,limited|限度・制限|🚧
+# jo5_k | 比べる・見きわめる
+compare|v|compares,compared|比べる|⚖️
+control|n||支配・管理|🎛️
+aware|a||気づいている|💡
+draw|v|draws,drew|引く（draw attention：注意を引く）|✏️
+wish|v|wishes,wished|望む|🌠
 `;
-const EXTRA_FORMS: Record<string, string[]> = {"unit": ["units"], "sign": ["signed", "signing"], "need": ["needed"], "order_doc": ["ordered", "ordering"], "say": ["saying"], "make": ["made"], "fast": ["faster"], "ship": ["shipped"], "do": ["doing"]};
+const EXTRA_FORMS: Record<string, string[]> = {"damage": ["damaged"], "ship": ["shipping", "shipped"], "accept": ["accepted"], "add": ["added"], "announce": ["announced"], "break": ["breaks"], "clause": ["clauses"], "contract": ["contracts"], "correct": ["corrected"], "date": ["dated"], "discuss": ["discussed"], "expense": ["expenses"], "follow": ["follows"], "inform": ["informs"], "it": ["its"], "large": ["largest"], "last": ["lasts"], "in_low": ["lowered"], "notice": ["noticed"], "our": ["ours"], "pack": ["packing"], "place": ["placed"], "promise": ["promises"], "quick": ["quicker"], "reject": ["rejected"], "replacement": ["replacements"], "serious": ["seriously"], "short": ["shorter"], "statement": ["statements"], "transfer": ["transferred"], "early": ["earliest"], "move": ["moving"], "mistake": ["mistakes"], "unit": ["units"], "sign": ["signed", "signing"], "need": ["needed"], "order_doc": ["ordered", "ordering"], "say": ["saying"], "make": ["made"], "fast": ["faster"], "do": ["doing"]};
 
 // ---------------------------------------------------------------------------------------------- rank 2 (TOEIC 〜600, 英検準2)
 // Purchase orders, invoices and delivery notes; expenses; e-mails and notices read and answered;
@@ -582,7 +647,7 @@ const R3: AuthoredTask[] = [
     D('note', 'Delivery Note', [F('num', 'Order number', '5108'), F('item', 'Item', 'ink'), F('qty', 'Quantity', '36'), F('date', 'Date', 'March 5')]),
     D('invoice', 'Invoice', [F('num', 'Order number', '5108'), F('item', 'Item', 'ink'), F('qty', 'Quantity', '40'), F('price', 'Unit price', '$6'), F('date', 'Date', 'March 5')]),
   ], 2, 'qty', { person: 'p_bell', fixOptions: ['36', '40', '46'], fix: '36', grammar: ['gr-pre2-045'] }),
-  reply('o3_supplier', 3, 3, 'What does the supplier say?', { kind: 'email', from: '{Mr. Okoye|@}', subject: 'Your order of ink', lines: ['Dear {Ms. Park|@},', 'We are sorry to say that your ink will be late again.', 'The shipment will leave on Monday, not on Friday.', 'We will pay for the delivery this time.', 'Best regards,', '{Mr. Okoye|@}'] }, ['The ink will be late, but the supplier will pay for the delivery.', 'The ink has already arrived.', 'The supplier wants us to pay for the delivery.'], 0, { person: 'p_park', grammar: ['gr-4-002'] }),
+  reply('o3_supplier', 3, 3, 'What does the supplier say?', { kind: 'email', from: '{Mr. Okoye|@}', subject: 'Your order of ink', lines: ['Dear {Ms. Park|@},', 'We are sorry to say that your ink will be late again.', 'The shipment will leave on Monday, not on Friday.', 'We will pay for the delivery this time.', 'Best regards,', '{Mr. Okoye|@}'] }, ['The ink will be late, but the supplier will pay for the delivery.', 'The ink has already arrived.', 'The supplier wants us to pay for the delivery.'], 0, { person: 'p_park', phrases: ['ph-pre2-0032'], grammar: ['gr-4-002'] }),
   reply('o3_wonder', 3, 4, 'I was wondering if you could send me the contract by Friday.', { kind: 'speech', lines: ['I was wondering if you could send me the contract by Friday.'] }, ['Of course. I will send it to you tomorrow.', 'No, I was not wondering.', 'It is on the second floor.'], 0, { person: 'c_merchant', phrases: ['ph-pre2-0111'], grammar: ['gr-pre2-008'] }),
   check('o3_discount', 3, 5, 'We promised {Mr. Grant|@} a ten percent discount. Is the total on the invoice right?', [
     D('card', 'Quote', [F('item', 'Item', 'chairs'), F('qty', 'Quantity', '20'), F('disc', 'Discount', '10%'), F('total', 'Total', '$540')]),
@@ -600,14 +665,14 @@ const R3: AuthoredTask[] = [
     { id: 'time', label: 'Time', options: ['2:00', '2:30', '3:30'], answer: '2:30' },
     { id: 'bring', label: 'Bring', options: ['the form', 'the invoice', 'the contract'], answer: 'the form' },
   ], { person: 'p_park', features: ['audioOnly'] }),
-  reply('o3_intent1', 3, 10, 'What does {Ms. Weber|@} want us to do?', { kind: 'email', from: '{Ms. Weber|@}', lines: ['Dear {Mr. Bell|@},', 'I notice that we have not paid invoice 5108 yet.', 'The due date was last Friday.'] }, ['Pay the invoice as soon as possible.', 'Cancel the order.', 'Send her a new invoice.'], 0, { person: 'p_park', grammar: ['gr-3-002'] }),
+  reply('o3_intent1', 3, 10, 'What does {Ms. Weber|@} want us to do?', { kind: 'email', from: '{Ms. Weber|@}', lines: ['Dear {Mr. Bell|@},', 'I notice that we have not paid invoice 5108 yet.', 'The due date was last Friday.'] }, ['Pay the invoice as soon as possible.', 'Cancel the order.', 'Send her a new invoice.'], 0, { person: 'p_park', phrases: ['ph-pre2-0160'], grammar: ['gr-3-002'] }),
   reply('o3_gap_which', 3, 11, 'Which word is right?', { kind: 'memo', lines: ['The report ___ was sent yesterday has a mistake.'] }, ['who', 'which', 'whose'], 1, { person: 'p_bell', grammar: ['gr-3-007'] }),
   slot('o3_room1', 3, 12, 'A client wants to meet. Read the email and look at the week.', { kind: 'email', lines: ['Dear {Ms. Park|@},', 'I will be abroad on Monday and Tuesday.', 'I would like to meet on the first day after that, in the afternoon.', 'Please let me know if it is possible.'] }, { rows: DAYS, cols: TIMES2 }, { 'mon-t1': 'Meeting', 'wed-t1': 'Meeting', 'wed-t9': 'Busy', 'thu-t3': 'Meeting' }, 'wed-t3', { grammar: ['gr-3-018'] }),
   check('o3_interview', 3, 13, 'The candidate wrote to us. Is the interview time on the schedule right?', [
     D('letter', 'Email', [], ['Thank you for inviting me to an interview.', 'I will be at your office on Tuesday at 2:30.']),
     D('card', 'Interview Schedule', [F('day', 'Day', 'Tuesday'), F('time', 'Time', '3:30'), F('who', 'Candidate', '{Ken|@}')]),
   ], 1, 'time', { person: 'p_weber', fixOptions: ['1:30', '2:30', '3:30'], fix: '2:30' }),
-  reply('o3_unfortunately', 3, 14, 'The pens are out of stock. What does the supplier say about the next delivery?', { kind: 'email', from: '{Mr. Okoye|@}', lines: ['Dear {Ms. Ruiz|@},', 'Unfortunately, the blue pens are out of stock.', 'We expect a new delivery next week.', 'Would you like us to send the black pens now?'] }, ['It will come next week.', 'It came yesterday.', 'It will never come.'], 0, { person: 'p_ruiz', grammar: ['gr-pre2-064'] }),
+  reply('o3_unfortunately', 3, 14, 'The pens are out of stock. What does the supplier say about the next delivery?', { kind: 'email', from: '{Mr. Okoye|@}', lines: ['Dear {Ms. Ruiz|@},', 'Unfortunately, the blue pens are out of stock.', 'We expect a new delivery next week.', 'Would you like us to send the black pens now?'] }, ['It will come next week.', 'It came yesterday.', 'It will never come.'], 0, { person: 'p_ruiz', phrases: ['ph-2-0396'], grammar: ['gr-pre2-064'] }),
   reply('o3_gap_despite', 3, 15, 'Which word is right?', { kind: 'memo', lines: ['___ the late delivery, the client was happy.'] }, ['Although', 'Despite', 'Because'], 1, { person: 'p_park', grammar: ['gr-pre2-033'] }),
   reply('o3_report1', 3, 16, 'When were sales the best?', { kind: 'memo', lines: ['Sales report', 'Sales rose by 10% in March.', 'They fell by 5% in April.', 'In May they rose again, by 15%.'] }, ['In May.', 'In March.', 'In April.'], 0, { person: 'p_park', grammar: ['gr-3-005'] }),
   pad('o3_phone5', 3, 17, 'A call from the port. Write the message, please.', ['Good afternoon. This is {Big Joe|@} at the port.', 'The ship from the south arrives on Friday morning.', 'Please send two trucks.'], [
@@ -624,8 +689,8 @@ const R3: AuthoredTask[] = [
   check('o3_transfer', 3, 21, 'Please check the bank statement. Is the payment the same as on the invoice?', [
     D('invoice', 'Invoice', [F('num', 'Invoice number', '7731'), F('total', 'Total', '$1,200')]),
     D('card', 'Bank Statement', [F('num', 'Invoice number', '7731'), F('total', 'Paid', '$1,020'), F('date', 'Date', 'March 12')]),
-  ], 1, 'total', { person: 'p_bell', fixOptions: ['$1,020', '$1,200', '$1,220'], fix: '$1,200' }),
-  reply('o3_ad', 3, 22, 'Can {Ken|@} apply for this job? He has no work experience.', { kind: 'memo', lines: ['Sales clerk wanted', 'You need two years of work experience.', 'Please apply by March 10.'] }, ['No. He needs two years of work experience.', 'Yes. No experience is needed.', 'Yes. But he must apply by March 1.'], 0, { person: 'p_weber', grammar: ['gr-3-005'] }),
+  ], 1, 'total', { person: 'p_bell', fixOptions: ['$1,020', '$1,200', '$1,220'], fix: '$1,200', phrases: ['ph-pre2-0174'] }),
+  reply('o3_ad', 3, 22, 'Can {Ken|@} apply for this job? He has no work experience.', { kind: 'memo', lines: ['Sales clerk wanted', 'You need two years of work experience.', 'Please apply by March 10.'] }, ['No. He needs two years of work experience.', 'Yes. No experience is needed.', 'Yes. But he must apply by March 1.'], 0, { person: 'p_weber', phrases: ['ph-2-0093'], grammar: ['gr-3-005'] }),
   reply('o3_gap_due', 3, 23, 'Which word is right?', { kind: 'memo', lines: ['The meeting was moved ___ the holiday.'] }, ['because', 'due to', 'although'], 1, { person: 'p_santos', grammar: ['gr-pre2-038'] }),
   reply('o3_unless', 3, 24, 'Will the shipment leave on Monday?', { kind: 'email', from: '{Mr. Lin|@}', lines: ['Dear {Ms. Park|@},', 'The shipment will leave on Monday unless the weather is bad.', 'I will call you on Sunday evening.'] }, ['Yes, if the weather is good.', 'No, it will leave on Sunday.', 'Yes, but only if the weather is bad.'], 0, { person: 'p_park', grammar: ['gr-3-018'] }),
   pad('o3_phone6', 3, 25, '{Mr. Grant|@} is going on a trip. Write the message.', ['Hello, this is {Mr. Grant|@}.', 'Please reserve two hotel rooms for next Tuesday.', 'We will arrive by train at about six.'], [
@@ -635,9 +700,9 @@ const R3: AuthoredTask[] = [
     { id: 'how', label: 'Coming by', options: ['train', 'ship', 'bicycle'], answer: 'train' },
   ], { person: 'p_ruiz', features: ['audioOnly'] }),
   slot('o3_wk2', 3, 26, 'A supplier wants to visit. Read the email and look at the week.', { kind: 'email', lines: ['Dear {Ms. Park|@},', 'I would like to visit your office this week.', 'I am free every morning, but I can not come on Wednesday.', 'Eleven is better for me than nine thirty.'] }, WEEK2, { 'mon-t11': 'Meeting', 'tue-t11': 'Busy', 'thu-t9': 'Busy', 'fri-t11': 'Meeting' }, 'thu-t11', { grammar: ['gr-4-014'] }),
-  reply('o3_regret', 3, 27, 'What does the letter say about the job?', { kind: 'letter', lines: ['Dear {Ken|@},', 'We regret to inform you that the job is no longer open.', 'Thank you for coming to the interview.'] }, ['The job is no longer available.', 'He will start on Monday.', 'He must come for a second interview.'], 0, { person: 'p_weber', grammar: ['gr-3-005'] }),
+  reply('o3_regret', 3, 27, 'What does the letter say about the job?', { kind: 'letter', lines: ['Dear {Ken|@},', 'We regret to inform you that the job is no longer open.', 'Thank you for coming to the interview.'] }, ['The job is no longer available.', 'He will start on Monday.', 'He must come for a second interview.'], 0, { person: 'p_weber', phrases: ['ph-2-0017'], grammar: ['gr-3-005'] }),
   reply('o3_gap_part', 3, 28, 'Which word is right?', { kind: 'memo', lines: ['{Ms. Park|@} was ___ with the new sales.'] }, ['please', 'pleased', 'pleasing'], 1, { person: 'p_bell', grammar: ['gr-3-041'] }),
-  reply('o3_complaint', 3, 29, 'How should we write back to this customer?', { kind: 'email', from: '{Mrs. Hill|@}', lines: ['Dear {Ms. Ruiz|@},', 'I ordered three boxes of tea, but only two arrived.', 'I would like the third box as soon as possible.'] }, ['We are sorry. We will send the third box today.', 'We are happy that you liked the tea.', 'Please pay for three boxes.'], 0, { person: 'p_ruiz', grammar: ['gr-pre2-001'] }),
+  reply('o3_complaint', 3, 29, 'How should we write back to this customer?', { kind: 'email', from: '{Mrs. Hill|@}', lines: ['Dear {Ms. Ruiz|@},', 'I ordered three boxes of tea, but only two arrived.', 'I would like the third box as soon as possible.'] }, ['We are sorry. We will send the third box today.', 'We are happy that you liked the tea.', 'Please pay for three boxes.'], 0, { person: 'p_ruiz', phrases: ['ph-pre2-0160'], grammar: ['gr-pre2-001'] }),
   reply('o3_gap_between', 3, 30, 'Which word is right?', { kind: 'memo', lines: ['The meeting is ___ ten and eleven on Friday.'] }, ['between', 'among', 'during'], 0, { person: 'p_lin', grammar: ['gr-pre2-039'] }),
   check('o3_budget2', 3, 31, 'The budget says $300 for travel. Is the total on the report within it?', [
     D('card', 'Travel Budget', [F('budget', 'Budget', '$300'), F('month', 'Month', 'March')]),
@@ -656,14 +721,14 @@ const R4: AuthoredTask[] = [
     { id: 'qty', label: 'Boxes', options: ['40', '400', '4,000'], answer: '400' },
     { id: 'ask', label: 'Wants', options: ['a discount', 'a receipt', 'a new bill'], answer: 'a discount' },
     { id: 'when', label: 'Needs it', options: ['by the end of the month', 'next week', 'next year'], answer: 'by the end of the month' },
-  ], { person: 'p_ruiz', features: ['audioOnly'], grammar: ['gr-pre2-064'] }),
+  ], { person: 'p_ruiz', features: ['audioOnly'], phrases: ['ph-pre2-0241'], grammar: ['gr-pre2-064'] }),
   check('o4_audit1', 4, 2, 'The auditors are coming. Please check the invoice with the order and the bank statement.', [
     D('order', 'Purchase Order', [F('num', 'Order number', '8841'), F('qty', 'Quantity', '200'), F('price', 'Unit price', '$7')]),
     D('card', 'Bank Statement', [F('num', 'Invoice number', '8841'), F('total', 'Paid', '$1,540')]),
     D('invoice', 'Invoice', [F('num', 'Order number', '8841'), F('qty', 'Quantity', '200'), F('price', 'Unit price', '$7'), F('del', 'Delivery', '$140'), F('total', 'Total', '$1,400')]),
   ], 2, 'total', { person: 'p_bell', fixOptions: ['$1,400', '$1,540', '$1,260'], fix: '$1,540', grammar: ['gr-pre2-045'] }),
-  reply('o4_chain1', 4, 3, 'Who will write the contract, and who must check it?', { kind: 'email', from: '{Ms. Park|@}', subject: 'The new contract', lines: ['Dear {Mr. Bell|@},', 'Thank you for your message.', '{Ms. Ruiz|@} will write the new contract, and {Mr. Lin|@} must check it before the end of next week.', 'After that, I will sign it on behalf of the company.', 'Best regards,', '{Ms. Park|@}'] }, ['{Ms. Ruiz|@} will write it; {Mr. Lin|@} must check it.', '{Mr. Lin|@} will write it; {Ms. Ruiz|@} must check it.', '{Ms. Park|@} will write it; {Mr. Bell|@} must sign it.'], 0, { person: 'p_bell', grammar: ['gr-3-007', 'gr-3-019'] }),
-  reply('o4_condition1', 4, 4, 'Can we pay in sixty days?', { kind: 'letter', from: '{Captain Reed|@}', lines: ['Dear {Ms. Park|@},', 'We can give you sixty days to pay, provided that the first order is over two hundred boxes.', 'If not, you must pay within thirty days.'] }, ['Yes, if the first order is over two hundred boxes.', 'Yes, for every order.', 'No, only thirty days are possible.'], 0, { person: 'p_ruiz', grammar: ['gr-1-032'] }),
+  reply('o4_chain1', 4, 3, 'Who will write the contract, and who must check it?', { kind: 'email', from: '{Ms. Park|@}', subject: 'The new contract', lines: ['Dear {Mr. Bell|@},', 'Thank you for your message.', '{Ms. Ruiz|@} will write the new contract, and {Mr. Lin|@} must check it before the end of next week.', 'After that, I will sign it on behalf of the company.', 'Best regards,', '{Ms. Park|@}'] }, ['{Ms. Ruiz|@} will write it; {Mr. Lin|@} must check it.', '{Mr. Lin|@} will write it; {Ms. Ruiz|@} must check it.', '{Ms. Park|@} will write it; {Mr. Bell|@} must sign it.'], 0, { person: 'p_bell', phrases: ['ph-2-0048', 'ph-pre2-0032'], grammar: ['gr-3-007', 'gr-3-019'] }),
+  reply('o4_condition1', 4, 4, 'Can we pay in sixty days?', { kind: 'letter', from: '{Captain Reed|@}', lines: ['Dear {Ms. Park|@},', 'We can give you sixty days to pay, provided that the first order is over two hundred boxes.', 'If not, you must pay within thirty days.'] }, ['Yes, if the first order is over two hundred boxes.', 'Yes, for every order.', 'No, only thirty days are possible.'], 0, { person: 'p_ruiz', phrases: ['ph-2-0152'], grammar: ['gr-1-032'] }),
   reply('o4_gap_however', 4, 5, 'Which word is right?', { kind: 'email', lines: ['The price is higher than last year.', '___, the paper is much better.'] }, ['However', 'Therefore', 'Also'], 0, { person: 'p_ruiz', grammar: ['gr-pre2-061'] }),
   reply('o4_minutes', 4, 6, 'Who must send the numbers, and when?', { kind: 'memo', lines: ['Minutes of the sales meeting', 'Present: {Ms. Park|@}, {Ms. Ruiz|@}, {Mr. Lin|@}, {Mr. Bell|@}', 'Sales rose by 8%.', '{Mr. Lin|@} will check the stock by Thursday.', '{Mr. Bell|@} will send the numbers to {Ms. Park|@} on Friday.'] }, ['{Mr. Bell|@} will send them on Friday.', '{Mr. Lin|@} will send them on Thursday.', '{Ms. Ruiz|@} will send them on Friday.'], 0, { person: 'p_park', grammar: ['gr-4-002'] }),
   check('o4_contract2', 4, 7, 'The supplier wrote about the notice period. Does the contract say the same?', [
@@ -673,7 +738,7 @@ const R4: AuthoredTask[] = [
   check('o4_resume', 4, 8, 'Is the form the same as the job ad?', [
     D('card', 'Job Ad', [F('job', 'Job', 'sales manager'), F('exp', 'Experience', '5 years'), F('start', 'Start', 'May 1')]),
     D('order', 'Form', [F('job', 'Job', 'sales manager'), F('exp', 'Experience', '2 years'), F('start', 'Start', 'May 1')]),
-  ], 1, 'exp', { person: 'p_weber', fixOptions: ['2 years', '5 years', '7 years'], fix: '5 years' }),
+  ], 1, 'exp', { person: 'p_weber', fixOptions: ['2 years', '5 years', '7 years'], fix: '5 years', phrases: ['ph-pre2-0174'] }),
   reply('o4_counter', 4, 9, 'What does {Captain Reed|@} offer?', { kind: 'email', from: '{Captain Reed|@}', lines: ['Dear {Ms. Park|@},', 'Thank you for your offer. Unfortunately, we can\'t take $9 a box.', 'We would like to counter with $8.', 'If you like the price, we can sign this week.'] }, ['$8 a box, with signing this week.', '$9 a box, with signing next month.', 'No price at all.'], 0, { person: 'p_ruiz', grammar: ['gr-3-018'] }),
   reply('o4_hint1', 4, 10, 'What is the supplier really saying?', { kind: 'email', from: '{Mr. Okoye|@}', lines: ['Dear {Ms. Park|@},', 'Thank you very much for your offer.', 'We will keep it and call you if things change.'] }, ['They are not going to accept it now.', 'They will sign the contract tomorrow.', 'They want to meet us this week.'], 0, { person: 'p_park', grammar: ['gr-3-018'] }),
   reply('o4_overdue', 4, 11, 'How much must we still pay?', { kind: 'letter', subject: 'Statement', lines: ['Invoice 7731: $1,200', 'Paid: $900', 'Balance: $300', 'This is now ten days overdue.'] }, ['$300.', '$900.', '$1,200.'], 0, { person: 'p_bell', grammar: ['gr-3-005'] }),
@@ -686,19 +751,19 @@ const R4: AuthoredTask[] = [
   slot('o4_slot1', 4, 13, '{Ms. Park|@} and {Ms. Ruiz|@} must meet the client. Read the emails and look at the week.', { kind: 'email', lines: ['{Ms. Park|@}: I am free on Monday, Wednesday and Thursday.', '{Ms. Ruiz|@}: I can\'t come on Monday or Thursday. I prefer the afternoon.', 'Please find a time when {Ms. Park|@} and {Ms. Ruiz|@} are free.'] }, WEEK2, { 'wed-t1': 'Meeting', 'mon-t3': 'Busy', 'tue-t1': 'Busy', 'fri-t3': 'Busy' }, 'wed-t3', { grammar: ['gr-3-033'] }),
   reply('o4_gap_whom', 4, 14, 'Which word is right?', { kind: 'memo', lines: ['The manager to ___ we sent the report has not replied.'] }, ['who', 'whom', 'whose'], 1, { person: 'p_santos', grammar: ['gr-pre2-048'] }),
   reply('o4_gap_amount', 4, 15, 'Which word is right?', { kind: 'memo', lines: ['A large ___ of money was used for the new office.'] }, ['number', 'amount', 'many'], 1, { person: 'p_bell', grammar: ['gr-pre2-049'] }),
-  reply('o4_gap_response', 4, 16, 'Which words are right?', { kind: 'email', lines: ['___ your email of March 3, we have checked the invoice.'] }, ['In response to', 'On behalf of', 'In charge of'], 0, { person: 'p_ruiz', grammar: ['gr-2-067'] }),
+  reply('o4_gap_response', 4, 16, 'Which words are right?', { kind: 'email', lines: ['___ your email of March 3, we have checked the invoice.'] }, ['In response to', 'On behalf of', 'In charge of'], 0, { person: 'p_ruiz', phrases: ['ph-pre1-0440'], grammar: ['gr-2-067'] }),
   reply('o4_gap_forward', 4, 17, 'Which word is right?', { kind: 'email', lines: ['We look forward to ___ from you.'] }, ['hear', 'hearing', 'heard'], 1, { person: 'p_ruiz', grammar: ['gr-pre2-059'] }),
   check('o4_manifest', 4, 18, 'The ship list must match the invoice. Please check it.', [
     D('invoice', 'Invoice', [F('boxes', 'Boxes', '120'), F('weight', 'Weight', '2,400'), F('port', 'Port', '{Lyon|@}')]),
     D('card', 'Ship List', [F('boxes', 'Boxes', '120'), F('weight', 'Weight', '2,800'), F('port', 'Port', '{Lyon|@}')]),
   ], 1, 'weight', { person: 'p_lin', fixOptions: ['2,000', '2,400', '2,800'], fix: '2,400' }),
-  reply('o4_expense_policy', 4, 19, 'Can {Ken|@} stay in a $120 hotel?', { kind: 'memo', lines: ['Hotel rule', 'The company pays $100 a night, not more.', 'For a more expensive hotel, please ask a manager first.'] }, ['Only if a manager says yes first.', 'Yes, all hotels are fine.', 'No, never.'], 0, { person: 'p_weber', grammar: ['gr-3-005'] }),
+  reply('o4_expense_policy', 4, 19, 'Can {Ken|@} stay in a $120 hotel?', { kind: 'memo', lines: ['Hotel rule', 'The company pays $100 a night, not more.', 'For a more expensive hotel, please ask a manager first.'] }, ['Only if a manager says yes first.', 'Yes, all hotels are fine.', 'No, never.'], 0, { person: 'p_weber', phrases: ['ph-pre1-0448'], grammar: ['gr-3-005'] }),
   reply('o4_retire', 4, 20, 'Who should I give money to for the gift?', { kind: 'memo', lines: ['{Mr. Bell|@} is going to retire after thirty years with us.', 'The party is on Friday at five.', 'If you want to give money for a gift, please give it to {Ms. Weber|@} before Wednesday.'] }, ['{Ms. Weber|@}, before Wednesday.', '{Mr. Bell|@}, on Friday.', '{Ms. Park|@}, at five.'], 0, { person: 'p_santos', grammar: ['gr-3-018'] }),
-  reply('o4_promoted', 4, 21, 'What is the news about {Ken|@}?', { kind: 'memo', lines: ['We are pleased to announce that {Ken|@} has been promoted to sales clerk.', 'Please say hello to him when you see him.'] }, ['He now has a better job.', 'He left the company.', 'He has no job now.'], 0, { person: 'p_weber', grammar: ['gr-3-005'] }),
-  reply('o4_policy', 4, 22, 'When does the new rule start?', { kind: 'memo', lines: ['New rule on claims', 'Effective immediately, please send every claim to {Mr. Bell|@} within ten days.', 'Late claims will not be paid.'] }, ['Now.', 'In ten days.', 'Next year.'], 0, { person: 'p_bell' }),
+  reply('o4_promoted', 4, 21, 'What is the news about {Ken|@}?', { kind: 'memo', lines: ['We are pleased to announce that {Ken|@} has been promoted to sales clerk.', 'Please say hello to him when you see him.'] }, ['He now has a better job.', 'He left the company.', 'He has no job now.'], 0, { person: 'p_weber', phrases: ['ph-2-0018'], grammar: ['gr-3-005'] }),
+  reply('o4_policy', 4, 22, 'When does the new rule start?', { kind: 'memo', lines: ['New rule on claims', 'Effective immediately, please send every claim to {Mr. Bell|@} within ten days.', 'Late claims will not be paid.'] }, ['Now.', 'In ten days.', 'Next year.'], 0, { person: 'p_bell', phrases: ['ph-2-0026'] }),
   reply('o4_refusal', 4, 23, 'What does {Mr. Grant|@} say?', { kind: 'email', from: '{Mr. Grant|@}', lines: ['Dear {Ms. Park|@},', 'I am afraid a delivery on Monday would not be possible.', 'However, we could deliver on Tuesday morning, if that suits you.'] }, ['He can\'t deliver on Monday, but he can on Tuesday.', 'He can deliver on Monday and on Tuesday.', 'He can\'t deliver this week at all.'], 0, { person: 'p_ruiz', grammar: ['gr-pre2-061'] }),
   reply('o4_move2', 4, 24, 'Why is the meeting moved?', { kind: 'email', from: '{Ms. Park|@}', lines: ['Dear all,', 'Due to a problem at the port, the meeting on Thursday has been moved to Friday at ten.', 'I apologize for the change.'] }, ['Because of a problem at the port.', 'Because of the holiday.', 'Because nobody wanted to come.'], 0, { person: 'p_lin', grammar: ['gr-pre2-038'] }),
-  reply('o4_report4', 4, 25, 'What happened to the costs?', { kind: 'memo', lines: ['Report', 'Sales rose by 12% last year, but costs fell by 3%.', 'As a result, we made more money.'] }, ['They fell by 3%.', 'They rose by 12%.', 'They stayed the same.'], 0, { person: 'p_park', grammar: ['gr-pre2-063'] }),
+  reply('o4_report4', 4, 25, 'What happened to the costs?', { kind: 'memo', lines: ['Report', 'Sales rose by 12% last year, but costs fell by 3%.', 'As a result, we made more money.'] }, ['They fell by 3%.', 'They rose by 12%.', 'They stayed the same.'], 0, { person: 'p_park', phrases: ['ph-pre2-0246'], grammar: ['gr-pre2-063'] }),
   reply('o4_survey', 4, 26, 'What do most customers want us to do better?', { kind: 'memo', lines: ['Customer survey', 'Nine out of ten customers are happy with our tea.', 'However, most of them say that delivery takes too long.'] }, ['Delivery time.', 'The tea.', 'The price.'], 0, { person: 'p_ruiz', grammar: ['gr-pre2-061'] }),
   reply('o4_recall', 4, 27, 'What should customers do?', { kind: 'letter', subject: 'The blue cups', lines: ['We are taking back the blue cups because they may break.', 'Please stop using them. You will get your money back.'] }, ['Stop using them and ask for the money back.', 'Keep using them.', 'Send them to the harbour.'], 0, { person: 'p_ruiz' }),
   reply('o4_billing', 4, 28, 'What is the problem with the bill?', { kind: 'email', from: '{Mr. Grant|@}', subject: 'Invoice 9012', lines: ['Dear {Mr. Bell|@},', 'There is a mistake on invoice 9012. I paid twice for the delivery.', 'Could you send me a new invoice?'] }, ['He paid twice for delivery.', 'He did not get the boxes.', 'He paid too late.'], 0, { person: 'p_bell', grammar: ['gr-3-005'] }),
@@ -706,6 +771,118 @@ const R4: AuthoredTask[] = [
   reply('o4_gap_although', 4, 30, 'Which word is right?', { kind: 'memo', lines: ['___ the price is high, the clients keep ordering.'] }, ['Although', 'Despite', 'Because of'], 0, { person: 'p_ruiz', grammar: ['gr-pre2-033'] }),
   reply('o4_gap_neither', 4, 31, 'Which word is right?', { kind: 'memo', lines: ['The new machine is ___ faster nor cheaper than the old one.'] }, ['either', 'neither', 'not'], 1, { person: 'p_santos', grammar: ['gr-3-033'] }),
   slot('o4_slot2', 4, 32, 'The client has sent two possible days. Read the email and look at the week.', { kind: 'email', lines: ['Dear {Ms. Park|@},', 'I could meet you on Tuesday or on Thursday.', 'I prefer Thursday, unless you are busy in the afternoon.', 'In that case, Tuesday morning would be better.'] }, WEEK2, { 'thu-t1': 'Meeting', 'thu-t3': 'Busy', 'tue-t9': 'Busy' }, 'tue-t11', { grammar: ['gr-3-018'] }),
+];
+
+// ---------------------------------------------------------------------------------------------- rank 5 (TOEIC 〜990, 英検1)
+// The audit, the new contract and the claim: clauses with conditions, negotiation by e-mail, minutes and action lists,
+// shipping delays and damage, discrepancies between three papers; sentence completion at the top of Part 5 / 6
+// (inversion, subjunctive, concessive and conditional connectives); messages heard only.
+
+const R5: AuthoredTask[] = [
+  // ---- audit: three papers, one figure that does not agree
+  check('o5_audit1', 5, 1, 'The auditors have found a difference in the ledger. Please check the ledger against the order and the invoice.', [
+    D('order', 'Purchase Order', [F('num', 'Order number', '9120'), F('qty', 'Quantity', '300'), F('price', 'Unit price', '$12')]),
+    D('invoice', 'Invoice', [F('num', 'Order number', '9120'), F('qty', 'Quantity', '300'), F('price', 'Unit price', '$12'), F('del', 'Delivery', '$150'), F('total', 'Total', '$3,750')]),
+    D('card', 'Ledger', [F('num', 'Order number', '9120'), F('total', 'Total', '$3,570')]),
+  ], 2, 'total', { person: 'p_bell', fixOptions: ['$3,570', '$3,600', '$3,750'], fix: '$3,750', grammar: ['gr-3-002'] }),
+  check('o5_audit_ok', 5, 2, 'The auditors want to see this invoice again. Is the total on it right, with the discount?', [
+    D('order', 'Purchase Order', [F('qty', 'Quantity', '500'), F('price', 'Unit price', '$8'), F('disc', 'Discount', '5%')]),
+    D('card', 'Ledger', [F('qty', 'Quantity', '500'), F('total', 'Total', '$3,800')]),
+    D('invoice', 'Invoice', [F('qty', 'Quantity', '500'), F('price', 'Unit price', '$8'), F('disc', 'Discount', '5%'), F('total', 'Total', '$3,800')]),
+  ], 2, null, { person: 'p_bell', grammar: ['gr-4-008'] }),
+  check('o5_tax', 5, 3, 'The tax on this invoice is 8%. Please check the invoice against the order.', [
+    D('order', 'Purchase Order', [F('sub', 'Goods', '$5,000'), F('tax', 'Tax', '$400')]),
+    D('invoice', 'Invoice', [F('sub', 'Goods', '$5,000'), F('tax', 'Tax', '$400'), F('total', 'Total', '$5,040')]),
+  ], 1, 'total', { person: 'p_santos', fixOptions: ['$5,040', '$5,400', '$5,800'], fix: '$5,400', grammar: ['gr-2-056'] }),
+  check('o5_interest', 5, 4, 'The contract allows interest on late payments. Is the interest on this statement right?', [
+    D('card', 'Contract', [F('rate', 'Interest', '1.5% a month')]),
+    D('invoice', 'Statement', [F('amount', 'Overdue amount', '$4,000'), F('rate', 'Interest', '1.5% a month'), F('months', 'Months late', '2'), F('interest', 'Interest due', '$180')]),
+  ], 1, 'interest', { person: 'p_weber', fixOptions: ['$60', '$120', '$180'], fix: '$120', grammar: ['gr-2-056'] }),
+
+  // ---- contract clauses: the e-mail and the contract must say the same
+  check('o5_penalty', 5, 10, 'The supplier agreed to a penalty for late delivery. Does the contract say the same as the email?', [
+    D('letter', 'Email', [], ['We agree to a penalty of 2% of the order value for each week of delay, with a maximum of 10%.']),
+    D('card', 'Contract', [F('pen', 'Penalty each week', '2%'), F('cap', 'Maximum penalty', '5%'), F('term', 'Term', '24 months')]),
+  ], 1, 'cap', { person: 'p_park', fixOptions: ['5%', '10%', '20%'], fix: '10%', phrases: ['ph-pre2-0174'], grammar: ['gr-2-058'] }),
+  check('o5_renew', 5, 11, 'The letter explains how the agreement is renewed. Does the contract agree with it?', [
+    D('letter', 'Letter', [], ['We will renew the agreement for another 24 months, provided that you give us 90 days of notice before it expires.']),
+    D('card', 'Contract', [F('renew', 'Renewal term', '12 months'), F('notice', 'Notice period', '90 days'), F('start', 'Start', 'May 1')]),
+  ], 1, 'renew', { person: 'p_park', fixOptions: ['12 months', '24 months', '36 months'], fix: '24 months', phrases: ['ph-2-0152'], grammar: ['gr-1-032'] }),
+  check('o5_liability', 5, 9, 'Our liability is limited, and the supplier has agreed to that. Is the limit in the contract right?', [
+    D('letter', 'Email', [], ['Our liability will be limited to the value of the goods, which is $90,000.', 'We will pay within 30 days of delivery.']),
+    D('card', 'Contract', [F('limit', 'Liability limit', '$9,000'), F('pay', 'Payment due', '30 days')]),
+  ], 1, 'limit', { person: 'p_park', fixOptions: ['$9,000', '$90,000', '$900,000'], fix: '$90,000', grammar: ['gr-pre2-045'] }),
+  check('o5_terms', 5, 7, 'The quote and the contract must have the same terms. Please check the contract.', [
+    D('card', 'Quote', [F('qty', 'Quantity', '800'), F('price', 'Unit price', '$9'), F('disc', 'Discount', '8%'), F('pay', 'Payment due', '45 days')]),
+    D('order', 'Contract', [F('qty', 'Quantity', '800'), F('price', 'Unit price', '$9'), F('disc', 'Discount', '6%'), F('pay', 'Payment due', '45 days')]),
+  ], 1, 'disc', { person: 'p_ruiz', fixOptions: ['6%', '8%', '10%'], fix: '8%', grammar: ['gr-2-058'] }),
+  check('o5_term_end', 5, 8, 'We agreed on a term of two years. Please check the date when the contract ends.', [
+    D('letter', 'Email', [], ['We agree to a term of two years from March 1, 2025.']),
+    D('card', 'Contract', [F('start', 'Start', 'March 1, 2025'), F('end', 'End', 'March 1, 2026')]),
+  ], 1, 'end', { person: 'p_lin', fixOptions: ['March 1, 2026', 'March 1, 2027', 'March 1, 2028'], fix: 'March 1, 2027', grammar: ['gr-3-009'] }),
+
+  // ---- shipping delays and claims
+  check('o5_claim1', 5, 5, 'Some boxes arrived damaged, so we are making a claim. Please check the claim form against the survey report and the invoice.', [
+    D('invoice', 'Invoice', [F('boxes', 'Boxes', '240'), F('price', 'Unit price', '$15')]),
+    D('note', 'Survey Report', [F('boxes', 'Boxes', '240'), F('dam', 'Damaged', '12')]),
+    D('order', 'Claim Form', [F('boxes', 'Boxes', '240'), F('dam', 'Damaged', '12'), F('price', 'Unit price', '$15'), F('claim', 'Claim', '$198')]),
+  ], 2, 'claim', { person: 'p_lin', fixOptions: ['$180', '$198', '$360'], fix: '$180', grammar: ['gr-3-012'] }),
+  check('o5_late1', 5, 6, 'The ship arrived late, so the contract gives us a penalty. Please check the number of days that it was late.', [
+    D('card', 'Contract', [F('due', 'Due date', 'March 14')]),
+    D('note', 'Shipping Note', [F('arr', 'Arrived', 'March 19')]),
+    D('order', 'Claim', [F('due', 'Due date', 'March 14'), F('arr', 'Arrived', 'March 19'), F('late', 'Days late', '7')]),
+  ], 2, 'late', { person: 'p_lin', fixOptions: ['4', '5', '7'], fix: '5', grammar: ['gr-3-007'] }),
+  check('o5_minutes1', 5, 12, 'The minutes say who will do what. Is the action list the same?', [
+    D('letter', 'Minutes', [], ['It was agreed that {Ms. Ruiz|@} will send the new draft to the supplier by Wednesday.', '{Mr. Lin|@} will check the terms of payment before the contract is signed.']),
+    D('card', 'Action List', [F('draft', 'New draft', '{Ms. Ruiz|@}, by Friday'), F('review', 'Terms of payment', '{Mr. Lin|@}')]),
+  ], 1, 'draft', { person: 'p_park', fixOptions: ['{Ms. Ruiz|@}, by Wednesday', '{Ms. Ruiz|@}, by Friday', '{Mr. Lin|@}, by Wednesday'], fix: '{Ms. Ruiz|@}, by Wednesday', grammar: ['gr-pre2-006', 'gr-3-005'] }),
+
+  // ---- negotiation by e-mail, clauses, notices and minutes
+  reply('o5_counter', 5, 13, 'What does {Captain Reed|@} propose?', { kind: 'email', from: '{Captain Reed|@}', subject: 'Your offer of $8 a box', lines: ['Dear {Ms. Park|@},', 'Thank you for your offer of $8 a box. We can accept that price only for orders of 500 boxes or more. For smaller orders, the price would be $9.', 'If these terms are acceptable to you, we are ready to sign on Friday.', 'Best regards,', '{Captain Reed|@}'] }, ['$8 a box for orders of 500 boxes or more, with signing on Friday if the terms suit us.', '$8 a box for every order, with signing on Friday.', '$9 a box for orders of 500 boxes or more, with signing on Friday.'], 0, { person: 'p_park', grammar: ['gr-3-018', 'gr-4-014'] }),
+  reply('o5_clause_force', 5, 20, 'In this clause, when is the supplier not liable for a delay?', { kind: 'memo', lines: ['Clause 7', 'Neither party shall be liable for a delay that it cannot control, provided that it informs the other party in writing within five days.'] }, ['When it could not control the delay, and it told the other party in writing within five days.', 'When the delay was only five days long.', 'When it tells the other party after five days.'], 0, { person: 'p_park', phrases: ['ph-2-0152', 'ph-2-0194', 'ph-1-0009'], grammar: ['gr-1-032', 'gr-3-007'] }),
+  reply('o5_clause_end', 5, 14, 'What must the buyer pay if it ends the agreement after six months?', { kind: 'memo', lines: ['Clause 12', 'Either party may terminate this agreement by giving 60 days of written notice.', 'If the buyer terminates it within the first year, it must pay 5% of the value of the rest of the contract.'] }, ['5% of the value of the rest of the contract.', '5% of the full value of the contract.', 'No more, because 60 days of notice are enough.'], 0, { person: 'p_park', grammar: ['gr-4-003', 'gr-2-056'] }),
+  reply('o5_minutes_a', 5, 22, 'What will happen about the new supplier?', { kind: 'memo', lines: ['Minutes of the meeting on April 4', 'Item 1: Four people voted against moving the warehouse, and two voted for it.', 'Item 2: It was agreed to wait for the audit report before the decision on the new supplier.', 'Action: {Mr. Bell|@} to ask the auditors for the report by Friday.'] }, ['The decision will be made after the audit report arrives.', 'The new supplier was accepted by 4 votes to 2.', 'The new supplier was accepted before the audit.'], 0, { person: 'p_santos', grammar: ['gr-3-005'] }),
+  reply('o5_minutes_b', 5, 15, 'Who must book the room for the next meeting?', { kind: 'memo', lines: ['Minutes of the meeting on April 11', 'It was agreed that the draft policy will be sent to everyone before the next meeting.', 'Action: {Ms. Weber|@} to send the draft to everyone by Monday; {Mr. Santos|@} to book the room.'] }, ['{Mr. Santos|@}.', '{Ms. Weber|@}.', '{Mr. Bell|@}.'], 0, { person: 'p_weber', grammar: ['gr-3-005'] }),
+  reply('o5_claim_reply', 5, 16, 'How should we reply to this customer?', { kind: 'email', from: '{Mrs. Hill|@}', subject: 'Damaged boxes', lines: ['Dear {Ms. Ruiz|@},', 'When the shipment arrived, 12 of the 240 boxes were damaged.', 'We would like replacements for these boxes by the end of next week.', 'Regards,', '{Mrs. Hill|@}'] }, ['We apologize for the damage. We will send 12 replacement boxes by the end of next week.', 'We apologize for the damage. We will send 120 replacement boxes by the end of next week.', 'We apologize for the damage. We will send 12 replacement boxes by the end of next month.'], 0, { person: 'p_ruiz', phrases: ['ph-pre2-0241'], grammar: ['gr-3-005', 'gr-2-056'] }),
+  reply('o5_delay_notice', 5, 17, 'What does the supplier offer?', { kind: 'email', from: '{Mr. Okoye|@}', lines: ['Dear {Ms. Park|@},', 'Owing to a strike at the port, your shipment, which was due on April 12, will not arrive before April 20.', 'To make up for the delay, we are prepared to offer a discount of 3% on this order.', 'Best regards,', '{Mr. Okoye|@}'] }, ['A discount of 3%, because the shipment will be late.', 'A discount of 3%, but only if the shipment arrives on April 12.', 'A discount of 12%, because of the strike.'], 0, { person: 'p_park', phrases: ['ph-pre1-0278', 'ph-2-0047', 'ph-pre2-0345'], grammar: ['gr-pre2-038', 'gr-3-007'] }),
+  reply('o5_audit_reply', 5, 18, 'How should {Mr. Bell|@} answer the auditor?', { kind: 'email', from: '{Mr. Okoye|@}', subject: 'Invoice 7731', lines: ['Dear {Mr. Bell|@},', 'We have noticed that two invoices in March carry the same number, 7731.', 'Could you let us know whether one of them is a duplicate and, if so, whether it has been paid twice?', 'Regards,', '{Mr. Okoye|@}'] }, ['Thank you. We are checking both invoices, and we will tell you by Friday whether the duplicate was paid.', 'Thank you. We have paid both invoices, so we do not need to do more.', 'Thank you. We have changed the invoice number, so you do not need to do anything.'], 0, { person: 'p_bell', grammar: ['gr-3-032', 'gr-pre2-065'] }),
+  reply('o5_policy', 5, 19, 'An urgent invoice for $8,000 arrives. What must happen?', { kind: 'memo', lines: ['New rule on invoices', 'Effective March 1, every invoice over $5,000 must be approved by two managers.', 'An urgent invoice may be approved by one manager, provided that the second approval follows within 24 hours.'] }, ['One manager may approve it now, and the second approval must follow within 24 hours.', 'Two managers must approve it before it is paid, although it is urgent.', 'One manager is enough, because it is urgent.'], 0, { person: 'p_park', phrases: ['ph-2-0152'], grammar: ['gr-1-032', 'gr-4-003'] }),
+  reply('o5_hint', 5, 21, 'What does the supplier really want?', { kind: 'email', from: '{Mr. Okoye|@}', lines: ['Dear {Mr. Bell|@},', 'We note that the invoice of March 3 is still open in our records.', 'We would be grateful if you could look into the matter at your earliest convenience.'] }, ['The payment, as soon as possible.', 'A new invoice with a later date.', 'A meeting about the contract.'], 0, { person: 'p_bell', phrases: ['ph-2-0025', 'ph-2-0229', 'ph-pre2-0160'], grammar: ['gr-3-018'] }),
+
+  // ---- sentence completion: the conditional, concessive and inverted forms of formal business English
+  reply('o5_gap_had', 5, 23, 'Which words are right?', { kind: 'memo', lines: ['Had we known about the strike, we ___ the order earlier.'] }, ['would have placed', 'would place', 'had placed'], 0, { person: 'p_ruiz', grammar: ['gr-2-015', 'gr-2-001'] }),
+  reply('o5_gap_should', 5, 24, 'Which word is right?', { kind: 'email', lines: ['Should you ___ any further assistance, please contact me.'] }, ['require', 'requires', 'required'], 0, { person: 'p_ruiz', phrases: ['ph-pre1-0066'], grammar: ['gr-2-015'] }),
+  reply('o5_gap_whereas', 5, 25, 'Which word is right?', { kind: 'memo', lines: ['The first contract runs for two years, ___ the second runs for five.'] }, ['whereas', 'because', 'unless'], 0, { person: 'p_santos', grammar: ['gr-2-023'] }),
+  reply('o5_gap_notwith', 5, 26, 'Which word is right?', { kind: 'memo', lines: ['The buyer must pay in full, ___ any claim that it may have against the supplier.'] }, ['notwithstanding', 'however', 'moreover'], 0, { person: 'p_park', phrases: ['ph-pre1-0244'], grammar: ['gr-pre2-061'] }),
+  reply('o5_gap_long', 5, 27, 'Which words are right?', { kind: 'memo', lines: ['The supplier is responsible for the goods ___ they are in its warehouse.'] }, ['for as long as', 'in case of', 'as well as'], 0, { person: 'p_lin', phrases: ['ph-2-0151', 'ph-pre2-0161'], grammar: ['gr-pre2-040'] }),
+  reply('o5_gap_provided', 5, 28, 'Which words are right?', { kind: 'memo', lines: ['Payment will be made within 30 days ___ the goods are accepted.'] }, ['provided that', 'in order that', 'although'], 0, { person: 'p_park', phrases: ['ph-2-0152'], grammar: ['gr-1-032'] }),
+  reply('o5_gap_notonly', 5, 29, 'Which words are right?', { kind: 'memo', lines: ['Not only ___ the price, but it also cut the delivery time.'] }, ['did the supplier lower', 'the supplier lowered', 'has the supplier lowered'], 0, { person: 'p_bell', phrases: ['ph-1-0074'], grammar: ['gr-pre2-029', 'gr-2-012'] }),
+
+  // ---- messages heard only
+  pad('o5_voice1', 5, 30, 'There is a message from the port. Write the message, please.', ['Good morning. This is {Mr. Santos|@} at the port.', 'The shipment from {Oslo|@} has been held by customs, and it will reach us on Thursday, not on Tuesday.', 'Please tell the buyer, and send me the new delivery address by noon.'], [
+    { id: 'who', label: 'Caller', options: ['{Mr. Santos|@}', '{Big Joe|@}', '{Mr. Lin|@}'], answer: '{Mr. Santos|@}' },
+    { id: 'why', label: 'Why', options: ['customs', 'a storm', 'a strike'], answer: 'customs' },
+    { id: 'day', label: 'Arrives', options: ['Thursday', 'Tuesday', 'Friday'], answer: 'Thursday' },
+    { id: 'by', label: 'Address by', options: ['noon', 'the evening', 'tomorrow'], answer: 'noon' },
+  ], { person: 'p_santos', features: ['audioOnly'], grammar: ['gr-3-005', 'gr-pre2-064'] }),
+  pad('o5_voice2', 5, 31, 'A call about the audit. Write the message, please.', ['Hello. This is {Ms. Weber|@}.', 'The auditors will arrive at 9:30 on Monday, and they will need the contracts of the last two years and the bank statements.', 'Please tell {Mr. Bell|@} to prepare them before Friday.'], [
+    { id: 'who', label: 'Caller', options: ['{Ms. Weber|@}', '{Ms. Ruiz|@}', '{Ms. Park|@}'], answer: '{Ms. Weber|@}' },
+    { id: 'when', label: 'Auditors come', options: ['Monday, 9:30', 'Tuesday, 9:30', 'Monday, 11:00'], answer: 'Monday, 9:30' },
+    { id: 'need', label: 'They need', options: ['contracts and bank statements', 'invoices and bank statements', 'contracts and invoices'], answer: 'contracts and bank statements' },
+    { id: 'dl', label: 'Ready', options: ['before Friday', 'on Friday', 'after Friday'], answer: 'before Friday' },
+  ], { person: 'p_weber', features: ['audioOnly'], grammar: ['gr-3-014', 'gr-3-020'] }),
+  pad('o5_voice3', 5, 32, 'A message from {Captain Reed|@}. Write the message, please.', ['Good afternoon. This is {Captain Reed|@}.', 'We can accept $8 a box, but only for orders of 500 boxes or more, and we would like to sign by the end of the month.', 'Please call me back this afternoon.'], [
+    { id: 'who', label: 'Caller', options: ['{Captain Reed|@}', '{Mr. Okoye|@}', '{Mr. Grant|@}'], answer: '{Captain Reed|@}' },
+    { id: 'price', label: 'Price', options: ['$8 a box', '$9 a box', '$18 a box'], answer: '$8 a box' },
+    { id: 'min', label: 'Only for', options: ['500 boxes or more', '50 boxes or more', '5,000 boxes or more'], answer: '500 boxes or more' },
+    { id: 'sign', label: 'Sign', options: ['by the end of the month', 'by the end of the week', 'next year'], answer: 'by the end of the month' },
+    { id: 'back', label: 'Call back', options: ['this afternoon', 'tomorrow morning', 'next week'], answer: 'this afternoon' },
+  ], { person: 'p_park', features: ['audioOnly'], phrases: ['ph-3-0137', 'ph-pre2-0241'], grammar: ['gr-4-007'] }),
+
+  // ---- the one room or time that suits every condition
+  slot('o5_slot_audit', 5, 33, 'The auditors have written. Read the email and look at the room plan.', { kind: 'email', lines: ['Dear {Ms. Park|@},', 'The audit team needs the largest room, which I think is Room 3.', 'We cannot start before 11:00, because our ferry arrives at 10:30, and we must leave on the evening ferry, so we cannot start later than 2:00.', 'Please let me know which time is free.'] }, ROOMGRID, { 'r3-t11': 'Sales meeting', 'r1-t2': 'Interview', 'r2-t11': 'Busy' }, 'r3-t2', { grammar: ['gr-pre2-034', 'gr-3-020'] }),
+  slot('o5_slot_reed', 5, 34, '{Captain Reed|@} wants to meet. Read the email and look at the week.', { kind: 'email', lines: ['Dear {Ms. Park|@},', 'I will arrive on Wednesday evening, so Monday, Tuesday and Wednesday are not possible for me.', 'I must leave on Friday at noon, so Friday is not possible, either.', 'I prefer the morning, but I cannot meet before 10:30.'] }, WEEK2, { 'thu-t9': 'Busy', 'thu-t1': 'Call', 'thu-t3': 'Meeting', 'mon-t11': 'Meeting', 'wed-t11': 'Audit' }, 'thu-t11', { grammar: ['gr-2-050', 'gr-2-059'] }),
+  slot('o5_slot_review', 5, 35, 'Two people must review the contract together. Read the emails and look at the week.', { kind: 'email', lines: ['{Ms. Ruiz|@}: I am free on Monday and Wednesday in the afternoon.', '{Mr. Lin|@}: I am free on Wednesday and Thursday, but I cannot stay after 3:00.', 'The review must take place before the contract is signed on Friday. Please find a time when both of them are free.'] }, WEEK2, { 'mon-t1': 'Meeting', 'thu-t1': 'Busy', 'wed-t9': 'Busy' }, 'wed-t1', { phrases: ['ph-pre2-0202'], grammar: ['gr-pre2-030', 'gr-3-033'] }),
 ];
 // ---------------------------------------------------------------------------------------------- rank 1 templates and banks
 
@@ -1292,11 +1469,159 @@ const T4: TaskTemplate[] = [
   { id: 'ot4_gap', rank: 4, arch: 'respond', mode: 'choose', kind: 'memo', bank: 'gap4' },
 ];
 
+// ---------------------------------------------------------------------------------------------- rank 5 templates and banks
+
+const QA_SAY5: QaItem[] = [
+  { q: 'I am afraid we will not meet the deadline unless the supplier sends the boxes by Monday.', a: 'Then let us ask the supplier today, and tell the client about the risk.', fn: 'deadline5', rank: 5, grammar: ['gr-3-018'] },
+  { q: 'The auditors have asked why the expenses for March are 20% higher than the month before.', a: 'Most of the difference comes from the shipping costs, and I will send you the figures.', fn: 'expenses5', rank: 5, grammar: ['gr-4-014', 'gr-3-007'] },
+  { q: 'Would you be prepared to extend the payment period to 60 days if we order more?', a: 'We would consider it, provided that the order is at least 500 boxes.', fn: 'extend5', rank: 5, phrases: ['ph-2-0152'], grammar: ['gr-1-032'] },
+  { q: 'The client says that he will cancel the contract unless we reduce the price.', a: 'Before we answer, I will call him and find out what he really wants.', fn: 'cancel5', rank: 5, grammar: ['gr-3-018', 'gr-3-019'] },
+  { q: 'Could you walk me through the biggest changes in the new draft?', a: 'Certainly. The most important change is the penalty clause, which now applies from the first day of delay.', fn: 'draft5', rank: 5, phrases: ['ph-3-0013'], grammar: ['gr-2-019'] },
+  { q: 'Our legal adviser says that clause 9 may cause problems for us later.', a: 'Then we should revise it before we sign, and ask the supplier to agree to the change.', fn: 'legal5', rank: 5, grammar: ['gr-3-019', 'gr-4-005'] },
+  { q: 'The shipment has been damaged, but the insurance covers only losses over $2,000.', a: 'In that case, we should find out whether the total loss is more than that amount.', fn: 'insure5', rank: 5, grammar: ['gr-pre2-055'] },
+  { q: 'We have been asked to cut the budget by 10% without reducing the quality.', a: 'That will be difficult, but we could ask our biggest supplier for a better price.', fn: 'budget5', rank: 5, grammar: ['gr-pre2-046', 'gr-3-005'] },
+  { q: 'Do you think the supplier will accept our offer?', a: 'I think that they will, as long as we offer a longer contract.', fn: 'accept5', rank: 5, grammar: ['gr-3-018'] },
+  { q: 'Would it be possible to postpone the audit until next month?', a: 'I am afraid not. The deadline has been set by the bank, so we cannot change it.', fn: 'audit5', rank: 5, grammar: ['gr-pre2-065', 'gr-4-007'] },
+  { q: 'Who is going to take over the accounts after {Mr. Bell|@} retires?', a: 'Nothing has been announced yet, but I understand that {Ms. Weber|@} may take over the accounts.', fn: 'succession5', rank: 5, grammar: ['gr-3-005', 'gr-pre2-065'] },
+  { q: 'The invoice does not match the delivery note, and the supplier has not replied to our emails.', a: 'Let us put the payment on hold, and telephone the supplier today.', fn: 'hold5', rank: 5, grammar: ['gr-3-002'] },
+  { q: 'I would like to propose that we give the packing to the harbour company.', a: 'It is a good idea in principle, but we would need to compare the costs first.', fn: 'pack5', rank: 5, grammar: ['gr-3-007'] },
+  { q: 'I am sorry, but the sample that you sent is not what we ordered.', a: 'I apologize. Could you tell me what is different, so that I can send a corrected sample?', fn: 'spec5', rank: 5, grammar: ['gr-pre2-012', 'gr-4-007'] },
+];
+
+const QA_PHONE5: QaItem[] = [
+  { q: 'I am calling about the shipment that was due on Monday. It has not arrived, and our customer is getting angry.', a: 'I am sorry. I will contact the port today and call you back with a new date.', fn: 'late5', rank: 5, grammar: ['gr-3-007', 'gr-3-002'] },
+  { q: 'I would like to confirm the terms that we discussed yesterday, including the penalty for late delivery.', a: 'Certainly. We agreed on 2% a week, with a maximum of 10%, and I will put it in writing.', fn: 'terms5', rank: 5, grammar: ['gr-3-007'] },
+  { q: 'Could you send me a copy of the contract by the end of the day? Our legal adviser needs to review it.', a: 'Of course. I will send it to you within the hour, together with the price list.', fn: 'copy5', rank: 5, grammar: ['gr-4-007'] },
+  { q: 'We have found two invoices with the same number in your ledger. Can you explain that?', a: 'It looks like a duplicate. I will check whether both were paid and call you back this afternoon.', fn: 'dupe5', rank: 5, grammar: ['gr-pre2-055'] },
+  { q: 'I am calling to withdraw my offer, because the market has changed.', a: 'I am sorry to hear that. Could we discuss it before you decide?', fn: 'withdraw5', rank: 5, phrases: ['ph-pre1-0410'], grammar: ['gr-3-002'] },
+  { q: 'The auditors will arrive an hour earlier than planned. Is that a problem?', a: 'Not at all. I will ask {Ms. Weber|@} to open the meeting room at 8:30.', fn: 'early5', rank: 5, grammar: ['gr-4-014'] },
+  { q: 'I would like to speak to someone about the claim for the damaged boxes.', a: 'Certainly. I will put you through to {Ms. Ruiz|@}, who looks after all the claims this week.', fn: 'claim5', rank: 5, phrases: ['ph-pre2-0398'], grammar: ['gr-3-007'] },
+  { q: 'Our bank has rejected the transfer. They say that the account number is wrong.', a: 'Thank you for letting us know. Could you read me the number that you have, so that I can compare it with ours?', fn: 'bank5', rank: 5, grammar: ['gr-3-007'] },
+  { q: 'I will be away next week. Could you move the meeting to the week after?', a: 'No problem. I will check the calendar and send you two possible dates this afternoon.', fn: 'move5', rank: 5, grammar: ['gr-3-019'] },
+  { q: 'The goods are ready, but the ship has been delayed by customs.', a: 'Then please let us know the new date as soon as you have it, so that we can tell our customers.', fn: 'customs5', rank: 5, grammar: ['gr-3-031', 'gr-pre2-065'] },
+];
+
+const QA_MAIL5: QaItem[] = [
+  { q: 'Further to our meeting, we can offer a discount of 5% on orders of more than 500 boxes.', a: 'Thank you for the offer. We would like to place an order of 600 boxes on these terms.', fn: 'offer5', rank: 5, phrases: ['ph-pre1-0060'], grammar: ['gr-3-007'] },
+  { q: 'We regret to inform you that, owing to the strike, we are unable to accommodate your request for an earlier delivery.', a: 'We understand. Please let us know as soon as things change.', fn: 'refuse5', rank: 5, phrases: ['ph-pre1-0013', 'ph-2-0017'], grammar: ['gr-pre2-038'] },
+  { q: 'Please be advised that our terms of payment have changed with effect from March 1.', a: 'Thank you for the notice. We will change our records to match.', fn: 'notice5', rank: 5, phrases: ['ph-2-0015'], grammar: ['gr-pre2-065'] },
+  { q: 'Invoice 7731 is now 30 days overdue, and we would be grateful if you could pay it at once.', a: 'We apologize for the delay. The payment will be transferred to your account tomorrow.', fn: 'overdue5', rank: 5, phrases: ['ph-pre1-0076'], grammar: ['gr-pre2-064'] },
+  { q: 'We would like to propose a revised schedule, since the first dates are no longer possible.', a: 'We would be glad to look at your proposal. Please send it to us in writing.', fn: 'schedule5', rank: 5, grammar: ['gr-3-019'] },
+  { q: 'Our records show that the contract ends on June 30. Do you want to renew it?', a: 'Yes, we would like to renew it, but we would like to discuss the price first.', fn: 'renew5', rank: 5, phrases: ['ph-pre1-0413'], grammar: ['gr-3-010'] },
+  { q: 'Attached are the minutes of the meeting on April 4. Please let me know if anything needs to be corrected.', a: 'Thank you. I have read them, and everything is correct except the date of the next meeting.', fn: 'minutes5', rank: 5, phrases: ['ph-pre1-0531'], grammar: ['gr-3-018', 'gr-3-005'] },
+  { q: 'We are in receipt of your letter, and we wish to draw your attention to clause 4.', a: 'Thank you. We have read clause 4, and we will reply in writing by Friday.', fn: 'draw5', rank: 5, phrases: ['ph-1-0006'], grammar: ['gr-3-002'] },
+  { q: 'Despite our two letters, we have not received the signed contract. Please return it by Friday.', a: 'We apologize. The signed contract was sent on Tuesday, and we will send a second copy today.', fn: 'remind5', rank: 5, grammar: ['gr-pre2-033', 'gr-3-002'] },
+];
+
+/** A clause in contract English → what it means in plain words. */
+const QA_CLAUSE5: QaItem[] = [
+    { q: 'This agreement shall be in force for two years, and it shall be renewed automatically unless either party gives 90 days of notice.', a: 'The agreement lasts two years and continues unless one party gives notice 90 days earlier.', fn: 'renew6', rank: 5, grammar: ['gr-3-018'] },
+  { q: 'Neither party shall be liable for any delay caused by events beyond its control.', a: 'A party is not responsible for a delay if the cause is something that it could not control.', fn: 'control5', rank: 5, grammar: ['gr-pre1-034', 'gr-3-005'] },
+  { q: 'The seller shall deliver the goods within 30 days of the date of the order, failing which the buyer may cancel the order.', a: 'If the goods are not delivered within 30 days, the buyer may cancel the order.', fn: 'deliver5', rank: 5, grammar: ['gr-pre2-037'] },
+  { q: 'The buyer shall inspect the goods on delivery and notify the seller of any damage within seven days.', a: 'The buyer must check the goods when they arrive and report any damage within a week.', fn: 'inspect5', rank: 5, grammar: ['gr-4-003'] },
+  { q: 'The price is exclusive of tax, which shall be added at the rate in force on the date of the invoice.', a: 'Tax is not included in the price, and it will be added to the invoice.', fn: 'tax5', rank: 5, grammar: ['gr-3-007'] },
+  { q: 'Title to the goods goes to the buyer only on full payment.', a: 'The buyer does not own the goods until all of the money has been paid.', fn: 'title5', rank: 5, grammar: ['gr-3-019'] },
+    { q: 'Either party may terminate this agreement immediately if the other party is in serious breach of it.', a: 'A party may end the agreement at once if the other party seriously breaks it.', fn: 'breach5', rank: 5, phrases: ['ph-pre1-0001'], grammar: ['gr-3-018'] },
+];
+
+/** Part 5 / 6 at the top: conditional, concessive and relative forms, correlatives, the subjunctive. */
+const QA_GAP5: QaItem[] = [
+  { q: 'The supplier has agreed to lower the price, ___ we order more.', a: 'provided that', fn: 'prov5', rank: 5, grammar: ['gr-1-032'] },
+  { q: 'We will ship the goods ___ the payment has been received.', a: 'as soon as', fn: 'soon5', rank: 5, grammar: ['gr-3-031'] },
+  { q: '___ the strike, the ship left on time.', a: 'Despite', fn: 'desp5', rank: 5, grammar: ['gr-pre2-033'] },
+  { q: 'The committee, ___ members are all managers, will meet on Friday.', a: 'whose', fn: 'whose5', rank: 5, grammar: ['gr-pre2-013'] },
+  { q: 'The supplier is responsible ___ the damage.', a: 'for', fn: 'on5', rank: 5, grammar: ['gr-pre2-040'] },
+  { q: 'We look forward to ___ the new contract next week.', a: 'signing', fn: 'ing5', rank: 5, phrases: ['ph-3-0100'], grammar: ['gr-pre2-059'] },
+  { q: 'Neither the buyer ___ the seller was aware of the problem.', a: 'nor', fn: 'nor5', rank: 5, grammar: ['gr-pre1-034'] },
+  { q: 'The audit report, ___ was sent last week, has several mistakes.', a: 'which', fn: 'which5', rank: 5, grammar: ['gr-pre2-015'] },
+  { q: 'It is essential that every invoice ___ approved before payment.', a: 'be', fn: 'be5', rank: 5, grammar: ['gr-2-044'] },
+  { q: 'The company would have lost the client had it not ___ the price.', a: 'lowered', fn: 'had5', rank: 5, grammar: ['gr-2-015'] },
+  { q: 'The more we negotiate, ___ the price becomes.', a: 'the lower', fn: 'more5', rank: 5, grammar: ['gr-pre2-016'] },
+  { q: 'The clerk to ___ I sent the form has left the company.', a: 'whom', fn: 'whom5', rank: 5, grammar: ['gr-pre2-048'] },
+];
+
+const T5: TaskTemplate[] = [
+  { id: 'ot5_audit', rank: 5, arch: 'check', say: 'The auditors have found a difference. Please check the invoice against the order and the ledger.', fields: [
+    { id: 'num', label: 'Order number', values: ['9120', '9102', '9210', '1920'] },
+    { id: 'qty', label: 'Quantity', range: [100, 500, 100] },
+    { id: 'price', label: 'Unit price', range: [6, 12], fmt: '${n}' },
+    { id: 'sub', label: 'Goods', calc: 'qty * price', fmt: '${n,}' },
+    { id: 'tax', label: 'Tax (10%)', calc: 'sub / 10', fmt: '${n,}' },
+    { id: 'del', label: 'Delivery', calc: '150', fmt: '${n}' },
+    { id: 'total', label: 'Total', calc: 'sub + tax + del', fmt: '${n,}' },
+  ], docs: [{ kind: 'order', title: 'Purchase Order', fields: ['num', 'qty', 'price'] }, { kind: 'card', title: 'Ledger', fields: ['num', 'total'] }, { kind: 'invoice', title: 'Invoice', fields: ['num', 'qty', 'price', 'sub', 'tax', 'del', 'total'] }], target: 2, pWrong: 0.7, wrongable: ['sub', 'tax', 'total'], grammar: ['gr-2-056'] },
+  { id: 'ot5_contract', rank: 5, arch: 'check', say: 'The supplier wrote to us about the terms. Does the contract say the same as the email?', fields: [
+    { id: 'pen', label: 'Penalty each week', values: ['1%', '2%', '3%'] },
+    { id: 'cap', label: 'Maximum penalty', values: ['5%', '10%', '15%'] },
+    { id: 'term', label: 'Term', values: ['12 months', '24 months', '36 months'] },
+    { id: 'notice', label: 'Notice period', values: ['30 days', '60 days', '90 days'] },
+  ], docs: [{ kind: 'letter', title: 'Email', lines: ['We agree to a penalty of {pen} of the order value for each week of delay, with a maximum of {cap}.', 'The agreement will run for {term}, and either party may end it by giving {notice} of notice.'] }, { kind: 'card', title: 'Contract', fields: ['pen', 'cap', 'term', 'notice'] }], target: 1, pWrong: 0.7, wrongable: ['pen', 'cap', 'term', 'notice'], phrases: ['ph-pre2-0174'], grammar: ['gr-2-058'] },
+  { id: 'ot5_claim', rank: 5, arch: 'check', say: 'Some boxes arrived damaged, so we are making a claim. Please check the claim form.', fields: [
+    { id: 'boxes', label: 'Boxes', range: [120, 300, 60] },
+    { id: 'price', label: 'Unit price', range: [10, 20, 5], fmt: '${n}' },
+    { id: 'dam', label: 'Damaged', range: [6, 18, 6] },
+    { id: 'claim', label: 'Claim', calc: 'dam * price', fmt: '${n,}' },
+  ], docs: [{ kind: 'invoice', title: 'Invoice', fields: ['boxes', 'price'] }, { kind: 'note', title: 'Survey Report', fields: ['boxes', 'dam'] }, { kind: 'order', title: 'Claim Form', fields: ['boxes', 'dam', 'price', 'claim'] }], target: 2, pWrong: 0.7, wrongable: ['dam', 'claim'], grammar: ['gr-3-012'] },
+  { id: 'ot5_late', rank: 5, arch: 'check', say: 'The ship arrived late, so the contract gives us a penalty. Please check the number of days that it was late.', fields: [
+    { id: 'due', label: 'Due date', range: [8, 18], fmt: 'March {n}' },
+    { id: 'late', label: 'Days late', range: [2, 6] },
+    { id: 'arr', label: 'Arrived', calc: 'due + late', fmt: 'March {n}' },
+    { id: 'pen', label: 'Penalty', calc: 'late * 50', fmt: '${n}' },
+  ], docs: [{ kind: 'card', title: 'Contract', lines: ['Penalty for late delivery: $50 for each day.'], fields: ['due'] }, { kind: 'note', title: 'Shipping Note', fields: ['arr'] }, { kind: 'order', title: 'Claim', fields: ['due', 'arr', 'late', 'pen'] }], target: 2, pWrong: 0.7, wrongable: ['late', 'pen'], grammar: ['gr-3-007'] },
+  { id: 'ot5_minutes', rank: 5, arch: 'check', say: 'The minutes say who will do what. Is the action list the same?', fields: [
+    { id: 'who', label: 'Who', values: ['{Ms. Ruiz|@}', '{Mr. Lin|@}', '{Mr. Bell|@}', '{Ms. Weber|@}'] },
+    { id: 'what', label: 'Job', values: ['the revised draft', 'the payment terms', 'the audit report'] },
+    { id: 'day', label: 'Day', values: ['Monday', 'Wednesday', 'Thursday', 'Friday'] },
+  ], docs: [{ kind: 'letter', title: 'Minutes', lines: ['It was agreed that {who} will send {what} to {Ms. Park|@} by {day}.'] }, { kind: 'card', title: 'Action List', fields: ['who', 'what', 'day'] }], target: 1, pWrong: 0.7, wrongable: ['who', 'what', 'day'], grammar: ['gr-pre2-006', 'gr-3-005'] },
+  { id: 'ot5_interest', rank: 5, arch: 'check', say: 'The contract allows interest on late payments. Is the interest on this statement right?', fields: [
+    { id: 'amount', label: 'Overdue amount', range: [2000, 4000, 1000], fmt: '${n,}' },
+    { id: 'months', label: 'Months late', range: [1, 4] },
+    { id: 'interest', label: 'Interest due', calc: 'amount * 3 / 200 * months', fmt: '${n,}' },
+  ], docs: [{ kind: 'card', title: 'Contract', lines: ['Interest on late payments: 1.5% a month.'] }, { kind: 'invoice', title: 'Statement', fields: ['amount', 'months', 'interest'] }], target: 1, pWrong: 0.7, wrongable: ['interest'], grammar: ['gr-2-056'] },
+  {
+    id: 'ot5_meet', rank: 5, arch: 'respond', mode: 'slot', kind: 'email', say: 'A client wants to meet. Read the email and look at the week.', layout: 'calendar', rows: DAYS, cols: TIMES2,
+    cellTags: { t9: ['morning'], t11: ['morning'], t1: ['afternoon'], t3: ['afternoon'] },
+    want: [
+      { tag: 'mon', text: 'I would be glad to meet on Monday.' }, { tag: 'tue', text: 'Tuesday would suit me best.' }, { tag: 'wed', text: 'I propose Wednesday, if that is convenient.' }, { tag: 'thu', text: 'I would prefer to meet on Thursday.' }, { tag: 'fri', text: 'I hope that we can meet on Friday.' },
+      { tag: 'morning', text: 'I would prefer to meet before lunch.' }, { tag: 'afternoon', text: 'I would prefer an afternoon meeting.' },
+    ],
+    avoid: [
+      { tag: 'wed', text: 'I regret that I cannot attend on Wednesday.' }, { tag: 'fri', text: 'Friday is out of the question, as I shall be abroad.' }, { tag: 't9', text: 'I cannot arrive before 10:30.' }, { tag: 't3', text: 'I must leave the office by 2:30 at the latest.' }, { tag: 'mon', text: 'I have an audit meeting on Monday.' },
+    ],
+    busy: ['Meeting', 'Sales meeting', 'Audit', 'Busy', 'Call {Mr. Lin|@}', 'Interview'], open: ['Dear {Ms. Park|@},'], close: ['I would be grateful if you could confirm the time.'], phrases: ['ph-2-0395', 'ph-2-0403', 'ph-2-0024'], grammar: ['gr-3-018'],
+  },
+  {
+    id: 'ot5_room', rank: 5, arch: 'respond', mode: 'slot', kind: 'email', say: 'We need a room. Read the email and look at the plan.', layout: 'calendar', rows: ROOMS, cols: TIMES2,
+    cellTags: { t9: ['morning'], t11: ['morning'], t1: ['afternoon'], t3: ['afternoon'] },
+    want: [
+      { tag: 'r1', text: 'Room 1 would be big enough for our team.' }, { tag: 'r2', text: 'We would prefer Room 2.' }, { tag: 'r3', text: 'We would need the largest room, Room 3.' },
+      { tag: 'morning', text: 'The meeting must take place before lunch.' }, { tag: 'afternoon', text: 'The meeting must take place after lunch.' }, { tag: 't11', text: 'We would like to start at 11:00.' }, { tag: 't1', text: 'We would like to start at 1:30.' },
+    ],
+    avoid: [{ tag: 'r1', text: 'Room 1 is too small for the auditors.' }, { tag: 'r3', text: 'Room 3 is too noisy for a long meeting.' }, { tag: 't9', text: 'The auditors cannot start before 10:30.' }, { tag: 't3', text: 'The auditors must leave by 3:00.' }],
+    busy: ['Meeting', 'Interview', 'Audit', 'Sales meeting'], open: ['Dear {Ms. Park|@},'], close: ['Please let me know which room is free.'], phrases: ['ph-pre2-0202'], grammar: ['gr-4-003'],
+  },
+  { id: 'ot5_pad', rank: 5, arch: 'respond', mode: 'form', kind: 'phone', features: ['audioOnly'],
+    lines: ['Hello. This is {who}.', 'The shipment of {goods} has been delayed by {why}, and it will reach us on {day}.', 'Please tell the buyer, and call me back by {time}.'],
+    fields: [
+      { id: 'who', label: 'Caller', values: OFFICE_CALLERS },
+      { id: 'goods', label: 'Goods', values: ['tea', 'paper', 'ink', 'chairs'] },
+      { id: 'why', label: 'Why', values: ['a storm', 'a strike', 'customs'] },
+      { id: 'day', label: 'Arrives', values: ['Monday', 'Wednesday', 'Thursday', 'Friday'] },
+      { id: 'time', label: 'Call back by', values: ['noon', '3:00', '5:00'] },
+    ], grammar: ['gr-3-005', 'gr-pre2-064'] },
+  { id: 'ot5_say', rank: 5, arch: 'respond', mode: 'choose', kind: 'speech', bank: 'office5' },
+  { id: 'ot5_phone', rank: 5, arch: 'respond', mode: 'choose', kind: 'phone', bank: 'phone5', features: ['audioOnly'] },
+  { id: 'ot5_mail', rank: 5, arch: 'respond', mode: 'choose', kind: 'email', bank: 'mail5' },
+  { id: 'ot5_clause', rank: 5, arch: 'respond', mode: 'choose', kind: 'memo', bank: 'clause5' },
+  { id: 'ot5_gap', rank: 5, arch: 'respond', mode: 'choose', kind: 'memo', bank: 'gap5' },
+];
+
 const BANKS: Record<string, QaItem[]> = {
   office1: QA_SAY1, phone1: QA_PHONE1, mail1: QA_MAIL1, memo1: QA_MEMO1,
   office2: QA_SAY2, phone2: QA_PHONE2, mail2: QA_MAIL2, memo2: QA_MEMO2, gap2: QA_GAP2,
   office3: QA_SAY3, phone3: QA_PHONE3, mail3: QA_MAIL3, intent3: QA_INTENT3, gap3: QA_GAP3,
   office4: QA_SAY4, phone4: QA_PHONE4, mail4: QA_MAIL4, intent4: QA_INTENT4, gap4: QA_GAP4,
+  office5: QA_SAY5, phone5: QA_PHONE5, mail5: QA_MAIL5, clause5: QA_CLAUSE5, gap5: QA_GAP5,
 };
 
 // ---------------------------------------------------------------------------------------------- reactions and the boss's lines
@@ -1337,6 +1662,20 @@ const REACTIONS: JobContent['reactions'] = [
     { id: 'or_form2', kind: 'wrong_form', rank: 3, text: 'I think you missed something. Please listen again.', face: 'sad' },
     { id: 'or_fail', kind: 'any_fail', text: 'Oh no. Please check it again.', face: 'sad' },
     { id: 'or_fail2', kind: 'any_fail', rank: 3, text: 'This is not good. Please be more careful.', face: 'sad' },
+    // rank 5: audit, contract, claim (the boss, a colleague or a client may be speaking, so the lines stay neutral)
+    { id: 'or5_ok1', kind: 'perfect', rank: 5, text: 'Exactly right. You have helped us very much.', face: 'delighted' },
+    { id: 'or5_ok2', kind: 'perfect', rank: 5, arch: 'check', text: 'Good eyes. The auditors would have found that, and it would have been a problem for us.', face: 'delighted' },
+    { id: 'or5_ok3', kind: 'perfect', rank: 5, arch: 'respond', text: 'A clear and polite reply. Please send it.', face: 'happy' },
+    { id: 'or5_ok4', kind: 'perfect', rank: 5, arch: 'respond', text: 'Well read. That is exactly what I needed to know.', face: 'delighted' },
+    { id: 'or5_minor', kind: 'minor', rank: 5, text: 'Good. But next time, please be a little more careful, and a little quicker.', face: 'neutral' },
+    { id: 'or5_missed', kind: 'missed', rank: 5, text: 'We almost agreed to something that is wrong. Please look at “{field}” again before the auditors see it.', face: 'angry' },
+    { id: 'or5_alarm', kind: 'false_alarm', rank: 5, text: 'That line is correct. Please do not hold up good papers.', face: 'puzzled' },
+    { id: 'or5_field', kind: 'wrong_field', rank: 5, text: 'Not that line. The discrepancy is in “{field}”.', face: 'puzzled' },
+    { id: 'or5_fix', kind: 'wrong_fix', rank: 5, text: 'You found the right line, but the correct figure is a different one.', face: 'neutral' },
+    { id: 'or5_reply', kind: 'wrong_reply', rank: 5, text: 'I am afraid that is not the reply that the message needs. Please read it again, line by line.', face: 'puzzled' },
+    { id: 'or5_slot', kind: 'wrong_slot', rank: 5, text: 'That time does not suit every word of the message. Please read it again.', face: 'sad' },
+    { id: 'or5_form', kind: 'wrong_form', rank: 5, text: 'The message is not quite right. Please listen again, and be careful with every number.', face: 'sad' },
+    { id: 'or5_fail', kind: 'any_fail', rank: 5, text: 'This is not acceptable. Please be more careful.', face: 'sad' },
   ];
 
 const LINES: JobContent['lines'] = [
@@ -1353,6 +1692,10 @@ const LINES: JobContent['lines'] = [
     { id: 'ol_e2', kind: 'end', text: 'Good work. See you tomorrow!' },
     { id: 'ol_e3', kind: 'end', rank: 3, text: 'Thank you. The office is quiet at last.' },
     { id: 'ol_r1', kind: 'rankup', text: 'You are doing very well. Here is a little more work for you.' },
+    { id: 'ol_s6', kind: 'start', rank: 5, text: 'Good morning. The auditors arrive this week, and the new contract must be ready by Friday.' },
+    { id: 'ol_s7', kind: 'start', rank: 5, text: 'Good morning. We have a long list today, and every figure on it must be right.' },
+    { id: 'ol_e4', kind: 'end', rank: 5, text: 'The auditors are happy for today. Thank you for your careful work.' },
+    { id: 'ol_r5', kind: 'rankup', rank: 5, text: 'You are my right hand now. From today, you read the contracts and the claims with me.' },
   ];
 
 // ---------------------------------------------------------------------------------------------- the job
@@ -1387,8 +1730,8 @@ const EN: JobContent = {
   ],
   boss: 'p_park',
   things: [],
-  tasks: [...R1, ...R2, ...R3, ...R4],
-  templates: [...T1, ...T2, ...T3, ...T4],
+  tasks: [...R1, ...R2, ...R3, ...R4, ...R5],
+  templates: [...T1, ...T2, ...T3, ...T4, ...T5],
   qa: { ...BANKS },
   reactions: REACTIONS,
   lines: LINES,
@@ -1406,7 +1749,7 @@ export const OFFICE_JOB: JobDef = {
     { rank: 2, need: { good: 20, words: 40 }, level: { eiken: 'pre2', toeic: 600 }, unlocks: ['long'], tasks: 5, reward: { coins: 12 }, noteJa: '発注書・請求書・納品書、経費の書類（注文番号・数量・単価・合計）。メールと掲示を読んで返事を選ぶ。語形・前置詞・接続詞を選ぶ穴埋めの下書き。日程の条件がふたつに。TOEIC 〜600。' },
     { rank: 3, need: { good: 42, words: 110 }, level: { eiken: '2', toeic: 730 }, unlocks: ['multiStep', 'audioOnly', 'timed'], tasks: 5, reward: { coins: 20 }, noteJa: '三枚の書類（発注書・納品書・請求書、メールと見積もり）。違う欄を見つけたら正しい値も選んで直す。電話を耳だけで聞く。丁寧で遠回しな言い方の本当の用件を読む。時間制限（選んだときだけ）。TOEIC 〜730。' },
     { rank: 4, need: { good: 61, words: 200 }, level: { eiken: 'pre1', toeic: 860 }, tasks: 6, reward: { coins: 30 }, noteJa: '長いメールのやりとり、議事録、契約書、報告書、求人広告、出荷予定。条件と期限（「〜の場合に限り」「〜までに」）を読み取る。耳だけの留守番電話。TOEIC 〜860。' },
-    { rank: 5, need: { good: 80, words: 280 }, level: { eiken: '1', toeic: 990 }, tasks: 6, reward: { coins: 50 }, noteJa: '灯台：商会の右腕。この位の新しい仕事（交渉・会議の進行・英文契約の確認）はまだ準備中で、今はこれまでの仕事が復習として続く。TOEIC 〜990。' },
+    { rank: 5, need: { good: 80, words: 280 }, level: { eiken: '1', toeic: 990 }, tasks: 6, reward: { coins: 50 }, noteJa: '灯台：商会の右腕。契約書の条項と金額、船の遅れと損害の請求、交渉のメール、議事録と担当者表、監査で見つかった食い違いを読み解く。倒置・仮定法・譲歩の文を完成させる問題もある。耳だけの伝言。TOEIC 〜990。' },
   ],
   wage: { perfect: 4, minor: 2, fail: 0, bad: 0 },
   opensAfter: 2,
