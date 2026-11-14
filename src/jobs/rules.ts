@@ -8,6 +8,7 @@
  */
 import type { Outcome } from '../core/types';
 import type {
+  RateTable,
   CheckSpec,
   JobEvaluation,
   JobIssue,
@@ -21,9 +22,17 @@ import type {
 } from './types';
 
 const PRIORITY: JobIssueKind[] = [
-  'empty', 'forbidden', 'missed', 'wrong_goods', 'missing', 'extra', 'wrong_field', 'false_alarm', 'wrong_bin',
-  'wrong_reply', 'wrong_slot', 'wrong_form', 'change_over', 'change_short', 'wrong_method', 'wrong_vessel', 'too_much', 'too_little', 'wrong_fix',
+  'empty', 'forbidden', 'missed', 'wrong_goods', 'wrong_postage', 'disliked', 'missing', 'extra', 'wrong_field', 'false_alarm', 'wrong_bin',
+  'wrong_reply', 'wrong_slot', 'wrong_form', 'change_over', 'change_short', 'wrong_method', 'wrong_order', 'wrong_vessel', 'too_much', 'too_little', 'wrong_fix',
 ];
+
+/** Postage for a destination and a weight (null: not on the table). */
+export function postage(t: RateTable | undefined, dest: string, kilos: number): number | null {
+  if (!t) return null;
+  const d = t.dests.findIndex((x) => x.id === dest);
+  const b = t.bands.findIndex((x) => kilos <= x.upTo);
+  return d < 0 || b < 0 ? null : (t.price[d]?.[b] ?? null);
+}
 
 function finish(issues: JobIssue[], outcome: Outcome): JobEvaluation {
   const sorted = [...issues].sort((a, b) => PRIORITY.indexOf(a.kind) - PRIORITY.indexOf(b.kind));
@@ -43,6 +52,7 @@ export function evaluateMake(spec: MakeSpec, a: Extract<TaskAnswer, { arch: 'mak
   if (total === 0) return finish([{ kind: 'empty', about: [] }], 'fail');
   const wanted = new Map(spec.want.map((w) => [w.thing, w]));
   for (const f of spec.forbid ?? []) if ((a.counts[f] ?? 0) > 0) issues.push({ kind: 'forbidden', thing: f, about: words(f) });
+  for (const f of spec.dislike ?? []) if ((a.counts[f] ?? 0) > 0 && !(spec.forbid ?? []).includes(f)) issues.push({ kind: 'disliked', thing: f, about: words(f) });
   let offBy = 0;
   for (const w of spec.want) {
     const n = a.counts[w.thing] ?? 0;
@@ -58,7 +68,15 @@ export function evaluateMake(spec: MakeSpec, a: Extract<TaskAnswer, { arch: 'mak
   }
   const allow = new Set(spec.allow ?? []);
   for (const [t, n] of Object.entries(a.counts))
-    if (n > 0 && !wanted.has(t) && !allow.has(t) && !(spec.forbid ?? []).includes(t)) issues.push({ kind: 'extra', thing: t, about: words(t) });
+    if (n > 0 && !wanted.has(t) && !allow.has(t) && !(spec.forbid ?? []).includes(t) && !(spec.dislike ?? []).includes(t)) issues.push({ kind: 'extra', thing: t, about: words(t) });
+  // A recipe card's order: the things it names went in in that order (judged when they are all there).
+  if (spec.order?.length && a.seq && spec.order.every((t) => (a.counts[t] ?? 0) > 0)) {
+    const pos = spec.order.map((t) => a.seq!.indexOf(t));
+    if (pos.some((p, i) => i > 0 && p < pos[i - 1])) {
+      const k = pos.findIndex((p, i) => i > 0 && p < pos[i - 1]);
+      issues.push({ kind: 'wrong_order', thing: spec.order[k], about: words(spec.order[k]) });
+    }
+  }
   if (spec.method && a.method !== spec.method) issues.push({ kind: 'wrong_method', about: [] });
   if (spec.vessel && a.vessel !== spec.vessel) issues.push({ kind: 'wrong_vessel', about: [] });
   const kinds = new Set(issues.map((i) => i.kind));
@@ -71,7 +89,8 @@ export function evaluateMake(spec: MakeSpec, a: Extract<TaskAnswer, { arch: 'mak
 export function solveMake(spec: MakeSpec): Extract<TaskAnswer, { arch: 'make' }> {
   const counts: Record<string, number> = {};
   for (const w of spec.want) counts[w.thing] = wantRange(w)[0];
-  return { arch: 'make', counts, vessel: spec.vessel ?? null, method: spec.method ?? null };
+  const seq = [...(spec.order ?? []), ...spec.want.map((w) => w.thing).filter((t) => !(spec.order ?? []).includes(t))];
+  return { arch: 'make', counts, vessel: spec.vessel ?? null, method: spec.method ?? null, seq };
 }
 
 // ---------------------------------------------------------------------------- sort
@@ -95,20 +114,29 @@ export function tradeTotal(spec: TradeSpec, price: (thing: string) => number): n
   return spec.want.reduce((s, w) => s + w.n * price(w.thing), 0);
 }
 
-export function evaluateTrade(spec: TradeSpec, a: Extract<TaskAnswer, { arch: 'trade' }>, price: (thing: string) => number, words: (thing: string) => string[] = (t) => [t]): JobEvaluation {
+export function evaluateTrade(
+  spec: TradeSpec,
+  a: Extract<TaskAnswer, { arch: 'trade' }>,
+  price: (thing: string) => number,
+  words: (thing: string) => string[] = (t) => [t],
+  rate: (spec: TradeSpec) => number | null = () => null,
+): JobEvaluation {
   const issues: JobIssue[] = [];
   const want = new Map(spec.want.map((w) => [w.thing, w.n]));
   for (const [t, n] of want) if ((a.counts[t] ?? 0) !== n) issues.push({ kind: 'wrong_goods', thing: t, about: words(t) });
   for (const [t, n] of Object.entries(a.counts)) if (n > 0 && !want.has(t)) issues.push({ kind: 'wrong_goods', thing: t, about: words(t) });
+  const post = spec.post ? rate(spec) : null;
+  if (spec.post && post !== null && (a.postage ?? 0) !== post) issues.push({ kind: 'wrong_postage', about: spec.post.label ? [spec.post.label] : [] });
   const goodsOk = issues.length === 0;
-  // Change is judged on what the customer actually takes (their goods, priced).
-  const owed = spec.pay - (goodsOk ? tradeTotal(spec, price) : Object.entries(a.counts).reduce((s, [t, n]) => s + n * price(t), 0));
+  // Change is judged on what the customer actually takes (their goods, priced, and the postage).
+  const owed = spec.pay - (goodsOk ? tradeTotal(spec, price) + (post ?? 0) : Object.entries(a.counts).reduce((s, [t, n]) => s + n * price(t), 0));
   if (goodsOk && a.change !== owed) issues.push({ kind: a.change > owed ? 'change_over' : 'change_short', about: [] });
   return finish(issues, 'fail');
 }
 
-export function solveTrade(spec: TradeSpec, price: (thing: string) => number): Extract<TaskAnswer, { arch: 'trade' }> {
-  return { arch: 'trade', counts: Object.fromEntries(spec.want.map((w) => [w.thing, w.n])), change: spec.pay - tradeTotal(spec, price) };
+export function solveTrade(spec: TradeSpec, price: (thing: string) => number, rate: (spec: TradeSpec) => number | null = () => null): Extract<TaskAnswer, { arch: 'trade' }> {
+  const post = spec.post ? (rate(spec) ?? 0) : 0;
+  return { arch: 'trade', counts: Object.fromEntries(spec.want.map((w) => [w.thing, w.n])), change: spec.pay - tradeTotal(spec, price) - post, ...(spec.post ? { postage: post } : {}) };
 }
 
 // ---------------------------------------------------------------------------- check
@@ -166,6 +194,8 @@ export function slotFits(spec: RespondSpec, want: string[], avoid: string[]): st
 export interface RuleCtx {
   price: (thing: string) => number;
   words: (thing: string) => string[];
+  /** Postage of a trade task's parcel (the job's rate table). */
+  rate?: (spec: TradeSpec) => number | null;
 }
 
 export function evaluateTask(spec: TaskSpec, a: TaskAnswer, ctx: RuleCtx): JobEvaluation {
@@ -175,7 +205,7 @@ export function evaluateTask(spec: TaskSpec, a: TaskAnswer, ctx: RuleCtx): JobEv
     case 'sort':
       return a.arch === 'sort' ? evaluateSort(spec, a) : finish([{ kind: 'wrong_bin', about: [] }], 'fail');
     case 'trade':
-      return a.arch === 'trade' ? evaluateTrade(spec, a, ctx.price, ctx.words) : finish([{ kind: 'wrong_goods', about: [] }], 'fail');
+      return a.arch === 'trade' ? evaluateTrade(spec, a, ctx.price, ctx.words, ctx.rate) : finish([{ kind: 'wrong_goods', about: [] }], 'fail');
     case 'check':
       return a.arch === 'check' ? evaluateCheck(spec, a) : finish([{ kind: 'missed', about: [] }], 'fail');
     case 'respond':
@@ -190,7 +220,7 @@ export function solveTask(spec: TaskSpec, ctx: RuleCtx): TaskAnswer {
     case 'sort':
       return solveSort(spec);
     case 'trade':
-      return solveTrade(spec, ctx.price);
+      return solveTrade(spec, ctx.price, ctx.rate);
     case 'check':
       return solveCheck(spec);
     case 'respond':
@@ -205,6 +235,7 @@ export function fumbleTask(spec: TaskSpec, ctx: RuleCtx, r: () => number): TaskA
     case 'make': {
       const t = spec.arch === 'make' ? spec.want[Math.floor(r() * spec.want.length)]?.thing : undefined;
       if (t) a.counts[t] = (a.counts[t] ?? 0) + 2;
+      if (a.seq && a.seq.length > 1 && r() < 0.3) a.seq = [...a.seq].reverse();
       return a;
     }
     case 'sort': {

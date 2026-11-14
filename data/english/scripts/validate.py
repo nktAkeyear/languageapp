@@ -19,7 +19,7 @@ for i,x in enumerate(v):
     ctx=f"#{i} {x.get('word')}/{x.get('pos')}"
     if set(x)!=KEYS: E(f"{ctx}: keys {sorted(set(x)^KEYS)}"); continue
     if not isinstance(x["word"],str) or not re.fullmatch(r"[A-Za-z][A-Za-z'\-]*",x["word"]): E(f"{ctx}: bad word")
-    if x["word"]!=x["word"].lower() and not re.fullmatch(r"[A-Z][a-z]+",x["word"]) and x["word"] not in ("I","T-shirt","X-ray","pH"): E(f"{ctx}: odd capitalisation")
+    if x["word"]!=x["word"].lower() and not re.fullmatch(r"[A-Z][a-z]+",x["word"]) and x["word"] not in ("I","I'd","T-shirt","X-ray","pH"): E(f"{ctx}: odd capitalisation")
     if x["pos"] not in POS: E(f"{ctx}: pos {x['pos']}")
     if x["eiken"] not in EIKEN: E(f"{ctx}: eiken {x['eiken']}")
     if x["toeic"] not in TOEIC: E(f"{ctx}: toeic {x['toeic']}")
@@ -36,10 +36,13 @@ for i,x in enumerate(v):
 print(f"entries: {len(v)}  errors so far: {len(errs)}")
 # counts
 ec=collections.Counter(x["eiken"] for x in v); tc=collections.Counter(x["toeic"] for x in v)
-RANGE={"5":(500,700),"4":(600,800),"3":(700,900),"pre2":(1200,1800),"2":(1200,1800),"pre1":(1800,2800),"1":(2500,6000)}
+# Ranges widened after scripts/apply_levels.py (overrides/levels.tsv): concrete everyday / workplace words were moved down
+# from 2級-1級 into 3級-準2級 and the numbers/aux/weekdays into 5級, so 3級 and 準2級 grew and 準1級/1級 shrank.
+RANGE={"5":(500,800),"4":(600,900),"3":(700,1400),"pre2":(1200,2400),"2":(1000,1800),"pre1":(1500,2800),"1":(2500,6000)}
 for g,(lo,hi) in RANGE.items():
     if not lo<=ec[g]<=hi: E(f"eiken {g}: count {ec[g]} outside [{lo},{hi}]")
-TR={400:(1200,2000),500:(900,1700),600:(900,1700),730:(900,1700),860:(1300,2400),990:(1300,2600),None:(1000,3500)}
+# TOEIC ranges widened the same way (600 grew with workplace words moved down from 860/990/null; 860 and null shrank).
+TR={400:(1200,2000),500:(900,1900),600:(900,2000),730:(900,1700),860:(1000,2400),990:(1000,2600),None:(1000,3500)}
 for b,(lo,hi) in TR.items():
     if not lo<=tc[b]<=hi: E(f"toeic {b}: count {tc[b]} outside [{lo},{hi}]")
 if len(v)<10000: E(f"total {len(v)} < 10000")

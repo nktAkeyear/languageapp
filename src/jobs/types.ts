@@ -38,13 +38,24 @@ export interface ThingDef {
   word: string;
   art: string;
   tags?: string[];
+  /** Surface for n ≠ 1 (default word + "s"). Not needed for `mass` things. */
   plural?: string;
+  /**
+   * A mass (uncountable) noun: "bread", "rice", "soup". It never takes a plural; counted, it goes by its
+   * `unit` ("two pieces of bread"); reactions say "too much bread", "where is the bread?".
+   */
+  mass?: boolean;
   price?: number;
   bin?: string;
-  /** Unit phrase for counts, e.g. '{n} slices of bread' ({n} = number word). */
-  unit?: string;
+  /**
+   * Unit phrase for counts ({n} = number word): `'{n} pieces of bread'` (the unit noun is made singular
+   * for n = 1: "one piece of bread"), or `{ one, other }` when that rule does not fit.
+   */
+  unit?: string | { one: string; other: string };
   /** Highest count a request may ask for. */
   max?: number;
+  /** Weight in kilos (post office parcels on the scale). */
+  kilos?: number;
 }
 
 export interface JobPerson {
@@ -93,11 +104,18 @@ export interface GoodDef {
 
 export interface MakeSpec {
   want: { thing: string; n?: number; min?: number; max?: number }[];
+  /** Must not be in the dish: an allergy, "I can't eat …", a doctor's order (serving it is harmful: bad). */
   forbid?: string[];
+  /** Not wanted ("no onions", "without", "instead of"): serving it is a plain mistake (fail), not harmful. */
+  dislike?: string[];
   /** Extras that are fine. */
   allow?: string[];
   vessel?: string;
   method?: string;
+  /** Things that must go in in this order (a recipe card's steps: "crack the eggs, then add the cheese"). */
+  order?: string[];
+  /** Things the pantry is out of today ("there is no fish today"): shown empty, cannot be used. */
+  out?: string[];
 }
 
 export interface SortSpec {
@@ -109,6 +127,11 @@ export interface TradeSpec {
   want: { thing: string; n: number }[];
   /** Coins the customer puts on the counter. */
   pay: number;
+  /**
+   * A parcel to post: the clerk weighs it on the scale and charges the rate of the rate table for its
+   * destination and weight (on top of any goods). `kilos` is what the scale shows.
+   */
+  post?: { dest: string; kilos: number; label?: string };
 }
 
 export interface DocField {
@@ -158,6 +181,16 @@ export interface RespondSpec {
   slot?: { layout: 'calendar' | 'rooms'; rows: { id: string; label: string }[]; cols: { id: string; label: string }[]; cells: RespondSlotCell[]; answer: string };
 }
 
+/** The post office's rate table: destinations × weight bands → coins. */
+export interface RateTable {
+  title: string;
+  dests: { id: string; label: string }[];
+  /** Weight bands (upper bound in kilos, inclusive) with their in-world label ("up to 2 kilos"). */
+  bands: { upTo: number; label: string }[];
+  /** price[dest index][band index] */
+  price: number[][];
+}
+
 export type TaskSpec =
   | ({ arch: 'make' } & MakeSpec)
   | ({ arch: 'sort' } & SortSpec)
@@ -183,8 +216,6 @@ interface TaskMeta {
   grammar?: string[];
   /** Phrases (ids in data/english/phrases.json) the task's sentences use (validated: the text contains them). */
   phrases?: string[];
-  /** Declared level of the material (default: the rank's level). */
-  level?: EikenKey;
   weight?: number;
 }
 
@@ -196,20 +227,34 @@ export type SlotDef =
   | { kind: 'qty'; tags?: string[]; min?: number; max?: number; maxLevel?: EikenKey }
   /** A thing by name: {slot} = "egg". */
   | { kind: 'thing'; tags?: string[]; maxLevel?: EikenKey }
-  /** A thing that must NOT be used / given. */
+  /** A thing that must NOT be used: an allergy / "I can't eat" (harmful if served). */
   | { kind: 'forbid'; tags?: string[]; maxLevel?: EikenKey }
+  /** A thing that is not wanted: "no onions", "without", "instead of" (a mistake if served, not harmful). */
+  | { kind: 'dislike'; tags?: string[]; maxLevel?: EikenKey }
   /** A method / vessel of the make bench. */
   | { kind: 'method' }
   | { kind: 'vessel' }
   /** A lexicon word typed by domain / POS / level (sentence variety; no rule effect). */
   | { kind: 'word'; domain?: string; pos?: string; ids?: string[]; maxLevel?: EikenKey }
-  /** A person's in-world name. */
-  | { kind: 'name' };
+  /**
+   * A person's in-world name. `self`: the speaker names themselves ("This is {name}.") — the task's person
+   * is that person (their drawn look), so the name and the face always agree.
+   */
+  | { kind: 'name'; self?: boolean }
+  /** One of fixed values (sentence variety; the generator keeps the instance's texts consistent). */
+  | { kind: 'pick'; values: string[] };
 
 export interface MakeTemplate {
   arch: 'make';
   slots: Record<string, SlotDef>;
   vesselRequired?: boolean;
+  /** Slot names whose things must go in in this order (a recipe card). */
+  order?: string[];
+  /**
+   * "If there is no X, give Y": with probability `p` the pantry is out of the `first` slot's thing and the
+   * dish wants the `then` slot's thing instead; otherwise the first is wanted and the second is not.
+   */
+  ifOut?: { first: string; then: string; p: number };
 }
 
 export interface SortTemplate {
@@ -226,11 +271,32 @@ export interface TradeTemplate {
   slots: Record<string, SlotDef>;
   /** The customer pays the exact sum, or rounds up to a bigger coin (→ change). */
   pay: 'exact' | 'round';
+  /** A parcel to weigh and post: destinations (rate-table ids) and a weight range in kilos. `{dest}` in the text = the destination's words. */
+  post?: { dests: { id: string; text: string }[]; kilos: [number, number] };
+}
+
+/**
+ * A field of a check template: fixed `values`, or a number from `range` written with `fmt` ("{n} boxes"),
+ * or computed from the others with `calc` (a total, a refund, the last night of a stay) so that every paper
+ * is internally consistent and the only discrepancy is the one the generator puts in.
+ */
+export interface CheckField {
+  id: string;
+  label: string;
+  values?: string[];
+  /** [lo, hi] or [lo, hi, step] */
+  range?: [number, number] | [number, number, number];
+  /** How the number is written; `{n}` the number (default "{n}"). With `names`, `{n}` is replaced by names[n]. */
+  fmt?: string;
+  /** Number → word ("Monday" for 1 …): the field is written as names[n]. */
+  names?: string[];
+  /** Computed from the numbers of the other fields (fields listed before it). */
+  calc?: (n: Record<string, number>) => number;
 }
 
 export interface CheckTemplate {
   arch: 'check';
-  fields: { id: string; label: string; values: string[] }[];
+  fields: CheckField[];
   /** Documents: fields shown as label/value lines; `lines` patterns may use {fieldId}. */
   docs: { kind: CheckDoc['kind']; title?: string; fields?: string[]; lines?: string[] }[];
   target: number;
@@ -258,6 +324,23 @@ export interface RespondTemplate {
   kind: RespondSpec['msg']['kind'];
 }
 
+/**
+ * The message pad: a call / visit / letter whose `lines` carry the values of `fields` ({fieldId}); the player
+ * writes the message by choosing each field's value among near misses (the other values of the field).
+ */
+export interface FormTemplate {
+  arch: 'respond';
+  mode: 'form';
+  kind: RespondSpec['msg']['kind'];
+  /** Message lines; `{fieldId}` = the chosen value. Lines may also use the template's other slots. */
+  lines: string[];
+  fields: { id: string; label: string; values: string[]; options?: number }[];
+  /** Free slots for the lines (e.g. `{ name: { kind: 'name', self: true } }`). */
+  slots?: Record<string, SlotDef>;
+  from?: string;
+  subject?: string;
+}
+
 export interface SlotTemplate {
   arch: 'respond';
   mode: 'slot';
@@ -272,12 +355,12 @@ export interface SlotTemplate {
   /** Occupied-cell texts. */
   busy: string[];
   kind: RespondSpec['msg']['kind'];
-  /** Opening / closing lines of the message. */
+  /** Opening / closing lines of the message (one of each is chosen). */
   open?: string[];
   close?: string[];
 }
 
-export type TaskTemplate = TaskMeta & (MakeTemplate | SortTemplate | TradeTemplate | CheckTemplate | RespondTemplate | SlotTemplate);
+export type TaskTemplate = TaskMeta & (MakeTemplate | SortTemplate | TradeTemplate | CheckTemplate | RespondTemplate | SlotTemplate | FormTemplate);
 
 // ---------------------------------------------------------------------------
 // Reactions
@@ -285,11 +368,11 @@ export type TaskTemplate = TaskMeta & (MakeTemplate | SortTemplate | TradeTempla
 
 export type JobIssueKind =
   // make
-  | 'empty' | 'forbidden' | 'missing' | 'extra' | 'too_much' | 'too_little' | 'wrong_vessel' | 'wrong_method'
+  | 'empty' | 'forbidden' | 'disliked' | 'missing' | 'extra' | 'too_much' | 'too_little' | 'wrong_vessel' | 'wrong_method' | 'wrong_order'
   // sort
   | 'wrong_bin'
   // trade
-  | 'wrong_goods' | 'change_short' | 'change_over'
+  | 'wrong_goods' | 'wrong_postage' | 'change_short' | 'change_over'
   // check
   | 'missed' | 'false_alarm' | 'wrong_field' | 'wrong_fix'
   // respond
@@ -308,12 +391,17 @@ export interface JobReaction {
   arch?: ArchetypeId;
 }
 
-/** Lines of the job's boss / place (start of shift, end, rank-up, a link good used). */
+/**
+ * Lines of the job's boss / place (start of shift, end, rank-up, a link good used). `handover`: what the boss
+ * says when handing over a paper task without a spoken request (an e-mail, a letter, a memo); `msg` limits it
+ * to one kind of message.
+ */
 export interface JobLine {
   id: string;
-  kind: 'start' | 'end' | 'rankup' | 'link';
+  kind: 'start' | 'end' | 'rankup' | 'link' | 'handover';
   text: string;
   rank?: number;
+  msg?: RespondSpec['msg']['kind'] | 'check' | 'sort';
 }
 
 // ---------------------------------------------------------------------------
@@ -323,8 +411,8 @@ export interface JobLine {
 /** Make bench configuration (vessels / methods / the pantry). */
 export interface MakeBench {
   vessels?: { id: string; word: string; art: string }[];
-  /** `surface`: how a request says it ("fried" for fry). */
-  methods?: { id: string; word: string; art: string; surface?: string }[];
+  /** `surface`: how a request says it ("fried" for fry). `where`: the station it is done at (stove / oven / grill). */
+  methods?: { id: string; word: string; art: string; surface?: string; where?: 'stove' | 'oven' | 'grill' }[];
   /** Max portions of one thing on the bench. */
   max: number;
 }
@@ -339,6 +427,8 @@ export interface TradeBench {
   coins: number[];
   /** Board title (in-world). */
   board: string;
+  /** Postage by destination and weight (the scale and the rate table on the counter). */
+  rates?: RateTable;
 }
 
 /** Language-specific content of a job. */
@@ -410,12 +500,14 @@ export interface TaskInstance {
   texts: string[];
   /** Text whose words are rewarded on success (the request). */
   focus: string[];
+  /** `say` is the boss handing over a paper (not the request itself). */
+  handover?: boolean;
 }
 
 export type TaskAnswer =
-  | { arch: 'make'; counts: Record<string, number>; vessel: string | null; method: string | null }
+  | { arch: 'make'; counts: Record<string, number>; vessel: string | null; method: string | null; seq?: string[] }
   | { arch: 'sort'; placed: Record<string, string> }
-  | { arch: 'trade'; counts: Record<string, number>; change: number }
+  | { arch: 'trade'; counts: Record<string, number>; change: number; postage?: number }
   | { arch: 'check'; verdict: 'ok' | 'fix'; field?: string; fix?: string }
   | { arch: 'respond'; choice?: number; fields?: Record<string, string>; slot?: string };
 

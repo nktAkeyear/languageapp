@@ -36,6 +36,8 @@ export function jobContentTexts(jc: JobContent): string[] {
   out.push(...jc.reactions.map((r) => r.text), ...jc.lines.map((l) => l.text));
   for (const b of jc.sort?.bins ?? []) out.push(b.label, b.ref);
   if (jc.trade?.board) out.push(jc.trade.board);
+  const rt = jc.trade?.rates;
+  if (rt) out.push(rt.title, ...rt.dests.map((d) => d.label), ...rt.bands.map((b) => b.label));
   return out.map((s) => s.replace(PH, ' '));
 }
 
@@ -43,13 +45,36 @@ export function templateTexts(t: TaskTemplate): string[] {
   const out: string[] = t.say ? [t.say] : [];
   if (t.arch === 'sort') out.push(...t.patterns.map((p) => p.text));
   if (t.arch === 'check') {
-    out.push(...t.fields.flatMap((f) => [f.label, ...f.values]));
+    out.push(...t.fields.flatMap((f) => [f.label, ...(f.values ?? []), ...(f.fmt ? [f.fmt] : []), ...(f.names ?? []).filter(Boolean)]));
     for (const d of t.docs) out.push(...(d.title ? [d.title] : []), ...(d.lines ?? []));
   }
   if (t.arch === 'respond' && 'want' in t) {
     out.push(...t.want.map((w) => w.text), ...t.avoid.map((a) => a.text), ...t.busy, ...(t.open ?? []), ...(t.close ?? []), ...t.rows.map((r) => r.label), ...t.cols.map((c) => c.label));
   }
+  if (t.arch === 'respond' && t.mode === 'form') {
+    out.push(...t.lines, ...t.fields.flatMap((f) => [f.label, ...f.values]), ...(t.from ? [t.from] : []), ...(t.subject ? [t.subject] : []));
+  }
+  if (t.arch === 'trade' && t.post) out.push(...t.post.dests.map((d) => d.text));
+  if ('slots' in t && t.slots) for (const sl of Object.values(t.slots)) if (sl.kind === 'pick') out.push(...sl.values);
   return out;
+}
+
+/**
+ * Lexicon ids that enter a template only through its typed slots: things (by tags), plain words (`ids`),
+ * the bench's methods / vessels. (Words of a `word` slot typed only by domain / POS are not listed: any
+ * word of the lexicon may come.)
+ */
+export function templateSlotWords(jc: JobContent, t: TaskTemplate): string[] {
+  if (!('slots' in t) || !t.slots) return [];
+  const out = new Set<string>();
+  for (const sl of Object.values(t.slots)) {
+    if (sl.kind === 'qty' || sl.kind === 'thing' || sl.kind === 'forbid' || sl.kind === 'dislike')
+      for (const th of jc.things) if (!sl.tags?.length || sl.tags.some((g) => th.tags?.includes(g))) out.add(th.word);
+    if (sl.kind === 'word') for (const id of sl.ids ?? []) out.add(id);
+    if (sl.kind === 'method') for (const m of jc.make?.methods ?? []) out.add(m.word);
+    if (sl.kind === 'vessel') for (const v of jc.make?.vessels ?? []) out.add(v.word);
+  }
+  return [...out];
 }
 
 const cache = new WeakMap<GameData, Map<string, Set<string>>>();
@@ -74,6 +99,7 @@ export function jobVocab(data: GameData, job: JobDef): Set<string> {
       for (const t of jc.things) s.add(t.word);
       for (const v of [...(jc.make?.vessels ?? []), ...(jc.make?.methods ?? [])]) s.add(v.word);
       for (const txt of jobContentTexts(jc)) for (const id of tokenIds(data.tokens(txt))) s.add(id);
+      for (const t of jc.templates) for (const id of templateSlotWords(jc, t)) if (data.lex.byId.has(id)) s.add(id);
     }
   }
   m.set(job.id, s);

@@ -1,6 +1,5 @@
 import type { Face } from '../../core/types';
 import type { AuthoredTask, CheckDoc, JobContent, JobDef, JobLexEntry, QaItem, TaskFeature, TaskTemplate } from '../../jobs/types';
-import type { EikenKey } from '../../curriculum/yardsticks';
 
 /**
  * Post office (郵便局), run by Mrs. Wren: sort letters and parcels into the labelled cubbies, serve the
@@ -35,7 +34,7 @@ const HILL = '{Mrs. Hill|@}';
 const IVY = '{Ivy|@}';
 const BELL = '{Mr. Bell|@}';
 
-type Meta = { person?: string; features?: TaskFeature[]; grammar?: string[]; phrases?: string[]; level?: EikenKey; weight?: number };
+type Meta = { person?: string; features?: TaskFeature[]; grammar?: string[]; phrases?: string[]; weight?: number };
 type Pair = [string, string];
 
 /** sort: items as [label, bin] pairs. */

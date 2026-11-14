@@ -1,4 +1,3 @@
-import type { EikenKey } from '../../curriculum/yardsticks';
 import type { VerificationPage } from '../../core/types';
 import { POST_JOB } from './post.en';
 import { KITCHEN_JOB } from './kitchen.en';
@@ -85,7 +84,6 @@ interface Meta {
   features?: TaskFeature[];
   grammar?: string[];
   phrases?: string[];
-  level?: EikenKey;
   weight?: number;
 }
 

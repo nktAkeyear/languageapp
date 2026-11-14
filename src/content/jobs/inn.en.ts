@@ -1,5 +1,4 @@
 import type { AuthoredTask, CheckDoc, JobContent, JobDef, JobLexEntry, QaItem, TaskFeature, TaskTemplate } from '../../jobs/types';
-import type { EikenKey } from '../../curriculum/yardsticks';
 import type { Pos, VerificationPage } from '../../core/types';
 import { KITCHEN_JOB } from './kitchen.en';
 
@@ -43,7 +42,6 @@ interface Meta {
   grammar?: string[];
   phrases?: string[];
   features?: TaskFeature[];
-  level?: EikenKey;
 }
 const hash = (s: string): number => {
   let h = 7;
@@ -57,7 +55,7 @@ function slips(id: string, right: string, wrong: string[]): { options: string[];
   const options = [...all.slice(k), ...all.slice(0, k)].reverse();
   return { options, answer: options.indexOf(right) };
 }
-const meta = (m: Meta) => ({ ...(m.grammar ? { grammar: m.grammar } : {}), ...(m.phrases ? { phrases: m.phrases } : {}), ...(m.features ? { features: m.features } : {}), ...(m.level ? { level: m.level } : {}) });
+const meta = (m: Meta) => ({ ...(m.grammar ? { grammar: m.grammar } : {}), ...(m.phrases ? { phrases: m.phrases } : {}), ...(m.features ? { features: m.features } : {}) });
 
 /** The booking book / a bill / a price list as a paper: rows of [field id, label, value]. */
 const paper = (kind: CheckDoc['kind'], title: string, rows: [string, string, string][]): CheckDoc => ({ kind, title, fields: rows.map(([id, label, value]) => ({ id, label, value })) });

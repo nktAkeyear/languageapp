@@ -37,13 +37,13 @@ type Want = { thing: string; n?: number; min?: number; max?: number };
 const n = (thing: string, count: number): Want => ({ thing, n: count });
 const r = (thing: string, min: number, max: number): Want => ({ thing, min, max });
 
-type MakeOpts = { method?: string; vessel?: string; forbid?: string[]; allow?: string[]; features?: AuthoredTask['features']; grammar?: string[]; phrases?: string[]; level?: AuthoredTask['level'] };
+type MakeOpts = { method?: string; vessel?: string; forbid?: string[]; allow?: string[]; features?: AuthoredTask['features']; grammar?: string[]; phrases?: string[] };
 /** a make task */
 const mk = (id: string, rank: number, person: string, say: string, want: Want[], o: MakeOpts = {}): AuthoredTask =>
   ({ id, rank, arch: 'make', person, say, want, ...o }) as AuthoredTask;
 
 /** a sorting task; items are [label, bin, thing?] */
-const so = (id: string, rank: number, say: string, bins: string[], items: [string, string, string?][], o: { grammar?: string[]; phrases?: string[]; person?: string; level?: AuthoredTask['level'] } = {}): AuthoredTask =>
+const so = (id: string, rank: number, say: string, bins: string[], items: [string, string, string?][], o: { grammar?: string[]; phrases?: string[]; person?: string } = {}): AuthoredTask =>
   ({
     id,
     rank,
@@ -215,9 +215,9 @@ const RAW_TASKS: AuthoredTask[] = [
   mk('k2_fried', 2, 'c_sailor', 'Fried fish and two potatoes in a bowl, please.', [r(FISH, 1, 2), n(PO, 2)], { method: 'fry', vessel: 'bowl', grammar: ['gr-5-021'] }),
   mk('k2_noonion', 2, 'c_boy', 'Chicken and rice, please. No onions!', [r(CH, 1, 2), r(RI, 1, 2)], { forbid: [ON], grammar: ['gr-5-028'] }),
   mk('k2_boiled', 2, 'c_grandma', 'My teeth are old. Boiled potatoes and a boiled egg, please.', [r(PO, 1, 3), n(E, 1)], { method: 'boil', grammar: ['gr-5-026'] }),
-  mk('k2_grilled', 2, 'c_scholar', 'Fish, please. Not fried! I like it grilled.', [r(FISH, 1, 2)], { level: 'pre2', method: 'grill', grammar: ['gr-5-025'], phrases: ['ph-5-0082'] }),
+  mk('k2_grilled', 2, 'c_scholar', 'Fish, please. Not fried! I like it grilled.', [r(FISH, 1, 2)], { method: 'grill', grammar: ['gr-5-025'], phrases: ['ph-5-0082'] }),
   mk('k2_bowl', 2, 'c_boy', 'Chicken and rice in a bowl, please. A big bowl!', [r(CH, 1, 2), r(RI, 1, 2)], { vessel: 'bowl', grammar: ['gr-5-021'] }),
-  mk('k2_plate', 2, 'c_cook', 'Grilled chicken on a plate, please. I like plates. Bowls are for soup!', [r(CH, 1, 2)], { level: 'pre2', method: 'grill', vessel: 'plate', grammar: ['gr-5-021'], phrases: ['ph-5-0082'] }),
+  mk('k2_plate', 2, 'c_cook', 'Grilled chicken on a plate, please. I like plates. Bowls are for soup!', [r(CH, 1, 2)], { method: 'grill', vessel: 'plate', grammar: ['gr-5-021'], phrases: ['ph-5-0082'] }),
   mk('k2_togo', 2, 'c_merchant', 'I am in a hurry. Chicken and bread to go, please. In a box!', [r(CH, 1, 2), r(BR, 1, 3)], { vessel: 'box', grammar: ['gr-4-009'], phrases: ['ph-pre2-0235'] }),
   mk('k2_forhere', 2, 'c_student', 'For here, please. Two boiled eggs on a plate.', [n(E, 2)], { method: 'boil', vessel: 'plate', phrases: ['ph-4-0046'] }),
   mk('k2_sausage', 2, 'c_boy', 'Two sausages, please. Fried! And a tomato.', [n(SAU, 2), n(TO, 1)], { method: 'fry', grammar: ['gr-5-006'] }),
@@ -238,13 +238,13 @@ const RAW_TASKS: AuthoredTask[] = [
   mk('k2_coins', 2, 'c_student', 'I have only three coins. Rice and an egg are cheap, so rice and an egg, please.', [r(RI, 1, 2), n(E, 1)], { grammar: ['gr-4-019'] }),
   mk('k2_minutes', 2, 'c_sailor', 'My ship goes in ten minutes. Two fried eggs, please. Fast!', [n(E, 2)], { method: 'fry', grammar: ['gr-5-021'] }),
   so('k2_tickets', 2, 'Tickets for the cooks! Fried food goes to the pan, boiled food goes to the pot, and grilled food goes to the grill.', ['pan', 'pot', 'grill'],
-    [['Fried fish', 'pan'], ['Boiled eggs', 'pot'], ['Grilled chicken', 'grill'], ['Fried potatoes', 'pan'], ['Boiled rice', 'pot']], { level: 'pre2', grammar: ['gr-4-026'] }),
+    [['Fried fish', 'pan'], ['Boiled eggs', 'pot'], ['Grilled chicken', 'grill'], ['Fried potatoes', 'pan'], ['Boiled rice', 'pot']], { grammar: ['gr-4-026'] }),
   mk('k2_notboiled', 2, 'c_boy', 'Eggs, please, but not boiled eggs. I do not like them. Fried!', [r(E, 1, 2)], { method: 'fry', grammar: ['gr-5-028'] }),
   mk('k2_doctor', 2, 'c_doctor', 'Sick people must eat soft food. Boiled rice and chicken in a bowl, please.', [r(RI, 1, 2), r(CH, 1, 2)], { method: 'boil', vessel: 'bowl', grammar: ['gr-4-003'] }),
   mk('k2_sandwich', 2, 'c_merchant', 'A sandwich, please: bread, cheese and a tomato. To go, in a box!', [r(BR, 1, 3), r(CHE, 1, 2), n(TO, 1)], { vessel: 'box', grammar: ['gr-5-028'] }),
   mk('k2_snack', 2, 'c_boy', 'Just a snack, please. A piece of bread with butter.', [n(BR, 1), r(BU, 1, 2)], { grammar: ['gr-5-007'] }),
   mk('k2_plain', 2, 'c_grandma', 'Plain rice, please. No sauce.', [r(RI, 1, 2)], { grammar: ['gr-5-026'] }),
-  mk('k2_raw', 2, 'c_boy', 'Raw fish? No, thank you! Grilled fish, please.', [r(FISH, 1, 2)], { level: 'pre2', method: 'grill', grammar: ['gr-5-028'], phrases: ['ph-5-0024'] }),
+  mk('k2_raw', 2, 'c_boy', 'Raw fish? No, thank you! Grilled fish, please.', [r(FISH, 1, 2)], { method: 'grill', grammar: ['gr-5-028'], phrases: ['ph-5-0024'] }),
   so('k2_fresh', 2, 'Fresh food from the market today!', ['cold', 'shelf', 'basket'],
     [['Fresh fish', 'cold'], ['Fresh bread', 'shelf'], ['Fresh apples', 'basket'], ['Fresh milk', 'cold'], ['Fresh tomatoes', 'basket']], { grammar: ['gr-5-026'] }),
   mk('k2_diet', 2, 'c_mom', 'I am on a diet. A salad and one egg, please. No bread!', [n(SA, 1), n(E, 1)], { grammar: ['gr-5-021'] }),
@@ -257,7 +257,7 @@ const RAW_TASKS: AuthoredTask[] = [
   so('k2_drawer2', 2, 'Knives go in the drawer. Glasses go on the shelf.', ['sink', 'shelf', 'drawer'],
     [['Knives', 'drawer'], ['Glasses', 'shelf'], ['Dirty glasses', 'sink'], ['Forks', 'drawer'], ['Clean cups', 'shelf']], { grammar: ['gr-5-011'] }),
   so('k2_names', 2, 'More tickets. Every ticket has a name on it.', ['pan', 'pot', 'grill'],
-    [['Grilled fish for {Captain Reed|@}', 'grill'], ['Boiled eggs for {Grandma Rose|@}', 'pot'], ['Fried sausages for {Tom|@}', 'pan'], ['Grilled chicken for {Nora|@}', 'grill']], { level: 'pre2', grammar: ['gr-3-022'] }),
+    [['Grilled fish for {Captain Reed|@}', 'grill'], ['Boiled eggs for {Grandma Rose|@}', 'pot'], ['Fried sausages for {Tom|@}', 'pan'], ['Grilled chicken for {Nora|@}', 'grill']], { grammar: ['gr-3-022'] }),
   so('k2_bags', 2, 'Many boxes today! Read every one.', ['cold', 'shelf', 'basket'],
     [['A bag of flour', 'shelf'], ['A box of lemons', 'basket'], ['A bottle of juice', 'cold'], ['A pot of jam', 'shelf'], ['A bag of salt', 'shelf'], ['A box of pears', 'basket']], { grammar: ['gr-5-007'] }),
   mk('k2_tooth', 2, 'c_oldman', 'My tooth hurts, so I want soft food. A little boiled rice and a boiled egg, please.', [r(RI, 1, 2), n(E, 1)], { method: 'boil', grammar: ['gr-4-019'], phrases: ['ph-4-0142'] }),
@@ -267,7 +267,7 @@ const RAW_TASKS: AuthoredTask[] = [
   mk('k2_daughter2', 2, 'c_mom', 'My daughter is hungry after school. A snack for her: bread with cheese, please.', [r(BR, 1, 3), r(CHE, 1, 2)], { grammar: ['gr-5-008'] }),
   mk('k2_diet2', 2, 'c_student', 'I am on a diet again! No bread and no rice. A salad and a tomato, please.', [n(SA, 1), n(TO, 1)], { grammar: ['gr-5-028'] }),
   mk('k2_plain2', 2, 'c_doctor', 'Sick people need plain food. Plain boiled rice in a bowl, please.', [r(RI, 1, 2)], { method: 'boil', vessel: 'bowl', grammar: ['gr-5-026'] }),
-  mk('k2_raw2', 2, 'c_grandma', 'I never eat raw food. Grilled fish, please, not raw fish!', [r(FISH, 1, 2)], { level: 'pre2', method: 'grill', grammar: ['gr-5-022'] }),
+  mk('k2_raw2', 2, 'c_grandma', 'I never eat raw food. Grilled fish, please, not raw fish!', [r(FISH, 1, 2)], { method: 'grill', grammar: ['gr-5-022'] }),
   mk('k2_mix2', 2, 'c_boy', 'Mix the rice and the egg, please, and fry them. Fried rice for me!', [r(RI, 1, 3), n(E, 1)], { method: 'fry', grammar: ['gr-5-011'] }),
   mk('k2_gloves', 2, 'p_chef', 'Wash your hands, put on your apron and your gloves, and then fry three eggs for {Captain Reed|@}.', [n(E, 3)], { method: 'fry', grammar: ['gr-5-011', 'gr-3-019'], phrases: ['ph-5-0161'] }),
   mk('k2_joke', 2, 'c_sailor', 'Is this a joke? I asked for two eggs, and I see only one on my plate. Two eggs, please!', [n(E, 2)], { grammar: ['gr-5-016', 'gr-5-024'], phrases: ['ph-5-0088'] }),
