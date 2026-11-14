@@ -104,6 +104,15 @@ const FIXED: Record<string, Look> = {
   c_mom: { skin: '#f6dcc4', hair: '#b0642a', hairStyle: 'long', hat: 'none', beard: false, moustache: false, glasses: false, coat: '#c28a6a', coat2: '#8e5c42', collar: 'shawl', age: 'adult', broad: false, extras: ['freckles', 'flower'], accent: '#f2d04a' },
   // Old Mrs. Hill (孙奶奶): Tom's grandmother. White curls, lavender shawl, a woollen kerchief.
   hill: { skin: '#f6dcc4', hair: '#e6e2da', hairStyle: 'curly', hat: 'none', beard: false, moustache: false, glasses: false, coat: '#6a5a8a', coat2: '#463a60', collar: 'shawl', age: 'old', broad: false, extras: ['kerchief'], accent: '#d9c7a8' },
+  // Jobs: the people who run the workplaces.
+  // Mrs. Wren, the postmistress: grey bun, round glasses, a navy uniform cap and jacket.
+  p_wren: { skin: '#f3d2b3', hair: '#b8b4ac', hairStyle: 'bun', hat: 'cap', hatColour: '#2c3e5c', beard: false, moustache: false, glasses: true, coat: '#2c3e5c', coat2: '#1d2a40', collar: 'suit', age: 'old', broad: false, extras: ['brooch'], accent: '#c23a2a' },
+  // Chef Basil, the harbour kitchen: tall white hat, black moustache, apron, broad.
+  p_chef: { skin: '#d79f74', hair: '#1c1c22', hairStyle: 'short', hat: 'chef', beard: false, moustache: true, glasses: false, coat: '#f1ece2', coat2: '#cfc6b4', collar: 'apron', age: 'adult', broad: true, extras: ['kerchief'], accent: '#c8402a' },
+  // Ms. Park, the office manager at the trading house: dark bob, glasses, grey suit, pencil.
+  p_park: { skin: '#f3d2b3', hair: '#1c1c22', hairStyle: 'side', hat: 'none', beard: false, moustache: false, glasses: true, coat: '#4a4a52', coat2: '#2e2e34', collar: 'suit', age: 'adult', broad: false, extras: ['pencil', 'earrings'] },
+  // Mr. Olsen, the innkeeper: curly red-brown hair and beard, green waistcoat, key chain.
+  p_olsen: { skin: '#f6dcc4', hair: '#8a4a2a', hairStyle: 'curly', hat: 'none', beard: true, moustache: true, glasses: false, coat: '#3e6a4a', coat2: '#284a32', collar: 'vest', age: 'adult', broad: true, extras: ['chain'] },
   // Market vendors, one per stall (keyed by stall id).
   v_red: { skin: '#d79f74', hair: '#3a2416', hairStyle: 'short', hat: 'straw', beard: true, moustache: true, glasses: false, coat: '#7a3e32', coat2: '#55281f', collar: 'apron', age: 'adult', broad: true, extras: [] },
   v_green: { skin: '#e8b98f', hair: '#e2ded6', hairStyle: 'bald', hat: 'none', beard: false, moustache: true, glasses: true, coat: '#4d6a45', coat2: '#33492d', collar: 'vest', age: 'old', broad: false, extras: [] },

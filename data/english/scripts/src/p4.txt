@@ -1,6 +1,6 @@
 4|400|formula|What would you like?|何になさいますか|What would you like to drink?|お飲み物は何になさいますか。|ordering|food
 4|400|formula|Would you like some tea?|お茶はいかがですか|Would you like some tea? It's hot.|お茶はいかがですか。熱いですよ。|offer|food
-4|400|formula|Would you like to come?|いらっしゃいませんか|Would you like to come to the festival?|お祭りに来ませんか。|invitation|arts
+4|400|formula|Would you like to come?|いらっしゃいませんか|Would you like to come to the party?|パーティーに来ませんか。|invitation|arts
 4|400|formula|Can I have ..., please?|…をいただけますか|Can I have a glass of water, please?|水を1杯いただけますか。|ordering|food
 4|500|formula|Could you ... , please?|…していただけますか|Could you open the window, please?|窓を開けていただけますか。|request|housing
 4|500|formula|Shall I ...?|…しましょうか|Shall I carry your bag?|かばんをお持ちしましょうか。|offer|hotel
@@ -25,7 +25,7 @@
 4|400|formula|How was your weekend?|週末はどうでしたか|How was your weekend? — It was great.|週末はどうでした?—最高でした。|inquiry|society
 4|400|formula|What did you do yesterday?|昨日は何をしましたか|What did you do yesterday? — I went fishing.|昨日は何をしたの?—釣りに行きました。|inquiry|sea
 4|400|formula|What are you doing?|何をしていますか|What are you doing? — I'm cooking.|何をしているの?—料理をしています。|inquiry|cooking
-4|400|formula|What do you do?|お仕事は何ですか|What do you do? — I'm a fisherman.|お仕事は?—漁師です。|inquiry|sea
+4|400|formula|What do you do?|お仕事は何ですか|What do you do? — I'm a teacher.|お仕事は何ですか。—教師です。|inquiry|sea
 4|400|formula|What's your favorite food?|好きな食べ物は何ですか|What's your favorite food? — Sushi.|好きな食べ物は?—すしです。|inquiry|food
 4|400|formula|What time do you get up?|何時に起きますか|What time do you get up? — At six.|何時に起きますか。—6時です。|inquiry|school
 4|400|formula|How do you go to work?|どうやって仕事に行きますか|How do you go to work? — By bus.|どうやって仕事に行きますか。—バスです。|inquiry|transport
@@ -35,7 +35,7 @@
 4|400|formula|Which bus goes to the station?|どのバスが駅へ行きますか|Excuse me. Which bus goes to the station?|すみません。どのバスが駅へ行きますか。|inquiry,directions|transport
 4|400|formula|Is there a ... near here?|この近くに…はありますか|Is there a bank near here?|この近くに銀行はありますか。|directions|transport
 4|500|formula|Can you tell me the way to ...?|…への道を教えてくれますか|Can you tell me the way to the museum?|博物館への道を教えてくれますか。|directions|transport
-4|400|formula|Can I try this on?|これを試着してもいいですか|Can I try this on? — Yes, the room is there.|試着してもいいですか。—はい、あちらの部屋です。|permission|clothing
+4|400|formula|Can I try this on?|これを試着してもいいですか|Can I try this on? — Yes. Please come this way.|試着していいですか。—はい。こちらへどうぞ。|permission|clothing
 4|500|formula|Do you have a bigger size?|もっと大きいサイズはありますか|Do you have a bigger size?|もっと大きいサイズはありますか。|inquiry|clothing,shopping
 4|400|formula|I'll take it.|それをいただきます|It's nice. I'll take it.|いいですね。それをいただきます。|ordering|shopping
 4|400|formula|It's too expensive.|高すぎます|It's too expensive for me.|私には高すぎます。|complaint|shopping,money
@@ -72,11 +72,11 @@
 4|400|pattern|I will ...|…します(意志)|I will help you.|手伝います。|offer|society
 4|400|pattern|It will be ... tomorrow.|明日は…でしょう|It will be rainy tomorrow.|明日は雨でしょう。|prediction|weather
 4|400|pattern|I have to ...|…しなければなりません|I have to go to the bank.|銀行に行かなければなりません。|obligation|money
-4|400|pattern|You must ...|…しなければなりません|You must wear a helmet.|ヘルメットをかぶらなければなりません。|obligation|transport
+4|400|pattern|You must ...|…しなければなりません|You must wear shoes here.|ここでは靴をはかなければなりません。|obligation|transport
 4|400|pattern|You must not ...|…してはいけません|You must not swim here.|ここで泳いではいけません。|warning|sea
 4|500|pattern|You don't have to ...|…しなくてもよい|You don't have to pay now.|今払わなくてもいいですよ。|permission|money
 4|500|pattern|I want you to ...|あなたに…してほしい|I want you to come early.|早く来てほしいです。|request|society
-4|500|pattern|I'm looking forward to ...|…を楽しみにしています|I'm looking forward to the festival.|お祭りを楽しみにしています。|emotion|arts
+4|500|pattern|I'm looking forward to ...|…を楽しみにしています|I'm looking forward to the trip.|旅行を楽しみにしています。|emotion|arts
 4|500|pattern|I'm good at ...|…が得意です|I'm good at cooking.|料理が得意です。|ability|cooking
 4|400|pattern|I'm not good at ...|…が苦手です|I'm not good at swimming.|泳ぐのが苦手です。|ability|sea
 4|500|pattern|I'm interested in ...|…に興味があります|I'm interested in old houses.|古い家に興味があります。|preference|housing
@@ -93,7 +93,7 @@
 4|400|pattern|If it rains, ...|雨が降ったら…|If it rains, we will stay home.|雨が降ったら家にいます。|condition|weather
 4|400|pattern|When I was a child, ...|子どものころ…|When I was a child, I lived by the sea.|子どものころ、海のそばに住んでいました。|narration|family
 4|400|pattern|because ...|なぜなら…|I'm late because I missed the bus.|バスに乗り遅れたので遅れました。|cause/effect|transport
-4|500|pattern|Because of ...|…のために|The boats stayed in because of the storm.|嵐のため船は出ませんでした。|cause/effect|weather
+4|500|pattern|Because of ...|…のために|We stayed home because of the storm.|嵐のため私たちは家にいました。|cause/effect|weather
 4|500|pattern|I was ... -ing when ...|…していたとき|I was cooking when he called.|料理をしていたとき彼が電話してきました。|narration|cooking
 4|500|pattern|Do you know where ...?|…がどこか知っていますか|Do you know where he lives?|彼がどこに住んでいるか知っていますか。|inquiry|society
 4|400|pattern|I'd like to ...|…したいのですが|I'd like to send this letter to Tokyo.|この手紙を東京へ送りたいのですが。|request|post

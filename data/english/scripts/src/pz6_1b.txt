@@ -1,0 +1,171 @@
+# ---- 1 additions: collocations
+1|990|collocation|an unprecedented scale|前例のない規模|The storm caused damage on an unprecedented scale.|嵐は前例のない規模の被害をもたらしました。|reporting|weather
+1|860|collocation|a growing divide|広がる格差|There is a growing divide between rich and poor.|貧富の差が広がっています。|description|society
+1|860|collocation|widen the gap|差を広げる|The new policy widened the gap between the towns.|新しい政策は町同士の差を広げました。|cause/effect|society
+1|860|collocation|bridge the gap|溝を埋める|The program aims to bridge the gap between schools.|そのプログラムは学校間の溝を埋めることを目指しています。|description|school
+1|990|collocation|a glaring omission|明らかな見落とし|The list had a glaring omission.|そのリストには明らかな抜けがありました。|complaint|office
+1|990|collocation|a blatant violation|露骨な違反|Dumping waste in the sea is a blatant violation of the law.|海にごみを捨てるのは露骨な法律違反です。|complaint|law
+1|990|collocation|a sweeping reform|全面的な改革|The mayor promised sweeping reforms.|市長は全面的な改革を約束しました。|reporting|society
+1|990|collocation|an overhaul of ...|…の全面的な見直し|The system needs a complete overhaul.|そのシステムは全面的な見直しが必要です。|opinion|technology
+1|990|collocation|undergo a transformation|変貌を遂げる|The old port has undergone a transformation.|古い港は変貌を遂げました。|description|sea
+1|990|collocation|a mounting backlog|積み上がる未処理案件|We have a mounting backlog of orders.|注文の未処理分が積み上がっています。|complaint|sales
+1|990|collocation|a hefty fine|高額の罰金|He had to pay a hefty fine.|彼は高額の罰金を払わなければなりませんでした。|reporting|law
+1|860|collocation|a substantial amount|かなりの量・金額|A substantial amount of money was lost.|かなりの金額が失われました。|reporting|money
+1|860|collocation|a modest increase|わずかな増加|We expect a modest increase in sales.|売上のわずかな増加を見込んでいます。|prediction|sales
+1|860|collocation|a marginal improvement|わずかな改善|There was only a marginal improvement.|わずかな改善しかありませんでした。|reporting|science
+1|860|collocation|a steep rise|急な上昇|There was a steep rise in fuel prices.|燃料価格が急上昇しました。|reporting|finance
+1|860|collocation|a dramatic fall|劇的な下落|The report shows a dramatic fall in fish catches.|報告書は漁獲量の劇的な減少を示しています。|reporting|sea
+1|990|collocation|plummeting prices|急落する価格|Plummeting prices hurt the farmers.|価格の急落が農家を直撃しました。|reporting|farming
+1|990|collocation|soaring costs|急騰するコスト|Soaring costs forced the inn to raise prices.|コストの急騰で宿は値上げを余儀なくされました。|cause/effect|hotel
+1|990|collocation|a surge in demand|需要の急増|There was a surge in demand for umbrellas.|傘の需要が急増しました。|reporting|sales
+1|990|collocation|a downturn in the economy|景気の後退|A downturn in the economy hit local shops.|景気後退が地元の商店を直撃しました。|reporting|finance
+1|990|collocation|an economic slump|経済の低迷|The town suffered a long economic slump.|その町は長い経済低迷に苦しみました。|description|finance
+1|860|collocation|economic recovery|景気回復|Economic recovery is expected next year.|来年は景気回復が見込まれています。|prediction|finance
+1|990|collocation|a stimulus package|景気刺激策|The government announced a stimulus package.|政府は景気刺激策を発表しました。|announcement|finance
+1|990|collocation|fiscal policy|財政政策|Fiscal policy affects local budgets.|財政政策は地方予算に影響します。|description|finance
+1|990|collocation|monetary policy|金融政策|The bank changed its monetary policy.|銀行は金融政策を変更しました。|reporting|finance
+1|990|collocation|a budget surplus|黒字予算|The town has a budget surplus this year.|町は今年、予算が黒字です。|reporting|finance
+1|990|collocation|a trade surplus|貿易黒字|The country has a large trade surplus.|その国は大きな貿易黒字を抱えています。|reporting|finance
+1|990|collocation|a trade barrier|貿易障壁|High tariffs act as a trade barrier.|高い関税は貿易障壁になります。|description|finance
+1|990|collocation|import restrictions|輸入制限|Import restrictions raised fish prices.|輸入制限で魚の値段が上がりました。|cause/effect|sea
+1|-|collocation|a monopoly|独占|The company holds a monopoly on salt.|その会社は塩の独占権を持っています。|description|finance
+1|990|collocation|a hostile takeover|敵対的買収|The firm fought off a hostile takeover.|その会社は敵対的買収を撃退しました。|reporting|finance
+1|990|collocation|a corporate scandal|企業不祥事|A corporate scandal shook the town.|企業の不祥事が町を揺るがしました。|reporting|media
+1|990|collocation|a conflict of interest|利益相反|The mayor has a conflict of interest in this matter.|市長はこの件で利益相反の立場にあります。|description|law
+1|990|collocation|insider trading|インサイダー取引|He was arrested for insider trading.|彼はインサイダー取引で逮捕されました。|reporting|law
+1|990|collocation|embezzle funds|資金を横領する|The clerk embezzled funds from the shop.|店員が店の資金を横領しました。|reporting|law
+1|-|collocation|launder money|資金洗浄をする|They were accused of laundering money.|彼らは資金洗浄の疑いをかけられました。|reporting|law
+1|990|collocation|fraudulent claims|不正な請求|The insurer rejected the fraudulent claims.|保険会社は不正な請求を却下しました。|reporting|law
+1|990|collocation|a legal loophole|法の抜け穴|The company used a legal loophole to avoid tax.|その会社は法の抜け穴を使って税を逃れました。|description|law
+1|-|collocation|a landmark ruling|画期的な判決|The court issued a landmark ruling on fishing rights.|裁判所は漁業権について画期的な判決を出しました。|reporting|law
+1|990|collocation|a court order|裁判所命令|The court order bans entry to the site.|裁判所命令により現場への立ち入りが禁止されています。|reporting|law
+1|-|collocation|a plea bargain|司法取引|He accepted a plea bargain.|彼は司法取引に応じました。|reporting|law
+1|-|collocation|serve a sentence|刑に服する|He served a three-year sentence.|彼は3年の刑に服しました。|reporting|law
+1|990|collocation|file a lawsuit|訴訟を起こす|The residents filed a lawsuit against the factory.|住民は工場を相手に訴訟を起こしました。|reporting|law
+1|990|collocation|settle out of court|示談にする|The two parties settled out of court.|双方は示談で解決しました。|reporting|law
+1|-|collocation|press charges|告訴する|The shopkeeper decided to press charges.|店主は告訴することにしました。|reporting|law
+1|-|collocation|the burden of proof|立証責任|The burden of proof lies with the seller.|立証責任は売り手にあります。|description|law
+1|990|collocation|a clause in the contract|契約書の条項|There is a clause in the contract about delays.|契約書には遅延に関する条項があります。|description|law
+1|860|collocation|voice concerns|懸念を表明する|Residents voiced concerns about the noise.|住民は騒音について懸念を表明しました。|reporting|society
+1|-|collocation|air grievances|不満を訴える|Workers aired their grievances at the meeting.|労働者は会議で不満を訴えました。|reporting|hr
+1|990|collocation|lodge a complaint|苦情を申し立てる|I would like to lodge a complaint about the service.|サービスについて苦情を申し立てたいのですが。|complaint|office
+1|-|collocation|launch an appeal|訴え(控訴)を起こす|The farmers launched an appeal for help.|農家は支援を訴えるキャンペーンを始めました。|request|society
+1|990|collocation|issue a statement|声明を出す|The company issued a statement about the accident.|会社は事故について声明を出しました。|announcement|media
+1|-|collocation|make a pledge|誓約する|The mayor made a pledge to protect the coast.|市長は海岸を守ると誓約しました。|description|society
+1|-|collocation|reach a verdict|評決に達する|The jury reached a verdict after two days.|陪審は2日後に評決に達しました。|reporting|law
+1|860|collocation|an upward trend|上昇傾向|The data shows an upward trend in tourism.|データは観光客の増加傾向を示しています。|reporting|travel
+1|860|collocation|a downward trend|下降傾向|There is a downward trend in fish prices.|魚価は下落傾向にあります。|reporting|sea
+1|990|collocation|gain momentum|勢いを増す|The campaign is gaining momentum.|キャンペーンは勢いを増しています。|reporting|sales
+1|990|collocation|lose momentum|勢いを失う|The recovery has lost momentum.|回復は勢いを失いました。|reporting|finance
+1|860|collocation|a turning point|転機|The festival was a turning point for the town.|そのお祭りは町にとって転機でした。|description|society
+1|-|collocation|a paradigm shift|パラダイムシフト|The internet caused a paradigm shift in shopping.|インターネットは買い物に大きな変革をもたらしました。|description|technology
+1|990|collocation|cutting-edge technology|最先端技術|The farm uses cutting-edge technology.|その農場は最先端技術を使っています。|description|technology
+1|990|collocation|state-of-the-art equipment|最新鋭の設備|The clinic has state-of-the-art equipment.|その診療所には最新鋭の設備があります。|description|health
+1|-|collocation|a groundbreaking discovery|画期的な発見|Scientists announced a groundbreaking discovery.|科学者たちが画期的な発見を発表しました。|reporting|science
+1|860|collocation|a thorough investigation|徹底した調査|The police began a thorough investigation.|警察は徹底的な調査を始めました。|reporting|law
+1|-|collocation|exhaustive research|徹底的な研究|The book is based on exhaustive research.|その本は徹底的な研究に基づいています。|description|science
+1|860|collocation|a rigorous test|厳格な試験|The product passed a rigorous test.|その製品は厳格な試験に合格しました。|reporting|technology
+1|860|collocation|a plausible explanation|もっともらしい説明|He gave a plausible explanation.|彼はもっともらしい説明をしました。|description|abstract
+1|860|collocation|a feasible solution|実現可能な解決策|We need a feasible solution to the problem.|その問題には実現可能な解決策が必要です。|request|meetings
+1|860|collocation|a viable alternative|実行可能な代替案|Is there a viable alternative to the plan?|その計画に代わる実行可能な案はありますか。|inquiry|meetings
+1|860|collocation|a tangible benefit|具体的な利益|The program brings tangible benefits.|そのプログラムは具体的な利益をもたらします。|description|society
+1|990|collocation|a lasting impression|消えない印象|The festival left a lasting impression on me.|そのお祭りは私に深い印象を残しました。|description|emotion
+1|860|collocation|a profound effect|深い影響|The loss had a profound effect on her.|その喪失は彼女に深い影響を与えました。|description|emotion
+1|990|collocation|an acute shortage|深刻な不足|There is an acute shortage of fresh water.|淡水が深刻に不足しています。|reporting|society
+1|990|collocation|a dire need|切迫した必要|The village is in dire need of doctors.|その村は医師が切実に必要です。|description|health
+1|860|collocation|a pressing need|差し迫った必要|There is a pressing need for new housing.|新しい住宅が差し迫って必要です。|description|housing
+1|990|collocation|an overwhelming majority|圧倒的多数|An overwhelming majority supported the plan.|圧倒的多数がその計画を支持しました。|reporting|society
+1|990|collocation|a narrow margin|僅差|The team won by a narrow margin.|チームは僅差で勝ちました。|reporting|society
+1|860|collocation|a slim chance|わずかな可能性|There is a slim chance of finding it.|見つかる可能性はわずかです。|prediction|society
+1|860|collocation|a fair share|相応の分け前|Everyone should get a fair share.|みんなが相応の分け前を得るべきです。|opinion|money
+1|860|collocation|a key player|重要な担い手|The company is a key player in the local economy.|その会社は地域経済の重要な担い手です。|description|finance
+1|860|collocation|a driving force|原動力|Tourism is the driving force behind the growth.|観光は成長の原動力です。|description|finance
+1|990|collocation|a catalyst for change|変化の触媒|The festival was a catalyst for change.|そのお祭りは変化のきっかけとなりました。|description|society
+1|860|collocation|a stumbling block|障害|The price is a stumbling block for many buyers.|価格は多くの買い手にとって障害です。|description|sales
+1|860|collocation|a bottleneck|ボトルネック|The narrow bridge is a bottleneck for trucks.|狭い橋はトラックにとってボトルネックです。|description|transport
+1|-|collocation|a loose end|未解決の点|We still have a few loose ends to tie up.|まだいくつか片付けるべき未解決の点があります。|description|office
+1|-|collocation|a blind spot|盲点|Parking here is a blind spot for drivers.|ここの駐車は運転手にとって死角になります。|warning|transport
+1|-|collocation|a double standard|ダブルスタンダード|There is a double standard in the rules.|その規則には二重基準があります。|complaint|law
+1|-|collocation|a hidden agenda|隠された意図|I think he has a hidden agenda.|彼には隠された意図があると思います。|opinion|society
+1|-|collocation|an uphill battle|困難な戦い|Starting a business here is an uphill battle.|ここで事業を始めるのは困難な戦いです。|description|sales
+1|860|collocation|a daunting task|気の遠くなる仕事|Cleaning the beach was a daunting task.|その海岸の掃除は気の遠くなる仕事でした。|description|nature
+1|-|collocation|a formidable opponent|強敵|The champion is a formidable opponent.|チャンピオンは強敵です。|description|society
+1|860|collocation|wholehearted support|心からの支持|The plan has my wholehearted support.|その計画を心から支持します。|agreement|meetings
+1|990|collocation|unanimous approval|満場一致の承認|The proposal won unanimous approval.|提案は満場一致で承認されました。|reporting|meetings
+1|-|collocation|tacit approval|暗黙の了解|The owner gave his tacit approval.|オーナーは暗黙の了解を与えました。|description|office
+1|-|collocation|scathing criticism|痛烈な批判|The film received scathing criticism.|その映画は痛烈な批判を受けました。|reporting|media
+1|860|collocation|a glowing review|絶賛の評価|The inn received a glowing review.|その宿は絶賛の評価を受けました。|praise|hotel
+1|-|collocation|a lavish banquet|豪華な宴会|The mayor gave a lavish banquet.|市長は豪華な宴会を開きました。|description|food
+1|-|collocation|a frugal lifestyle|質素な暮らし|They lead a frugal lifestyle.|彼らは質素な暮らしをしています。|description|family
+1|-|collocation|meager wages|わずかな賃金|Workers received meager wages.|労働者はわずかな賃金しか受け取りませんでした。|complaint|hr
+1|990|collocation|sluggish growth|低迷する成長|The economy shows sluggish growth.|経済は成長が低迷しています。|reporting|finance
+1|990|collocation|robust growth|力強い成長|The company reported robust growth.|会社は力強い成長を報告しました。|reporting|finance
+1|990|collocation|buoyant sales|好調な売上|Buoyant sales lifted the shop's profits.|好調な売上で店の利益が上がりました。|reporting|sales
+1|-|collocation|give rise to|…を引き起こす|The heavy rain gave rise to many problems.|大雨は多くの問題を引き起こしました。|cause/effect|weather
+1|990|collocation|a far cry from|…とはほど遠いもの|The new shop is a far cry from the old one.|新しい店は昔の店とは大違いです。|contrast|shopping
+1|990|collocation|an inherent risk|本質的なリスク|Fishing has inherent risks.|漁業には本質的なリスクがあります。|description|sea
+1|990|collocation|a tentative agreement|暫定合意|The two sides reached a tentative agreement.|双方は暫定合意に達しました。|reporting|meetings
+1|990|collocation|a compelling argument|説得力のある論拠|She made a compelling argument for change.|彼女は変革を求める説得力のある論を展開しました。|praise|meetings
+1|990|collocation|an exorbitant price|法外な値段|They charge exorbitant prices for water here.|ここでは水に法外な値段をつけています。|complaint|shopping
+1|990|collocation|a hefty profit|大きな利益|The harvest brought a hefty profit.|その収穫は大きな利益をもたらしました。|reporting|farming
+1|-|collocation|an ulterior motive|下心|He had an ulterior motive for helping us.|彼には私たちを助ける下心がありました。|opinion|society
+1|-|collocation|a vicious rumor|悪質なうわさ|A vicious rumor spread through the village.|悪質なうわさが村に広まりました。|description|society
+1|990|collocation|spark controversy|論争を引き起こす|The plan sparked controversy among residents.|その計画は住民のあいだで論争を呼びました。|reporting|society
+1|990|collocation|quell a rumor|うわさを鎮める|The mayor tried to quell the rumor.|市長はそのうわさを鎮めようとしました。|description|society
+1|990|collocation|stoke fears|不安をあおる|The report stoked fears about the water.|その報告は水への不安をあおりました。|description|media
+1|990|collocation|allay fears|不安を和らげる|The doctor tried to allay her fears.|医師は彼女の不安を和らげようとしました。|description|health
+1|990|collocation|heighten tension|緊張を高める|The delay heightened tension in the room.|遅れは部屋の緊張を高めました。|description|emotion
+1|990|collocation|ease tension|緊張を和らげる|A joke eased the tension.|冗談が緊張を和らげました。|description|emotion
+1|990|collocation|raise eyebrows|眉をひそめさせる|The high price raised eyebrows.|その高い価格は驚きの声を呼びました。|description|society
+1|990|collocation|cast doubt on|…に疑問を投げかける|The test results cast doubt on the claim.|検査結果はその主張に疑問を投げかけました。|reporting|science
+# ---- 1 additions: patterns
+1|-|pattern|Not until ... did ...|…して初めて〜した|Not until I got home did I notice the hole.|家に着いて初めて穴に気づきました。|narration|abstract
+1|-|pattern|No sooner had ... than ...|…するとすぐに〜|No sooner had we left than it started to rain.|私たちが出るとすぐ雨が降り出しました。|narration|weather
+1|-|pattern|Rarely do ...|めったに…しない|Rarely do we have snow here.|ここではめったに雪が降りません。|description|weather
+1|-|pattern|Seldom ...|めったに…ない|Seldom have I seen such a calm sea.|こんなに穏やかな海はめったに見たことがありません。|description|sea
+1|-|pattern|Under no circumstances ...|いかなる場合も…ない|Under no circumstances should you open this door.|いかなる場合もこのドアを開けてはいけません。|warning|law
+1|-|pattern|On no account ...|決して…ない|On no account must the gate be left open.|決して門を開けっぱなしにしてはいけません。|warning|farming
+1|-|pattern|In no way ...|決して…ない|In no way is this your fault.|これは決してあなたのせいではありません。|emphasis|emotion
+1|-|pattern|At no time ...|どんな時も…ない|At no time were the guests in danger.|客が危険にさらされたことは一度もありませんでした。|reporting|hotel
+1|-|pattern|Only by ...ing can ...|…することでのみ〜できる|Only by working together can we finish in time.|協力することでのみ、間に合わせることができます。|emphasis|office
+1|-|pattern|Such was ...|それほどに…だった|Such was the force of the wave that the boat sank.|波の勢いはそれほど強く、船は沈みました。|narration|sea
+1|-|pattern|So great was ... that ...|…はあまりに大きかったので〜|So great was the demand that the shop sold out.|需要はあまりに大きく、店は売り切れました。|cause/effect|sales
+1|-|pattern|Come what may, ...|何が起ころうとも|Come what may, we will open on time.|何が起ころうとも、定刻に開店します。|emphasis|sales
+1|-|pattern|Try as I might, ...|どんなに努力しても|Try as I might, I couldn't start the engine.|どんなに頑張ってもエンジンをかけられませんでした。|concession|transport
+1|-|pattern|Much as I would like to ...|…したいのは山々だが|Much as I would like to help, I'm too busy.|手伝いたいのは山々ですが、忙しすぎます。|refusal|office
+1|-|pattern|Strange as it may seem, ...|変に思えるかもしれないが|Strange as it may seem, I enjoy the rain.|変に思えるかもしれませんが、雨が好きです。|concession|weather
+1|-|pattern|Young as he is, ...|彼は若いけれども|Young as he is, he runs the whole shop.|彼は若いのに、店全体を切り盛りしています。|concession|sales
+1|-|pattern|so much so that ...|そのため…ほどである|It was cold, so much so that the lake froze.|寒さのあまり湖が凍るほどでした。|emphasis|weather
+1|990|pattern|to the extent that ...|…という程度まで|The roof leaked to the extent that we couldn't sleep.|屋根の水漏れがひどくて眠れないほどでした。|emphasis|housing
+1|990|pattern|providing that ...|…という条件で|You can enter providing that you wear a helmet.|ヘルメットをかぶるなら入場できます。|condition|law
+1|990|pattern|on the understanding that ...|…という了解のもとで|I'll lend you the boat on the understanding that you return it.|返却するという了解のもとでボートをお貸しします。|condition|sea
+1|-|pattern|lest ...|…しないように|He spoke quietly lest the baby wake up.|彼は赤ちゃんが起きないように静かに話しました。|description|family
+1|990|pattern|for fear that ...|…を恐れて|He stayed home for fear that he might catch a cold.|彼は風邪をひくのを恐れて家にいました。|cause/effect|health
+1|860|pattern|in the hope that ...|…を期待して|We opened early in the hope that more people would come.|もっと客が来ることを期待して早く開店しました。|description|sales
+1|990|pattern|all the more ... because ...|…なのでなおさら|I like him all the more because he is honest.|彼は正直なのでなおさら好きです。|emphasis|emotion
+1|990|pattern|no less ... than ...|…に劣らず〜|The cook is no less skilled than the chef.|その料理人はシェフに劣らず腕があります。|comparison|cooking
+1|990|pattern|not so much ... as ...|…というよりむしろ〜|She is not so much a boss as a friend.|彼女は上司というより友人です。|comparison|hr
+1|-|pattern|The last thing I want is ...|…だけは避けたい|The last thing I want is another delay.|もうこれ以上の遅れだけは避けたいです。|emphasis|office
+1|990|pattern|far from ...ing|…するどころか|Far from complaining, the guests thanked us.|苦情を言うどころか、客は私たちに感謝しました。|contrast|hotel
+1|990|pattern|anything but ...|決して…ではない|The trip was anything but boring.|その旅行は決して退屈ではありませんでした。|emphasis|travel
+1|990|pattern|nothing short of ...|…にほかならない|It was nothing short of a miracle.|それはまさに奇跡でした。|emphasis|emotion
+1|-|pattern|none other than ...|ほかならぬ…|The guest was none other than the mayor.|そのお客はほかならぬ市長でした。|emphasis|society
+1|990|pattern|to say nothing of ...|…は言うまでもなく|The room is large, to say nothing of the view.|眺めは言うまでもなく、部屋も広いです。|addition|hotel
+1|860|pattern|not to mention ...|…は言うまでもなく|It's cheap, not to mention delicious.|おいしいのは言うまでもなく、安いです。|addition|food
+1|990|pattern|let alone ...|…は言うまでもなく(否定文で)|I can't swim, let alone sail a boat.|泳げないので、船を操るなんてとてもできません。|emphasis|sea
+1|-|pattern|to the point of ...|…するほどまでに|He was tired to the point of falling asleep at the table.|彼は食卓で眠ってしまうほど疲れていました。|description|health
+1|990|pattern|to the effect that ...|…という趣旨で|He sent a note to the effect that he would be late.|彼は遅れるという趣旨のメモを送ってきました。|reporting|office
+1|990|pattern|in lieu of ...|…の代わりに|We accept a check in lieu of cash.|現金の代わりに小切手を受け付けます。|description|finance
+1|990|pattern|pending ...|…が決まるまで|The shop is closed pending repairs.|その店は修理が済むまで休業中です。|reporting|sales
+1|990|pattern|barring ...|…がなければ|Barring bad weather, the race will start at ten.|悪天候でなければ、レースは10時に始まります。|condition|sea
+1|990|pattern|save for ...|…を除いて|The shop was empty save for two customers.|2人の客を除いて、店は空でした。|description|shopping
+1|990|pattern|short of ...|…を除いては|Short of a miracle, we can't finish in time.|奇跡でも起きない限り、間に合いません。|condition|office
+1|-|pattern|It is high time ...|もう…してもいい頃だ|It is high time we repaired the roof.|もう屋根を直してもいい頃です。|suggestion|housing
+1|-|pattern|It stands to reason that ...|…は理にかなっている|It stands to reason that prices rise in winter.|冬に価格が上がるのは理にかなっています。|opinion|sales
+1|-|pattern|have yet to ...|まだ…していない|We have yet to receive your payment.|お支払いをまだ確認できておりません。|reporting|finance
+1|990|pattern|be bound by ...|…に拘束される|All members are bound by the rules.|会員はみな規則に拘束されます。|obligation|law
+1|-|pattern|be wary of ...|…に用心している|Be wary of strangers who ask for money.|お金を求めてくる見知らぬ人には用心してください。|warning|society
+1|-|pattern|be wont to ...|…するのが常である|He was wont to walk by the sea at dawn.|彼は夜明けに海辺を歩くのが常でした。|description|sea
+1|990|pattern|be hard pressed to ...|…するのに苦労する|We are hard pressed to find a better offer.|これより良い条件を見つけるのは難しいです。|description|sales
+1|990|pattern|be at pains to ...|懸命に…する|The owner was at pains to explain the delay.|店主は遅れを懸命に説明しました。|description|sales
+1|-|pattern|be given to ...ing|…する癖がある|He is given to talking too much.|彼はしゃべりすぎる癖があります。|description|society

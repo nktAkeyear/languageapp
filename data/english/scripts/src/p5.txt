@@ -5,7 +5,7 @@
 5|400|formula|Good evening.|こんばんは|Good evening. Do you have a reservation?|こんばんは。ご予約はありますか。|greeting|hotel
 5|-|formula|Good night.|おやすみなさい|Good night, Mom.|おやすみ、お母さん。|farewell|family
 5|400|formula|Goodbye.|さようなら|Goodbye. See you tomorrow.|さようなら。また明日。|farewell|society
-5|400|formula|See you.|またね|See you at the harbor.|港でね。|farewell|society
+5|400|formula|See you.|またね|See you at the station.|駅で会いましょう。|farewell|society
 5|400|formula|See you tomorrow.|また明日|Thank you for your help. See you tomorrow.|手伝ってくれてありがとう。また明日。|farewell|school
 5|400|formula|How are you?|お元気ですか|How are you, Ken?|元気かい、ケン。|greeting|society
 5|400|formula|I'm fine, thank you.|元気です、ありがとう|I'm fine, thank you. And you?|元気です、ありがとう。あなたは?|greeting|society
@@ -67,7 +67,7 @@
 5|-|formula|Merry Christmas!|メリークリスマス|Merry Christmas! This is for you.|メリークリスマス!これをどうぞ。|congratulation|family
 5|-|formula|Happy New Year!|新年おめでとう|Happy New Year! See you this year.|あけましておめでとう。今年もよろしく。|congratulation|family
 5|400|formula|Have a nice day.|よい一日を|Thank you. Have a nice day.|ありがとう。よい一日を。|farewell|shopping
-5|400|formula|Have a good time.|楽しんで|Have a good time at the festival.|お祭りを楽しんでね。|farewell|arts
+5|400|formula|Have a good time.|楽しんで|Have a good time at the party.|パーティーを楽しんでね。|farewell|arts
 5|400|formula|Take care.|気をつけて|Take care. It's dark.|気をつけて。暗いよ。|farewell|health
 5|-|formula|Me, please.|私にお願いします|Who wants tea? — Me, please.|だれかお茶いる?—私にお願いします。|offer|food
 5|400|formula|I'm hungry.|おなかがすきました|I'm hungry. Let's eat lunch.|おなかがすいた。昼ごはんを食べよう。|description|food,body
@@ -82,14 +82,14 @@
 5|400|formula|I want to ...|…したい|I want to go to the shop.|店に行きたいです。|preference|shopping
 5|400|formula|I like ...|…が好きです|I like cats.|猫が好きです。|preference|nature
 5|400|formula|I can ...|…できます|I can swim.|泳げます。|ability|sea
-5|400|formula|I can't ...|…できません|I can't see the sea.|海が見えません。|ability|sea
+5|400|formula|I can't ...|…できません|I can't see the board.|黒板が見えません。|ability|sea
 5|400|formula|Can you ...?|…できますか(依頼)|Can you help me, please?|手伝ってくれますか。|request|society
 5|400|formula|Can I ...?|…してもいいですか|Can I use your pen?|ペンを使ってもいいですか。|permission|school
 5|400|formula|May I ...?|…してもよろしいですか|May I come in?|入ってもよろしいですか。|permission|society
 5|400|formula|Is this ... ?|これは…ですか|Is this your umbrella?|これはあなたの傘ですか。|inquiry|clothing
 5|400|formula|Where is ...?|…はどこですか|Where is the bus stop?|バス停はどこですか。|directions|transport
 5|400|formula|Where are you going?|どこへ行くの?|Where are you going? — To the market.|どこへ行くの?—市場へ。|inquiry|society
-5|400|formula|What's this?|これは何ですか|What's this? — It's a shell.|これは何?—貝殻です。|inquiry|sea
+5|400|formula|What's this?|これは何ですか|What's this? — It's a bird.|これは何?—鳥だよ。|inquiry|sea
 5|400|formula|Who is that?|あれはだれですか|Who is that man? — He is my uncle.|あの男の人はだれ?—おじです。|inquiry|family
 5|-|formula|Whose bag is this?|これはだれのかばん?|Whose bag is this? — It's mine.|これはだれのかばん?—私のです。|inquiry|clothing
 5|400|formula|Go straight.|まっすぐ行って|Go straight and turn left.|まっすぐ行って左に曲がってください。|directions|transport
@@ -119,15 +119,15 @@
 5|400|formula|Let's have lunch.|昼ごはんを食べよう|It's noon. Let's have lunch.|正午だ。昼ごはんを食べよう。|suggestion|food
 5|-|formula|I'm home.|ただいま|I'm home, Mom.|ただいま、お母さん。|greeting|family
 5|-|formula|Welcome home.|おかえりなさい|Welcome home. Dinner is ready.|おかえり。夕食ができているよ。|greeting|family
-5|400|formula|Help!|助けて!|Help! My boat is sinking!|助けて!ボートが沈む!|warning|sea
+5|400|formula|Help!|助けて!|Help! I can't find my mom!|助けて!お母さんが見つからないの!|warning|sea
 5|400|formula|Here we are.|着きましたよ|Here we are. This is the station.|着きました。ここが駅です。|directions|transport
 5|400|pattern|This is a ...|これは…です|This is a pen.|これはペンです。|description|school
-5|400|pattern|That is a ...|あれは…です|That is a ship.|あれは船です。|description|sea
+5|400|pattern|That is a ...|あれは…です|That is a bus.|あれはバスです。|description|sea
 5|400|pattern|It's a ...|それは…です|It's a big fish.|大きな魚です。|description|sea
 5|400|pattern|There is a ... on the table.|テーブルの上に…があります|There is a cup on the table.|テーブルの上にカップがあります。|description|housing
 5|400|pattern|There are ... in the box.|箱に…があります(複数)|There are three eggs in the box.|箱に卵が3つあります。|description|food
 5|400|pattern|I have a ...|私は…を持っています|I have a brother.|私には弟がいます。|description|family
-5|400|pattern|He has a ...|彼は…を持っています|He has a small boat.|彼は小さな船を持っています。|description|sea
+5|400|pattern|He has a ...|彼は…を持っています|He has a small dog.|彼は小さな犬を飼っています。|description|sea
 5|400|pattern|I go to ... by bus.|バスで…へ行きます|I go to school by bus.|バスで学校へ行きます。|description|transport
 5|400|pattern|at ... o'clock|…時に|I get up at six o'clock.|6時に起きます。|scheduling|abstract
 5|400|pattern|on Monday|月曜日に|The shop is closed on Monday.|店は月曜日が休みです。|scheduling|shopping

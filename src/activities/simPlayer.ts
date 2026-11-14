@@ -27,6 +27,8 @@ import { currentOrder, nextCustomer } from './shop/engine';
 import { orderHasNewWords } from '../core/difficulty';
 import { witnessBrew } from './shop/rules';
 import { catalogue, renoOrder, renoShared } from '../renovation/engine';
+import { beginShift, chooseJob, currentShift, currentTask, jobById, leaveShift, nextTask, ruleCtx, submitTask } from '../jobs/engine';
+import { fumbleTask, solveTask } from '../jobs/rules';
 
 export const NEW_WORD_PENALTY = 0.15;
 export const REVIEW_BONUS = 0.05;
@@ -179,4 +181,32 @@ export function simulatePlayer(opts: SimOptions): { p: LangProgress; days: SimDa
     opts.onDay?.(p, sd);
   }
   return { p, days: out };
+}
+
+/**
+ * Jobs: play one shift of a job for the current part of the day (simulator / tests). The player
+ * solves each task with probability `accuracy`, else hands in a plausible wrong answer.
+ * Returns the outcomes, or null when the job cannot be chosen now.
+ */
+export function playJobShift(data: GameData, p: LangProgress, jobId: string, accuracy: number, rng: Rng, prng: Rng): { outcomes: string[]; rankUp: number | null; texts: string[] } | null {
+  if (chooseJob(data, p, jobId, rng)) return null;
+  beginShift(data, p);
+  const out: string[] = [];
+  const texts: string[] = [];
+  const job = jobById(data, jobId)!;
+  const jc = job.content[data.lang]!;
+  const ctx = ruleCtx(data, jc);
+  for (let guard = 0; guard < 20; guard++) {
+    const t = currentTask(p);
+    if (!t) break;
+    texts.push(...t.texts);
+    const a = prng() < accuracy ? solveTask(t.spec, ctx) : fumbleTask(t.spec, ctx, prng);
+    const r = submitTask(data, p, a, rng)!;
+    out.push(r.evaluation.outcome);
+    if (r.result.reaction) texts.push(r.result.reaction);
+    nextTask(data, p);
+  }
+  const rankUp = currentShift(p)?.rankUp ?? null;
+  leaveShift(p);
+  return { outcomes: out, rankUp, texts };
 }

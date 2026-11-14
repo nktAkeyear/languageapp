@@ -1,0 +1,128 @@
+# ---- 1 additions: discourse
+1|990|discourse|thereafter|その後・それ以降|He left in 1990 and never returned thereafter.|彼は1990年に去り、その後二度と戻りませんでした。|sequencing|society
+1|-|discourse|hitherto|これまで・今まで|Hitherto, the island had no doctor.|これまで、その島には医者がいませんでした。|narration|society
+1|990|discourse|by extension|その延長として|The rule applies to staff and, by extension, to their families.|その規則は職員に、さらにその延長として家族にも適用されます。|clarification|law
+1|990|discourse|per se|それ自体は|The price per se is not the problem.|価格それ自体は問題ではありません。|clarification|abstract
+1|990|discourse|vis-à-vis|…に関して・…と比べて|Our prices vis-à-vis those of our rivals are low.|競合他社と比べて、当社の価格は低いです。|comparison|sales
+1|-|discourse|de facto|事実上の|He is the de facto leader of the village.|彼は村の事実上のリーダーです。|description|society
+1|990|discourse|ad hoc|その場限りの|We set up an ad hoc committee.|臨時の委員会を設けました。|description|meetings
+1|-|discourse|inter alia|とりわけ|The plan covers, inter alia, new roads and schools.|計画には、とりわけ新しい道路と学校が含まれます。|exemplifying|law
+1|990|discourse|bona fide|本物の・誠実な|Only bona fide guests may enter.|正規の宿泊客のみ入場できます。|clarification|hotel
+1|990|discourse|pro rata|按分で|Fees are charged pro rata.|料金は日割り(比例)で請求されます。|clarification|finance
+1|990|discourse|per capita|1人当たり|The per capita income is rising.|1人当たりの所得は上がっています。|reporting|finance
+1|-|discourse|the status quo|現状|Many people want to keep the status quo.|多くの人が現状維持を望んでいます。|description|society
+1|-|discourse|prima facie|一見したところ|There is prima facie evidence of fraud.|一見して不正を示す証拠があります。|reporting|law
+1|990|discourse|in the final analysis|結局のところ|In the final analysis, price decides.|結局のところ、価格が決め手になります。|summarizing|sales
+1|860|discourse|to a degree|ある程度|To a degree, I agree with you.|ある程度は同意します。|hedging|meetings
+1|-|discourse|as it were|いわば|He is, as it were, the heart of the town.|彼はいわば町の心臓です。|hedging|society
+1|-|discourse|in point of fact|実際のところ|In point of fact, we have no vacancies.|実際のところ、空きはありません。|clarification|hotel
+1|990|discourse|granted that ...|…と仮定しても|Granted that it's cheap, is it any good?|安いとしても、品質はいいのですか。|concession|shopping
+1|-|discourse|mind you|もっとも・ただし|Mind you, it was a long walk.|もっとも、長い道のりでしたが。|concession|travel
+1|-|discourse|to boot|おまけに|He is smart and kind to boot.|彼は賢く、おまけに親切です。|addition|society
+1|990|discourse|as such|それ自体として・その資格で|He is the owner and, as such, makes the rules.|彼はオーナーであり、その立場で規則を決めます。|clarification|office
+1|990|discourse|in its own right|それ自体で・独自に|The café is a landmark in its own right.|そのカフェはそれ自体が名所です。|emphasis|food
+1|990|discourse|by way of ...|…として・…経由で|He added a note by way of apology.|彼はお詫びとして一言添えました。|clarification|post
+1|-|discourse|in a similar vein|同様に|In a similar vein, the bakery sells local jam.|同様に、そのパン屋は地元のジャムも売っています。|addition|food
+1|990|discourse|on a related note|関連して|On a related note, parking is limited.|関連して、駐車場は限られています。|addition|meetings
+1|990|discourse|above and beyond|それ以上に・期待を超えて|She went above and beyond for her customers.|彼女はお客様のため期待以上のことをしました。|praise|sales
+1|-|discourse|the long and short of it|要するに|The long and short of it is we need more money.|要するに、もっとお金が必要です。|summarizing|finance
+1|990|discourse|all things being equal|他の条件が同じなら|All things being equal, I'd choose the cheaper one.|他の条件が同じなら、安いほうを選びます。|condition|shopping
+1|990|discourse|failing that|それがだめなら|Call me at nine. Failing that, send an email.|9時に電話をください。それがだめならメールを。|suggestion|office
+1|860|discourse|having said that|とはいえ|Having said that, I still like the plan.|とはいえ、私はまだその計画が好きです。|concession|meetings
+1|-|discourse|for what it's worth|参考までに|For what it's worth, I think it's a good price.|参考までに、いい価格だと思います。|hedging|shopping
+1|-|discourse|as luck would have it|運よく(悪く)|As luck would have it, the shop was closed.|運悪く、店は閉まっていました。|narration|shopping
+1|990|discourse|in all fairness|公平を期して言えば|In all fairness, he did try his best.|公平を期して言えば、彼は全力を尽くしました。|opinion|society
+# ---- 1 additions: formulas
+1|-|formula|Your guess is as good as mine.|私にもわかりません|When will it open? — Your guess is as good as mine.|いつ開くの?—私にもわかりません。|hedging|society
+1|-|formula|Don't hold your breath.|あまり期待しないで|He said he'd pay today. Don't hold your breath.|今日払うと言っていたけど、期待しないほうがいいよ。|warning|money
+1|-|formula|You took the words right out of my mouth.|まさに私が言おうとしたことです|You took the words right out of my mouth.|私が言おうとしたことをそのまま言ってくれましたね。|agreement|society
+1|990|formula|I'll take that under advisement.|ご意見は参考にして検討します|Thank you. I'll take that under advisement.|ありがとうございます。ご意見は参考に検討します。|hedging|meetings
+1|990|formula|With the greatest of respect, ...|最大限の敬意を払ったうえで申し上げますが|With the greatest of respect, I disagree.|最大限の敬意を払って申し上げますが、賛成できません。|disagreement|meetings
+1|990|formula|Would you be so kind as to ...?|恐れ入りますが…していただけますか|Would you be so kind as to close the door?|恐れ入りますが、ドアを閉めていただけますか。|request|hotel
+1|990|formula|I'd be most grateful if ...|…していただけると大変ありがたいです|I'd be most grateful if you could reply soon.|お早めにご返信いただけると大変ありがたいです。|request|office
+1|990|formula|I trust this finds you well.|お元気でお過ごしのことと存じます|Dear Mr. Kim, I trust this finds you well.|キム様、お元気でお過ごしのことと存じます。|greeting|office
+1|860|formula|I stand by what I said.|私の発言は変わりません|I stand by what I said yesterday.|昨日申し上げたことに変わりはありません。|emphasis|meetings
+1|-|formula|Pull yourself together.|しっかりして|Pull yourself together. We can fix this.|しっかりして。何とかなるよ。|suggestion|emotion
+1|-|formula|Spare me the details.|細かいことはいいから|Spare me the details. Just tell me the result.|細かいことはいいから、結果だけ教えて。|request|society
+1|-|formula|Mind your own business.|余計なお世話です|Mind your own business!|余計なお世話です。|refusal|society
+1|-|formula|I wouldn't put it past him.|彼ならやりかねない|He took the money? I wouldn't put it past him.|彼がお金を取ったって?彼ならやりかねないね。|opinion|society
+1|990|formula|It's not my place to say.|私が言うことではありません|It's not my place to say, but I think he's wrong.|私が言うことではありませんが、彼は間違っていると思います。|hedging|hr
+1|-|formula|I'm at a loss for words.|言葉もありません|I'm at a loss for words. Thank you so much.|言葉もありません。本当にありがとうございます。|thanks|emotion
+1|-|formula|Far from it.|とんでもない・まったく違う|Are you angry? — Far from it.|怒ってる?—とんでもない。|disagreement|emotion
+1|-|formula|Heaven forbid!|とんでもない・そんなことがありませんように|Heaven forbid that the dam should break.|ダムが決壊するなんてとんでもないことです。|emotion|nature
+1|-|formula|Over my dead body!|絶対に認めない|Sell the farm? Over my dead body!|農場を売る?絶対に認めない。|refusal|emotion
+1|-|formula|Cheers to that.|それに乾杯・まったくだ|To a good harvest! — Cheers to that.|豊作に乾杯!—まったくそのとおり。|agreement|food
+1|-|formula|I rest my case.|以上で私の主張を終わります|The facts are clear. I rest my case.|事実は明らかです。以上です。|summarizing|law
+# ---- 1 additions: business / legal / finance
+1|990|business|arbitration|仲裁|The dispute went to arbitration.|その紛争は仲裁に持ち込まれました。|reporting|law
+1|990|business|an arbitration clause|仲裁条項|The contract includes an arbitration clause.|契約には仲裁条項が含まれています。|description|law
+1|990|business|indemnify|補償する|The seller will indemnify the buyer against loss.|売り主は買い主の損失を補償します。|description|law
+1|990|business|a liability waiver|免責同意書|Please sign the liability waiver.|免責同意書に署名してください。|instruction|law
+1|990|business|a statutory requirement|法定要件|Wearing a seat belt is a statutory requirement.|シートベルトの着用は法定要件です。|description|law
+1|990|business|a regulatory body|規制当局|A regulatory body inspects the factory.|規制当局が工場を検査します。|description|law
+1|990|business|a confidentiality agreement|守秘義務契約|All staff sign a confidentiality agreement.|スタッフ全員が守秘義務契約に署名します。|description|law
+1|990|business|an exclusivity clause|独占条項|The contract has an exclusivity clause.|契約には独占条項があります。|description|law
+1|990|business|a termination clause|解約条項|Please read the termination clause carefully.|解約条項をよくお読みください。|instruction|law
+1|990|business|a penalty clause|違約条項|A penalty clause applies to late delivery.|納期遅れには違約条項が適用されます。|description|law
+1|990|business|breach of warranty|保証違反|The buyer sued for breach of warranty.|買い主は保証違反で訴えました。|reporting|law
+1|990|business|intellectual property|知的財産|The firm protects its intellectual property.|その会社は知的財産を守っています。|description|law
+1|990|business|a patent application|特許出願|She filed a patent application for her tool.|彼女は自分の道具の特許を出願しました。|reporting|law
+1|990|business|trademark infringement|商標権の侵害|The shop was sued for trademark infringement.|その店は商標権侵害で訴えられました。|reporting|law
+1|990|business|a licensing agreement|ライセンス契約|They signed a licensing agreement.|彼らはライセンス契約を結びました。|reporting|law
+1|990|business|royalties|著作権使用料・ロイヤルティ|The author receives royalties on every book.|著者は本が売れるたびにロイヤルティを受け取ります。|description|media
+1|990|business|a joint venture|合弁事業|The two companies formed a joint venture.|2社は合弁事業を立ち上げました。|reporting|finance
+1|990|business|dividend payout|配当金の支払い|The dividend payout is due in June.|配当金の支払いは6月です。|reporting|finance
+1|990|business|retained earnings|内部留保|The firm used retained earnings to expand.|会社は内部留保を使って拡大しました。|description|finance
+1|990|business|accounts payable|買掛金|The accountant checks accounts payable weekly.|経理担当は毎週、買掛金を確認します。|description|finance
+1|990|business|accounts receivable|売掛金|Accounts receivable rose last quarter.|前四半期は売掛金が増えました。|reporting|finance
+1|990|business|depreciation|減価償却|Depreciation is included in the costs.|減価償却は費用に含まれます。|description|finance
+1|990|business|a write-down|評価損|The company took a write-down on its stock.|会社は在庫の評価損を計上しました。|reporting|finance
+1|860|business|a fiscal quarter|会計四半期|The company's first fiscal quarter ends in June.|その会社の第1四半期は6月に終わります。|reporting|finance
+1|990|business|an audit trail|監査証跡|Keep an audit trail of every payment.|すべての支払いの監査証跡を残してください。|instruction|finance
+1|990|business|an external audit|外部監査|An external audit is held every year.|外部監査は毎年実施されます。|description|finance
+1|990|business|capital expenditure|設備投資(資本的支出)|Capital expenditure fell this year.|今年は設備投資が減りました。|reporting|finance
+1|990|business|operating expenses|営業費用|We must reduce operating expenses.|営業費用を減らさなければなりません。|obligation|finance
+1|990|business|a cost-benefit analysis|費用対効果分析|We did a cost-benefit analysis of the new boat.|新しい船について費用対効果分析を行いました。|reporting|finance
+1|990|business|a break-even point|損益分岐点|The shop reached its break-even point in May.|その店は5月に損益分岐点に達しました。|reporting|finance
+1|990|business|economies of scale|規模の経済|Large farms benefit from economies of scale.|大きな農場は規模の経済の恩恵を受けます。|description|farming
+1|990|business|a competitive advantage|競争上の優位性|Fresh fish gives us a competitive advantage.|新鮮な魚は私たちの競争上の強みです。|description|sales
+1|990|business|a value proposition|提供価値|Our value proposition is simple: fresh and local.|私たちの提供価値は単純で、新鮮で地元産ということです。|description|sales
+1|990|business|market penetration|市場浸透|Market penetration is still low.|市場浸透率はまだ低いです。|reporting|sales
+1|990|business|a business model|ビジネスモデル|The shop has a unique business model.|その店は独自のビジネスモデルを持っています。|description|sales
+1|990|business|a turnaround strategy|立て直し戦略|The new manager has a turnaround strategy.|新しい店長には立て直し戦略があります。|description|sales
+1|860|business|restructuring|再編・リストラ|The company announced a restructuring.|会社は再編を発表しました。|announcement|hr
+1|990|business|a redundancy package|(整理解雇の)退職手当|Staff received a redundancy package.|従業員は退職手当を受け取りました。|reporting|hr
+1|990|business|collective bargaining|団体交渉|Collective bargaining begins next week.|団体交渉は来週始まります。|reporting|hr
+1|990|business|a grievance procedure|苦情処理手続き|Use the grievance procedure to report problems.|問題は苦情処理手続きで報告してください。|instruction|hr
+1|990|business|an equal opportunity employer|機会均等雇用主|We are an equal opportunity employer.|当社は機会均等雇用主です。|description|hr
+1|990|business|a power of attorney|委任状|He holds a power of attorney for his mother.|彼は母親の委任状を持っています。|description|law
+1|990|business|a notary public|公証人|A notary public checked the document.|公証人が書類を確認しました。|description|law
+1|990|business|a title deed|権利証書|Keep the title deed in a safe place.|権利証書は安全な場所に保管してください。|instruction|housing
+1|990|business|escrow|エスクロー(第三者預託)|The money is held in escrow.|お金はエスクローで預けられています。|description|finance
+1|990|business|a lien|先取特権・担保権|The bank placed a lien on the property.|銀行はその物件に担保権を設定しました。|reporting|finance
+1|990|business|a covenant|契約条項・約定|The lease has a covenant about pets.|賃貸契約にはペットに関する約定があります。|description|housing
+1|990|business|a bankruptcy filing|破産申請|The firm made a bankruptcy filing in March.|その会社は3月に破産を申請しました。|reporting|finance
+1|990|business|insolvency|支払い不能|The shop faces insolvency.|その店は支払い不能の危機にあります。|description|finance
+1|990|business|liquidation|清算|The company went into liquidation.|会社は清算に入りました。|reporting|finance
+1|990|business|a creditor|債権者|The creditor demanded payment.|債権者は支払いを求めました。|reporting|finance
+1|990|business|a debtor|債務者|The debtor promised to pay in May.|債務者は5月に払うと約束しました。|reporting|finance
+1|990|business|a bailout|救済(措置)|The airline asked for a bailout.|その航空会社は救済を求めました。|reporting|finance
+1|860|business|a subsidy|補助金|Farmers receive a subsidy for rice.|農家は米に対して補助金を受けています。|description|farming
+1|990|business|a levy|課徴金|A levy is charged on imported goods.|輸入品には課徴金がかかります。|description|finance
+1|990|business|per annum|1年につき|The interest is five percent per annum.|利息は年5%です。|reporting|finance
+1|990|business|in arrears|滞納して|The rent is two months in arrears.|家賃が2か月滞納になっています。|reporting|housing
+1|990|business|a pro forma invoice|見積請求書|We will send a pro forma invoice first.|まず見積請求書をお送りします。|offer|logistics
+1|990|business|a letter of credit|信用状|Payment is made by a letter of credit.|支払いは信用状で行われます。|description|finance
+1|990|business|a promissory note|約束手形|He signed a promissory note.|彼は約束手形に署名しました。|reporting|finance
+1|990|business|collateral|担保|The loan requires collateral.|そのローンには担保が必要です。|description|finance
+1|990|business|an underwriter|引受人|The underwriter checked the risk.|引受人はリスクを確認しました。|description|finance
+1|990|business|an insurance premium|保険料|The insurance premium goes up every year.|保険料は毎年上がります。|description|finance
+1|990|business|a deductible|(保険の)自己負担額|The deductible is ten thousand yen.|自己負担額は1万円です。|description|finance
+1|860|business|a claim form|請求用紙|Please fill out the claim form.|請求用紙にご記入ください。|instruction|finance
+1|990|business|an endorsement|裏書・推薦|The check needs your endorsement.|その小切手には裏書が必要です。|instruction|finance
+1|860|business|a fiduciary|受託者|The trustee acts as a fiduciary.|受託者は信託義務を負う者として行動します。|description|law
+1|990|business|a binding precedent|拘束力のある判例|The ruling became a binding precedent.|その判決は拘束力のある判例になりました。|reporting|law
+1|990|business|a cease-and-desist order|差し止め命令|The court issued a cease-and-desist order.|裁判所は差し止め命令を出しました。|reporting|law
+1|990|business|a statute of limitations|時効|The statute of limitations has passed.|時効が過ぎています。|reporting|law
+1|990|business|a compliance audit|法令遵守監査|A compliance audit is held every spring.|法令遵守監査は毎年春に行われます。|description|law
+1|990|business|a shareholders' meeting|株主総会|The shareholders' meeting is held in June.|株主総会は6月に開かれます。|description|finance

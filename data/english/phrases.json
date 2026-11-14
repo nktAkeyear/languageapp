@@ -33916,5 +33916,7445 @@
    "law",
    "finance"
   ]
+ },
+ {
+  "id": "ph-1-0111",
+  "text": "back down",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "引き下がる",
+  "example": "The company backed down after the protest.",
+  "exampleJa": "会社は抗議を受けて引き下がりました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0112",
+  "text": "bail out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "救済する・脱出する",
+  "example": "The government bailed out the failing bank.",
+  "exampleJa": "政府は経営難の銀行を救済しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0113",
+  "text": "bog down",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "行き詰まる",
+  "example": "The talks got bogged down in details.",
+  "exampleJa": "交渉は細部で行き詰まりました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0114",
+  "text": "boil down to",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "要するに…になる",
+  "example": "It all boils down to money.",
+  "exampleJa": "結局はお金の問題です。",
+  "functions": [
+   "summarizing"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0115",
+  "text": "bottle up",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "(感情を)抑え込む",
+  "example": "Don't bottle up your feelings.",
+  "exampleJa": "気持ちをため込まないで。",
+  "functions": [
+   "suggestion"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0116",
+  "text": "bounce back",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "立ち直る・回復する",
+  "example": "The local economy bounced back after the flood.",
+  "exampleJa": "地域経済は洪水のあと持ち直しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0117",
+  "text": "bow out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "身を引く",
+  "example": "The old captain bowed out after forty years at sea.",
+  "exampleJa": "年老いた船長は海で40年過ごして身を引きました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0118",
+  "text": "branch out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "事業を広げる",
+  "example": "The bakery branched out into coffee.",
+  "exampleJa": "そのパン屋はコーヒーにも事業を広げました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "food"
+  ]
+ },
+ {
+  "id": "ph-1-0119",
+  "text": "brush aside",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "一蹴する",
+  "example": "The manager brushed aside our concerns.",
+  "exampleJa": "部長は私たちの懸念を一蹴しました。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0120",
+  "text": "bump into",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "偶然出会う",
+  "example": "I bumped into my old teacher at the market.",
+  "exampleJa": "市場で昔の先生にばったり会いました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0121",
+  "text": "buy out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "買収する・買い取る",
+  "example": "A large company bought out the family shop.",
+  "exampleJa": "大手企業がその家族経営の店を買収しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0122",
+  "text": "carve out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "切り開く・獲得する",
+  "example": "She carved out a place for herself in the market.",
+  "exampleJa": "彼女は市場で自分の居場所を切り開きました。",
+  "functions": [
+   "praise"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0123",
+  "text": "cast aside",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "捨て去る",
+  "example": "They cast aside the old rules.",
+  "exampleJa": "彼らは古い規則を捨て去りました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0124",
+  "text": "chalk up",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "(成績・得点を)記録する",
+  "example": "The team chalked up another win.",
+  "exampleJa": "チームはまた1勝を挙げました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0125",
+  "text": "churn out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "大量に作り出す",
+  "example": "The factory churns out thousands of bottles a day.",
+  "exampleJa": "工場は1日に何千本もの瓶を量産します。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "crafts"
+  ]
+ },
+ {
+  "id": "ph-1-0126",
+  "text": "clam up",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "口をつぐむ",
+  "example": "He clammed up when the police arrived.",
+  "exampleJa": "警察が来ると彼は黙り込みました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0127",
+  "text": "cling to",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "しがみつく",
+  "example": "Some villagers cling to old traditions.",
+  "exampleJa": "古い伝統にしがみつく村人もいます。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0128",
+  "text": "come to terms with",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "(事実などを)受け入れる",
+  "example": "He came to terms with the loss of his boat.",
+  "exampleJa": "彼は船を失ったことを受け入れました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0129",
+  "text": "crack down on",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "厳しく取り締まる",
+  "example": "Police are cracking down on illegal fishing.",
+  "exampleJa": "警察は違法漁業を厳しく取り締まっています。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0130",
+  "text": "delve into",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "掘り下げる",
+  "example": "The report delves into the causes of the crisis.",
+  "exampleJa": "その報告書は危機の原因を掘り下げています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "science"
+  ]
+ },
+ {
+  "id": "ph-1-0131",
+  "text": "dole out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "(少しずつ)配る",
+  "example": "Volunteers doled out hot soup to the crowd.",
+  "exampleJa": "ボランティアは人々に温かいスープを配りました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "food"
+  ]
+ },
+ {
+  "id": "ph-1-0132",
+  "text": "drag on",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "だらだら続く",
+  "example": "The meeting dragged on for hours.",
+  "exampleJa": "会議は何時間もだらだら続きました。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0133",
+  "text": "drum up",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "(支持・客などを)集める",
+  "example": "We need to drum up more business.",
+  "exampleJa": "もっと仕事を取ってくる必要があります。",
+  "functions": [
+   "obligation"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0134",
+  "text": "eke out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "(乏しい中で)やりくりする",
+  "example": "He eked out a living by selling vegetables.",
+  "exampleJa": "彼は野菜を売ってかつかつ暮らしていました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "farming"
+  ]
+ },
+ {
+  "id": "ph-1-0135",
+  "text": "factor in",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "考慮に入れる",
+  "example": "Be sure to factor in the cost of shipping.",
+  "exampleJa": "送料も必ず考慮に入れてください。",
+  "functions": [
+   "instruction"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0136",
+  "text": "fall back on",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "(いざという時に)頼る",
+  "example": "We can fall back on our savings.",
+  "exampleJa": "いざとなれば貯金に頼れます。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "money"
+  ]
+ },
+ {
+  "id": "ph-1-0137",
+  "text": "fizzle out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "尻すぼみに終わる",
+  "example": "The campaign fizzled out after a month.",
+  "exampleJa": "そのキャンペーンは1か月で尻すぼみに終わりました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0138",
+  "text": "flare up",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "(病気・争いが)再燃する",
+  "example": "My back pain flares up in cold weather.",
+  "exampleJa": "寒いと腰痛が再発します。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "health"
+  ]
+ },
+ {
+  "id": "ph-1-0139",
+  "text": "fork out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "(しぶしぶ)大金を払う",
+  "example": "I had to fork out a lot for the repairs.",
+  "exampleJa": "修理に大金を払うはめになりました。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "money"
+  ]
+ },
+ {
+  "id": "ph-1-0140",
+  "text": "fritter away",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "浪費する",
+  "example": "He frittered away his savings on gadgets.",
+  "exampleJa": "彼は貯金を小物に浪費しました。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "money"
+  ]
+ },
+ {
+  "id": "ph-1-0141",
+  "text": "get around to",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "(やっと)取りかかる",
+  "example": "I haven't got around to answering the letter yet.",
+  "exampleJa": "その手紙にはまだ返事に取りかかれていません。",
+  "functions": [
+   "apology"
+  ],
+  "domains": [
+   "post"
+  ]
+ },
+ {
+  "id": "ph-1-0142",
+  "text": "get to the bottom of",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "真相を突き止める",
+  "example": "We must get to the bottom of this problem.",
+  "exampleJa": "この問題の真相を突き止めなければなりません。",
+  "functions": [
+   "obligation"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0143",
+  "text": "grapple with",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "取り組む・格闘する",
+  "example": "The village is grappling with a shortage of water.",
+  "exampleJa": "村は水不足と格闘しています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0144",
+  "text": "hammer out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "(協議して)まとめ上げる",
+  "example": "They hammered out an agreement after long talks.",
+  "exampleJa": "長い協議の末に彼らは合意をまとめました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0145",
+  "text": "harp on",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "しつこく繰り返す",
+  "example": "He keeps harping on about the price.",
+  "exampleJa": "彼は値段のことをしつこく言い続けます。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0146",
+  "text": "jack up",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "(価格を)つり上げる",
+  "example": "Some shops jacked up prices after the storm.",
+  "exampleJa": "嵐のあと、値段をつり上げた店もありました。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "shopping"
+  ]
+ },
+ {
+  "id": "ph-1-0147",
+  "text": "keep abreast of",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "(情報に)遅れずについていく",
+  "example": "We try to keep abreast of the latest news.",
+  "exampleJa": "最新のニュースに遅れないようにしています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "media"
+  ]
+ },
+ {
+  "id": "ph-1-0148",
+  "text": "lash out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "激しく非難する",
+  "example": "The mayor lashed out at the critics.",
+  "exampleJa": "市長は批判者に猛反発しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0149",
+  "text": "lay bare",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "暴露する",
+  "example": "The report laid bare the problems of the company.",
+  "exampleJa": "報告書は会社の問題を暴き出しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "media"
+  ]
+ },
+ {
+  "id": "ph-1-0150",
+  "text": "lean on",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "頼る",
+  "example": "He leaned on his brother during the hard times.",
+  "exampleJa": "苦しい時期、彼は兄を頼りにしました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "family"
+  ]
+ },
+ {
+  "id": "ph-1-0151",
+  "text": "mark down",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "値下げする",
+  "example": "All winter coats are marked down by half.",
+  "exampleJa": "冬のコートはすべて半額に値下げされています。",
+  "functions": [
+   "announcement"
+  ],
+  "domains": [
+   "clothing"
+  ]
+ },
+ {
+  "id": "ph-1-0152",
+  "text": "opt out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "(参加を)やめる・辞退する",
+  "example": "You can opt out of the program at any time.",
+  "exampleJa": "プログラムはいつでも辞退できます。",
+  "functions": [
+   "permission"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0153",
+  "text": "pan out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "うまくいく",
+  "example": "The plan didn't pan out as we hoped.",
+  "exampleJa": "計画は期待したようにはいきませんでした。",
+  "functions": [
+   "regret"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0154",
+  "text": "pare down",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "削減する",
+  "example": "We pared down the menu to ten dishes.",
+  "exampleJa": "メニューを10品に絞りました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "food"
+  ]
+ },
+ {
+  "id": "ph-1-0155",
+  "text": "peter out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "次第になくなる",
+  "example": "The crowd petered out by midnight.",
+  "exampleJa": "人出は真夜中までに次第に減りました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0156",
+  "text": "pin down",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "特定する・確定する",
+  "example": "We can't pin down the cause of the leak.",
+  "exampleJa": "水漏れの原因を特定できません。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "housing"
+  ]
+ },
+ {
+  "id": "ph-1-0157",
+  "text": "play along",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "調子を合わせる",
+  "example": "I decided to play along with his joke.",
+  "exampleJa": "彼の冗談に調子を合わせることにしました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0158",
+  "text": "pounce on",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "飛びかかる・すぐ飛びつく",
+  "example": "Customers pounced on the cheap fish.",
+  "exampleJa": "客たちは安い魚に飛びつきました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "shopping"
+  ]
+ },
+ {
+  "id": "ph-1-0159",
+  "text": "prop up",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "支える・下支えする",
+  "example": "The government propped up the fishing industry.",
+  "exampleJa": "政府は漁業を下支えしました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0160",
+  "text": "ride out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "乗り切る",
+  "example": "The small boat rode out the storm.",
+  "exampleJa": "その小舟は嵐を乗り切りました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0161",
+  "text": "roll out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "(新製品・サービスを)展開する",
+  "example": "The company will roll out the new service in spring.",
+  "exampleJa": "会社は春に新しいサービスを展開します。",
+  "functions": [
+   "announcement"
+  ],
+  "domains": [
+   "technology"
+  ]
+ },
+ {
+  "id": "ph-1-0162",
+  "text": "scrape by",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "かろうじて暮らす",
+  "example": "They scraped by on a small pension.",
+  "exampleJa": "彼らはわずかな年金でかつかつ暮らしていました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "money"
+  ]
+ },
+ {
+  "id": "ph-1-0163",
+  "text": "shake up",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "大改革する",
+  "example": "The new owner shook up the whole staff.",
+  "exampleJa": "新オーナーはスタッフ全体を大幅に入れ替えました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0164",
+  "text": "shore up",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "補強する",
+  "example": "They shored up the old wall with wood.",
+  "exampleJa": "彼らは古い壁を木材で補強しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "housing"
+  ]
+ },
+ {
+  "id": "ph-1-0165",
+  "text": "shrug off",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "軽くあしらう・気にしない",
+  "example": "She shrugged off the criticism.",
+  "exampleJa": "彼女は批判を意に介しませんでした。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0166",
+  "text": "sift through",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "ふるいにかける・丹念に調べる",
+  "example": "I sifted through the old documents for the receipt.",
+  "exampleJa": "レシートを探して古い書類を丹念に調べました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0167",
+  "text": "single out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "選び出す",
+  "example": "The mayor singled out the volunteers for praise.",
+  "exampleJa": "市長はボランティアを名指しでほめました。",
+  "functions": [
+   "praise"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0168",
+  "text": "skim through",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "ざっと読む",
+  "example": "I only had time to skim through the report.",
+  "exampleJa": "報告書にざっと目を通す時間しかありませんでした。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0169",
+  "text": "slack off",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "手を抜く",
+  "example": "Don't slack off just because the boss is away.",
+  "exampleJa": "上司がいないからといって手を抜かないで。",
+  "functions": [
+   "warning"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0170",
+  "text": "snap up",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "飛びつくように買う",
+  "example": "Shoppers snapped up the limited cakes.",
+  "exampleJa": "買い物客は限定ケーキにすぐ飛びつきました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "shopping"
+  ]
+ },
+ {
+  "id": "ph-1-0171",
+  "text": "spell out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "詳しく説明する",
+  "example": "Please spell out the terms clearly.",
+  "exampleJa": "条件を明確に説明してください。",
+  "functions": [
+   "request"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0172",
+  "text": "spring up",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "急に現れる",
+  "example": "New cafés have sprung up along the street.",
+  "exampleJa": "通り沿いに新しいカフェが次々に現れました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0173",
+  "text": "stamp out",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "根絶する",
+  "example": "The town is trying to stamp out illegal dumping.",
+  "exampleJa": "町は不法投棄を根絶しようとしています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0174",
+  "text": "stand in for",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "代理を務める",
+  "example": "Ms. Abe will stand in for the manager today.",
+  "exampleJa": "今日は阿部さんが店長の代理を務めます。",
+  "functions": [
+   "announcement"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0175",
+  "text": "steer clear of",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "避ける",
+  "example": "Steer clear of the rocks near the shore.",
+  "exampleJa": "岸近くの岩には近づかないでください。",
+  "functions": [
+   "warning"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0176",
+  "text": "stem from",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…に由来する",
+  "example": "His fear of water stems from a childhood accident.",
+  "exampleJa": "彼の水への恐怖は子どもの頃の事故に由来します。",
+  "functions": [
+   "cause/effect"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0177",
+  "text": "step up",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "強化する・進み出る",
+  "example": "The police stepped up patrols at night.",
+  "exampleJa": "警察は夜間の巡回を強化しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0178",
+  "text": "take stock of",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "現状を見極める",
+  "example": "Let's take stock of what we have.",
+  "exampleJa": "手持ちの状況を整理してみましょう。",
+  "functions": [
+   "suggestion"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0179",
+  "text": "tap into",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "活用する",
+  "example": "The shop taps into the local tourist trade.",
+  "exampleJa": "その店は地元の観光客需要を取り込んでいます。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0180",
+  "text": "team up",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "協力する",
+  "example": "The two farms teamed up to sell their produce.",
+  "exampleJa": "その2つの農場は協力して農産物を販売しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "farming"
+  ]
+ },
+ {
+  "id": "ph-1-0181",
+  "text": "track down",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "突き止める",
+  "example": "I finally tracked down the missing parcel.",
+  "exampleJa": "行方不明の荷物をやっと突き止めました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "logistics"
+  ]
+ },
+ {
+  "id": "ph-1-0182",
+  "text": "usher in",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "(新時代などを)もたらす",
+  "example": "The railway ushered in a new era for the town.",
+  "exampleJa": "鉄道は町に新しい時代をもたらしました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "transport"
+  ]
+ },
+ {
+  "id": "ph-1-0183",
+  "text": "wade through",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "苦労して読み進める",
+  "example": "I had to wade through piles of paperwork.",
+  "exampleJa": "山のような書類を苦労して読み進めなければなりませんでした。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0184",
+  "text": "whittle down",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "徐々に減らす",
+  "example": "They whittled the list down to five names.",
+  "exampleJa": "彼らはリストを5人まで絞り込みました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0185",
+  "text": "win over",
+  "type": "phrasal_verb",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "味方につける",
+  "example": "She won over the doubtful customers with free samples.",
+  "exampleJa": "彼女は無料サンプルで疑い深い客を味方につけました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0186",
+  "text": "a can of worms",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "やっかいな問題",
+  "example": "Opening that issue would open a can of worms.",
+  "exampleJa": "その件を持ち出すとやっかいな問題になります。",
+  "functions": [
+   "warning"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0187",
+  "text": "a wild goose chase",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "無駄な追跡",
+  "example": "The search turned out to be a wild goose chase.",
+  "exampleJa": "その捜索はむだ骨に終わりました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0188",
+  "text": "at loggerheads",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "激しく対立して",
+  "example": "The two shop owners are at loggerheads over the sign.",
+  "exampleJa": "2人の店主は看板をめぐって激しく対立しています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0189",
+  "text": "with one's back to the wall",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "追い詰められて",
+  "example": "The small shop is with its back to the wall.",
+  "exampleJa": "その小さな店は追い詰められています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0190",
+  "text": "barking up the wrong tree",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "見当違いをする",
+  "example": "If you blame him, you're barking up the wrong tree.",
+  "exampleJa": "彼のせいにするなら見当違いです。",
+  "functions": [
+   "warning"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0191",
+  "text": "bear fruit",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "実を結ぶ",
+  "example": "Our hard work finally bore fruit.",
+  "exampleJa": "私たちの努力はついに実を結びました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "farming"
+  ]
+ },
+ {
+  "id": "ph-1-0192",
+  "text": "beat a dead horse",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "終わったことを蒸し返す",
+  "example": "Stop beating a dead horse. It's decided.",
+  "exampleJa": "もう済んだ話を蒸し返さないで。決まったことです。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0193",
+  "text": "bend over backwards",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "最大限の努力をする",
+  "example": "The hotel staff bent over backwards to help us.",
+  "exampleJa": "ホテルのスタッフは私たちのために最大限努力してくれました。",
+  "functions": [
+   "praise"
+  ],
+  "domains": [
+   "hotel"
+  ]
+ },
+ {
+  "id": "ph-1-0194",
+  "text": "between a rock and a hard place",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "板挟みで",
+  "example": "I'm between a rock and a hard place.",
+  "exampleJa": "私は板挟みの状態です。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0195",
+  "text": "bite the hand that feeds you",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "恩を仇で返す",
+  "example": "Criticizing your boss is biting the hand that feeds you.",
+  "exampleJa": "上司を批判するのは恩を仇で返すようなものです。",
+  "functions": [
+   "warning"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0196",
+  "text": "blow the whistle",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "内部告発する",
+  "example": "An employee blew the whistle on the illegal dumping.",
+  "exampleJa": "従業員が不法投棄を内部告発しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0197",
+  "text": "a bolt from the blue",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "青天の霹靂",
+  "example": "The news was a bolt from the blue.",
+  "exampleJa": "その知らせは青天の霹靂でした。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0198",
+  "text": "break new ground",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "新境地を開く",
+  "example": "The chef broke new ground with his fish dishes.",
+  "exampleJa": "そのシェフは魚料理で新境地を開きました。",
+  "functions": [
+   "praise"
+  ],
+  "domains": [
+   "cooking"
+  ]
+ },
+ {
+  "id": "ph-1-0199",
+  "text": "bring home the bacon",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "生活の糧を稼ぐ",
+  "example": "She brings home the bacon for the family.",
+  "exampleJa": "彼女が家族の稼ぎ手です。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "family"
+  ]
+ },
+ {
+  "id": "ph-1-0200",
+  "text": "burn one's bridges",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "後戻りできなくする",
+  "example": "Don't burn your bridges when you leave the job.",
+  "exampleJa": "仕事を辞めるとき、後戻りできなくしてはいけません。",
+  "functions": [
+   "suggestion"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0201",
+  "text": "by the skin of one's teeth",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "かろうじて",
+  "example": "We caught the last ferry by the skin of our teeth.",
+  "exampleJa": "私たちは間一髪で最終フェリーに間に合いました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0202",
+  "text": "call a spade a spade",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "はっきりものを言う",
+  "example": "I like to call a spade a spade.",
+  "exampleJa": "私は物事をはっきり言うのが好きです。",
+  "functions": [
+   "opinion"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0203",
+  "text": "caught red-handed",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "現行犯で",
+  "example": "The thief was caught red-handed.",
+  "exampleJa": "泥棒は現行犯で捕まりました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0204",
+  "text": "clear the air",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "わだかまりを解く",
+  "example": "Let's clear the air before we start.",
+  "exampleJa": "始める前にわだかまりを解きましょう。",
+  "functions": [
+   "suggestion"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0205",
+  "text": "climb the corporate ladder",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "出世の階段を上る",
+  "example": "He worked hard to climb the corporate ladder.",
+  "exampleJa": "彼は出世の階段を上るため懸命に働きました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0206",
+  "text": "close ranks",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "結束する",
+  "example": "The villagers closed ranks against the plan.",
+  "exampleJa": "村人たちは計画に反対して結束しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0207",
+  "text": "come clean",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "白状する",
+  "example": "He finally came clean about the mistake.",
+  "exampleJa": "彼はついにそのミスを白状しました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0208",
+  "text": "come full circle",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "一巡して元に戻る",
+  "example": "The shop has come full circle and sells fish again.",
+  "exampleJa": "その店は一巡してまた魚を売るようになりました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0209",
+  "text": "come hell or high water",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "何があっても",
+  "example": "I'll finish it, come hell or high water.",
+  "exampleJa": "何があってもやり遂げます。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0210",
+  "text": "cut to the chase",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "単刀直入に言う",
+  "example": "Let's cut to the chase. How much is it?",
+  "exampleJa": "単刀直入にいきましょう。いくらですか。",
+  "functions": [
+   "request"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0211",
+  "text": "dig one's heels in",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "頑として譲らない",
+  "example": "The owner dug his heels in over the price.",
+  "exampleJa": "店主は値段について頑として譲りませんでした。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0212",
+  "text": "dot the i's and cross the t's",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "細部まで念を入れる",
+  "example": "Lawyers must dot the i's and cross the t's.",
+  "exampleJa": "弁護士は細部まで念を入れなければなりません。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0213",
+  "text": "draw the line",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "一線を引く",
+  "example": "I draw the line at working on Sundays.",
+  "exampleJa": "日曜日に働くことは断固として拒否します。",
+  "functions": [
+   "refusal"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0214",
+  "text": "drive a hard bargain",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "手ごわく交渉する",
+  "example": "The farmer drove a hard bargain on the price.",
+  "exampleJa": "その農家は値段の交渉で手ごわかったです。",
+  "functions": [
+   "negotiation"
+  ],
+  "domains": [
+   "farming"
+  ]
+ },
+ {
+  "id": "ph-1-0215",
+  "text": "eat humble pie",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "屈辱的に謝る",
+  "example": "He had to eat humble pie and apologize.",
+  "exampleJa": "彼は恥を忍んで謝らなければなりませんでした。",
+  "functions": [
+   "apology"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0216",
+  "text": "every cloud has a silver lining",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "苦あれば楽あり",
+  "example": "Every cloud has a silver lining.",
+  "exampleJa": "どんな不幸にもよい面があります。",
+  "functions": [
+   "sympathy"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0217",
+  "text": "fall on deaf ears",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "聞き入れられない",
+  "example": "Our warnings fell on deaf ears.",
+  "exampleJa": "私たちの警告は聞き入れられませんでした。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0218",
+  "text": "fly in the face of",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…に真っ向から反する",
+  "example": "The decision flies in the face of common sense.",
+  "exampleJa": "その決定は常識に真っ向から反します。",
+  "functions": [
+   "opinion"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0219",
+  "text": "foot the bill",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "費用を負担する",
+  "example": "Who will foot the bill for the repairs?",
+  "exampleJa": "修理費はだれが負担しますか。",
+  "functions": [
+   "inquiry"
+  ],
+  "domains": [
+   "money"
+  ]
+ },
+ {
+  "id": "ph-1-0220",
+  "text": "get the short end of the stick",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "損な役回りになる",
+  "example": "I always get the short end of the stick.",
+  "exampleJa": "私はいつも損な役回りです。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0221",
+  "text": "give someone the benefit of the doubt",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "善意に解釈する",
+  "example": "Let's give him the benefit of the doubt.",
+  "exampleJa": "彼のことを善意に解釈しましょう。",
+  "functions": [
+   "suggestion"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0222",
+  "text": "go down in flames",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "無惨に失敗する",
+  "example": "The project went down in flames.",
+  "exampleJa": "そのプロジェクトは無惨に失敗しました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0223",
+  "text": "go haywire",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "おかしくなる",
+  "example": "The machine went haywire again.",
+  "exampleJa": "機械がまたおかしくなりました。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "technology"
+  ]
+ },
+ {
+  "id": "ph-1-0224",
+  "text": "go to great lengths",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "あらゆる手を尽くす",
+  "example": "They went to great lengths to save the old inn.",
+  "exampleJa": "彼らはその古い宿を救うためあらゆる手を尽くしました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "hotel"
+  ]
+ },
+ {
+  "id": "ph-1-0225",
+  "text": "grasp at straws",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "わらにもすがる",
+  "example": "He is grasping at straws to save his business.",
+  "exampleJa": "彼は事業を救おうとわらにもすがっています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0226",
+  "text": "hit the ground running",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "最初から全力で取り組む",
+  "example": "The new staff hit the ground running.",
+  "exampleJa": "新しいスタッフは初日から全力で働きました。",
+  "functions": [
+   "praise"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0227",
+  "text": "hold all the cards",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "切り札を握っている",
+  "example": "The buyer holds all the cards in this deal.",
+  "exampleJa": "この取引では買い手がすべての切り札を握っています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0228",
+  "text": "hold one's own",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "引けを取らない",
+  "example": "The small shop holds its own against the big stores.",
+  "exampleJa": "その小さな店は大型店に引けを取りません。",
+  "functions": [
+   "praise"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0229",
+  "text": "in the pipeline",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "準備中で",
+  "example": "We have several new products in the pipeline.",
+  "exampleJa": "新製品をいくつか準備中です。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0230",
+  "text": "in the limelight",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "脚光を浴びて",
+  "example": "The young chef is now in the limelight.",
+  "exampleJa": "その若いシェフは今、脚光を浴びています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "cooking"
+  ]
+ },
+ {
+  "id": "ph-1-0231",
+  "text": "jump on the bandwagon",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "流行に乗る",
+  "example": "Many shops jumped on the bandwagon and sold the drink.",
+  "exampleJa": "多くの店が流行に乗ってその飲み物を売りました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0232",
+  "text": "keep one's chin up",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "元気を出す",
+  "example": "Keep your chin up. Things will get better.",
+  "exampleJa": "元気を出して。きっとよくなります。",
+  "functions": [
+   "sympathy"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0233",
+  "text": "keep one's head above water",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "何とかやっていく",
+  "example": "The shop is barely keeping its head above water.",
+  "exampleJa": "その店はかろうじて持ちこたえています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0234",
+  "text": "kick the bucket",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "死ぬ(俗語)",
+  "example": "The old tractor finally kicked the bucket.",
+  "exampleJa": "古いトラクターがついにダメになりました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "farming"
+  ]
+ },
+ {
+  "id": "ph-1-0235",
+  "text": "leave no stone unturned",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "あらゆる手を尽くす",
+  "example": "We left no stone unturned in the search.",
+  "exampleJa": "私たちはあらゆる手を尽くして捜しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0236",
+  "text": "let sleeping dogs lie",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "寝た子を起こすな",
+  "example": "Just let sleeping dogs lie.",
+  "exampleJa": "寝た子を起こさないほうがいいです。",
+  "functions": [
+   "suggestion"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0237",
+  "text": "lose face",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "面目を失う",
+  "example": "He didn't want to lose face in front of his staff.",
+  "exampleJa": "彼は部下の前で面目を失いたくありませんでした。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0238",
+  "text": "make a killing",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "大もうけする",
+  "example": "They made a killing selling umbrellas in the rain.",
+  "exampleJa": "雨の日に傘を売って彼らは大もうけしました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0239",
+  "text": "make waves",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "波風を立てる",
+  "example": "He doesn't want to make waves at work.",
+  "exampleJa": "彼は職場で波風を立てたくありません。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0240",
+  "text": "move the goalposts",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "(後から)条件を変える",
+  "example": "They keep moving the goalposts.",
+  "exampleJa": "彼らは条件をころころ変えます。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0241",
+  "text": "nip in the bud",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "芽のうちに摘む",
+  "example": "We must nip the problem in the bud.",
+  "exampleJa": "その問題は早いうちに摘み取らなければなりません。",
+  "functions": [
+   "obligation"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0242",
+  "text": "no strings attached",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "何の条件もなく",
+  "example": "The gift came with no strings attached.",
+  "exampleJa": "その贈り物は何の条件もついていませんでした。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0243",
+  "text": "off the record",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "非公式に",
+  "example": "Off the record, the shop may close.",
+  "exampleJa": "ここだけの話ですが、その店は閉店するかもしれません。",
+  "functions": [
+   "hedging"
+  ],
+  "domains": [
+   "media"
+  ]
+ },
+ {
+  "id": "ph-1-0244",
+  "text": "on thin ice",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "危うい状況で",
+  "example": "He is on thin ice with the boss.",
+  "exampleJa": "彼は上司との関係が危うい状況です。",
+  "functions": [
+   "warning"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0245",
+  "text": "on the back burner",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "後回しで",
+  "example": "The new project is on the back burner for now.",
+  "exampleJa": "新しいプロジェクトは今は後回しになっています。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0246",
+  "text": "on the brink of",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…の寸前で",
+  "example": "The shop is on the brink of closing.",
+  "exampleJa": "その店は閉店の瀬戸際です。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0247",
+  "text": "out of the woods",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "危機を脱して",
+  "example": "The patient is not out of the woods yet.",
+  "exampleJa": "患者はまだ危機を脱していません。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "health"
+  ]
+ },
+ {
+  "id": "ph-1-0248",
+  "text": "paint a rosy picture",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "明るい見通しを描く",
+  "example": "The report paints a rosy picture of the future.",
+  "exampleJa": "報告書は将来の明るい見通しを描いています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "media"
+  ]
+ },
+ {
+  "id": "ph-1-0249",
+  "text": "pass the buck",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "責任を転嫁する",
+  "example": "Don't pass the buck. It's your job.",
+  "exampleJa": "責任をなすりつけないで。あなたの仕事です。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0250",
+  "text": "pave the way for",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…への道を開く",
+  "example": "The new road paved the way for tourism.",
+  "exampleJa": "新しい道路は観光業への道を開きました。",
+  "functions": [
+   "cause/effect"
+  ],
+  "domains": [
+   "transport"
+  ]
+ },
+ {
+  "id": "ph-1-0251",
+  "text": "play devil's advocate",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "あえて反対意見を言う",
+  "example": "Let me play devil's advocate for a moment.",
+  "exampleJa": "ちょっとあえて反対の立場で言わせてください。",
+  "functions": [
+   "hedging"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0252",
+  "text": "play second fiddle",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "脇役に甘んじる",
+  "example": "She refuses to play second fiddle to anyone.",
+  "exampleJa": "彼女はだれの脇役にもなるつもりはありません。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0253",
+  "text": "pull the plug",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "中止する・打ち切る",
+  "example": "The owner pulled the plug on the project.",
+  "exampleJa": "オーナーはそのプロジェクトを打ち切りました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0254",
+  "text": "put all one's eggs in one basket",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "一つのことにすべてを賭ける",
+  "example": "Don't put all your eggs in one basket.",
+  "exampleJa": "1つのことにすべてを賭けないで。",
+  "functions": [
+   "suggestion"
+  ],
+  "domains": [
+   "money"
+  ]
+ },
+ {
+  "id": "ph-1-0255",
+  "text": "raise the bar",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "基準を引き上げる",
+  "example": "The new chef raised the bar for the whole town.",
+  "exampleJa": "新しいシェフは町全体の水準を引き上げました。",
+  "functions": [
+   "praise"
+  ],
+  "domains": [
+   "cooking"
+  ]
+ },
+ {
+  "id": "ph-1-0256",
+  "text": "read between the lines",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "行間を読む",
+  "example": "If you read between the lines, he's unhappy.",
+  "exampleJa": "行間を読むと、彼は不満のようです。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "abstract"
+  ]
+ },
+ {
+  "id": "ph-1-0257",
+  "text": "rock the boat",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "波風を立てる",
+  "example": "Please don't rock the boat now.",
+  "exampleJa": "今は波風を立てないでください。",
+  "functions": [
+   "request"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0258",
+  "text": "run the gauntlet",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "厳しい試練をくぐり抜ける",
+  "example": "The new recruits ran the gauntlet of tests.",
+  "exampleJa": "新人は厳しい試験をくぐり抜けました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0259",
+  "text": "save face",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "面目を保つ",
+  "example": "He lied to save face.",
+  "exampleJa": "彼は面目を保つためにうそをつきました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0260",
+  "text": "scratch the surface",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "表面をなでる・ごく一部しか扱わない",
+  "example": "We have only scratched the surface of the problem.",
+  "exampleJa": "私たちは問題のほんの表面をなでただけです。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "science"
+  ]
+ },
+ {
+  "id": "ph-1-0261",
+  "text": "sell like hot cakes",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "飛ぶように売れる",
+  "example": "The new cookies sold like hot cakes.",
+  "exampleJa": "新しいクッキーは飛ぶように売れました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0262",
+  "text": "set the stage for",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…のお膳立てをする",
+  "example": "The talks set the stage for a deal.",
+  "exampleJa": "その協議が合意への土台を作りました。",
+  "functions": [
+   "cause/effect"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0263",
+  "text": "sink or swim",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "一か八か",
+  "example": "It was sink or swim for the new shop.",
+  "exampleJa": "新しい店にとって一か八かでした。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0264",
+  "text": "smell a rat",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "怪しいと感じる",
+  "example": "I smell a rat. Something isn't right.",
+  "exampleJa": "怪しいですね。何かおかしいです。",
+  "functions": [
+   "opinion"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0265",
+  "text": "stand one's ground",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "一歩も譲らない",
+  "example": "She stood her ground in the meeting.",
+  "exampleJa": "彼女は会議で一歩も譲りませんでした。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0266",
+  "text": "stick one's neck out",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "危険を冒して支持する",
+  "example": "I stuck my neck out for him.",
+  "exampleJa": "私は危険を承知で彼を支持しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0267",
+  "text": "take the bull by the horns",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "困難に立ち向かう",
+  "example": "It's time to take the bull by the horns.",
+  "exampleJa": "いよいよ困難に立ち向かうときです。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0268",
+  "text": "take the plunge",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "思い切って踏み出す",
+  "example": "He took the plunge and opened a restaurant.",
+  "exampleJa": "彼は思い切ってレストランを開きました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "food"
+  ]
+ },
+ {
+  "id": "ph-1-0269",
+  "text": "talk shop",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "仕事の話をする",
+  "example": "They talked shop all through dinner.",
+  "exampleJa": "彼らは夕食のあいだずっと仕事の話をしていました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0270",
+  "text": "the writing is on the wall",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "破局の兆しは明らかだ",
+  "example": "The writing is on the wall for the old cannery.",
+  "exampleJa": "その古い缶詰工場の先行きは明らかに暗いです。",
+  "functions": [
+   "prediction"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0271",
+  "text": "tie the knot",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "結婚する",
+  "example": "They tied the knot last spring.",
+  "exampleJa": "彼らは去年の春に結婚しました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "family"
+  ]
+ },
+ {
+  "id": "ph-1-0272",
+  "text": "toe the line",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "規則に従う",
+  "example": "Everyone must toe the line here.",
+  "exampleJa": "ここではだれもが規則に従わなければなりません。",
+  "functions": [
+   "warning"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0273",
+  "text": "touch a nerve",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "痛いところを突く",
+  "example": "My question seemed to touch a nerve.",
+  "exampleJa": "私の質問は痛いところを突いたようでした。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0274",
+  "text": "turn a blind eye",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "見て見ぬふりをする",
+  "example": "The guard turned a blind eye to the small crime.",
+  "exampleJa": "警備員は小さな違反を見て見ぬふりをしました。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0275",
+  "text": "turn the tables",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "形勢を逆転させる",
+  "example": "The visiting team turned the tables in the last game.",
+  "exampleJa": "アウェーのチームは最終戦で形勢を逆転しました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0276",
+  "text": "up to scratch",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "水準に達して",
+  "example": "His work is not up to scratch.",
+  "exampleJa": "彼の仕事は水準に達していません。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0277",
+  "text": "walk on eggshells",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "気を使いすぎる",
+  "example": "I walk on eggshells around the boss.",
+  "exampleJa": "上司の前ではいつも気を使っています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0278",
+  "text": "water down",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "薄める・弱める",
+  "example": "The mayor watered down the original plan.",
+  "exampleJa": "市長は当初の案を骨抜きにしました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0279",
+  "text": "weather the storm",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "嵐を乗り切る",
+  "example": "The small bakery weathered the storm.",
+  "exampleJa": "その小さなパン屋は苦境を乗り切りました。",
+  "functions": [
+   "praise"
+  ],
+  "domains": [
+   "food"
+  ]
+ },
+ {
+  "id": "ph-1-0280",
+  "text": "win hands down",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "楽勝する",
+  "example": "Our team won hands down.",
+  "exampleJa": "私たちのチームは楽勝しました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0281",
+  "text": "worth one's salt",
+  "type": "idiom",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "有能な",
+  "example": "Any chef worth his salt knows that.",
+  "exampleJa": "腕のいいシェフならだれでもそれを知っています。",
+  "functions": [
+   "praise"
+  ],
+  "domains": [
+   "cooking"
+  ]
+ },
+ {
+  "id": "ph-1-0282",
+  "text": "an unprecedented scale",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "前例のない規模",
+  "example": "The storm caused damage on an unprecedented scale.",
+  "exampleJa": "嵐は前例のない規模の被害をもたらしました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "weather"
+  ]
+ },
+ {
+  "id": "ph-1-0283",
+  "text": "a growing divide",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "広がる格差",
+  "example": "There is a growing divide between rich and poor.",
+  "exampleJa": "貧富の差が広がっています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0284",
+  "text": "widen the gap",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "差を広げる",
+  "example": "The new policy widened the gap between the towns.",
+  "exampleJa": "新しい政策は町同士の差を広げました。",
+  "functions": [
+   "cause/effect"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0285",
+  "text": "bridge the gap",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "溝を埋める",
+  "example": "The program aims to bridge the gap between schools.",
+  "exampleJa": "そのプログラムは学校間の溝を埋めることを目指しています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "school"
+  ]
+ },
+ {
+  "id": "ph-1-0286",
+  "text": "a glaring omission",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "明らかな見落とし",
+  "example": "The list had a glaring omission.",
+  "exampleJa": "そのリストには明らかな抜けがありました。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0287",
+  "text": "a blatant violation",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "露骨な違反",
+  "example": "Dumping waste in the sea is a blatant violation of the law.",
+  "exampleJa": "海にごみを捨てるのは露骨な法律違反です。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0288",
+  "text": "a sweeping reform",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "全面的な改革",
+  "example": "The mayor promised sweeping reforms.",
+  "exampleJa": "市長は全面的な改革を約束しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0289",
+  "text": "an overhaul of ...",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…の全面的な見直し",
+  "example": "The system needs a complete overhaul.",
+  "exampleJa": "そのシステムは全面的な見直しが必要です。",
+  "functions": [
+   "opinion"
+  ],
+  "domains": [
+   "technology"
+  ]
+ },
+ {
+  "id": "ph-1-0290",
+  "text": "undergo a transformation",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "変貌を遂げる",
+  "example": "The old port has undergone a transformation.",
+  "exampleJa": "古い港は変貌を遂げました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0291",
+  "text": "a mounting backlog",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "積み上がる未処理案件",
+  "example": "We have a mounting backlog of orders.",
+  "exampleJa": "注文の未処理分が積み上がっています。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0292",
+  "text": "a hefty fine",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "高額の罰金",
+  "example": "He had to pay a hefty fine.",
+  "exampleJa": "彼は高額の罰金を払わなければなりませんでした。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0293",
+  "text": "a substantial amount",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "かなりの量・金額",
+  "example": "A substantial amount of money was lost.",
+  "exampleJa": "かなりの金額が失われました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "money"
+  ]
+ },
+ {
+  "id": "ph-1-0294",
+  "text": "a modest increase",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "わずかな増加",
+  "example": "We expect a modest increase in sales.",
+  "exampleJa": "売上のわずかな増加を見込んでいます。",
+  "functions": [
+   "prediction"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0295",
+  "text": "a marginal improvement",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "わずかな改善",
+  "example": "There was only a marginal improvement.",
+  "exampleJa": "わずかな改善しかありませんでした。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "science"
+  ]
+ },
+ {
+  "id": "ph-1-0296",
+  "text": "a steep rise",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "急な上昇",
+  "example": "There was a steep rise in fuel prices.",
+  "exampleJa": "燃料価格が急上昇しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0297",
+  "text": "a dramatic fall",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "劇的な下落",
+  "example": "The report shows a dramatic fall in fish catches.",
+  "exampleJa": "報告書は漁獲量の劇的な減少を示しています。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0298",
+  "text": "plummeting prices",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "急落する価格",
+  "example": "Plummeting prices hurt the farmers.",
+  "exampleJa": "価格の急落が農家を直撃しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "farming"
+  ]
+ },
+ {
+  "id": "ph-1-0299",
+  "text": "soaring costs",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "急騰するコスト",
+  "example": "Soaring costs forced the inn to raise prices.",
+  "exampleJa": "コストの急騰で宿は値上げを余儀なくされました。",
+  "functions": [
+   "cause/effect"
+  ],
+  "domains": [
+   "hotel"
+  ]
+ },
+ {
+  "id": "ph-1-0300",
+  "text": "a surge in demand",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "需要の急増",
+  "example": "There was a surge in demand for umbrellas.",
+  "exampleJa": "傘の需要が急増しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0301",
+  "text": "a downturn in the economy",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "景気の後退",
+  "example": "A downturn in the economy hit local shops.",
+  "exampleJa": "景気後退が地元の商店を直撃しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0302",
+  "text": "an economic slump",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "経済の低迷",
+  "example": "The town suffered a long economic slump.",
+  "exampleJa": "その町は長い経済低迷に苦しみました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0303",
+  "text": "economic recovery",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "景気回復",
+  "example": "Economic recovery is expected next year.",
+  "exampleJa": "来年は景気回復が見込まれています。",
+  "functions": [
+   "prediction"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0304",
+  "text": "a stimulus package",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "景気刺激策",
+  "example": "The government announced a stimulus package.",
+  "exampleJa": "政府は景気刺激策を発表しました。",
+  "functions": [
+   "announcement"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0305",
+  "text": "fiscal policy",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "財政政策",
+  "example": "Fiscal policy affects local budgets.",
+  "exampleJa": "財政政策は地方予算に影響します。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0306",
+  "text": "monetary policy",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "金融政策",
+  "example": "The bank changed its monetary policy.",
+  "exampleJa": "銀行は金融政策を変更しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0307",
+  "text": "a budget surplus",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "黒字予算",
+  "example": "The town has a budget surplus this year.",
+  "exampleJa": "町は今年、予算が黒字です。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0308",
+  "text": "a trade surplus",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "貿易黒字",
+  "example": "The country has a large trade surplus.",
+  "exampleJa": "その国は大きな貿易黒字を抱えています。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0309",
+  "text": "a trade barrier",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "貿易障壁",
+  "example": "High tariffs act as a trade barrier.",
+  "exampleJa": "高い関税は貿易障壁になります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0310",
+  "text": "import restrictions",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "輸入制限",
+  "example": "Import restrictions raised fish prices.",
+  "exampleJa": "輸入制限で魚の値段が上がりました。",
+  "functions": [
+   "cause/effect"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0311",
+  "text": "a monopoly",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "独占",
+  "example": "The company holds a monopoly on salt.",
+  "exampleJa": "その会社は塩の独占権を持っています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0312",
+  "text": "a hostile takeover",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "敵対的買収",
+  "example": "The firm fought off a hostile takeover.",
+  "exampleJa": "その会社は敵対的買収を撃退しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0313",
+  "text": "a corporate scandal",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "企業不祥事",
+  "example": "A corporate scandal shook the town.",
+  "exampleJa": "企業の不祥事が町を揺るがしました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "media"
+  ]
+ },
+ {
+  "id": "ph-1-0314",
+  "text": "a conflict of interest",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "利益相反",
+  "example": "The mayor has a conflict of interest in this matter.",
+  "exampleJa": "市長はこの件で利益相反の立場にあります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0315",
+  "text": "insider trading",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "インサイダー取引",
+  "example": "He was arrested for insider trading.",
+  "exampleJa": "彼はインサイダー取引で逮捕されました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0316",
+  "text": "embezzle funds",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "資金を横領する",
+  "example": "The clerk embezzled funds from the shop.",
+  "exampleJa": "店員が店の資金を横領しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0317",
+  "text": "launder money",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "資金洗浄をする",
+  "example": "They were accused of laundering money.",
+  "exampleJa": "彼らは資金洗浄の疑いをかけられました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0318",
+  "text": "fraudulent claims",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "不正な請求",
+  "example": "The insurer rejected the fraudulent claims.",
+  "exampleJa": "保険会社は不正な請求を却下しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0319",
+  "text": "a legal loophole",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "法の抜け穴",
+  "example": "The company used a legal loophole to avoid tax.",
+  "exampleJa": "その会社は法の抜け穴を使って税を逃れました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0320",
+  "text": "a landmark ruling",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "画期的な判決",
+  "example": "The court issued a landmark ruling on fishing rights.",
+  "exampleJa": "裁判所は漁業権について画期的な判決を出しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0321",
+  "text": "a court order",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "裁判所命令",
+  "example": "The court order bans entry to the site.",
+  "exampleJa": "裁判所命令により現場への立ち入りが禁止されています。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0322",
+  "text": "a plea bargain",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "司法取引",
+  "example": "He accepted a plea bargain.",
+  "exampleJa": "彼は司法取引に応じました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0323",
+  "text": "serve a sentence",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "刑に服する",
+  "example": "He served a three-year sentence.",
+  "exampleJa": "彼は3年の刑に服しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0324",
+  "text": "file a lawsuit",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "訴訟を起こす",
+  "example": "The residents filed a lawsuit against the factory.",
+  "exampleJa": "住民は工場を相手に訴訟を起こしました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0325",
+  "text": "settle out of court",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "示談にする",
+  "example": "The two parties settled out of court.",
+  "exampleJa": "双方は示談で解決しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0326",
+  "text": "press charges",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "告訴する",
+  "example": "The shopkeeper decided to press charges.",
+  "exampleJa": "店主は告訴することにしました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0327",
+  "text": "the burden of proof",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "立証責任",
+  "example": "The burden of proof lies with the seller.",
+  "exampleJa": "立証責任は売り手にあります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0328",
+  "text": "a clause in the contract",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "契約書の条項",
+  "example": "There is a clause in the contract about delays.",
+  "exampleJa": "契約書には遅延に関する条項があります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0329",
+  "text": "voice concerns",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "懸念を表明する",
+  "example": "Residents voiced concerns about the noise.",
+  "exampleJa": "住民は騒音について懸念を表明しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0330",
+  "text": "air grievances",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "不満を訴える",
+  "example": "Workers aired their grievances at the meeting.",
+  "exampleJa": "労働者は会議で不満を訴えました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0331",
+  "text": "lodge a complaint",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "苦情を申し立てる",
+  "example": "I would like to lodge a complaint about the service.",
+  "exampleJa": "サービスについて苦情を申し立てたいのですが。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0332",
+  "text": "launch an appeal",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "訴え(控訴)を起こす",
+  "example": "The farmers launched an appeal for help.",
+  "exampleJa": "農家は支援を訴えるキャンペーンを始めました。",
+  "functions": [
+   "request"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0333",
+  "text": "issue a statement",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "声明を出す",
+  "example": "The company issued a statement about the accident.",
+  "exampleJa": "会社は事故について声明を出しました。",
+  "functions": [
+   "announcement"
+  ],
+  "domains": [
+   "media"
+  ]
+ },
+ {
+  "id": "ph-1-0334",
+  "text": "make a pledge",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "誓約する",
+  "example": "The mayor made a pledge to protect the coast.",
+  "exampleJa": "市長は海岸を守ると誓約しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0335",
+  "text": "reach a verdict",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "評決に達する",
+  "example": "The jury reached a verdict after two days.",
+  "exampleJa": "陪審は2日後に評決に達しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0336",
+  "text": "an upward trend",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "上昇傾向",
+  "example": "The data shows an upward trend in tourism.",
+  "exampleJa": "データは観光客の増加傾向を示しています。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "travel"
+  ]
+ },
+ {
+  "id": "ph-1-0337",
+  "text": "a downward trend",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "下降傾向",
+  "example": "There is a downward trend in fish prices.",
+  "exampleJa": "魚価は下落傾向にあります。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0338",
+  "text": "gain momentum",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "勢いを増す",
+  "example": "The campaign is gaining momentum.",
+  "exampleJa": "キャンペーンは勢いを増しています。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0339",
+  "text": "lose momentum",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "勢いを失う",
+  "example": "The recovery has lost momentum.",
+  "exampleJa": "回復は勢いを失いました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0340",
+  "text": "a turning point",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "転機",
+  "example": "The festival was a turning point for the town.",
+  "exampleJa": "そのお祭りは町にとって転機でした。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0341",
+  "text": "a paradigm shift",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "パラダイムシフト",
+  "example": "The internet caused a paradigm shift in shopping.",
+  "exampleJa": "インターネットは買い物に大きな変革をもたらしました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "technology"
+  ]
+ },
+ {
+  "id": "ph-1-0342",
+  "text": "cutting-edge technology",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "最先端技術",
+  "example": "The farm uses cutting-edge technology.",
+  "exampleJa": "その農場は最先端技術を使っています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "technology"
+  ]
+ },
+ {
+  "id": "ph-1-0343",
+  "text": "state-of-the-art equipment",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "最新鋭の設備",
+  "example": "The clinic has state-of-the-art equipment.",
+  "exampleJa": "その診療所には最新鋭の設備があります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "health"
+  ]
+ },
+ {
+  "id": "ph-1-0344",
+  "text": "a groundbreaking discovery",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "画期的な発見",
+  "example": "Scientists announced a groundbreaking discovery.",
+  "exampleJa": "科学者たちが画期的な発見を発表しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "science"
+  ]
+ },
+ {
+  "id": "ph-1-0345",
+  "text": "a thorough investigation",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "徹底した調査",
+  "example": "The police began a thorough investigation.",
+  "exampleJa": "警察は徹底的な調査を始めました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0346",
+  "text": "exhaustive research",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "徹底的な研究",
+  "example": "The book is based on exhaustive research.",
+  "exampleJa": "その本は徹底的な研究に基づいています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "science"
+  ]
+ },
+ {
+  "id": "ph-1-0347",
+  "text": "a rigorous test",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "厳格な試験",
+  "example": "The product passed a rigorous test.",
+  "exampleJa": "その製品は厳格な試験に合格しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "technology"
+  ]
+ },
+ {
+  "id": "ph-1-0348",
+  "text": "a plausible explanation",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "もっともらしい説明",
+  "example": "He gave a plausible explanation.",
+  "exampleJa": "彼はもっともらしい説明をしました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "abstract"
+  ]
+ },
+ {
+  "id": "ph-1-0349",
+  "text": "a feasible solution",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "実現可能な解決策",
+  "example": "We need a feasible solution to the problem.",
+  "exampleJa": "その問題には実現可能な解決策が必要です。",
+  "functions": [
+   "request"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0350",
+  "text": "a viable alternative",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "実行可能な代替案",
+  "example": "Is there a viable alternative to the plan?",
+  "exampleJa": "その計画に代わる実行可能な案はありますか。",
+  "functions": [
+   "inquiry"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0351",
+  "text": "a tangible benefit",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "具体的な利益",
+  "example": "The program brings tangible benefits.",
+  "exampleJa": "そのプログラムは具体的な利益をもたらします。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0352",
+  "text": "a lasting impression",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "消えない印象",
+  "example": "The festival left a lasting impression on me.",
+  "exampleJa": "そのお祭りは私に深い印象を残しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0353",
+  "text": "a profound effect",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "深い影響",
+  "example": "The loss had a profound effect on her.",
+  "exampleJa": "その喪失は彼女に深い影響を与えました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0354",
+  "text": "an acute shortage",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "深刻な不足",
+  "example": "There is an acute shortage of fresh water.",
+  "exampleJa": "淡水が深刻に不足しています。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0355",
+  "text": "a dire need",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "切迫した必要",
+  "example": "The village is in dire need of doctors.",
+  "exampleJa": "その村は医師が切実に必要です。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "health"
+  ]
+ },
+ {
+  "id": "ph-1-0356",
+  "text": "a pressing need",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "差し迫った必要",
+  "example": "There is a pressing need for new housing.",
+  "exampleJa": "新しい住宅が差し迫って必要です。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "housing"
+  ]
+ },
+ {
+  "id": "ph-1-0357",
+  "text": "an overwhelming majority",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "圧倒的多数",
+  "example": "An overwhelming majority supported the plan.",
+  "exampleJa": "圧倒的多数がその計画を支持しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0358",
+  "text": "a narrow margin",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "僅差",
+  "example": "The team won by a narrow margin.",
+  "exampleJa": "チームは僅差で勝ちました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0359",
+  "text": "a slim chance",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "わずかな可能性",
+  "example": "There is a slim chance of finding it.",
+  "exampleJa": "見つかる可能性はわずかです。",
+  "functions": [
+   "prediction"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0360",
+  "text": "a fair share",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "相応の分け前",
+  "example": "Everyone should get a fair share.",
+  "exampleJa": "みんなが相応の分け前を得るべきです。",
+  "functions": [
+   "opinion"
+  ],
+  "domains": [
+   "money"
+  ]
+ },
+ {
+  "id": "ph-1-0361",
+  "text": "a key player",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "重要な担い手",
+  "example": "The company is a key player in the local economy.",
+  "exampleJa": "その会社は地域経済の重要な担い手です。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0362",
+  "text": "a driving force",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "原動力",
+  "example": "Tourism is the driving force behind the growth.",
+  "exampleJa": "観光は成長の原動力です。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0363",
+  "text": "a catalyst for change",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "変化の触媒",
+  "example": "The festival was a catalyst for change.",
+  "exampleJa": "そのお祭りは変化のきっかけとなりました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0364",
+  "text": "a stumbling block",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "障害",
+  "example": "The price is a stumbling block for many buyers.",
+  "exampleJa": "価格は多くの買い手にとって障害です。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0365",
+  "text": "a bottleneck",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "ボトルネック",
+  "example": "The narrow bridge is a bottleneck for trucks.",
+  "exampleJa": "狭い橋はトラックにとってボトルネックです。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "transport"
+  ]
+ },
+ {
+  "id": "ph-1-0366",
+  "text": "a loose end",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "未解決の点",
+  "example": "We still have a few loose ends to tie up.",
+  "exampleJa": "まだいくつか片付けるべき未解決の点があります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0367",
+  "text": "a blind spot",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "盲点",
+  "example": "Parking here is a blind spot for drivers.",
+  "exampleJa": "ここの駐車は運転手にとって死角になります。",
+  "functions": [
+   "warning"
+  ],
+  "domains": [
+   "transport"
+  ]
+ },
+ {
+  "id": "ph-1-0368",
+  "text": "a double standard",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "ダブルスタンダード",
+  "example": "There is a double standard in the rules.",
+  "exampleJa": "その規則には二重基準があります。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0369",
+  "text": "a hidden agenda",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "隠された意図",
+  "example": "I think he has a hidden agenda.",
+  "exampleJa": "彼には隠された意図があると思います。",
+  "functions": [
+   "opinion"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0370",
+  "text": "an uphill battle",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "困難な戦い",
+  "example": "Starting a business here is an uphill battle.",
+  "exampleJa": "ここで事業を始めるのは困難な戦いです。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0371",
+  "text": "a daunting task",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "気の遠くなる仕事",
+  "example": "Cleaning the beach was a daunting task.",
+  "exampleJa": "その海岸の掃除は気の遠くなる仕事でした。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "nature"
+  ]
+ },
+ {
+  "id": "ph-1-0372",
+  "text": "a formidable opponent",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "強敵",
+  "example": "The champion is a formidable opponent.",
+  "exampleJa": "チャンピオンは強敵です。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0373",
+  "text": "wholehearted support",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "心からの支持",
+  "example": "The plan has my wholehearted support.",
+  "exampleJa": "その計画を心から支持します。",
+  "functions": [
+   "agreement"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0374",
+  "text": "unanimous approval",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "満場一致の承認",
+  "example": "The proposal won unanimous approval.",
+  "exampleJa": "提案は満場一致で承認されました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0375",
+  "text": "tacit approval",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "暗黙の了解",
+  "example": "The owner gave his tacit approval.",
+  "exampleJa": "オーナーは暗黙の了解を与えました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0376",
+  "text": "scathing criticism",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "痛烈な批判",
+  "example": "The film received scathing criticism.",
+  "exampleJa": "その映画は痛烈な批判を受けました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "media"
+  ]
+ },
+ {
+  "id": "ph-1-0377",
+  "text": "a glowing review",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "絶賛の評価",
+  "example": "The inn received a glowing review.",
+  "exampleJa": "その宿は絶賛の評価を受けました。",
+  "functions": [
+   "praise"
+  ],
+  "domains": [
+   "hotel"
+  ]
+ },
+ {
+  "id": "ph-1-0378",
+  "text": "a lavish banquet",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "豪華な宴会",
+  "example": "The mayor gave a lavish banquet.",
+  "exampleJa": "市長は豪華な宴会を開きました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "food"
+  ]
+ },
+ {
+  "id": "ph-1-0379",
+  "text": "a frugal lifestyle",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "質素な暮らし",
+  "example": "They lead a frugal lifestyle.",
+  "exampleJa": "彼らは質素な暮らしをしています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "family"
+  ]
+ },
+ {
+  "id": "ph-1-0380",
+  "text": "meager wages",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "わずかな賃金",
+  "example": "Workers received meager wages.",
+  "exampleJa": "労働者はわずかな賃金しか受け取りませんでした。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0381",
+  "text": "sluggish growth",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "低迷する成長",
+  "example": "The economy shows sluggish growth.",
+  "exampleJa": "経済は成長が低迷しています。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0382",
+  "text": "robust growth",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "力強い成長",
+  "example": "The company reported robust growth.",
+  "exampleJa": "会社は力強い成長を報告しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0383",
+  "text": "buoyant sales",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "好調な売上",
+  "example": "Buoyant sales lifted the shop's profits.",
+  "exampleJa": "好調な売上で店の利益が上がりました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0384",
+  "text": "give rise to",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…を引き起こす",
+  "example": "The heavy rain gave rise to many problems.",
+  "exampleJa": "大雨は多くの問題を引き起こしました。",
+  "functions": [
+   "cause/effect"
+  ],
+  "domains": [
+   "weather"
+  ]
+ },
+ {
+  "id": "ph-1-0385",
+  "text": "a far cry from",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…とはほど遠いもの",
+  "example": "The new shop is a far cry from the old one.",
+  "exampleJa": "新しい店は昔の店とは大違いです。",
+  "functions": [
+   "contrast"
+  ],
+  "domains": [
+   "shopping"
+  ]
+ },
+ {
+  "id": "ph-1-0386",
+  "text": "an inherent risk",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "本質的なリスク",
+  "example": "Fishing has inherent risks.",
+  "exampleJa": "漁業には本質的なリスクがあります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0387",
+  "text": "a tentative agreement",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "暫定合意",
+  "example": "The two sides reached a tentative agreement.",
+  "exampleJa": "双方は暫定合意に達しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0388",
+  "text": "a compelling argument",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "説得力のある論拠",
+  "example": "She made a compelling argument for change.",
+  "exampleJa": "彼女は変革を求める説得力のある論を展開しました。",
+  "functions": [
+   "praise"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0389",
+  "text": "an exorbitant price",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "法外な値段",
+  "example": "They charge exorbitant prices for water here.",
+  "exampleJa": "ここでは水に法外な値段をつけています。",
+  "functions": [
+   "complaint"
+  ],
+  "domains": [
+   "shopping"
+  ]
+ },
+ {
+  "id": "ph-1-0390",
+  "text": "a hefty profit",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "大きな利益",
+  "example": "The harvest brought a hefty profit.",
+  "exampleJa": "その収穫は大きな利益をもたらしました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "farming"
+  ]
+ },
+ {
+  "id": "ph-1-0391",
+  "text": "an ulterior motive",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "下心",
+  "example": "He had an ulterior motive for helping us.",
+  "exampleJa": "彼には私たちを助ける下心がありました。",
+  "functions": [
+   "opinion"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0392",
+  "text": "a vicious rumor",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "悪質なうわさ",
+  "example": "A vicious rumor spread through the village.",
+  "exampleJa": "悪質なうわさが村に広まりました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0393",
+  "text": "spark controversy",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "論争を引き起こす",
+  "example": "The plan sparked controversy among residents.",
+  "exampleJa": "その計画は住民のあいだで論争を呼びました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0394",
+  "text": "quell a rumor",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "うわさを鎮める",
+  "example": "The mayor tried to quell the rumor.",
+  "exampleJa": "市長はそのうわさを鎮めようとしました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0395",
+  "text": "stoke fears",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "不安をあおる",
+  "example": "The report stoked fears about the water.",
+  "exampleJa": "その報告は水への不安をあおりました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "media"
+  ]
+ },
+ {
+  "id": "ph-1-0396",
+  "text": "allay fears",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "不安を和らげる",
+  "example": "The doctor tried to allay her fears.",
+  "exampleJa": "医師は彼女の不安を和らげようとしました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "health"
+  ]
+ },
+ {
+  "id": "ph-1-0397",
+  "text": "heighten tension",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "緊張を高める",
+  "example": "The delay heightened tension in the room.",
+  "exampleJa": "遅れは部屋の緊張を高めました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0398",
+  "text": "ease tension",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "緊張を和らげる",
+  "example": "A joke eased the tension.",
+  "exampleJa": "冗談が緊張を和らげました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0399",
+  "text": "raise eyebrows",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "眉をひそめさせる",
+  "example": "The high price raised eyebrows.",
+  "exampleJa": "その高い価格は驚きの声を呼びました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0400",
+  "text": "cast doubt on",
+  "type": "collocation",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…に疑問を投げかける",
+  "example": "The test results cast doubt on the claim.",
+  "exampleJa": "検査結果はその主張に疑問を投げかけました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "science"
+  ]
+ },
+ {
+  "id": "ph-1-0401",
+  "text": "Not until ... did ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…して初めて〜した",
+  "example": "Not until I got home did I notice the hole.",
+  "exampleJa": "家に着いて初めて穴に気づきました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "abstract"
+  ]
+ },
+ {
+  "id": "ph-1-0402",
+  "text": "No sooner had ... than ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…するとすぐに〜",
+  "example": "No sooner had we left than it started to rain.",
+  "exampleJa": "私たちが出るとすぐ雨が降り出しました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "weather"
+  ]
+ },
+ {
+  "id": "ph-1-0403",
+  "text": "Rarely do ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "めったに…しない",
+  "example": "Rarely do we have snow here.",
+  "exampleJa": "ここではめったに雪が降りません。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "weather"
+  ]
+ },
+ {
+  "id": "ph-1-0404",
+  "text": "Seldom ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "めったに…ない",
+  "example": "Seldom have I seen such a calm sea.",
+  "exampleJa": "こんなに穏やかな海はめったに見たことがありません。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0405",
+  "text": "Under no circumstances ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "いかなる場合も…ない",
+  "example": "Under no circumstances should you open this door.",
+  "exampleJa": "いかなる場合もこのドアを開けてはいけません。",
+  "functions": [
+   "warning"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0406",
+  "text": "On no account ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "決して…ない",
+  "example": "On no account must the gate be left open.",
+  "exampleJa": "決して門を開けっぱなしにしてはいけません。",
+  "functions": [
+   "warning"
+  ],
+  "domains": [
+   "farming"
+  ]
+ },
+ {
+  "id": "ph-1-0407",
+  "text": "In no way ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "決して…ない",
+  "example": "In no way is this your fault.",
+  "exampleJa": "これは決してあなたのせいではありません。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0408",
+  "text": "At no time ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "どんな時も…ない",
+  "example": "At no time were the guests in danger.",
+  "exampleJa": "客が危険にさらされたことは一度もありませんでした。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "hotel"
+  ]
+ },
+ {
+  "id": "ph-1-0409",
+  "text": "Only by ...ing can ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…することでのみ〜できる",
+  "example": "Only by working together can we finish in time.",
+  "exampleJa": "協力することでのみ、間に合わせることができます。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0410",
+  "text": "Such was ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "それほどに…だった",
+  "example": "Such was the force of the wave that the boat sank.",
+  "exampleJa": "波の勢いはそれほど強く、船は沈みました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0411",
+  "text": "So great was ... that ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…はあまりに大きかったので〜",
+  "example": "So great was the demand that the shop sold out.",
+  "exampleJa": "需要はあまりに大きく、店は売り切れました。",
+  "functions": [
+   "cause/effect"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0412",
+  "text": "Come what may, ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "何が起ころうとも",
+  "example": "Come what may, we will open on time.",
+  "exampleJa": "何が起ころうとも、定刻に開店します。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0413",
+  "text": "Try as I might, ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "どんなに努力しても",
+  "example": "Try as I might, I couldn't start the engine.",
+  "exampleJa": "どんなに頑張ってもエンジンをかけられませんでした。",
+  "functions": [
+   "concession"
+  ],
+  "domains": [
+   "transport"
+  ]
+ },
+ {
+  "id": "ph-1-0414",
+  "text": "Much as I would like to ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…したいのは山々だが",
+  "example": "Much as I would like to help, I'm too busy.",
+  "exampleJa": "手伝いたいのは山々ですが、忙しすぎます。",
+  "functions": [
+   "refusal"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0415",
+  "text": "Strange as it may seem, ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "変に思えるかもしれないが",
+  "example": "Strange as it may seem, I enjoy the rain.",
+  "exampleJa": "変に思えるかもしれませんが、雨が好きです。",
+  "functions": [
+   "concession"
+  ],
+  "domains": [
+   "weather"
+  ]
+ },
+ {
+  "id": "ph-1-0416",
+  "text": "Young as he is, ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "彼は若いけれども",
+  "example": "Young as he is, he runs the whole shop.",
+  "exampleJa": "彼は若いのに、店全体を切り盛りしています。",
+  "functions": [
+   "concession"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0417",
+  "text": "so much so that ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "そのため…ほどである",
+  "example": "It was cold, so much so that the lake froze.",
+  "exampleJa": "寒さのあまり湖が凍るほどでした。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "weather"
+  ]
+ },
+ {
+  "id": "ph-1-0418",
+  "text": "to the extent that ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…という程度まで",
+  "example": "The roof leaked to the extent that we couldn't sleep.",
+  "exampleJa": "屋根の水漏れがひどくて眠れないほどでした。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "housing"
+  ]
+ },
+ {
+  "id": "ph-1-0419",
+  "text": "providing that ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…という条件で",
+  "example": "You can enter providing that you wear a helmet.",
+  "exampleJa": "ヘルメットをかぶるなら入場できます。",
+  "functions": [
+   "condition"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0420",
+  "text": "on the understanding that ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…という了解のもとで",
+  "example": "I'll lend you the boat on the understanding that you return it.",
+  "exampleJa": "返却するという了解のもとでボートをお貸しします。",
+  "functions": [
+   "condition"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0421",
+  "text": "lest ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…しないように",
+  "example": "He spoke quietly lest the baby wake up.",
+  "exampleJa": "彼は赤ちゃんが起きないように静かに話しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "family"
+  ]
+ },
+ {
+  "id": "ph-1-0422",
+  "text": "for fear that ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…を恐れて",
+  "example": "He stayed home for fear that he might catch a cold.",
+  "exampleJa": "彼は風邪をひくのを恐れて家にいました。",
+  "functions": [
+   "cause/effect"
+  ],
+  "domains": [
+   "health"
+  ]
+ },
+ {
+  "id": "ph-1-0423",
+  "text": "in the hope that ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "…を期待して",
+  "example": "We opened early in the hope that more people would come.",
+  "exampleJa": "もっと客が来ることを期待して早く開店しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0424",
+  "text": "all the more ... because ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…なのでなおさら",
+  "example": "I like him all the more because he is honest.",
+  "exampleJa": "彼は正直なのでなおさら好きです。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0425",
+  "text": "no less ... than ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…に劣らず〜",
+  "example": "The cook is no less skilled than the chef.",
+  "exampleJa": "その料理人はシェフに劣らず腕があります。",
+  "functions": [
+   "comparison"
+  ],
+  "domains": [
+   "cooking"
+  ]
+ },
+ {
+  "id": "ph-1-0426",
+  "text": "not so much ... as ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…というよりむしろ〜",
+  "example": "She is not so much a boss as a friend.",
+  "exampleJa": "彼女は上司というより友人です。",
+  "functions": [
+   "comparison"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0427",
+  "text": "The last thing I want is ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…だけは避けたい",
+  "example": "The last thing I want is another delay.",
+  "exampleJa": "もうこれ以上の遅れだけは避けたいです。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0428",
+  "text": "far from ...ing",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…するどころか",
+  "example": "Far from complaining, the guests thanked us.",
+  "exampleJa": "苦情を言うどころか、客は私たちに感謝しました。",
+  "functions": [
+   "contrast"
+  ],
+  "domains": [
+   "hotel"
+  ]
+ },
+ {
+  "id": "ph-1-0429",
+  "text": "anything but ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "決して…ではない",
+  "example": "The trip was anything but boring.",
+  "exampleJa": "その旅行は決して退屈ではありませんでした。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "travel"
+  ]
+ },
+ {
+  "id": "ph-1-0430",
+  "text": "nothing short of ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…にほかならない",
+  "example": "It was nothing short of a miracle.",
+  "exampleJa": "それはまさに奇跡でした。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0431",
+  "text": "none other than ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "ほかならぬ…",
+  "example": "The guest was none other than the mayor.",
+  "exampleJa": "そのお客はほかならぬ市長でした。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0432",
+  "text": "to say nothing of ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…は言うまでもなく",
+  "example": "The room is large, to say nothing of the view.",
+  "exampleJa": "眺めは言うまでもなく、部屋も広いです。",
+  "functions": [
+   "addition"
+  ],
+  "domains": [
+   "hotel"
+  ]
+ },
+ {
+  "id": "ph-1-0433",
+  "text": "not to mention ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "…は言うまでもなく",
+  "example": "It's cheap, not to mention delicious.",
+  "exampleJa": "おいしいのは言うまでもなく、安いです。",
+  "functions": [
+   "addition"
+  ],
+  "domains": [
+   "food"
+  ]
+ },
+ {
+  "id": "ph-1-0434",
+  "text": "let alone ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…は言うまでもなく(否定文で)",
+  "example": "I can't swim, let alone sail a boat.",
+  "exampleJa": "泳げないので、船を操るなんてとてもできません。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0435",
+  "text": "to the point of ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…するほどまでに",
+  "example": "He was tired to the point of falling asleep at the table.",
+  "exampleJa": "彼は食卓で眠ってしまうほど疲れていました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "health"
+  ]
+ },
+ {
+  "id": "ph-1-0436",
+  "text": "to the effect that ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…という趣旨で",
+  "example": "He sent a note to the effect that he would be late.",
+  "exampleJa": "彼は遅れるという趣旨のメモを送ってきました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0437",
+  "text": "in lieu of ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…の代わりに",
+  "example": "We accept a check in lieu of cash.",
+  "exampleJa": "現金の代わりに小切手を受け付けます。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0438",
+  "text": "pending ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…が決まるまで",
+  "example": "The shop is closed pending repairs.",
+  "exampleJa": "その店は修理が済むまで休業中です。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0439",
+  "text": "barring ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…がなければ",
+  "example": "Barring bad weather, the race will start at ten.",
+  "exampleJa": "悪天候でなければ、レースは10時に始まります。",
+  "functions": [
+   "condition"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0440",
+  "text": "save for ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…を除いて",
+  "example": "The shop was empty save for two customers.",
+  "exampleJa": "2人の客を除いて、店は空でした。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "shopping"
+  ]
+ },
+ {
+  "id": "ph-1-0441",
+  "text": "short of ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…を除いては",
+  "example": "Short of a miracle, we can't finish in time.",
+  "exampleJa": "奇跡でも起きない限り、間に合いません。",
+  "functions": [
+   "condition"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0442",
+  "text": "It is high time ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "もう…してもいい頃だ",
+  "example": "It is high time we repaired the roof.",
+  "exampleJa": "もう屋根を直してもいい頃です。",
+  "functions": [
+   "suggestion"
+  ],
+  "domains": [
+   "housing"
+  ]
+ },
+ {
+  "id": "ph-1-0443",
+  "text": "It stands to reason that ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…は理にかなっている",
+  "example": "It stands to reason that prices rise in winter.",
+  "exampleJa": "冬に価格が上がるのは理にかなっています。",
+  "functions": [
+   "opinion"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0444",
+  "text": "have yet to ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "まだ…していない",
+  "example": "We have yet to receive your payment.",
+  "exampleJa": "お支払いをまだ確認できておりません。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0445",
+  "text": "be bound by ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…に拘束される",
+  "example": "All members are bound by the rules.",
+  "exampleJa": "会員はみな規則に拘束されます。",
+  "functions": [
+   "obligation"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0446",
+  "text": "be wary of ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…に用心している",
+  "example": "Be wary of strangers who ask for money.",
+  "exampleJa": "お金を求めてくる見知らぬ人には用心してください。",
+  "functions": [
+   "warning"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0447",
+  "text": "be wont to ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…するのが常である",
+  "example": "He was wont to walk by the sea at dawn.",
+  "exampleJa": "彼は夜明けに海辺を歩くのが常でした。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sea"
+  ]
+ },
+ {
+  "id": "ph-1-0448",
+  "text": "be hard pressed to ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…するのに苦労する",
+  "example": "We are hard pressed to find a better offer.",
+  "exampleJa": "これより良い条件を見つけるのは難しいです。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0449",
+  "text": "be at pains to ...",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "懸命に…する",
+  "example": "The owner was at pains to explain the delay.",
+  "exampleJa": "店主は遅れを懸命に説明しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0450",
+  "text": "be given to ...ing",
+  "type": "pattern",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "…する癖がある",
+  "example": "He is given to talking too much.",
+  "exampleJa": "彼はしゃべりすぎる癖があります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0451",
+  "text": "thereafter",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "その後・それ以降",
+  "example": "He left in 1990 and never returned thereafter.",
+  "exampleJa": "彼は1990年に去り、その後二度と戻りませんでした。",
+  "functions": [
+   "sequencing"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0452",
+  "text": "hitherto",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "これまで・今まで",
+  "example": "Hitherto, the island had no doctor.",
+  "exampleJa": "これまで、その島には医者がいませんでした。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0453",
+  "text": "by extension",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "その延長として",
+  "example": "The rule applies to staff and, by extension, to their families.",
+  "exampleJa": "その規則は職員に、さらにその延長として家族にも適用されます。",
+  "functions": [
+   "clarification"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0454",
+  "text": "per se",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "それ自体は",
+  "example": "The price per se is not the problem.",
+  "exampleJa": "価格それ自体は問題ではありません。",
+  "functions": [
+   "clarification"
+  ],
+  "domains": [
+   "abstract"
+  ]
+ },
+ {
+  "id": "ph-1-0455",
+  "text": "vis-à-vis",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…に関して・…と比べて",
+  "example": "Our prices vis-à-vis those of our rivals are low.",
+  "exampleJa": "競合他社と比べて、当社の価格は低いです。",
+  "functions": [
+   "comparison"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0456",
+  "text": "de facto",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "事実上の",
+  "example": "He is the de facto leader of the village.",
+  "exampleJa": "彼は村の事実上のリーダーです。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0457",
+  "text": "ad hoc",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "その場限りの",
+  "example": "We set up an ad hoc committee.",
+  "exampleJa": "臨時の委員会を設けました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0458",
+  "text": "inter alia",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "とりわけ",
+  "example": "The plan covers, inter alia, new roads and schools.",
+  "exampleJa": "計画には、とりわけ新しい道路と学校が含まれます。",
+  "functions": [
+   "exemplifying"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0459",
+  "text": "bona fide",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "本物の・誠実な",
+  "example": "Only bona fide guests may enter.",
+  "exampleJa": "正規の宿泊客のみ入場できます。",
+  "functions": [
+   "clarification"
+  ],
+  "domains": [
+   "hotel"
+  ]
+ },
+ {
+  "id": "ph-1-0460",
+  "text": "pro rata",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "按分で",
+  "example": "Fees are charged pro rata.",
+  "exampleJa": "料金は日割り(比例)で請求されます。",
+  "functions": [
+   "clarification"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0461",
+  "text": "per capita",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "1人当たり",
+  "example": "The per capita income is rising.",
+  "exampleJa": "1人当たりの所得は上がっています。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0462",
+  "text": "the status quo",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "現状",
+  "example": "Many people want to keep the status quo.",
+  "exampleJa": "多くの人が現状維持を望んでいます。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0463",
+  "text": "prima facie",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "一見したところ",
+  "example": "There is prima facie evidence of fraud.",
+  "exampleJa": "一見して不正を示す証拠があります。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0464",
+  "text": "in the final analysis",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "結局のところ",
+  "example": "In the final analysis, price decides.",
+  "exampleJa": "結局のところ、価格が決め手になります。",
+  "functions": [
+   "summarizing"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0465",
+  "text": "to a degree",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "ある程度",
+  "example": "To a degree, I agree with you.",
+  "exampleJa": "ある程度は同意します。",
+  "functions": [
+   "hedging"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0466",
+  "text": "as it were",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "いわば",
+  "example": "He is, as it were, the heart of the town.",
+  "exampleJa": "彼はいわば町の心臓です。",
+  "functions": [
+   "hedging"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0467",
+  "text": "in point of fact",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "実際のところ",
+  "example": "In point of fact, we have no vacancies.",
+  "exampleJa": "実際のところ、空きはありません。",
+  "functions": [
+   "clarification"
+  ],
+  "domains": [
+   "hotel"
+  ]
+ },
+ {
+  "id": "ph-1-0468",
+  "text": "granted that ...",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…と仮定しても",
+  "example": "Granted that it's cheap, is it any good?",
+  "exampleJa": "安いとしても、品質はいいのですか。",
+  "functions": [
+   "concession"
+  ],
+  "domains": [
+   "shopping"
+  ]
+ },
+ {
+  "id": "ph-1-0469",
+  "text": "mind you",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "もっとも・ただし",
+  "example": "Mind you, it was a long walk.",
+  "exampleJa": "もっとも、長い道のりでしたが。",
+  "functions": [
+   "concession"
+  ],
+  "domains": [
+   "travel"
+  ]
+ },
+ {
+  "id": "ph-1-0470",
+  "text": "to boot",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "おまけに",
+  "example": "He is smart and kind to boot.",
+  "exampleJa": "彼は賢く、おまけに親切です。",
+  "functions": [
+   "addition"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0471",
+  "text": "as such",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "それ自体として・その資格で",
+  "example": "He is the owner and, as such, makes the rules.",
+  "exampleJa": "彼はオーナーであり、その立場で規則を決めます。",
+  "functions": [
+   "clarification"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0472",
+  "text": "in its own right",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "それ自体で・独自に",
+  "example": "The café is a landmark in its own right.",
+  "exampleJa": "そのカフェはそれ自体が名所です。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "food"
+  ]
+ },
+ {
+  "id": "ph-1-0473",
+  "text": "by way of ...",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…として・…経由で",
+  "example": "He added a note by way of apology.",
+  "exampleJa": "彼はお詫びとして一言添えました。",
+  "functions": [
+   "clarification"
+  ],
+  "domains": [
+   "post"
+  ]
+ },
+ {
+  "id": "ph-1-0474",
+  "text": "in a similar vein",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "同様に",
+  "example": "In a similar vein, the bakery sells local jam.",
+  "exampleJa": "同様に、そのパン屋は地元のジャムも売っています。",
+  "functions": [
+   "addition"
+  ],
+  "domains": [
+   "food"
+  ]
+ },
+ {
+  "id": "ph-1-0475",
+  "text": "on a related note",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "関連して",
+  "example": "On a related note, parking is limited.",
+  "exampleJa": "関連して、駐車場は限られています。",
+  "functions": [
+   "addition"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0476",
+  "text": "above and beyond",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "それ以上に・期待を超えて",
+  "example": "She went above and beyond for her customers.",
+  "exampleJa": "彼女はお客様のため期待以上のことをしました。",
+  "functions": [
+   "praise"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0477",
+  "text": "the long and short of it",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "要するに",
+  "example": "The long and short of it is we need more money.",
+  "exampleJa": "要するに、もっとお金が必要です。",
+  "functions": [
+   "summarizing"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0478",
+  "text": "all things being equal",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "他の条件が同じなら",
+  "example": "All things being equal, I'd choose the cheaper one.",
+  "exampleJa": "他の条件が同じなら、安いほうを選びます。",
+  "functions": [
+   "condition"
+  ],
+  "domains": [
+   "shopping"
+  ]
+ },
+ {
+  "id": "ph-1-0479",
+  "text": "failing that",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "それがだめなら",
+  "example": "Call me at nine. Failing that, send an email.",
+  "exampleJa": "9時に電話をください。それがだめならメールを。",
+  "functions": [
+   "suggestion"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0480",
+  "text": "having said that",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "とはいえ",
+  "example": "Having said that, I still like the plan.",
+  "exampleJa": "とはいえ、私はまだその計画が好きです。",
+  "functions": [
+   "concession"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0481",
+  "text": "for what it's worth",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "参考までに",
+  "example": "For what it's worth, I think it's a good price.",
+  "exampleJa": "参考までに、いい価格だと思います。",
+  "functions": [
+   "hedging"
+  ],
+  "domains": [
+   "shopping"
+  ]
+ },
+ {
+  "id": "ph-1-0482",
+  "text": "as luck would have it",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "運よく(悪く)",
+  "example": "As luck would have it, the shop was closed.",
+  "exampleJa": "運悪く、店は閉まっていました。",
+  "functions": [
+   "narration"
+  ],
+  "domains": [
+   "shopping"
+  ]
+ },
+ {
+  "id": "ph-1-0483",
+  "text": "in all fairness",
+  "type": "discourse",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "公平を期して言えば",
+  "example": "In all fairness, he did try his best.",
+  "exampleJa": "公平を期して言えば、彼は全力を尽くしました。",
+  "functions": [
+   "opinion"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0484",
+  "text": "Your guess is as good as mine.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "私にもわかりません",
+  "example": "When will it open? — Your guess is as good as mine.",
+  "exampleJa": "いつ開くの?—私にもわかりません。",
+  "functions": [
+   "hedging"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0485",
+  "text": "Don't hold your breath.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "あまり期待しないで",
+  "example": "He said he'd pay today. Don't hold your breath.",
+  "exampleJa": "今日払うと言っていたけど、期待しないほうがいいよ。",
+  "functions": [
+   "warning"
+  ],
+  "domains": [
+   "money"
+  ]
+ },
+ {
+  "id": "ph-1-0486",
+  "text": "You took the words right out of my mouth.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "まさに私が言おうとしたことです",
+  "example": "You took the words right out of my mouth.",
+  "exampleJa": "私が言おうとしたことをそのまま言ってくれましたね。",
+  "functions": [
+   "agreement"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0487",
+  "text": "I'll take that under advisement.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "ご意見は参考にして検討します",
+  "example": "Thank you. I'll take that under advisement.",
+  "exampleJa": "ありがとうございます。ご意見は参考に検討します。",
+  "functions": [
+   "hedging"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0488",
+  "text": "With the greatest of respect, ...",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "最大限の敬意を払ったうえで申し上げますが",
+  "example": "With the greatest of respect, I disagree.",
+  "exampleJa": "最大限の敬意を払って申し上げますが、賛成できません。",
+  "functions": [
+   "disagreement"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0489",
+  "text": "Would you be so kind as to ...?",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "恐れ入りますが…していただけますか",
+  "example": "Would you be so kind as to close the door?",
+  "exampleJa": "恐れ入りますが、ドアを閉めていただけますか。",
+  "functions": [
+   "request"
+  ],
+  "domains": [
+   "hotel"
+  ]
+ },
+ {
+  "id": "ph-1-0490",
+  "text": "I'd be most grateful if ...",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "…していただけると大変ありがたいです",
+  "example": "I'd be most grateful if you could reply soon.",
+  "exampleJa": "お早めにご返信いただけると大変ありがたいです。",
+  "functions": [
+   "request"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0491",
+  "text": "I trust this finds you well.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "お元気でお過ごしのことと存じます",
+  "example": "Dear Mr. Kim, I trust this finds you well.",
+  "exampleJa": "キム様、お元気でお過ごしのことと存じます。",
+  "functions": [
+   "greeting"
+  ],
+  "domains": [
+   "office"
+  ]
+ },
+ {
+  "id": "ph-1-0492",
+  "text": "I stand by what I said.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "私の発言は変わりません",
+  "example": "I stand by what I said yesterday.",
+  "exampleJa": "昨日申し上げたことに変わりはありません。",
+  "functions": [
+   "emphasis"
+  ],
+  "domains": [
+   "meetings"
+  ]
+ },
+ {
+  "id": "ph-1-0493",
+  "text": "Pull yourself together.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "しっかりして",
+  "example": "Pull yourself together. We can fix this.",
+  "exampleJa": "しっかりして。何とかなるよ。",
+  "functions": [
+   "suggestion"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0494",
+  "text": "Spare me the details.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "細かいことはいいから",
+  "example": "Spare me the details. Just tell me the result.",
+  "exampleJa": "細かいことはいいから、結果だけ教えて。",
+  "functions": [
+   "request"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0495",
+  "text": "Mind your own business.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "余計なお世話です",
+  "example": "Mind your own business!",
+  "exampleJa": "余計なお世話です。",
+  "functions": [
+   "refusal"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0496",
+  "text": "I wouldn't put it past him.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "彼ならやりかねない",
+  "example": "He took the money? I wouldn't put it past him.",
+  "exampleJa": "彼がお金を取ったって?彼ならやりかねないね。",
+  "functions": [
+   "opinion"
+  ],
+  "domains": [
+   "society"
+  ]
+ },
+ {
+  "id": "ph-1-0497",
+  "text": "It's not my place to say.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "私が言うことではありません",
+  "example": "It's not my place to say, but I think he's wrong.",
+  "exampleJa": "私が言うことではありませんが、彼は間違っていると思います。",
+  "functions": [
+   "hedging"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0498",
+  "text": "I'm at a loss for words.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "言葉もありません",
+  "example": "I'm at a loss for words. Thank you so much.",
+  "exampleJa": "言葉もありません。本当にありがとうございます。",
+  "functions": [
+   "thanks"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0499",
+  "text": "Far from it.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "とんでもない・まったく違う",
+  "example": "Are you angry? — Far from it.",
+  "exampleJa": "怒ってる?—とんでもない。",
+  "functions": [
+   "disagreement"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0500",
+  "text": "Heaven forbid!",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "とんでもない・そんなことがありませんように",
+  "example": "Heaven forbid that the dam should break.",
+  "exampleJa": "ダムが決壊するなんてとんでもないことです。",
+  "functions": [
+   "emotion"
+  ],
+  "domains": [
+   "nature"
+  ]
+ },
+ {
+  "id": "ph-1-0501",
+  "text": "Over my dead body!",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "絶対に認めない",
+  "example": "Sell the farm? Over my dead body!",
+  "exampleJa": "農場を売る?絶対に認めない。",
+  "functions": [
+   "refusal"
+  ],
+  "domains": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "ph-1-0502",
+  "text": "Cheers to that.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "それに乾杯・まったくだ",
+  "example": "To a good harvest! — Cheers to that.",
+  "exampleJa": "豊作に乾杯!—まったくそのとおり。",
+  "functions": [
+   "agreement"
+  ],
+  "domains": [
+   "food"
+  ]
+ },
+ {
+  "id": "ph-1-0503",
+  "text": "I rest my case.",
+  "type": "formula",
+  "eiken": "1",
+  "toeic": null,
+  "ja": "以上で私の主張を終わります",
+  "example": "The facts are clear. I rest my case.",
+  "exampleJa": "事実は明らかです。以上です。",
+  "functions": [
+   "summarizing"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0504",
+  "text": "arbitration",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "仲裁",
+  "example": "The dispute went to arbitration.",
+  "exampleJa": "その紛争は仲裁に持ち込まれました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0505",
+  "text": "an arbitration clause",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "仲裁条項",
+  "example": "The contract includes an arbitration clause.",
+  "exampleJa": "契約には仲裁条項が含まれています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0506",
+  "text": "indemnify",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "補償する",
+  "example": "The seller will indemnify the buyer against loss.",
+  "exampleJa": "売り主は買い主の損失を補償します。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0507",
+  "text": "a liability waiver",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "免責同意書",
+  "example": "Please sign the liability waiver.",
+  "exampleJa": "免責同意書に署名してください。",
+  "functions": [
+   "instruction"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0508",
+  "text": "a statutory requirement",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "法定要件",
+  "example": "Wearing a seat belt is a statutory requirement.",
+  "exampleJa": "シートベルトの着用は法定要件です。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0509",
+  "text": "a regulatory body",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "規制当局",
+  "example": "A regulatory body inspects the factory.",
+  "exampleJa": "規制当局が工場を検査します。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0510",
+  "text": "a confidentiality agreement",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "守秘義務契約",
+  "example": "All staff sign a confidentiality agreement.",
+  "exampleJa": "スタッフ全員が守秘義務契約に署名します。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0511",
+  "text": "an exclusivity clause",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "独占条項",
+  "example": "The contract has an exclusivity clause.",
+  "exampleJa": "契約には独占条項があります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0512",
+  "text": "a termination clause",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "解約条項",
+  "example": "Please read the termination clause carefully.",
+  "exampleJa": "解約条項をよくお読みください。",
+  "functions": [
+   "instruction"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0513",
+  "text": "a penalty clause",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "違約条項",
+  "example": "A penalty clause applies to late delivery.",
+  "exampleJa": "納期遅れには違約条項が適用されます。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0514",
+  "text": "breach of warranty",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "保証違反",
+  "example": "The buyer sued for breach of warranty.",
+  "exampleJa": "買い主は保証違反で訴えました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0515",
+  "text": "intellectual property",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "知的財産",
+  "example": "The firm protects its intellectual property.",
+  "exampleJa": "その会社は知的財産を守っています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0516",
+  "text": "a patent application",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "特許出願",
+  "example": "She filed a patent application for her tool.",
+  "exampleJa": "彼女は自分の道具の特許を出願しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0517",
+  "text": "trademark infringement",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "商標権の侵害",
+  "example": "The shop was sued for trademark infringement.",
+  "exampleJa": "その店は商標権侵害で訴えられました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0518",
+  "text": "a licensing agreement",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "ライセンス契約",
+  "example": "They signed a licensing agreement.",
+  "exampleJa": "彼らはライセンス契約を結びました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0519",
+  "text": "royalties",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "著作権使用料・ロイヤルティ",
+  "example": "The author receives royalties on every book.",
+  "exampleJa": "著者は本が売れるたびにロイヤルティを受け取ります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "media"
+  ]
+ },
+ {
+  "id": "ph-1-0520",
+  "text": "a joint venture",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "合弁事業",
+  "example": "The two companies formed a joint venture.",
+  "exampleJa": "2社は合弁事業を立ち上げました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0521",
+  "text": "dividend payout",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "配当金の支払い",
+  "example": "The dividend payout is due in June.",
+  "exampleJa": "配当金の支払いは6月です。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0522",
+  "text": "retained earnings",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "内部留保",
+  "example": "The firm used retained earnings to expand.",
+  "exampleJa": "会社は内部留保を使って拡大しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0523",
+  "text": "accounts payable",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "買掛金",
+  "example": "The accountant checks accounts payable weekly.",
+  "exampleJa": "経理担当は毎週、買掛金を確認します。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0524",
+  "text": "accounts receivable",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "売掛金",
+  "example": "Accounts receivable rose last quarter.",
+  "exampleJa": "前四半期は売掛金が増えました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0525",
+  "text": "depreciation",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "減価償却",
+  "example": "Depreciation is included in the costs.",
+  "exampleJa": "減価償却は費用に含まれます。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0526",
+  "text": "a write-down",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "評価損",
+  "example": "The company took a write-down on its stock.",
+  "exampleJa": "会社は在庫の評価損を計上しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0527",
+  "text": "a fiscal quarter",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "会計四半期",
+  "example": "The company's first fiscal quarter ends in June.",
+  "exampleJa": "その会社の第1四半期は6月に終わります。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0528",
+  "text": "an audit trail",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "監査証跡",
+  "example": "Keep an audit trail of every payment.",
+  "exampleJa": "すべての支払いの監査証跡を残してください。",
+  "functions": [
+   "instruction"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0529",
+  "text": "an external audit",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "外部監査",
+  "example": "An external audit is held every year.",
+  "exampleJa": "外部監査は毎年実施されます。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0530",
+  "text": "capital expenditure",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "設備投資(資本的支出)",
+  "example": "Capital expenditure fell this year.",
+  "exampleJa": "今年は設備投資が減りました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0531",
+  "text": "operating expenses",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "営業費用",
+  "example": "We must reduce operating expenses.",
+  "exampleJa": "営業費用を減らさなければなりません。",
+  "functions": [
+   "obligation"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0532",
+  "text": "a cost-benefit analysis",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "費用対効果分析",
+  "example": "We did a cost-benefit analysis of the new boat.",
+  "exampleJa": "新しい船について費用対効果分析を行いました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0533",
+  "text": "a break-even point",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "損益分岐点",
+  "example": "The shop reached its break-even point in May.",
+  "exampleJa": "その店は5月に損益分岐点に達しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0534",
+  "text": "economies of scale",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "規模の経済",
+  "example": "Large farms benefit from economies of scale.",
+  "exampleJa": "大きな農場は規模の経済の恩恵を受けます。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "farming"
+  ]
+ },
+ {
+  "id": "ph-1-0535",
+  "text": "a competitive advantage",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "競争上の優位性",
+  "example": "Fresh fish gives us a competitive advantage.",
+  "exampleJa": "新鮮な魚は私たちの競争上の強みです。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0536",
+  "text": "a value proposition",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "提供価値",
+  "example": "Our value proposition is simple: fresh and local.",
+  "exampleJa": "私たちの提供価値は単純で、新鮮で地元産ということです。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0537",
+  "text": "market penetration",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "市場浸透",
+  "example": "Market penetration is still low.",
+  "exampleJa": "市場浸透率はまだ低いです。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0538",
+  "text": "a business model",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "ビジネスモデル",
+  "example": "The shop has a unique business model.",
+  "exampleJa": "その店は独自のビジネスモデルを持っています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0539",
+  "text": "a turnaround strategy",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "立て直し戦略",
+  "example": "The new manager has a turnaround strategy.",
+  "exampleJa": "新しい店長には立て直し戦略があります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "sales"
+  ]
+ },
+ {
+  "id": "ph-1-0540",
+  "text": "restructuring",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "再編・リストラ",
+  "example": "The company announced a restructuring.",
+  "exampleJa": "会社は再編を発表しました。",
+  "functions": [
+   "announcement"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0541",
+  "text": "a redundancy package",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "(整理解雇の)退職手当",
+  "example": "Staff received a redundancy package.",
+  "exampleJa": "従業員は退職手当を受け取りました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0542",
+  "text": "collective bargaining",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "団体交渉",
+  "example": "Collective bargaining begins next week.",
+  "exampleJa": "団体交渉は来週始まります。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0543",
+  "text": "a grievance procedure",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "苦情処理手続き",
+  "example": "Use the grievance procedure to report problems.",
+  "exampleJa": "問題は苦情処理手続きで報告してください。",
+  "functions": [
+   "instruction"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0544",
+  "text": "an equal opportunity employer",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "機会均等雇用主",
+  "example": "We are an equal opportunity employer.",
+  "exampleJa": "当社は機会均等雇用主です。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "hr"
+  ]
+ },
+ {
+  "id": "ph-1-0545",
+  "text": "a power of attorney",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "委任状",
+  "example": "He holds a power of attorney for his mother.",
+  "exampleJa": "彼は母親の委任状を持っています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0546",
+  "text": "a notary public",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "公証人",
+  "example": "A notary public checked the document.",
+  "exampleJa": "公証人が書類を確認しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0547",
+  "text": "a title deed",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "権利証書",
+  "example": "Keep the title deed in a safe place.",
+  "exampleJa": "権利証書は安全な場所に保管してください。",
+  "functions": [
+   "instruction"
+  ],
+  "domains": [
+   "housing"
+  ]
+ },
+ {
+  "id": "ph-1-0548",
+  "text": "escrow",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "エスクロー(第三者預託)",
+  "example": "The money is held in escrow.",
+  "exampleJa": "お金はエスクローで預けられています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0549",
+  "text": "a lien",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "先取特権・担保権",
+  "example": "The bank placed a lien on the property.",
+  "exampleJa": "銀行はその物件に担保権を設定しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0550",
+  "text": "a covenant",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "契約条項・約定",
+  "example": "The lease has a covenant about pets.",
+  "exampleJa": "賃貸契約にはペットに関する約定があります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "housing"
+  ]
+ },
+ {
+  "id": "ph-1-0551",
+  "text": "a bankruptcy filing",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "破産申請",
+  "example": "The firm made a bankruptcy filing in March.",
+  "exampleJa": "その会社は3月に破産を申請しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0552",
+  "text": "insolvency",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "支払い不能",
+  "example": "The shop faces insolvency.",
+  "exampleJa": "その店は支払い不能の危機にあります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0553",
+  "text": "liquidation",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "清算",
+  "example": "The company went into liquidation.",
+  "exampleJa": "会社は清算に入りました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0554",
+  "text": "a creditor",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "債権者",
+  "example": "The creditor demanded payment.",
+  "exampleJa": "債権者は支払いを求めました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0555",
+  "text": "a debtor",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "債務者",
+  "example": "The debtor promised to pay in May.",
+  "exampleJa": "債務者は5月に払うと約束しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0556",
+  "text": "a bailout",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "救済(措置)",
+  "example": "The airline asked for a bailout.",
+  "exampleJa": "その航空会社は救済を求めました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0557",
+  "text": "a subsidy",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "補助金",
+  "example": "Farmers receive a subsidy for rice.",
+  "exampleJa": "農家は米に対して補助金を受けています。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "farming"
+  ]
+ },
+ {
+  "id": "ph-1-0558",
+  "text": "a levy",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "課徴金",
+  "example": "A levy is charged on imported goods.",
+  "exampleJa": "輸入品には課徴金がかかります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0559",
+  "text": "per annum",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "1年につき",
+  "example": "The interest is five percent per annum.",
+  "exampleJa": "利息は年5%です。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0560",
+  "text": "in arrears",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "滞納して",
+  "example": "The rent is two months in arrears.",
+  "exampleJa": "家賃が2か月滞納になっています。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "housing"
+  ]
+ },
+ {
+  "id": "ph-1-0561",
+  "text": "a pro forma invoice",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "見積請求書",
+  "example": "We will send a pro forma invoice first.",
+  "exampleJa": "まず見積請求書をお送りします。",
+  "functions": [
+   "offer"
+  ],
+  "domains": [
+   "logistics"
+  ]
+ },
+ {
+  "id": "ph-1-0562",
+  "text": "a letter of credit",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "信用状",
+  "example": "Payment is made by a letter of credit.",
+  "exampleJa": "支払いは信用状で行われます。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0563",
+  "text": "a promissory note",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "約束手形",
+  "example": "He signed a promissory note.",
+  "exampleJa": "彼は約束手形に署名しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0564",
+  "text": "collateral",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "担保",
+  "example": "The loan requires collateral.",
+  "exampleJa": "そのローンには担保が必要です。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0565",
+  "text": "an underwriter",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "引受人",
+  "example": "The underwriter checked the risk.",
+  "exampleJa": "引受人はリスクを確認しました。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0566",
+  "text": "an insurance premium",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "保険料",
+  "example": "The insurance premium goes up every year.",
+  "exampleJa": "保険料は毎年上がります。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0567",
+  "text": "a deductible",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "(保険の)自己負担額",
+  "example": "The deductible is ten thousand yen.",
+  "exampleJa": "自己負担額は1万円です。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0568",
+  "text": "a claim form",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "請求用紙",
+  "example": "Please fill out the claim form.",
+  "exampleJa": "請求用紙にご記入ください。",
+  "functions": [
+   "instruction"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0569",
+  "text": "an endorsement",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "裏書・推薦",
+  "example": "The check needs your endorsement.",
+  "exampleJa": "その小切手には裏書が必要です。",
+  "functions": [
+   "instruction"
+  ],
+  "domains": [
+   "finance"
+  ]
+ },
+ {
+  "id": "ph-1-0570",
+  "text": "a fiduciary",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 860,
+  "ja": "受託者",
+  "example": "The trustee acts as a fiduciary.",
+  "exampleJa": "受託者は信託義務を負う者として行動します。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0571",
+  "text": "a binding precedent",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "拘束力のある判例",
+  "example": "The ruling became a binding precedent.",
+  "exampleJa": "その判決は拘束力のある判例になりました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0572",
+  "text": "a cease-and-desist order",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "差し止め命令",
+  "example": "The court issued a cease-and-desist order.",
+  "exampleJa": "裁判所は差し止め命令を出しました。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0573",
+  "text": "a statute of limitations",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "時効",
+  "example": "The statute of limitations has passed.",
+  "exampleJa": "時効が過ぎています。",
+  "functions": [
+   "reporting"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0574",
+  "text": "a compliance audit",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "法令遵守監査",
+  "example": "A compliance audit is held every spring.",
+  "exampleJa": "法令遵守監査は毎年春に行われます。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "law"
+  ]
+ },
+ {
+  "id": "ph-1-0575",
+  "text": "a shareholders' meeting",
+  "type": "business",
+  "eiken": "1",
+  "toeic": 990,
+  "ja": "株主総会",
+  "example": "The shareholders' meeting is held in June.",
+  "exampleJa": "株主総会は6月に開かれます。",
+  "functions": [
+   "description"
+  ],
+  "domains": [
+   "finance"
+  ]
  }
 ]

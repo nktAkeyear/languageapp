@@ -245,7 +245,7 @@ export function jobsEndDay(data: GameData, p: LangProgress): void {
   const s = jobsState(p);
   const d = jobDay(p);
   const tea = jobById(data, TEAHOUSE);
-  const worked = !d || d.tea !== 'none';
+  const worked = !d || d.tea !== 'none' || (p.today?.results.length ?? 0) > 0;
   if (tea && worked && p.today) {
     const jp = jobProgress(p, TEAHOUSE);
     const res = p.today.results;

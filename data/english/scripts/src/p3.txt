@@ -49,8 +49,8 @@
 3|600|formula|I'd like to withdraw some money.|お金を引き出したいのですが|I'd like to withdraw ten thousand yen.|1万円を引き出したいのですが。|request|money
 3|600|formula|What's the exchange rate today?|今日の為替レートは?|What's the exchange rate for dollars today?|今日のドルのレートはいくらですか。|inquiry|money
 3|400|pattern|I've been to ...|…に行ったことがあります|I've been to Hokkaido twice.|北海道に2回行ったことがあります。|description|travel
-3|400|pattern|I've never ...|…したことがない|I've never eaten raw octopus.|生のタコを食べたことがありません。|description|food
-3|400|pattern|Have you ever ...?|…したことがありますか|Have you ever been on a ferry?|フェリーに乗ったことがありますか。|inquiry|transport
+3|400|pattern|I've never ...|…したことがない|I've never eaten raw fish.|生の魚は食べたことがありません。|description|food
+3|400|pattern|Have you ever ...?|…したことがありますか|Have you ever been on a plane?|飛行機に乗ったことはありますか。|inquiry|transport
 3|400|pattern|I've already ...|もう…しました|I've already eaten lunch.|もう昼食を食べました。|description|food
 3|400|pattern|I haven't ... yet.|まだ…していません|I haven't finished my homework yet.|まだ宿題が終わっていません。|description|school
 3|400|pattern|I've lived here for ...|ここに…年住んでいます|I've lived here for ten years.|ここに10年住んでいます。|description|housing
@@ -102,7 +102,7 @@
 3|400|collocation|pay for|…の代金を払う|I'll pay for the tickets.|切符代は私が払います。|offer|money
 3|500|collocation|do business|商売をする|They do business with many countries.|彼らは多くの国と取引しています。|description|sales
 3|-|collocation|do my best|全力を尽くす|I'll do my best.|全力を尽くします。|emotion|school
-3|400|collocation|get a job|仕事に就く|He got a job at the harbor.|彼は港で仕事に就きました。|narration|office
+3|400|collocation|get a job|仕事に就く|He got a job at the bank.|彼は銀行に就職しました。|narration|office
 3|400|collocation|get a ticket|切符を手に入れる|I got two tickets for the concert.|コンサートの切符を2枚手に入れました。|narration|arts
 3|400|collocation|get better|よくなる|I hope you get better soon.|早くよくなってください。|sympathy|health
 3|400|collocation|get tired|疲れる|I get tired easily.|すぐ疲れます。|description|body
@@ -114,7 +114,7 @@
 3|400|collocation|heavy rain|大雨|We had heavy rain last night.|昨夜は大雨でした。|description|weather
 3|400|collocation|strong wind|強風|A strong wind is blowing.|強い風が吹いています。|description|weather
 3|-|collocation|fresh air|新鮮な空気|The mountain air is fresh.|山の空気は新鮮です。|description|nature
-3|600|collocation|a great deal of|たくさんの|We caught a great deal of fish.|たくさんの魚がとれました。|description|sea
+3|600|collocation|a great deal of|たくさんの|I spent a great deal of time on this.|これに多くの時間を費やしました。|description|sea
 3|400|collocation|at least|少なくとも|It takes at least an hour.|少なくとも1時間はかかります。|description|abstract
 3|-|collocation|a kind of|一種の|This is a kind of tea.|これはお茶の一種です。|description|food
 3|400|collocation|different from|…と違う|This is different from that one.|これはあれと違います。|comparison|abstract
@@ -123,14 +123,14 @@
 3|400|collocation|be proud of|…を誇りに思う|I'm proud of my town.|私は自分の町を誇りに思います。|emotion|society
 3|400|collocation|be late for|…に遅れる|Don't be late for school.|学校に遅れないで。|warning|school
 3|400|collocation|be ready for|…の準備ができている|Dinner is ready for you.|夕食の準備ができています。|description|food
-3|400|collocation|be full of|…でいっぱいだ|The harbor is full of boats.|港は船でいっぱいです。|description|sea
+3|400|collocation|be full of|…でいっぱいだ|The park is full of people.|公園は人でいっぱいです。|description|sea
 3|400|phrasal_verb|find out|調べて知る|Let's find out the train time.|電車の時間を調べよう。|suggestion|transport
 3|400|phrasal_verb|look after|世話をする|She looks after her grandmother.|彼女は祖母の世話をしています。|description|family
 3|400|phrasal_verb|look forward to|…を楽しみにする|I look forward to seeing you.|お会いするのを楽しみにしています。|emotion|society
 3|400|phrasal_verb|look up|調べる|Look up the word in a dictionary.|その言葉を辞書で調べて。|instruction|school
 3|400|phrasal_verb|take out|取り出す・持ち帰る|Take out the garbage, please.|ごみを出してください。|request|housing
 3|400|phrasal_verb|put away|片付ける|Put away your toys.|おもちゃを片付けて。|instruction|housing
-3|600|phrasal_verb|set up|設置する・準備する|We set up the tent by the lake.|湖のそばにテントを張りました。|narration|nature
+3|600|phrasal_verb|set up|設置する・準備する|We set up the table by the lake.|湖のそばにテーブルを用意しました。|narration|nature
 3|400|phrasal_verb|check in|チェックインする|You can check in after three.|3時以降にチェックインできます。|instruction|hotel
 3|400|phrasal_verb|check out|チェックアウトする|Please check out by eleven.|11時までにチェックアウトしてください。|instruction|hotel
 3|400|phrasal_verb|call back|折り返し電話する|Can you call me back later?|後で折り返し電話をいただけますか。|request|office
@@ -162,7 +162,7 @@
 3|400|idiom|in the future|将来|I want to be a chef in the future.|将来は料理人になりたいです。|preference|cooking
 3|400|idiom|for the first time|初めて|I saw snow for the first time.|初めて雪を見ました。|narration|weather
 3|400|discourse|however|しかし|It was cold. However, we enjoyed it.|寒かったです。しかし楽しみました。|contrast|society
-3|600|discourse|because of this|このため|Because of this, the ferry was late.|このため、フェリーは遅れました。|cause/effect|transport
+3|600|discourse|because of this|このため|Because of this, the bus was late.|このため、バスは遅れました。|cause/effect|transport
 3|400|discourse|in addition|加えて|In addition, breakfast is free.|加えて朝食は無料です。|addition|hotel
 3|400|discourse|finally|最後に|Finally, add some salt.|最後に塩を少し加えます。|sequencing|cooking
 3|400|discourse|though|…だが|Though it was late, he kept working.|遅かったが、彼は働き続けました。|concession|office

@@ -1,0 +1,173 @@
+# ---- 1 additions: phrasal verbs
+1|860|phrasal_verb|back down|引き下がる|The company backed down after the protest.|会社は抗議を受けて引き下がりました。|reporting|society
+1|990|phrasal_verb|bail out|救済する・脱出する|The government bailed out the failing bank.|政府は経営難の銀行を救済しました。|reporting|finance
+1|-|phrasal_verb|bog down|行き詰まる|The talks got bogged down in details.|交渉は細部で行き詰まりました。|description|meetings
+1|990|phrasal_verb|boil down to|要するに…になる|It all boils down to money.|結局はお金の問題です。|summarizing|finance
+1|-|phrasal_verb|bottle up|(感情を)抑え込む|Don't bottle up your feelings.|気持ちをため込まないで。|suggestion|emotion
+1|860|phrasal_verb|bounce back|立ち直る・回復する|The local economy bounced back after the flood.|地域経済は洪水のあと持ち直しました。|reporting|finance
+1|-|phrasal_verb|bow out|身を引く|The old captain bowed out after forty years at sea.|年老いた船長は海で40年過ごして身を引きました。|narration|sea
+1|860|phrasal_verb|branch out|事業を広げる|The bakery branched out into coffee.|そのパン屋はコーヒーにも事業を広げました。|reporting|food
+1|990|phrasal_verb|brush aside|一蹴する|The manager brushed aside our concerns.|部長は私たちの懸念を一蹴しました。|complaint|meetings
+1|-|phrasal_verb|bump into|偶然出会う|I bumped into my old teacher at the market.|市場で昔の先生にばったり会いました。|narration|society
+1|860|phrasal_verb|buy out|買収する・買い取る|A large company bought out the family shop.|大手企業がその家族経営の店を買収しました。|reporting|finance
+1|990|phrasal_verb|carve out|切り開く・獲得する|She carved out a place for herself in the market.|彼女は市場で自分の居場所を切り開きました。|praise|sales
+1|-|phrasal_verb|cast aside|捨て去る|They cast aside the old rules.|彼らは古い規則を捨て去りました。|description|society
+1|990|phrasal_verb|chalk up|(成績・得点を)記録する|The team chalked up another win.|チームはまた1勝を挙げました。|reporting|society
+1|990|phrasal_verb|churn out|大量に作り出す|The factory churns out thousands of bottles a day.|工場は1日に何千本もの瓶を量産します。|description|crafts
+1|-|phrasal_verb|clam up|口をつぐむ|He clammed up when the police arrived.|警察が来ると彼は黙り込みました。|description|law
+1|990|phrasal_verb|cling to|しがみつく|Some villagers cling to old traditions.|古い伝統にしがみつく村人もいます。|description|society
+1|-|phrasal_verb|come to terms with|(事実などを)受け入れる|He came to terms with the loss of his boat.|彼は船を失ったことを受け入れました。|description|emotion
+1|990|phrasal_verb|crack down on|厳しく取り締まる|Police are cracking down on illegal fishing.|警察は違法漁業を厳しく取り締まっています。|reporting|law
+1|990|phrasal_verb|delve into|掘り下げる|The report delves into the causes of the crisis.|その報告書は危機の原因を掘り下げています。|description|science
+1|-|phrasal_verb|dole out|(少しずつ)配る|Volunteers doled out hot soup to the crowd.|ボランティアは人々に温かいスープを配りました。|description|food
+1|860|phrasal_verb|drag on|だらだら続く|The meeting dragged on for hours.|会議は何時間もだらだら続きました。|complaint|meetings
+1|990|phrasal_verb|drum up|(支持・客などを)集める|We need to drum up more business.|もっと仕事を取ってくる必要があります。|obligation|sales
+1|-|phrasal_verb|eke out|(乏しい中で)やりくりする|He eked out a living by selling vegetables.|彼は野菜を売ってかつかつ暮らしていました。|description|farming
+1|990|phrasal_verb|factor in|考慮に入れる|Be sure to factor in the cost of shipping.|送料も必ず考慮に入れてください。|instruction|finance
+1|990|phrasal_verb|fall back on|(いざという時に)頼る|We can fall back on our savings.|いざとなれば貯金に頼れます。|description|money
+1|990|phrasal_verb|fizzle out|尻すぼみに終わる|The campaign fizzled out after a month.|そのキャンペーンは1か月で尻すぼみに終わりました。|reporting|sales
+1|990|phrasal_verb|flare up|(病気・争いが)再燃する|My back pain flares up in cold weather.|寒いと腰痛が再発します。|description|health
+1|-|phrasal_verb|fork out|(しぶしぶ)大金を払う|I had to fork out a lot for the repairs.|修理に大金を払うはめになりました。|complaint|money
+1|-|phrasal_verb|fritter away|浪費する|He frittered away his savings on gadgets.|彼は貯金を小物に浪費しました。|complaint|money
+1|860|phrasal_verb|get around to|(やっと)取りかかる|I haven't got around to answering the letter yet.|その手紙にはまだ返事に取りかかれていません。|apology|post
+1|990|phrasal_verb|get to the bottom of|真相を突き止める|We must get to the bottom of this problem.|この問題の真相を突き止めなければなりません。|obligation|law
+1|990|phrasal_verb|grapple with|取り組む・格闘する|The village is grappling with a shortage of water.|村は水不足と格闘しています。|description|society
+1|990|phrasal_verb|hammer out|(協議して)まとめ上げる|They hammered out an agreement after long talks.|長い協議の末に彼らは合意をまとめました。|reporting|meetings
+1|-|phrasal_verb|harp on|しつこく繰り返す|He keeps harping on about the price.|彼は値段のことをしつこく言い続けます。|complaint|society
+1|-|phrasal_verb|jack up|(価格を)つり上げる|Some shops jacked up prices after the storm.|嵐のあと、値段をつり上げた店もありました。|complaint|shopping
+1|990|phrasal_verb|keep abreast of|(情報に)遅れずについていく|We try to keep abreast of the latest news.|最新のニュースに遅れないようにしています。|description|media
+1|-|phrasal_verb|lash out|激しく非難する|The mayor lashed out at the critics.|市長は批判者に猛反発しました。|description|society
+1|-|phrasal_verb|lay bare|暴露する|The report laid bare the problems of the company.|報告書は会社の問題を暴き出しました。|reporting|media
+1|860|phrasal_verb|lean on|頼る|He leaned on his brother during the hard times.|苦しい時期、彼は兄を頼りにしました。|description|family
+1|860|phrasal_verb|mark down|値下げする|All winter coats are marked down by half.|冬のコートはすべて半額に値下げされています。|announcement|clothing
+1|990|phrasal_verb|opt out|(参加を)やめる・辞退する|You can opt out of the program at any time.|プログラムはいつでも辞退できます。|permission|society
+1|990|phrasal_verb|pan out|うまくいく|The plan didn't pan out as we hoped.|計画は期待したようにはいきませんでした。|regret|meetings
+1|-|phrasal_verb|pare down|削減する|We pared down the menu to ten dishes.|メニューを10品に絞りました。|description|food
+1|-|phrasal_verb|peter out|次第になくなる|The crowd petered out by midnight.|人出は真夜中までに次第に減りました。|description|society
+1|860|phrasal_verb|pin down|特定する・確定する|We can't pin down the cause of the leak.|水漏れの原因を特定できません。|description|housing
+1|-|phrasal_verb|play along|調子を合わせる|I decided to play along with his joke.|彼の冗談に調子を合わせることにしました。|description|society
+1|-|phrasal_verb|pounce on|飛びかかる・すぐ飛びつく|Customers pounced on the cheap fish.|客たちは安い魚に飛びつきました。|description|shopping
+1|990|phrasal_verb|prop up|支える・下支えする|The government propped up the fishing industry.|政府は漁業を下支えしました。|reporting|sea
+1|860|phrasal_verb|ride out|乗り切る|The small boat rode out the storm.|その小舟は嵐を乗り切りました。|narration|sea
+1|860|phrasal_verb|roll out|(新製品・サービスを)展開する|The company will roll out the new service in spring.|会社は春に新しいサービスを展開します。|announcement|technology
+1|-|phrasal_verb|scrape by|かろうじて暮らす|They scraped by on a small pension.|彼らはわずかな年金でかつかつ暮らしていました。|description|money
+1|860|phrasal_verb|shake up|大改革する|The new owner shook up the whole staff.|新オーナーはスタッフ全体を大幅に入れ替えました。|reporting|hr
+1|-|phrasal_verb|shore up|補強する|They shored up the old wall with wood.|彼らは古い壁を木材で補強しました。|description|housing
+1|860|phrasal_verb|shrug off|軽くあしらう・気にしない|She shrugged off the criticism.|彼女は批判を意に介しませんでした。|description|emotion
+1|990|phrasal_verb|sift through|ふるいにかける・丹念に調べる|I sifted through the old documents for the receipt.|レシートを探して古い書類を丹念に調べました。|description|office
+1|990|phrasal_verb|single out|選び出す|The mayor singled out the volunteers for praise.|市長はボランティアを名指しでほめました。|praise|society
+1|-|phrasal_verb|skim through|ざっと読む|I only had time to skim through the report.|報告書にざっと目を通す時間しかありませんでした。|description|office
+1|-|phrasal_verb|slack off|手を抜く|Don't slack off just because the boss is away.|上司がいないからといって手を抜かないで。|warning|hr
+1|860|phrasal_verb|snap up|飛びつくように買う|Shoppers snapped up the limited cakes.|買い物客は限定ケーキにすぐ飛びつきました。|description|shopping
+1|990|phrasal_verb|spell out|詳しく説明する|Please spell out the terms clearly.|条件を明確に説明してください。|request|law
+1|-|phrasal_verb|spring up|急に現れる|New cafés have sprung up along the street.|通り沿いに新しいカフェが次々に現れました。|description|society
+1|990|phrasal_verb|stamp out|根絶する|The town is trying to stamp out illegal dumping.|町は不法投棄を根絶しようとしています。|description|law
+1|860|phrasal_verb|stand in for|代理を務める|Ms. Abe will stand in for the manager today.|今日は阿部さんが店長の代理を務めます。|announcement|hr
+1|990|phrasal_verb|steer clear of|避ける|Steer clear of the rocks near the shore.|岸近くの岩には近づかないでください。|warning|sea
+1|990|phrasal_verb|stem from|…に由来する|His fear of water stems from a childhood accident.|彼の水への恐怖は子どもの頃の事故に由来します。|cause/effect|emotion
+1|860|phrasal_verb|step up|強化する・進み出る|The police stepped up patrols at night.|警察は夜間の巡回を強化しました。|reporting|law
+1|990|phrasal_verb|take stock of|現状を見極める|Let's take stock of what we have.|手持ちの状況を整理してみましょう。|suggestion|office
+1|990|phrasal_verb|tap into|活用する|The shop taps into the local tourist trade.|その店は地元の観光客需要を取り込んでいます。|description|sales
+1|860|phrasal_verb|team up|協力する|The two farms teamed up to sell their produce.|その2つの農場は協力して農産物を販売しました。|description|farming
+1|860|phrasal_verb|track down|突き止める|I finally tracked down the missing parcel.|行方不明の荷物をやっと突き止めました。|reporting|logistics
+1|990|phrasal_verb|usher in|(新時代などを)もたらす|The railway ushered in a new era for the town.|鉄道は町に新しい時代をもたらしました。|description|transport
+1|990|phrasal_verb|wade through|苦労して読み進める|I had to wade through piles of paperwork.|山のような書類を苦労して読み進めなければなりませんでした。|complaint|office
+1|990|phrasal_verb|whittle down|徐々に減らす|They whittled the list down to five names.|彼らはリストを5人まで絞り込みました。|description|hr
+1|860|phrasal_verb|win over|味方につける|She won over the doubtful customers with free samples.|彼女は無料サンプルで疑い深い客を味方につけました。|description|sales
+# ---- 1 additions: idioms
+1|-|idiom|a can of worms|やっかいな問題|Opening that issue would open a can of worms.|その件を持ち出すとやっかいな問題になります。|warning|society
+1|-|idiom|a wild goose chase|無駄な追跡|The search turned out to be a wild goose chase.|その捜索はむだ骨に終わりました。|narration|society
+1|-|idiom|at loggerheads|激しく対立して|The two shop owners are at loggerheads over the sign.|2人の店主は看板をめぐって激しく対立しています。|description|society
+1|-|idiom|with one's back to the wall|追い詰められて|The small shop is with its back to the wall.|その小さな店は追い詰められています。|description|sales
+1|-|idiom|barking up the wrong tree|見当違いをする|If you blame him, you're barking up the wrong tree.|彼のせいにするなら見当違いです。|warning|society
+1|860|idiom|bear fruit|実を結ぶ|Our hard work finally bore fruit.|私たちの努力はついに実を結びました。|narration|farming
+1|-|idiom|beat a dead horse|終わったことを蒸し返す|Stop beating a dead horse. It's decided.|もう済んだ話を蒸し返さないで。決まったことです。|complaint|meetings
+1|990|idiom|bend over backwards|最大限の努力をする|The hotel staff bent over backwards to help us.|ホテルのスタッフは私たちのために最大限努力してくれました。|praise|hotel
+1|-|idiom|between a rock and a hard place|板挟みで|I'm between a rock and a hard place.|私は板挟みの状態です。|description|emotion
+1|-|idiom|bite the hand that feeds you|恩を仇で返す|Criticizing your boss is biting the hand that feeds you.|上司を批判するのは恩を仇で返すようなものです。|warning|hr
+1|990|idiom|blow the whistle|内部告発する|An employee blew the whistle on the illegal dumping.|従業員が不法投棄を内部告発しました。|reporting|law
+1|-|idiom|a bolt from the blue|青天の霹靂|The news was a bolt from the blue.|その知らせは青天の霹靂でした。|narration|emotion
+1|990|idiom|break new ground|新境地を開く|The chef broke new ground with his fish dishes.|そのシェフは魚料理で新境地を開きました。|praise|cooking
+1|-|idiom|bring home the bacon|生活の糧を稼ぐ|She brings home the bacon for the family.|彼女が家族の稼ぎ手です。|description|family
+1|-|idiom|burn one's bridges|後戻りできなくする|Don't burn your bridges when you leave the job.|仕事を辞めるとき、後戻りできなくしてはいけません。|suggestion|hr
+1|-|idiom|by the skin of one's teeth|かろうじて|We caught the last ferry by the skin of our teeth.|私たちは間一髪で最終フェリーに間に合いました。|narration|sea
+1|-|idiom|call a spade a spade|はっきりものを言う|I like to call a spade a spade.|私は物事をはっきり言うのが好きです。|opinion|society
+1|-|idiom|caught red-handed|現行犯で|The thief was caught red-handed.|泥棒は現行犯で捕まりました。|narration|law
+1|860|idiom|clear the air|わだかまりを解く|Let's clear the air before we start.|始める前にわだかまりを解きましょう。|suggestion|society
+1|860|idiom|climb the corporate ladder|出世の階段を上る|He worked hard to climb the corporate ladder.|彼は出世の階段を上るため懸命に働きました。|description|hr
+1|-|idiom|close ranks|結束する|The villagers closed ranks against the plan.|村人たちは計画に反対して結束しました。|description|society
+1|990|idiom|come clean|白状する|He finally came clean about the mistake.|彼はついにそのミスを白状しました。|narration|society
+1|-|idiom|come full circle|一巡して元に戻る|The shop has come full circle and sells fish again.|その店は一巡してまた魚を売るようになりました。|description|sales
+1|-|idiom|come hell or high water|何があっても|I'll finish it, come hell or high water.|何があってもやり遂げます。|emphasis|emotion
+1|860|idiom|cut to the chase|単刀直入に言う|Let's cut to the chase. How much is it?|単刀直入にいきましょう。いくらですか。|request|sales
+1|-|idiom|dig one's heels in|頑として譲らない|The owner dug his heels in over the price.|店主は値段について頑として譲りませんでした。|description|sales
+1|990|idiom|dot the i's and cross the t's|細部まで念を入れる|Lawyers must dot the i's and cross the t's.|弁護士は細部まで念を入れなければなりません。|description|law
+1|860|idiom|draw the line|一線を引く|I draw the line at working on Sundays.|日曜日に働くことは断固として拒否します。|refusal|hr
+1|990|idiom|drive a hard bargain|手ごわく交渉する|The farmer drove a hard bargain on the price.|その農家は値段の交渉で手ごわかったです。|negotiation|farming
+1|-|idiom|eat humble pie|屈辱的に謝る|He had to eat humble pie and apologize.|彼は恥を忍んで謝らなければなりませんでした。|apology|emotion
+1|-|idiom|every cloud has a silver lining|苦あれば楽あり|Every cloud has a silver lining.|どんな不幸にもよい面があります。|sympathy|emotion
+1|-|idiom|fall on deaf ears|聞き入れられない|Our warnings fell on deaf ears.|私たちの警告は聞き入れられませんでした。|complaint|society
+1|-|idiom|fly in the face of|…に真っ向から反する|The decision flies in the face of common sense.|その決定は常識に真っ向から反します。|opinion|society
+1|860|idiom|foot the bill|費用を負担する|Who will foot the bill for the repairs?|修理費はだれが負担しますか。|inquiry|money
+1|-|idiom|get the short end of the stick|損な役回りになる|I always get the short end of the stick.|私はいつも損な役回りです。|complaint|emotion
+1|860|idiom|give someone the benefit of the doubt|善意に解釈する|Let's give him the benefit of the doubt.|彼のことを善意に解釈しましょう。|suggestion|society
+1|-|idiom|go down in flames|無惨に失敗する|The project went down in flames.|そのプロジェクトは無惨に失敗しました。|narration|office
+1|-|idiom|go haywire|おかしくなる|The machine went haywire again.|機械がまたおかしくなりました。|complaint|technology
+1|990|idiom|go to great lengths|あらゆる手を尽くす|They went to great lengths to save the old inn.|彼らはその古い宿を救うためあらゆる手を尽くしました。|description|hotel
+1|-|idiom|grasp at straws|わらにもすがる|He is grasping at straws to save his business.|彼は事業を救おうとわらにもすがっています。|description|emotion
+1|860|idiom|hit the ground running|最初から全力で取り組む|The new staff hit the ground running.|新しいスタッフは初日から全力で働きました。|praise|hr
+1|-|idiom|hold all the cards|切り札を握っている|The buyer holds all the cards in this deal.|この取引では買い手がすべての切り札を握っています。|description|sales
+1|990|idiom|hold one's own|引けを取らない|The small shop holds its own against the big stores.|その小さな店は大型店に引けを取りません。|praise|sales
+1|860|idiom|in the pipeline|準備中で|We have several new products in the pipeline.|新製品をいくつか準備中です。|reporting|sales
+1|-|idiom|in the limelight|脚光を浴びて|The young chef is now in the limelight.|その若いシェフは今、脚光を浴びています。|description|cooking
+1|860|idiom|jump on the bandwagon|流行に乗る|Many shops jumped on the bandwagon and sold the drink.|多くの店が流行に乗ってその飲み物を売りました。|description|sales
+1|-|idiom|keep one's chin up|元気を出す|Keep your chin up. Things will get better.|元気を出して。きっとよくなります。|sympathy|emotion
+1|990|idiom|keep one's head above water|何とかやっていく|The shop is barely keeping its head above water.|その店はかろうじて持ちこたえています。|description|finance
+1|-|idiom|kick the bucket|死ぬ(俗語)|The old tractor finally kicked the bucket.|古いトラクターがついにダメになりました。|description|farming
+1|990|idiom|leave no stone unturned|あらゆる手を尽くす|We left no stone unturned in the search.|私たちはあらゆる手を尽くして捜しました。|description|society
+1|-|idiom|let sleeping dogs lie|寝た子を起こすな|Just let sleeping dogs lie.|寝た子を起こさないほうがいいです。|suggestion|society
+1|990|idiom|lose face|面目を失う|He didn't want to lose face in front of his staff.|彼は部下の前で面目を失いたくありませんでした。|description|hr
+1|-|idiom|make a killing|大もうけする|They made a killing selling umbrellas in the rain.|雨の日に傘を売って彼らは大もうけしました。|description|sales
+1|-|idiom|make waves|波風を立てる|He doesn't want to make waves at work.|彼は職場で波風を立てたくありません。|description|hr
+1|-|idiom|move the goalposts|(後から)条件を変える|They keep moving the goalposts.|彼らは条件をころころ変えます。|complaint|sales
+1|860|idiom|nip in the bud|芽のうちに摘む|We must nip the problem in the bud.|その問題は早いうちに摘み取らなければなりません。|obligation|society
+1|990|idiom|no strings attached|何の条件もなく|The gift came with no strings attached.|その贈り物は何の条件もついていませんでした。|description|sales
+1|-|idiom|off the record|非公式に|Off the record, the shop may close.|ここだけの話ですが、その店は閉店するかもしれません。|hedging|media
+1|-|idiom|on thin ice|危うい状況で|He is on thin ice with the boss.|彼は上司との関係が危うい状況です。|warning|hr
+1|860|idiom|on the back burner|後回しで|The new project is on the back burner for now.|新しいプロジェクトは今は後回しになっています。|reporting|office
+1|-|idiom|on the brink of|…の寸前で|The shop is on the brink of closing.|その店は閉店の瀬戸際です。|description|sales
+1|-|idiom|out of the woods|危機を脱して|The patient is not out of the woods yet.|患者はまだ危機を脱していません。|reporting|health
+1|-|idiom|paint a rosy picture|明るい見通しを描く|The report paints a rosy picture of the future.|報告書は将来の明るい見通しを描いています。|description|media
+1|990|idiom|pass the buck|責任を転嫁する|Don't pass the buck. It's your job.|責任をなすりつけないで。あなたの仕事です。|complaint|hr
+1|990|idiom|pave the way for|…への道を開く|The new road paved the way for tourism.|新しい道路は観光業への道を開きました。|cause/effect|transport
+1|-|idiom|play devil's advocate|あえて反対意見を言う|Let me play devil's advocate for a moment.|ちょっとあえて反対の立場で言わせてください。|hedging|meetings
+1|-|idiom|play second fiddle|脇役に甘んじる|She refuses to play second fiddle to anyone.|彼女はだれの脇役にもなるつもりはありません。|description|hr
+1|860|idiom|pull the plug|中止する・打ち切る|The owner pulled the plug on the project.|オーナーはそのプロジェクトを打ち切りました。|narration|office
+1|-|idiom|put all one's eggs in one basket|一つのことにすべてを賭ける|Don't put all your eggs in one basket.|1つのことにすべてを賭けないで。|suggestion|money
+1|990|idiom|raise the bar|基準を引き上げる|The new chef raised the bar for the whole town.|新しいシェフは町全体の水準を引き上げました。|praise|cooking
+1|990|idiom|read between the lines|行間を読む|If you read between the lines, he's unhappy.|行間を読むと、彼は不満のようです。|description|abstract
+1|-|idiom|rock the boat|波風を立てる|Please don't rock the boat now.|今は波風を立てないでください。|request|society
+1|-|idiom|run the gauntlet|厳しい試練をくぐり抜ける|The new recruits ran the gauntlet of tests.|新人は厳しい試験をくぐり抜けました。|description|hr
+1|990|idiom|save face|面目を保つ|He lied to save face.|彼は面目を保つためにうそをつきました。|description|society
+1|860|idiom|scratch the surface|表面をなでる・ごく一部しか扱わない|We have only scratched the surface of the problem.|私たちは問題のほんの表面をなでただけです。|description|science
+1|860|idiom|sell like hot cakes|飛ぶように売れる|The new cookies sold like hot cakes.|新しいクッキーは飛ぶように売れました。|reporting|sales
+1|990|idiom|set the stage for|…のお膳立てをする|The talks set the stage for a deal.|その協議が合意への土台を作りました。|cause/effect|meetings
+1|-|idiom|sink or swim|一か八か|It was sink or swim for the new shop.|新しい店にとって一か八かでした。|description|sales
+1|-|idiom|smell a rat|怪しいと感じる|I smell a rat. Something isn't right.|怪しいですね。何かおかしいです。|opinion|society
+1|860|idiom|stand one's ground|一歩も譲らない|She stood her ground in the meeting.|彼女は会議で一歩も譲りませんでした。|description|meetings
+1|-|idiom|stick one's neck out|危険を冒して支持する|I stuck my neck out for him.|私は危険を承知で彼を支持しました。|description|hr
+1|860|idiom|take the bull by the horns|困難に立ち向かう|It's time to take the bull by the horns.|いよいよ困難に立ち向かうときです。|emphasis|office
+1|860|idiom|take the plunge|思い切って踏み出す|He took the plunge and opened a restaurant.|彼は思い切ってレストランを開きました。|narration|food
+1|-|idiom|talk shop|仕事の話をする|They talked shop all through dinner.|彼らは夕食のあいだずっと仕事の話をしていました。|description|office
+1|990|idiom|the writing is on the wall|破局の兆しは明らかだ|The writing is on the wall for the old cannery.|その古い缶詰工場の先行きは明らかに暗いです。|prediction|sea
+1|-|idiom|tie the knot|結婚する|They tied the knot last spring.|彼らは去年の春に結婚しました。|narration|family
+1|-|idiom|toe the line|規則に従う|Everyone must toe the line here.|ここではだれもが規則に従わなければなりません。|warning|hr
+1|-|idiom|touch a nerve|痛いところを突く|My question seemed to touch a nerve.|私の質問は痛いところを突いたようでした。|description|emotion
+1|990|idiom|turn a blind eye|見て見ぬふりをする|The guard turned a blind eye to the small crime.|警備員は小さな違反を見て見ぬふりをしました。|complaint|law
+1|860|idiom|turn the tables|形勢を逆転させる|The visiting team turned the tables in the last game.|アウェーのチームは最終戦で形勢を逆転しました。|narration|society
+1|990|idiom|up to scratch|水準に達して|His work is not up to scratch.|彼の仕事は水準に達していません。|complaint|hr
+1|-|idiom|walk on eggshells|気を使いすぎる|I walk on eggshells around the boss.|上司の前ではいつも気を使っています。|description|hr
+1|860|idiom|water down|薄める・弱める|The mayor watered down the original plan.|市長は当初の案を骨抜きにしました。|reporting|society
+1|860|idiom|weather the storm|嵐を乗り切る|The small bakery weathered the storm.|その小さなパン屋は苦境を乗り切りました。|praise|food
+1|-|idiom|win hands down|楽勝する|Our team won hands down.|私たちのチームは楽勝しました。|narration|society
+1|-|idiom|worth one's salt|有能な|Any chef worth his salt knows that.|腕のいいシェフならだれでもそれを知っています。|praise|cooking
