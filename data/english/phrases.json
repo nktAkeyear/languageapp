@@ -102,8 +102,8 @@
   "eiken": "5",
   "toeic": 400,
   "ja": "またね",
-  "example": "See you at the harbor.",
-  "exampleJa": "港でね。",
+  "example": "See you at the station.",
+  "exampleJa": "駅で会いましょう。",
   "functions": [
    "farewell"
   ],
@@ -1098,8 +1098,8 @@
   "eiken": "5",
   "toeic": 400,
   "ja": "楽しんで",
-  "example": "Have a good time at the festival.",
-  "exampleJa": "お祭りを楽しんでね。",
+  "example": "Have a good time at the party.",
+  "exampleJa": "パーティーを楽しんでね。",
   "functions": [
    "farewell"
   ],
@@ -1341,8 +1341,8 @@
   "eiken": "5",
   "toeic": 400,
   "ja": "…できません",
-  "example": "I can't see the sea.",
-  "exampleJa": "海が見えません。",
+  "example": "I can't see the board.",
+  "exampleJa": "黒板が見えません。",
   "functions": [
    "ability"
   ],
@@ -1453,8 +1453,8 @@
   "eiken": "5",
   "toeic": 400,
   "ja": "これは何ですか",
-  "example": "What's this? — It's a shell.",
-  "exampleJa": "これは何?—貝殻です。",
+  "example": "What's this? — It's a bird.",
+  "exampleJa": "これは何?—鳥だよ。",
   "functions": [
    "inquiry"
   ],
@@ -1933,8 +1933,8 @@
   "eiken": "5",
   "toeic": 400,
   "ja": "助けて!",
-  "example": "Help! My boat is sinking!",
-  "exampleJa": "助けて!ボートが沈む!",
+  "example": "Help! I can't find my mom!",
+  "exampleJa": "助けて!お母さんが見つからないの!",
   "functions": [
    "warning"
   ],
@@ -1981,8 +1981,8 @@
   "eiken": "5",
   "toeic": 400,
   "ja": "あれは…です",
-  "example": "That is a ship.",
-  "exampleJa": "あれは船です。",
+  "example": "That is a bus.",
+  "exampleJa": "あれはバスです。",
   "functions": [
    "description"
   ],
@@ -2061,8 +2061,8 @@
   "eiken": "5",
   "toeic": 400,
   "ja": "彼は…を持っています",
-  "example": "He has a small boat.",
-  "exampleJa": "彼は小さな船を持っています。",
+  "example": "He has a small dog.",
+  "exampleJa": "彼は小さな犬を飼っています。",
   "functions": [
    "description"
   ],
@@ -2718,8 +2718,8 @@
   "eiken": "4",
   "toeic": 400,
   "ja": "いらっしゃいませんか",
-  "example": "Would you like to come to the festival?",
-  "exampleJa": "お祭りに来ませんか。",
+  "example": "Would you like to come to the party?",
+  "exampleJa": "パーティーに来ませんか。",
   "functions": [
    "invitation"
   ],
@@ -3121,8 +3121,8 @@
   "eiken": "4",
   "toeic": 400,
   "ja": "お仕事は何ですか",
-  "example": "What do you do? — I'm a fisherman.",
-  "exampleJa": "お仕事は?—漁師です。",
+  "example": "What do you do? — I'm a teacher.",
+  "exampleJa": "お仕事は何ですか。—教師です。",
   "functions": [
    "inquiry"
   ],
@@ -3283,8 +3283,8 @@
   "eiken": "4",
   "toeic": 400,
   "ja": "これを試着してもいいですか",
-  "example": "Can I try this on? — Yes, the room is there.",
-  "exampleJa": "試着してもいいですか。—はい、あちらの部屋です。",
+  "example": "Can I try this on? — Yes. Please come this way.",
+  "exampleJa": "試着していいですか。—はい。こちらへどうぞ。",
   "functions": [
    "permission"
   ],
@@ -3880,8 +3880,8 @@
   "eiken": "4",
   "toeic": 400,
   "ja": "…しなければなりません",
-  "example": "You must wear a helmet.",
-  "exampleJa": "ヘルメットをかぶらなければなりません。",
+  "example": "You must wear shoes here.",
+  "exampleJa": "ここでは靴をはかなければなりません。",
   "functions": [
    "obligation"
   ],
@@ -3944,8 +3944,8 @@
   "eiken": "4",
   "toeic": 500,
   "ja": "…を楽しみにしています",
-  "example": "I'm looking forward to the festival.",
-  "exampleJa": "お祭りを楽しみにしています。",
+  "example": "I'm looking forward to the trip.",
+  "exampleJa": "旅行を楽しみにしています。",
   "functions": [
    "emotion"
   ],
@@ -4216,8 +4216,8 @@
   "eiken": "4",
   "toeic": 500,
   "ja": "…のために",
-  "example": "The boats stayed in because of the storm.",
-  "exampleJa": "嵐のため船は出ませんでした。",
+  "example": "We stayed home because of the storm.",
+  "exampleJa": "嵐のため私たちは家にいました。",
   "functions": [
    "cause/effect"
   ],
@@ -6077,8 +6077,8 @@
   "eiken": "3",
   "toeic": 400,
   "ja": "…したことがない",
-  "example": "I've never eaten raw octopus.",
-  "exampleJa": "生のタコを食べたことがありません。",
+  "example": "I've never eaten raw fish.",
+  "exampleJa": "生の魚は食べたことがありません。",
   "functions": [
    "description"
   ],
@@ -6093,8 +6093,8 @@
   "eiken": "3",
   "toeic": 400,
   "ja": "…したことがありますか",
-  "example": "Have you ever been on a ferry?",
-  "exampleJa": "フェリーに乗ったことがありますか。",
+  "example": "Have you ever been on a plane?",
+  "exampleJa": "飛行機に乗ったことはありますか。",
   "functions": [
    "inquiry"
   ],
@@ -6925,8 +6925,8 @@
   "eiken": "3",
   "toeic": 400,
   "ja": "仕事に就く",
-  "example": "He got a job at the harbor.",
-  "exampleJa": "彼は港で仕事に就きました。",
+  "example": "He got a job at the bank.",
+  "exampleJa": "彼は銀行に就職しました。",
   "functions": [
    "narration"
   ],
@@ -7117,8 +7117,8 @@
   "eiken": "3",
   "toeic": 600,
   "ja": "たくさんの",
-  "example": "We caught a great deal of fish.",
-  "exampleJa": "たくさんの魚がとれました。",
+  "example": "I spent a great deal of time on this.",
+  "exampleJa": "これに多くの時間を費やしました。",
   "functions": [
    "description"
   ],
@@ -7261,8 +7261,8 @@
   "eiken": "3",
   "toeic": 400,
   "ja": "…でいっぱいだ",
-  "example": "The harbor is full of boats.",
-  "exampleJa": "港は船でいっぱいです。",
+  "example": "The park is full of people.",
+  "exampleJa": "公園は人でいっぱいです。",
   "functions": [
    "description"
   ],
@@ -7373,8 +7373,8 @@
   "eiken": "3",
   "toeic": 600,
   "ja": "設置する・準備する",
-  "example": "We set up the tent by the lake.",
-  "exampleJa": "湖のそばにテントを張りました。",
+  "example": "We set up the table by the lake.",
+  "exampleJa": "湖のそばにテーブルを用意しました。",
   "functions": [
    "narration"
   ],
@@ -7885,8 +7885,8 @@
   "eiken": "3",
   "toeic": 600,
   "ja": "このため",
-  "example": "Because of this, the ferry was late.",
-  "exampleJa": "このため、フェリーは遅れました。",
+  "example": "Because of this, the bus was late.",
+  "exampleJa": "このため、バスは遅れました。",
   "functions": [
    "cause/effect"
   ],

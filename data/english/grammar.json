@@ -736,7 +736,7 @@
   "name": "must and have to",
   "nameJa": "must / have to(義務)",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "must は強い義務、have to は外的な必要。否定の意味が異なる。",
   "patterns": [
    "S + must + V",
@@ -764,7 +764,7 @@
   "name": "must not and don't have to",
   "nameJa": "must not と don't have to",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "must not は禁止、don't have to は不必要。",
   "patterns": [
    "S + must not + V",
@@ -789,7 +789,7 @@
   "name": "should (advice)",
   "nameJa": "should(助言)",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "「…したほうがよい」と助言を述べる。",
   "patterns": [
    "S + should + V"
@@ -806,7 +806,7 @@
   "name": "may (permission and possibility)",
   "nameJa": "may(許可・可能性)",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "may I ...? は丁寧な許可、may は「…かもしれない」。",
   "patterns": [
    "May I + V?",
@@ -863,7 +863,7 @@
   "name": "to-infinitive (noun use)",
   "nameJa": "不定詞の名詞的用法",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "to + 動詞の原形で「…すること」を表す。",
   "patterns": [
    "want/like/hope to + V",
@@ -891,7 +891,7 @@
   "name": "to-infinitive (adverb use: purpose)",
   "nameJa": "不定詞の副詞的用法(目的)",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "「…するために」を表す。",
   "patterns": [
    "S + V + to + V"
@@ -908,7 +908,7 @@
   "name": "to-infinitive (adjective use)",
   "nameJa": "不定詞の形容詞的用法",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "名詞のあとに to + V をつけて「…するための」を表す。",
   "patterns": [
    "something to + V",
@@ -926,7 +926,7 @@
   "name": "gerund (-ing as object)",
   "nameJa": "動名詞(目的語)",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "enjoy / finish / stop などのあとは動名詞。",
   "patterns": [
    "enjoy -ing",
@@ -955,7 +955,7 @@
   "name": "gerund as subject",
   "nameJa": "動名詞(主語)",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "ing形で「…すること」を主語にできる。",
   "patterns": [
    "-ing + V"
@@ -997,7 +997,7 @@
   "name": "comparative (-er / more)",
   "nameJa": "比較級",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "短い語は -er、長い語は more をつける。than で比較対象を示す。",
   "patterns": [
    "-er than",
@@ -1022,7 +1022,7 @@
   "name": "superlative (-est / most)",
   "nameJa": "最上級",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "-est / most をつけ、the をつける。in / of で範囲を示す。",
   "patterns": [
    "the -est in/of",
@@ -1043,7 +1043,7 @@
   "name": "as ... as (equal comparison)",
   "nameJa": "as ... as(同等比較)",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "「…と同じくらい…」。否定は「…ほど…でない」。",
   "patterns": [
    "as + 原級 + as",
@@ -1087,7 +1087,7 @@
   "name": "past progressive",
   "nameJa": "過去進行形",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "was / were + V-ing で過去のある時点で進行中の動作を表す。",
   "patterns": [
    "S + was/were + V-ing"
@@ -1110,7 +1110,7 @@
   "name": "when / because / if (adverb clauses)",
   "nameJa": "when / because / if(副詞節)",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "時・理由・条件を表す節。",
   "patterns": [
    "when + S + V",
@@ -1136,7 +1136,7 @@
   "name": "that clause (think / know / hope)",
   "nameJa": "that節",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "think / know / say のあとに文を置く。that は省略可。",
   "patterns": [
    "S + think (that) + S + V"
@@ -1153,7 +1153,7 @@
   "name": "so ... that",
   "nameJa": "so ... that",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 600,
   "explainJa": "とても…なので…。結果を表す。",
   "patterns": [
    "so + 形容詞 + that + S + V"
@@ -1176,7 +1176,7 @@
   "name": "too ... to",
   "nameJa": "too ... to",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 600,
   "explainJa": "「…すぎて…できない」。",
   "patterns": [
    "too + 形容詞 + to + V"
@@ -1196,7 +1196,7 @@
   "name": "something / anything / nothing + adjective",
   "nameJa": "something / anything + 形容詞",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 600,
   "explainJa": "something cold のように形容詞はあとに置く。",
   "patterns": [
    "something + 形容詞"
@@ -1216,7 +1216,7 @@
   "name": "exclamations (What / How)",
   "nameJa": "感嘆文",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": null,
   "explainJa": "What + a + 形容詞 + 名詞、How + 形容詞。",
   "patterns": [
    "What a + 形容詞 + 名詞!",
@@ -1258,7 +1258,7 @@
   "name": "passive voice (basic: be + p.p.)",
   "nameJa": "受動態(基本)",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "be + 過去分詞で「…される」。",
   "patterns": [
    "S + be + p.p."
@@ -1302,7 +1302,7 @@
   "name": "have to in the past (had to)",
   "nameJa": "had to(過去の義務)",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "have to の過去形は had to。",
   "patterns": [
    "S + had to + V"
@@ -1322,7 +1322,7 @@
   "name": "buy / give / show + person + thing",
   "nameJa": "SVOO文型",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 600,
   "explainJa": "give + 人 + 物 の語順。to / for で言い換え可能。",
   "patterns": [
    "give + 人 + 物",
@@ -1344,7 +1344,7 @@
   "name": "become / look / feel + adjective",
   "nameJa": "SVC文型(look / feel など)",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 500,
   "explainJa": "look / feel / become のあとは形容詞。",
   "patterns": [
    "look + 形容詞",
@@ -1369,7 +1369,7 @@
   "name": "name / call + O + C",
   "nameJa": "call / name(SVOC)",
   "eiken": "4",
-  "toeic": 400,
+  "toeic": 600,
   "explainJa": "「OをCと呼ぶ」。",
   "patterns": [
    "call + O + C"
@@ -1512,7 +1512,7 @@
   "name": "passive with by-agent",
   "nameJa": "受動態(by + 行為者)",
   "eiken": "3",
-  "toeic": 600,
+  "toeic": 500,
   "explainJa": "行為者を示すときは by を使う。",
   "patterns": [
    "be + p.p. + by ..."
@@ -1554,7 +1554,7 @@
   "name": "relative pronoun omitted (object)",
   "nameJa": "関係代名詞の省略(目的格)",
   "eiken": "3",
-  "toeic": 500,
+  "toeic": 600,
   "explainJa": "目的格の関係代名詞は省略できる。",
   "patterns": [
    "N + (that) + S + V"
@@ -1616,7 +1616,7 @@
   "name": "tag questions",
   "nameJa": "付加疑問文",
   "eiken": "3",
-  "toeic": 500,
+  "toeic": 600,
   "explainJa": "文末に確認の疑問をつける。肯定文には否定、否定文には肯定。",
   "patterns": [
    "S + V ..., don't you?",
@@ -1637,7 +1637,7 @@
   "name": "participle (adjective: V-ing / p.p.)",
   "nameJa": "分詞の形容詞的用法",
   "eiken": "3",
-  "toeic": 500,
+  "toeic": 600,
   "explainJa": "名詞を修飾する -ing(…している)と p.p.(…された)。",
   "patterns": [
    "N + V-ing",
@@ -1687,7 +1687,7 @@
   "name": "infinitive: want / tell / ask + O + to V",
   "nameJa": "SVO + to不定詞",
   "eiken": "3",
-  "toeic": 500,
+  "toeic": 600,
   "explainJa": "「Oに…してほしい / するよう言う」。",
   "patterns": [
    "want + O + to V",
@@ -1730,7 +1730,7 @@
   "name": "help / let / make + O + V",
   "nameJa": "使役・知覚(make / let / help)",
   "eiken": "3",
-  "toeic": 500,
+  "toeic": 600,
   "explainJa": "make / let は O + 原形。help は原形か to 不定詞。",
   "patterns": [
    "make + O + V",
@@ -1752,7 +1752,7 @@
   "name": "wish (subjunctive basic)",
   "nameJa": "I wish + 仮定法過去",
   "eiken": "3",
-  "toeic": 500,
+  "toeic": 730,
   "explainJa": "実現しにくい願望。be動詞は were が一般的。",
   "patterns": [
    "I wish + S + 過去形"
@@ -1796,7 +1796,7 @@
   "name": "conjunctions: when / while / before / after",
   "nameJa": "時の接続詞",
   "eiken": "3",
-  "toeic": 600,
+  "toeic": 500,
   "explainJa": "時を表す節の中では未来のことも現在形。",
   "patterns": [
    "when + S + V(現在)",
@@ -1842,7 +1842,7 @@
   "name": "since / for / ago / during",
   "nameJa": "時の前置詞 since / for / during",
   "eiken": "3",
-  "toeic": 600,
+  "toeic": 500,
   "explainJa": "for + 期間、since + 起点、during + 特定の期間。",
   "patterns": [
    "for two hours",
@@ -1864,7 +1864,7 @@
   "name": "for / to / of (preposition + gerund)",
   "nameJa": "前置詞 + 動名詞",
   "eiken": "3",
-  "toeic": 500,
+  "toeic": 600,
   "explainJa": "前置詞のあとの動詞は -ing 形。",
   "patterns": [
    "be good at -ing",
@@ -1886,7 +1886,7 @@
   "name": "used to / would (past habit)",
   "nameJa": "used to(以前は…した)",
   "eiken": "3",
-  "toeic": 500,
+  "toeic": 600,
   "explainJa": "過去の習慣・状態を表す。現在とのちがいを含む。",
   "patterns": [
    "S + used to + V"
@@ -1909,7 +1909,7 @@
   "name": "be used to -ing",
   "nameJa": "be used to -ing(…に慣れている)",
   "eiken": "3",
-  "toeic": 500,
+  "toeic": 600,
   "explainJa": "used to + V との区別に注意。",
   "patterns": [
    "be used to + -ing"
@@ -1950,7 +1950,7 @@
   "name": "reflexive pronouns",
   "nameJa": "再帰代名詞(-self)",
   "eiken": "3",
-  "toeic": 600,
+  "toeic": 500,
   "explainJa": "主語と目的語が同じとき、-self をつける。",
   "patterns": [
    "myself / yourself / himself / themselves"
@@ -1974,7 +1974,7 @@
   "name": "each / every / all / both (quantifiers)",
   "nameJa": "each / every / all / both",
   "eiken": "3",
-  "toeic": 600,
+  "toeic": 500,
   "explainJa": "every は単数扱い、all は複数、both は2つ。",
   "patterns": [
    "every + 単数名詞",
@@ -1995,7 +1995,7 @@
   "name": "few / a few / little / a little",
   "nameJa": "few / a few / little / a little",
   "eiken": "3",
-  "toeic": 600,
+  "toeic": 500,
   "explainJa": "数えられる名詞は few、数えられない名詞は little。a がつくと肯定。",
   "patterns": [
    "a few + 複数",
@@ -2016,7 +2016,7 @@
   "name": "many / much / a lot of",
   "nameJa": "many / much / a lot of",
   "eiken": "3",
-  "toeic": 600,
+  "toeic": 400,
   "explainJa": "数は many、量は much。肯定文では a lot of が自然。",
   "patterns": [
    "many + 複数",
@@ -2083,7 +2083,7 @@
   "name": "whether / if (indirect question)",
   "nameJa": "whether / if(…かどうか)",
   "eiken": "3",
-  "toeic": 500,
+  "toeic": 600,
   "explainJa": "…かどうか を表す。",
   "patterns": [
    "I don't know whether/if + S + V"
@@ -2120,7 +2120,7 @@
   "nameJa": "品詞の選択:名詞の語尾",
   "eiken": "3",
   "toeic": 500,
-  "explainJa": "空所が冠詞・形容詞・所有格のあとで名詞が必要なら、-tion / -ment / -ness / -ity / -er などの名詞形を選ぶ。",
+  "explainJa": "空所が冠詞・形容詞・所有格のあとにあり名詞が必要なら、-tion / -ment / -ness / -ity / -er などの名詞形を選ぶ。",
   "patterns": [
    "the + 名詞",
    "形容詞 + 名詞",
@@ -2146,7 +2146,7 @@
   "nameJa": "品詞の選択:形容詞の語尾",
   "eiken": "3",
   "toeic": 500,
-  "explainJa": "be動詞・名詞の前の空所には -ful / -ive / -able / -ous / -al などの形容詞形が入る。",
+  "explainJa": "be動詞のあと・名詞の前の空所には -ful / -ive / -able / -ous / -al などの形容詞形が入る。",
   "patterns": [
    "be + 形容詞",
    "形容詞 + 名詞"
@@ -2158,7 +2158,7 @@
    },
    {
     "en": "We offer affordable rooms.",
-    "ja": "手頃な部屋を提供します。"
+    "ja": "手頃な価格の部屋を提供しています。"
    }
   ],
   "commonErrors": [
@@ -2171,7 +2171,7 @@
   "nameJa": "品詞の選択:副詞(-ly)",
   "eiken": "3",
   "toeic": 500,
-  "explainJa": "動詞・形容詞・文全体を修飾する語は副詞形。主語と動詞の間、動詞の後ろに置かれる。",
+  "explainJa": "動詞・形容詞・文全体を修飾する語は副詞形にする。主語と動詞の間や動詞の後ろに置かれる。",
   "patterns": [
    "V + 副詞",
    "副詞 + 形容詞",
@@ -2193,37 +2193,76 @@
  },
  {
   "id": "gr-3-037",
-  "name": "TOEIC Part 5: word form (verb vs noun vs gerund)",
-  "nameJa": "品詞の選択:動詞・動名詞",
+  "name": "TOEIC Part 5: to + base verb",
+  "nameJa": "to のあとの動詞の原形(不定詞)",
   "eiken": "3",
   "toeic": 600,
-  "explainJa": "to のあとは原形、前置詞のあとは -ing。",
+  "explainJa": "不定詞の to のあとには動詞の原形が入る。名詞や -ing 形は入らない。",
   "patterns": [
    "to + V",
-   "前置詞 + V-ing",
-   "助動詞 + V"
+   "in order to + V",
+   "be able to + V"
   ],
   "examples": [
    {
     "en": "Please remember to submit the form.",
-    "ja": "用紙の提出を忘れずに。"
-   },
-   {
-    "en": "We look forward to meeting you.",
-    "ja": "お会いするのを楽しみにしています。"
+    "ja": "用紙の提出を忘れずにお願いします。"
    }
   ],
   "commonErrors": [
-   "look forward to meet"
+   "remember to submitting / able to submission"
   ]
  },
  {
   "id": "gr-3-038",
+  "name": "TOEIC Part 5: preposition + -ing",
+  "nameJa": "前置詞のあとの -ing 形",
+  "eiken": "3",
+  "toeic": 600,
+  "explainJa": "前置詞のあとに動詞を置くときは動名詞(-ing)にする。by / for / after / before / without などが典型。",
+  "patterns": [
+   "前置詞 + V-ing",
+   "by + V-ing",
+   "without + V-ing"
+  ],
+  "examples": [
+   {
+    "en": "We saved time by using the new system.",
+    "ja": "新しいシステムを使って時間を節約しました。"
+   }
+  ],
+  "commonErrors": [
+   "by use / by to use"
+  ]
+ },
+ {
+  "id": "gr-3-039",
+  "name": "TOEIC Part 5: modal + base verb",
+  "nameJa": "助動詞のあとの動詞の原形",
+  "eiken": "3",
+  "toeic": 500,
+  "explainJa": "can / will / must / should などのあとは、主語が何であっても動詞の原形が続く。",
+  "patterns": [
+   "助動詞 + V",
+   "助動詞 + not + V"
+  ],
+  "examples": [
+   {
+    "en": "You can pay by card.",
+    "ja": "カードで支払えます。"
+   }
+  ],
+  "commonErrors": [
+   "You can pays by card."
+  ]
+ },
+ {
+  "id": "gr-3-040",
   "name": "TOEIC Part 5: adjective vs adverb after linking verbs",
   "nameJa": "連結動詞のあとの形容詞(become / remain / seem)",
   "eiken": "3",
   "toeic": 600,
-  "explainJa": "become / remain / seem / look / feel のあとは形容詞。副詞は不可。",
+  "explainJa": "become / remain / seem / look / feel のあとは形容詞を選ぶ。副詞は入らない。",
   "patterns": [
    "seem + 形容詞",
    "remain + 形容詞"
@@ -2239,12 +2278,12 @@
   ]
  },
  {
-  "id": "gr-3-039",
+  "id": "gr-3-041",
   "name": "TOEIC Part 5: participle adjectives (-ing vs -ed)",
   "nameJa": "分詞形容詞(-ing と -ed の選択)",
   "eiken": "3",
   "toeic": 600,
-  "explainJa": "感情を引き起こすものは -ing、感情を感じる人は -ed。",
+  "explainJa": "感情を引き起こすものは -ing、感情を感じる人は -ed を選ぶ。",
   "patterns": [
    "an interesting + 名詞",
    "be + interested in"
@@ -2264,21 +2303,21 @@
   ]
  },
  {
-  "id": "gr-3-040",
-  "name": "TOEIC Part 5: pronoun case (subject / object / possessive / reflexive)",
-  "nameJa": "代名詞の格の選択",
+  "id": "gr-3-042",
+  "name": "TOEIC Part 5: pronoun case (subject / object / possessive)",
+  "nameJa": "代名詞の格の選択(主格・目的格・所有格)",
   "eiken": "3",
-  "toeic": 600,
-  "explainJa": "文中の位置で主格(I)・所有格(my)・目的格(me)・再帰(myself)・所有代名詞(mine)を選ぶ。",
+  "toeic": 500,
+  "explainJa": "空所の位置が主語なら主格(I)、動詞・前置詞の目的語なら目的格(me)、名詞の前なら所有格(my)を選ぶ。",
   "patterns": [
    "前置詞 + 目的格",
    "所有格 + 名詞",
-   "主語 + 動詞"
+   "主格 + 動詞"
   ],
   "examples": [
    {
     "en": "Please contact me if you need help.",
-    "ja": "お困りなら私に連絡してください。"
+    "ja": "お困りのときは私に連絡してください。"
    },
    {
     "en": "The manager and I will attend.",
@@ -2290,12 +2329,12 @@
   ]
  },
  {
-  "id": "gr-3-041",
+  "id": "gr-3-043",
   "name": "TOEIC Part 5: possessive adjective vs possessive pronoun",
   "nameJa": "所有格と所有代名詞",
   "eiken": "3",
   "toeic": 600,
-  "explainJa": "所有格は名詞の前、所有代名詞は単独で使う。",
+  "explainJa": "所有格(my)は名詞の前、所有代名詞(mine)は名詞なしで単独で使う。",
   "patterns": [
    "my + 名詞",
    "mine / yours / theirs"
@@ -2308,24 +2347,6 @@
   ],
   "commonErrors": [
    "The blue bag is my."
-  ]
- },
- {
-  "id": "gr-3-042",
-  "name": "TOEIC Part 5: reflexive pronoun (by oneself / for oneself)",
-  "nameJa": "再帰代名詞の用法",
-  "eiken": "3",
-  "toeic": 730,
-  "explainJa": "主語と目的語が同一のとき、または強調に使う。",
-  "patterns": [
-   "by myself",
-   "S + V + oneself"
-  ],
-  "examples": [
-   {
-    "en": "The staff prepared the room themselves.",
-    "ja": "スタッフ自身が部屋を準備しました。"
-   }
   ]
  },
  {
@@ -2356,7 +2377,7 @@
   "name": "past perfect progressive",
   "nameJa": "過去完了進行形",
   "eiken": "pre2",
-  "toeic": 600,
+  "toeic": 730,
   "explainJa": "had been + V-ing で過去のある時点まで続いていた動作を表す。",
   "patterns": [
    "S + had been + V-ing"
@@ -2408,7 +2429,7 @@
   "nameJa": "時制の一致",
   "eiken": "pre2",
   "toeic": 730,
-  "explainJa": "主節が過去なら従属節も過去系になる。",
+  "explainJa": "主節の動詞が過去形のとき、従属節の時制も過去側にずらす(現在→過去、未来の will→would、現在完了→過去完了)。",
   "patterns": [
    "He said (that) he was ...",
    "She thought (that) it would ..."
@@ -2428,7 +2449,7 @@
   "name": "reported speech",
   "nameJa": "話法(直接・間接)",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "人称・時制・副詞を言い換える。",
   "patterns": [
    "said that + S + V(過去系)",
@@ -2492,7 +2513,7 @@
   "name": "first conditional vs second conditional",
   "nameJa": "条件文(現実と非現実)",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "可能性の高さで形が変わる。",
   "patterns": [
    "If + 現在, will",
@@ -2532,7 +2553,7 @@
    }
   ],
   "commonErrors": [
-   "should have gone to (to 不要)"
+   "should have went(過去分詞は gone)"
   ]
  },
  {
@@ -2540,7 +2561,7 @@
   "name": "modal verbs (probability)",
   "nameJa": "助動詞(確信度)",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "must > may / might > could の順で確信度が下がる。",
   "patterns": [
    "must be",
@@ -2559,7 +2580,7 @@
   "name": "relative pronoun what",
   "nameJa": "関係代名詞 what",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "what は先行詞を含み「…こと / もの」。",
   "patterns": [
    "what + S + V",
@@ -2583,7 +2604,7 @@
   "name": "relative pronoun whose",
   "nameJa": "関係代名詞 whose",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "所有を表す。",
   "patterns": [
    "N + whose + N + V"
@@ -2645,7 +2666,7 @@
   "name": "comparative: the + 比較級 ..., the + 比較級",
   "nameJa": "比較級の相関(the more ..., the better)",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "「…すればするほど…」。",
   "patterns": [
    "The 比較級 ..., the 比較級 ..."
@@ -2662,7 +2683,7 @@
   "name": "comparison with intensifiers",
   "nameJa": "比較級の強調(much / far / even)",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "比較級は much / far / even / a lot で強める。",
   "patterns": [
    "much + 比較級"
@@ -2682,7 +2703,7 @@
   "name": "times as ... as",
   "nameJa": "倍数表現",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "「…の2倍 / 3倍」は twice / three times + as ... as で表す。",
   "patterns": [
    "X times as + 原級 + as"
@@ -2696,10 +2717,10 @@
  },
  {
   "id": "gr-pre2-019",
-  "name": "superlative with ever / one of the",
-  "nameJa": "最上級 + ever / one of the",
+  "name": "superlative: one of the + plural noun",
+  "nameJa": "最上級の構文(one of the + 最上級 + 複数名詞)",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 500,
   "explainJa": "one of the + 最上級 + 複数名詞。",
   "patterns": [
    "one of the + 最上級 + 複数名詞"
@@ -2739,7 +2760,7 @@
   "name": "participle: perfect (having p.p.)",
   "nameJa": "完了分詞構文(having + p.p.)",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "主節より前の出来事を表す。",
   "patterns": [
    "Having + p.p., S + V"
@@ -2756,7 +2777,7 @@
   "name": "with + O + V-ing / p.p.",
   "nameJa": "付帯状況 with",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "「…した状態で」。",
   "patterns": [
    "with + O + V-ing/p.p."
@@ -2773,7 +2794,7 @@
   "name": "causative (have / get)",
   "nameJa": "使役(have / get + O + p.p. / V)",
   "eiken": "pre2",
-  "toeic": 860,
+  "toeic": 730,
   "explainJa": "have + O + p.p. は「してもらう」。get + O + to V も可。",
   "patterns": [
    "have + O + p.p.",
@@ -2840,7 +2861,7 @@
   "nameJa": "It is said that ...(受動態の形式主語)",
   "eiken": "pre2",
   "toeic": 730,
-  "explainJa": "報告を表す。",
+  "explainJa": "「…と言われている」という一般的な伝聞を表す。It is said that + S + V は S + is said to + V に書き換えられる。",
   "patterns": [
    "It is said that + S + V",
    "S + is said to V"
@@ -2874,7 +2895,7 @@
   "name": "be about to / be likely to",
   "nameJa": "be about to / be likely to",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "直前・可能性を表す慣用表現。",
   "patterns": [
    "be about to V",
@@ -2912,7 +2933,7 @@
   "name": "either / neither / both (pronouns)",
   "nameJa": "either / neither / both(代名詞)",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "2つのうちの…。neither は単数扱い。",
   "patterns": [
    "either of + 複数",
@@ -2930,7 +2951,7 @@
   "name": "some / any / no / none",
   "nameJa": "some / any / no / none",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 500,
   "explainJa": "肯定は some、否定・疑問は any。勧誘は some が自然。",
   "patterns": [
    "some / any"
@@ -2947,10 +2968,10 @@
  },
  {
   "id": "gr-pre2-032",
-  "name": "enough / so / such",
-  "nameJa": "so / such の使い分け",
+  "name": "so / such",
+  "nameJa": "so と such の使い分け",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "so + 形容詞、such + (a) 形容詞 + 名詞。",
   "patterns": [
    "so + 形容詞",
@@ -2971,7 +2992,7 @@
   "name": "despite / in spite of vs although",
   "nameJa": "譲歩の前置詞と接続詞",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "despite / in spite of + 名詞、although / though + S + V。",
   "patterns": [
    "despite + 名詞",
@@ -2996,7 +3017,7 @@
   "name": "because / because of",
   "nameJa": "because と because of",
   "eiken": "pre2",
-  "toeic": 730,
+  "toeic": 500,
   "explainJa": "because + S + V、because of + 名詞。",
   "patterns": [
    "because + S + V",
@@ -3014,28 +3035,27 @@
  },
  {
   "id": "gr-pre2-035",
-  "name": "TOEIC Part 5: preposition vs conjunction vs adverb",
-  "nameJa": "前置詞・接続詞・副詞の選択(because of / because / however)",
+  "name": "TOEIC Part 5: during vs while",
+  "nameJa": "during と while(前置詞と接続詞)",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "名詞の前は前置詞、節の前は接続詞、文をつなぐ副詞は however 等。",
+  "toeic": 500,
+  "explainJa": "during のあとには名詞(句)、while のあとには S + V が続く。",
   "patterns": [
-   "because of + 名詞",
-   "because + S + V",
-   "however, + S + V"
+   "during + 名詞",
+   "while + S + V"
   ],
   "examples": [
    {
-    "en": "The flight was delayed because of the storm.",
-    "ja": "嵐のため便は遅れました。"
+    "en": "We will be closed during the holidays.",
+    "ja": "祝日のあいだは休業します。"
    },
    {
-    "en": "The flight was delayed because a storm hit.",
-    "ja": "嵐が来たため便は遅れました。"
+    "en": "Please do not use your phone while you are driving.",
+    "ja": "運転中は携帯電話を使わないでください。"
    }
   ],
   "commonErrors": [
-   "because of the storm hit"
+   "during you are driving / while the holidays"
   ]
  },
  {
@@ -3044,14 +3064,15 @@
   "nameJa": "接続副詞と接続詞(however / although)",
   "eiken": "pre2",
   "toeic": 730,
-  "explainJa": "however はコンマ付きの副詞、although は節をつなぐ接続詞。",
+  "explainJa": "however はコンマを伴う副詞で文と文をつなぎ、although は節をつなぐ接続詞である。",
   "patterns": [
-   "S + V; however, S + V"
+   "S + V. However, S + V",
+   "Although + S + V, S + V"
   ],
   "examples": [
    {
     "en": "The price is high. However, the quality is good.",
-    "ja": "価格は高い。しかし品質はよいです。"
+    "ja": "価格は高いですが、品質はよいです。"
    }
   ],
   "commonErrors": [
@@ -3060,36 +3081,41 @@
  },
  {
   "id": "gr-pre2-037",
-  "name": "TOEIC Part 5: prepositions of time (by / until / within / during)",
-  "nameJa": "時の前置詞の選択(by / until / within / during / for)",
+  "name": "TOEIC Part 5: within vs in / for (periods of time)",
+  "nameJa": "within と in / for(期間の表し方)",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "by は期限、until は継続、within は期間内、during は特定の期間。",
+  "toeic": 600,
+  "explainJa": "within は「…以内に」、in は「…後に」、for は継続期間を表す。",
   "patterns": [
-   "by + 時点",
-   "until + 時点",
-   "within + 期間"
+   "within + 期間",
+   "in + 期間",
+   "for + 期間"
   ],
   "examples": [
    {
     "en": "Please reply within three days.",
     "ja": "3日以内にご返信ください。"
+   },
+   {
+    "en": "The shop will reopen in two weeks.",
+    "ja": "店は2週間後に再開します。"
    }
   ],
   "commonErrors": [
-   "Please reply until Friday.(期限)"
+   "Please reply for three days."
   ]
  },
  {
   "id": "gr-pre2-038",
-  "name": "TOEIC Part 5: prepositions of cause and relation (due to / owing to / despite)",
-  "nameJa": "理由・譲歩の前置詞",
+  "name": "TOEIC Part 5: due to / owing to / thanks to",
+  "nameJa": "理由を表す前置詞句(due to / owing to / thanks to)",
   "eiken": "pre2",
   "toeic": 730,
-  "explainJa": "due to / owing to は理由、despite / in spite of は譲歩。",
+  "explainJa": "due to / owing to は理由、thanks to は良い理由に使う。後ろは名詞(句)で、S + V は続かない。",
   "patterns": [
    "due to + 名詞",
-   "despite + 名詞"
+   "owing to + 名詞",
+   "thanks to + 名詞"
   ],
   "examples": [
    {
@@ -3098,16 +3124,16 @@
    }
   ],
   "commonErrors": [
-   "despite of"
+   "due to the snow fell"
   ]
  },
  {
   "id": "gr-pre2-039",
-  "name": "TOEIC Part 5: between / among / amid",
+  "name": "TOEIC Part 5: between vs among",
   "nameJa": "between と among",
   "eiken": "pre2",
   "toeic": 730,
-  "explainJa": "2者の間は between、3者以上は among。",
+  "explainJa": "2者の間は between、3者以上の間は among を使う。",
   "patterns": [
    "between A and B",
    "among + 複数"
@@ -3124,16 +3150,39 @@
  },
  {
   "id": "gr-pre2-040",
-  "name": "TOEIC Part 5: verb + preposition collocations",
-  "nameJa": "動詞 + 前置詞の定型(responsible for / depend on)",
+  "name": "TOEIC Part 5: be + adjective + preposition (responsible for / capable of)",
+  "nameJa": "形容詞 + 前置詞の組み合わせ",
   "eiken": "pre2",
   "toeic": 730,
-  "explainJa": "決まった前置詞とセットで覚える。",
+  "explainJa": "形容詞ごとに決まった前置詞をとる。responsible for / capable of / aware of / familiar with など。",
   "patterns": [
    "be responsible for",
+   "be capable of",
+   "be aware of",
+   "be familiar with"
+  ],
+  "examples": [
+   {
+    "en": "He is responsible for the new project.",
+    "ja": "彼は新しいプロジェクトを担当しています。"
+   }
+  ],
+  "commonErrors": [
+   "responsible of"
+  ]
+ },
+ {
+  "id": "gr-pre2-041",
+  "name": "TOEIC Part 5: verb + preposition (depend on / apply for / comply with)",
+  "nameJa": "動詞 + 前置詞の組み合わせ",
+  "eiken": "pre2",
+  "toeic": 730,
+  "explainJa": "動詞ごとに決まった前置詞をとる。depend on / apply for / comply with / consist of など。",
+  "patterns": [
    "depend on",
    "apply for",
-   "comply with"
+   "comply with",
+   "consist of"
   ],
   "examples": [
    {
@@ -3146,40 +3195,56 @@
   ]
  },
  {
-  "id": "gr-pre2-041",
-  "name": "TOEIC Part 5: tense agreement with time markers",
-  "nameJa": "時制と時を表す語句の一致(yesterday / since / by the time)",
+  "id": "gr-pre2-042",
+  "name": "TOEIC Part 5: past simple with past time markers",
+  "nameJa": "過去を表す語句と過去形(yesterday / last / ago)",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "時を示す語句に合わせて時制を選ぶ。",
+  "toeic": 500,
+  "explainJa": "yesterday / last week / two days ago などがあれば過去形を選ぶ。現在完了は使えない。",
   "patterns": [
    "yesterday + 過去形",
-   "since + 現在完了",
-   "by the time + 現在形(未来)"
+   "last + 期間 + 過去形",
+   "期間 + ago + 過去形"
   ],
   "examples": [
    {
-    "en": "We have worked here since 2019.",
-    "ja": "2019年からここで働いています。"
-   },
+    "en": "We received your order yesterday.",
+    "ja": "昨日ご注文を受け取りました。"
+   }
+  ],
+  "commonErrors": [
+   "We have received your order yesterday."
+  ]
+ },
+ {
+  "id": "gr-pre2-043",
+  "name": "TOEIC Part 5: by the time + present tense (future perfect)",
+  "nameJa": "by the time(…するまでに)と時制",
+  "eiken": "pre2",
+  "toeic": 730,
+  "explainJa": "by the time のあとの節は未来のことでも現在形。主節は未来完了(will have + p.p.)にする。",
+  "patterns": [
+   "By the time + S + 現在形, S + will have + p.p."
+  ],
+  "examples": [
    {
     "en": "By the time you arrive, the shop will have closed.",
     "ja": "着くまでに店は閉まっているでしょう。"
    }
   ],
   "commonErrors": [
-   "We work here since 2019."
+   "By the time you will arrive"
   ]
  },
  {
-  "id": "gr-pre2-042",
+  "id": "gr-pre2-044",
   "name": "TOEIC Part 5: subject-verb agreement (intervening phrases)",
   "nameJa": "主語と動詞の一致(間に挟まる語句)",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "前置詞句や関係節に惑わされず主語に合わせる。",
+  "toeic": 600,
+  "explainJa": "前置詞句や関係節に惑わされず、中心となる主語の数に動詞を合わせる。",
   "patterns": [
-   "The manager of the shops is ...",
+   "The list of products is ...",
    "Each of the staff has ..."
   ],
   "examples": [
@@ -3193,12 +3258,12 @@
   ]
  },
  {
-  "id": "gr-pre2-043",
+  "id": "gr-pre2-045",
   "name": "TOEIC Part 5: active vs passive voice choice",
   "nameJa": "能動態と受動態の選択",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "目的語がなければ受動態(be + p.p.)、目的語があれば能動態。",
+  "toeic": 600,
+  "explainJa": "空所のあとに目的語がなければ受動態(be + p.p.)、目的語があれば能動態を選ぶ。",
   "patterns": [
    "S + V + O",
    "S + be + p.p. + (by ...)"
@@ -3210,19 +3275,20 @@
    }
   ],
   "commonErrors": [
-   "The report reviewed by"
+   "The report reviewed by the manager."
   ]
  },
  {
-  "id": "gr-pre2-044",
-  "name": "TOEIC Part 5: infinitive vs gerund after verbs",
-  "nameJa": "動詞のあとの不定詞・動名詞の選択(agree to / avoid -ing)",
+  "id": "gr-pre2-046",
+  "name": "TOEIC Part 5: verbs taking -ing (avoid / consider / suggest / finish)",
+  "nameJa": "動名詞だけをとる動詞",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "avoid / consider / suggest / finish は -ing、agree / decide / plan / hope は to V。",
+  "toeic": 600,
+  "explainJa": "avoid / consider / suggest / finish / enjoy / mind のあとは動名詞(-ing)。不定詞は続かない。",
   "patterns": [
    "avoid + V-ing",
-   "agree + to V"
+   "consider + V-ing",
+   "suggest + V-ing"
   ],
   "examples": [
    {
@@ -3235,38 +3301,34 @@
   ]
  },
  {
-  "id": "gr-pre2-045",
-  "name": "TOEIC Part 5: relative pronoun choice (who / which / whose / that)",
-  "nameJa": "関係代名詞の選択",
+  "id": "gr-pre2-047",
+  "name": "TOEIC Part 5: verbs taking to V (agree / decide / plan / hope)",
+  "nameJa": "不定詞だけをとる動詞",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "先行詞が人か物か、所有格かで選ぶ。",
+  "toeic": 600,
+  "explainJa": "agree / decide / plan / hope / expect / offer のあとは to + 動詞の原形。動名詞は続かない。",
   "patterns": [
-   "人 + who",
-   "物 + which",
-   "whose + 名詞"
+   "agree + to V",
+   "decide + to V",
+   "plan + to V"
   ],
   "examples": [
    {
-    "en": "The staff who work here are friendly.",
-    "ja": "ここで働く人たちは親切です。"
-   },
-   {
-    "en": "The company whose products we use is local.",
-    "ja": "私たちが使う製品の会社は地元の会社です。"
+    "en": "The board agreed to raise the price.",
+    "ja": "役員会は値上げに同意しました。"
    }
   ],
   "commonErrors": [
-   "The staff which work here"
+   "agree raising"
   ]
  },
  {
-  "id": "gr-pre2-046",
+  "id": "gr-pre2-048",
   "name": "TOEIC Part 5: who vs whom",
   "nameJa": "who と whom",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "主語の働きなら who、目的語なら whom(前置詞のあとも whom)。",
+  "toeic": 860,
+  "explainJa": "関係節の中で主語の働きなら who、目的語の働きなら whom(前置詞のあとも whom)。",
   "patterns": [
    "who + V",
    "whom + S + V",
@@ -3280,15 +3342,15 @@
   ]
  },
  {
-  "id": "gr-pre2-047",
-  "name": "TOEIC Part 5: quantifiers with countable / uncountable nouns",
-  "nameJa": "数量詞の選択(number / amount / many / much)",
+  "id": "gr-pre2-049",
+  "name": "TOEIC Part 5: number vs amount",
+  "nameJa": "number と amount(可算・不可算)",
   "eiken": "pre2",
   "toeic": 730,
-  "explainJa": "可算名詞は number・many・few、不可算名詞は amount・much・little。",
+  "explainJa": "可算名詞には a number of、不可算名詞には an amount of を使う。",
   "patterns": [
-   "a number of + 複数",
-   "an amount of + 不可算"
+   "a number of + 複数名詞",
+   "an amount of + 不可算名詞"
   ],
   "examples": [
    {
@@ -3301,15 +3363,35 @@
   ]
  },
  {
-  "id": "gr-pre2-048",
-  "name": "TOEIC Part 5: comparison (comparative / superlative form choice)",
-  "nameJa": "比較級・最上級の形の選択",
+  "id": "gr-pre2-050",
+  "name": "TOEIC Part 5: comparative form (than / much / far)",
+  "nameJa": "比較級の選択",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "than があれば比較級、the と in / of があれば最上級。",
+  "toeic": 600,
+  "explainJa": "空所の近くに than があれば比較級を選ぶ。比較級は much / far / even で強める。",
   "patterns": [
    "比較級 + than",
-   "the + 最上級 + in/of"
+   "much / far + 比較級"
+  ],
+  "examples": [
+   {
+    "en": "This plan is cheaper than the old one.",
+    "ja": "この案は前の案より安いです。"
+   }
+  ],
+  "commonErrors": [
+   "more cheap than"
+  ]
+ },
+ {
+  "id": "gr-pre2-051",
+  "name": "TOEIC Part 5: superlative form (the most ... in / of)",
+  "nameJa": "最上級の選択",
+  "eiken": "pre2",
+  "toeic": 600,
+  "explainJa": "the と in / of(範囲)があれば最上級を選ぶ。",
+  "patterns": [
+   "the + 最上級 + in / of"
   ],
   "examples": [
    {
@@ -3322,56 +3404,12 @@
   ]
  },
  {
-  "id": "gr-pre2-049",
-  "name": "TOEIC Part 5: not only ... but also / both ... and / either ... or",
-  "nameJa": "相関接続詞の組(Part 5)",
+  "id": "gr-pre2-052",
+  "name": "TOEIC Part 5: already / yet",
+  "nameJa": "already と yet",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "ペアになる語を覚える。",
-  "patterns": [
-   "both A and B",
-   "either A or B",
-   "neither A nor B",
-   "not only A but also B"
-  ],
-  "examples": [
-   {
-    "en": "Both the manager and the staff agreed.",
-    "ja": "部長もスタッフも同意しました。"
-   }
-  ],
-  "commonErrors": [
-   "both A or B"
-  ]
- },
- {
-  "id": "gr-pre2-050",
-  "name": "TOEIC Part 5: such / so / very / too",
-  "nameJa": "such / so / very / too",
-  "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "such は名詞を伴い、so は形容詞・副詞を修飾する。",
-  "patterns": [
-   "such a + 形容詞 + 名詞",
-   "so + 形容詞"
-  ],
-  "examples": [
-   {
-    "en": "It was such a busy day.",
-    "ja": "とても忙しい日でした。"
-   }
-  ],
-  "commonErrors": [
-   "so a busy day"
-  ]
- },
- {
-  "id": "gr-pre2-051",
-  "name": "TOEIC Part 5: adverbs: already / yet / still / just",
-  "nameJa": "already / yet / still / just の位置と時制",
-  "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "yet は否定・疑問、already は肯定。",
+  "toeic": 500,
+  "explainJa": "already は肯定文(完了済み)、yet は否定文・疑問文(まだ)で使う。",
   "patterns": [
    "have already + p.p.",
    "haven't + p.p. + yet"
@@ -3387,15 +3425,41 @@
   ]
  },
  {
-  "id": "gr-pre2-052",
+  "id": "gr-pre2-053",
+  "name": "TOEIC Part 5: still / just / recently",
+  "nameJa": "still / just / recently の使い分け",
+  "eiken": "pre2",
+  "toeic": 600,
+  "explainJa": "still は「今もなお」、just は「ちょうど」、recently は「最近」を表す。just と recently は完了形でよく使う。",
+  "patterns": [
+   "be still + V-ing",
+   "have just + p.p.",
+   "have recently + p.p."
+  ],
+  "examples": [
+   {
+    "en": "The manager is still in a meeting.",
+    "ja": "部長はまだ会議中です。"
+   },
+   {
+    "en": "We have just received the order.",
+    "ja": "注文をちょうど受け取ったところです。"
+   }
+  ],
+  "commonErrors": [
+   "The manager is yet in a meeting."
+  ]
+ },
+ {
+  "id": "gr-pre2-054",
   "name": "TOEIC Part 5: most / almost / mostly",
   "nameJa": "most / almost / mostly",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "most は名詞を修飾、almost は all / every などを修飾。",
+  "toeic": 600,
+  "explainJa": "most は名詞を修飾する(most of the + 名詞)、almost は all / every / any などを修飾する。mostly は「たいてい」を表す副詞。",
   "patterns": [
    "most + 名詞",
-   "almost + all/every"
+   "almost + all / every"
   ],
   "examples": [
    {
@@ -3404,16 +3468,16 @@
    }
   ],
   "commonErrors": [
-   "Most all / Almost people"
+   "Most all of the rooms / Almost people"
   ]
  },
  {
-  "id": "gr-pre2-053",
+  "id": "gr-pre2-055",
   "name": "TOEIC Part 5: whether vs if",
   "nameJa": "whether と if",
   "eiken": "pre2",
   "toeic": 730,
-  "explainJa": "選択肢の or not が続く、前置詞のあと、to不定詞の前は whether。",
+  "explainJa": "選択肢の or not が続く場合、前置詞のあと、to不定詞の前では whether を使う。",
   "patterns": [
    "whether or not",
    "decide whether to V"
@@ -3429,12 +3493,12 @@
   ]
  },
  {
-  "id": "gr-pre2-054",
+  "id": "gr-pre2-056",
   "name": "TOEIC Part 5: other / another / the other",
   "nameJa": "other / another / the other",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "another は不特定の1つ、the other は残りの1つ。",
+  "toeic": 600,
+  "explainJa": "another は不特定の「もう1つ」(単数)、the other は残りの1つ、other は複数名詞の前。",
   "patterns": [
    "another + 単数",
    "other + 複数",
@@ -3451,16 +3515,16 @@
   ]
  },
  {
-  "id": "gr-pre2-055",
-  "name": "TOEIC Part 5: each / every / all / any (singular or plural)",
-  "nameJa": "each / every の単複",
+  "id": "gr-pre2-057",
+  "name": "TOEIC Part 5: each / every + singular noun",
+  "nameJa": "each / every のあとの単数名詞",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "each of + 複数名詞 + 単数動詞。",
+  "toeic": 500,
+  "explainJa": "each / every のあとは単数名詞で、動詞も単数に合わせる。each of のあとは複数名詞。",
   "patterns": [
-   "each + 単数",
-   "every + 単数",
-   "all of the + 複数"
+   "each + 単数名詞",
+   "every + 単数名詞",
+   "each of the + 複数名詞"
   ],
   "examples": [
    {
@@ -3473,15 +3537,15 @@
   ]
  },
  {
-  "id": "gr-pre2-056",
-  "name": "TOEIC Part 5: determiners (a / an / the / no article)",
-  "nameJa": "限定詞の選択",
+  "id": "gr-pre2-058",
+  "name": "TOEIC Part 5: articles (a / an / the / no article)",
+  "nameJa": "冠詞の選択",
   "eiken": "pre2",
-  "toeic": 730,
-  "explainJa": "可算単数には冠詞が必要。",
+  "toeic": 500,
+  "explainJa": "可算の単数名詞には冠詞(a / the)が必要。特定のものには the を使う。",
   "patterns": [
    "a / an + 可算単数",
-   "the + 特定"
+   "the + 特定のもの"
   ],
   "examples": [
    {
@@ -3494,16 +3558,16 @@
   ]
  },
  {
-  "id": "gr-pre2-057",
-  "name": "TOEIC Part 5: gerund vs noun vs to V after preposition",
-  "nameJa": "前置詞のあとの形(in addition to / look forward to)",
+  "id": "gr-pre2-059",
+  "name": "TOEIC Part 5: preposition \"to\" + -ing (committed to / look forward to)",
+  "nameJa": "前置詞の to のあとの -ing 形",
   "eiken": "pre2",
   "toeic": 860,
-  "explainJa": "to が前置詞の場合は -ing をとる。",
+  "explainJa": "look forward to / be committed to / be used to などの to は前置詞なので、あとに -ing 形が続く。",
   "patterns": [
-   "look forward to -ing",
-   "be committed to -ing",
-   "in addition to -ing"
+   "look forward to + V-ing",
+   "be committed to + V-ing",
+   "in addition to + V-ing"
   ],
   "examples": [
    {
@@ -3516,12 +3580,12 @@
   ]
  },
  {
-  "id": "gr-pre2-058",
+  "id": "gr-pre2-060",
   "name": "TOEIC Part 5: noun + noun compounds",
   "nameJa": "複合名詞(名詞 + 名詞)",
   "eiken": "pre2",
-  "toeic": 860,
-  "explainJa": "最初の名詞は単数形が基本(a sales manager)。",
+  "toeic": 730,
+  "explainJa": "前の名詞は原則として単数形で、あとの名詞を修飾する(a sales manager)。",
   "patterns": [
    "a + 名詞 + 名詞"
   ],
@@ -3536,16 +3600,48 @@
   ]
  },
  {
-  "id": "gr-pre2-059",
-  "name": "TOEIC Part 6: connecting sentence insertion (transitions)",
-  "nameJa": "Part 6の文挿入:つなぎ表現",
+  "id": "gr-pre2-061",
+  "name": "TOEIC Part 6: contrast transitions (However / Nevertheless)",
+  "nameJa": "Part 6の文挿入:逆接のつなぎ表現",
   "eiken": "pre2",
-  "toeic": 860,
-  "explainJa": "前後の文の関係(追加・逆接・結果)を見て however / in addition / as a result を選ぶ。",
+  "toeic": 730,
+  "explainJa": "前後の文が反対の内容のとき However / Nevertheless を選ぶ。",
   "patterns": [
-   "However, ...",
-   "In addition, ...",
-   "As a result, ..."
+   "S + V. However, S + V"
+  ],
+  "examples": [
+   {
+    "en": "The old system was cheap. However, it was very slow.",
+    "ja": "古いシステムは安かったが、とても遅かったです。"
+   }
+  ]
+ },
+ {
+  "id": "gr-pre2-062",
+  "name": "TOEIC Part 6: addition transitions (In addition / Moreover)",
+  "nameJa": "Part 6の文挿入:追加のつなぎ表現",
+  "eiken": "pre2",
+  "toeic": 600,
+  "explainJa": "前の内容に情報を足すとき In addition / Moreover / Also を選ぶ。",
+  "patterns": [
+   "S + V. In addition, S + V"
+  ],
+  "examples": [
+   {
+    "en": "The hotel has a pool. In addition, it has a gym.",
+    "ja": "ホテルにはプールがあります。さらにジムもあります。"
+   }
+  ]
+ },
+ {
+  "id": "gr-pre2-063",
+  "name": "TOEIC Part 6: result transitions (As a result / Therefore)",
+  "nameJa": "Part 6の文挿入:結果のつなぎ表現",
+  "eiken": "pre2",
+  "toeic": 730,
+  "explainJa": "前の文が原因で、あとの文がその結果のとき As a result / Therefore / Consequently を選ぶ。",
+  "patterns": [
+   "S + V. As a result, S + V"
   ],
   "examples": [
    {
@@ -3555,21 +3651,42 @@
   ]
  },
  {
-  "id": "gr-pre2-060",
-  "name": "TOEIC Part 6: tense choice in notices (will / has been / is scheduled)",
-  "nameJa": "お知らせ文での時制と態",
+  "id": "gr-pre2-064",
+  "name": "TOEIC Part 6: future plans in notices (will / be scheduled to)",
+  "nameJa": "お知らせ文の未来表現(will / be scheduled to)",
   "eiken": "pre2",
-  "toeic": 860,
-  "explainJa": "未来の予定は will / be scheduled to、完了した事実は has been + p.p.。",
+  "toeic": 600,
+  "explainJa": "これからの予定は will または be scheduled to で表す。",
   "patterns": [
    "will + V",
-   "is scheduled to + V",
-   "has been + p.p."
+   "is scheduled to + V"
   ],
   "examples": [
    {
     "en": "The office will be closed on Monday.",
     "ja": "事務所は月曜日休みです。"
+   },
+   {
+    "en": "The meeting is scheduled to start at ten.",
+    "ja": "会議は10時に始まる予定です。"
+   }
+  ]
+ },
+ {
+  "id": "gr-pre2-065",
+  "name": "TOEIC Part 6: completed events in notices (has been + p.p.)",
+  "nameJa": "お知らせ文の完了表現(has been + p.p.)",
+  "eiken": "pre2",
+  "toeic": 730,
+  "explainJa": "すでに起きたことで現在も関係があるときは現在完了(受動態)で表す。",
+  "patterns": [
+   "has been + p.p.",
+   "have been + p.p."
+  ],
+  "examples": [
+   {
+    "en": "Your request has been received.",
+    "ja": "ご依頼を受け付けました。"
    }
   ]
  },
@@ -3598,7 +3715,7 @@
   "name": "mixed conditional",
   "nameJa": "混合仮定法",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "過去の仮定が現在の結果に影響する場合。",
   "patterns": [
    "If + S + had p.p., S + would + V"
@@ -3615,7 +3732,7 @@
   "name": "conditional without if (otherwise / but for)",
   "nameJa": "if を使わない仮定(otherwise / but for)",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "otherwise や but for が仮定を含む。",
   "patterns": [
    "S + V, otherwise S + would ...",
@@ -3675,7 +3792,7 @@
   "name": "if it were not for / but for",
   "nameJa": "If it were not for ...(…がなければ)",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "現在の事実の反対。",
   "patterns": [
    "If it were not for + 名詞"
@@ -3692,7 +3809,7 @@
   "name": "it is time + past",
   "nameJa": "It is time + 仮定法過去",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "「もう…してもよい頃だ」。",
   "patterns": [
    "It is time + S + 過去形"
@@ -3754,7 +3871,7 @@
   "name": "independent participial construction",
   "nameJa": "独立分詞構文",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 990,
   "explainJa": "主語が主節と異なる分詞構文。",
   "patterns": [
    "S1 + V-ing, S2 + V"
@@ -3771,7 +3888,7 @@
   "name": "negative participial construction",
   "nameJa": "分詞構文の否定",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "not を分詞の前に置く。",
   "patterns": [
    "Not + V-ing ..., S + V"
@@ -3788,7 +3905,7 @@
   "name": "inversion: negative adverbs",
   "nameJa": "否定副詞の倒置",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 990,
   "explainJa": "never / hardly / rarely が文頭に来ると助動詞が主語の前に出る。",
   "patterns": [
    "Never + 助動詞 + S + V",
@@ -3813,7 +3930,7 @@
   "name": "inversion: so / neither",
   "nameJa": "So / Neither の倒置",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "「…もそうだ」を So + 助動詞 + 主語 の倒置で表す。助動詞は前の文に合わせる。",
   "patterns": [
    "So + 助動詞 + S"
@@ -3830,7 +3947,7 @@
   "name": "inversion: only + adverb",
   "nameJa": "Only + 副詞句の倒置",
   "eiken": "2",
-  "toeic": 860,
+  "toeic": 990,
   "explainJa": "Only then / Only after ... のあとは倒置。",
   "patterns": [
    "Only + 副詞句 + 助動詞 + S + V"
@@ -3847,7 +3964,7 @@
   "name": "inversion: if omitted (Had / Were / Should)",
   "nameJa": "if の省略による倒置",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "仮定法の if を省くと、Had / Were / Should が文頭に出て倒置になる。",
   "patterns": [
    "Had + S + p.p., S + would have p.p.",
@@ -3873,7 +3990,7 @@
   "name": "emphatic structure (cleft sentence)",
   "nameJa": "強調構文(It is ... that ...)",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "It is + 強調したい語句 + that ...。",
   "patterns": [
    "It is + X + that + S + V"
@@ -3907,7 +4024,7 @@
   "name": "appositive that-clause",
   "nameJa": "同格の that 節",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "fact / idea / news などの内容を that で説明する。",
   "patterns": [
    "the fact that ...",
@@ -4006,7 +4123,7 @@
   "name": "concession: although / while / whereas",
   "nameJa": "譲歩・対比の接続詞",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "although は譲歩、whereas / while は対比。",
   "patterns": [
    "although + S + V",
@@ -4024,7 +4141,7 @@
   "name": "infinitive: perfect (to have p.p.)",
   "nameJa": "完了不定詞",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "主節より前のことを表す。",
   "patterns": [
    "to have + p.p."
@@ -4041,7 +4158,7 @@
   "name": "gerund: passive and perfect",
   "nameJa": "動名詞の受動・完了形",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "動名詞の受動は being + p.p.、完了は having + p.p. で表す。",
   "patterns": [
    "being + p.p.",
@@ -4059,7 +4176,7 @@
   "name": "gerund: possessive / object subject",
   "nameJa": "動名詞の意味上の主語",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "所有格または目的格で表す。",
   "patterns": [
    "S's + V-ing",
@@ -4099,7 +4216,7 @@
   "name": "passive with get",
   "nameJa": "get 受動態",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "口語で変化を強調する。",
   "patterns": [
    "get + p.p."
@@ -4134,7 +4251,7 @@
   "name": "passive: with modals and progressive",
   "nameJa": "助動詞・進行形の受動態",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "be + being + p.p. など。",
   "patterns": [
    "be being + p.p.",
@@ -4192,7 +4309,7 @@
   "name": "It takes / spend / cost",
   "nameJa": "It takes / spend / cost の使い分け",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 500,
   "explainJa": "時間は take、お金は cost、人が主語なら spend。",
   "patterns": [
    "It takes + 人 + 時間 + to V",
@@ -4214,7 +4331,7 @@
   "name": "borrow / lend / rent",
   "nameJa": "borrow / lend / rent などの使い分け",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 500,
   "explainJa": "borrow は借りる、lend は貸す。",
   "patterns": [
    "borrow from + 人",
@@ -4238,7 +4355,7 @@
   "name": "make / do",
   "nameJa": "make と do の使い分け",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 400,
   "explainJa": "make は作り出す、do は行う。",
   "patterns": [
    "make a mistake",
@@ -4259,7 +4376,7 @@
   "name": "say / tell / speak / talk",
   "nameJa": "say / tell / speak / talk",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 500,
   "explainJa": "tell は人を目的語にとる。",
   "patterns": [
    "tell + 人 + that ...",
@@ -4326,7 +4443,7 @@
   "name": "had better",
   "nameJa": "had better",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 500,
   "explainJa": "強い忠告。目上には失礼になることがある。",
   "patterns": [
    "had better + V"
@@ -4349,7 +4466,7 @@
   "name": "would rather",
   "nameJa": "would rather",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "「…したい」。than で比較。",
   "patterns": [
    "would rather + V + than + V"
@@ -4366,7 +4483,7 @@
   "name": "need and dare",
   "nameJa": "need / dare(助動詞用法)",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 990,
   "explainJa": "否定・疑問で助動詞として使われる。",
   "patterns": [
    "need not + V",
@@ -4387,7 +4504,7 @@
   "name": "ought to",
   "nameJa": "ought to",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "義務・助言を表す。",
   "patterns": [
    "ought to + V"
@@ -4404,7 +4521,7 @@
   "name": "suggest / recommend / insist / demand + (should) V",
   "nameJa": "提案・要求を表す動詞のあとの原形(仮定法現在)",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "that 節内は原形または should + 原形。",
   "patterns": [
    "suggest + that + S + (should) + V"
@@ -4424,7 +4541,7 @@
   "name": "essential / important + that + (should) V",
   "nameJa": "形容詞のあとの that 節の原形",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 860,
   "explainJa": "It is essential that ... のあと原形。",
   "patterns": [
    "It is essential that + S + V(原形)"
@@ -4441,7 +4558,7 @@
   "name": "nouns + that / to V (suggestion, decision, plan)",
   "nameJa": "名詞 + to V / that(decision, plan, etc.)",
   "eiken": "2",
-  "toeic": 860,
+  "toeic": 730,
   "explainJa": "decision / plan / chance などは to V が続く。",
   "patterns": [
    "decision to V",
@@ -4459,7 +4576,7 @@
   "name": "word order: adverb placement",
   "nameJa": "副詞の位置",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "頻度副詞は一般動詞の前。文頭・文末は強調。",
   "patterns": [
    "S + always + V"
@@ -4479,7 +4596,7 @@
   "name": "word order: enough / too / so / such",
   "nameJa": "enough / too の語順",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 500,
   "explainJa": "enough は形容詞のあと。",
   "patterns": [
    "形容詞 + enough"
@@ -4496,7 +4613,7 @@
   "name": "word order: indirect object",
   "nameJa": "間接目的語の語順",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "代名詞が目的語のとき give + 物 + to + 人 の語順が自然。",
   "patterns": [
    "give it to him"
@@ -4555,7 +4672,7 @@
   "name": "question tags and short responses",
   "nameJa": "付加疑問文の応用",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "命令文の付加疑問は will you?。",
   "patterns": [
    "Let's ..., shall we?",
@@ -4573,7 +4690,7 @@
   "name": "noun clauses (wh- / that / if)",
   "nameJa": "名詞節",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "主語・目的語・補語になる節。",
   "patterns": [
    "What he said was true.",
@@ -4609,7 +4726,7 @@
   "name": "so / neither / nor (inversion in agreement)",
   "nameJa": "So do I / Neither do I(複雑な時制)",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "助動詞の種類を前の文に合わせる。",
   "patterns": [
    "So + 助動詞 + S"
@@ -4649,7 +4766,7 @@
   "toeic": 730,
   "explainJa": "a third of / 30 percent of。主語は後ろの名詞に一致。",
   "patterns": [
-   "a half of the + 名詞",
+   "half of the + 名詞",
    "30 percent of the + 名詞"
   ],
   "examples": [
@@ -4664,7 +4781,7 @@
   "name": "unnecessary double comparatives",
   "nameJa": "比較級・最上級の誤用",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 500,
   "explainJa": "more + -er は不可。",
   "patterns": [
    "more + 原級 / -er"
@@ -4684,7 +4801,7 @@
   "name": "the same as / similar to / different from",
   "nameJa": "the same as / similar to / different from",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "慣用的な前置詞に注意。",
   "patterns": [
    "the same as",
@@ -4705,7 +4822,7 @@
   "name": "prefer A to B / prefer to V rather than V",
   "nameJa": "prefer の構文",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "prefer + 名詞 + to + 名詞。",
   "patterns": [
    "prefer A to B",
@@ -4745,7 +4862,7 @@
   "name": "know / see + wh- + to V",
   "nameJa": "疑問詞 + to 不定詞",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "疑問詞 + to V で「どう…すべきか」などの名詞句を作る。",
   "patterns": [
    "how to V",
@@ -4763,7 +4880,7 @@
   "name": "spend / waste / busy -ing",
   "nameJa": "spend / be busy -ing",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "spend + 時間 + -ing。",
   "patterns": [
    "spend + 時間 + -ing",
@@ -4784,7 +4901,7 @@
   "name": "prevent / stop / keep + O + from -ing",
   "nameJa": "prevent O from -ing",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 600,
   "explainJa": "「Oが…するのを妨げる」。",
   "patterns": [
    "prevent + O + from + -ing"
@@ -4804,7 +4921,7 @@
   "name": "thank / blame / forgive + O + for -ing",
   "nameJa": "感謝・非難の for",
   "eiken": "2",
-  "toeic": 730,
+  "toeic": 500,
   "explainJa": "thank + O + for + 名詞/-ing。",
   "patterns": [
    "thank + O + for + -ing"
@@ -4836,16 +4953,37 @@
  },
  {
   "id": "gr-2-066",
-  "name": "TOEIC Part 5: collocations and idiomatic prepositions (in charge of / at no cost)",
-  "nameJa": "慣用的な前置詞(in charge of / at no cost)",
+  "name": "TOEIC Part 5: in charge of / on behalf of / in favor of",
+  "nameJa": "慣用的な前置詞句(in charge of / on behalf of)",
   "eiken": "2",
   "toeic": 860,
-  "explainJa": "前置詞を含む句を丸ごと覚える。",
+  "explainJa": "前置詞を含む句は丸ごと覚える。in charge of は担当、on behalf of は代理を表す。",
   "patterns": [
    "in charge of",
-   "at no cost",
    "on behalf of",
-   "in response to"
+   "in favor of"
+  ],
+  "examples": [
+   {
+    "en": "Ms. Lee is in charge of the sales team.",
+    "ja": "李さんは営業チームを担当しています。"
+   }
+  ],
+  "commonErrors": [
+   "in charge for / on behalf the manager"
+  ]
+ },
+ {
+  "id": "gr-2-067",
+  "name": "TOEIC Part 5: in response to / in reply to / in addition to",
+  "nameJa": "慣用的な前置詞句(in response to / in addition to)",
+  "eiken": "2",
+  "toeic": 860,
+  "explainJa": "in response to は「…に応えて」、in addition to は「…に加えて」。to のあとは名詞または -ing 形。",
+  "patterns": [
+   "in response to",
+   "in reply to",
+   "in addition to"
   ],
   "examples": [
    {
@@ -4855,23 +4993,6 @@
   ],
   "commonErrors": [
    "in response of"
-  ]
- },
- {
-  "id": "gr-2-067",
-  "name": "TOEIC Part 5: wh-ever and relative adverbs in business writing",
-  "nameJa": "関係副詞・複合関係詞(wherever / whenever)",
-  "eiken": "2",
-  "toeic": 860,
-  "explainJa": "wherever / whenever は「どこで…しても」「いつ…しても」を表す複合関係副詞。",
-  "patterns": [
-   "wherever + S + V"
-  ],
-  "examples": [
-   {
-    "en": "Please call me whenever you need help.",
-    "ja": "お困りのときはいつでもお電話ください。"
-   }
   ]
  },
  {
@@ -4915,7 +5036,7 @@
   "nameJa": "It's time + 過去形 / would rather + 過去形",
   "eiken": "pre1",
   "toeic": 860,
-  "explainJa": "「…してほしい」。",
+  "explainJa": "It's time や I'd rather のあとの節は過去形にする。現在の事実と異なる願望・要求を表す。",
   "patterns": [
    "I'd rather + S + 過去形"
   ],
@@ -4931,7 +5052,7 @@
   "name": "subjunctive: suppose / what if",
   "nameJa": "suppose / what if",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": 730,
   "explainJa": "「もし…ならどうなる」。",
   "patterns": [
    "What if + S + V?",
@@ -4950,7 +5071,7 @@
   "nameJa": "otherwise(過去への仮定)",
   "eiken": "pre1",
   "toeic": 860,
-  "explainJa": "否定の事実を表す。",
+  "explainJa": "過去の事実と反対の結果を述べるときに otherwise を使う(「そうでなければ…だったのに」)。",
   "patterns": [
    "S + 過去形, otherwise + S + would have p.p."
   ],
@@ -4966,7 +5087,7 @@
   "name": "inversion: so + adjective",
   "nameJa": "So + 形容詞 + 倒置",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": 990,
   "explainJa": "強調のため文頭に so / such。",
   "patterns": [
    "So + 形容詞 + be + S + that ..."
@@ -4983,7 +5104,7 @@
   "name": "inversion: negative object / phrases (under no circumstances)",
   "nameJa": "否定の副詞句の倒置",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": 990,
   "explainJa": "否定の副詞句(at no time / on no account など)が文頭に来ると、助動詞が主語の前に出る。",
   "patterns": [
    "Under no circumstances + 助動詞 + S + V"
@@ -5000,7 +5121,7 @@
   "name": "inversion: place / direction adverb",
   "nameJa": "場所を表す副詞の倒置",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": null,
   "explainJa": "場所・方向を表す副詞(句)を文頭に置くと、動詞 + 主語 の倒置になる(主語が名詞のとき)。",
   "patterns": [
    "Here + V + S",
@@ -5009,7 +5130,7 @@
   "examples": [
    {
     "en": "Here comes the bus.",
-    "ja": "バスが来ました。"
+    "ja": "ほら、バスが来ましたよ。"
    }
   ]
  },
@@ -5035,7 +5156,7 @@
   "name": "comparison: no more than / no less than",
   "nameJa": "no more than / no less than",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": 730,
   "explainJa": "数量の多少を表す。",
   "patterns": [
    "no more than ...",
@@ -5053,7 +5174,7 @@
   "name": "comparison: more A than B / less A than B",
   "nameJa": "more A than B(AというよりB)",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": 990,
   "explainJa": "同一の人物・物の性質を比べる。",
   "patterns": [
    "more A than B"
@@ -5087,7 +5208,7 @@
   "name": "comparison: much / still less",
   "nameJa": "まして…ない",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": null,
   "explainJa": "否定文のあとで使う。",
   "patterns": [
    "much less ...",
@@ -5105,7 +5226,7 @@
   "name": "comparison: superlative idioms",
   "nameJa": "最上級の慣用表現",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": 990,
   "explainJa": "最上級や数量表現を使った慣用句。the last + 名詞 + to V は「決して…しない」。",
   "patterns": [
    "the last person to V"
@@ -5156,7 +5277,7 @@
   "name": "infinitive: bare infinitive after cannot but / do nothing but",
   "nameJa": "原形不定詞を伴う慣用句",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": null,
   "explainJa": "cannot but / do nothing but のあとは to のない原形不定詞が続く。",
   "patterns": [
    "cannot help but V"
@@ -5173,7 +5294,7 @@
   "name": "infinitive: in order to / so as to",
   "nameJa": "in order to / so as to",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": 600,
   "explainJa": "目的を表す。否定は in order not to。",
   "patterns": [
    "in order to V",
@@ -5208,7 +5329,7 @@
   "name": "relative: as / but (quasi-relative)",
   "nameJa": "擬似関係代名詞(as / but)",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": null,
   "explainJa": "the same / such / as のあとの as が関係代名詞の働きをする(擬似関係代名詞)。",
   "patterns": [
    "the same + N + as",
@@ -5223,8 +5344,8 @@
  },
  {
   "id": "gr-pre1-021",
-  "name": "relative: what with preposition",
-  "nameJa": "what + 前置詞",
+  "name": "relative: what we call / what is called",
+  "nameJa": "what we call(いわゆる)",
   "eiken": "pre1",
   "toeic": 860,
   "explainJa": "what we call / what is called は「いわゆる」を表す慣用表現。",
@@ -5264,7 +5385,7 @@
   "name": "relative: preposition at end",
   "nameJa": "前置詞が文末の関係詞節",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": 730,
   "explainJa": "口語では前置詞を文末に置く。",
   "patterns": [
    "N + (that) + S + V + 前置詞"
@@ -5331,27 +5452,10 @@
  },
  {
   "id": "gr-pre1-027",
-  "name": "the + 比較級 without clause",
-  "nameJa": "the 比較級 の変形",
-  "eiken": "pre1",
-  "toeic": 860,
-  "explainJa": "比較級の対応を省略した形。",
-  "patterns": [
-   "the sooner, the better"
-  ],
-  "examples": [
-   {
-    "en": "The sooner, the better.",
-    "ja": "早いほどいい。"
-   }
-  ]
- },
- {
-  "id": "gr-pre1-028",
   "name": "it is + 形容詞 + of + 人 + to V",
   "nameJa": "It is + 形容詞(人の性質) + of + 人 + to V",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": 730,
   "explainJa": "kind / clever などは of を使う。",
   "patterns": [
    "It is + kind + of + 人 + to V"
@@ -5367,11 +5471,11 @@
   ]
  },
  {
-  "id": "gr-pre1-029",
-  "name": "it takes / for + 人 + to V",
-  "nameJa": "for + 人 + to V の用法",
+  "id": "gr-pre1-028",
+  "name": "it is + adjective + for + person + to V",
+  "nameJa": "It is + 形容詞 + for + 人 + to V(状況を表す形容詞)",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": 730,
   "explainJa": "形容詞が状況を表すときは for を使う。",
   "patterns": [
    "It is + difficult + for + 人 + to V"
@@ -5384,11 +5488,11 @@
   ]
  },
  {
-  "id": "gr-pre1-030",
+  "id": "gr-pre1-029",
   "name": "have + O + V-ing (continuing)",
   "nameJa": "have + O + V-ing(させておく)",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": null,
   "explainJa": "「Oを…させておく」。",
   "patterns": [
    "have + O + V-ing"
@@ -5401,11 +5505,11 @@
   ]
  },
  {
-  "id": "gr-pre1-031",
+  "id": "gr-pre1-030",
   "name": "there is no -ing",
   "nameJa": "There is no -ing",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": null,
   "explainJa": "「…することはできない」。",
   "patterns": [
    "There is no + -ing"
@@ -5418,7 +5522,7 @@
   ]
  },
  {
-  "id": "gr-pre1-032",
+  "id": "gr-pre1-031",
   "name": "on / upon + -ing",
   "nameJa": "on -ing(…するとすぐに)",
   "eiken": "pre1",
@@ -5435,11 +5539,11 @@
   ]
  },
  {
-  "id": "gr-pre1-033",
+  "id": "gr-pre1-032",
   "name": "expressions with number agreement (a number of / the number of)",
   "nameJa": "a number of / the number of の呼応",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": 600,
   "explainJa": "a number of + 複数 は複数扱い、the number of は単数扱い。",
   "patterns": [
    "A number of + 複数 + 複数動詞",
@@ -5456,32 +5560,11 @@
   ]
  },
  {
-  "id": "gr-pre1-034",
-  "name": "subject-verb agreement (distant subject)",
-  "nameJa": "主語と動詞の一致(複雑な主語)",
-  "eiken": "pre1",
-  "toeic": 860,
-  "explainJa": "修飾語に惑わされず主語の数に合わせる。",
-  "patterns": [
-   "The list of items is ...",
-   "Each of the boys has ..."
-  ],
-  "examples": [
-   {
-    "en": "The list of names is long.",
-    "ja": "名前のリストは長いです。"
-   }
-  ],
-  "commonErrors": [
-   "The list of names are long."
-  ]
- },
- {
-  "id": "gr-pre1-035",
+  "id": "gr-pre1-033",
   "name": "collective nouns and agreement",
   "nameJa": "集合名詞の一致",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": 730,
   "explainJa": "family / team などは単数・複数どちらにも扱える。",
   "patterns": [
    "The team is / are ..."
@@ -5494,11 +5577,11 @@
   ]
  },
  {
-  "id": "gr-pre1-036",
+  "id": "gr-pre1-034",
   "name": "neither / either with verbs",
   "nameJa": "neither A nor B の動詞の一致",
   "eiken": "pre1",
-  "toeic": 860,
+  "toeic": 730,
   "explainJa": "動詞は B に一致させる。",
   "patterns": [
    "neither A nor B + V(B に一致)"
@@ -5515,7 +5598,7 @@
   "name": "inversion: literary (Not until / No sooner)",
   "nameJa": "文語的な倒置(Not until / No sooner)",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": null,
   "explainJa": "否定の副詞句を文頭に置くと倒置が起こる。",
   "patterns": [
    "Not until + ... + 助動詞 + S + V",
@@ -5540,7 +5623,7 @@
   "name": "inversion: so / such at the head",
   "nameJa": "So / Such で始まる倒置",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": null,
   "explainJa": "強調のため so / such を文頭に置く。",
   "patterns": [
    "Such + be + N + that ..."
@@ -5557,7 +5640,7 @@
   "name": "inversion: concessive (adjective + as + S + V)",
   "nameJa": "譲歩の倒置(Young as he is, ...)",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": null,
   "explainJa": "形容詞 + as + S + V は「…だけれども」。",
   "patterns": [
    "形容詞 + as + S + V, ..."
@@ -5592,7 +5675,7 @@
   "name": "subjunctive: formal (be it / so be it / long live)",
   "nameJa": "仮定法現在の固定表現",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": null,
   "explainJa": "仮定法現在の古い形が固定表現として残っているもの。文語・慣用句で使われる。",
   "patterns": [
    "Be that as it may, ...",
@@ -5627,7 +5710,7 @@
   "name": "subjunctive: past hypothetical with modals (could have p.p.)",
   "nameJa": "could have p.p. / might have p.p.",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 730,
   "explainJa": "過去の可能性・仮想。",
   "patterns": [
    "could have + p.p.",
@@ -5648,7 +5731,7 @@
   "name": "nominal that-clauses with extraposition",
   "nameJa": "形式主語 it の that 節",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 860,
   "explainJa": "it is + 形容詞 + that ...。",
   "patterns": [
    "It is + 形容詞 + that + S + V"
@@ -5665,7 +5748,7 @@
   "name": "abstract nouns + preposition collocations",
   "nameJa": "名詞 + 前置詞のコロケーション",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 860,
   "explainJa": "名詞ごとに決まった前置詞をとる。reason for、solution to、access to など。",
   "patterns": [
    "a reason for ...",
@@ -5687,7 +5770,7 @@
   "name": "ellipsis in comparative clauses",
   "nameJa": "比較節の省略",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": null,
   "explainJa": "than や as のあとの繰り返しを省く。",
   "patterns": [
    "than + (S + V) 省略"
@@ -5722,7 +5805,7 @@
   "name": "participles after conjunctions",
   "nameJa": "接続詞 + 分詞",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 860,
   "explainJa": "接続詞を残した分詞構文。",
   "patterns": [
    "When + V-ing",
@@ -5758,7 +5841,7 @@
   "name": "cleft: all / what + S + V + is",
   "nameJa": "All + S + V + is ...",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 860,
   "explainJa": "「…しか…ない」。",
   "patterns": [
    "All I want is ..."
@@ -5792,7 +5875,7 @@
   "name": "a / the + 名詞 + of + 名詞 (quantity expressions)",
   "nameJa": "名詞 + of(量を表す名詞)",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 730,
   "explainJa": "a flock of / a pile of など。",
   "patterns": [
    "a flock of birds",
@@ -5813,7 +5896,7 @@
   "name": "uncountable nouns (information / advice / equipment)",
   "nameJa": "不可算名詞(information / advice / equipment)",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 600,
   "explainJa": "複数形にならず a / an もつかない。",
   "patterns": [
    "a piece of information",
@@ -5834,7 +5917,7 @@
   "name": "tense: present for future in time / conditional clauses (advanced)",
   "nameJa": "時・条件の副詞節の現在形(応用)",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 600,
   "explainJa": "未来のことでも when / if 節は現在形。",
   "patterns": [
    "before + 現在形",
@@ -5855,7 +5938,7 @@
   "name": "tense: historical present and narrative tenses",
   "nameJa": "歴史的現在・物語の時制",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": null,
   "explainJa": "物語では現在形が使われることがある。",
   "patterns": [
    "and then he says ..."
@@ -5872,7 +5955,7 @@
   "name": "aspect: stative verbs never progressive",
   "nameJa": "状態動詞は進行形にしない",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 600,
   "explainJa": "know / like / belong などは通常進行形にならない。",
   "patterns": [
    "I know ... (not I am knowing)"
@@ -5892,7 +5975,7 @@
   "name": "aspect: present progressive for annoyance",
   "nameJa": "現在進行形で苛立ち(always)",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": null,
   "explainJa": "always + 進行形で批判を表す。",
   "patterns": [
    "S + be + always + V-ing"
@@ -5909,7 +5992,7 @@
   "name": "text coherence: referencing (this / that / such)",
   "nameJa": "代名詞による指示(this / that / such)",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 860,
   "explainJa": "前の内容を受ける。",
   "patterns": [
    "This means ...",
@@ -5927,7 +6010,7 @@
   "name": "emphatic do",
   "nameJa": "強意の do",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 860,
   "explainJa": "肯定文で do を使い強調する。",
   "patterns": [
    "S + do/does/did + V"
@@ -5944,7 +6027,7 @@
   "name": "negation: scope and double negatives",
   "nameJa": "否定の範囲・二重否定",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 860,
   "explainJa": "not all / not always は部分否定。",
   "patterns": [
    "not all ...",
@@ -5965,7 +6048,7 @@
   "name": "subject-verb agreement: either / neither / one of",
   "nameJa": "主語と動詞の一致(複雑な場合)",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 600,
   "explainJa": "one of + 複数名詞 + 単数動詞。",
   "patterns": [
    "One of the + 複数 + is"
@@ -5982,10 +6065,10 @@
  },
  {
   "id": "gr-1-026",
-  "name": "abstract nouns and articles (the + 形容詞 / no article)",
-  "nameJa": "冠詞の省略(慣用表現)",
+  "name": "no article in fixed expressions",
+  "nameJa": "無冠詞の慣用表現(by + 乗り物 / go to bed)",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 730,
   "explainJa": "go to school / by train など。",
   "patterns": [
    "by + 乗り物",
@@ -6020,10 +6103,10 @@
  },
  {
   "id": "gr-1-028",
-  "name": "wh-ever and emphatic wh-questions",
-  "nameJa": "wh-ever(いったい)",
+  "name": "emphatic wh-questions (on earth / ever)",
+  "nameJa": "wh- + on earth(いったい…)",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": null,
   "explainJa": "強意の疑問。",
   "patterns": [
    "What on earth ...?",
@@ -6041,7 +6124,7 @@
   "name": "elliptical clauses (if any / if necessary)",
   "nameJa": "省略表現(if any / if necessary)",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 860,
   "explainJa": "副詞節の省略。",
   "patterns": [
    "if any",
@@ -6060,7 +6143,7 @@
   "name": "quasi-negatives (hardly / scarcely / seldom)",
   "nameJa": "準否定語",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 860,
   "explainJa": "hardly / scarcely / seldom は否定の意味を含む。",
   "patterns": [
    "hardly + V",
@@ -6081,7 +6164,7 @@
   "name": "lest / for fear that",
   "nameJa": "lest / for fear that",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": null,
   "explainJa": "「…するといけないので」。",
   "patterns": [
    "lest + S + (should) + V"
@@ -6098,7 +6181,7 @@
   "name": "provided / providing / supposing",
   "nameJa": "条件の接続詞",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 860,
   "explainJa": "provided (that) は「…という条件で」を表し、if とほぼ同じ意味で使う。",
   "patterns": [
    "provided that + S + V"
@@ -6115,7 +6198,7 @@
   "name": "notwithstanding / albeit constructions",
   "nameJa": "notwithstanding / albeit",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": null,
   "explainJa": "文語的な譲歩。",
   "patterns": [
    "notwithstanding + 名詞",
@@ -6133,7 +6216,7 @@
   "name": "reduced relative clauses",
   "nameJa": "関係詞節の短縮(分詞 / 形容詞句)",
   "eiken": "1",
-  "toeic": 990,
+  "toeic": 860,
   "explainJa": "who is / which was を省略する。",
   "patterns": [
    "N + p.p.",

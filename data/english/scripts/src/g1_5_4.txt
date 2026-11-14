@@ -29,32 +29,32 @@
 5|400|and / but / or|and / but / or|語や文をつなぐ基本の接続詞。|A and B;;A but B;;A or B|I like tea but he likes coffee.=>私は紅茶が好きだが彼はコーヒーが好きです。|
 4|400|be going to (future)|be going to(予定・予測)|予定や根拠のある予測を表す。|S + be going to + V|I am going to visit my aunt.=>おばを訪ねるつもりです。|will|I going to cook. (be の欠落)
 4|400|will (future and offers)|will(未来・意志)|その場の決心や単純な未来を表す。|S + will + V|It will rain tomorrow.=>明日は雨でしょう。;;I'll help you.=>手伝いましょう。|be going to|He will goes. (will のあとに原形)
-4|400|must and have to|must / have to(義務)|must は強い義務、have to は外的な必要。否定の意味が異なる。|S + must + V;;S + have/has to + V|You must wear a helmet.=>ヘルメットをかぶらなければなりません。;;I have to go now.=>もう行かなければなりません。|must not / don't have to|He must goes. / She have to go.
-4|400|must not and don't have to|must not と don't have to|must not は禁止、don't have to は不必要。|S + must not + V;;S + don't have to + V|You must not run here.=>ここで走ってはいけません。;;You don't have to hurry.=>急がなくていいです。|must
-4|400|should (advice)|should(助言)|「…したほうがよい」と助言を述べる。|S + should + V|You should see a doctor.=>医者に診てもらうべきです。
-4|400|may (permission and possibility)|may(許可・可能性)|may I ...? は丁寧な許可、may は「…かもしれない」。|May I + V?;;S + may + V|May I use your phone?=>電話をお借りしてもいいですか。;;It may rain.=>雨が降るかもしれません。|can|He mays come.
+4|500|must and have to|must / have to(義務)|must は強い義務、have to は外的な必要。否定の意味が異なる。|S + must + V;;S + have/has to + V|You must wear a helmet.=>ヘルメットをかぶらなければなりません。;;I have to go now.=>もう行かなければなりません。|must not / don't have to|He must goes. / She have to go.
+4|500|must not and don't have to|must not と don't have to|must not は禁止、don't have to は不必要。|S + must not + V;;S + don't have to + V|You must not run here.=>ここで走ってはいけません。;;You don't have to hurry.=>急がなくていいです。|must
+4|500|should (advice)|should(助言)|「…したほうがよい」と助言を述べる。|S + should + V|You should see a doctor.=>医者に診てもらうべきです。
+4|500|may (permission and possibility)|may(許可・可能性)|may I ...? は丁寧な許可、may は「…かもしれない」。|May I + V?;;S + may + V|May I use your phone?=>電話をお借りしてもいいですか。;;It may rain.=>雨が降るかもしれません。|can|He mays come.
 4|400|would like to / would you like|would like(丁寧な希望)|want の丁寧な言い方。注文や誘いで使う。|I'd like + 名詞;;I'd like to + V;;Would you like ...?|I'd like a cup of tea.=>お茶を1杯いただきたいです。;;Would you like some cake?=>ケーキはいかがですか。|want|I would like go.
-4|400|to-infinitive (noun use)|不定詞の名詞的用法|to + 動詞の原形で「…すること」を表す。|want/like/hope to + V;;It is ... to + V|I like to read.=>読書が好きです。;;To swim is fun.=>泳ぐのは楽しいです。|動名詞|I want swimming.
-4|400|to-infinitive (adverb use: purpose)|不定詞の副詞的用法(目的)|「…するために」を表す。|S + V + to + V|I went to the shop to buy milk.=>牛乳を買いに店へ行きました。|
-4|400|to-infinitive (adjective use)|不定詞の形容詞的用法|名詞のあとに to + V をつけて「…するための」を表す。|something to + V;;time to + V|I have nothing to eat.=>食べるものがありません。
-4|400|gerund (-ing as object)|動名詞(目的語)|enjoy / finish / stop などのあとは動名詞。|enjoy -ing;;finish -ing;;stop -ing|I enjoy swimming.=>泳ぐのを楽しみます。;;She finished cooking.=>彼女は料理を終えました。|不定詞|I enjoy to swim.
-4|400|gerund as subject|動名詞(主語)|ing形で「…すること」を主語にできる。|-ing + V|Swimming is fun.=>泳ぐことは楽しいです。
+4|500|to-infinitive (noun use)|不定詞の名詞的用法|to + 動詞の原形で「…すること」を表す。|want/like/hope to + V;;It is ... to + V|I like to read.=>読書が好きです。;;To swim is fun.=>泳ぐのは楽しいです。|動名詞|I want swimming.
+4|500|to-infinitive (adverb use: purpose)|不定詞の副詞的用法(目的)|「…するために」を表す。|S + V + to + V|I went to the shop to buy milk.=>牛乳を買いに店へ行きました。|
+4|500|to-infinitive (adjective use)|不定詞の形容詞的用法|名詞のあとに to + V をつけて「…するための」を表す。|something to + V;;time to + V|I have nothing to eat.=>食べるものがありません。
+4|500|gerund (-ing as object)|動名詞(目的語)|enjoy / finish / stop などのあとは動名詞。|enjoy -ing;;finish -ing;;stop -ing|I enjoy swimming.=>泳ぐのを楽しみます。;;She finished cooking.=>彼女は料理を終えました。|不定詞|I enjoy to swim.
+4|500|gerund as subject|動名詞(主語)|ing形で「…すること」を主語にできる。|-ing + V|Swimming is fun.=>泳ぐことは楽しいです。
 4|500|verbs followed by to or -ing|不定詞・動名詞のどちらをとるか|want / hope / decide は to + V、enjoy / finish / mind は -ing をとる。|decide to V;;mind -ing|I decided to go.=>行くことに決めました。;;Do you mind opening the window?=>窓を開けてもらえますか。||I enjoy to read. / I decided going.
-4|400|comparative (-er / more)|比較級|短い語は -er、長い語は more をつける。than で比較対象を示す。|-er than;;more + 形容詞 than|This fish is bigger than that one.=>この魚はあの魚より大きいです。;;English is more difficult than math.=>英語は数学より難しいです。||more bigger / more cheaper
-4|400|superlative (-est / most)|最上級|-est / most をつけ、the をつける。in / of で範囲を示す。|the -est in/of;;the most + 形容詞|He is the tallest in his class.=>彼はクラスで一番背が高いです。||the most tall / tallest of the class
-4|400|as ... as (equal comparison)|as ... as(同等比較)|「…と同じくらい…」。否定は「…ほど…でない」。|as + 原級 + as;;not as + 原級 + as|He is as tall as me.=>彼は私と同じくらい背が高いです。|比較級|as taller as
+4|500|comparative (-er / more)|比較級|短い語は -er、長い語は more をつける。than で比較対象を示す。|-er than;;more + 形容詞 than|This fish is bigger than that one.=>この魚はあの魚より大きいです。;;English is more difficult than math.=>英語は数学より難しいです。||more bigger / more cheaper
+4|500|superlative (-est / most)|最上級|-est / most をつけ、the をつける。in / of で範囲を示す。|the -est in/of;;the most + 形容詞|He is the tallest in his class.=>彼はクラスで一番背が高いです。||the most tall / tallest of the class
+4|500|as ... as (equal comparison)|as ... as(同等比較)|「…と同じくらい…」。否定は「…ほど…でない」。|as + 原級 + as;;not as + 原級 + as|He is as tall as me.=>彼は私と同じくらい背が高いです。|比較級|as taller as
 4|400|irregular comparatives (good/better/best)|不規則な比較級・最上級|good - better - best、bad - worse - worst、many/much - more - most のように不規則に変化する。|good - better - best|Her cooking is better than mine.=>彼女の料理は私のよりおいしいです。||gooder / more good
-4|400|past progressive|過去進行形|was / were + V-ing で過去のある時点で進行中の動作を表す。|S + was/were + V-ing|I was cooking when you called.=>あなたが電話したとき料理していました。|過去形|I was cook.
-4|400|when / because / if (adverb clauses)|when / because / if(副詞節)|時・理由・条件を表す節。|when + S + V;;because + S + V;;if + S + V|If it rains, we'll stay home.=>雨が降ったら家にいます。;;I was late because I missed the bus.=>バスに乗り遅れたので遅れました。||If it will rain
-4|400|that clause (think / know / hope)|that節|think / know / say のあとに文を置く。that は省略可。|S + think (that) + S + V|I think (that) it's a good idea.=>それはいい考えだと思います。
-4|400|so ... that|so ... that|とても…なので…。結果を表す。|so + 形容詞 + that + S + V|It was so cold that we stayed inside.=>とても寒かったので中にいました。|too ... to|so ... that を so ... to と書く誤り
-4|400|too ... to|too ... to|「…すぎて…できない」。|too + 形容詞 + to + V|It's too hot to work.=>暑すぎて働けません。|so ... that
-4|400|something / anything / nothing + adjective|something / anything + 形容詞|something cold のように形容詞はあとに置く。|something + 形容詞|I want something cold.=>冷たいものがほしいです。||cold something
-4|400|exclamations (What / How)|感嘆文|What + a + 形容詞 + 名詞、How + 形容詞。|What a + 形容詞 + 名詞!;;How + 形容詞!|What a nice day!=>なんて素敵な日でしょう。;;How beautiful!=>なんて美しい。
+4|500|past progressive|過去進行形|was / were + V-ing で過去のある時点で進行中の動作を表す。|S + was/were + V-ing|I was cooking when you called.=>あなたが電話したとき料理していました。|過去形|I was cook.
+4|500|when / because / if (adverb clauses)|when / because / if(副詞節)|時・理由・条件を表す節。|when + S + V;;because + S + V;;if + S + V|If it rains, we'll stay home.=>雨が降ったら家にいます。;;I was late because I missed the bus.=>バスに乗り遅れたので遅れました。||If it will rain
+4|500|that clause (think / know / hope)|that節|think / know / say のあとに文を置く。that は省略可。|S + think (that) + S + V|I think (that) it's a good idea.=>それはいい考えだと思います。
+4|600|so ... that|so ... that|とても…なので…。結果を表す。|so + 形容詞 + that + S + V|It was so cold that we stayed inside.=>とても寒かったので中にいました。|too ... to|so ... that を so ... to と書く誤り
+4|600|too ... to|too ... to|「…すぎて…できない」。|too + 形容詞 + to + V|It's too hot to work.=>暑すぎて働けません。|so ... that
+4|600|something / anything / nothing + adjective|something / anything + 形容詞|something cold のように形容詞はあとに置く。|something + 形容詞|I want something cold.=>冷たいものがほしいです。||cold something
+4|-|exclamations (What / How)|感嘆文|What + a + 形容詞 + 名詞、How + 形容詞。|What a + 形容詞 + 名詞!;;How + 形容詞!|What a nice day!=>なんて素敵な日でしょう。;;How beautiful!=>なんて美しい。
 4|400|object pronouns after verbs and prepositions|動詞・前置詞のあとの目的格|前置詞や動詞のあとは me / him / her / them など。|with + me/him/her/them|Come with me.=>私と来てください。||with I
-4|400|passive voice (basic: be + p.p.)|受動態(基本)|be + 過去分詞で「…される」。|S + be + p.p.|English is spoken here.=>ここでは英語が話されます。|能動態|English speaks here.
+4|500|passive voice (basic: be + p.p.)|受動態(基本)|be + 過去分詞で「…される」。|S + be + p.p.|English is spoken here.=>ここでは英語が話されます。|能動態|English speaks here.
 4|400|here / there and place adverbs|here / there など場所の副詞|here / there は前置詞なしで使う。|go there;;come here|I go there every day.=>毎日そこへ行きます。||go to there
-4|400|have to in the past (had to)|had to(過去の義務)|have to の過去形は had to。|S + had to + V|I had to stay home.=>家にいなければなりませんでした。||I must stayed home.
-4|400|buy / give / show + person + thing|SVOO文型|give + 人 + 物 の語順。to / for で言い換え可能。|give + 人 + 物;;give + 物 + to + 人|I gave him a book.=>彼に本をあげました。;;I made lunch for her.=>彼女に昼食を作りました。
-4|400|become / look / feel + adjective|SVC文型(look / feel など)|look / feel / become のあとは形容詞。|look + 形容詞;;feel + 形容詞|You look tired.=>疲れているようですね。;;I feel happy.=>幸せです。||You look tiredly.
-4|400|name / call + O + C|call / name(SVOC)|「OをCと呼ぶ」。|call + O + C|We call him Ken.=>私たちは彼をケンと呼びます。
+4|500|have to in the past (had to)|had to(過去の義務)|have to の過去形は had to。|S + had to + V|I had to stay home.=>家にいなければなりませんでした。||I must stayed home.
+4|600|buy / give / show + person + thing|SVOO文型|give + 人 + 物 の語順。to / for で言い換え可能。|give + 人 + 物;;give + 物 + to + 人|I gave him a book.=>彼に本をあげました。;;I made lunch for her.=>彼女に昼食を作りました。
+4|500|become / look / feel + adjective|SVC文型(look / feel など)|look / feel / become のあとは形容詞。|look + 形容詞;;feel + 形容詞|You look tired.=>疲れているようですね。;;I feel happy.=>幸せです。||You look tiredly.
+4|600|name / call + O + C|call / name(SVOC)|「OをCと呼ぶ」。|call + O + C|We call him Ken.=>私たちは彼をケンと呼びます。
