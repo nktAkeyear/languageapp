@@ -4,8 +4,9 @@ import type { TownDayState, TownProgress } from './townTypes';
 import { newStoryState, type StoryState } from '../story/types';
 import type { RenoState } from '../renovation/types';
 import type { DifficultyState } from './difficulty';
+import type { JobsState } from '../jobs/types';
 
-export const SAVE_VERSION = 3;
+export const SAVE_VERSION = 4;
 export const STORAGE_KEY = 'minato-chabou-save';
 
 export type LayoutPref = 'auto' | 'desktop' | 'mobile';
@@ -70,6 +71,11 @@ export interface LangProgress {
    * exactly like saves made before it existed). See src/core/difficulty.ts.
    */
   difficulty?: DifficultyState;
+  /**
+   * Jobs (v4): the job board, each job's rank and log, goods made for other jobs, today's parts of
+   * the day. Absent until the first day planned with jobs (see src/jobs/engine.ts jobsState).
+   */
+  jobs?: JobsState;
 }
 
 export interface SaveFile {
@@ -151,6 +157,33 @@ const migrations: Record<number, (s: AnyObj) => AnyObj> = {
       if (p && typeof p === 'object') progress[k] = { ...p, story: newStoryState() };
     }
     return { ...s, version: 3, progress };
+  },
+  // v3 → v4: jobs. The tea house becomes the first job and keeps all its progress: its served /
+  // perfect cups become the job's task log (its rank is worked out at load, see jobsOnLoad), and the
+  // job board opens the next morning for saves already past its day. Nothing else changes.
+  3: (s) => {
+    const progress = { ...((s.progress as AnyObj) ?? {}) };
+    for (const k of Object.keys(progress)) {
+      const p = progress[k] as AnyObj | undefined;
+      if (!p || typeof p !== 'object') continue;
+      const stats = (p.stats as { served?: number; perfect?: number }) ?? {};
+      const day = Number(p.day ?? 1);
+      progress[k] = {
+        ...p,
+        jobs: {
+          jobs: {
+            teahouse: { since: 1, rank: 1, tasks: stats.served ?? 0, good: stats.perfect ?? 0, perfect: stats.perfect ?? 0, shifts: Math.max(0, day - 1), authored: {}, rankDays: { 1: 1 } },
+          },
+          goods: {},
+          wordJobs: {},
+          day: null,
+          timed: false,
+          seen: [],
+          migrated: true,
+        },
+      };
+    }
+    return { ...s, version: 4, progress };
   },
 };
 

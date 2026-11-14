@@ -478,9 +478,16 @@ export function storyEndDay(data: GameData, p: LangProgress): void {
   const money = p.town.money;
   const results = p.today?.results ?? [];
   const before = new Set(today.confirmedAtStart);
+  // Jobs: today's shifts elsewhere (their wages are not the shop's takings).
+  const jd = p.jobs?.day && p.jobs.day.day === p.day ? p.jobs.day : null;
+  const work = (jd?.log ?? [])
+    .filter((l) => l.job !== 'teahouse')
+    .map((l) => ({ ...l, nameJa: data.content.jobs?.find((j) => j.id === l.job)?.nameJa ?? l.job }));
+  const wages = work.reduce((a, l) => a + l.coins, 0);
   const ledger: Ledger = {
     day: p.day,
-    takings: Math.max(0, money - (p.townDay?.moneyStart ?? today.moneyStart) + expenses + purchases),
+    takings: Math.max(0, money - (p.townDay?.moneyStart ?? today.moneyStart) + expenses + purchases - wages),
+    ...(work.length ? { work: work.map(({ job, nameJa, tasks, good, coins }) => ({ job, nameJa, tasks, good, coins })), wages } : {}),
     expenses,
     ...(purchases ? { purchases } : {}),
     money,

@@ -82,6 +82,13 @@ export interface DifficultyState {
   history: DayMetrics[];
   /** Level changes (for the 学習の記録 page). */
   changes: { day: number; start: number; pace: Pace }[];
+  /**
+   * en: which yardstick steers the curriculum and the job board (optional; absent = 英検).
+   * 英検 = the school-curriculum order; TOEIC = working-life jobs and business expressions first.
+   */
+  yardstick?: 'eiken' | 'toeic';
+  /** en: TOEIC target band (400 … 990), null = none. */
+  toeicTarget?: number | null;
 }
 
 export const DEFAULT_ASSISTS: Assists = { peek: false, markMistake: false, retry: false, audio: 'normal', slowSpeech: false };
@@ -487,6 +494,11 @@ export function orderHasNewWords(data: GameData, p: LangProgress, order: Pick<Or
 
 export function difficultyOnServe(data: GameData, p: LangProgress, order: OrderInstance, outcome: Outcome): void {
   accServe(accFor(data, p), order.key, outcome === 'perfect', orderHasNewWords(data, p, order));
+}
+
+/** A job task (src/jobs/engine.ts) counts like an order in the day's indicators. */
+export function difficultyOnTask(data: GameData, p: LangProgress, key: string, texts: string[], perfect: boolean): void {
+  accServe(accFor(data, p), key, perfect, texts.some((text) => orderHasNewWords(data, p, { text })));
 }
 
 /** The retry assist restored the state from before a failed cup: count that failed first try again. */

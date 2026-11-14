@@ -16,6 +16,7 @@ import { chooseText, fill, textWords, townOf, type Town } from './town/text';
 import { storyAfterServe, storyEndDay, storyPlanShop, storyPlanTown } from '../story/engine';
 import { renoAfterServe, renoCarry, renoEndDay, renoPlanShop, renoPlanTown } from '../renovation/engine';
 import { difficultyEndDay, difficultyOnServe, difficultyStartDay, stageDay } from '../core/difficulty';
+import { checkRankUp, jobById, jobsEndDay, jobsEnsureDay, jobsStartDay, TEAHOUSE } from '../jobs/engine';
 
 /** Is the activity open by now? (day + reputation, or grace days after minDay — no hard gate) */
 export function unlockReady(u: TownUnlock, day: number, reputation: number): boolean {
@@ -107,6 +108,7 @@ export function startTownDay(data: GameData, p: LangProgress, rng: Rng): void {
   p.townDay = td;
   renoPlanTown(data, p, rng, td); // renovation: with the cart, a delivery every day
   storyPlanTown(data, p, rng); // story: a regular's delivery
+  jobsStartDay(data, p); // jobs: after the board opens, the morning starts in the town (hub)
 }
 
 /** Make sure a running day has its segment state (saves from v1 continue as shop-only days). */
@@ -115,6 +117,13 @@ export function ensureTownDay(data: GameData, p: LangProgress, rng: Rng): void {
   else if (!p.townDay || p.townDay.day !== p.day) p.townDay = { day: p.day, segments: ['shop'], seg: 0, notes: [], stock: {}, moneyStart: p.town.money };
   storyPlanShop(data, p, rng); // story (idempotent per day): a resumed / migrated day joins in
   storyPlanTown(data, p, rng);
+  // jobs: a save migrated from v3 gets the tea house's rank for the progress it already has.
+  if (p.jobs?.migrated) {
+    delete p.jobs.migrated;
+    const tea = jobById(data, TEAHOUSE);
+    if (tea) checkRankUp(data, p, tea);
+  }
+  jobsEnsureDay(data, p);
 }
 
 export function currentSegment(p: LangProgress): ActivityKind {
@@ -197,6 +206,7 @@ export function endTownDay(p: LangProgress, data?: GameData): void {
   if (hasNextSegment(p)) return;
   if (currentSegment(p) !== 'shop' && !segmentDone(p)) return;
   if (data) renoEndDay(data, p); // renovation: signboard reputation, stock kept overnight
+  if (data) jobsEndDay(data, p); // jobs: the tea house's rank / links (other jobs log their own shifts)
   if (data) storyEndDay(data, p); // story: evening scene + the night's ledger
   if (data) difficultyEndDay(data, p); // metrics record, adaptive controller, stage clock
   endDay(p);

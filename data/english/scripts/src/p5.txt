@@ -1,0 +1,168 @@
+# eiken|toeic|type|text|ja|example|exampleJa|functions|domains   (toeic "-" = null)
+5|400|formula|Hello.|こんにちは|Hello. Can I help you?|こんにちは。ご用ですか。|greeting|society
+5|400|formula|Good morning.|おはようございます|Good morning, Mr. Sato.|おはようございます、佐藤さん。|greeting|society
+5|400|formula|Good afternoon.|こんにちは(午後)|Good afternoon. Welcome to our shop.|こんにちは。ようこそ当店へ。|greeting|shopping
+5|400|formula|Good evening.|こんばんは|Good evening. Do you have a reservation?|こんばんは。ご予約はありますか。|greeting|hotel
+5|400|formula|Good night.|おやすみなさい|Good night, Mom.|おやすみ、お母さん。|farewell|family
+5|400|formula|Goodbye.|さようなら|Goodbye. See you tomorrow.|さようなら。また明日。|farewell|society
+5|400|formula|See you.|またね|See you at the harbor.|港でね。|farewell|society
+5|400|formula|See you tomorrow.|また明日|Thank you for your help. See you tomorrow.|手伝ってくれてありがとう。また明日。|farewell|school
+5|400|formula|How are you?|お元気ですか|How are you, Ken?|元気かい、ケン。|greeting|society
+5|400|formula|I'm fine, thank you.|元気です、ありがとう|I'm fine, thank you. And you?|元気です、ありがとう。あなたは?|greeting|society
+5|400|formula|And you?|あなたは?|I like fish. And you?|私は魚が好きです。あなたは?|greeting|food
+5|400|formula|Nice to meet you.|はじめまして|Nice to meet you. I'm Yuki.|はじめまして。ユキです。|greeting,introduction|society
+5|400|formula|Nice to meet you, too.|こちらこそ|Nice to meet you, too.|こちらこそはじめまして。|greeting|society
+5|400|formula|Thank you.|ありがとう|Thank you for the fish.|魚をありがとう。|thanks|society
+5|400|formula|Thank you very much.|どうもありがとうございます|Thank you very much for your help.|お手伝いどうもありがとうございます。|thanks|society
+5|400|formula|You're welcome.|どういたしまして|You're welcome. Come again.|どういたしまして。またどうぞ。|thanks|shopping
+5|400|formula|Thanks.|ありがとう(くだけて)|Thanks. That's very kind.|ありがとう。ご親切に。|thanks|society
+5|400|formula|Sorry.|ごめんなさい|Sorry. I'm late.|ごめんなさい。遅れました。|apology|society
+5|400|formula|I'm sorry.|すみません(謝罪)|I'm sorry. I don't have it.|すみません。それはありません。|apology|shopping
+5|400|formula|That's all right.|大丈夫です(気にしないで)|That's all right. Don't worry.|大丈夫ですよ。気にしないで。|apology|society
+5|400|formula|Excuse me.|すみません(呼びかけ)|Excuse me. Where is the post office?|すみません。郵便局はどこですか。|request,directions|post
+5|400|formula|Please.|どうぞ・お願いします|Two apples, please.|りんごを2つお願いします。|request|shopping
+5|400|formula|Yes, please.|はい、お願いします|Yes, please. I'd like some tea.|はい、お願いします。お茶がほしいです。|offer|food
+5|400|formula|No, thank you.|いいえ、結構です|No, thank you. I'm full.|いいえ、結構です。おなかいっぱいです。|offer|food
+5|400|formula|Here you are.|はい、どうぞ(手渡し)|Here you are. Two hundred yen.|はいどうぞ。200円です。|offer|shopping
+5|400|formula|Welcome.|ようこそ|Welcome to our town.|私たちの町へようこそ。|greeting|travel
+5|400|formula|Come in.|お入りください|Come in. It's cold outside.|お入りください。外は寒いです。|invitation|housing
+5|400|formula|Sit down, please.|おかけください|Sit down, please. The doctor is coming.|おかけください。先生が来ます。|instruction|health
+5|400|formula|Stand up, please.|立ってください|Stand up, please, everyone.|みなさん、立ってください。|instruction|school
+5|400|formula|Open your book.|本を開いて|Open your book to page ten.|本の10ページを開いてください。|instruction|school
+5|400|formula|Look at this.|これを見て|Look at this fish. It's big!|この魚を見て。大きい!|instruction|sea
+5|400|formula|Listen to me.|私の話を聞いて|Listen to me, please.|私の話を聞いてください。|instruction|school
+5|400|formula|Wait a minute.|ちょっと待って|Wait a minute. I'll get it.|ちょっと待って。取ってきます。|request|society
+5|400|formula|Let's go.|行こう|Let's go to the beach.|浜辺へ行こう。|suggestion|sea
+5|400|formula|Let's play.|遊ぼう|Let's play soccer after school.|放課後サッカーをしよう。|suggestion|school
+5|400|formula|Let's eat.|食べよう|Dinner is ready. Let's eat.|夕食ができたよ。食べよう。|suggestion|food
+5|400|formula|Can I help you?|いらっしゃいませ・何かご用ですか|Can I help you? — Yes, I want a hat.|いらっしゃいませ。—はい、帽子がほしいです。|offer|shopping
+5|400|formula|What's your name?|お名前は?|What's your name? — I'm Aya.|お名前は?—アヤです。|inquiry|society
+5|400|formula|My name is ...|私の名前は…です|My name is Tom. I'm from Canada.|私の名前はトムです。カナダ出身です。|introduction|society
+5|400|formula|Where are you from?|ご出身は?|Where are you from? — I'm from Osaka.|ご出身は?—大阪です。|inquiry|society
+5|400|formula|How old are you?|何歳ですか|How old are you? — I'm twelve.|何歳?—12歳です。|inquiry|family
+5|400|formula|What time is it?|何時ですか|What time is it? — It's three o'clock.|何時ですか。—3時です。|inquiry|abstract
+5|400|formula|What day is it today?|今日は何曜日ですか|What day is it today? — It's Monday.|今日は何曜日?—月曜日です。|inquiry|school
+5|400|formula|How much is this?|これはいくらですか|How much is this? — It's five hundred yen.|これはいくら?—500円です。|inquiry|shopping,money
+5|400|formula|How many?|いくつ?|How many apples do you want?|りんごをいくつほしいですか。|inquiry|shopping
+5|400|formula|Do you like ...?|…は好きですか|Do you like fish? — Yes, I do.|魚は好きですか。—はい、好きです。|inquiry|food
+5|400|formula|Yes, I do.|はい、そうです(好きです)|Yes, I do. I like it very much.|はい、とても好きです。|agreement|abstract
+5|400|formula|No, I don't.|いいえ、違います(好きではない)|No, I don't. I like tea.|いいえ。お茶のほうが好きです。|disagreement|food
+5|400|formula|Yes, I am.|はい、そうです|Are you a student? — Yes, I am.|あなたは学生ですか。—はい、そうです。|agreement|school
+5|400|formula|No, I'm not.|いいえ、違います|Are you hungry? — No, I'm not.|おなかすいた?—いいえ。|disagreement|food
+5|400|formula|Yes, it is.|はい、そうです(it)|Is it a cat? — Yes, it is.|猫ですか。—はい、そうです。|agreement|nature
+5|400|formula|No, it isn't.|いいえ、違います(it)|Is this your bag? — No, it isn't.|これはあなたのかばん?—いいえ、違います。|disagreement|clothing
+5|400|formula|I don't know.|わかりません|I don't know his name.|彼の名前はわかりません。|clarification|abstract
+5|400|formula|I see.|なるほど・わかりました|I see. Thank you.|わかりました。ありがとう。|agreement|society
+5|400|formula|I understand.|理解しました|I understand. Please go straight.|わかりました。まっすぐ行きます。|agreement|society
+5|400|formula|I don't understand.|わかりません(理解できない)|I don't understand. Please say it again.|わかりません。もう一度言ってください。|clarification|school
+5|400|formula|Say it again, please.|もう一度言ってください|Sorry? Say it again, please.|え?もう一度言ってください。|request,clarification|society
+5|400|formula|Pardon?|何とおっしゃいましたか|Pardon? I can't hear you.|何ですか。聞こえません。|clarification|society
+5|400|formula|Slowly, please.|ゆっくりお願いします|Slowly, please. My English is not good.|ゆっくりお願いします。英語が下手です。|request|society
+5|400|formula|Me, too.|私もです|I like tennis. — Me, too.|テニスが好きです。—私もです。|agreement|society
+5|400|formula|Of course.|もちろん|Can you open the door? — Of course.|ドアを開けてくれる?—もちろん。|agreement|society
+5|400|formula|OK.|いいですよ|OK. Let's go.|いいよ。行こう。|agreement|society
+5|400|formula|Great!|すごい!|Great! You're a good singer.|すごい!歌が上手ですね。|praise|emotion
+5|400|formula|Good job.|よくやったね|Good job, Ken!|よくやった、ケン!|praise|school
+5|400|formula|Happy birthday!|誕生日おめでとう|Happy birthday, Mom!|お母さん、誕生日おめでとう!|congratulation|family
+5|400|formula|Merry Christmas!|メリークリスマス|Merry Christmas! This is for you.|メリークリスマス!これをどうぞ。|congratulation|family
+5|400|formula|Happy New Year!|新年おめでとう|Happy New Year! See you this year.|あけましておめでとう。今年もよろしく。|congratulation|family
+5|400|formula|Have a nice day.|よい一日を|Thank you. Have a nice day.|ありがとう。よい一日を。|farewell|shopping
+5|400|formula|Have a good time.|楽しんで|Have a good time at the festival.|お祭りを楽しんでね。|farewell|arts
+5|400|formula|Take care.|気をつけて|Take care. It's dark.|気をつけて。暗いよ。|farewell|health
+5|400|formula|Me, please.|私にお願いします|Who wants tea? — Me, please.|だれかお茶いる?—私にお願いします。|offer|food
+5|400|formula|I'm hungry.|おなかがすきました|I'm hungry. Let's eat lunch.|おなかがすいた。昼ごはんを食べよう。|description|food,body
+5|400|formula|I'm thirsty.|のどがかわきました|I'm thirsty. Water, please.|のどがかわいた。水をください。|description|food,body
+5|400|formula|I'm tired.|疲れました|I'm tired. I want to sleep.|疲れた。寝たい。|description|body
+5|400|formula|I'm cold.|寒いです|I'm cold. Close the window, please.|寒いです。窓を閉めてください。|description|weather
+5|400|formula|I'm hot.|暑いです|I'm hot. Open the window, please.|暑いです。窓を開けてください。|description|weather
+5|400|formula|I'm sick.|具合が悪いです|I'm sick. I want to go home.|具合が悪い。帰りたいです。|description|health
+5|400|formula|I have a cold.|風邪をひいています|I have a cold. I can't go to school.|風邪をひいています。学校へ行けません。|description|health
+5|400|formula|I have a headache.|頭が痛いです|I have a headache. Can I rest?|頭が痛いです。休んでもいいですか。|description|health,body
+5|400|formula|I want ...|…がほしい|I want some water.|水がほしいです。|request|food
+5|400|formula|I want to ...|…したい|I want to go to the shop.|店に行きたいです。|preference|shopping
+5|400|formula|I like ...|…が好きです|I like cats.|猫が好きです。|preference|nature
+5|400|formula|I can ...|…できます|I can swim.|泳げます。|ability|sea
+5|400|formula|I can't ...|…できません|I can't see the sea.|海が見えません。|ability|sea
+5|400|formula|Can you ...?|…できますか(依頼)|Can you help me, please?|手伝ってくれますか。|request|society
+5|400|formula|Can I ...?|…してもいいですか|Can I use your pen?|ペンを使ってもいいですか。|permission|school
+5|400|formula|May I ...?|…してもよろしいですか|May I come in?|入ってもよろしいですか。|permission|society
+5|400|formula|Is this ... ?|これは…ですか|Is this your umbrella?|これはあなたの傘ですか。|inquiry|clothing
+5|400|formula|Where is ...?|…はどこですか|Where is the bus stop?|バス停はどこですか。|directions|transport
+5|400|formula|Where are you going?|どこへ行くの?|Where are you going? — To the market.|どこへ行くの?—市場へ。|inquiry|society
+5|400|formula|What's this?|これは何ですか|What's this? — It's a shell.|これは何?—貝殻です。|inquiry|sea
+5|400|formula|Who is that?|あれはだれですか|Who is that man? — He is my uncle.|あの男の人はだれ?—おじです。|inquiry|family
+5|400|formula|Whose bag is this?|これはだれのかばん?|Whose bag is this? — It's mine.|これはだれのかばん?—私のです。|inquiry|clothing
+5|400|formula|Go straight.|まっすぐ行って|Go straight and turn left.|まっすぐ行って左に曲がってください。|directions|transport
+5|400|formula|Turn left.|左に曲がって|Turn left at the bank.|銀行で左に曲がってください。|directions|transport
+5|400|formula|Turn right.|右に曲がって|Turn right at the school.|学校で右に曲がってください。|directions|transport
+5|400|formula|It's over there.|あそこにあります|The station? It's over there.|駅?あそこにあります。|directions|transport
+5|400|formula|It's next to ...|…のとなりです|The shop is next to the bank.|店は銀行のとなりです。|directions|transport
+5|400|formula|It's in front of ...|…の前です|The bus stop is in front of the school.|バス停は学校の前です。|directions|transport
+5|400|formula|Look out!|危ない!|Look out! A car is coming.|危ない!車が来るよ。|warning|transport
+5|400|formula|Don't run.|走らないで|Don't run in the hall.|廊下を走らないで。|instruction|school
+5|400|formula|Don't worry.|心配しないで|Don't worry. It's OK.|心配しないで。大丈夫。|sympathy|emotion
+5|400|formula|Be careful.|気をつけて(注意)|Be careful. The floor is wet.|気をつけて。床がぬれています。|warning|housing
+5|400|formula|Be quiet, please.|静かにしてください|Be quiet, please. The baby is sleeping.|静かにしてください。赤ちゃんが寝ています。|instruction|family
+5|400|formula|Just a moment.|少々お待ちください|Just a moment, please.|少々お待ちください。|request|shopping
+5|400|formula|Anything else?|ほかに何かありますか|Two fish. Anything else? — No, thank you.|魚2匹。ほかには?—いいえ、結構です。|offer|shopping
+5|400|formula|How about you?|あなたはどう?|I like blue. How about you?|私は青が好きです。あなたは?|inquiry|society
+5|400|formula|What about this one?|これはどう?|What about this one? It's red.|これはどう?赤いですよ。|suggestion|shopping
+5|400|formula|I'd like ... , please.|…をお願いします|I'd like a cup of coffee, please.|コーヒーを1杯お願いします。|ordering|food
+5|400|formula|Let me see.|ええと|Let me see. It's ten o'clock.|ええと、10時です。|hedging|society
+5|400|formula|Really?|本当?|I have a new bike. — Really?|新しい自転車を買ったよ。—本当?|reporting|emotion
+5|400|formula|That's good.|それはいいね|I have a new dog. — That's good.|新しい犬を飼ったよ。—それはいいね。|opinion|emotion
+5|400|formula|That's too bad.|それは残念|I'm sick today. — That's too bad.|今日は具合が悪いの。—それは残念。|sympathy|emotion
+5|400|formula|It's fine today.|今日は晴れています|It's fine today. Let's go out.|今日は晴れだ。出かけよう。|description|weather
+5|400|formula|How's the weather?|天気はどうですか|How's the weather? — It's rainy.|天気はどう?—雨です。|inquiry|weather
+5|400|formula|Time to go.|行く時間です|It's seven. Time to go to school.|7時。学校へ行く時間です。|scheduling|school
+5|400|formula|Time for bed.|寝る時間です|Time for bed, Yuki.|ユキ、寝る時間よ。|instruction|family
+5|400|formula|Let's have lunch.|昼ごはんを食べよう|It's noon. Let's have lunch.|正午だ。昼ごはんを食べよう。|suggestion|food
+5|400|formula|I'm home.|ただいま|I'm home, Mom.|ただいま、お母さん。|greeting|family
+5|400|formula|Welcome home.|おかえりなさい|Welcome home. Dinner is ready.|おかえり。夕食ができているよ。|greeting|family
+5|400|formula|Help!|助けて!|Help! My boat is sinking!|助けて!ボートが沈む!|warning|sea
+5|400|formula|Here we are.|着きましたよ|Here we are. This is the station.|着きました。ここが駅です。|directions|transport
+5|400|pattern|This is a ...|これは…です|This is a pen.|これはペンです。|description|school
+5|400|pattern|That is a ...|あれは…です|That is a ship.|あれは船です。|description|sea
+5|400|pattern|It's a ...|それは…です|It's a big fish.|大きな魚です。|description|sea
+5|400|pattern|There is a ... on the table.|テーブルの上に…があります|There is a cup on the table.|テーブルの上にカップがあります。|description|housing
+5|400|pattern|There are ... in the box.|箱に…があります(複数)|There are three eggs in the box.|箱に卵が3つあります。|description|food
+5|400|pattern|I have a ...|私は…を持っています|I have a brother.|私には弟がいます。|description|family
+5|400|pattern|He has a ...|彼は…を持っています|He has a small boat.|彼は小さな船を持っています。|description|sea
+5|400|pattern|I go to ... by bus.|バスで…へ行きます|I go to school by bus.|バスで学校へ行きます。|description|transport
+5|400|pattern|at ... o'clock|…時に|I get up at six o'clock.|6時に起きます。|scheduling|abstract
+5|400|pattern|on Monday|月曜日に|The shop is closed on Monday.|店は月曜日が休みです。|scheduling|shopping
+5|400|pattern|in the morning|朝に|I walk in the morning.|朝に散歩します。|scheduling|health
+5|400|collocation|go to school|学校へ行く|I go to school at eight.|8時に学校へ行きます。|description|school
+5|400|collocation|play soccer|サッカーをする|I play soccer on Sunday.|日曜日にサッカーをします。|description|school
+5|400|collocation|play the piano|ピアノを弾く|My sister plays the piano.|妹はピアノを弾きます。|description|arts
+5|400|collocation|watch TV|テレビを見る|We watch TV after dinner.|夕食のあとテレビを見ます。|description|media
+5|400|collocation|do my homework|宿題をする|I do my homework after school.|放課後に宿題をします。|description|school
+5|400|collocation|go to bed|寝る|I go to bed at ten.|10時に寝ます。|description|body
+5|400|collocation|eat breakfast|朝ごはんを食べる|We eat breakfast at seven.|7時に朝ごはんを食べます。|description|food
+5|400|collocation|take a bath|おふろに入る|I take a bath every night.|毎晩おふろに入ります。|description|housing
+5|400|collocation|wash my hands|手を洗う|Wash your hands before lunch.|昼ごはんの前に手を洗って。|instruction|health
+5|400|collocation|brush my teeth|歯をみがく|I brush my teeth after meals.|食後に歯をみがきます。|description|health,body
+5|400|collocation|speak English|英語を話す|Can you speak English?|英語を話せますか。|ability|school
+5|400|collocation|read a book|本を読む|I read a book every day.|毎日本を読みます。|description|school
+5|400|collocation|listen to music|音楽を聞く|I listen to music at night.|夜に音楽を聞きます。|description|arts
+5|400|collocation|cook dinner|夕食を作る|My father cooks dinner on Sunday.|父は日曜日に夕食を作ります。|description|cooking
+5|400|collocation|wash the dishes|皿を洗う|I wash the dishes after dinner.|夕食後に皿を洗います。|description|housing
+5|400|collocation|clean my room|部屋をそうじする|I clean my room on Saturday.|土曜日に部屋をそうじします。|description|housing
+5|400|collocation|buy a ticket|切符を買う|I buy a ticket at the station.|駅で切符を買います。|description|transport
+5|400|collocation|ride a bike|自転車に乗る|I ride a bike to the shop.|自転車で店へ行きます。|description|transport
+5|400|collocation|take a picture|写真をとる|Can I take a picture here?|ここで写真をとってもいいですか。|permission|travel
+5|400|collocation|have lunch|昼ごはんを食べる|We have lunch at noon.|正午に昼ごはんを食べます。|description|food
+5|400|collocation|go shopping|買い物に行く|Mom goes shopping on Saturday.|母は土曜日に買い物に行きます。|description|shopping
+5|400|collocation|go home|家に帰る|I go home at five.|5時に家に帰ります。|description|housing
+5|400|phrasal_verb|stand up|立ち上がる|Please stand up.|立ってください。|instruction|body
+5|400|phrasal_verb|sit down|座る|Sit down here, please.|ここに座ってください。|instruction|body
+5|400|phrasal_verb|get up|起きる|I get up early.|私は早起きです。|description|body
+5|400|phrasal_verb|look at|…を見る|Look at the sea.|海を見て。|instruction|sea
+5|400|phrasal_verb|listen to|…を聞く|Listen to the teacher.|先生の話を聞いて。|instruction|school
+5|400|phrasal_verb|put on|着る・身につける|Put on your hat.|帽子をかぶって。|instruction|clothing
+5|400|phrasal_verb|take off|脱ぐ|Take off your shoes here.|ここで靴を脱いでください。|instruction|clothing
+5|400|phrasal_verb|go out|出かける|Let's go out.|出かけよう。|suggestion|society
+5|400|phrasal_verb|turn on|つける|Turn on the light, please.|電気をつけてください。|request|housing
+5|400|phrasal_verb|turn off|消す|Turn off the TV, please.|テレビを消してください。|request|housing
+5|400|idiom|a lot of|たくさんの|We have a lot of fish today.|今日は魚がたくさんあります。|description|food
+5|400|idiom|every day|毎日|I read every day.|毎日読書します。|description|abstract

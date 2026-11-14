@@ -1,0 +1,60 @@
+# eiken|toeic|name|nameJa|explainJa|patterns;;|en=>ja;;|contrastWith;;|commonErrors;;
+5|400|be verb (am/is/are)|be動詞の現在形|主語に合わせて am / is / are を使い分ける。名前・職業・状態を表す。|I am ...;;You are ...;;He/She/It is ...;;We/They are ...|I am a student.=>私は学生です。;;She is in the kitchen.=>彼女は台所にいます。|一般動詞の文|I am go to school. (be動詞と一般動詞を重ねる誤り)
+5|400|be verb negative and questions|be動詞の否定文・疑問文|否定は be の後ろに not、疑問文は be を主語の前に出す。|S + be + not;;Be + S ...?|He is not at home.=>彼は家にいません。;;Are you hungry?=>おなかがすいていますか。|do を使う一般動詞の疑問文|Do you are a student? (do と be の混同)
+5|400|present simple (general verbs)|一般動詞の現在形|習慣・事実を表す。主語が3人称単数のとき動詞に s / es をつける。|S + V(s/es)|I play tennis on Sunday.=>日曜日にテニスをします。;;My father works at the harbor.=>父は港で働いています。|現在進行形|He play soccer. (3単現の s 忘れ)
+5|400|do / does for questions and negatives|do / does を使う疑問文・否定文|一般動詞の疑問文・否定文は do / does を使う。does のあと動詞は原形。|Do/Does + S + V?;;S + don't/doesn't + V|Does she like fish?=>彼女は魚が好きですか。;;I don't have a car.=>車を持っていません。|be動詞の否定|Does she likes fish? (does のあとに s)
+5|400|third person singular -s|3単現のs|主語が he / she / it / 単数名詞のとき、動詞に s / es をつける。have は has、go は goes。|V + s / es;;have -> has|She goes to school by bus.=>彼女はバスで通学します。|do / does の疑問文|She have a dog. (has にしない)
+5|400|plural nouns|名詞の複数形|名詞は s / es をつけて複数にする。不規則形に注意。|noun + s / es;;man -> men;;child -> children|I have two boxes.=>箱を2つ持っています。;;Three children are playing.=>3人の子どもが遊んでいます。||a pencils / two pencil
+5|400|articles a / an / the|冠詞(a / an / the)|初出の単数名詞には a / an、特定のものには the をつける。母音音の前は an。|a + 子音 / an + 母音;;the + 特定の名詞|I have an apple.=>りんごを1つ持っています。;;The apple is red.=>そのりんごは赤いです。||a apple / I play the soccer.
+5|400|personal pronouns (subject / object / possessive)|人称代名詞(主格・目的格・所有格)|I-my-me のように文中での働きで形が変わる。|I/my/me/mine;;he/his/him/his;;she/her/her/hers;;they/their/them/theirs|Please help me.=>手伝ってください。;;This is my bag.=>これは私のかばんです。||Me like fish. / Give he the book.
+5|400|possessive 's|所有格('s)|名詞に 's をつけて「〜の」を表す。|noun + 's|This is Ken's bike.=>これはケンの自転車です。||the bike of Ken (日常では 's が普通)
+5|400|this / that / these / those|this / that / these / those|近くのものは this / these、遠くのものは that / those。|This is ...;;These are ...|Those are my shoes.=>あれらは私の靴です。||These is my book.
+5|400|imperatives|命令文|動詞の原形で始める。否定は Don't ...、丁寧には please をつける。|V ...;;Don't + V ...;;Please + V ...|Open the door, please.=>ドアを開けてください。;;Don't run here.=>ここで走らないで。||You open the door. (主語をつけない)
+5|400|Let's ...|Let's ...(誘い)|「…しましょう」と誘う表現。Let's のあとは動詞の原形。|Let's + V|Let's go to the beach.=>浜辺に行きましょう。||Let's going.
+5|400|wh-questions|疑問詞を使った疑問文|what / who / where / when / why / how で情報を尋ねる。|Wh- + be + S?;;Wh- + do + S + V?|What do you want?=>何がほしいですか。;;Where does he live?=>彼はどこに住んでいますか。||Where he lives?
+5|400|how many / how much|how many / how much|数は how many + 複数名詞、量・値段は how much。|How many + 名詞(複数) ...?;;How much ...?|How many eggs do you need?=>卵はいくつ必要ですか。;;How much is this?=>これはいくらですか。||How many water do you want?
+5|400|can (ability and permission)|can(能力・許可)|can + 動詞の原形で「できる」「してもよい」を表す。|S + can + V;;Can I/you + V ...?|I can swim.=>私は泳げます。;;Can I sit here?=>ここに座ってもいいですか。|may;;be able to|He cans swim. / I can to swim.
+5|400|present progressive|現在進行形|be + 動詞のing形で「今…している」を表す。|S + be + V-ing|I am reading a book.=>私は本を読んでいます。;;They are fishing now.=>彼らは今釣りをしています。|現在形(習慣)|I reading now. (be 動詞の欠落)
+5|400|past simple (be and regular verbs)|過去形(be動詞・規則動詞)|was / were、動詞の ed 形で過去のことを表す。|S + was/were;;S + V-ed|I was tired yesterday.=>昨日は疲れていました。;;We played soccer last Sunday.=>この前の日曜日にサッカーをしました。||I was play soccer.
+5|400|past simple (irregular verbs)|過去形(不規則動詞)|go-went、have-had など不規則に変化する動詞は覚える必要がある。|go -> went;;eat -> ate;;see -> saw|I went to the market.=>市場に行きました。;;She ate lunch at noon.=>彼女は正午に昼食を食べました。||I goed to school.
+5|400|past simple negatives and questions|過去形の否定文・疑問文|did のあとは動詞の原形。be動詞は was/were not。|Did + S + V?;;S + didn't + V|Did you see him?=>彼を見ましたか。;;I didn't go there.=>そこへ行きませんでした。||Did you saw him?
+5|400|there is / there are|There is / There are|「…がある」を表す。あとの名詞の数に合わせる。|There is + 単数;;There are + 複数|There is a bank near here.=>この近くに銀行があります。;;There are two cats in the room.=>部屋に猫が2匹います。||There are a bank.
+5|400|prepositions of place and time|場所・時の前置詞(in / on / at)|at は一点、on は日付・曜日・接触、in は広がりや月・年。|at 5 o'clock;;on Monday;;in April;;in the box|I get up at six.=>6時に起きます。;;The book is on the desk.=>本は机の上にあります。||on April / at Sunday
+5|400|adverbs of frequency|頻度の副詞|always / usually / often / sometimes / never は一般動詞の前、be動詞の後ろに置く。|S + always + V;;S + be + always|I often go fishing.=>よく釣りに行きます。;;He is never late.=>彼は決して遅れません。||I go often fishing.
+5|400|countable and uncountable nouns (basic)|数えられる名詞・数えられない名詞(基本)|water / milk / bread などは数えられず、a cup of ... のように数える。|a cup of tea;;some water|I need some water.=>水が必要です。||two waters / a bread
+5|400|numbers and ordinals|数と序数|基数 one, two ... 序数 first, second ... を使い分ける。日付は序数。|It's May 5th.;;the first floor|My birthday is on June third.=>私の誕生日は6月3日です。|
+5|400|like / want to / need (basic verbs)|like / want / need などの基本動詞|want to + 動詞、like + 名詞/動詞ing。|S + want to + V;;S + like + 名詞|I want to eat fish.=>魚を食べたいです。||I want eat fish.
+5|400|adjectives before nouns and after be|形容詞の位置|形容詞は名詞の前、または be動詞のあとに置く。|a + 形容詞 + 名詞;;be + 形容詞|This is a big fish.=>これは大きな魚です。;;The fish is big.=>その魚は大きいです。||a fish big
+5|400|time expressions (today / tomorrow / yesterday)|時を表す語句|yesterday は過去、tomorrow は未来、today は今日で時制と対応する。|yesterday + 過去形|I saw him yesterday.=>昨日彼に会いました。|
+5|400|and / but / or|and / but / or|語や文をつなぐ基本の接続詞。|A and B;;A but B;;A or B|I like tea but he likes coffee.=>私は紅茶が好きだが彼はコーヒーが好きです。|
+4|400|be going to (future)|be going to(予定・予測)|予定や根拠のある予測を表す。|S + be going to + V|I am going to visit my aunt.=>おばを訪ねるつもりです。|will|I going to cook. (be の欠落)
+4|400|will (future and offers)|will(未来・意志)|その場の決心や単純な未来を表す。|S + will + V|It will rain tomorrow.=>明日は雨でしょう。;;I'll help you.=>手伝いましょう。|be going to|He will goes. (will のあとに原形)
+4|400|must and have to|must / have to(義務)|must は強い義務、have to は外的な必要。否定の意味が異なる。|S + must + V;;S + have/has to + V|You must wear a helmet.=>ヘルメットをかぶらなければなりません。;;I have to go now.=>もう行かなければなりません。|must not / don't have to|He must goes. / She have to go.
+4|400|must not and don't have to|must not と don't have to|must not は禁止、don't have to は不必要。|S + must not + V;;S + don't have to + V|You must not run here.=>ここで走ってはいけません。;;You don't have to hurry.=>急がなくていいです。|must
+4|400|should (advice)|should(助言)|「…したほうがよい」と助言を述べる。|S + should + V|You should see a doctor.=>医者に診てもらうべきです。
+4|400|may (permission and possibility)|may(許可・可能性)|may I ...? は丁寧な許可、may は「…かもしれない」。|May I + V?;;S + may + V|May I use your phone?=>電話をお借りしてもいいですか。;;It may rain.=>雨が降るかもしれません。|can|He mays come.
+4|400|would like to / would you like|would like(丁寧な希望)|want の丁寧な言い方。注文や誘いで使う。|I'd like + 名詞;;I'd like to + V;;Would you like ...?|I'd like a cup of tea.=>お茶を1杯いただきたいです。;;Would you like some cake?=>ケーキはいかがですか。|want|I would like go.
+4|400|to-infinitive (noun use)|不定詞の名詞的用法|to + 動詞の原形で「…すること」を表す。|want/like/hope to + V;;It is ... to + V|I like to read.=>読書が好きです。;;To swim is fun.=>泳ぐのは楽しいです。|動名詞|I want swimming.
+4|400|to-infinitive (adverb use: purpose)|不定詞の副詞的用法(目的)|「…するために」を表す。|S + V + to + V|I went to the shop to buy milk.=>牛乳を買いに店へ行きました。|
+4|400|to-infinitive (adjective use)|不定詞の形容詞的用法|名詞のあとに to + V をつけて「…するための」を表す。|something to + V;;time to + V|I have nothing to eat.=>食べるものがありません。
+4|400|gerund (-ing as object)|動名詞(目的語)|enjoy / finish / stop などのあとは動名詞。|enjoy -ing;;finish -ing;;stop -ing|I enjoy swimming.=>泳ぐのを楽しみます。;;She finished cooking.=>彼女は料理を終えました。|不定詞|I enjoy to swim.
+4|400|gerund as subject|動名詞(主語)|ing形で「…すること」を主語にできる。|-ing + V|Swimming is fun.=>泳ぐことは楽しいです。
+4|500|verbs followed by to or -ing|不定詞・動名詞のどちらをとるか|want / hope / decide は to + V、enjoy / finish / mind は -ing をとる。|decide to V;;mind -ing|I decided to go.=>行くことに決めました。;;Do you mind opening the window?=>窓を開けてもらえますか。||I enjoy to read. / I decided going.
+4|400|comparative (-er / more)|比較級|短い語は -er、長い語は more をつける。than で比較対象を示す。|-er than;;more + 形容詞 than|This fish is bigger than that one.=>この魚はあの魚より大きいです。;;English is more difficult than math.=>英語は数学より難しいです。||more bigger / more cheaper
+4|400|superlative (-est / most)|最上級|-est / most をつけ、the をつける。in / of で範囲を示す。|the -est in/of;;the most + 形容詞|He is the tallest in his class.=>彼はクラスで一番背が高いです。||the most tall / tallest of the class
+4|400|as ... as (equal comparison)|as ... as(同等比較)|「…と同じくらい…」。否定は「…ほど…でない」。|as + 原級 + as;;not as + 原級 + as|He is as tall as me.=>彼は私と同じくらい背が高いです。|比較級|as taller as
+4|400|irregular comparatives (good/better/best)|不規則な比較級・最上級|good - better - best、bad - worse - worst、many/much - more - most のように不規則に変化する。|good - better - best|Her cooking is better than mine.=>彼女の料理は私のよりおいしいです。||gooder / more good
+4|400|past progressive|過去進行形|was / were + V-ing で過去のある時点で進行中の動作を表す。|S + was/were + V-ing|I was cooking when you called.=>あなたが電話したとき料理していました。|過去形|I was cook.
+4|400|when / because / if (adverb clauses)|when / because / if(副詞節)|時・理由・条件を表す節。|when + S + V;;because + S + V;;if + S + V|If it rains, we'll stay home.=>雨が降ったら家にいます。;;I was late because I missed the bus.=>バスに乗り遅れたので遅れました。||If it will rain
+4|400|that clause (think / know / hope)|that節|think / know / say のあとに文を置く。that は省略可。|S + think (that) + S + V|I think (that) it's a good idea.=>それはいい考えだと思います。
+4|400|so ... that|so ... that|とても…なので…。結果を表す。|so + 形容詞 + that + S + V|It was so cold that we stayed inside.=>とても寒かったので中にいました。|too ... to|so ... that を so ... to と書く誤り
+4|400|too ... to|too ... to|「…すぎて…できない」。|too + 形容詞 + to + V|It's too hot to work.=>暑すぎて働けません。|so ... that
+4|400|something / anything / nothing + adjective|something / anything + 形容詞|something cold のように形容詞はあとに置く。|something + 形容詞|I want something cold.=>冷たいものがほしいです。||cold something
+4|400|exclamations (What / How)|感嘆文|What + a + 形容詞 + 名詞、How + 形容詞。|What a + 形容詞 + 名詞!;;How + 形容詞!|What a nice day!=>なんて素敵な日でしょう。;;How beautiful!=>なんて美しい。
+4|400|object pronouns after verbs and prepositions|動詞・前置詞のあとの目的格|前置詞や動詞のあとは me / him / her / them など。|with + me/him/her/them|Come with me.=>私と来てください。||with I
+4|400|passive voice (basic: be + p.p.)|受動態(基本)|be + 過去分詞で「…される」。|S + be + p.p.|English is spoken here.=>ここでは英語が話されます。|能動態|English speaks here.
+4|400|here / there and place adverbs|here / there など場所の副詞|here / there は前置詞なしで使う。|go there;;come here|I go there every day.=>毎日そこへ行きます。||go to there
+4|400|have to in the past (had to)|had to(過去の義務)|have to の過去形は had to。|S + had to + V|I had to stay home.=>家にいなければなりませんでした。||I must stayed home.
+4|400|buy / give / show + person + thing|SVOO文型|give + 人 + 物 の語順。to / for で言い換え可能。|give + 人 + 物;;give + 物 + to + 人|I gave him a book.=>彼に本をあげました。;;I made lunch for her.=>彼女に昼食を作りました。
+4|400|become / look / feel + adjective|SVC文型(look / feel など)|look / feel / become のあとは形容詞。|look + 形容詞;;feel + 形容詞|You look tired.=>疲れているようですね。;;I feel happy.=>幸せです。||You look tiredly.
+4|400|name / call + O + C|call / name(SVOC)|「OをCと呼ぶ」。|call + O + C|We call him Ken.=>私たちは彼をケンと呼びます。

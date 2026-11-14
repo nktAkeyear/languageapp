@@ -222,6 +222,10 @@ export interface Ledger {
   confirmed: string[];
   docs: string[];
   hooks: string[];
+  /** Jobs worked today besides the tea house (optional: older ledgers have none). */
+  work?: { job: string; nameJa: string; tasks: number; good: number; coins: number }[];
+  /** Wages from those jobs (not part of the shop's takings). */
+  wages?: number;
 }
 
 export type StoryCard =

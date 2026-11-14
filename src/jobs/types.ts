@@ -1,0 +1,505 @@
+/**
+ * Jobs (仕事): the town offers many working lives. Each job is mostly DATA over a small set of
+ * reusable task archetypes (make / sort / check / respond / trade / deliver): the archetype
+ * owns the scene's interaction, the rules that judge the player's work, the reactions and the
+ * word tracking; the job supplies the place, the things, the people, the texts, the rank ladder
+ * and the vocabulary domains. See README "Jobs" for the authoring guide.
+ *
+ * The tea house (茶房) is the first job; its market and delivery are the trade and deliver
+ * archetypes of the original game and keep their own engines (src/activities/*).
+ */
+import type { EikenKey } from '../curriculum/yardsticks';
+import type { Face, Lang, LexEntry, Outcome, VerificationPage } from '../core/types';
+
+export type ArchetypeId = 'make' | 'sort' | 'check' | 'respond' | 'trade' | 'deliver';
+
+/** Harder variants a rank can unlock (not just more words). */
+export type TaskFeature =
+  /** Longer texts: templates may add a second sentence / more items / more fields. */
+  | 'long'
+  /** The request is only heard (listen button); the text appears after the task. */
+  | 'audioOnly'
+  /** A second step: e.g. check → also choose the corrected value; make → two dishes. */
+  | 'multiStep'
+  /** Optional time pressure (only when the player switched it on at the job board). */
+  | 'timed';
+
+// ---------------------------------------------------------------------------
+// Shared building blocks
+// ---------------------------------------------------------------------------
+
+/**
+ * A thing the job handles (an egg, a stamp, a parcel …). `word` is its lexicon id, `art` the key of
+ * its drawing (src/ui/jobs/art), `tags` group it for template slots; `plural` is the surface for
+ * n ≠ 1 (default word + "s"); `price` for trade, `bin` for sort (where it belongs).
+ */
+export interface ThingDef {
+  id: string;
+  word: string;
+  art: string;
+  tags?: string[];
+  plural?: string;
+  price?: number;
+  bin?: string;
+  /** Unit phrase for counts, e.g. '{n} slices of bread' ({n} = number word). */
+  unit?: string;
+  /** Highest count a request may ask for. */
+  max?: number;
+}
+
+export interface JobPerson {
+  id: string;
+  /** In-world name (target language, not vocabulary). */
+  name: string;
+  /** Role emoji: drives the drawn look (see ui/art/customer.tsx). */
+  avatar: string;
+}
+
+export interface RankDef {
+  rank: number;
+  /** To reach this rank (cumulative, in this job): tasks done well (perfect / minor) and confirmed words of the job. */
+  need: { good: number; words: number };
+  /** What the material of this rank corresponds to (annotation; also the template level ceiling). */
+  level: { eiken: EikenKey; toeic: number | null };
+  /** Harder variants unlocked from this rank on. */
+  unlocks?: TaskFeature[];
+  /** Tasks per shift at this rank. */
+  tasks: number;
+  reward?: { coins?: number; good?: { id: string; n: number } };
+  /** Japanese chrome: what changes at this rank. */
+  noteJa: string;
+}
+
+/** Cross-job glue: what a job produces for the others / what it uses. */
+export interface JobLinks {
+  /** Perfect tasks put this good into the town's shared store. */
+  produce?: { good: string; perPerfect: number }[];
+  /** While the good is in store, each task done well uses one and pays `bonus` extra coins; `line` is said. */
+  use?: { good: string; bonus: number; line?: string }[];
+}
+
+export interface GoodDef {
+  id: string;
+  /** Japanese chrome name + emoji (the store is shown on the job board and in the ledger). */
+  nameJa: string;
+  icon: string;
+  /** Lexicon id (in-world label on the crate). */
+  word?: string;
+}
+
+// ---------------------------------------------------------------------------
+// Archetype specs (one task's content, after templates are filled)
+// ---------------------------------------------------------------------------
+
+export interface MakeSpec {
+  want: { thing: string; n?: number; min?: number; max?: number }[];
+  forbid?: string[];
+  /** Extras that are fine. */
+  allow?: string[];
+  vessel?: string;
+  method?: string;
+}
+
+export interface SortSpec {
+  bins: string[];
+  items: { id: string; text: string; thing?: string; bin: string }[];
+}
+
+export interface TradeSpec {
+  want: { thing: string; n: number }[];
+  /** Coins the customer puts on the counter. */
+  pay: number;
+}
+
+export interface DocField {
+  id: string;
+  label: string;
+  value: string;
+}
+
+export interface CheckDoc {
+  kind: 'card' | 'letter' | 'ledger' | 'invoice' | 'order' | 'note' | 'speech' | 'label';
+  title?: string;
+  fields?: DocField[];
+  /** Free lines (a speech, a letter); values may also be written into lines. */
+  lines?: string[];
+}
+
+export interface CheckSpec {
+  docs: CheckDoc[];
+  /** Index of the document the player checks (its fields can be marked). */
+  target: number;
+  /** Field of the target that disagrees with the others (null = all in order). */
+  wrong: string | null;
+  /** multiStep: the corrected value must also be chosen. */
+  fixOptions?: string[];
+  fix?: string;
+}
+
+export interface RespondSlotCell {
+  id: string;
+  /** Row / column keys (calendar: day × time; rooms: floor × number). */
+  row: string;
+  col: string;
+  tags: string[];
+  /** Occupied (written in the cell). */
+  busy?: string;
+}
+
+export interface RespondSpec {
+  mode: 'choose' | 'form' | 'slot';
+  msg: { kind: 'speech' | 'letter' | 'email' | 'phone' | 'memo'; from?: string; subject?: string; lines: string[] };
+  /** choose: reply options (target language), `answer` = index of the right one. */
+  options?: string[];
+  answer?: number;
+  /** form: chips per field. */
+  fields?: { id: string; label: string; options: string[]; answer: string }[];
+  /** slot: pick the one free cell that fits. */
+  slot?: { layout: 'calendar' | 'rooms'; rows: { id: string; label: string }[]; cols: { id: string; label: string }[]; cells: RespondSlotCell[]; answer: string };
+}
+
+export type TaskSpec =
+  | ({ arch: 'make' } & MakeSpec)
+  | ({ arch: 'sort' } & SortSpec)
+  | ({ arch: 'trade' } & TradeSpec)
+  | ({ arch: 'check' } & CheckSpec)
+  | ({ arch: 'respond' } & RespondSpec);
+
+// ---------------------------------------------------------------------------
+// Authored tasks and templates
+// ---------------------------------------------------------------------------
+
+interface TaskMeta {
+  id: string;
+  /** Lowest rank at which the task can come. */
+  rank: number;
+  /** Order within the rank (authored tasks are the job's curriculum spine). */
+  seq?: number;
+  person?: string;
+  /** What the person says when the task starts (spoken / written request). Optional for some archetypes. */
+  say?: string;
+  features?: TaskFeature[];
+  /** Grammar points (ids in data/english/grammar.json) the task's sentences exercise. */
+  grammar?: string[];
+  /** Phrases (ids in data/english/phrases.json) the task's sentences use (validated: the text contains them). */
+  phrases?: string[];
+  /** Declared level of the material (default: the rank's level). */
+  level?: EikenKey;
+  weight?: number;
+}
+
+export type AuthoredTask = TaskMeta & TaskSpec;
+
+/** Slot kinds of the template generator. */
+export type SlotDef =
+  /** A counted thing: {slot} = "two eggs" (unit phrase or plural); `min..max` count. */
+  | { kind: 'qty'; tags?: string[]; min?: number; max?: number; maxLevel?: EikenKey }
+  /** A thing by name: {slot} = "egg". */
+  | { kind: 'thing'; tags?: string[]; maxLevel?: EikenKey }
+  /** A thing that must NOT be used / given. */
+  | { kind: 'forbid'; tags?: string[]; maxLevel?: EikenKey }
+  /** A method / vessel of the make bench. */
+  | { kind: 'method' }
+  | { kind: 'vessel' }
+  /** A lexicon word typed by domain / POS / level (sentence variety; no rule effect). */
+  | { kind: 'word'; domain?: string; pos?: string; ids?: string[]; maxLevel?: EikenKey }
+  /** A person's in-world name. */
+  | { kind: 'name' };
+
+export interface MakeTemplate {
+  arch: 'make';
+  slots: Record<string, SlotDef>;
+  vesselRequired?: boolean;
+}
+
+export interface SortTemplate {
+  arch: 'sort';
+  /** Items per task [min, max] (long: +1). */
+  count: [number, number];
+  /** Label patterns: `{bin}` = the target bin's reference text, `{thing}` = a thing (its `bin` decides), `{name}` = a person. */
+  patterns: { text: string; bins?: string[]; tags?: string[] }[];
+  bins: string[];
+}
+
+export interface TradeTemplate {
+  arch: 'trade';
+  slots: Record<string, SlotDef>;
+  /** The customer pays the exact sum, or rounds up to a bigger coin (→ change). */
+  pay: 'exact' | 'round';
+}
+
+export interface CheckTemplate {
+  arch: 'check';
+  fields: { id: string; label: string; values: string[] }[];
+  /** Documents: fields shown as label/value lines; `lines` patterns may use {fieldId}. */
+  docs: { kind: CheckDoc['kind']; title?: string; fields?: string[]; lines?: string[] }[];
+  target: number;
+  /** Probability that one field of the target disagrees. */
+  pWrong: number;
+  /** Fields that may be the wrong one (default: all of the target's). */
+  wrongable?: string[];
+}
+
+export interface QaItem {
+  q: string;
+  a: string;
+  /** Communicative function (answers with another function are the distractors). */
+  fn: string;
+  rank: number;
+  phrases?: string[];
+  grammar?: string[];
+}
+
+export interface RespondTemplate {
+  arch: 'respond';
+  mode: 'choose';
+  /** Question/answer bank (ids into JobContent.qa). */
+  bank: string;
+  kind: RespondSpec['msg']['kind'];
+}
+
+export interface SlotTemplate {
+  arch: 'respond';
+  mode: 'slot';
+  layout: 'calendar' | 'rooms';
+  rows: { id: string; label: string }[];
+  cols: { id: string; label: string }[];
+  /** Tag sets per cell come from row id, col id and `cellTags`. */
+  cellTags?: Record<string, string[]>;
+  /** Constraint phrases: a tag + its sentence ("{tag}" chosen from these). `not` phrases exclude. */
+  want: { tag: string; text: string }[];
+  avoid: { tag: string; text: string }[];
+  /** Occupied-cell texts. */
+  busy: string[];
+  kind: RespondSpec['msg']['kind'];
+  /** Opening / closing lines of the message. */
+  open?: string[];
+  close?: string[];
+}
+
+export type TaskTemplate = TaskMeta & (MakeTemplate | SortTemplate | TradeTemplate | CheckTemplate | RespondTemplate | SlotTemplate);
+
+// ---------------------------------------------------------------------------
+// Reactions
+// ---------------------------------------------------------------------------
+
+export type JobIssueKind =
+  // make
+  | 'empty' | 'forbidden' | 'missing' | 'extra' | 'too_much' | 'too_little' | 'wrong_vessel' | 'wrong_method'
+  // sort
+  | 'wrong_bin'
+  // trade
+  | 'wrong_goods' | 'change_short' | 'change_over'
+  // check
+  | 'missed' | 'false_alarm' | 'wrong_field' | 'wrong_fix'
+  // respond
+  | 'wrong_reply' | 'wrong_form' | 'wrong_slot';
+
+export type JobReactionKind = JobIssueKind | 'perfect' | 'minor' | 'any_fail';
+
+export interface JobReaction {
+  id: string;
+  kind: JobReactionKind;
+  text: string;
+  face: Face;
+  /** Lowest rank the line is used at. */
+  rank?: number;
+}
+
+/** Lines of the job's boss / place (start of shift, end, rank-up, a link good used). */
+export interface JobLine {
+  id: string;
+  kind: 'start' | 'end' | 'rankup' | 'link';
+  text: string;
+  rank?: number;
+}
+
+// ---------------------------------------------------------------------------
+// Job definition
+// ---------------------------------------------------------------------------
+
+/** Make bench configuration (vessels / methods / the pantry). */
+export interface MakeBench {
+  vessels?: { id: string; word: string; art: string }[];
+  methods?: { id: string; word: string; art: string }[];
+  /** Max portions of one thing on the bench. */
+  max: number;
+}
+
+export interface SortBench {
+  bins: { id: string; label: string; ref: string; art?: string }[];
+  item: 'letter' | 'parcel' | 'food' | 'file';
+}
+
+export interface TradeBench {
+  /** Coins in the till (change is given from these). */
+  coins: number[];
+  /** Board title (in-world). */
+  board: string;
+}
+
+/** Language-specific content of a job. */
+export interface JobContent {
+  /** In-world sign over the door. */
+  sign: string;
+  /** Job words (merged into the language lexicon); gloss / levels may be left for data/english to fill. */
+  lexicon: JobLexEntry[];
+  pages: VerificationPage[];
+  /** Extra surface forms for existing lexicon ids. */
+  forms?: Record<string, string[]>;
+  people: JobPerson[];
+  boss: string;
+  things: ThingDef[];
+  make?: MakeBench;
+  sort?: SortBench;
+  trade?: TradeBench;
+  tasks: AuthoredTask[];
+  templates: TaskTemplate[];
+  qa?: Record<string, QaItem[]>;
+  reactions: JobReaction[];
+  lines: JobLine[];
+}
+
+/** Lexicon entries of job content: gloss / levels / cefr may come from data/english/vocab.json. */
+export type JobLexEntry = Omit<LexEntry, 'gloss' | 'cefr' | 'eiken'> & Partial<Pick<LexEntry, 'gloss' | 'cefr' | 'eiken'>>;
+
+export interface JobDef {
+  id: string;
+  /** Japanese chrome. */
+  nameJa: string;
+  /** What the job teaches, in Japanese (shown at the job board). */
+  blurbJa: string;
+  icon: string;
+  /** Vocabulary domains (data/english taxonomy). */
+  domains: string[];
+  archetypes: ArchetypeId[];
+  /** Which archetype each task shape uses is in the tasks; this is the order the shift mixes them. */
+  ranks: RankDef[];
+  /** Coins per task by outcome. */
+  wage: Record<Outcome, number>;
+  /** Day (calendar, counted from the board opening) from which the job is offered. */
+  opensAfter: number;
+  /** Building on the town map (src/ui/jobs/TownHub.tsx). */
+  building: string;
+  links?: JobLinks;
+  /** Playable languages. The tea house plays in both; new jobs are English-only. */
+  content: Partial<Record<Lang, JobContent>>;
+  /** The tea house: runs the original day engine (market → shop → delivery). */
+  legacy?: boolean;
+  /** Steers the job board recommendation: 'school' (英検 order) or 'work' (TOEIC / business). */
+  flavour: 'school' | 'work';
+}
+
+// ---------------------------------------------------------------------------
+// Runtime (saved)
+// ---------------------------------------------------------------------------
+
+export interface TaskInstance {
+  key: string;
+  job: string;
+  source: { type: 'authored' | 'template'; id: string };
+  spec: TaskSpec;
+  person: string;
+  say: string;
+  audioOnly: boolean;
+  timed: boolean;
+  /** All in-world texts of the task (counted as encounters when it is presented). */
+  texts: string[];
+  /** Text whose words are rewarded on success (the request). */
+  focus: string[];
+}
+
+export type TaskAnswer =
+  | { arch: 'make'; counts: Record<string, number>; vessel: string | null; method: string | null }
+  | { arch: 'sort'; placed: Record<string, string> }
+  | { arch: 'trade'; counts: Record<string, number>; change: number }
+  | { arch: 'check'; verdict: 'ok' | 'fix'; field?: string; fix?: string }
+  | { arch: 'respond'; choice?: number; fields?: Record<string, string>; slot?: string };
+
+export interface JobIssue {
+  kind: JobIssueKind;
+  thing?: string;
+  item?: string;
+  field?: string;
+  /** Texts (in-world) whose words the mistake implicates. */
+  about: string[];
+}
+
+export interface JobEvaluation {
+  outcome: Outcome;
+  issues: JobIssue[];
+  primary: JobIssue | null;
+}
+
+export interface TaskResult {
+  key: string;
+  outcome: Outcome;
+  reaction: string;
+  face: Face;
+  coins: number;
+  /** Bonus coins from a used link good. */
+  bonus: number;
+  /** Item ids the sort / form the player got wrong (shown on the bench). */
+  wrongItems: string[];
+}
+
+export interface ShiftState {
+  job: string;
+  part: number;
+  tasks: TaskInstance[];
+  index: number;
+  phase: 'intro' | 'task' | 'result' | 'done';
+  results: TaskResult[];
+  startLine: string;
+  endLine: string;
+  /** Rank reached at the end of this shift (rank-up card), if any. */
+  rankUp: number | null;
+  timedOut?: boolean;
+}
+
+export interface JobProgress {
+  /** Day the job was taken up (first shift). */
+  since: number;
+  rank: number;
+  tasks: number;
+  good: number;
+  perfect: number;
+  shifts: number;
+  /** Authored task log. */
+  authored: Record<string, { attempts: number; perfect: boolean }>;
+  /** Day each rank was reached. */
+  rankDays: Record<number, number>;
+}
+
+/** Which job each part of today went to. */
+export interface JobDayState {
+  day: number;
+  /** 0 朝 / 1 昼 / 2 夕; 3 = the day's work is over. */
+  part: number;
+  view: 'hub' | 'teahouse' | 'job';
+  /** The tea house today: not yet / running / finished. */
+  tea: 'none' | 'active' | 'done';
+  log: { part: number; job: string; tasks: number; good: number; coins: number }[];
+  shift: ShiftState | null;
+  /** Japanese chrome notes (the board opened, a job is newly offered). */
+  notes: string[];
+}
+
+export interface JobsState {
+  /** Day the job board opened (absent = not yet). */
+  boardOpen?: number;
+  jobs: Record<string, JobProgress>;
+  /** Shared store of goods made by one job for another. */
+  goods: Record<string, number>;
+  /** Word id → jobs where it was met in a task (the tea house's own words are tagged statically). */
+  wordJobs: Record<string, string[]>;
+  day: JobDayState | null;
+  /** Optional time pressure in jobs that have it (player's choice). */
+  timed: boolean;
+  /** Jobs whose offer the player has seen on the board. */
+  seen: string[];
+  /** Japanese notes for the next morning (a rank reached at night). */
+  pending?: string[];
+  /** Set by the v3 → v4 migration: work out the tea house's rank once at load. */
+  migrated?: boolean;
+}

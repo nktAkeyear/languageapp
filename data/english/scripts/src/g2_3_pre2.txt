@@ -1,0 +1,67 @@
+3|500|present perfect (experience)|現在完了(経験)|have + p.p. で「…したことがある」。ever / never / once などと使う。|S + have/has + p.p.;;Have you ever + p.p.?|I have been to Kyoto twice.=>京都に2回行ったことがあります。;;Have you ever eaten sushi?=>すしを食べたことがありますか。|過去形|I have been to Kyoto last year. (明確な過去の時点と一緒には使えない)
+3|500|present perfect (completion)|現在完了(完了・結果)|already / just / yet とともに完了や結果を表す。|S + have + p.p. + already/just;;have not + p.p. + yet|I have already eaten lunch.=>もう昼食を食べました。;;He hasn't come yet.=>彼はまだ来ていません。||I have finished it yesterday.
+3|500|present perfect (continuation)|現在完了(継続)|since / for とともに「ずっと…している」。|have + p.p. + for/since ...|I have lived here for ten years.=>ここに10年住んでいます。;;She has known him since 2015.=>彼女は2015年から彼を知っています。|現在形|I live here for ten years.
+3|600|present perfect progressive|現在完了進行形|have been + V-ing で動作の継続を強調する。|S + have been + V-ing|I have been waiting for an hour.=>1時間待っています。|現在完了
+3|500|passive voice (various tenses)|受動態(過去・未来・助動詞)|be の形を変えて時制を表す。by で行為者を示す。|was/were + p.p.;;will be + p.p.;;can be + p.p.|The bridge was built in 1990.=>その橋は1990年に建てられました。;;The tickets will be sent tomorrow.=>切符は明日送られます。||The bridge built in 1990.
+3|600|passive with by-agent|受動態(by + 行為者)|行為者を示すときは by を使う。|be + p.p. + by ...|This book was written by my uncle.=>この本はおじが書きました。
+3|500|relative pronoun who / which / that|関係代名詞(who / which / that)|名詞を後ろから説明する。人には who、物には which、どちらにも that。|N + who + V;;N + which/that + V|The man who lives next door is a doctor.=>隣に住む男性は医者です。;;The bread that I bought was fresh.=>私が買ったパンは新鮮でした。||The man who he lives
+3|500|relative pronoun omitted (object)|関係代名詞の省略(目的格)|目的格の関係代名詞は省略できる。|N + (that) + S + V|The book I read was good.=>私が読んだ本はよかったです。
+3|600|relative adverb where / when|関係副詞(where / when)|場所・時を表す名詞を後ろから説明する。|N + where + S + V;;N + when + S + V|This is the town where I was born.=>ここは私が生まれた町です。||the town where I was born in
+3|500|indirect questions|間接疑問文|疑問詞のあとは平叙文の語順になる。|Wh- + S + V|Do you know where he lives?=>彼がどこに住んでいるか知っていますか。;;I don't know what time it is.=>何時かわかりません。||Do you know where does he live?
+3|500|tag questions|付加疑問文|文末に確認の疑問をつける。肯定文には否定、否定文には肯定。|S + V ..., don't you?;;S + be ..., isn't it?|You like fish, don't you?=>魚が好きですよね。||You like fish, aren't you?
+3|500|participle (adjective: V-ing / p.p.)|分詞の形容詞的用法|名詞を修飾する -ing(…している)と p.p.(…された)。|N + V-ing;;N + p.p.|The boy playing soccer is my brother.=>サッカーをしている少年は私の弟です。;;This is a book written in English.=>これは英語で書かれた本です。||the boy plays soccer there
+3|600|-ing / -ed participial adjectives|感情を表す分詞形容詞|excited / exciting など。人は -ed、物事は -ing。|I am interested.;;It is interesting.|The game was exciting.=>その試合は面白かったです。;;I was excited.=>私は興奮しました。||I'm boring. (退屈している人は bored)
+3|500|infinitive: want / tell / ask + O + to V|SVO + to不定詞|「Oに…してほしい / するよう言う」。|want + O + to V;;tell + O + to V;;ask + O + to V|I want you to come early.=>早く来てほしいです。;;She told me to wait.=>彼女は私に待つよう言いました。||I want that you come.
+3|500|it is ... (for A) to V|It is ... to V(形式主語)|to V が主語の内容。for A で意味上の主語。|It is + 形容詞 + (for A) + to V|It is difficult for me to speak English.=>私が英語を話すのは難しいです。
+3|500|help / let / make + O + V|使役・知覚(make / let / help)|make / let は O + 原形。help は原形か to 不定詞。|make + O + V;;let + O + V;;help + O + (to) V|My mother let me go out.=>母は私を外出させてくれました。||make me to go
+3|500|wish (subjunctive basic)|I wish + 仮定法過去|実現しにくい願望。be動詞は were が一般的。|I wish + S + 過去形|I wish I could fly.=>飛べたらなあ。;;I wish I had a car.=>車があったらなあ。||I wish I can fly.
+3|500|if (conditional: real, type 1)|条件文(現実的)|if 節では未来のことも現在形を使う。|If + S + 現在形, S + will + V|If it rains tomorrow, we will stay home.=>明日雨なら家にいます。||If it will rain
+3|600|conjunctions: when / while / before / after|時の接続詞|時を表す節の中では未来のことも現在形。|when + S + V(現在);;before/after + S + V|When I arrive, I will call you.=>着いたら電話します。||When I will arrive
+3|600|prepositions vs conjunctions|前置詞と接続詞(during / while 等)|前置詞のあとは名詞、接続詞のあとは文(S + V)。|during + 名詞;;while + S + V|I read during the trip.=>旅行中に読書しました。;;I read while I was traveling.=>旅行中に読書しました。||during I was traveling / while the trip
+3|600|since / for / ago / during|時の前置詞 since / for / during|for + 期間、since + 起点、during + 特定の期間。|for two hours;;since 2020;;during summer|I have worked here since April.=>4月からここで働いています。||I worked here since April.
+3|500|for / to / of (preposition + gerund)|前置詞 + 動名詞|前置詞のあとの動詞は -ing 形。|be good at -ing;;be interested in -ing;;thank you for -ing|Thank you for helping me.=>手伝ってくれてありがとう。||Thank you for help me.
+3|500|used to / would (past habit)|used to(以前は…した)|過去の習慣・状態を表す。現在とのちがいを含む。|S + used to + V|I used to play tennis.=>以前はテニスをしていました。|be used to -ing|I used to playing tennis.
+3|500|be used to -ing|be used to -ing(…に慣れている)|used to + V との区別に注意。|be used to + -ing|I'm used to getting up early.=>早起きに慣れています。|used to + V
+3|500|so / neither (agreement)|So do I / Neither do I|「私も」を表す短い応答。|So + do/be + S;;Neither + do/be + S|I like fish. — So do I.=>魚が好きです。—私もです。||So I do.
+3|600|reflexive pronouns|再帰代名詞(-self)|主語と目的語が同じとき、-self をつける。|myself / yourself / himself / themselves|I cut myself.=>けがをしました。;;Help yourself.=>ご自由にどうぞ。||I cut me.
+3|600|each / every / all / both (quantifiers)|each / every / all / both|every は単数扱い、all は複数、both は2つ。|every + 単数名詞;;all + 複数|Every student has a book.=>すべての生徒が本を持っています。||Every students have
+3|600|few / a few / little / a little|few / a few / little / a little|数えられる名詞は few、数えられない名詞は little。a がつくと肯定。|a few + 複数;;a little + 不可算|I have a little money.=>少しお金があります。||a few water
+3|600|many / much / a lot of|many / much / a lot of|数は many、量は much。肯定文では a lot of が自然。|many + 複数;;much + 不可算;;a lot of|We have a lot of fish.=>魚がたくさんあります。||I have much friends.
+3|500|enough / too / very|enough / too / very|enough は形容詞の後ろ。|形容詞 + enough + to V|He is old enough to drive.=>彼は運転できる年齢です。||enough old
+3|500|as soon as / until / by|as soon as / until / by(時)|until は継続、by は期限。|wait until ...;;by + 時刻|Please finish by five.=>5時までに終えてください。;;I'll wait until five.=>5時まで待ちます。||finish until five
+3|500|whether / if (indirect question)|whether / if(…かどうか)|…かどうか を表す。|I don't know whether/if + S + V|I don't know whether he will come.=>彼が来るかどうかわかりません。
+3|500|both A and B / either A or B|相関接続詞(基本)|both A and B は複数扱い、either A or B は動詞を近い方に合わせる。|both A and B;;either A or B;;neither A nor B|Both my brother and I like fish.=>弟も私も魚が好きです。
+pre2|600|past perfect|過去完了|had + p.p. で過去のある時点より前の動作を表す。|S + had + p.p.|The train had already left when I arrived.=>着いたときには電車はもう出ていました。|過去形|The train already left when I arrived.
+pre2|600|past perfect progressive|過去完了進行形|had been + V-ing で過去のある時点まで続いていた動作を表す。|S + had been + V-ing|I had been waiting for an hour when he came.=>彼が来たとき1時間待っていました。
+pre2|730|future perfect|未来完了|will have + p.p. で未来のある時点までに完了していることを表す。|S + will have + p.p. by ...|I will have finished by five.=>5時までには終わっているでしょう。
+pre2|730|future progressive|未来進行形|will be + V-ing で未来のある時点に進行中の動作を表す。|S + will be + V-ing|I will be working at noon.=>正午には仕事をしているでしょう。
+pre2|730|sequence of tenses|時制の一致|主節が過去なら従属節も過去系になる。|He said (that) he was ...;;She thought (that) it would ...|He said that he was tired.=>彼は疲れていると言いました。||He said that he is tired. (主節が過去)
+pre2|730|reported speech|話法(直接・間接)|人称・時制・副詞を言い換える。|said that + S + V(過去系);;asked if + S + V|She said she would come.=>彼女は来ると言いました。|直接話法|She asked me where did I live.
+pre2|730|subjunctive: if past (type 2)|仮定法過去|現在の事実に反する仮定。if 節は過去形、主節は would + 原形。|If + S + 過去形, S + would + V|If I had a boat, I would go fishing.=>船があれば釣りに行くのに。||If I would have a boat
+pre2|730|subjunctive: were|仮定法のwere|be動詞は主語にかかわらず were が基本。|If I were you, ...|If I were you, I would go.=>私なら行きます。||If I was you (くだけた会話では可)
+pre2|730|first conditional vs second conditional|条件文(現実と非現実)|可能性の高さで形が変わる。|If + 現在, will;;If + 過去, would|If you come, we will be happy.=>来てくれたら嬉しいです。;;If you came, we would be happy.=>来てくれたら嬉しいのに。|
+pre2|730|modal perfect (should have / must have)|助動詞 + have p.p.|過去への推量・後悔。|should have + p.p.;;must have + p.p.;;may have + p.p.|You should have called me.=>電話すべきでした。;;He must have missed the train.=>彼は電車に乗り遅れたに違いありません。||should have gone to (to 不要)
+pre2|730|modal verbs (probability)|助動詞(確信度)|must > may / might > could の順で確信度が下がる。|must be;;may be;;could be|He must be at home.=>彼は家にいるに違いありません。
+pre2|730|relative pronoun what|関係代名詞 what|what は先行詞を含み「…こと / もの」。|what + S + V;;what + V|What I need is time.=>私に必要なのは時間です。|that|the thing what
+pre2|730|relative pronoun whose|関係代名詞 whose|所有を表す。|N + whose + N + V|I know a girl whose father is a fisherman.=>父親が漁師の女の子を知っています。||whose his father
+pre2|860|relative pronoun with preposition|前置詞 + 関係代名詞|前置詞は関係代名詞の前に置ける。|N + in which ...;;N + with whom ...|This is the house in which I was born.=>これは私が生まれた家です。|where
+pre2|730|non-restrictive relative clauses|非制限用法(関係詞の継続用法)|コンマをつけて補足的に説明する。|N, who ...;;N, which ...|My uncle, who lives in Osaka, is a chef.=>おじは大阪に住んでいて、料理人です。||that を継続用法で使う誤り
+pre2|730|comparative: the + 比較級 ..., the + 比較級|比較級の相関(the more ..., the better)|「…すればするほど…」。|The 比較級 ..., the 比較級 ...|The more you practice, the better you become.=>練習するほど上手になります。
+pre2|730|comparison with intensifiers|比較級の強調(much / far / even)|比較級は much / far / even / a lot で強める。|much + 比較級|This is much cheaper.=>これははるかに安いです。||very cheaper
+pre2|730|times as ... as|倍数表現|「…の2倍 / 3倍」は twice / three times + as ... as で表す。|X times as + 原級 + as|This boat is twice as big as that one.=>この船はあの船の2倍大きいです。
+pre2|730|superlative with ever / one of the|最上級 + ever / one of the|one of the + 最上級 + 複数名詞。|one of the + 最上級 + 複数名詞|This is one of the oldest inns in Japan.=>これは日本で最も古い宿の一つです。||one of the oldest inn
+pre2|730|participial construction (basic)|分詞構文(基本)|接続詞と主語を省略し、V-ing で「…しながら / …して」を表す。|V-ing ..., S + V|Walking along the beach, I found a shell.=>浜辺を歩いていて貝殻を見つけました。||Walking along the beach, a shell was found.
+pre2|730|participle: perfect (having p.p.)|完了分詞構文(having + p.p.)|主節より前の出来事を表す。|Having + p.p., S + V|Having finished my work, I went home.=>仕事を終えて帰宅しました。
+pre2|730|with + O + V-ing / p.p.|付帯状況 with|「…した状態で」。|with + O + V-ing/p.p.|He sat with his arms crossed.=>彼は腕を組んで座りました。
+pre2|860|causative (have / get)|使役(have / get + O + p.p. / V)|have + O + p.p. は「してもらう」。get + O + to V も可。|have + O + p.p.;;get + O + to V|I had my hair cut.=>髪を切ってもらいました。||I cut my hair at the barber.(自分で切るわけではない)
+pre2|730|perception verbs (see / hear + O + V / V-ing)|知覚動詞|see / hear / watch + O + 原形 / V-ing。|see + O + V;;hear + O + V-ing|I heard him singing.=>彼が歌っているのが聞こえました。||I heard him to sing.
+pre2|730|gerund vs infinitive meaning change (remember / forget / stop)|remember / forget / stop + to V / -ing|目的語の形で意味が変わる動詞。|remember to V;;remember -ing;;stop to V;;stop -ing|Remember to lock the door.=>忘れずに鍵をかけて。;;I remember locking the door.=>鍵をかけたのを覚えています。
+pre2|730|it is said that ...|It is said that ...(受動態の形式主語)|報告を表す。|It is said that + S + V;;S + is said to V|It is said that this well never dries up.=>この井戸は決して干上がらないと言われています。
+pre2|730|be + to V (plan / duty)|be to V(予定・義務)|公式な予定や義務を表す。|S + be + to V|The mayor is to visit the harbor.=>市長は港を訪問する予定です。
+pre2|730|be about to / be likely to|be about to / be likely to|直前・可能性を表す慣用表現。|be about to V;;be likely to V|The train is about to leave.=>電車がまさに出発します。
+pre2|730|not only ... but also ...|not only A but also B|A だけでなく B も。動詞は B に一致。|not only A but also B|Not only the manager but also the staff were late.=>部長だけでなくスタッフも遅れました。|both A and B
+pre2|730|either / neither / both (pronouns)|either / neither / both(代名詞)|2つのうちの…。neither は単数扱い。|either of + 複数;;neither of + 複数|Neither of them is here.=>2人ともここにいません。
+pre2|730|some / any / no / none|some / any / no / none|肯定は some、否定・疑問は any。勧誘は some が自然。|some / any|Would you like some tea?=>お茶はいかがですか。||Do you have some milk? (一般の疑問は any)
+pre2|730|enough / so / such|so / such の使い分け|so + 形容詞、such + (a) 形容詞 + 名詞。|so + 形容詞;;such a + 形容詞 + 名詞|It was such a hot day that we stayed inside.=>とても暑い日だったので家にいました。||so a hot day
+pre2|730|despite / in spite of vs although|譲歩の前置詞と接続詞|despite / in spite of + 名詞、although / though + S + V。|despite + 名詞;;although + S + V|Although it rained, we went out.=>雨だったが出かけました。;;Despite the rain, we went out.=>雨にもかかわらず出かけました。||Despite it rained
+pre2|730|because / because of|because と because of|because + S + V、because of + 名詞。|because + S + V;;because of + 名詞|The ferry stopped because of the storm.=>嵐のためフェリーは止まりました。||because of it was a storm

@@ -46,7 +46,9 @@ export function tokenize(text: string, index: LexIndex): Token[] {
   let m: RegExpExecArray | null;
   while ((m = MARKUP.exec(text))) {
     if (m.index > last) out.push(...tokenizePlain(text.slice(last, m.index), index));
-    out.push({ text: m[1], id: index.byId.has(m[2]) ? m[2] : undefined, ...(index.byId.has(m[2]) ? {} : { bad: m[2] }) } as Token);
+    // `{Mrs. Wren|@}`: a proper name — shown as text, never a word, never reported as unknown.
+    if (m[2] === '@') out.push({ text: m[1], name: true });
+    else out.push({ text: m[1], id: index.byId.has(m[2]) ? m[2] : undefined, ...(index.byId.has(m[2]) ? {} : { bad: m[2] }) } as Token);
     last = m.index + m[0].length;
   }
   if (last < text.length) out.push(...tokenizePlain(text.slice(last), index));
@@ -164,7 +166,7 @@ export function unknownTokens(tokens: Token[], lang: Lang): string[] {
   for (const t of tokens) {
     const anyT = t as Token & { bad?: string };
     if (anyT.bad) bad.push(`{${t.text}|${anyT.bad}}`);
-    else if (!t.id) {
+    else if (!t.id && !t.name) {
       if (lang === 'en' ? /[A-Za-z]/.test(t.text) : CJK.test(t.text)) bad.push(t.text);
     }
   }

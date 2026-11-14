@@ -1,0 +1,4 @@
+had	verb	持っていた（haveの過去形）
+has	verb	持っている（haveの3人称単数）
+consist	verb	成り立つ（consist of）
+sake	noun	ため（for the sake of）

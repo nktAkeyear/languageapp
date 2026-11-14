@@ -9,6 +9,7 @@
 import type { TownContent, TownShared } from './townTypes';
 import type { StoryShared, StoryText } from '../story/types';
 import type { RenoShared, RenoText } from '../renovation/types';
+import type { JobDef } from '../jobs/types';
 
 export type Lang = 'en' | 'zh';
 export const LANGS: Lang[] = ['en', 'zh'];
@@ -58,6 +59,12 @@ export interface LexEntry {
   eiken?: EikenGrade | null;
   /** Verification page (検証ページ) id this word belongs to. Every word must have one. */
   group: string;
+  /** en: TOEIC band of the word (from data/english/vocab.json; null = not in the TOEIC list). */
+  toeic?: number | null;
+  /** Vocabulary domains (data/english taxonomy: food, post, office …). */
+  domains?: string[];
+  /** en: the word was found in data/english/vocab.json (set by the reconciliation at load). */
+  listed?: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -322,6 +329,8 @@ export interface LanguageContent {
   story?: StoryText;
   /** Renovation catalogue text. Merged in by src/content/index.ts; absent = no catalogue. */
   renovation?: RenoText;
+  /** Jobs playable in this language (the tea house first). Merged in by src/content/index.ts. */
+  jobs?: JobDef[];
 }
 
 export interface SharedContent {
@@ -345,6 +354,8 @@ export interface Token {
   text: string;
   /** Lexicon id, absent for punctuation/whitespace. */
   id?: string;
+  /** A proper name (`{Name|@}` markup): shown as text, not a word. */
+  name?: boolean;
 }
 
 /** A concrete order served on a day (authored or template instance). Serializable. */

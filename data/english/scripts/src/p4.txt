@@ -1,0 +1,159 @@
+4|400|formula|What would you like?|何になさいますか|What would you like to drink?|お飲み物は何になさいますか。|ordering|food
+4|400|formula|Would you like some tea?|お茶はいかがですか|Would you like some tea? It's hot.|お茶はいかがですか。熱いですよ。|offer|food
+4|400|formula|Would you like to come?|いらっしゃいませんか|Would you like to come to the festival?|お祭りに来ませんか。|invitation|arts
+4|400|formula|Can I have ..., please?|…をいただけますか|Can I have a glass of water, please?|水を1杯いただけますか。|ordering|food
+4|400|formula|Could you ... , please?|…していただけますか|Could you open the window, please?|窓を開けていただけますか。|request|housing
+4|400|formula|Shall I ...?|…しましょうか|Shall I carry your bag?|かばんをお持ちしましょうか。|offer|hotel
+4|400|formula|Shall we ...?|…しましょうか(誘い)|Shall we go to the park?|公園に行きませんか。|suggestion|society
+4|400|formula|What do you think?|どう思いますか|What do you think of this hat?|この帽子をどう思いますか。|opinion|clothing
+4|400|formula|I think so, too.|私もそう思います|I think so, too. It's very good.|私もそう思います。とてもいいです。|agreement|abstract
+4|400|formula|I don't think so.|そうは思いません|I don't think so. It's too small.|そうは思いません。小さすぎます。|disagreement|abstract
+4|400|formula|That sounds good.|いいですね|Fish for dinner? That sounds good.|夕食は魚?いいですね。|agreement|food
+4|400|formula|That sounds nice.|素敵ですね|A picnic on Sunday? That sounds nice.|日曜日にピクニック?素敵ですね。|agreement|society
+4|400|formula|Good idea.|いい考えだね|Good idea. Let's do it.|いい考えだね。やろう。|agreement|society
+4|400|formula|Why not?|いいね・どうして?|Let's have lunch together. — Why not?|いっしょに昼ごはんを食べよう。—いいね。|agreement|society
+4|400|formula|Sure.|もちろん・いいよ|Can I sit here? — Sure.|ここに座ってもいい?—いいよ。|agreement|society
+4|400|formula|No problem.|問題ありません|Sorry I'm late. — No problem.|遅れてごめん。—問題ないよ。|apology|society
+4|400|formula|What's wrong?|どうしたの|You look sad. What's wrong?|悲しそうだね。どうしたの?|inquiry,sympathy|emotion
+4|400|formula|What's the matter?|どうしましたか|What's the matter? Are you sick?|どうしました?具合が悪いのですか。|inquiry,sympathy|health
+4|400|formula|Are you OK?|大丈夫ですか|You fell down. Are you OK?|転びましたね。大丈夫ですか。|inquiry,sympathy|health
+4|400|formula|I hope you get well soon.|早くよくなってください|You have a fever. I hope you get well soon.|熱があるのですね。早くよくなってください。|sympathy|health
+4|400|formula|Congratulations!|おめでとう|You won the game. Congratulations!|試合に勝ったね。おめでとう!|congratulation|school
+4|400|formula|Good luck!|がんばって|You have a test today. Good luck!|今日はテストだね。がんばって!|farewell|school
+4|400|formula|Have a nice trip.|よい旅を|You're going to Kyoto? Have a nice trip.|京都へ行くの?よい旅を。|farewell|travel
+4|400|formula|Have a nice weekend.|よい週末を|See you on Monday. Have a nice weekend.|月曜日に会いましょう。よい週末を。|farewell|school
+4|400|formula|How was your weekend?|週末はどうでしたか|How was your weekend? — It was great.|週末はどうでした?—最高でした。|inquiry|society
+4|400|formula|What did you do yesterday?|昨日は何をしましたか|What did you do yesterday? — I went fishing.|昨日は何をしたの?—釣りに行きました。|inquiry|sea
+4|400|formula|What are you doing?|何をしていますか|What are you doing? — I'm cooking.|何をしているの?—料理をしています。|inquiry|cooking
+4|400|formula|What do you do?|お仕事は何ですか|What do you do? — I'm a fisherman.|お仕事は?—漁師です。|inquiry|sea
+4|400|formula|What's your favorite food?|好きな食べ物は何ですか|What's your favorite food? — Sushi.|好きな食べ物は?—すしです。|inquiry|food
+4|400|formula|What time do you get up?|何時に起きますか|What time do you get up? — At six.|何時に起きますか。—6時です。|inquiry|school
+4|400|formula|How do you go to work?|どうやって仕事に行きますか|How do you go to work? — By bus.|どうやって仕事に行きますか。—バスです。|inquiry|transport
+4|400|formula|How long does it take?|どのくらいかかりますか|How long does it take to the station?|駅までどのくらいかかりますか。|inquiry|transport
+4|400|formula|It takes ten minutes.|10分かかります|It takes ten minutes on foot.|歩いて10分かかります。|description|transport
+4|400|formula|How far is it?|どのくらい遠いですか|How far is it to the hospital?|病院までどのくらいですか。|inquiry,directions|transport
+4|400|formula|Which bus goes to the station?|どのバスが駅へ行きますか|Excuse me. Which bus goes to the station?|すみません。どのバスが駅へ行きますか。|inquiry,directions|transport
+4|400|formula|Is there a ... near here?|この近くに…はありますか|Is there a bank near here?|この近くに銀行はありますか。|directions|transport
+4|400|formula|Can you tell me the way to ...?|…への道を教えてくれますか|Can you tell me the way to the museum?|博物館への道を教えてくれますか。|directions|transport
+4|400|formula|Can I try this on?|これを試着してもいいですか|Can I try this on? — Yes, the room is there.|試着してもいいですか。—はい、あちらの部屋です。|permission|clothing
+4|400|formula|Do you have a bigger size?|もっと大きいサイズはありますか|Do you have a bigger size?|もっと大きいサイズはありますか。|inquiry|clothing,shopping
+4|400|formula|I'll take it.|それをいただきます|It's nice. I'll take it.|いいですね。それをいただきます。|ordering|shopping
+4|400|formula|It's too expensive.|高すぎます|It's too expensive for me.|私には高すぎます。|complaint|shopping,money
+4|400|formula|It's cheap.|安いです|It's cheap, so I'll buy two.|安いので2つ買います。|description|shopping,money
+4|400|formula|Do you have any ...?|…はありますか|Do you have any milk?|牛乳はありますか。|inquiry|shopping
+4|400|formula|Here's your change.|おつりです|Here's your change. Thank you.|おつりです。ありがとうございました。|payment|shopping,money
+4|400|formula|Can I pay by card?|カードで払えますか|Can I pay by card? — Sorry, cash only.|カードで払えますか。—すみません、現金のみです。|payment|money
+4|400|formula|For here or to go?|店内ですか、お持ち帰りですか|For here or to go? — To go, please.|店内ですか、お持ち帰りですか。—持ち帰りで。|ordering|food
+4|400|formula|I'm looking for ...|…を探しています|I'm looking for a gift for my mother.|母への贈り物を探しています。|inquiry|shopping
+4|400|formula|I'm just looking.|見ているだけです|Can I help you? — I'm just looking, thanks.|ご用ですか。—見ているだけです、ありがとう。|refusal|shopping
+4|400|formula|Speaking.|私です(電話)|May I speak to Mr. Ito? — Speaking.|伊藤さんをお願いします。—私です。|greeting|office
+4|400|formula|Hold on, please.|少々お待ちください(電話)|Hold on, please. I'll get him.|少々お待ちください。呼んできます。|request|office
+4|400|formula|Can I leave a message?|伝言をお願いできますか|He's out. Can I leave a message?|彼は外出中です。伝言をお願いできますか。|request|office
+4|400|formula|I'll call you back.|かけ直します|I'm busy now. I'll call you back.|今忙しいので、かけ直します。|scheduling|office
+4|400|formula|Thanks for calling.|お電話ありがとうございます|Thanks for calling. Goodbye.|お電話ありがとうございました。さようなら。|thanks|office
+4|400|formula|What's up?|どうしたの・元気?|What's up, Ken?|やあケン、どうしたの?|greeting|society
+4|400|formula|Long time no see.|久しぶり|Long time no see. How are you?|久しぶり。元気?|greeting|society
+4|400|formula|It's been a long time.|お久しぶりです|It's been a long time, Mr. Kato.|加藤さん、お久しぶりです。|greeting|society
+4|400|formula|Please say hello to your family.|ご家族によろしく|Goodbye. Please say hello to your family.|さようなら。ご家族によろしく。|farewell|family
+4|400|formula|Let me introduce myself.|自己紹介させてください|Let me introduce myself. I'm Mika.|自己紹介します。ミカです。|introduction|society
+4|400|formula|This is my friend, ...|こちらは友人の…です|This is my friend, Ben.|こちらは友人のベンです。|introduction|society
+4|400|formula|Make yourself at home.|くつろいでください|Come in. Make yourself at home.|どうぞ。くつろいでください。|offer|housing
+4|400|formula|Help yourself.|ご自由にどうぞ|There's cake. Help yourself.|ケーキがあります。ご自由にどうぞ。|offer|food
+4|400|formula|It's my turn.|私の番です|It's my turn to cook today.|今日は私が料理する番です。|description|cooking
+4|400|formula|After you.|お先にどうぞ|After you. I'm not in a hurry.|お先にどうぞ。急いでいません。|offer|society
+4|400|formula|I'm lost.|道に迷いました|I'm lost. Where is the station?|道に迷いました。駅はどこですか。|inquiry,directions|travel
+4|400|formula|I missed the bus.|バスに乗り遅れました|Sorry, I'm late. I missed the bus.|遅れてすみません。バスに乗り遅れました。|apology|transport
+4|400|formula|I forgot my umbrella.|傘を忘れました|It's raining, and I forgot my umbrella.|雨だし、傘を忘れました。|description|weather
+4|400|formula|I'll be back soon.|すぐ戻ります|I'll be back soon. Please wait here.|すぐ戻ります。ここで待っていてください。|scheduling|society
+4|400|formula|It's time for lunch.|昼食の時間です|It's time for lunch. Let's stop.|昼食の時間です。やめましょう。|scheduling|food
+4|400|formula|I'm ready.|準備できました|I'm ready. Let's go.|準備できました。行きましょう。|description|society
+4|400|formula|I'm busy now.|今忙しいです|I'm busy now. Please call later.|今忙しいです。後でかけてください。|refusal|office
+4|400|pattern|I'm going to ...|…するつもりです|I'm going to visit my aunt tomorrow.|明日おばを訪ねるつもりです。|prediction|family
+4|400|pattern|I will ...|…します(意志)|I will help you.|手伝います。|offer|society
+4|400|pattern|It will be ... tomorrow.|明日は…でしょう|It will be rainy tomorrow.|明日は雨でしょう。|prediction|weather
+4|400|pattern|I have to ...|…しなければなりません|I have to go to the bank.|銀行に行かなければなりません。|obligation|money
+4|400|pattern|You must ...|…しなければなりません|You must wear a helmet.|ヘルメットをかぶらなければなりません。|obligation|transport
+4|400|pattern|You must not ...|…してはいけません|You must not swim here.|ここで泳いではいけません。|warning|sea
+4|400|pattern|You don't have to ...|…しなくてもよい|You don't have to pay now.|今払わなくてもいいですよ。|permission|money
+4|400|pattern|I want you to ...|あなたに…してほしい|I want you to come early.|早く来てほしいです。|request|society
+4|400|pattern|I'm looking forward to ...|…を楽しみにしています|I'm looking forward to the festival.|お祭りを楽しみにしています。|emotion|arts
+4|400|pattern|I'm good at ...|…が得意です|I'm good at cooking.|料理が得意です。|ability|cooking
+4|400|pattern|I'm not good at ...|…が苦手です|I'm not good at swimming.|泳ぐのが苦手です。|ability|sea
+4|400|pattern|I'm interested in ...|…に興味があります|I'm interested in old houses.|古い家に興味があります。|preference|housing
+4|400|pattern|I like ... better than ...|…より…のほうが好きです|I like tea better than coffee.|コーヒーよりお茶のほうが好きです。|comparison|food
+4|400|pattern|... is bigger than ...|…は…より大きい|This fish is bigger than that one.|この魚はあの魚より大きいです。|comparison|sea
+4|400|pattern|the ...est in ...|…で一番…|This is the biggest shop in town.|これは町で一番大きい店です。|comparison|shopping
+4|400|pattern|as ... as ...|…と同じくらい…|He is as tall as his father.|彼は父親と同じくらい背が高いです。|comparison|family
+4|400|pattern|too ... to ...|…すぎて…できない|It's too hot to work.|暑すぎて働けません。|cause/effect|weather
+4|400|pattern|It's ... to ...|…するのは…です|It's fun to fish.|釣りは楽しいです。|opinion|sea
+4|400|pattern|It takes ... to ...|…するのに…かかる|It takes an hour to get to the city.|市内まで1時間かかります。|description|transport
+4|400|pattern|how to ...|…のしかた|Can you show me how to make this?|これの作り方を教えてくれますか。|request|cooking
+4|400|pattern|something to drink|飲み物|Would you like something to drink?|何か飲み物はいかがですか。|offer|food
+4|400|pattern|enough ... to ...|…するのに十分な…|We have enough chairs for everyone.|全員分の椅子が十分あります。|description|housing
+4|400|pattern|If it rains, ...|雨が降ったら…|If it rains, we will stay home.|雨が降ったら家にいます。|condition|weather
+4|400|pattern|When I was a child, ...|子どものころ…|When I was a child, I lived by the sea.|子どものころ、海のそばに住んでいました。|narration|family
+4|400|pattern|because ...|なぜなら…|I'm late because I missed the bus.|バスに乗り遅れたので遅れました。|cause/effect|transport
+4|400|pattern|Because of ...|…のために|The boats stayed in because of the storm.|嵐のため船は出ませんでした。|cause/effect|weather
+4|400|pattern|I was ... -ing when ...|…していたとき|I was cooking when he called.|料理をしていたとき彼が電話してきました。|narration|cooking
+4|400|pattern|Do you know where ...?|…がどこか知っていますか|Do you know where he lives?|彼がどこに住んでいるか知っていますか。|inquiry|society
+4|400|pattern|I'd like to ...|…したいのですが|I'd like to send this letter to Tokyo.|この手紙を東京へ送りたいのですが。|request|post
+4|400|pattern|Do you want me to ...?|…しましょうか|Do you want me to call a taxi?|タクシーを呼びましょうか。|offer|transport
+4|400|pattern|so ... that ...|とても…なので…|It was so cold that we stayed inside.|とても寒かったので中にいました。|cause/effect|weather
+4|400|collocation|go fishing|釣りに行く|My uncle goes fishing every Sunday.|おじは毎週日曜日に釣りに行きます。|description|sea
+4|400|collocation|go camping|キャンプに行く|We went camping last summer.|去年の夏キャンプに行きました。|narration|nature
+4|400|collocation|take a walk|散歩する|Let's take a walk by the river.|川沿いを散歩しよう。|suggestion|nature
+4|400|collocation|take a shower|シャワーを浴びる|I take a shower after work.|仕事のあとシャワーを浴びます。|description|housing
+4|400|collocation|take a bus|バスに乗る|Take a bus from the station.|駅からバスに乗ってください。|directions|transport
+4|400|collocation|make a cake|ケーキを作る|My mother made a cake for me.|母は私にケーキを作ってくれました。|narration|cooking
+4|400|collocation|make a mistake|間違える|Sorry, I made a mistake.|ごめんなさい、間違えました。|apology|school
+4|400|collocation|catch a cold|風邪をひく|Don't catch a cold.|風邪をひかないでね。|warning|health
+4|400|collocation|catch a fish|魚をとる|He caught a big fish.|彼は大きな魚をとりました。|narration|sea
+4|400|collocation|have a party|パーティーを開く|We'll have a party on Friday.|金曜日にパーティーを開きます。|scheduling|society
+4|400|collocation|have a fever|熱がある|I have a fever.|熱があります。|description|health
+4|400|collocation|have a stomachache|おなかが痛い|I have a stomachache.|おなかが痛いです。|description|health,body
+4|400|collocation|do the laundry|洗濯をする|I do the laundry on Sunday.|日曜日に洗濯をします。|description|housing,clothing
+4|400|collocation|do the shopping|買い物をする|My mother does the shopping in the morning.|母は午前中に買い物をします。|description|shopping
+4|400|collocation|get to the station|駅に着く|I got to the station at nine.|9時に駅に着きました。|narration|transport
+4|400|collocation|write a letter|手紙を書く|I wrote a letter to my grandmother.|祖母に手紙を書きました。|narration|post
+4|400|collocation|send an email|メールを送る|I'll send an email to you tonight.|今夜あなたにメールを送ります。|scheduling|technology
+4|400|collocation|keep a diary|日記をつける|I keep a diary every day.|毎日日記をつけています。|description|school
+4|400|collocation|a cup of tea|お茶1杯|A cup of tea, please.|お茶を1杯ください。|ordering|food
+4|400|collocation|a glass of water|水1杯|He drank a glass of water.|彼は水を1杯飲みました。|description|food
+4|400|collocation|a slice of cake|ケーキ1切れ|I'd like a slice of cake.|ケーキを1切れください。|ordering|food
+4|400|collocation|a bottle of milk|牛乳1本|Please buy a bottle of milk.|牛乳を1本買ってください。|request|shopping
+4|400|collocation|a pair of shoes|靴1足|I need a new pair of shoes.|新しい靴が1足必要です。|description|clothing
+4|400|phrasal_verb|wake up|目を覚ます|I woke up at five today.|今日は5時に目が覚めました。|narration|body
+4|400|phrasal_verb|get on|乗る|Get on the bus at the station.|駅でバスに乗ってください。|directions|transport
+4|400|phrasal_verb|get off|降りる|Get off at the next stop.|次の停留所で降りてください。|directions|transport
+4|400|phrasal_verb|look for|探す|I'm looking for my key.|鍵を探しています。|description|housing
+4|400|phrasal_verb|wait for|待つ|Please wait for me here.|ここで私を待ってください。|request|society
+4|400|phrasal_verb|come back|戻る|When will you come back?|いつ戻りますか。|inquiry|society
+4|400|phrasal_verb|go back|戻っていく|I have to go back home.|家に戻らなければなりません。|obligation|housing
+4|400|phrasal_verb|pick up|拾う・迎えに行く|I'll pick you up at the station.|駅へ迎えに行きます。|offer|transport
+4|400|phrasal_verb|give up|あきらめる|Don't give up.|あきらめないで。|suggestion|emotion
+4|400|phrasal_verb|try on|試着する|Please try on this coat.|このコートを試着してみてください。|suggestion|clothing
+4|400|phrasal_verb|take care of|世話をする|I take care of my dog.|犬の世話をします。|description|family
+4|400|phrasal_verb|clean up|片付ける|Let's clean up the room.|部屋を片付けよう。|suggestion|housing
+4|400|phrasal_verb|wash up|洗う|Wash up before dinner.|夕食の前に手を洗って。|instruction|health
+4|400|phrasal_verb|hurry up|急ぐ|Hurry up! The bus is coming.|急いで!バスが来るよ。|instruction|transport
+4|400|phrasal_verb|come from|…の出身である|Where do you come from?|どちらの出身ですか。|inquiry|society
+4|400|phrasal_verb|talk to|…に話しかける|Can I talk to you?|ちょっと話せますか。|permission|society
+4|400|phrasal_verb|write down|書き留める|Please write down your name.|お名前を書いてください。|instruction|office
+4|400|idiom|a little|少し|I speak a little English.|英語を少し話します。|description|school
+4|400|idiom|at home|家で|I'm at home today.|今日は家にいます。|description|housing
+4|400|idiom|on foot|徒歩で|I go to school on foot.|歩いて学校へ行きます。|description|transport
+4|400|idiom|by the way|ところで|By the way, what time is it?|ところで、何時ですか。|description|society
+4|400|idiom|for example|例えば|I like fruit, for example, apples.|果物が好きです。例えばりんごです。|description|food
+4|400|idiom|all day|一日中|It rained all day.|一日中雨でした。|description|weather
+4|400|idiom|a few|少しの(数)|I bought a few apples.|りんごを少し買いました。|description|shopping
+4|400|idiom|in the afternoon|午後に|The shop opens in the afternoon.|店は午後に開きます。|scheduling|shopping
+4|400|idiom|next to|…のとなり|The post office is next to the bank.|郵便局は銀行のとなりです。|directions|post
+4|400|idiom|at night|夜に|It is quiet at night.|夜は静かです。|description|nature
+4|400|discourse|and|そして|I bought bread and milk.|パンと牛乳を買いました。|addition|food
+4|400|discourse|but|しかし|It's sunny, but it's cold.|晴れていますが寒いです。|contrast|weather
+4|400|discourse|so|だから|I was tired, so I went to bed.|疲れたので寝ました。|cause/effect|body
+4|400|discourse|then|それから|Turn left. Then go straight.|左に曲がって、それからまっすぐ行きます。|sequencing|transport
+4|400|discourse|first|まず|First, wash the rice.|まず米を洗います。|sequencing|cooking
+4|400|discourse|after that|そのあと|After that, I went home.|そのあと家に帰りました。|sequencing|society
+4|400|discourse|also|また|I also like music.|音楽も好きです。|addition|arts
+4|400|discourse|or|または|Tea or coffee?|お茶ですか、コーヒーですか。|ordering|food

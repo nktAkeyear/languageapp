@@ -1,0 +1,231 @@
+pre2|500|business|Thank you for contacting us.|お問い合わせありがとうございます|Thank you for contacting us. We will reply within two days.|お問い合わせありがとうございます。2日以内にご返信します。|greeting,thanks|office,sales
+pre2|500|business|I'm writing to ask about ...|…についてお尋ねしたくご連絡します|I'm writing to ask about your opening hours.|営業時間についてお尋ねしたくご連絡しました。|inquiry|office
+pre2|500|business|I'm writing to inform you that ...|…をお知らせします|I'm writing to inform you that the shop will close early.|店が早く閉まることをお知らせします。|announcement|office
+pre2|500|business|Please find attached ...|…を添付いたします|Please find attached the price list.|価格表を添付いたします。|instruction|office
+pre2|500|business|I look forward to hearing from you.|ご連絡をお待ちしております|I look forward to hearing from you soon.|近いうちにご連絡をお待ちしております。|farewell|office
+pre2|500|business|Best regards,|敬具(メール末尾)|Best regards, Yuki Tanaka|敬具 田中ユキ|farewell|office
+pre2|500|business|Dear Sir or Madam,|拝啓(宛名不明)|Dear Sir or Madam, I'd like to book a room.|拝啓、部屋を予約したくご連絡します。|greeting|hotel,office
+pre2|500|business|Dear Mr. ...,|…様(メール冒頭)|Dear Mr. Brown, Thank you for your order.|ブラウン様、ご注文ありがとうございます。|greeting|office
+pre2|500|business|Thank you for your quick reply.|早速のご返信ありがとうございます|Thank you for your quick reply. That helps a lot.|早速のご返信ありがとうございます。助かります。|thanks|office
+pre2|500|business|I'm sorry for the inconvenience.|ご不便をおかけして申し訳ありません|I'm sorry for the inconvenience. The bus will come soon.|ご不便をおかけして申し訳ありません。バスはまもなく来ます。|apology|transport,office
+pre2|500|business|We apologize for the delay.|遅れをお詫びします|We apologize for the delay in delivery.|配送の遅れをお詫びします。|apology|logistics
+pre2|500|business|Your order has been shipped.|ご注文の品は発送されました|Your order has been shipped and will arrive Friday.|ご注文の品は発送済みで、金曜日に届きます。|reporting|logistics,sales
+pre2|500|business|Your order is ready for pickup.|ご注文の品はお受け取りいただけます|Your order is ready for pickup at the front desk.|ご注文の品は受付でお受け取りいただけます。|announcement|shopping,logistics
+pre2|500|business|The meeting is scheduled for ...|会議は…に予定されています|The meeting is scheduled for Tuesday at ten.|会議は火曜日の10時に予定されています。|scheduling|meetings
+pre2|500|business|Can we reschedule the meeting?|会議の日程を変更できますか|Can we reschedule the meeting to Thursday?|会議を木曜日に変更できますか。|request,scheduling|meetings
+pre2|500|business|I'm afraid I can't attend.|あいにく出席できません|I'm afraid I can't attend the meeting on Monday.|あいにく月曜日の会議には出席できません。|refusal|meetings
+pre2|500|business|Could you send me ...?|…を送っていただけますか|Could you send me the schedule by email?|予定表をメールで送っていただけますか。|request|office
+pre2|500|business|Let me check and get back to you.|確認して折り返します|Let me check and get back to you tomorrow.|確認して明日折り返します。|scheduling|office
+pre2|500|business|I'll be out of the office until ...|…まで不在です|I'll be out of the office until Monday.|月曜日まで不在です。|announcement|office
+pre2|500|business|Please call back later.|後ほどお電話ください|Mr. Ito is out. Please call back later.|伊藤は外出中です。後ほどお電話ください。|request|office
+pre2|500|business|The office is closed on ...|事務所は…は休みです|The office is closed on national holidays.|事務所は祝日は休みです。|announcement|office
+pre2|500|business|We are open from ... to ...|営業時間は…から…です|We are open from nine to five.|営業時間は9時から5時です。|description|shopping
+pre2|500|business|Please keep your receipt.|領収書を保管してください|Please keep your receipt for returns.|返品のために領収書を保管してください。|instruction|shopping
+pre2|500|business|Please turn off your phone.|携帯電話の電源をお切りください|Please turn off your phone during the show.|上演中は携帯電話の電源をお切りください。|instruction|arts
+pre2|500|business|No smoking.|禁煙|No smoking in the building.|建物内は禁煙です。|instruction|society
+pre2|500|business|Staff only.|関係者以外立入禁止|Staff only beyond this door.|この先は関係者以外立入禁止です。|warning|office
+pre2|500|business|Out of order.|故障中|The elevator is out of order.|エレベーターは故障中です。|announcement|technology
+pre2|500|business|Keep out.|立入禁止|Keep out. Danger.|立入禁止。危険。|warning|society
+pre2|600|business|Attention, passengers.|乗客の皆様にお知らせします|Attention, passengers. The train will be delayed.|乗客の皆様にお知らせします。電車が遅れます。|announcement|transport
+pre2|600|business|Thank you for your patience.|ご辛抱ありがとうございます|Thank you for your patience. We will start soon.|ご辛抱ありがとうございます。まもなく始めます。|thanks|office
+pre2|600|business|We will be closed for ...|…のため休業します|We will be closed for repairs next week.|来週は修理のため休業します。|announcement|shopping
+pre2|600|business|The store will be open until ...|店は…まで営業します|The store will be open until nine on Friday.|金曜日は9時まで営業します。|announcement|shopping
+pre2|600|business|The sale ends on ...|セールは…に終了します|The sale ends on Sunday.|セールは日曜日に終了します。|announcement|sales
+pre2|600|business|Free shipping on orders over ...|…以上のご注文は送料無料|Free shipping on orders over five thousand yen.|5千円以上のご注文は送料無料です。|description|sales,logistics
+pre2|600|business|I'd like to place an order.|注文をしたいのですが|I'd like to place an order for ten boxes.|10箱注文したいのですが。|request,ordering|sales
+pre2|600|business|The item is out of stock.|その商品は在庫切れです|I'm sorry. The item is out of stock.|申し訳ありません。その商品は在庫切れです。|reporting|sales,logistics
+pre2|600|business|We will restock next week.|来週再入荷します|We will restock next week.|来週再入荷します。|scheduling|sales
+pre2|600|business|The package arrived damaged.|荷物が破損して届きました|The package arrived damaged. What should I do?|荷物が破損して届きました。どうすればいいですか。|complaint|logistics
+pre2|600|business|I'd like to cancel my order.|注文をキャンセルしたいのですが|I'd like to cancel my order.|注文をキャンセルしたいのですが。|request|sales
+pre2|600|business|Where can I pick up my luggage?|荷物はどこで受け取れますか|Where can I pick up my luggage?|荷物はどこで受け取れますか。|inquiry|travel
+pre2|600|business|Please fasten your seat belt.|シートベルトをお締めください|Please fasten your seat belt.|シートベルトをお締めください。|instruction|transport
+pre2|600|business|The flight has been delayed.|便が遅れています|The flight has been delayed by one hour.|便は1時間遅れています。|announcement|transport
+pre2|600|business|Boarding will begin at ...|搭乗は…に始まります|Boarding will begin at ten fifteen.|搭乗は10時15分に始まります。|announcement|transport
+pre2|600|business|Please have your ticket ready.|切符をご用意ください|Please have your ticket ready.|切符をご用意ください。|instruction|transport
+pre2|600|business|Mind the gap.|足元にご注意ください|Mind the gap when you get off.|降りる際は足元にご注意ください。|warning|transport
+pre2|600|business|Take the elevator to the ... floor.|エレベーターで…階へ|Take the elevator to the third floor.|エレベーターで3階へどうぞ。|directions|office
+pre2|600|business|The restroom is down the hall.|お手洗いは廊下の先です|The restroom is down the hall on the left.|お手洗いは廊下の先の左側です。|directions|office
+pre2|600|business|Please sign here.|こちらに署名してください|Please sign here and here.|こちらとこちらに署名してください。|instruction|post
+pre2|600|business|Could you fill out this form?|この用紙に記入いただけますか|Could you fill out this form, please?|この用紙にご記入いただけますか。|request|office
+pre2|600|business|I need your ID.|身分証が必要です|I need your ID to open an account.|口座を開くには身分証が必要です。|request|money
+pre2|600|business|Your appointment is at ...|ご予約は…です|Your appointment is at two thirty.|ご予約は2時半です。|scheduling|health
+pre2|600|business|Please arrive ten minutes early.|10分前にお越しください|Please arrive ten minutes early.|10分前にお越しください。|instruction|health
+pre2|600|business|The doctor will see you now.|先生がお呼びです|The doctor will see you now.|先生がお呼びです。|announcement|health
+pre2|600|business|I'd like to reserve a table.|席を予約したい|I'd like to reserve a table for six at seven.|7時に6名で席を予約したいのですが。|request|food
+pre2|600|business|Do you have any vacancies?|空室はありますか|Do you have any vacancies tonight?|今夜空室はありますか。|inquiry|hotel
+pre2|600|business|Is there a shuttle bus to ...?|…行きのシャトルバスはありますか|Is there a shuttle bus to the airport?|空港行きのシャトルバスはありますか。|inquiry|transport,hotel
+pre2|600|business|Could I have a wake-up call at ...?|…にモーニングコールをお願いします|Could I have a wake-up call at six?|6時にモーニングコールをお願いします。|request|hotel
+pre2|600|business|The air conditioner isn't working.|エアコンが動きません|The air conditioner isn't working in my room.|部屋のエアコンが動きません。|complaint|hotel,technology
+pre2|600|business|I'd like a late check-out.|レイトチェックアウトをお願いします|I'd like a late check-out, if possible.|できればレイトチェックアウトをお願いしたいです。|request|hotel
+pre2|600|business|Your total comes to ...|合計は…になります|Your total comes to four thousand yen.|合計は4千円になります。|payment|shopping,money
+pre2|600|business|Please pay at the register.|レジでお支払いください|Please pay at the register.|レジでお支払いください。|instruction|shopping
+pre2|600|business|The invoice is attached.|請求書を添付しています|The invoice is attached. Payment is due on the 30th.|請求書を添付しています。お支払いは30日までです。|reporting|finance
+pre2|600|business|Payment is due by ...|支払期限は…です|Payment is due by the end of the month.|支払期限は月末です。|payment|finance
+pre2|600|business|We accept cash only.|現金のみ受け付けます|We accept cash only at this shop.|当店は現金のみのお取り扱いです。|payment|shopping
+pre2|600|business|Could I get a receipt?|領収書をいただけますか|Could I get a receipt, please?|領収書をいただけますか。|request|money
+pre2|600|business|The deadline is ...|締め切りは…です|The deadline is Friday at noon.|締め切りは金曜日の正午です。|scheduling|office
+pre2|600|business|I'll send it by tomorrow.|明日までに送ります|I'll send the report by tomorrow.|明日までに報告書を送ります。|scheduling|office
+pre2|600|business|Can you give me a hand?|手伝ってもらえますか|Can you give me a hand with these boxes?|この箱を運ぶのを手伝ってもらえますか。|request|logistics
+pre2|600|business|I'll take care of it.|私が対応します|I'll take care of it right away.|すぐに私が対応します。|offer|office
+pre2|600|business|Let's get started.|始めましょう|Let's get started. Please open the report.|始めましょう。報告書を開いてください。|instruction|meetings
+pre2|600|business|Does anyone have any questions?|ご質問はありますか|Does anyone have any questions?|ご質問はありますか。|inquiry|meetings
+pre2|600|business|Let's move on to the next item.|次の議題に移りましょう|Let's move on to the next item.|次の議題に移りましょう。|instruction|meetings
+pre2|600|business|Thank you for coming.|お越しいただきありがとうございます|Thank you for coming today.|本日はお越しいただきありがとうございます。|thanks|meetings
+pre2|600|business|Let's take a short break.|少し休憩しましょう|Let's take a short break. We'll start again at three.|少し休憩しましょう。3時に再開します。|suggestion|meetings
+pre2|600|business|I'd like to introduce ...|…をご紹介します|I'd like to introduce our new staff member.|新しいスタッフをご紹介します。|introduction|meetings,hr
+pre2|600|business|I'm in charge of ...|…を担当しています|I'm in charge of the front desk.|フロントを担当しています。|introduction|office
+pre2|600|business|She works in the sales department.|彼女は営業部で働いています|She works in the sales department.|彼女は営業部で働いています。|description|sales,hr
+pre2|600|business|Our business hours are ...|営業時間は…です|Our business hours are ten to six.|営業時間は10時から6時です。|description|office
+pre2|600|business|We'll be in touch.|ご連絡します|Thank you for applying. We'll be in touch.|ご応募ありがとうございます。ご連絡します。|farewell|hr
+pre2|600|business|I'm applying for the position of ...|…の職に応募します|I'm applying for the position of cook.|料理人の職に応募します。|request|hr
+pre2|600|formula|How can I get to ... from here?|ここから…へはどう行けばいいですか|How can I get to the harbor from here?|ここから港へはどう行けばいいですか。|directions|transport
+pre2|500|formula|It's about a five-minute walk.|歩いて5分ほどです|It's about a five-minute walk from here.|ここから歩いて5分ほどです。|directions|transport
+pre2|500|formula|I'm sorry to bother you, but ...|お手数ですが…|I'm sorry to bother you, but can you help me?|お手数ですが、手伝っていただけますか。|request|society
+pre2|500|formula|Would it be all right if I ...?|…してもよろしいでしょうか|Would it be all right if I opened the window?|窓を開けてもよろしいでしょうか。|permission|society
+pre2|500|formula|I was wondering if you could ...|…していただけないかと|I was wondering if you could help me.|手伝っていただけないかと思いまして。|request|society
+pre2|500|formula|Is it OK if I ...?|…してもいいですか|Is it OK if I pay tomorrow?|明日払ってもいいですか。|permission|money
+pre2|500|formula|That's very kind of you.|ご親切にどうも|That's very kind of you.|ご親切にどうも。|thanks|society
+pre2|500|formula|I really appreciate it.|本当に感謝します|You carried my bag. I really appreciate it.|かばんを運んでくれて本当に感謝します。|thanks|society
+pre2|500|formula|Don't mention it.|どういたしまして(軽く)|Thanks! — Don't mention it.|ありがとう!—いえいえ。|thanks|society
+pre2|500|formula|It's my pleasure.|喜んで|Thank you. — It's my pleasure.|ありがとう。—どういたしまして。|thanks|society
+pre2|500|formula|I'm sorry for being late.|遅れてすみません|I'm sorry for being late. The bus was full.|遅れてすみません。バスが満員でした。|apology|transport
+pre2|500|formula|It's not your fault.|あなたのせいではありません|Don't cry. It's not your fault.|泣かないで。あなたのせいではないよ。|sympathy|emotion
+pre2|500|formula|I couldn't agree more.|大賛成です|It's a great plan. — I couldn't agree more.|いい計画です。—大賛成です。|agreement|society
+pre2|500|formula|I'm not sure about that.|それはどうでしょう|I'm not sure about that. Let me think.|それはどうでしょう。考えさせて。|hedging|society
+pre2|500|formula|It depends.|場合によります|Is it expensive? — It depends.|高いですか。—場合によります。|hedging|society
+pre2|500|formula|It doesn't matter.|かまいません|Tea or coffee? — It doesn't matter.|お茶かコーヒー?—どちらでもかまいません。|agreement|society
+pre2|500|formula|I'm not feeling well.|気分がよくありません|I'm not feeling well. May I go home?|気分がよくありません。帰ってもいいですか。|description|health
+pre2|500|formula|I have a sore throat.|のどが痛いです|I have a sore throat and a cough.|のどが痛くて咳が出ます。|description|health,body
+pre2|500|formula|I'm allergic to ...|…にアレルギーがあります|I'm allergic to eggs.|卵アレルギーがあります。|description|health,food
+pre2|500|formula|I feel dizzy.|めまいがします|I feel dizzy when I stand up.|立つとめまいがします。|description|health
+pre2|500|formula|I sprained my ankle.|足首をひねりました|I sprained my ankle on the stairs.|階段で足首をひねりました。|reporting|health,body
+pre2|500|formula|Could you recommend ...?|…を勧めていただけますか|Could you recommend a good restaurant?|いいレストランを勧めていただけますか。|request|food
+pre2|500|formula|What do you recommend?|おすすめは何ですか|What do you recommend? — The grilled fish.|おすすめは?—焼き魚です。|inquiry|food
+pre2|500|formula|What's included?|何が含まれますか|What's included in the set?|セットには何が含まれますか。|inquiry|food
+pre2|500|formula|Could I have it without ...?|…抜きでお願いできますか|Could I have it without onions?|玉ねぎ抜きでお願いできますか。|ordering|food
+pre2|500|formula|Could you split the bill?|別々に払えますか|Could you split the bill, please?|別々の会計にしていただけますか。|payment|food,money
+pre2|500|formula|It's on me.|私のおごりです|Put your wallet away. It's on me.|財布をしまって。私のおごりです。|offer|money
+pre2|500|formula|Keep the change.|おつりは結構です|Keep the change.|おつりは結構です。|payment|money
+pre2|500|formula|I'm just browsing.|見ているだけです|I'm just browsing, thanks.|見ているだけです、ありがとう。|refusal|shopping
+pre2|500|formula|Is this on sale?|これはセール品ですか|Is this on sale?|これはセール品ですか。|inquiry|shopping
+pre2|500|formula|Do you have this in another color?|別の色はありますか|Do you have this in another color?|これの別の色はありますか。|inquiry|clothing
+pre2|500|formula|It doesn't fit.|サイズが合いません|It doesn't fit. It's too tight.|サイズが合いません。きつすぎます。|complaint|clothing
+pre2|500|formula|It suits you.|よく似合っています|That color suits you.|その色はよく似合っています。|praise|clothing
+pre2|500|formula|How would you like to pay?|お支払いはどうなさいますか|How would you like to pay? — By card.|お支払いはどうなさいますか。—カードで。|payment|money
+pre2|500|formula|What's the Wi-Fi password?|Wi-Fiのパスワードは?|What's the Wi-Fi password?|Wi-Fiのパスワードは何ですか。|inquiry|technology
+pre2|500|formula|My phone is out of battery.|携帯の電池が切れました|My phone is out of battery. Can I charge it?|携帯の電池が切れました。充電してもいいですか。|description|technology
+pre2|500|formula|Could you take a picture of us?|写真をとっていただけますか|Could you take a picture of us, please?|私たちの写真をとっていただけますか。|request|travel
+pre2|500|formula|What's the best way to ...?|…の一番いい方法は?|What's the best way to get to the island?|島へ行く一番いい方法は何ですか。|inquiry|travel
+pre2|500|formula|How often does the bus run?|バスは何分おきに来ますか|How often does the bus run?|バスはどのくらいの間隔で来ますか。|inquiry|transport
+pre2|500|formula|The next ferry leaves at ...|次のフェリーは…に出ます|The next ferry leaves at four.|次のフェリーは4時に出ます。|scheduling|sea,transport
+pre2|500|formula|The sea is rough today.|今日は海が荒れています|The sea is rough today. The boats won't go out.|今日は海が荒れています。船は出ません。|description|sea,weather
+pre2|500|formula|It's supposed to rain tomorrow.|明日は雨の予報です|It's supposed to rain tomorrow.|明日は雨の予報です。|prediction|weather
+pre2|500|formula|What's the forecast?|予報はどうですか|What's the forecast for the weekend?|週末の予報はどうですか。|inquiry|weather
+pre2|600|pattern|I'm supposed to ...|…することになっている|I'm supposed to meet him at six.|6時に彼と会うことになっています。|scheduling|society
+pre2|600|pattern|be about to ...|まさに…しようとしている|The train is about to leave.|電車はまさに出発するところです。|description|transport
+pre2|600|pattern|be used to ...ing|…するのに慣れている|I'm used to getting up early.|早起きには慣れています。|description|body
+pre2|600|pattern|It's no use ...ing|…しても無駄だ|It's no use crying over it.|それを泣いても無駄です。|opinion|emotion
+pre2|600|pattern|There's no point in ...ing|…しても意味がない|There's no point in waiting.|待っても意味がありません。|opinion|abstract
+pre2|600|pattern|It's worth ...ing|…する価値がある|This town is worth visiting.|この町は訪れる価値があります。|opinion|travel
+pre2|600|pattern|be willing to ...|喜んで…する|I'm willing to help.|喜んでお手伝いします。|offer|society
+pre2|600|pattern|be able to ...|…できる|I'll be able to come on Friday.|金曜日には来られます。|ability|office
+pre2|600|pattern|have been ...ing|ずっと…している|I've been waiting for an hour.|1時間待っています。|complaint|transport
+pre2|600|pattern|If you have any questions, ...|ご質問があれば…|If you have any questions, please ask.|ご質問があればお尋ねください。|offer|office
+pre2|600|pattern|as soon as possible|できるだけ早く|Please reply as soon as possible.|できるだけ早くご返信ください。|request|office
+pre2|600|pattern|in case of ...|…の場合は|In case of fire, use the stairs.|火事の場合は階段を使ってください。|instruction|society
+pre2|600|pattern|in case ...|…に備えて|Take an umbrella in case it rains.|雨に備えて傘を持っていって。|suggestion|weather
+pre2|600|pattern|according to ...|…によると|According to the news, a typhoon is coming.|ニュースによると台風が来ます。|reporting|weather,media
+pre2|600|pattern|depending on ...|…によって|The price changes depending on the season.|値段は季節によって変わります。|description|money
+pre2|600|pattern|instead of ...|…の代わりに|I'll have tea instead of coffee.|コーヒーの代わりにお茶にします。|preference|food
+pre2|600|pattern|rather than ...|…よりむしろ|I prefer the sea rather than the mountains.|山よりむしろ海が好きです。|preference|nature
+pre2|600|pattern|I'd rather ... than ...|…するくらいなら…したい|I'd rather walk than take a taxi.|タクシーに乗るより歩きたいです。|preference|transport
+pre2|600|pattern|I prefer ... to ...|…より…が好き|I prefer fish to meat.|肉より魚が好きです。|preference|food
+pre2|600|pattern|I'd prefer to ...|…するほうがいい|I'd prefer to pay by card.|カードで払うほうがいいです。|preference|money
+pre2|600|pattern|It is said that ...|…と言われている|It is said that this well never dries up.|この井戸は決して干上がらないと言われています。|reporting|society
+pre2|600|pattern|It seems that ...|…のようだ|It seems that the shop is closed.|店は閉まっているようです。|hedging|shopping
+pre2|600|pattern|It turned out that ...|…ということがわかった|It turned out that he was my neighbor.|彼は私の近所の人だとわかりました。|narration|society
+pre2|600|pattern|one of the most ...|最も…なものの一つ|This is one of the oldest inns in town.|これは町で最も古い宿の一つです。|description|hotel
+pre2|600|pattern|the same ... as ...|…と同じ…|I have the same bag as you.|あなたと同じかばんを持っています。|comparison|clothing
+pre2|600|pattern|twice as ... as ...|…の2倍…|This boat is twice as big as that one.|この船はあの船の2倍の大きさです。|comparison|sea
+pre2|600|pattern|not as ... as ...|…ほど…ない|It's not as cold as yesterday.|昨日ほど寒くありません。|comparison|weather
+pre2|600|pattern|neither ... nor ...|…も…も…ない|Neither my brother nor I can swim.|弟も私も泳げません。|description|society
+pre2|600|pattern|either ... or ...|…か…か|You can pay either by cash or by card.|現金かカードのどちらでも払えます。|offer|money
+pre2|600|pattern|both ... and ...|…も…も両方|Both the bank and the post office are closed.|銀行も郵便局も閉まっています。|description|society
+pre2|600|pattern|would like you to ...|あなたに…していただきたい|I would like you to wait here.|ここでお待ちいただきたいです。|request|office
+pre2|600|pattern|I'd appreciate it if you could ...|…していただけるとありがたいです|I'd appreciate it if you could call back.|折り返しお電話いただけるとありがたいです。|request|office
+pre2|600|collocation|a wide variety of|幅広い種類の|We sell a wide variety of fish.|さまざまな種類の魚を売っています。|description|shopping
+pre2|600|collocation|fill a prescription|処方箋の薬を出す|Could you fill this prescription?|この処方箋の薬をお願いします。|request|health
+pre2|600|collocation|make an appointment|予約をとる|I'd like to make an appointment with the doctor.|医者の予約をとりたいのですが。|request|health
+pre2|600|collocation|cancel an appointment|予約を取り消す|I need to cancel my appointment.|予約を取り消す必要があります。|request|health
+pre2|600|collocation|fall asleep|寝入る|I fell asleep on the bus.|バスで寝入ってしまいました。|narration|body
+pre2|600|collocation|get lost|道に迷う|Don't get lost.|道に迷わないでね。|warning|travel
+pre2|600|collocation|come true|実現する|I hope your dream comes true.|あなたの夢が実現しますように。|emotion|abstract
+pre2|600|collocation|raise money|お金を集める|We raised money for the school.|学校のためにお金を集めました。|narration|money
+pre2|600|collocation|run a shop|店を経営する|She runs a small shop.|彼女は小さな店を経営しています。|description|shopping
+pre2|600|collocation|run out of time|時間がなくなる|We're running out of time.|時間がなくなってきました。|warning|abstract
+pre2|600|collocation|get in touch with|…と連絡を取る|I'll get in touch with the shop.|店に連絡を取ります。|offer|office
+pre2|600|collocation|make sure ...|確実に…する|Make sure the door is locked.|ドアに必ず鍵をかけてください。|instruction|housing
+pre2|600|collocation|keep ... in mind|…を心に留める|Keep this in mind.|このことを心に留めておいてください。|instruction|abstract
+pre2|600|collocation|on sale|セール中|These shoes are on sale.|この靴はセール中です。|description|shopping
+pre2|600|collocation|for sale|売り物の|This house is for sale.|この家は売り出し中です。|description|housing
+pre2|600|collocation|in stock|在庫あり|Is this size in stock?|このサイズは在庫がありますか。|inquiry|shopping
+pre2|600|collocation|on business|仕事で|He went to Tokyo on business.|彼は仕事で東京へ行きました。|description|office
+pre2|600|collocation|in advance|前もって|Please book in advance.|前もって予約してください。|instruction|hotel
+pre2|600|collocation|on purpose|わざと|I didn't do it on purpose.|わざとではありません。|apology|abstract
+pre2|600|collocation|by mistake|間違って|I took your umbrella by mistake.|間違ってあなたの傘を持っていきました。|apology|society
+pre2|600|collocation|take place|行われる|The festival takes place in August.|お祭りは8月に行われます。|description|arts
+pre2|600|collocation|take turns|交代でする|We take turns cooking.|交代で料理します。|description|cooking
+pre2|600|collocation|make use of|…を利用する|Make use of the free bus.|無料バスを利用してください。|suggestion|transport
+pre2|600|collocation|a number of|いくつかの|A number of people came to the market.|多くの人が市場に来ました。|description|society
+pre2|600|collocation|heavy traffic|交通渋滞|We were late because of heavy traffic.|交通渋滞で遅れました。|description|transport
+pre2|600|collocation|a traffic jam|渋滞|There is a traffic jam on the bridge.|橋で渋滞しています。|description|transport
+pre2|600|collocation|public transportation|公共交通機関|Please use public transportation.|公共交通機関をご利用ください。|instruction|transport
+pre2|600|collocation|a part-time job|アルバイト|She has a part-time job at the cafe.|彼女はカフェでアルバイトをしています。|description|hr
+pre2|600|collocation|a full-time job|フルタイムの仕事|He got a full-time job at the post office.|彼は郵便局でフルタイムの仕事に就きました。|description|hr
+pre2|600|phrasal_verb|find out about|…について知る|I'll find out about the schedule.|予定について調べておきます。|offer|office
+pre2|600|phrasal_verb|figure out|理解する|I can't figure out this machine.|この機械の使い方がわかりません。|complaint|technology
+pre2|600|phrasal_verb|carry out|実行する|They carried out the plan.|彼らは計画を実行しました。|reporting|office
+pre2|600|phrasal_verb|turn down|断る・音量を下げる|He turned down the job.|彼はその仕事を断りました。|reporting|hr
+pre2|600|phrasal_verb|turn up|現れる・音量を上げる|Please turn up the volume.|音量を上げてください。|request|technology
+pre2|600|phrasal_verb|put off|延期する|They put off the meeting.|彼らは会議を延期しました。|reporting|meetings
+pre2|600|phrasal_verb|call off|中止する|The game was called off because of rain.|試合は雨で中止になりました。|reporting|weather
+pre2|600|phrasal_verb|sign up for|…に申し込む|I signed up for a cooking class.|料理教室に申し込みました。|narration|school
+pre2|600|phrasal_verb|pass out|配る・気を失う|Please pass out these papers.|この資料を配ってください。|instruction|meetings
+pre2|600|phrasal_verb|hang up|電話を切る|Don't hang up.|切らないでください。|request|office
+pre2|600|phrasal_verb|pick out|選び出す|Help me pick out a gift.|贈り物を選ぶのを手伝って。|request|shopping
+pre2|600|phrasal_verb|use up|使い切る|We used up all the rice.|米を使い切りました。|reporting|food
+pre2|600|phrasal_verb|go on|続く・起こる|Please go on.|どうぞ続けてください。|offer|society
+pre2|600|phrasal_verb|go through|経験する・調べる|I'll go through the list.|リストに目を通します。|offer|office
+pre2|600|phrasal_verb|deal with|対処する|We must deal with this problem.|この問題に対処しなければなりません。|obligation|office
+pre2|600|phrasal_verb|catch up with|追いつく|I'll catch up with you later.|あとで追いつきます。|scheduling|society
+pre2|600|phrasal_verb|keep up with|遅れずについていく|It's hard to keep up with the news.|ニュースに遅れずについていくのは大変です。|opinion|media
+pre2|600|phrasal_verb|get over|乗り越える|I got over my cold.|風邪が治りました。|narration|health
+pre2|600|phrasal_verb|give back|返す|Please give back the key.|鍵を返してください。|instruction|hotel
+pre2|600|phrasal_verb|let ... down|…を失望させる|I don't want to let you down.|あなたをがっかりさせたくありません。|apology|emotion
+pre2|600|phrasal_verb|make up|作り上げる・埋め合わせる|I'll make up for it.|その埋め合わせをします。|apology|society
+pre2|600|phrasal_verb|set off|出発する|We set off at dawn.|夜明けに出発しました。|narration|travel
+pre2|600|phrasal_verb|stay up|夜更かしする|I stayed up late last night.|昨夜は遅くまで起きていました。|narration|body
+pre2|600|idiom|have a good point|もっともな点がある|You have a good point.|もっともです。|agreement|society
+pre2|600|idiom|in a hurry|急いで|I'm in a hurry. Can you be quick?|急いでいます。早くしてもらえますか。|request|transport
+pre2|600|idiom|on my way to|…へ行く途中|I'm on my way to the station.|駅へ向かっている途中です。|reporting|transport
+pre2|600|idiom|out of date|時代遅れの|This map is out of date.|この地図は古いです。|complaint|travel
+pre2|600|idiom|up to date|最新の|Our information is up to date.|情報は最新です。|description|media
+pre2|600|idiom|so far|今までのところ|So far, so good.|今のところ順調です。|reporting|abstract
+pre2|600|idiom|as usual|いつものように|The bus is late as usual.|バスはいつものように遅れています。|complaint|transport
+pre2|600|idiom|by the end of ...|…の終わりまでに|Please finish by the end of the day.|今日中に終えてください。|request|office
+pre2|600|idiom|from now on|今後は|From now on, I'll be careful.|今後は気をつけます。|apology|society
+pre2|600|idiom|all the time|いつも|He is on his phone all the time.|彼はいつも携帯を見ています。|complaint|technology
+pre2|600|idiom|sooner or later|遅かれ早かれ|Sooner or later, you'll get used to it.|遅かれ早かれ慣れますよ。|prediction|society
+pre2|600|idiom|first of all|まず第一に|First of all, thank you for coming.|まず、来てくださってありがとうございます。|sequencing|meetings
+pre2|600|idiom|as a result|その結果|As a result, sales went up.|その結果、売上が上がりました。|cause/effect|sales
+pre2|600|discourse|therefore|したがって|It rained all day. Therefore, the game was canceled.|一日中雨でした。したがって試合は中止です。|cause/effect|weather
+pre2|600|discourse|besides|その上|It's cheap. Besides, it's close.|安いです。その上近いです。|addition|shopping
+pre2|600|discourse|instead|代わりに|The shop was closed, so we went to the cafe instead.|店が閉まっていたので、代わりにカフェに行きました。|contrast|shopping
+pre2|600|discourse|otherwise|さもなければ|Hurry, otherwise you'll miss the bus.|急いで、さもないとバスに乗り遅れます。|condition|transport
+pre2|600|discourse|in conclusion|結論として|In conclusion, I think we should go.|結論として、行くべきだと思います。|summarizing|meetings
+pre2|600|discourse|on the whole|全体として|On the whole, the trip was good.|全体として、旅はよかったです。|summarizing|travel
+pre2|600|discourse|for one thing|一つには|For one thing, it's too far.|一つには、遠すぎます。|opinion|society
+pre2|600|discourse|in other words|言い換えれば|In other words, we have no time.|言い換えれば、時間がありません。|clarification|abstract
+pre2|600|discourse|unfortunately|残念ながら|Unfortunately, the room is full.|残念ながら満室です。|apology|hotel
+pre2|600|discourse|luckily|運よく|Luckily, we found a room.|運よく部屋が見つかりました。|narration|hotel
+pre2|600|discourse|meanwhile|その間に|Meanwhile, I'll buy the tickets.|その間に切符を買っておきます。|sequencing|transport
