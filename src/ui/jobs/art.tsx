@@ -19,6 +19,8 @@ export const BUILDINGS: Record<string, { x: number; y: number; w: number; h: num
   post: { x: 1236, y: 300, w: 170, h: 190 },
   office: { x: 1420, y: 210, w: 170, h: 280 },
   kitchen: { x: 1230, y: 610, w: 180, h: 170 },
+  news: { x: 1236, y: 14, w: 170, h: 180 },
+  clinic: { x: 1420, y: 14, w: 170, h: 180 },
   board: { x: 600, y: 396, w: 110, h: 100 },
   lot: { x: 1430, y: 620, w: 160, h: 160 },
 };
@@ -74,6 +76,8 @@ export function HubMapArt({ cells, temple, tint }: { cells: MapCell[]; temple: '
       <PostOfficeArt x={BUILDINGS.post.x} y={BUILDINGS.post.y} />
       <OfficeArt x={BUILDINGS.office.x} y={BUILDINGS.office.y} />
       <CanteenArt x={BUILDINGS.kitchen.x} y={BUILDINGS.kitchen.y} />
+      <NewsArt x={BUILDINGS.news.x} y={BUILDINGS.news.y} />
+      <ClinicArt x={BUILDINGS.clinic.x} y={BUILDINGS.clinic.y} />
       <BuildingLotArt x={BUILDINGS.lot.x} y={BUILDINGS.lot.y} />
     </g>
   );
@@ -175,6 +179,44 @@ function CanteenArt({ x, y }: { x: number; y: number }) {
   );
 }
 
+/** The newspaper office: grey stone, a sign band, tall windows and the presses' chimney. */
+function NewsArt({ x, y }: { x: number; y: number }) {
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <ellipse cx="85" cy="176" rx="90" ry="8" fill="#000" opacity="0.15" />
+      <rect x="14" y="40" width="142" height="136" fill="#d8d0c0" stroke="#4a463c" strokeWidth="3" />
+      <rect x="8" y="30" width="154" height="14" fill="#8a8478" stroke="#4a463c" strokeWidth="2.5" />
+      <rect x="30" y="52" width="110" height="24" fill="#2f3a52" stroke="#1a2030" strokeWidth="2" />
+      <text x="85" y="70" textAnchor="middle" fontSize="15" fontWeight="700" fill="#f6ecd2" style={{ fontFamily: 'var(--font-serif)' }}>
+        NEWS
+      </text>
+      {[0, 1, 2].map((c) => (
+        <rect key={c} x={26 + c * 42} y={90} width="28" height="40" fill="#a8c0d0" stroke="#4a463c" strokeWidth="1.5" />
+      ))}
+      <rect x="64" y="136" width="42" height="40" fill="#3a3a42" stroke="#1a1a20" strokeWidth="2.5" />
+      <rect x="120" y="6" width="16" height="26" fill="#6b6a64" stroke="#3a3a34" strokeWidth="2" />
+    </g>
+  );
+}
+
+/** The clinic: white walls, a green cross over the door, a ramp. */
+function ClinicArt({ x, y }: { x: number; y: number }) {
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <ellipse cx="85" cy="176" rx="90" ry="8" fill="#000" opacity="0.15" />
+      <rect x="14" y="46" width="142" height="130" fill="#f4f1e8" stroke="#4a463c" strokeWidth="3" />
+      <path d="M6 48 H164 L150 26 H20 Z" fill="#7aa88a" stroke="#34553f" strokeWidth="2.5" />
+      <g transform="translate(85 74)">
+        <circle r="20" fill="#fbf8f2" stroke="#34553f" strokeWidth="2.5" />
+        <path d="M-4 -12 h8 v8 h8 v8 h-8 v8 h-8 v-8 h-8 v-8 h8 Z" fill="#3d8a5a" />
+      </g>
+      <rect x="26" y="100" width="34" height="34" fill="#a8c8dc" stroke="#4a463c" strokeWidth="2" />
+      <rect x="110" y="100" width="34" height="34" fill="#a8c8dc" stroke="#4a463c" strokeWidth="2" />
+      <rect x="66" y="120" width="38" height="56" fill="#5e7a6a" stroke="#2a3a22" strokeWidth="2.5" />
+    </g>
+  );
+}
+
 function BuildingLotArt({ x, y }: { x: number; y: number }) {
   return (
     <g transform={`translate(${x} ${y})`} opacity="0.9">
@@ -209,6 +251,8 @@ export function BuildingFront({ id }: { id: string }) {
     office: ['-60 -6 290 296', <OfficeArt key="o" x={0} y={0} />],
     kitchen: ['-6 -46 200 230', <CanteenArt key="k" x={0} y={0} />],
     inn: ['-6 -4 190 178', <MapLandmarkArt key="i" lm="inn" x={0} y={0} temple="church" />],
+    news: ['-6 -4 190 190', <NewsArt key="n" x={0} y={0} />],
+    clinic: ['-6 -4 190 190', <ClinicArt key="c" x={0} y={0} />],
   };
   const [vb, art] = views[id] ?? ['0 0 120 112', <rect key="x" x="20" y="30" width="80" height="74" fill="#d8c8a8" stroke="#5a4430" strokeWidth="2" />];
   return (
@@ -222,8 +266,8 @@ export function BuildingFront({ id }: { id: string }) {
 
 export function JobBackdrop({ job, sky }: { job: string; sky: { top: string; bottom: string } }) {
   if (job === 'kitchen') return <KitchenBackdrop sky={sky} />;
-  if (job === 'office') return <OfficeBackdrop sky={sky} />;
-  if (job === 'inn') return <InnBackdrop sky={sky} />;
+  if (job === 'office' || job === 'news') return <OfficeBackdrop sky={sky} />;
+  if (job === 'inn' || job === 'clinic') return <InnBackdrop sky={sky} />;
   return <PostBackdrop sky={sky} />;
 }
 

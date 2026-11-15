@@ -1,6 +1,6 @@
 # 英語語彙データ（英検×TOEIC×分野）サマリー
 
-`vocab.json`（11,357 項目）の人間向け説明。**公式の語彙表は英検にもTOEICにも存在しないため、ここでの「級」「スコア帯」はすべて推定**。個人学習用ゲームの出題・難易度調整の目安としてのみ使うこと。
+`vocab.json`（11,514 項目）の人間向け説明。**公式の語彙表は英検にもTOEICにも存在しないため、ここでの「級」「スコア帯」はすべて推定**。個人学習用ゲームの出題・難易度調整の目安としてのみ使うこと。
 
 ## 1. ファイル
 - `vocab.json` : 本体。`{word,pos,eiken,toeic,cefr,ja,domains,freq}` の配列。`freq` は頻度順位（1=最頻。wordfreq由来の原形ベース、約4万語中）。
@@ -36,7 +36,7 @@
 
 ### 2.4 日本語訳（`ja`）
 - 下書き: EJDict-hand の語義から、品詞に合う語義だけを選び、強調訳語（『』）を優先して最大3語・約26字に短縮（`scripts/gloss.py`）。
-- 手書き: 5〜3級の大半、TOEIC頻出のTSL上位・BSL上位 約450語、EJDictに無い語・機能語・品詞が合わない語など、合計 2,745 項目（全体の24%）は、Claude が学習者向けに書いた訳（`overrides/gloss_*.txt`）。内訳（手書き項目数/その級の項目数）: 5級 603/666、4級 720/825、3級 634/1350、準2級 244/2187、2級 126/1299、準1級 138/1814、1級 280/3216。
+- 手書き: 5〜3級の大半、TOEIC頻出のTSL上位・BSL上位 約450語、EJDictに無い語・機能語・品詞が合わない語など、合計 2,745 項目（全体の24%）は、Claude が学習者向けに書いた訳（`overrides/gloss_*.txt`）。内訳（手書き項目数/その級の項目数）: 5級 603/666、4級 720/826、3級 634/1351、準2級 244/2188、2級 126/1308、準1級 138/1857、1級 280/3318。
 - 見直し: 5級〜2級は `review/out_a/b/c.tsv`、準1級・1級（約5,100項目）は `review/out_d.tsv`（訳語・分野の全件見直し。誤訳・奇妙な訳・品詞違いの修正、約160項目のノイズ見出し語＝派生副詞・分詞・接辞断片など＝の削除は `review/drop.txt`、品詞の付け替えは `review/pos.tsv`、分野タグだけの修正は `review/domains.tsv`）を `scripts/apply_review.py` が適用する。
 - 複数語見出し語: `ice cream` `post office` `check in` など日常・職場で必須の複合語・句動詞・定型表現（約245項目）は `overrides/additions.tsv` で追加（頻度順位は構成語の最も低頻度なものの1.5倍で代用）。
 - 見直し後も機械抽出の語義が残る項目はある（EJDictは古い語義・文語的語義を含む）。
@@ -59,12 +59,12 @@
 | 級 | 累積目標(語) | 項目数 | 累積項目数 | A1 | A2 | B1 | B2 | C1 | C2 |
 |---|---|---|---|---|---|---|---|---|---|
 | 5級 | 600 | 666 | 666 | 663 | 1 | 0 | 2 | 0 | 0 |
-| 4級 | 1,300 | 825 | 1,491 | 485 | 314 | 18 | 8 | 0 | 0 |
-| 3級 | 2,100 | 1350 | 2,841 | 52 | 898 | 343 | 57 | 0 | 0 |
-| 準2級 | 3,600 | 2187 | 5,028 | 3 | 269 | 1406 | 441 | 55 | 13 |
-| 2級 | 5,100 | 1299 | 6,327 | 0 | 5 | 647 | 533 | 92 | 22 |
-| 準1級 | 7,500 | 1814 | 8,141 | 0 | 0 | 124 | 1668 | 22 | 0 |
-| 1級 | 10,000〜15,000(目安) | 3216 | 11,357 | 0 | 0 | 0 | 844 | 1451 | 921 |
+| 4級 | 1,300 | 826 | 1,492 | 485 | 315 | 18 | 8 | 0 | 0 |
+| 3級 | 2,100 | 1351 | 2,843 | 52 | 899 | 343 | 57 | 0 | 0 |
+| 準2級 | 3,600 | 2188 | 5,031 | 3 | 269 | 1407 | 441 | 55 | 13 |
+| 2級 | 5,100 | 1308 | 6,339 | 0 | 5 | 654 | 535 | 92 | 22 |
+| 準1級 | 7,500 | 1857 | 8,196 | 0 | 0 | 124 | 1711 | 22 | 0 |
+| 1級 | 10,000〜15,000(目安) | 3318 | 11,514 | 0 | 0 | 0 | 846 | 1502 | 970 |
 
 ※ 目標は「語数」、こちらは品詞別項目数なので厳密には比較できない。1級は網羅ではなく中核（機械抽出が主）。
 
@@ -72,24 +72,24 @@
 | スコア帯 | 累積目標 | 項目数 | 累積項目数 |
 |---|---|---|---|
 | 〜400 | 1,500 | 1612 | 1,612 |
-| 〜500 | 2,500 | 1578 | 3,190 |
-| 〜600 | 3,500 | 1918 | 5,108 |
-| 〜730 | 5,000 | 1575 | 6,683 |
-| 〜860 | 6,800 | 1290 | 7,973 |
-| 〜990 | 8,800 | 1586 | 9,559 |
-| 対象外(null) | — | 1798 | 11,357 |
+| 〜500 | 2,500 | 1580 | 3,192 |
+| 〜600 | 3,500 | 1918 | 5,110 |
+| 〜730 | 5,000 | 1577 | 6,687 |
+| 〜860 | 6,800 | 1305 | 7,992 |
+| 〜990 | 8,800 | 1598 | 9,590 |
+| 対象外(null) | — | 1924 | 11,514 |
 
 ### 4.3 クロス集計（行=英検、列=TOEIC）
 | 英検＼TOEIC | 〜400 | 〜500 | 〜600 | 〜730 | 〜860 | 〜990 | 対象外(null) | 計 |
 |---|---|---|---|---|---|---|---|---|
 | 5級 | 666 | 0 | 0 | 0 | 0 | 0 | 0 | 666 |
-| 4級 | 462 | 363 | 0 | 0 | 0 | 0 | 0 | 825 |
-| 3級 | 233 | 530 | 582 | 5 | 0 | 0 | 0 | 1350 |
-| 準2級 | 139 | 419 | 868 | 678 | 72 | 11 | 0 | 2187 |
-| 2級 | 82 | 106 | 231 | 433 | 294 | 152 | 1 | 1299 |
-| 準1級 | 23 | 130 | 204 | 306 | 563 | 497 | 91 | 1814 |
-| 1級 | 7 | 30 | 33 | 153 | 361 | 926 | 1706 | 3216 |
-| 計 | 1612 | 1578 | 1918 | 1575 | 1290 | 1586 | 1798 | 11357 |
+| 4級 | 462 | 364 | 0 | 0 | 0 | 0 | 0 | 826 |
+| 3級 | 233 | 530 | 582 | 5 | 0 | 0 | 1 | 1351 |
+| 準2級 | 139 | 420 | 868 | 678 | 72 | 11 | 0 | 2188 |
+| 2級 | 82 | 106 | 231 | 434 | 295 | 152 | 8 | 1308 |
+| 準1級 | 23 | 130 | 204 | 307 | 570 | 498 | 125 | 1857 |
+| 1級 | 7 | 30 | 33 | 153 | 368 | 937 | 1790 | 3318 |
+| 計 | 1612 | 1580 | 1918 | 1577 | 1305 | 1598 | 1924 | 11514 |
 
 英検とTOEICは独立に割り当てているため、英検の上位級でもTOEICは低い帯になる語がある（準1級の48語、1級の9語が〜400）。逆に1級語の約半数（1,953語）はTOEIC対象外(null)。
 
@@ -135,80 +135,80 @@
 ### 5.1 英検の級別（項目数、複数タグを含むため合計は項目数を超える）
 | 分野 | 5級 | 4級 | 3級 | 準2級 | 2級 | 準1級 | 1級 |
 |---|---|---|---|---|---|---|---|
-| 食べ物・飲み物 | 21 | 65 | 72 | 105 | 58 | 21 | 27 |
+| 食べ物・飲み物 | 21 | 65 | 72 | 105 | 58 | 21 | 28 |
 | 調理・キッチン | 5 | 14 | 47 | 64 | 34 | 2 | 8 |
-| 健康・医療 | 11 | 32 | 70 | 123 | 88 | 52 | 94 |
-| 身体 | 19 | 22 | 34 | 72 | 46 | 38 | 54 |
-| 家族・人間関係 | 22 | 27 | 34 | 52 | 29 | 10 | 11 |
+| 健康・医療 | 11 | 32 | 70 | 123 | 93 | 83 | 146 |
+| 身体 | 19 | 22 | 34 | 72 | 46 | 41 | 61 |
+| 家族・人間関係 | 22 | 27 | 34 | 52 | 29 | 12 | 11 |
 | 学校・学習 | 29 | 59 | 107 | 123 | 76 | 12 | 15 |
 | 買い物・小売 | 25 | 43 | 63 | 89 | 24 | 6 | 6 |
 | お金・支払い | 13 | 15 | 28 | 56 | 42 | 6 | 1 |
 | 旅行・観光 | 22 | 56 | 78 | 92 | 55 | 6 | 13 |
 | 交通・乗り物 | 24 | 39 | 70 | 97 | 37 | 29 | 20 |
 | ホテル・飲食サービス | 23 | 33 | 68 | 63 | 28 | 7 | 6 |
-| 自然・地理 | 24 | 35 | 58 | 116 | 60 | 45 | 55 |
-| 動物 | 9 | 22 | 30 | 56 | 26 | 17 | 49 |
+| 自然・地理 | 24 | 35 | 58 | 116 | 60 | 45 | 59 |
+| 動物 | 9 | 22 | 30 | 56 | 27 | 18 | 51 |
 | 天気・気候 | 4 | 30 | 25 | 43 | 29 | 3 | 13 |
 | 農業・畜産 | 7 | 8 | 24 | 48 | 25 | 3 | 20 |
-| 海・漁業 | 4 | 7 | 27 | 52 | 39 | 9 | 15 |
+| 海・漁業 | 4 | 7 | 27 | 52 | 42 | 10 | 15 |
 | 工芸・道具・素材 | 9 | 14 | 35 | 114 | 64 | 16 | 26 |
 | 衣服・ファッション | 11 | 25 | 41 | 76 | 39 | 12 | 8 |
 | 住居・建築 | 28 | 48 | 62 | 127 | 42 | 27 | 45 |
-| 通信・コミュニケーション | 30 | 41 | 73 | 132 | 71 | 48 | 71 |
+| 通信・コミュニケーション | 30 | 41 | 73 | 132 | 71 | 48 | 73 |
 | オフィス・事務 | 17 | 30 | 66 | 130 | 75 | 23 | 28 |
 | 会議・プレゼン | 5 | 11 | 24 | 61 | 51 | 5 | 7 |
 | 営業・マーケティング | 2 | 11 | 20 | 81 | 55 | 10 | 19 |
-| 財務・会計 | 1 | 8 | 20 | 99 | 89 | 46 | 75 |
+| 財務・会計 | 1 | 8 | 20 | 99 | 89 | 49 | 79 |
 | 人事・雇用 | 3 | 8 | 27 | 90 | 72 | 11 | 32 |
 | 製造・物流 | 5 | 11 | 22 | 125 | 51 | 17 | 15 |
-| 法律・契約 | 5 | 17 | 40 | 125 | 101 | 91 | 85 |
-| 技術・IT | 6 | 13 | 51 | 100 | 36 | 59 | 43 |
-| 科学・学術 | 1 | 20 | 44 | 128 | 93 | 48 | 138 |
+| 法律・契約 | 5 | 17 | 40 | 126 | 101 | 91 | 94 |
+| 技術・IT | 6 | 13 | 51 | 100 | 36 | 59 | 45 |
+| 科学・学術 | 1 | 20 | 44 | 128 | 93 | 49 | 142 |
 | メディア・報道 | 7 | 27 | 26 | 83 | 40 | 21 | 24 |
-| 芸術・娯楽 | 16 | 48 | 82 | 97 | 69 | 54 | 93 |
-| スポーツ・運動 | 14 | 43 | 74 | 91 | 61 | 28 | 37 |
-| 感情・性格 | 8 | 31 | 85 | 160 | 139 | 50 | 158 |
-| 社会・政治 | 17 | 43 | 63 | 219 | 163 | 167 | 101 |
-| 抽象・機能語 | 381 | 213 | 278 | 303 | 131 | 950 | 1898 |
+| 芸術・娯楽 | 16 | 49 | 82 | 97 | 69 | 54 | 93 |
+| スポーツ・運動 | 14 | 43 | 74 | 91 | 61 | 28 | 38 |
+| 感情・性格 | 8 | 31 | 85 | 160 | 139 | 50 | 160 |
+| 社会・政治 | 17 | 43 | 63 | 219 | 163 | 167 | 110 |
+| 抽象・機能語 | 381 | 213 | 279 | 303 | 131 | 951 | 1901 |
 
 ### 5.2 TOEICの帯別
 | 分野 | 〜400 | 〜500 | 〜600 | 〜730 | 〜860 | 〜990 | 対象外(null) |
 |---|---|---|---|---|---|---|---|
-| 食べ物・飲み物 | 34 | 99 | 80 | 85 | 39 | 19 | 13 |
+| 食べ物・飲み物 | 34 | 99 | 80 | 85 | 39 | 19 | 14 |
 | 調理・キッチン | 13 | 50 | 48 | 39 | 15 | 8 | 1 |
-| 健康・医療 | 41 | 83 | 101 | 70 | 42 | 84 | 49 |
-| 身体 | 36 | 37 | 49 | 41 | 43 | 48 | 31 |
-| 家族・人間関係 | 35 | 43 | 40 | 30 | 14 | 16 | 7 |
+| 健康・医療 | 41 | 83 | 101 | 72 | 50 | 87 | 124 |
+| 身体 | 36 | 37 | 49 | 41 | 43 | 48 | 41 |
+| 家族・人間関係 | 35 | 43 | 40 | 30 | 15 | 16 | 8 |
 | 学校・学習 | 91 | 108 | 104 | 69 | 19 | 18 | 12 |
 | 買い物・小売 | 72 | 78 | 63 | 32 | 6 | 2 | 3 |
 | お金・支払い | 31 | 45 | 40 | 33 | 7 | 4 | 1 |
 | 旅行・観光 | 81 | 86 | 75 | 37 | 22 | 12 | 9 |
 | 交通・乗り物 | 61 | 90 | 91 | 37 | 12 | 20 | 5 |
 | ホテル・飲食サービス | 49 | 84 | 50 | 27 | 9 | 5 | 4 |
-| 自然・地理 | 55 | 45 | 82 | 76 | 48 | 63 | 24 |
-| 動物 | 12 | 28 | 44 | 47 | 18 | 29 | 31 |
+| 自然・地理 | 55 | 45 | 82 | 76 | 48 | 63 | 28 |
+| 動物 | 12 | 28 | 44 | 47 | 18 | 29 | 35 |
 | 天気・気候 | 19 | 31 | 36 | 26 | 14 | 10 | 11 |
 | 農業・畜産 | 13 | 15 | 27 | 43 | 8 | 20 | 9 |
-| 海・漁業 | 9 | 23 | 42 | 40 | 20 | 12 | 7 |
+| 海・漁業 | 9 | 23 | 42 | 40 | 20 | 12 | 11 |
 | 工芸・道具・素材 | 27 | 44 | 75 | 74 | 28 | 25 | 5 |
 | 衣服・ファッション | 25 | 54 | 44 | 55 | 24 | 7 | 3 |
 | 住居・建築 | 54 | 79 | 105 | 65 | 26 | 29 | 21 |
-| 通信・コミュニケーション | 70 | 110 | 101 | 71 | 41 | 28 | 45 |
+| 通信・コミュニケーション | 70 | 110 | 101 | 71 | 41 | 28 | 47 |
 | オフィス・事務 | 70 | 119 | 79 | 69 | 17 | 8 | 7 |
 | 会議・プレゼン | 29 | 43 | 41 | 31 | 14 | 3 | 3 |
 | 営業・マーケティング | 24 | 60 | 55 | 36 | 13 | 7 | 3 |
-| 財務・会計 | 43 | 56 | 69 | 80 | 65 | 16 | 9 |
+| 財務・会計 | 43 | 56 | 69 | 80 | 68 | 20 | 9 |
 | 人事・雇用 | 26 | 53 | 74 | 53 | 21 | 11 | 5 |
 | 製造・物流 | 26 | 57 | 84 | 48 | 16 | 9 | 6 |
-| 法律・契約 | 58 | 90 | 111 | 81 | 48 | 60 | 16 |
-| 技術・IT | 36 | 87 | 77 | 41 | 22 | 28 | 17 |
-| 科学・学術 | 26 | 64 | 85 | 91 | 58 | 77 | 71 |
+| 法律・契約 | 58 | 91 | 111 | 81 | 48 | 61 | 24 |
+| 技術・IT | 36 | 87 | 77 | 41 | 22 | 29 | 18 |
+| 科学・学術 | 26 | 64 | 85 | 91 | 58 | 77 | 76 |
 | メディア・報道 | 42 | 62 | 49 | 27 | 21 | 17 | 10 |
-| 芸術・娯楽 | 59 | 62 | 105 | 58 | 61 | 55 | 59 |
-| スポーツ・運動 | 72 | 66 | 82 | 42 | 45 | 19 | 22 |
-| 感情・性格 | 49 | 74 | 133 | 83 | 93 | 99 | 100 |
-| 社会・政治 | 103 | 120 | 176 | 134 | 114 | 101 | 25 |
-| 抽象・機能語 | 708 | 234 | 386 | 383 | 494 | 768 | 1181 |
+| 芸術・娯楽 | 59 | 63 | 105 | 58 | 61 | 55 | 59 |
+| スポーツ・運動 | 72 | 66 | 82 | 42 | 45 | 19 | 23 |
+| 感情・性格 | 49 | 74 | 133 | 83 | 93 | 99 | 102 |
+| 社会・政治 | 103 | 120 | 176 | 134 | 115 | 103 | 31 |
+| 抽象・機能語 | 708 | 234 | 386 | 383 | 496 | 769 | 1183 |
 
 読み取りの目安: 5〜4級は food/body/family/school/animals/clothing など生活語、3〜準2級で travel/health/money/hotel/emotion、2級以上で law/finance/science/society/technology が増える。TOEIC 500〜860帯で office/meetings/sales/finance/hr/manufacturing が目立つ（TSL/BSL重み付けの効果）。
 
@@ -216,44 +216,44 @@
 ### 英検5級（666項目）
 I（代）私は；私が、will（助）～するだろう；～するつもり、they（代）彼ら；彼女ら；それら、when（接）～のとき、know（動）知っている；分かる、want（動）ほしい；～したい、day（名）日；昼間、these（限）これらの、man（名）男の人；人間、game（名）ゲーム；試合、through（前）～を通って；～を通して、house（名）家；住宅、old（形）古い；年をとった；～歳の、group（名）グループ；集団、must（助）～しなければならない；～にちがいない、free（形）自由な；無料の；暇な、job（名）仕事；職、break（動）壊す；壊れる；折る、player（名）選手；演奏者、white（形）白い、mind（名）心；考え、age（名）年齢；時代、news（名）ニュース；知らせ、often（副）よく；しばしば、rule（名）規則；ルール、short（副）短く；急に、red（形）赤い、match（名）試合；マッチ、king（名）王、key（形）重要な、phone number（名）電話番号、coach（名）コーチ；長距離バス、sister（名）姉；妹、hotel（名）ホテル、cook（名）料理人；コック、nine（数）9、bottle（名）びん、meal（名）食事、eleven（数）11、is（動）～です；～にある（beの3人称単数）
 
-### 英検4級（825項目）
-other（代）ほかのもの、try（動）やってみる；試す、point（動）指さす、country（名）国；田舎、seem（動）～に見える；～のようだ、though（接）～だけれども、drive（動）運転する；追いやる、information（名）情報、several（代）いくつか、north（名）北、value（名）価値、drop（名）しずく；低下、catch（名）捕まえること；つかまえた物、explain（動）説明する、gold（名）金、usually（副）たいてい；普通は、clean（動）掃除する；きれいにする、foreign（形）外国の、wind（名）風、direction（名）方向；指示、blow（動）吹く；吹き飛ばす、sweet（形）甘い；かわいい、fat（形）太った、celebrate（動）祝う、holiday（名）休日；休暇、tea（名）お茶、smell（名）におい；嗅覚、concert（名）コンサート；演奏会、pleasure（名）喜び；楽しみ、dig（名）掘ること、chocolate（名）チョコレート、theater（名）劇場；映画館、snake（名）ヘビ、beef（名）牛肉、eighth（形）8分の1の、grandma（名）おばあちゃん、grape（名）ブドウ、notebook（名）ノート、interviewer（名）面接官；インタビュアー、thanks（名）感謝；ありがとう
+### 英検4級（826項目）
+other（代）ほかのもの、try（動）やってみる；試す、point（動）指さす、country（名）国；田舎、seem（動）～に見える；～のようだ、though（接）～だけれども、shoot（動）撃つ；撮影する、information（名）情報、several（代）いくつか、north（名）北、value（名）価値、forget（動）忘れる、catch（名）捕まえること；つかまえた物、explain（動）説明する、unit（名）単位；部署、usually（副）たいてい；普通は、color（名）色、foreign（形）外国の、wind（名）風、sing（動）歌う、blow（動）吹く；吹き飛ばす、sweet（名）甘い菓子、lock（名）錠；鍵、celebrate（動）祝う、kiss（名）キス、tea（名）お茶、topic（名）話題；トピック、cloud（名）雲、pleasure（名）喜び；楽しみ、princess（名）王女；お姫様、temple（名）寺；神殿；こめかみ、desk（名）机、snake（名）ヘビ、menu（名）メニュー；献立、eighth（形）8分の1の、grandma（名）おばあちゃん、grape（名）ブドウ、notebook（名）ノート、interviewer（名）面接官；インタビュアー、thanks（名）感謝；ありがとう
 
-### 英検3級（1,350項目）
-while（名）しばらくの間、record（名）記録；レコード、bank（動）預金する、single room（名）シングルルーム、likely（形）ありそうな、according to（前）〜によると、represent（動）代表する；表す、count（動）数える；重要である、strike（名）ストライキ；打撃、nature（名）自然；性質、discover（動）発見する、slow（動）遅くする；遅くなる、worse（副）もっと悪く、switch（名）スイッチ；切り替え、silver（名）銀、appearance（名）外見；出現、branch（名）枝；支店、chemical（形）化学の、repair（動）修繕する；償う；回復する、expression（名）表現；表情、visitor（名）訪問者、complaint（名）不平；苦情、nearby（副）近くに、kit（名）道具一式；キット、pan（名）平なべ；フライパン、robot（名）ロボット、automatic（形）自動の、brake（名）ブレーキ、handsome（形）ハンサムな、basket（名）かご、ant（名）アリ、fitness center（名）フィットネスセンター、wool（名）羊毛；ウール、scarf（名）スカーフ；マフラー、granny（名）おばあちゃん、timetable（名）時刻表；時間割、seventeenth（形）17分の1の、faraway（形）遠い、hiking（名）ハイキング、scissors（名）はさみ
+### 英検3級（1,351項目）
+while（名）しばらくの間、record（名）記録；レコード、bank（動）預金する、single room（名）シングルルーム、likely（形）ありそうな、according to（前）〜によると、represent（動）代表する；表す、count（動）数える；重要である、agency（名）代理店；機関、nature（名）自然；性質、discover（動）発見する、slow（動）遅くする；遅くなる、square（形）正方形の；四角い、switch（名）スイッチ；切り替え、silver（名）銀、appearance（名）外見；出現、assistant（名）助手；店員、gate（名）門；ゲート、repair（動）修繕する；償う；回復する、expression（名）表現；表情、comic（名）漫画；コメディアン、killer（名）殺人者、nearby（副）近くに、kit（名）道具一式；キット、alarm（名）警報；目覚まし；不安、entrance（名）入口；入場、jean（名）ジーン布；ジーパン、brake（名）ブレーキ、lamp（名）照明；ランプ、passport（名）パスポート、feather（名）羽、fitness center（名）フィットネスセンター、bulb（名）電球；球根、loudly（副）大声で；大きな音で、weather forecast（名）天気予報、sore throat（名）のどの痛み、sweatshirt（名）綿ジャージーの長袖のTシャツ、schoolteacher（名）先生；学校教師、hiking（名）ハイキング、scissors（名）はさみ
 
-### 英検準2級（2,187項目）
-film（動）撮影する；映画化する、hate（名）憎しみ；憎悪、access（名）接近；利用する権利；アクセス、positive（形）前向きな；肯定的な；陽性の、facility（名）施設；設備；容易さ、otherwise（副）さもなければ；そうでなければ；別のやり方で、critical（形）批判的な；重大な；危篤の、bowl（動）投球する；ボウリングをする、conservative（形）保守的な；控えめな、era（名）時代；紀元、bless（動）祝福する；恵みを授ける、maximum（名）最大限；最高、navy（名）海軍、acknowledge（動）認める；受領を知らせる、advocate（動）主張する；擁護する、buddy（名）仲間；相棒、amendment（名）修正；改正、currency（名）通貨；流通、buyer（名）買い手；仕入れ係、poet（名）詩人、detective（名）刑事；探偵、occupation（名）職業；占領、spill（動）こぼす；こぼれる、compliment（名）褒め言葉；賛辞、decorate（動）飾る；に装飾する、slim（形）ほっそりした；わずかな、catalog（名）目録、postpone（動）延期する、wheelchair（名）車いす、perfume（名）香水；香り、pigeon（名）ハト；だまされやすい人、earring（名）イヤリング、fashionable（形）流行の、sandal（名）サンダル、attic（名）屋根裏部屋、handkerchief（名）ハンカチ；ネッカチーフ、unsatisfactory（形）不満足な；不十分な、ladle（名）おたま、fighting（名）戦闘；好戦的な 戦い、experienced（形）経験を積んだ
+### 英検準2級（2,188項目）
+film（動）撮影する；映画化する、hate（名）憎しみ；憎悪、access（名）接近；利用する権利；アクセス、positive（形）前向きな；肯定的な；陽性の、facility（名）施設；設備；容易さ、otherwise（副）さもなければ；そうでなければ；別のやり方で、critical（形）批判的な；重大な；危篤の、bowl（動）投球する；ボウリングをする、conservative（形）保守的な；控えめな、fox（名）キツネ；ずる賢い人、bless（動）祝福する；恵みを授ける、maximum（名）最大限；最高、convention（名）大会；慣習；協定、acknowledge（動）認める；受領を知らせる、advocate（動）主張する；擁護する、salary（名）給料、amendment（名）修正；改正、shore（名）岸、buyer（名）買い手；仕入れ係、cruise（名）クルーズ；船旅、detective（名）刑事；探偵、acceptable（形）受け入れられる；許容できる、useless（形）役に立たない、compliment（名）褒め言葉；賛辞、spice（名）香辛料；スパイス、slim（形）ほっそりした；わずかな、catalog（名）目録、knit（動）編む、wheelchair（名）車いす、perfume（名）香水；香り、villager（名）村人、earring（名）イヤリング、fashionable（形）流行の、sandal（名）サンダル、attic（名）屋根裏部屋、handkerchief（名）ハンカチ；ネッカチーフ、unsatisfactory（形）不満足な；不十分な、ladle（名）おたま、fighting（名）戦闘；好戦的な 戦い、experienced（形）経験を積んだ
 
-### 英検2級（1,299項目）
-issue（動）発行する；出す、stuff（動）詰める；詰め込む、lack（動）欠けている；不足している、spread（動）広げる；塗る；広まる、actual（形）実際の；現実の、tough（形）丈夫な；頑丈な；厳しい、job opening（名）求人；欠員、experiment（動）実験する、creation（名）創造；創作品、transition（名）移行；変わり目、moral（形）道徳的な、activist（名）活動家、nerve（名）神経；度胸、franchise（名）フランチャイズ；営業権、weakness（名）弱さ；弱点、unlikely（形）ありそうもない、patrol（名）巡回；パトロール、liability（名）負債；責任、bare（形）裸の；むき出しの；空の、arch（名）アーチ；土踏まず、orbit（名）軌道、tempt（動）誘惑する；その気にさせる、devastate（動）荒廃させる；打ちのめす、tragic（形）悲劇的な、traditionally（副）伝統的に、hatch（名）昇降口；ふ化、junction（名）結合；連絡駅、countless（形）数えきれない、undergraduate（名）大学生；学部在学生、mankind（名）人類、steadily（副）着実に、eternity（名）永遠、comet（名）彗星、swarm（名）群れ、oppress（動）虐げる、dazzle（名）まばゆい光、pebble（名）小石、reimburse（動）払い戻す、receivable（形）受け取るべき、semicolon（名）セミコロン
+### 英検2級（1,308項目）
+issue（動）発行する；出す、stuff（動）詰める；詰め込む、launch（名）進水；発進；ランチ、executive（形）経営の；実行の、species（名）種、flat（副）ぴったり；きっかり；平らに、equal（名）同等の人；対等なもの、specifically（副）特に；具体的に、flash（名）閃光；フラッシュ；一瞬、carbon（名）炭素、urge（動）促す；強く勧める、dump（名）ごみ捨て場；ごみの山、lately（副）最近、increasingly（副）ますます、verse（動）詩にする；(米口語)〜と対戦する、bleed（動）出血する、publicly（副）公に、considerable（形）かなりの、briefly（副）手短に；簡単に、emphasis（名）強調；重点、curriculum（名）教科課程、availability（名）利用できること；有用性、wizard（形）すばらしい(口語)、probability（名）確率；見込み、certification（名）証明；保証、enthusiasm（名）熱意、attain（動）達成する、reef（名）岩礁；サンゴ礁、sip（動）ちびちび飲む、systematic（形）体系的な、sparkle（名）きらめき、warranty（名）保証；保証書、hardship（名）苦難、orchard（名）果樹園、genetically（副）遺伝的に、limp（動）足を引きずる、salsa（名）サルサ（音楽・ソース）、itinerary（名）旅程；旅行日程、hoe（名）くわ、bent（形）曲がった；(英俗)不正な
 
-### 英検準1級（1,814項目）
-presidential（形）大統領の；会長の、concrete（形）具体的な；コンクリート製の、rebel（動）反逆する；反抗する、bias（名）偏見；先入観；偏り、constitutional（形）憲法上の；体質的な、involvement（名）関連；関与、scout（動）偵察する；探し回る、backup（名）予備；バックアップ；支援、classification（名）分類、humble（形）謙虚な；質素な；身分の低い、parliamentary（形）議会の；議会に関する、intensity（名）強さ；激しさ、potter（名）陶工、touchdown（名）タッチダウン；着陸、pee（動）おしっこをする、grief（名）深い悲しみ、politically（副）政治的に、stitch（名）縫い目；一針、landmark（名）目印；ランドマーク；画期的な出来事、inmate（名）入所者；受刑者；入院患者、coincidence（名）偶然の一致、surge（名）急増；高まり；大波、armor（名）鎧；装甲、vine（名）つる；ブドウの木、antenna（名）アンテナ；触角、litigation（名）訴訟、excel（動）優れる；秀でる、horizontal（形）水平の；横の、slash（名）スラッシュ（/）；切りつけ；切り傷、gateway（名）入り口；玄関口；ゲートウェイ、behavioral（形）行動の；行動に関する、reprint（名）増刷；復刻版；再版、respiratory（形）呼吸の、vanity（名）虚栄心；うぬぼれ；むなしさ、potent（形）強力な；効き目のある、startle（動）驚かせる；はっとさせる、needless（形）不必要な、cinnamon（名）シナモン、bravely（副）勇敢に、windsurfing（名）ウインドサーフィン
+### 英検準1級（1,857項目）
+opponent（名）相手；対戦相手；反対者、provision（名）供給；備え；規定条項、cash flow（名）キャッシュフロー、heritage（名）遺産；伝統、correspond（動）一致する；対応する；文通する、prompt（形）迅速な；時間通りの、hilarious（形）とてもおかしい；こっけいな、formerly（副）以前は、interface（名）接点；インターフェース、tender（形）柔らかい；優しい；痛みやすい、clash（名）衝突；対立、neglect（名）放置；怠慢；無視、mandatory（形）義務的な；必須の、terminate（動）終了させる；解雇する；終わる、suspicious（形）疑わしい；疑い深い、disclosure（名）開示；暴露、projection（名）予測；投影；突出、spite（名）悪意；意地悪、limb（名）手足；大枝、stark（形）荒涼とした；まったくの；あからさまな、enact（動）制定する；演じる、renewable（形）再生可能な；更新できる、plasma（名）血漿；プラズマ、documentation（名）文書化；資料；証拠書類、hedge（名）生け垣；リスク回避策、intercept（動）途中で奪う；傍受する、safeguard（動）保護する；守る、revolve（動）回転する；公転する、carnival（名）カーニバル；謝肉祭、epidemic（名）流行病；伝染病；蔓延、cling（動）しがみつく；固執する、comb（動）くしでとかす；くまなく捜す、thickness（名）厚さ；太さ、sniff（動）においをかぐ；鼻をすする、caravan（名）隊商；キャラバン；トレーラーハウス、gradual（形）徐々の；段階的な、outward（形）外側の；外向きの、unfairly（副）不公平に、jellyfish（名）クラゲ、marked（形）顕著な；目立つ
 
-### 英検1級（3,216項目）
-charter（動）チャーターする；貸し切る、plague（動）悩ませる；苦しめる、buffer（名）緩衝材；緩衝地帯；バッファー、cutter（名）カッター；切る人；小型帆船、slack（動）さぼる；緩める、excerpt（名）抜粋；引用、extremist（名）過激派；極端論者、recur（動）再発する；繰り返し起こる、footprint（名）足跡；占有面積；環境負荷、syndicate（名）企業連合；シンジケート；配信組織、uplift（動）持ち上げる；高揚させる、perpetual（形）永続的な；絶え間ない、emulate（動）見習う；張り合う；エミュレートする、anthology（名）アンソロジー；選集、fabrication（名）製作；捏造、tedious（形）退屈な；うんざりする、consultancy（名）コンサルティング会社；コンサルティング、repertoire（名）レパートリー；上演曲目、posh（形）高級な；上流階級の、ammonia（名）アンモニア、temperate（形）温暖な；穏やかな；節度のある、incision（名）切開；切り込み、bony（形）骨ばった；骨の、unfavorable（形）不利な；好ましくない、glean（動）少しずつ集める；落ち穂拾いをする、abundantly（副）豊富に；十分に、proliferate（動）急増する；拡散する、fluency（名）流暢さ、contraption（名）妙な仕掛け；奇妙な装置、landlady（名）女性の家主；女将、punctual（形）時間に正確な、unconcerned（形）無関心な；気にしない、abhor（動）ひどく嫌う；忌み嫌う、subjunctive（名）仮定法、settee（名）長椅子；ソファ、bidding（名）入札；競り；命令、inchoate（形）初期の；未完成の、proscribe（動）禁止する、considering（接）〜を考えると、microorganism（名）微生物
+### 英検1級（3,318項目）
+charter（名）憲章；貸切；特許状、hostile（形）敵意のある；敵対的な、batter（動）何度も強く打つ；打ちのめす、designation（名）指定；名称；肩書、retention（名）保持；維持；定着、credential（名）資格；信任状；認証情報、crust（名）パンの皮；地殻；固い外層、systemic（形）全身の；体系的な；組織全体の、volatile（形）不安定な；揮発性の；変わりやすい、procurement（名）調達；購買、legitimacy（名）正当性；合法性、degradation（名）劣化；品位の低下、apprenticeship（名）見習い期間；徒弟制度、discrepancy（名）食い違い；矛盾、relegate（動）格下げする；追いやる、adventurous（形）冒険好きな；大胆な、deprivation（名）剥奪；欠乏、approximation（名）近似；概算、adversity（名）逆境；災難、gleam（名）きらめき；微かな光、thyroid（名）甲状腺、honk（名）クラクションの音；ガンの鳴き声、mistreat（動）虐待する；粗末に扱う、magpie（名）カササギ、diligently（副）勤勉に；入念に、pleasurable（形）楽しい；心地よい、forfeiture（名）没収；喪失、behest（名）命令；要請、docile（形）従順な；扱いやすい、papaya（名）パパイヤ、anesthetic（名）麻酔薬；麻酔、homeward（副）家へ向かって、verandah（名）ベランダ；縁側、furor（名）大騒ぎ；熱狂；激しい抗議、menacingly（副）威嚇するように、adopted（形）養子の；採用された、haunting（形）忘れがたい；心に残る、possessed（形）取りつかれた；所有している、confabulate（動）雑談する；作り話をする、microorganism（名）微生物
 
 ### TOEIC 〜400（1,612項目）
 on（副）上に；続けて；身につけて、like（接）～のように、how（副）どのように；どれくらい、after（接）～したあとで、very（形）まさにその；ほんの、mean（動）意味する；～のつもりで言う、same（代）同じこと；同じもの、point（動）指さす、open（動）開ける；開く、hand（動）手渡す、party（名）パーティー；政党；一行、today（副）今日は；現在は、national（形）国の；全国的な、kid（動）からかう；冗談を言う、whole（名）全体；全部、experience（動）経験する、half（副）半分；なかば、account（名）口座；説明；勘定、bear（動）耐える；産む、moment（名）瞬間；ちょっとの間、park（動）駐車する、quite（副）かなり；まったく、fund（動）資金を出す、article（名）記事；品物；条項、stage（名）舞台；段階、likely（形）ありそうな、cross（名）十字；十字架、ball（名）ボール；球、hospital（名）病院、respect（名）尊敬；点、file（名）ファイル；書類、bar（動）閉ざす；妨げる；禁止する、Internet（名）インターネット、wow（間）わあ；すごい、flower（名）花、hello（名）こんにちは、Wednesday（名）水曜日、drill（動）穴をあける；反復練習させる、eighth（形）8分の1の、had（動）持っていた（haveの過去形）
 
-### TOEIC 〜500（1,578項目）
-focus（名）焦点；中心、hurt（形）傷ついた；痛む、option（名）選択肢；オプション、interview（動）面接する；取材する、request（名）要求；依頼、certainly（副）確かに、additional（形）追加の、transfer（動）移す；乗り換える；送金する、reference（名）参照；言及；推薦状、collect（動）集める、rank（名）階級；順位；地位、glad（形）うれしい、stress（名）ストレス；緊張；強調、dry（動）乾かす；乾く、boss（名）上司；ボス、feed（名）えさ、organize（動）整理する；組織する、lane（名）車線；小道、quit（動）やめる；退職する、cheat（動）だます；不正をする、arrangement（名）配置；手配；取り決め、developer（名）開発者；宅地開発業者、pan（名）平なべ；フライパン、foster（動）育成する；促進する；里親として育てる、presentation（名）発表；プレゼン、flee（動）逃げる；逃走する、bee（名）ハチ、cease（動）やむ；やめる、utilize（動）利用する；活用する、casual（形）カジュアルな；気軽な、salad（名）サラダ、keyboard（名）キーボード；鍵盤、headache（名）頭痛、innovative（形）革新的な、pencil（名）鉛筆、carrot（名）ニンジン、bakery（名）パン屋、restroom（名）手洗所、data（名）資料、relaxing（形）リラックスさせる；心地よい
+### TOEIC 〜500（1,580項目）
+focus（名）焦点；中心、hurt（形）傷ついた；痛む、option（名）選択肢；オプション、interview（動）面接する；取材する、request（名）要求；依頼、completely（副）完全に、additional（形）追加の、transfer（名）移動；乗り換え；転勤、reference（名）参照；言及；推薦状、civil（形）市民の；民間の；礼儀正しい、rank（名）階級；順位；地位、overall（形）全体の；総合的な、stress（名）ストレス；緊張；強調、post box（名）郵便ポスト、boss（名）上司；ボス、feed（動）食べ物を与える；養う、cap（名）帽子、stadium（名）競技場、republic（名）共和国；共和制、golf（名）ゴルフ、athlete（名）競技者；運動家、sacrifice（名）犠牲；いけにえ、offensive（形）不快な；攻撃の、airline（名）航空会社、borrow（動）借りる、flee（動）逃げる；逃走する、fire truck（名）消防車、cease（動）やむ；やめる、invasion（名）侵略；侵入、casual（形）カジュアルな；気軽な、vulnerable（形）傷つきやすい；脆弱な、keyboard（名）キーボード；鍵盤、urgent（形）緊急の、innovative（形）革新的な、elevator（名）エレベーター、carrot（名）ニンジン、bakery（名）パン屋、restroom（名）手洗所、data（名）資料、relaxing（形）リラックスさせる；心地よい
 
 ### TOEIC 〜600（1,918項目）
 awesome（形）すごい；畏敬の念を起こさせる、northern（形）北の；北部の、witness（名）目撃者；証人、failure（名）失敗；故障、remind（動）思い出させる、evil（形）邪悪な；不吉な、split（形）分かれた、possibility（名）可能性、golden（形）金色の；金の、incredible（形）信じられない；すばらしい、format（名）形式；体裁；書式、outcome（名）結果、desert（名）砂漠、crop（名）作物；収穫物、fence（名）柵；フェンス、leather（名）皮革、psychology（名）心理学、tourism（名）観光、rubber（名）ゴム；消しゴム、hurricane（名）ハリケーン；大旋風；激発、congressional（形）議会の；国会の、partial（形）部分的な；不公平な、hazard（動）思い切って言う；危険にさらす、electoral（形）選挙の、dislike（動）嫌う、trustee（名）受託者；理事；評議員、coup（名）クーデター；大成功、merchandise（名）商品、tutorial（名）個人指導時間、regulator（名）規制当局；調整器、fragile（形）壊れやすい；虚弱な；はかない、programmer（名）プログラムを作る人；プログラマー、sunglasses（名）サングラス、shampoo（名）シャンプー、sunflower（名）ヒマワリ、hairdresser（名）美容師、worksheet（名）作業票；検討事項の下書き用紙、sailing（名）帆走；ヨット；航海、climbing（名）登山；ロッククライミング、encouraging（形）元気付ける
 
-### TOEIC 〜730（1,575項目）
-bank statement（名）銀行取引明細書、relative（名）親戚；親類、solo（名）ソロ；独奏、trail（動）引きずる；あとをつける；負けている、flash（動）ぱっと光る；さっと見せる、gap（名）すき間；隔たり、preserve（動）保存する；守る、initiative（名）主導権；新たな取り組み；自発性、rid（動）取り除く（get rid of）、uniform（形）均一な；一定の、anxiety（名）不安；心配、emergency room（名）救急治療室、finding（名）調査結果；発見、similarly（副）同様に、sheriff（名）保安官、jungle（名）ジャングル、prop（動）支える；立てかける、importantly（副）重要なことに；もったいぶって、triumph（名）勝利、rebound（名）跳ね返り；リバウンド、antique（名）骨董品；アンティーク、contributor（名）寄付者；貢献者；寄稿者、tenure（名）在職期間；終身在職権；保有、viable（形）実行可能な；生存可能な、alley（名）小路；路地；小道、crab（名）カニ；気むずかし屋、lime（名）石灰；鳥もち；ボダイジュ、informal（形）非公式の；くだけた、desirable（形）望ましい；好ましい、stabilize（動）安定させる；安定する、reassure（動）安心させる、youngster（名）青年、customize（動）カスタマイズする；注文に応じて作る、flute（名）フルート、unreal（形）非現実的な；現実離れした、broom（名）ほうき；エニシダ、pallet（名）わらぶとん；粗末な寝床；へら、saucer（名）受け皿、underpants（名）パンツ；ズボン下、ferryboat（名）渡し船；連絡船
+### TOEIC 〜730（1,577項目）
+bank statement（名）銀行取引明細書、compete（動）競う；競争する、solo（名）ソロ；独奏、trail（動）引きずる；あとをつける；負けている、revolution（名）革命；回転、gap（名）すき間；隔たり、preserve（動）保存する；守る、advocate（動）主張する；擁護する、rid（動）取り除く（get rid of）、uniform（形）均一な；一定の、impressive（形）印象的な；見事な、stare（動）じっと見つめる、finding（名）調査結果；発見、surgeon（名）外科医、bulk（名）かさばっていること；大部分；ばら荷、jungle（名）ジャングル、prop（名）支柱；小道具、suspicious（形）疑わしい；疑い深い、triumph（名）勝利、peel（名）皮、antique（形）骨董の；古風な、attain（動）達成する、ecosystem（名）生態系、prototype（名）原型；典型、gossip（動）噂話をする、proposition（名）提案；主張；命題、accountable（形）説明責任のある；責任を負う、optimistic（形）楽観的な、governmental（形）政府の；行政の、comb（動）くしでとかす；くまなく捜す、hygiene（名）衛生、referral（名）紹介；照会；紹介状、unload（動）の積み荷を降ろす；から弾丸を抜く；口にする、tuna（名）マグロ、malfunction（動）故障する、infer（動）推論する；推察する、dishwasher（名）皿洗い、suffix（名）接尾辞、underpants（名）パンツ；ズボン下、ferryboat（名）渡し船；連絡船
 
-### TOEIC 〜860（1,290項目）
-crystal（名）水晶；結晶；クリスタルガラス、govern（動）統治する；支配する、fold（名）折り目；折りたたみ、ranger（名）森林警備隊員；レンジャー、glory（名）栄光；名誉、galaxy（名）銀河；星雲、curse（名）のろい；ののしりの言葉、burden（動）負担をかける；負わせる、trophy（名）トロフィー；優勝杯、fascinate（動）魅了する、premise（名）前提；（複数形で）敷地、unlock（動）鍵を開ける；解除する、tragedy（名）悲劇、glow（名）輝き；ほてり、showcase（名）陳列ケース；見本；披露の場、restoration（名）復元；修復；復活、wizard（形）すばらしい(口語)、plea（名）嘆願；答弁、soak（動）浸す；びしょ濡れにする、supportive（形）支えになる；協力的な、betray（動）裏切る；背く；（本心を）表す、dwell（動）住む；居住する、institutional（形）制度上の；施設の、desperately（副）必死に；絶望的に、blaze（名）炎；火事；輝き、fatigue（名）疲労；金属疲労、geographical（形）地理の、homemade（形）手作りの；自家製の、credible（形）信頼できる；もっともらしい、appropriately（副）適切に、induction（名）誘導；導入；就任、alas（副）ああ（嘆き）；悲しいかな、legitimacy（名）正当性；合法性、imbalance（名）不均衡；アンバランス、vacate（動）明け渡す；空ける、denim（名）デニム、convergence（名）収束；融合、incorporation（名）法人化；組み込み、mast（名）帆柱；マスト、lavatory（名）洗面所；化粧室；便器
+### TOEIC 〜860（1,305項目）
+crystal（名）水晶；結晶；クリスタルガラス、govern（動）統治する；支配する、fold（動）折る；折りたたむ；組む、scan（動）ざっと目を通す；スキャンする；精査する、remark（動）述べる；気づく、density（名）密度；密集、differ（動）違う；意見が異なる、extract（動）抽出する；抜き出す、emperor（名）皇帝；天皇、bud（名）芽；つぼみ、cliff（名）崖、flesh（名）肉；果肉、swallow（動）飲み込む；信じ込む、beloved（形）最愛の、southeast（名）南東、keeper（名）番人；管理者；飼育係、board of directors（名）取締役会、gently（副）優しく；穏やかに、northeast（形）北東の、stitch（名）縫い目；一針、telegraph（名）電報；電信、intake（名）摂取量；取り入れ口；入学者数、token（名）しるし；記念品；トークン；代用硬貨、conscience（名）良心、bait（動）餌をつける；挑発する、restrain（動）抑える；制止する、vanilla（名）バニラ、unrelated（形）無関係の、extremist（名）過激派；極端論者、null（形）無効の；ゼロの、unwilling（形）気が進まない；いやいやの、dependence（名）依存；頼ること、beforehand（副）前もって；事前に、personalize（動）個人向けにする；自分用にカスタマイズする、constrain（動）制約する；抑制する、introductory（形）入門の；導入の、generalization（名）一般化；概括、antitrust（形）独占禁止の、enthusiastically（副）熱狂的に；熱心に、apostrophe（名）アポストロフィー
 
-### TOEIC 〜990（1,586項目）
-civilization（名）文明、resistant（形）抵抗力のある；耐性のある、zoom（名）ズーム；ぶーんという音、chorus（名）合唱；合唱団；コーラス；サビ、butcher（動）屠殺する；台無しにする、literacy（名）読み書き能力；識字、rant（名）わめき散らすこと；怒鳴り、litter（名）ごみ；散らかったもの；（動物の）一腹の子、morality（名）道徳；倫理、despair（名）絶望、designation（名）指定；名称；肩書、temptation（名）誘惑、inferior（形）劣った；下位の、predominantly（副）主として；大部分は、surroundings（名）周囲；環境、sociology（名）社会学、maternal（形）母の；母方の、vineyard（名）ブドウ園、eligibility（名）資格；適格性、ambush（名）待ち伏せ；伏兵、sideline（名）副業；サイドライン；二次的な収入、plaster（動）しっくいを塗る；べたべた貼る、sac（名）嚢；袋状の器官、paddle（動）櫂でこぐ；水をばしゃばしゃさせる、realism（名）現実主義；写実主義、mythology（名）神話、alleviate（動）和らげる；軽減する、amplifier（名）アンプ；増幅器、scholarly（形）学問的な；学者らしい、youthful（形）若々しい；青年らしい、quake（名）揺れ；地震、unrealistic（形）非現実的な、fanatic（名）狂信者；熱狂者、glamorous（形）魅力的な；華やかな、ecstasy（名）恍惚；有頂天、brilliantly（副）見事に；きらきらと、preferable（形）望ましい；好ましい、biotechnology（名）生命工学；バイオテクノロジー、indifference（名）無関心、marketable（形）市場性のある；売れる
+### TOEIC 〜990（1,598項目）
+civilization（名）文明、resistant（形）抵抗力のある；耐性のある、zoom（名）ズーム；ぶーんという音、pillar（名）柱；支柱、trench（名）溝；塹壕；海溝、mortality（名）死亡率；死ぬ運命、traitor（名）裏切り者、gateway（名）入り口；玄関口；ゲートウェイ、trilogy（名）三部作、reproduction（名）繁殖；複製；再生産、astonish（動）驚かせる、contender（名）競争者；有力候補、rotten（形）腐った；ひどい、wan（形）青ざめた；弱々しい、warmer（名）温める器具；ウォーマー、grease（名）グリース；脂肪；油脂、undercover（形）潜入の；秘密の、horrific（形）恐ろしい；ぞっとする、inspirational（形）やる気を起こさせる；感動を与える、ceramic（形）陶器の；セラミックの、sucker（名）だまされやすい人；吸盤；カモ、swarm（名）群れ、verge（名）縁；瀬戸際、chemist（名）化学者；(英)薬剤師、gale（名）強風；大風、casually（副）何気なく；気軽に；ふだん着で、thirst（名）のどの渇き；渇望、exquisite（形）絶妙な；非常に美しい、hypocrite（名）偽善者、apprenticeship（名）見習い期間；徒弟制度、strangle（動）絞め殺す；窒息させる、conversely（副）逆に；反対に、meditate（動）瞑想する；熟考する、saloon（名）大広間；酒場；（英）セダン、unstoppable（形）止められない、overlay（動）上に重ねる；覆う、dismay（動）うろたえさせる；落胆させる、ozone（名）オゾン、liquidate（動）清算する；整理する；一掃する、deletion（名）削除
 
-### TOEIC 対象外(null)（1,798項目）
-portrayal（名）描写；演技、vitality（名）活力；生命力、rhythmic（形）リズミカルな、blight（名）立ち枯れ病；荒廃させるもの、gleam（名）きらめき；微かな光、tropic（名）熱帯；回帰線、allotment（名）割り当て；分配、gruesome（形）身の毛もよだつ；むごたらしい、attractiveness（名）魅力、fruition（名）実現；成就、callous（形）冷淡な；無情な、autopilot（名）自動操縦装置、tranquil（形）穏やかな；静かな、affectionately（副）愛情を込めて、unwise（形）賢明でない；軽率な、unequivocally（副）明確に；曖昧さなく、deviant（名）逸脱者；異常者、dramatist（名）劇作家、elegantly（副）優雅に；上品に、typhoid（名）腸チフス、ferocity（名）獰猛さ；凶暴性、depravity（名）堕落；邪悪さ、sheaf（名）束；一束、unease（名）不安；落ち着かなさ、crudely（副）粗雑に；露骨に、unmanageable（形）手に負えない、offhand（副）その場で；準備なしに、moribund（形）瀕死の；消滅しかけた、astringent（名）収斂剤；化粧水、sundial（名）日時計、dated（形）時代遅れの；古臭い、tetchy（形）怒りっぽい、reprove（動）叱る；とがめる、grown-up（名）大人、voracity（名）貪欲さ；大食、posturing（名）気取った態度；ポーズ、exhilarate（動）爽快にさせる；高揚させる、distressing（形）悲痛な；心を痛める、entertaining（形）楽しい；面白い、digitalization（名）デジタル化
+### TOEIC 対象外(null)（1,924項目）
+theorist（名）理論家、vitality（名）活力；生命力、stamina（名）スタミナ；持久力、condone（動）容認する；大目に見る、hindsight（名）後知恵；後から振り返ること、philanthropy（名）慈善活動；博愛、readable（形）読みやすい、scribble（名）走り書き；殴り書き、materialize（動）実現する；具体化する、coax（動）なだめすかす；うまく言いくるめる、zoology（名）動物学、nightlife（名）夜の娯楽；ナイトライフ、subculture（名）サブカルチャー；下位文化、rationality（名）合理性；理性、allegory（名）寓話；寓意、detest（動）ひどく嫌う、infallible（形）間違いのない；絶対確実な、perceptive（形）洞察力のある；知覚の鋭い、lice（名）シラミ、vindication（名）潔白の証明；正当性の立証、subplot（名）サブプロット；副次的な筋、romp（動）はしゃぎ回る；楽勝する、lyrically（副）叙情的に、transitive（形）他動詞の；推移的な、elation（名）高揚；大喜び、glitz（名）きらびやかさ；派手さ、antithetical（形）正反対の、dissension（名）不和；意見の対立、zoologist（名）動物学者、prise（動）てこでこじ開ける、anaphylactic（形）アナフィラキシーの、nerves（名）神経；緊張、lozenge（名）（のどの）トローチ、encumber（動）妨げる；負担をかける、syllabic（形）音節の、moonscape（名）月面風景；荒涼とした風景、digitalize（動）デジタル化する、disparaging（形）見下すような；けなす、cheerfulness（名）陽気さ；明るさ、circumnavigate（動）周航する；一周する
 
 ## 7. 既知の弱点・注意
 1. **級・スコア帯は推定**。CEFR-JのCEFR付けと頻度に基づく機械的な切り分けであり、実際の英検の出題語彙とは一致しない。特に3級/準2級/2級の境界、1級の下限（B2後半を含む）は±1級程度ずれうる。

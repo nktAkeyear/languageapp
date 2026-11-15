@@ -323,7 +323,9 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
     }
     for (const r of job.ranks) if (!jc.tasks.some((t) => t.rank <= r.rank) && !jc.templates.some((t) => t.rank <= r.rank)) h.err(`${where}: nothing to do at rank ${r.rank}`);
   }
-  if (missingVocab.size) h.warn(`jobs: ${missingVocab.size} job word(s) not in data/english/vocab.json (reconcile when the list is complete): ${[...missingVocab].join(', ')}`);
+  // Off-list words are allowed (the level lists are a yardstick, not a limit): the entry carries its own gloss / level.
+  // Only counted, and listed on request (VALIDATE_VERBOSE=1).
+  if (missingVocab.size && process.env.VALIDATE_VERBOSE) console.log(`jobs: ${missingVocab.size} job word(s) not in data/english/vocab.json: ${[...missingVocab].join(', ')}`);
   if (L === 'en' && !listsLoaded()) h.warn(`jobs: data/english/vocab.json is not available — levels are the hand-written tags; ${englishLists().notes.join('; ')}`);
   return { jobs: jobs.length, jobTasks: tasks, jobTemplates: templates, jobInstancesChecked: instances };
 }

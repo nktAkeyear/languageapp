@@ -418,6 +418,13 @@ templates (×3) over the previous rank's (×1.5) and older ones (×0.6, review).
 | 港の食堂 harbour kitchen | make, sort | food, cooking, health, shopping | 英検4 / 3 / 準2・〜400 / 2・〜500 / 準1・〜600 | 31 / 63 / 67 / 72 / 34 |
 | 宿の帳場 inn front desk | check, respond, sort | hotel, travel, housing | 英検4 / 3・〜400 / 準2・〜500 / 2・〜600 / 準1・〜730 | 41 / 40 / 46 / 50 / 36 |
 | 商会の事務 trading office | check, respond | office, meetings, sales, finance, logistics | TOEIC〜400 (英検3) / 〜600 (準2) / 〜730 (2) / 〜860 (準1) / 〜990 (1) | 33 / 36 / 32 / 32 / 35 |
+| 新聞社 newspaper office (the Harbour Courier) | sort, check, respond | media, society, law, science, nature, finance, arts | 英検3・〜400 / 準2・〜600 / 2・〜730 / 準1・〜860 / 1・〜990 | 20 / 20 / 45 / 45 / 45 (templates 9 / 12 / 17 / 16 / 16) |
+| 診療所の受付 clinic reception (Harbour Clinic) | sort, check, respond | health, body, family, money, emotion, society | 英検3・〜400 / 準2・〜600 / 2・〜730 / 準1・〜860 / 1・〜990 | 20 / 20 / 45 / 45 / 45 (templates 9 / 16 / 29 / 28 / 27) |
+
+The newspaper office and the clinic reception are the two upper-level jobs (rank 1 ≈ 英検3級, rank 5 ≈ 1級): reception work only (no
+medical advice), vocabulary in the trade's own words (courts, politics, the economy; symptoms, tests, medicines, insurance), words
+that `vocab.json` lacked were added to `data/english/overrides/additions.tsv` with an estimated 英検 / TOEIC level and a gloss. Their
+buildings (`BUILDINGS.news`, `BUILDINGS.clinic`, `NewsArt`, `ClinicArt`) live in `src/ui/jobs/art.tsx`.
 
 Every job has authored + templated content for all five ranks (templates per rank: post 14 / 15 / 19 / 16 / 11,
 kitchen 14 / 21 / 20 / 34 / 14, inn 13 / 18 / 14 / 14 / 13, office 14 / 14 / 13 / 13 / 14). Rank 5 (灯台) is the
@@ -691,8 +698,8 @@ above the rank's level + 1 grade are a warning, + 3 an error (work-life jobs: TO
 one; pictured words exempt) — for tasks, template instances, bin labels (at the first rank a bin is used),
 reactions and the boss's lines (at their rank); **new words along the spine**: an authored task should bring
 at most `SPINE_NEW` (4) words not met in the job's earlier tasks (the tea house's words count as known). Lists:
-job words missing from `vocab.json` are listed (warning: tolerant but loud while the lists are being
-compiled), phrase / grammar tags are checked against the lists when present, a word without gloss needs one
+job words missing from `vocab.json` are allowed (the lists are a yardstick, not a limit; they are only counted, listed with
+`VALIDATE_VERBOSE=1`, and a word without a list entry needs a written gloss), phrase / grammar tags are checked against the lists when present, a word without gloss needs one
 in the list. Template warnings are printed once per template and rank (with a count). The jobs simulator
 (`npm run simulate -- --jobs [--buy]`) plays the town end to end.
 
@@ -702,12 +709,10 @@ in the list. Template warnings are printed once per template and rank (with a co
 | --- | --- | --- |
 | fishing boat 漁船 | make (nets / bait to a spec), sort (the catch by kind / size), go & deliver (to the market stalls) | sea, nature, weather, food, transport |
 | farm / market garden 畑 | make (planting plans), check (seed orders), trade (at the market, selling side) | farming, nature, weather, food |
-| clinic intake 診療所の受付 | respond (symptoms → form), check (insurance card ↔ form), sort (files) | health, body, emotion |
 | tailor 仕立て屋 | make (to measurements / colours / fabric), check (order ↔ garment), trade | clothing, crafts, money |
 | library 図書館 | sort (by subject / author / call number), respond (requests), check (returns ↔ cards) | school, arts, media |
 | railway station 駅 | respond (timetable questions, slot: the right train), trade (tickets), go & deliver (lost property) | transport, travel |
 | bank counter 銀行 | check (forms ↔ ID, cheques), trade (exchange), respond (account questions) | finance, money, law |
-| newspaper office 新聞社 | respond (letters to the editor), check (proofs ↔ notes), sort (stories by section) | media, society, abstract |
 | carpenter / builder 大工 | make (to a drawing: lengths, pieces), check (delivery ↔ order), go & deliver | crafts, housing |
 | town hall 役場 | check (applications ↔ rules), respond (citizens' questions / forms), sort (mail by department) | society, law, hr |
 | shipping agent 海運代理店 | check (bills of lading ↔ manifests), respond (schedules, e-mail), go & deliver | logistics, sea, sales |

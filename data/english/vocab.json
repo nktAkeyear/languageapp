@@ -16395,6 +16395,18 @@
 "freq": 2920
 },
 {
+"word": "theatre",
+"pos": "noun",
+"eiken": "4",
+"toeic": 500,
+"cefr": "A2",
+"ja": "劇場（theaterの英式つづり）",
+"domains": [
+"arts"
+],
+"freq": 2923
+},
+{
 "word": "jacket",
 "pos": "noun",
 "eiken": "4",
@@ -34385,6 +34397,18 @@
 "freq": 36321
 },
 {
+"word": "hundredth",
+"pos": "adjective",
+"eiken": "3",
+"toeic": null,
+"cefr": "A2",
+"ja": "100番目の",
+"domains": [
+"abstract"
+],
+"freq": 36609
+},
+{
 "word": "following",
 "pos": "adjective",
 "eiken": "3",
@@ -47427,6 +47451,18 @@
 "emotion"
 ],
 "freq": 2930
+},
+{
+"word": "defence",
+"pos": "noun",
+"eiken": "pre2",
+"toeic": 500,
+"cefr": "B1",
+"ja": "防衛；弁護側（defenseの英式つづり）",
+"domains": [
+"law"
+],
+"freq": 2940
 },
 {
 "word": "romantic",
@@ -78339,6 +78375,18 @@
 "freq": 13580
 },
 {
+"word": "swollen",
+"pos": "adjective",
+"eiken": "2",
+"toeic": 860,
+"cefr": "B1",
+"ja": "腫れた",
+"domains": [
+"health"
+],
+"freq": 13622
+},
+{
 "word": "taxable",
 "pos": "adjective",
 "eiken": "2",
@@ -78677,6 +78725,18 @@
 "freq": 18375
 },
 {
+"word": "itchy",
+"pos": "adjective",
+"eiken": "2",
+"toeic": null,
+"cefr": "B1",
+"ja": "かゆい",
+"domains": [
+"health"
+],
+"freq": 18599
+},
+{
 "word": "remit",
 "pos": "verb",
 "eiken": "2",
@@ -78699,6 +78759,18 @@
 "money"
 ],
 "freq": 19870
+},
+{
+"word": "shipyard",
+"pos": "noun",
+"eiken": "2",
+"toeic": null,
+"cefr": "B2",
+"ja": "造船所",
+"domains": [
+"sea"
+],
+"freq": 20495
 },
 {
 "word": "syringe",
@@ -78887,6 +78959,18 @@
 "freq": 22495
 },
 {
+"word": "lifeboat",
+"pos": "noun",
+"eiken": "2",
+"toeic": null,
+"cefr": "B1",
+"ja": "救命ボート",
+"domains": [
+"sea"
+],
+"freq": 22726
+},
+{
 "word": "lavatory",
 "pos": "noun",
 "eiken": "2",
@@ -78995,6 +79079,18 @@
 "freq": 28856
 },
 {
+"word": "sunburn",
+"pos": "noun",
+"eiken": "2",
+"toeic": null,
+"cefr": "B1",
+"ja": "日焼け",
+"domains": [
+"health"
+],
+"freq": 30994
+},
+{
 "word": "hanging",
 "pos": "noun",
 "eiken": "2",
@@ -79055,6 +79151,30 @@
 "transport"
 ],
 "freq": 34066
+},
+{
+"word": "sprain",
+"pos": "verb",
+"eiken": "2",
+"toeic": null,
+"cefr": "B1",
+"ja": "（足首などを）くじく",
+"domains": [
+"health"
+],
+"freq": 35092
+},
+{
+"word": "painkiller",
+"pos": "noun",
+"eiken": "2",
+"toeic": 730,
+"cefr": "B1",
+"ja": "鎮痛剤",
+"domains": [
+"health"
+],
+"freq": 38540
 },
 {
 "word": "seamstress",
@@ -79118,6 +79238,18 @@
 "law"
 ],
 "freq": 60004
+},
+{
+"word": "seabird",
+"pos": "noun",
+"eiken": "2",
+"toeic": null,
+"cefr": "B1",
+"ja": "海鳥",
+"domains": [
+"animals"
+],
+"freq": 60007
 },
 {
 "word": "catering",
@@ -79240,6 +79372,18 @@
 "law"
 ],
 "freq": 60010
+},
+{
+"word": "shipbuilder",
+"pos": "noun",
+"eiken": "2",
+"toeic": null,
+"cefr": "B2",
+"ja": "造船業者",
+"domains": [
+"sea"
+],
+"freq": 60011
 },
 {
 "word": "threatening",
@@ -90234,6 +90378,18 @@
 "freq": 5619
 },
 {
+"word": "screening",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": 860,
+"cefr": "B2",
+"ja": "検診；スクリーニング",
+"domains": [
+"health"
+],
+"freq": 5626
+},
+{
 "word": "stark",
 "pos": "adjective",
 "eiken": "pre1",
@@ -90292,6 +90448,18 @@
 "finance"
 ],
 "freq": 5637
+},
+{
+"word": "timeline",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": 860,
+"cefr": "B2",
+"ja": "年表；時系列",
+"domains": [
+"abstract"
+],
+"freq": 5638
 },
 {
 "word": "unveil",
@@ -99968,6 +100136,18 @@
 "freq": 11826
 },
 {
+"word": "acne",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "にきび",
+"domains": [
+"health"
+],
+"freq": 11830
+},
+{
 "word": "stormy",
 "pos": "adjective",
 "eiken": "pre1",
@@ -99990,6 +100170,18 @@
 "transport"
 ],
 "freq": 12074
+},
+{
+"word": "kin",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "親族；血縁",
+"domains": [
+"family"
+],
+"freq": 12087
 },
 {
 "word": "brightly",
@@ -100304,6 +100496,18 @@
 "freq": 13644
 },
 {
+"word": "booster",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "（ワクチンの）追加接種",
+"domains": [
+"health"
+],
+"freq": 13672
+},
+{
 "word": "innovator",
 "pos": "noun",
 "eiken": "pre1",
@@ -100326,6 +100530,18 @@
 "emotion"
 ],
 "freq": 14087
+},
+{
+"word": "nausea",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "吐き気",
+"domains": [
+"health"
+],
+"freq": 14175
 },
 {
 "word": "environmentalist",
@@ -100374,6 +100590,18 @@
 "abstract"
 ],
 "freq": 14852
+},
+{
+"word": "ultrasound",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": 860,
+"cefr": "B2",
+"ja": "超音波検査",
+"domains": [
+"health"
+],
+"freq": 14861
 },
 {
 "word": "bravely",
@@ -100485,6 +100713,18 @@
 "freq": 16643
 },
 {
+"word": "physicist",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "物理学者",
+"domains": [
+"science"
+],
+"freq": 16772
+},
+{
 "word": "possessive",
 "pos": "adjective",
 "eiken": "pre1",
@@ -100531,6 +100771,18 @@
 "arts"
 ],
 "freq": 17533
+},
+{
+"word": "gland",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "腺；リンパ腺",
+"domains": [
+"body"
+],
+"freq": 17620
 },
 {
 "word": "fondness",
@@ -100617,6 +100869,30 @@
 "freq": 18877
 },
 {
+"word": "measles",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "はしか",
+"domains": [
+"health"
+],
+"freq": 18887
+},
+{
+"word": "migraine",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "偏頭痛",
+"domains": [
+"health"
+],
+"freq": 18893
+},
+{
 "word": "doze",
 "pos": "noun",
 "eiken": "pre1",
@@ -100689,6 +100965,18 @@
 "freq": 20600
 },
 {
+"word": "quay",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "波止場；岸壁",
+"domains": [
+"sea"
+],
+"freq": 20746
+},
+{
 "word": "sportsmanship",
 "pos": "noun",
 "eiken": "pre1",
@@ -100713,6 +101001,42 @@
 "freq": 20891
 },
 {
+"word": "jellyfish",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "クラゲ",
+"domains": [
+"animals"
+],
+"freq": 20972
+},
+{
+"word": "rabies",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "狂犬病",
+"domains": [
+"health"
+],
+"freq": 21323
+},
+{
+"word": "refill",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": 730,
+"cefr": "B2",
+"ja": "（薬の）補充；詰め替え",
+"domains": [
+"health"
+],
+"freq": 21331
+},
+{
 "word": "motionless",
 "pos": "adjective",
 "eiken": "pre1",
@@ -100735,6 +101059,42 @@
 "abstract"
 ],
 "freq": 22066
+},
+{
+"word": "lice",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "シラミ",
+"domains": [
+"health"
+],
+"freq": 22140
+},
+{
+"word": "watery",
+"pos": "adjective",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "涙ぐんだ；水っぽい",
+"domains": [
+"body"
+],
+"freq": 22859
+},
+{
+"word": "anemia",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "貧血",
+"domains": [
+"health"
+],
+"freq": 23169
 },
 {
 "word": "fluently",
@@ -100773,6 +101133,18 @@
 "freq": 23649
 },
 {
+"word": "whooping",
+"pos": "adjective",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "ヒューと息を吸う（whooping cough＝百日咳）",
+"domains": [
+"health"
+],
+"freq": 24056
+},
+{
 "word": "rudely",
 "pos": "adverb",
 "eiken": "pre1",
@@ -100797,6 +101169,42 @@
 "freq": 24745
 },
 {
+"word": "hives",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "じんましん",
+"domains": [
+"health"
+],
+"freq": 24782
+},
+{
+"word": "surcharge",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": 990,
+"cefr": "B2",
+"ja": "追加料金",
+"domains": [
+"finance"
+],
+"freq": 24926
+},
+{
+"word": "caregiver",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": 860,
+"cefr": "B2",
+"ja": "介護者；世話をする人",
+"domains": [
+"family"
+],
+"freq": 25003
+},
+{
 "word": "innermost",
 "pos": "adjective",
 "eiken": "pre1",
@@ -100807,6 +101215,18 @@
 "abstract"
 ],
 "freq": 25767
+},
+{
+"word": "eczema",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "湿疹",
+"domains": [
+"health"
+],
+"freq": 26405
 },
 {
 "word": "hurriedly",
@@ -100845,6 +101265,18 @@
 "freq": 28126
 },
 {
+"word": "immunization",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "予防接種；免疫化",
+"domains": [
+"health"
+],
+"freq": 28588
+},
+{
 "word": "mountaintop",
 "pos": "noun",
 "eiken": "pre1",
@@ -100881,6 +101313,54 @@
 "freq": 31647
 },
 {
+"word": "heartburn",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "胸焼け",
+"domains": [
+"health"
+],
+"freq": 34101
+},
+{
+"word": "physiotherapy",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "理学療法",
+"domains": [
+"health"
+],
+"freq": 34225
+},
+{
+"word": "tetanus",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "破傷風",
+"domains": [
+"health"
+],
+"freq": 34715
+},
+{
+"word": "drowsy",
+"pos": "adjective",
+"eiken": "pre1",
+"toeic": 860,
+"cefr": "B2",
+"ja": "眠気を催す",
+"domains": [
+"health"
+],
+"freq": 36116
+},
+{
 "word": "wind chime",
 "pos": "noun",
 "eiken": "pre1",
@@ -100892,6 +101372,18 @@
 "arts"
 ],
 "freq": 36167
+},
+{
+"word": "antiseptic",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "消毒薬",
+"domains": [
+"health"
+],
+"freq": 36431
 },
 {
 "word": "feverishly",
@@ -100906,6 +101398,18 @@
 "freq": 36608
 },
 {
+"word": "mumps",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "おたふくかぜ",
+"domains": [
+"health"
+],
+"freq": 36683
+},
+{
 "word": "noisily",
 "pos": "adverb",
 "eiken": "pre1",
@@ -100916,6 +101420,18 @@
 "abstract"
 ],
 "freq": 38559
+},
+{
+"word": "wart",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "いぼ",
+"domains": [
+"health"
+],
+"freq": 38680
 },
 {
 "word": "windsurfing",
@@ -100931,6 +101447,18 @@
 "freq": 39151
 },
 {
+"word": "constipated",
+"pos": "adjective",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "便秘の",
+"domains": [
+"health"
+],
+"freq": 39256
+},
+{
 "word": "sundial",
 "pos": "noun",
 "eiken": "pre1",
@@ -100943,6 +101471,30 @@
 "freq": 40078
 },
 {
+"word": "splint",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "添え木；副木",
+"domains": [
+"health"
+],
+"freq": 43933
+},
+{
+"word": "colic",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "（乳児の）疝痛；夜泣き",
+"domains": [
+"health"
+],
+"freq": 44126
+},
+{
 "word": "chrysanthemum",
 "pos": "noun",
 "eiken": "pre1",
@@ -100953,6 +101505,30 @@
 "nature"
 ],
 "freq": 48662
+},
+{
+"word": "chickenpox",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "水ぼうそう",
+"domains": [
+"health"
+],
+"freq": 54687
+},
+{
+"word": "stye",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "ものもらい",
+"domains": [
+"health"
+],
+"freq": 60004
 },
 {
 "word": "flunk",
@@ -101015,6 +101591,18 @@
 "freq": 60006
 },
 {
+"word": "tonsil",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "扁桃（へんとう）",
+"domains": [
+"body"
+],
+"freq": 60006
+},
+{
 "word": "horrify",
 "pos": "verb",
 "eiken": "pre1",
@@ -101023,6 +101611,30 @@
 "ja": "ぞっとさせる；恐怖を与える",
 "domains": [
 "abstract"
+],
+"freq": 60007
+},
+{
+"word": "itemize",
+"pos": "verb",
+"eiken": "pre1",
+"toeic": 860,
+"cefr": "B2",
+"ja": "項目別に書く",
+"domains": [
+"finance"
+],
+"freq": 60007
+},
+{
+"word": "lozenge",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "（のどの）トローチ",
+"domains": [
+"health"
 ],
 "freq": 60007
 },
@@ -101171,6 +101783,30 @@
 "freq": 60009
 },
 {
+"word": "copayment",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": 860,
+"cefr": "B2",
+"ja": "自己負担金",
+"domains": [
+"finance"
+],
+"freq": 60009
+},
+{
+"word": "dislocate",
+"pos": "verb",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "脱臼させる",
+"domains": [
+"health"
+],
+"freq": 60009
+},
+{
 "word": "depressing",
 "pos": "adjective",
 "eiken": "pre1",
@@ -101193,6 +101829,30 @@
 "abstract"
 ],
 "freq": 60011
+},
+{
+"word": "seasickness",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "船酔い",
+"domains": [
+"health"
+],
+"freq": 60011
+},
+{
+"word": "antihistamine",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "抗ヒスタミン薬",
+"domains": [
+"health"
+],
+"freq": 60013
 },
 {
 "word": "contract",
@@ -106294,6 +106954,18 @@
 "abstract"
 ],
 "freq": 7551
+},
+{
+"word": "deceased",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "亡くなった",
+"domains": [
+"society"
+],
+"freq": 7552
 },
 {
 "word": "woodland",
@@ -116273,6 +116945,18 @@
 "freq": 11362
 },
 {
+"word": "councillor",
+"pos": "noun",
+"eiken": "1",
+"toeic": 860,
+"cefr": "C1",
+"ja": "市（町）議会議員",
+"domains": [
+"society"
+],
+"freq": 11364
+},
+{
 "word": "infer",
 "pos": "verb",
 "eiken": "1",
@@ -117248,6 +117932,18 @@
 "freq": 11885
 },
 {
+"word": "maternity",
+"pos": "noun",
+"eiken": "1",
+"toeic": 990,
+"cefr": "C1",
+"ja": "産科の；出産の",
+"domains": [
+"health"
+],
+"freq": 11914
+},
+{
 "word": "standing",
 "pos": "noun",
 "eiken": "1",
@@ -117788,6 +118484,18 @@
 "freq": 12225
 },
 {
+"word": "erosion",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "浸食",
+"domains": [
+"nature"
+],
+"freq": 12235
+},
+{
 "word": "hoist",
 "pos": "verb",
 "eiken": "1",
@@ -118075,6 +118783,18 @@
 "abstract"
 ],
 "freq": 12338
+},
+{
+"word": "amnesty",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "恩赦",
+"domains": [
+"law"
+],
+"freq": 12361
 },
 {
 "word": "linguistics",
@@ -118881,6 +119601,18 @@
 "freq": 12727
 },
 {
+"word": "arthritis",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "関節炎",
+"domains": [
+"health"
+],
+"freq": 12727
+},
+{
 "word": "mumble",
 "pos": "noun",
 "eiken": "1",
@@ -118987,6 +119719,18 @@
 "abstract"
 ],
 "freq": 12766
+},
+{
+"word": "famine",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "飢饉",
+"domains": [
+"society"
+],
+"freq": 12773
 },
 {
 "word": "authoritative",
@@ -120310,6 +121054,18 @@
 "freq": 13560
 },
 {
+"word": "overdose",
+"pos": "noun",
+"eiken": "1",
+"toeic": 860,
+"cefr": "C1",
+"ja": "（薬の）過剰摂取",
+"domains": [
+"health"
+],
+"freq": 13576
+},
+{
 "word": "complimentary",
 "pos": "adjective",
 "eiken": "1",
@@ -120320,6 +121076,18 @@
 "hotel"
 ],
 "freq": 13581
+},
+{
+"word": "pathology",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "病理学；病理検査",
+"domains": [
+"science"
+],
+"freq": 13582
 },
 {
 "word": "fiercely",
@@ -121247,6 +122015,18 @@
 "freq": 14161
 },
 {
+"word": "misuse",
+"pos": "verb",
+"eiken": "1",
+"toeic": 860,
+"cefr": "C1",
+"ja": "悪用する；誤用する",
+"domains": [
+"abstract"
+],
+"freq": 14169
+},
+{
 "word": "philanthropy",
 "pos": "noun",
 "eiken": "1",
@@ -121548,6 +122328,18 @@
 "freq": 14432
 },
 {
+"word": "thyroid",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "甲状腺",
+"domains": [
+"body"
+],
+"freq": 14440
+},
+{
 "word": "stimulant",
 "pos": "noun",
 "eiken": "1",
@@ -121655,6 +122447,18 @@
 "health"
 ],
 "freq": 14497
+},
+{
+"word": "dosage",
+"pos": "noun",
+"eiken": "1",
+"toeic": 860,
+"cefr": "C1",
+"ja": "（薬の）用量",
+"domains": [
+"health"
+],
+"freq": 14516
 },
 {
 "word": "hastily",
@@ -122630,6 +123434,18 @@
 "freq": 15226
 },
 {
+"word": "nasal",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "鼻の",
+"domains": [
+"body"
+],
+"freq": 15227
+},
+{
 "word": "detriment",
 "pos": "noun",
 "eiken": "1",
@@ -122894,6 +123710,18 @@
 "freq": 15394
 },
 {
+"word": "envoy",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "使節；特使",
+"domains": [
+"society"
+],
+"freq": 15399
+},
+{
 "word": "scrutinize",
 "pos": "verb",
 "eiken": "1",
@@ -123108,6 +123936,18 @@
 "abstract"
 ],
 "freq": 15566
+},
+{
+"word": "biodiversity",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "生物多様性",
+"domains": [
+"nature"
+],
+"freq": 15574
 },
 {
 "word": "parenthesis",
@@ -123470,6 +124310,18 @@
 "sales"
 ],
 "freq": 15964
+},
+{
+"word": "cervical",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "子宮頸部の；首の",
+"domains": [
+"health"
+],
+"freq": 15978
 },
 {
 "word": "mistreat",
@@ -124145,6 +124997,18 @@
 "freq": 16494
 },
 {
+"word": "insomnia",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "不眠症",
+"domains": [
+"health"
+],
+"freq": 16501
+},
+{
 "word": "oblique",
 "pos": "adjective",
 "eiken": "1",
@@ -124251,6 +125115,18 @@
 "abstract"
 ],
 "freq": 16608
+},
+{
+"word": "unjust",
+"pos": "adjective",
+"eiken": "1",
+"toeic": 990,
+"cefr": "C1",
+"ja": "不当な；不公平な",
+"domains": [
+"abstract"
+],
+"freq": 16609
 },
 {
 "word": "vandal",
@@ -124506,6 +125382,18 @@
 "freq": 16878
 },
 {
+"word": "evasion",
+"pos": "noun",
+"eiken": "1",
+"toeic": 990,
+"cefr": "C1",
+"ja": "回避；脱税",
+"domains": [
+"law"
+],
+"freq": 16904
+},
+{
 "word": "respite",
 "pos": "noun",
 "eiken": "1",
@@ -124648,6 +125536,18 @@
 "abstract"
 ],
 "freq": 17063
+},
+{
+"word": "arson",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "放火",
+"domains": [
+"law"
+],
+"freq": 17076
 },
 {
 "word": "promenade",
@@ -126174,6 +127074,18 @@
 "freq": 18585
 },
 {
+"word": "libel",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "名誉毀損（文書による）",
+"domains": [
+"law"
+],
+"freq": 18606
+},
+{
 "word": "rationality",
 "pos": "noun",
 "eiken": "1",
@@ -126511,6 +127423,18 @@
 "freq": 18979
 },
 {
+"word": "ceasefire",
+"pos": "noun",
+"eiken": "1",
+"toeic": 990,
+"cefr": "C1",
+"ja": "停戦",
+"domains": [
+"society"
+],
+"freq": 19041
+},
+{
 "word": "meticulously",
 "pos": "adverb",
 "eiken": "1",
@@ -126655,6 +127579,18 @@
 "freq": 19138
 },
 {
+"word": "miscarriage",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "流産",
+"domains": [
+"health"
+],
+"freq": 19140
+},
+{
 "word": "mountaineer",
 "pos": "noun",
 "eiken": "1",
@@ -126763,6 +127699,18 @@
 "freq": 19242
 },
 {
+"word": "biopsy",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "生検",
+"domains": [
+"health"
+],
+"freq": 19272
+},
+{
 "word": "purposeful",
 "pos": "adjective",
 "eiken": "1",
@@ -126785,6 +127733,18 @@
 "abstract"
 ],
 "freq": 19321
+},
+{
+"word": "embargo",
+"pos": "noun",
+"eiken": "1",
+"toeic": 860,
+"cefr": "C1",
+"ja": "禁輸",
+"domains": [
+"finance"
+],
+"freq": 19322
 },
 {
 "word": "verbatim",
@@ -126929,6 +127889,18 @@
 "abstract"
 ],
 "freq": 19496
+},
+{
+"word": "urinary",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "尿の",
+"domains": [
+"body"
+],
+"freq": 19497
 },
 {
 "word": "marketable",
@@ -127497,6 +128469,18 @@
 "freq": 20106
 },
 {
+"word": "frail",
+"pos": "adjective",
+"eiken": "1",
+"toeic": 860,
+"cefr": "C1",
+"ja": "弱々しい；虚弱な",
+"domains": [
+"health"
+],
+"freq": 20119
+},
+{
 "word": "gravitate",
 "pos": "verb",
 "eiken": "1",
@@ -127591,6 +128575,30 @@
 "abstract"
 ],
 "freq": 20199
+},
+{
+"word": "rupture",
+"pos": "verb",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "破裂する",
+"domains": [
+"health"
+],
+"freq": 20216
+},
+{
+"word": "sinus",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "副鼻腔",
+"domains": [
+"body"
+],
+"freq": 20225
 },
 {
 "word": "incurable",
@@ -127894,6 +128902,18 @@
 "freq": 20594
 },
 {
+"word": "contraception",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "避妊",
+"domains": [
+"health"
+],
+"freq": 20596
+},
+{
 "word": "toenail",
 "pos": "noun",
 "eiken": "1",
@@ -127904,6 +128924,18 @@
 "body"
 ],
 "freq": 20625
+},
+{
+"word": "estuary",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "河口",
+"domains": [
+"nature"
+],
+"freq": 20626
 },
 {
 "word": "buzzard",
@@ -128386,6 +129418,18 @@
 "freq": 21329
 },
 {
+"word": "recurrent",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "繰り返し起こる",
+"domains": [
+"health"
+],
+"freq": 21330
+},
+{
 "word": "unhelpful",
 "pos": "adjective",
 "eiken": "1",
@@ -128528,6 +129572,18 @@
 "housing"
 ],
 "freq": 21468
+},
+{
+"word": "deletion",
+"pos": "noun",
+"eiken": "1",
+"toeic": 990,
+"cefr": "C1",
+"ja": "削除",
+"domains": [
+"technology"
+],
+"freq": 21489
 },
 {
 "word": "lexical",
@@ -128865,6 +129921,18 @@
 "abstract"
 ],
 "freq": 22082
+},
+{
+"word": "geologist",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "地質学者",
+"domains": [
+"science"
+],
+"freq": 22097
 },
 {
 "word": "spurious",
@@ -129647,6 +130715,30 @@
 "freq": 23567
 },
 {
+"word": "inpatient",
+"pos": "noun",
+"eiken": "1",
+"toeic": 990,
+"cefr": "C1",
+"ja": "入院患者",
+"domains": [
+"health"
+],
+"freq": 23569
+},
+{
+"word": "menopause",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "更年期",
+"domains": [
+"health"
+],
+"freq": 23597
+},
+{
 "word": "thicket",
 "pos": "noun",
 "eiken": "1",
@@ -129671,6 +130763,18 @@
 "freq": 23618
 },
 {
+"word": "prenatal",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "出産前の",
+"domains": [
+"health"
+],
+"freq": 23636
+},
+{
 "word": "ferocity",
 "pos": "noun",
 "eiken": "1",
@@ -129681,6 +130785,18 @@
 "abstract"
 ],
 "freq": 23694
+},
+{
+"word": "vertigo",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "めまい（回転性）",
+"domains": [
+"health"
+],
+"freq": 23718
 },
 {
 "word": "homely",
@@ -129741,6 +130857,18 @@
 "housing"
 ],
 "freq": 23763
+},
+{
+"word": "burnout",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "燃え尽き症候群",
+"domains": [
+"emotion"
+],
+"freq": 23768
 },
 {
 "word": "orator",
@@ -129899,6 +131027,18 @@
 "freq": 24002
 },
 {
+"word": "claimant",
+"pos": "noun",
+"eiken": "1",
+"toeic": 990,
+"cefr": "C1",
+"ja": "請求者",
+"domains": [
+"finance"
+],
+"freq": 24114
+},
+{
 "word": "subplot",
 "pos": "noun",
 "eiken": "1",
@@ -129947,6 +131087,18 @@
 "freq": 24198
 },
 {
+"word": "inflamed",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "炎症を起こした",
+"domains": [
+"health"
+],
+"freq": 24200
+},
+{
 "word": "cinematographer",
 "pos": "noun",
 "eiken": "1",
@@ -129957,6 +131109,18 @@
 "arts"
 ],
 "freq": 24227
+},
+{
+"word": "ombudsman",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "オンブズマン（苦情処理の調停役）",
+"domains": [
+"society"
+],
+"freq": 24262
 },
 {
 "word": "hapless",
@@ -130113,6 +131277,18 @@
 "abstract"
 ],
 "freq": 24560
+},
+{
+"word": "sugary",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "B2",
+"ja": "糖分の多い",
+"domains": [
+"food"
+],
+"freq": 24603
 },
 {
 "word": "impersonation",
@@ -130379,6 +131555,18 @@
 "freq": 25191
 },
 {
+"word": "rower",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "B2",
+"ja": "漕ぎ手；ボート選手",
+"domains": [
+"sports"
+],
+"freq": 25193
+},
+{
 "word": "linearly",
 "pos": "adverb",
 "eiken": "1",
@@ -130487,6 +131675,18 @@
 "freq": 25400
 },
 {
+"word": "hemorrhage",
+"pos": "verb",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "大出血する",
+"domains": [
+"health"
+],
+"freq": 25406
+},
+{
 "word": "demography",
 "pos": "noun",
 "eiken": "1",
@@ -130533,6 +131733,18 @@
 "abstract"
 ],
 "freq": 25511
+},
+{
+"word": "palliative",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "緩和ケアの",
+"domains": [
+"health"
+],
+"freq": 25513
 },
 {
 "word": "opacity",
@@ -130713,6 +131925,18 @@
 "abstract"
 ],
 "freq": 25843
+},
+{
+"word": "orthopedic",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "整形外科の",
+"domains": [
+"health"
+],
+"freq": 25864
 },
 {
 "word": "seedy",
@@ -131052,6 +132276,30 @@
 "freq": 26610
 },
 {
+"word": "trimester",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "妊娠の3か月ごとの期間",
+"domains": [
+"health"
+],
+"freq": 26637
+},
+{
+"word": "anesthetic",
+"pos": "noun",
+"eiken": "1",
+"toeic": 990,
+"cefr": "C1",
+"ja": "麻酔薬；麻酔",
+"domains": [
+"health"
+],
+"freq": 26679
+},
+{
 "word": "radium",
 "pos": "noun",
 "eiken": "1",
@@ -131062,6 +132310,18 @@
 "science"
 ],
 "freq": 26733
+},
+{
+"word": "dermatologist",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "皮膚科医",
+"domains": [
+"health"
+],
+"freq": 26748
 },
 {
 "word": "selectivity",
@@ -131184,6 +132444,18 @@
 "freq": 27091
 },
 {
+"word": "complacency",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "自己満足；油断",
+"domains": [
+"abstract"
+],
+"freq": 27093
+},
+{
 "word": "benevolence",
 "pos": "noun",
 "eiken": "1",
@@ -131302,6 +132574,18 @@
 "abstract"
 ],
 "freq": 27474
+},
+{
+"word": "neurologist",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "神経科医",
+"domains": [
+"health"
+],
+"freq": 27582
 },
 {
 "word": "haphazard",
@@ -131448,6 +132732,18 @@
 "freq": 28032
 },
 {
+"word": "ulcer",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "潰瘍",
+"domains": [
+"health"
+],
+"freq": 28066
+},
+{
 "word": "transitive",
 "pos": "adjective",
 "eiken": "1",
@@ -131494,6 +132790,18 @@
 "transport"
 ],
 "freq": 28159
+},
+{
+"word": "embezzlement",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "横領",
+"domains": [
+"law"
+],
+"freq": 28185
 },
 {
 "word": "monotony",
@@ -131665,6 +132973,18 @@
 "freq": 28629
 },
 {
+"word": "perforated",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "穴のあいた",
+"domains": [
+"health"
+],
+"freq": 28667
+},
+{
 "word": "unconcerned",
 "pos": "adjective",
 "eiken": "1",
@@ -131747,6 +133067,18 @@
 "abstract"
 ],
 "freq": 28928
+},
+{
+"word": "hernia",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "ヘルニア",
+"domains": [
+"health"
+],
+"freq": 28949
 },
 {
 "word": "punctuality",
@@ -131966,6 +133298,18 @@
 "freq": 29830
 },
 {
+"word": "cataract",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "白内障",
+"domains": [
+"health"
+],
+"freq": 29957
+},
+{
 "word": "stopover",
 "pos": "noun",
 "eiken": "1",
@@ -131976,6 +133320,18 @@
 "travel"
 ],
 "freq": 29990
+},
+{
+"word": "deadlock",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "行き詰まり",
+"domains": [
+"society"
+],
+"freq": 29992
 },
 {
 "word": "ageless",
@@ -132120,6 +133476,18 @@
 "abstract"
 ],
 "freq": 30331
+},
+{
+"word": "bereavement",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "死別",
+"domains": [
+"emotion"
+],
+"freq": 30332
 },
 {
 "word": "ruinous",
@@ -132782,6 +134150,18 @@
 "freq": 32273
 },
 {
+"word": "breech",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "逆子（さかご）",
+"domains": [
+"health"
+],
+"freq": 32302
+},
+{
 "word": "workaholic",
 "pos": "noun",
 "eiken": "1",
@@ -132914,6 +134294,18 @@
 "freq": 32712
 },
 {
+"word": "cardiologist",
+"pos": "noun",
+"eiken": "1",
+"toeic": 860,
+"cefr": "C1",
+"ja": "心臓専門医",
+"domains": [
+"health"
+],
+"freq": 32721
+},
+{
 "word": "drapery",
 "pos": "noun",
 "eiken": "1",
@@ -132972,6 +134364,18 @@
 "abstract"
 ],
 "freq": 33005
+},
+{
+"word": "septum",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "（鼻の）中隔",
+"domains": [
+"body"
+],
+"freq": 33013
 },
 {
 "word": "rainstorm",
@@ -133044,6 +134448,18 @@
 "abstract"
 ],
 "freq": 33340
+},
+{
+"word": "numbness",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "しびれ；感覚のなさ",
+"domains": [
+"body"
+],
+"freq": 33344
 },
 {
 "word": "physiologically",
@@ -133599,6 +135015,18 @@
 "freq": 35911
 },
 {
+"word": "swab",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "（検査用の）綿棒；検体",
+"domains": [
+"health"
+],
+"freq": 35972
+},
+{
 "word": "subjunctive",
 "pos": "noun",
 "eiken": "1",
@@ -133633,6 +135061,18 @@
 "emotion"
 ],
 "freq": 35992
+},
+{
+"word": "breastfeed",
+"pos": "verb",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "母乳で育てる",
+"domains": [
+"health"
+],
+"freq": 36054
 },
 {
 "word": "axiomatic",
@@ -133707,6 +135147,18 @@
 "freq": 36221
 },
 {
+"word": "abscess",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "膿瘍；腫れ物",
+"domains": [
+"health"
+],
+"freq": 36413
+},
+{
 "word": "untangle",
 "pos": "verb",
 "eiken": "1",
@@ -133753,6 +135205,18 @@
 "abstract"
 ],
 "freq": 36622
+},
+{
+"word": "reshuffle",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "内閣改造；人事異動",
+"domains": [
+"society"
+],
+"freq": 36735
 },
 {
 "word": "slither",
@@ -133861,6 +135325,18 @@
 "abstract"
 ],
 "freq": 37100
+},
+{
+"word": "ooze",
+"pos": "verb",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "じくじく出る；にじみ出る",
+"domains": [
+"health"
+],
+"freq": 37125
 },
 {
 "word": "newscaster",
@@ -134019,6 +135495,18 @@
 "freq": 37826
 },
 {
+"word": "oncologist",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "腫瘍（がん）専門医",
+"domains": [
+"health"
+],
+"freq": 38076
+},
+{
 "word": "ostensible",
 "pos": "adjective",
 "eiken": "1",
@@ -134053,6 +135541,18 @@
 "society"
 ],
 "freq": 38291
+},
+{
+"word": "inadmissible",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "証拠として認められない",
+"domains": [
+"law"
+],
+"freq": 38435
 },
 {
 "word": "geologically",
@@ -134137,6 +135637,18 @@
 "abstract"
 ],
 "freq": 38860
+},
+{
+"word": "hysterectomy",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "子宮摘出手術",
+"domains": [
+"health"
+],
+"freq": 38893
 },
 {
 "word": "protrusion",
@@ -134559,6 +136071,18 @@
 "freq": 40825
 },
 {
+"word": "tern",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "アジサシ（海鳥）",
+"domains": [
+"animals"
+],
+"freq": 40923
+},
+{
 "word": "settee",
 "pos": "noun",
 "eiken": "1",
@@ -134655,6 +136179,18 @@
 "freq": 41526
 },
 {
+"word": "conservationist",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "自然保護活動家",
+"domains": [
+"nature"
+],
+"freq": 41568
+},
+{
 "word": "breakable",
 "pos": "adjective",
 "eiken": "1",
@@ -134689,6 +136225,18 @@
 "abstract"
 ],
 "freq": 41741
+},
+{
+"word": "neuroscientist",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "神経科学者",
+"domains": [
+"science"
+],
+"freq": 41780
 },
 {
 "word": "reenact",
@@ -134763,6 +136311,30 @@
 "freq": 42449
 },
 {
+"word": "unearth",
+"pos": "verb",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "掘り出す；発掘する",
+"domains": [
+"science"
+],
+"freq": 42471
+},
+{
+"word": "wiretap",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "盗聴",
+"domains": [
+"law"
+],
+"freq": 42490
+},
+{
 "word": "truism",
 "pos": "noun",
 "eiken": "1",
@@ -134821,6 +136393,222 @@
 "abstract"
 ],
 "freq": 42965
+},
+{
+"word": "physiotherapist",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "理学療法士",
+"domains": [
+"health"
+],
+"freq": 43310
+},
+{
+"word": "hoarse",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "声がかれた",
+"domains": [
+"health"
+],
+"freq": 43691
+},
+{
+"word": "bedridden",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "寝たきりの",
+"domains": [
+"health"
+],
+"freq": 44644
+},
+{
+"word": "slurred",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "ろれつの回らない",
+"domains": [
+"health"
+],
+"freq": 46182
+},
+{
+"word": "cesarean",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "帝王切開",
+"domains": [
+"health"
+],
+"freq": 47526
+},
+{
+"word": "extradite",
+"pos": "verb",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "（犯罪人を）引き渡す",
+"domains": [
+"law"
+],
+"freq": 47615
+},
+{
+"word": "locum",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "代理医師",
+"domains": [
+"health"
+],
+"freq": 47732
+},
+{
+"word": "acquit",
+"pos": "verb",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "無罪とする",
+"domains": [
+"law"
+],
+"freq": 48042
+},
+{
+"word": "poacher",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "密猟者",
+"domains": [
+"animals"
+],
+"freq": 48417
+},
+{
+"word": "irregularity",
+"pos": "noun",
+"eiken": "1",
+"toeic": 990,
+"cefr": "C1",
+"ja": "不正；不規則なこと",
+"domains": [
+"society"
+],
+"freq": 48830
+},
+{
+"word": "urologist",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "泌尿器科医",
+"domains": [
+"health"
+],
+"freq": 52077
+},
+{
+"word": "nosebleed",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "鼻血",
+"domains": [
+"health"
+],
+"freq": 52526
+},
+{
+"word": "anaphylactic",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "アナフィラキシーの",
+"domains": [
+"health"
+],
+"freq": 52770
+},
+{
+"word": "mammogram",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "乳房X線検査",
+"domains": [
+"health"
+],
+"freq": 53679
+},
+{
+"word": "antenatal",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "出産前の",
+"domains": [
+"health"
+],
+"freq": 54617
+},
+{
+"word": "policyholder",
+"pos": "noun",
+"eiken": "1",
+"toeic": 990,
+"cefr": "C1",
+"ja": "保険契約者",
+"domains": [
+"finance"
+],
+"freq": 55652
+},
+{
+"word": "eardrum",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "鼓膜",
+"domains": [
+"body"
+],
+"freq": 57358
+},
+{
+"word": "sinusitis",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "副鼻腔炎",
+"domains": [
+"health"
+],
+"freq": 58365
 },
 {
 "word": "floe",
@@ -135857,6 +137645,18 @@
 "freq": 60007
 },
 {
+"word": "overpay",
+"pos": "verb",
+"eiken": "1",
+"toeic": 990,
+"cefr": "C1",
+"ja": "払いすぎる",
+"domains": [
+"finance"
+],
+"freq": 60007
+},
+{
 "word": "paywall",
 "pos": "noun",
 "eiken": "1",
@@ -136614,6 +138414,30 @@
 "freq": 60008
 },
 {
+"word": "misspell",
+"pos": "verb",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "つづりを間違える",
+"domains": [
+"communication"
+],
+"freq": 60008
+},
+{
+"word": "misstate",
+"pos": "verb",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "事実を誤って述べる",
+"domains": [
+"communication"
+],
+"freq": 60008
+},
+{
 "word": "mutinous",
 "pos": "adjective",
 "eiken": "1",
@@ -136972,6 +138796,18 @@
 "ja": "見捨てられた；放棄された",
 "domains": [
 "abstract"
+],
+"freq": 60009
+},
+{
+"word": "anonymize",
+"pos": "verb",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "匿名にする",
+"domains": [
+"technology"
 ],
 "freq": 60009
 },
@@ -138368,6 +140204,18 @@
 "freq": 60011
 },
 {
+"word": "audiologist",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "聴覚の専門家",
+"domains": [
+"health"
+],
+"freq": 60011
+},
+{
 "word": "centralized",
 "pos": "adjective",
 "eiken": "1",
@@ -138680,6 +140528,18 @@
 "freq": 60011
 },
 {
+"word": "incontinent",
+"pos": "adjective",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "失禁する",
+"domains": [
+"health"
+],
+"freq": 60011
+},
+{
 "word": "intersperse",
 "pos": "verb",
 "eiken": "1",
@@ -138904,6 +140764,18 @@
 "ja": "無口；寡黙",
 "domains": [
 "emotion"
+],
+"freq": 60011
+},
+{
+"word": "tonsillitis",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "扁桃炎",
+"domains": [
+"health"
 ],
 "freq": 60011
 },
@@ -139517,6 +141389,18 @@
 "ja": "総合して；総合的に",
 "domains": [
 "abstract"
+],
+"freq": 60013
+},
+{
+"word": "tonsillectomy",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C2",
+"ja": "扁桃摘出手術",
+"domains": [
+"health"
 ],
 "freq": 60013
 },

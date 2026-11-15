@@ -164,4 +164,314 @@ const WORDS: JobLexEntry[] = [
   {id: "desk",text: "desk",pos: "noun",group: "jp_off_work",forms: ["desks"],gloss: "机",emoji: "🗄️",eiken: "5",cefr: "A1"},
 ];
 
-export const COMMON_EN: JobCommon = { lexicon: WORDS, pages: PAGES, forms: {}, lemmas: { in_tell: 'tell' } };
+// ---------------------------------------------------------------------------------------------- the newspaper's and the clinic's shared words
+// Words both the newspaper office and the clinic reception use (compact table: `text|pos|forms|gloss|emoji|id`; a line
+// `# pageId | 見出し` opens a 検証ページ). Levels, TOEIC bands and domains come from data/english/vocab.json.
+
+const POS: Record<string, JobLexEntry['pos']> = { n: 'noun', v: 'verb', a: 'adj', d: 'adv', p: 'prep', c: 'conj', r: 'pron', t: 'det', i: 'interj', x: 'phrase' };
+
+function lex(src: string): { entries: JobLexEntry[]; pages: VerificationPage[] } {
+  const entries: JobLexEntry[] = [];
+  const pages: VerificationPage[] = [];
+  let group = '';
+  for (const raw of src.split('\n')) {
+    const line = raw.trim();
+    if (!line) continue;
+    if (line.startsWith('#')) {
+      const [id, labelJa] = line.slice(1).split('|').map((x) => x.trim());
+      pages.push({ id, labelJa });
+      group = id;
+      continue;
+    }
+    const [text, pos, forms, gloss, emoji, id] = line.split('|').map((x) => x.trim());
+    entries.push({
+      id: id || text.toLowerCase().replace(/ /g, '_').replace(/[^a-z_]/g, ''),
+      text,
+      pos: POS[pos] ?? 'noun',
+      group,
+      ...(forms ? { forms: forms.split(',').map((x) => x.trim()) } : {}),
+      ...(gloss ? { gloss } : {}),
+      ...(emoji ? { emoji } : {}),
+    });
+  }
+  return { entries, pages };
+}
+
+// BEGIN generated (newspaper + clinic shared words)
+const NC_SRC = `
+# jx1_01 | 仕事のことば 1（3級）
+clinic|n|clinic's,clinics|診療所||
+race|n|races,racing|競走||
+age|n||年齢||
+nurse|n|nurses,nursing|看護師||
+exact|a||正確な||
+# jx1_02 | 仕事のことば 2（3級）
+game|n|games|試合・ゲーム||
+pharmacy|n|pharmacies|薬局||
+accident|n||事故||
+arm|n|arms|腕||
+# jx2_01 | 仕事のことば 1（準2級）
+spot|n|spots,spotted|場所||
+temperature|n||温度||
+heart|n||心臓||
+pain|n|pains|痛み||
+# jx2_02 | 仕事のことば 2（準2級）
+down|d||下へ||
+correction|n|corrections|訂正||
+print|v|printed,printing,prints|印刷する・掲載する||
+road|n|roads|道路||
+# jx2_03 | 仕事のことば 3（準2級）
+hit|v|hits|襲う・打つ||
+climb|v||登る||
+drop|v|drops|取り下げる・落とす||
+branch|n|branches|支店・枝||
+# jx2_04 | 仕事のことば 4（準2級）
+appear|v|appeared|現れる・出廷する||
+fit|a|fits,fitted|ぴったりの||
+seat|n||議席・席||
+space|n||余白・スペース||
+# jx3_01 | 仕事のことば 1（2級）
+repair|n|repaired|修理||
+disagree|v|disagrees|意見が合わない||
+test|n|tested,tests|テスト||
+court|n|court's,courts|裁判所||
+# jx3_02 | 仕事のことば 2（2級）
+trial|n||裁判||
+detail|n|details|詳細||
+insurer|n|insurer's|保険会社||
+press|n|pressed,presses|報道機関・新聞||
+# jx3_03 | 仕事のことば 3（2級）
+main|a||主な||
+middle|a||真ん中の||
+sun|n||太陽||
+sentence|n|sentenced|文・判決||
+# jx3_04 | 仕事のことば 4（2級）
+flu|n||インフルエンザ||
+vaccination|n|vaccinations|予防接種||
+raise|v|raised,raises|上げる||
+treatment|n||治療||
+# jx3_05 | 仕事のことば 5（2級）
+ward|n|wards|病棟||
+fact|n|facts|事実||
+lift|n|lifted,lifting|エレベーター（英）||
+specialist|n|specialist's|専門家||
+# jx3_06 | 仕事のことば 6（2級）
+vaccine|n||ワクチン||
+university|n||大学||
+witness|n|witnesses|目撃者||
+laboratory|n||実験室||
+# jx3_07 | 仕事のことば 7（2級）
+arrest|v|arrested|逮捕する||
+sum|n|sums|金額・合計||
+correctly|d||正しく||
+lawyer|n|lawyers,lawyers'|弁護士||
+# jx3_08 | 仕事のことば 8（2級）
+health|n||健康||
+opinion|n||意見||
+believe|v||信じる||
+choose|v|chose,chosen|選ぶ||
+# jx3_09 | 仕事のことば 9（2級）
+researcher|n|researchers|研究者||
+drive|v|drives,driving|運転する||
+january|n||1月||
+measles|n||はしか||
+# jx3_10 | 仕事のことば 10（2級）
+aid|n||援助||
+criticize|v|criticized,criticizes|批判する||
+dangerous|a||危険な||
+deny|v|denied,denies,denying|否定する||
+# jx3_11 | 仕事のことば 11（2級）
+describe|v|described,describes|説明する||
+far|d|fares|遠くに||
+ignore|v||無視する||
+image|n|images|イメージ||
+# jx3_12 | 仕事のことば 12（2級）
+jump|v|jumps|跳ぶ||
+measure|n|measured,measures|対策・寸法||
+share|n|shared,shares,sharing|株・分担||
+signature|n|signatures|署名||
+# jx3_13 | 仕事のことば 13（2級）
+surgery|n||手術||
+suspect|n|suspected,suspects|容疑者・疑う||
+warn|v|warned,warns|警告する||
+mark|v|marked|印をつける||
+# jx3_14 | 仕事のことば 14（2級）
+antibiotic|a|antibiotics|抗生物質の||
+battery|n||電池||
+coverage|n||保険の補償範囲・報道||
+version|n||版||
+# jx3_15 | 仕事のことば 15（2級）
+lens|n|lenses|レンズ||
+car|n|carer,cars|車||
+fair|a||公平な||
+able|a||～できる||
+# jx3_16 | 仕事のことば 16（2級）
+suggestion|n||提案||
+surprised|a||驚いた||
+delighted|a||うれしい||
+pass|v|passed,passes|渡す・伝える||
+# jx3_17 | 仕事のことば 17（2級）
+unacceptable|a||受け入れられない||
+section|n||欄・部分||
+pad|n||メモ帳||
+slot|n||（予約や紙面の）枠||
+# jx3_18 | 仕事のことば 18（2級）
+point|n|pointing,points|点||
+borrow|v||借りる||
+block|v|blocked|阻止する・ふさぐ||
+part|n|parts|部分・役割||
+# jx4_01 | 仕事のことば 1（準1級）
+person|n||人||
+disease|n||病気||
+publish|v|published,publishing|出版する||
+fear|n|fears|恐れ||
+# jx4_02 | 仕事のことば 2（準1級）
+avoid|v|avoided|避ける||
+birth|n||誕生||
+grandfather|n||祖父||
+join|v|joined,joins|参加する||
+# jx4_03 | 仕事のことば 3（準1級）
+step|n|steps|階段・次の手順||
+protest|v||抗議する||
+support|v|supported|支持する||
+evidence|n||証拠||
+# jx4_04 | 仕事のことば 4（準1級）
+attack|v|attacked,attacks|攻撃する||
+care|n||注意・世話||
+error|n||誤り||
+clearly|d||はっきりと||
+# jx4_05 | 仕事のことば 5（準1級）
+illness|n||病気||
+pressure|n||圧力||
+refuse|v|refused,refuses,refusing|断る||
+service|n|services|サービス・接客||
+# jx4_06 | 仕事のことば 6（準1級）
+coastal|a||沿岸の||
+criticism|n||批評||
+demand|v|demands|要求する||
+flight|n|flights|飛行||
+# jx4_07 | 仕事のことば 7（準1級）
+injury|n|injuries|けが||
+life|n||生活||
+outbreak|n||発生||
+pilot|n||パイロット||
+# jx4_08 | 仕事のことば 8（準1級）
+power|n|powers|力||
+restrict|v|restricts|制限する||
+allege|v|alleged,alleges|主張する||
+deal|n||取引||
+# jx4_09 | 仕事のことば 9（準1級）
+diabetes|n||糖尿病||
+emergency|n|emergencies|緊急事態||
+mental|a||精神の||
+operation|n||手術||
+# jx4_10 | 仕事のことば 10（準1級）
+save|v|saved|救う||
+smoking|n||喫煙||
+state|n|states|状態・述べる||
+surgeon|n|surgeons|外科医||
+# jx4_11 | 仕事のことば 11（準1級）
+such|t||そのような||
+bear|v|born|産む（bornは「生まれた」）||
+die|v|died,dies|死ぬ||
+collapse|v|collapsed,collapses|倒れる・崩壊する||
+# jx4_12 | 仕事のことば 12（準1級）
+income|n||収入||
+lack|n|lacks|不足||
+dispute|n|disputes|論争||
+pending|a||未決の||
+# jx4_13 | 仕事のことば 13（準1級）
+bleach|n|bleaching|漂白剤||
+conference|n||会議||
+document|n|documents|文書||
+object|v||反対する||
+# jx4_14 | 仕事のことば 14（準1級）
+objection|n|objections|反対||
+represent|v||代表する||
+session|n|sessions|会議・（面談の）時間||
+immediate|a||即座の||
+# jx4_15 | 仕事のことば 15（準1級）
+permission|n||許可||
+thank|v|thanking|感謝する||
+insist|v|insisted,insists|強く主張する||
+incorrect|a|incorrectly|間違った||
+# jx4_16 | 仕事のことば 16（準1級）
+certain|a||確かな||
+reason|n||理由||
+collector|n||取り立て人・収集家||
+ambulance|n||救急車||
+# jx4_17 | 仕事のことば 17（準1級）
+wrongly|d||間違って||
+future|n||未来||
+unfair|a||不公平な||
+closely|d||綿密に||
+# jx4_18 | 仕事のことば 18（準1級）
+condition|n|conditions|状態||
+conflict|n|conflicts|衝突||
+unavailable|a||利用できない||
+outside|d||外で・外の||
+# jx5_01 | 仕事のことば 1（1級）
+apology|n||謝罪||
+false|a|falsely|間違った||
+appeal|n||控訴・訴え||
+suspend|v|suspended|猶予する・一時停止する||
+# jx5_02 | 仕事のことば 2（1級）
+debt|n|debts|借金||
+transcript|n||文字起こし・写し||
+regulator|n|regulators|規制当局||
+oblige|v|obliged|感謝する・義務づける||
+# jx5_03 | 仕事のことば 3（1級）
+reopen|v|reopened,reopening|再開する||
+faithful|a||忠実な||
+act|v|acted,acts|行動する||
+anyone|r||だれか||
+# jx5_04 | 仕事のことば 4（1級）
+confidence|n||自信||
+decline|n|declined,declining|衰退||
+release|n|released|発表・公開||
+retain|v|retains|保持する||
+# jx5_05 | 仕事のことば 5（1級）
+scheme|n||制度・計画||
+admit|v|admits,admitted|認める||
+chronic|a||慢性の||
+credit|n|credited|信用||
+# jx5_06 | 仕事のことば 6（1級）
+lie|v|lies,lying|ある・横たわる||
+privacy|n||プライバシー||
+restore|v|restored|修復する||
+therapy|n||治療||
+# jx5_07 | 仕事のことば 7（1級）
+treat|v|treated|扱う・治療する||
+intend|v|intends|～するつもりである||
+base|v|based|基づかせる||
+though|c||～だけれども||
+# jx5_08 | 仕事のことば 8（1級）
+anonymous|a||匿名の||
+remain|v||残る||
+tender|n||入札||
+withdrawal|n||撤回・撤退||
+# jx5_09 | 仕事のことば 9（1級）
+disagreement|n||意見の相違||
+justify|v|justified|正当化する||
+invitation|n||招待||
+minor|n|minors'|未成年者||
+# jx5_10 | 仕事のことば 10（1級）
+grant|n||補助金||
+distress|n||苦痛||
+harsh|a||厳しい||
+attribute|v|attributed|(～のものと)みなす||
+# jx5_11 | 仕事のことば 11（1級）
+deeply|d||深く||
+insensitive|a||鈍感な||
+affect|v|affected|影響する||
+contradict|v|contradicts|矛盾する||
+# jx5_12 | 仕事のことば 12（1級）
+consistent|a||一貫した||
+unnecessary|a||不必要な||
+locate|v|located|位置を突き止める||
+placement|n||配置||
+`;
+// END generated
+const NC = lex(NC_SRC);
+
+export const COMMON_EN: JobCommon = { lexicon: [...WORDS, ...NC.entries], pages: [...PAGES, ...NC.pages], forms: {}, lemmas: { in_tell: 'tell' } };
