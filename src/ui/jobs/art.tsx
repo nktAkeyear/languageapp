@@ -23,6 +23,9 @@ export const BUILDINGS: Record<string, { x: number; y: number; w: number; h: num
   clinic: { x: 1420, y: 14, w: 170, h: 180 },
   board: { x: 600, y: 396, w: 110, h: 100 },
   lot: { x: 1430, y: 620, w: 160, h: 160 },
+  // town hall counter and academy library (generic sign over open ground until they get drawn fronts)
+  townhall: { x: 1236, y: 60, w: 170, h: 150 },
+  academy: { x: 1420, y: 20, w: 170, h: 170 },
 };
 
 /** The hub: the town map plus the east quarter across the river, with the new workplaces. */

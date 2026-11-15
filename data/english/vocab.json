@@ -69290,6 +69290,18 @@
 "freq": 3613
 },
 {
+"word": "dean",
+"pos": "noun",
+"eiken": "2",
+"toeic": null,
+"cefr": "B2",
+"ja": "学部長",
+"domains": [
+"school"
+],
+"freq": 3615
+},
+{
 "word": "burden",
 "pos": "noun",
 "eiken": "2",
@@ -75655,6 +75667,19 @@
 "freq": 7293
 },
 {
+"word": "archive",
+"pos": "noun",
+"eiken": "2",
+"toeic": 860,
+"cefr": "B2",
+"ja": "公文書館；記録保管所",
+"domains": [
+"school",
+"office"
+],
+"freq": 7311
+},
+{
 "word": "intentionally",
 "pos": "adverb",
 "eiken": "2",
@@ -78737,6 +78762,18 @@
 "freq": 18599
 },
 {
+"word": "sculptor",
+"pos": "noun",
+"eiken": "2",
+"toeic": null,
+"cefr": "B2",
+"ja": "彫刻家",
+"domains": [
+"arts"
+],
+"freq": 18687
+},
+{
 "word": "remit",
 "pos": "verb",
 "eiken": "2",
@@ -79019,6 +79056,19 @@
 "freq": 25244
 },
 {
+"word": "spoilt",
+"pos": "adjective",
+"eiken": "2",
+"toeic": null,
+"cefr": "B2",
+"ja": "（投票用紙が）無効になった",
+"domains": [
+"society",
+"law"
+],
+"freq": 25591
+},
+{
 "word": "anvil",
 "pos": "noun",
 "eiken": "2",
@@ -79029,6 +79079,19 @@
 "crafts"
 ],
 "freq": 27361
+},
+{
+"word": "instalment",
+"pos": "noun",
+"eiken": "2",
+"toeic": 730,
+"cefr": "B2",
+"ja": "分割払いの1回分；分割払い",
+"domains": [
+"money",
+"finance"
+],
+"freq": 27513
 },
 {
 "word": "overcoat",
@@ -79227,6 +79290,19 @@
 "freq": 43478
 },
 {
+"word": "milligram",
+"pos": "noun",
+"eiken": "2",
+"toeic": null,
+"cefr": "B2",
+"ja": "ミリグラム",
+"domains": [
+"science",
+"health"
+],
+"freq": 56287
+},
+{
 "word": "bent",
 "pos": "adjective",
 "eiken": "2",
@@ -79382,6 +79458,19 @@
 "ja": "造船業者",
 "domains": [
 "sea"
+],
+"freq": 60011
+},
+{
+"word": "stallholder",
+"pos": "noun",
+"eiken": "2",
+"toeic": 730,
+"cefr": "B2",
+"ja": "露店の店主",
+"domains": [
+"shopping",
+"sales"
 ],
 "freq": 60011
 },
@@ -100028,6 +100117,18 @@
 "freq": 11352
 },
 {
+"word": "councillor",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": 860,
+"cefr": "C1",
+"ja": "市（町）議会議員",
+"domains": [
+"society"
+],
+"freq": 11364
+},
+{
 "word": "modem",
 "pos": "noun",
 "eiken": "pre1",
@@ -100520,6 +100621,19 @@
 "freq": 13718
 },
 {
+"word": "sewage",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "下水；汚水",
+"domains": [
+"nature",
+"housing"
+],
+"freq": 14017
+},
+{
 "word": "daze",
 "pos": "noun",
 "eiken": "pre1",
@@ -100915,6 +101029,19 @@
 "abstract"
 ],
 "freq": 19455
+},
+{
+"word": "conclusive",
+"pos": "adjective",
+"eiken": "pre1",
+"toeic": 990,
+"cefr": "B2",
+"ja": "決定的な；確実な",
+"domains": [
+"science",
+"abstract"
+],
+"freq": 19562
 },
 {
 "word": "motherland",
@@ -101471,6 +101598,18 @@
 "freq": 40078
 },
 {
+"word": "pothole",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "道路の穴；ポットホール",
+"domains": [
+"transport"
+],
+"freq": 41316
+},
+{
 "word": "splint",
 "pos": "noun",
 "eiken": "pre1",
@@ -101493,6 +101632,19 @@
 "health"
 ],
 "freq": 44126
+},
+{
+"word": "kerb",
+"pos": "noun",
+"eiken": "pre1",
+"toeic": null,
+"cefr": "B2",
+"ja": "縁石",
+"domains": [
+"transport",
+"housing"
+],
+"freq": 46571
 },
 {
 "word": "chrysanthemum",
@@ -116945,18 +117097,6 @@
 "freq": 11362
 },
 {
-"word": "councillor",
-"pos": "noun",
-"eiken": "1",
-"toeic": 860,
-"cefr": "C1",
-"ja": "市（町）議会議員",
-"domains": [
-"society"
-],
-"freq": 11364
-},
-{
 "word": "infer",
 "pos": "verb",
 "eiken": "1",
@@ -123806,6 +123946,18 @@
 "freq": 15429
 },
 {
+"word": "injunction",
+"pos": "noun",
+"eiken": "1",
+"toeic": 990,
+"cefr": "C1",
+"ja": "差止め命令",
+"domains": [
+"law"
+],
+"freq": 15431
+},
+{
 "word": "bony",
 "pos": "adjective",
 "eiken": "1",
@@ -129646,6 +129798,19 @@
 "freq": 21606
 },
 {
+"word": "plagiarism",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "盗用；剽窃",
+"domains": [
+"school",
+"law"
+],
+"freq": 21617
+},
+{
 "word": "abhorrent",
 "pos": "adjective",
 "eiken": "1",
@@ -130979,6 +131144,19 @@
 "freq": 23901
 },
 {
+"word": "monograph",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "専門書；研究書",
+"domains": [
+"school",
+"media"
+],
+"freq": 23910
+},
+{
 "word": "antibacterial",
 "pos": "adjective",
 "eiken": "1",
@@ -131747,6 +131925,19 @@
 "freq": 25513
 },
 {
+"word": "pseudonym",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "ペンネーム；筆名",
+"domains": [
+"arts",
+"media"
+],
+"freq": 25540
+},
+{
 "word": "opacity",
 "pos": "noun",
 "eiken": "1",
@@ -132420,6 +132611,19 @@
 "freq": 27032
 },
 {
+"word": "arrears",
+"pos": "noun",
+"eiken": "1",
+"toeic": 990,
+"cefr": "C1",
+"ja": "滞納金；未払い金",
+"domains": [
+"finance",
+"money"
+],
+"freq": 27052
+},
+{
 "word": "showy",
 "pos": "adjective",
 "eiken": "1",
@@ -132466,6 +132670,19 @@
 "emotion"
 ],
 "freq": 27176
+},
+{
+"word": "plankton",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "プランクトン",
+"domains": [
+"science",
+"sea"
+],
+"freq": 27248
 },
 {
 "word": "irate",
@@ -133608,6 +133825,19 @@
 "school"
 ],
 "freq": 30541
+},
+{
+"word": "silt",
+"pos": "verb",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "土砂でふさがる",
+"domains": [
+"nature",
+"sea"
+],
+"freq": 30585
 },
 {
 "word": "naively",
@@ -135927,6 +136157,19 @@
 "freq": 39999
 },
 {
+"word": "abatement",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "軽減；（騒音などの）除去",
+"domains": [
+"law",
+"society"
+],
+"freq": 40100
+},
+{
 "word": "angsty",
 "pos": "adjective",
 "eiken": "1",
@@ -136443,6 +136686,19 @@
 "freq": 46182
 },
 {
+"word": "conservator",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "（文化財の）修復士",
+"domains": [
+"arts",
+"science"
+],
+"freq": 46396
+},
+{
 "word": "cesarean",
 "pos": "noun",
 "eiken": "1",
@@ -136491,6 +136747,19 @@
 "freq": 48042
 },
 {
+"word": "cannery",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "缶詰工場",
+"domains": [
+"manufacturing",
+"food"
+],
+"freq": 48114
+},
+{
 "word": "poacher",
 "pos": "noun",
 "eiken": "1",
@@ -136513,6 +136782,19 @@
 "society"
 ],
 "freq": 48830
+},
+{
+"word": "overfishing",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "乱獲",
+"domains": [
+"sea",
+"nature"
+],
+"freq": 50133
 },
 {
 "word": "urologist",
@@ -139324,6 +139606,19 @@
 "ja": "好色；みだらな関心",
 "domains": [
 "emotion"
+],
+"freq": 60009
+},
+{
+"word": "ratepayer",
+"pos": "noun",
+"eiken": "1",
+"toeic": null,
+"cefr": "C1",
+"ja": "（地方税の）納税者",
+"domains": [
+"finance",
+"society"
 ],
 "freq": 60009
 },

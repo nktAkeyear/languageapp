@@ -344,7 +344,7 @@ chrysanthemum	noun	pre1	null	B2	菊	nature
 scales	noun	2	730	B1	はかり；天秤	shopping,science
 rower	noun	1	null	B2	漕ぎ手；ボート選手	sports
 theatre	noun	4	500	A2	劇場（theaterの英式つづり）	arts
-councillor	noun	1	860	C1	市（町）議会議員	society
+councillor	noun	pre1	860	B2	市（町）議会議員	society,meetings
 ceasefire	noun	1	990	C1	停戦	society
 evasion	noun	1	990	C1	回避；脱税	law
 arson	noun	1	null	C1	放火	law
@@ -501,3 +501,28 @@ booster	noun	pre1	null	B2	（ワクチンの）追加接種	health
 screening	noun	pre1	860	B2	検診；スクリーニング	health
 seabird	noun	2	null	B1	海鳥	animals
 timeline	noun	pre1	860	B2	年表；時系列	abstract
+# >>> town hall and academy jobs: words off the compiled lists, level estimates made for the jobs
+abatement	noun	1	null	C1	軽減；（騒音などの）除去	law,society
+archive	noun	2	860	B2	公文書館；記録保管所	school,office
+arrears	noun	1	990	C1	滞納金；未払い金	finance,money
+cannery	noun	1	null	C1	缶詰工場	manufacturing,food
+conclusive	adjective	pre1	990	B2	決定的な；確実な	science,abstract
+conservator	noun	1	null	C1	（文化財の）修復士	arts,science
+dean	noun	2	null	B2	学部長	school
+injunction	noun	1	990	C1	差止め命令	law
+instalment	noun	2	730	B2	分割払いの1回分；分割払い	money,finance
+kerb	noun	pre1	null	B2	縁石	transport,housing
+milligram	noun	2	null	B2	ミリグラム	science,health
+monograph	noun	1	null	C1	専門書；研究書	school,media
+overfishing	noun	1	null	C1	乱獲	sea,nature
+plagiarism	noun	1	null	C1	盗用；剽窃	school,law
+plankton	noun	1	null	C1	プランクトン	science,sea
+pothole	noun	pre1	null	B2	道路の穴；ポットホール	transport
+pseudonym	noun	1	null	C1	ペンネーム；筆名	arts,media
+ratepayer	noun	1	null	C1	（地方税の）納税者	finance,society
+sculptor	noun	2	null	B2	彫刻家	arts
+sewage	noun	pre1	null	B2	下水；汚水	nature,housing
+silt	verb	1	null	C1	土砂でふさがる	nature,sea
+spoilt	adjective	2	null	B2	（投票用紙が）無効になった	society,law
+stallholder	noun	2	730	B2	露店の店主	shopping,sales
+# <<< town hall and academy jobs

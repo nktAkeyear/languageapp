@@ -84,7 +84,7 @@ describe('jobs placed by the start level', () => {
     const sum = applyStartLevel(data, p, 1);
     expect(sum.boardOpened).toBe(false);
     expect(p.jobs?.boardOpen).toBeUndefined();
-    expect(previewPlacement(data, 6).map((x) => `${x.id}${x.rank}`)).toEqual(['teahouse4', 'post5', 'kitchen5', 'inn5', 'office4', 'news4', 'clinic4']);
+    expect(previewPlacement(data, 6).map((x) => `${x.id}${x.rank}`)).toEqual(['teahouse4', 'post5', 'kitchen5', 'inn5', 'office4', 'news4', 'clinic4', 'townhall4', 'academy4']);
   });
 
   it('a 英検3級 start offers the office at once, at its first rank (its material is 3級)', () => {

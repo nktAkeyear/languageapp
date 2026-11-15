@@ -151,7 +151,7 @@ src/
     shared/town.ts      language-neutral town data: goods, stalls, map, time slots, curriculum, unlocks
     shared/renovation.ts the catalogue: upgrades, prices, gates, effects; {en,zh}/renovation.ts its text + words
     jobs/               the jobs: teahouse.ts (the first job + the shared goods), post.en.ts, kitchen.en.ts,
-                        inn.en.ts, office.en.ts (English-only), common.en.ts (words several jobs share),
+                        inn.en.ts, office.en.ts, townhall.en.ts, academy.en.ts (English-only), common.en.ts (words several jobs share),
                         near.en.ts (near-miss replies for the QA banks), index.ts (the list + the common lists;
                         merges the near misses onto the QA items)
     en/  zh/            lexicon.ts + index.ts (shop); town.ts = lexicon.town.ts + market.ts + delivery.ts
@@ -420,13 +420,15 @@ templates (×3) over the previous rank's (×1.5) and older ones (×0.6, review).
 | 商会の事務 trading office | check, respond | office, meetings, sales, finance, logistics | TOEIC〜400 (英検3) / 〜600 (準2) / 〜730 (2) / 〜860 (準1) / 〜990 (1) | 33 / 36 / 32 / 32 / 35 |
 | 新聞社 newspaper office (the Harbour Courier) | sort, check, respond | media, society, law, science, nature, finance, arts | 英検3・〜400 / 準2・〜600 / 2・〜730 / 準1・〜860 / 1・〜990 | 20 / 20 / 45 / 45 / 45 (templates 9 / 12 / 17 / 16 / 16) |
 | 診療所の受付 clinic reception (Harbour Clinic) | sort, check, respond | health, body, family, money, emotion, society | 英検3・〜400 / 準2・〜600 / 2・〜730 / 準1・〜860 / 1・〜990 | 20 / 20 / 45 / 45 / 45 (templates 9 / 16 / 29 / 28 / 27) |
+| 役場の窓口 town hall counter | sort, check, respond | society, law, housing, finance, money, hr, nature, communication, office (administrative English, TOEIC-flavoured) | 英検3・〜500 / 準2・〜600 / 2・〜730 / 準1・〜860 / 1・〜990 | 23 / 23 / 52 / 45 / 45 |
+| 学院の図書室 academy library | sort, check, respond | science, school, arts, technology, society, nature, media (academic reading, 英検-flavoured) | 英検3 / 準2 / 2 / 準1 / 1 | 22 / 21 / 46 / 45 / 46 |
 
 The newspaper office and the clinic reception are the two upper-level jobs (rank 1 ≈ 英検3級, rank 5 ≈ 1級): reception work only (no
 medical advice), vocabulary in the trade's own words (courts, politics, the economy; symptoms, tests, medicines, insurance), words
 that `vocab.json` lacked were added to `data/english/overrides/additions.tsv` with an estimated 英検 / TOEIC level and a gloss. Their
 buildings (`BUILDINGS.news`, `BUILDINGS.clinic`, `NewsArt`, `ClinicArt`) live in `src/ui/jobs/art.tsx`.
 
-Every job has authored + templated content for all five ranks (templates per rank: post 14 / 15 / 19 / 16 / 11,
+Every job has authored + templated content for all five ranks (templates per rank: townhall 9 / 13 / 18 / 17 / 17, academy 9 / 12 / 17 / 17 / 17, post 14 / 15 / 19 / 16 / 11,
 kitchen 14 / 21 / 20 / 34 / 14, inn 13 / 18 / 14 / 14 / 13, office 14 / 14 / 13 / 13 / 14). Rank 5 (灯台) is the
 longest reading: the kitchen's catering contracts, supplier notes, an inspector's memo, set menus with diet
 rules and "if … use … instead" substitutions, spoken orders, sorting by the notes on deliveries / tickets /
