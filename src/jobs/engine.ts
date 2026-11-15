@@ -13,6 +13,8 @@
  * stage clock does not move (no stage runs ahead while the player works elsewhere) and a planned story beat waits
  * for another day.
  */
+import { fieldInText } from './fieldText';
+import { explainIssue } from './explain';
 import { wordMarkup, type GameData } from '../core/gamedata';
 import { pick, type Rng } from '../core/rng';
 import type { LangProgress } from '../core/save';
@@ -771,23 +773,10 @@ export function reactionFits(inst: TaskInstance, who?: ReactionSpeaker): (text: 
   };
 }
 
-/** A label that does not read as a noun after "the" ("By", "Send by", "Who", "Room, a night"). */
-const NOT_NOUN = /^(to|by|from|inside|outside|who|why|what|when|where|how|send|pay|leave|arrive|come|sign|signed|please|they|wants|needs|bring|keep|ready|sent|paid|arrived|coming|only|in|on|at)\b|\b(by|at|to|for|from|before|in)$|,/i;
-const PROPER = /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|January|February|March|April|May|June|July|August|September|October|November|December)\b|\|@\}/;
-
-/**
- * A paper's field label in running text after "the": lowercased when it reads as a noun ("the tracking number"),
- * kept for a proper noun ("the Monday"), quoted as a line when it does not read as a noun ("the “By” line", not
- * "the by").
- */
-export function fieldInText(label: string): string {
-  if (NOT_NOUN.test(label.replace(/\{([^{}|]+)\|[^{}]*\}/g, '$1'))) return `“${label}” line`;
-  if (PROPER.test(label)) return label;
-  return /^[A-Z][a-z]/.test(label) ? label[0].toLowerCase() + label.slice(1) : label;
-}
+export { fieldInText };
 
 /** Every line the person could say for this evaluation (the pool `reactionText` picks one from at random). */
-export function reactionPool(data: GameData, jc: JobContent, inst: TaskInstance, ev: Pick<JobEvaluation, 'outcome' | 'primary'>, rank: number, late = false): { r: JobReaction; text: string; misfit?: boolean }[] {
+export function reactionPool(data: GameData, jc: JobContent, inst: TaskInstance, ev: Pick<JobEvaluation, 'outcome' | 'primary'>, rank: number, late = false): { r: JobReaction; text: string; misfit?: boolean; told?: boolean }[] {
   const prim = ev.primary;
   // Late: the work was right but the optional timer ran out (submitTask has already made the outcome minor).
   const lateOnly = late && !prim;
@@ -839,7 +828,16 @@ export function reactionPool(data: GameData, jc: JobContent, inst: TaskInstance,
     const ok = all.filter((x) => fits(x.r.text));
     return ok.length ? ok : all.map((x) => ({ ...x, misfit: true }));
   };
+  // What was off, said from the task's own facts (src/jobs/explain.ts): preferred over the kind's shared lines,
+  // which then only lend the person's face.
+  const told = (ev.outcome !== 'perfect' && !lateOnly ? explainIssue(data, jc, inst, prim, reactionSpeaker(data, jc, inst).boss) : []).map((t) =>
+    ev.outcome === 'minor' && (prim?.kind === 'wrong_bin' || prim?.kind === 'wrong_form') ? `Good. But ${/^(The|That|It|Look)\b/.test(t) ? t[0].toLowerCase() + t.slice(1) : t}` : t,
+  );
   let cands = pickFitting(kind);
+  if (told.length) {
+    const base = cands[0]?.r ?? pickFitting('any_fail')[0]?.r;
+    if (base) return told.map((text) => ({ r: base, text, told: true }));
+  }
   // A small mistake: the archetype's own "almost" lines ("Good. But one box is wrong.") join the issue's lines.
   if (ev.outcome === 'minor' && !lateOnly) cands = [...cands, ...pickFitting('minor').filter((x) => x.r.arch === inst.spec.arch)];
   // Newer issue kinds fall back to the nearest older one (content written before them still reacts sensibly).
@@ -1022,6 +1020,46 @@ export function reactionScenarios(spec: TaskSpec): { late: boolean; ev: Pick<Job
       add('wrong_form', 'fail', { field: spec.fields?.[0]?.id });
       if ((spec.fields?.length ?? 0) >= 3) add('wrong_form', 'minor', { field: spec.fields?.[0]?.id });
     } else add('wrong_slot', 'fail');
+  }
+  return out;
+}
+
+/**
+ * Wrong answers a player can hand in for a task (check, respond and trade: the archetypes whose reaction is built
+ * from the answer, `explainIssue`): every other reply, every wrong value on the message pad, every other free slot,
+ * approving a paper with a mistake, circling each other line, each wrong correction, a wrong count / change /
+ * postage. For the validator's "what was off" coverage and the tests.
+ */
+export function wrongAnswers(spec: TaskSpec, solved: TaskAnswer): TaskAnswer[] {
+  const out: TaskAnswer[] = [];
+  if (spec.arch === 'respond' && solved.arch === 'respond') {
+    if (spec.mode === 'choose') (spec.options ?? []).forEach((_, i) => i !== spec.answer && out.push({ arch: 'respond', choice: i }));
+    else if (spec.mode === 'form')
+      for (const f of spec.fields ?? []) for (const o of f.options) if (o !== f.answer) out.push({ arch: 'respond', fields: { ...solved.fields, [f.id]: o } });
+    if (spec.mode === 'slot') for (const c of spec.slot?.cells ?? []) if (!c.busy && c.id !== spec.slot?.answer) out.push({ arch: 'respond', slot: c.id });
+  } else if (spec.arch === 'check') {
+    const fields = spec.docs[spec.target]?.fields ?? [];
+    if (spec.wrong === null) for (const f of fields) out.push({ arch: 'check', verdict: 'fix', field: f.id });
+    else {
+      out.push({ arch: 'check', verdict: 'ok' });
+      for (const f of fields) if (f.id !== spec.wrong) out.push({ arch: 'check', verdict: 'fix', field: f.id, fix: spec.fix });
+      for (const o of spec.fixOptions ?? []) if (o !== spec.fix) out.push({ arch: 'check', verdict: 'fix', field: spec.wrong, fix: o });
+    }
+  } else if (spec.arch === 'sort' && solved.arch === 'sort') {
+    for (const it of spec.items) {
+      const other = spec.bins.find((b) => b !== it.bin);
+      if (other) out.push({ arch: 'sort', placed: { ...solved.placed, [it.id]: other } });
+    }
+  } else if (spec.arch === 'make' && solved.arch === 'make' && spec.method) {
+    out.push({ ...solved, method: spec.method === 'fry' ? 'boil' : 'fry' });
+  } else if (spec.arch === 'trade' && solved.arch === 'trade') {
+    for (const w of spec.want) {
+      out.push({ ...solved, counts: { ...solved.counts, [w.thing]: 0 } });
+      out.push({ ...solved, counts: { ...solved.counts, [w.thing]: w.n + 1 } });
+    }
+    if (solved.change > 0) out.push({ ...solved, change: solved.change - 1 });
+    out.push({ ...solved, change: solved.change + 1 });
+    if (spec.post) out.push({ ...solved, postage: (solved.postage ?? 0) + 1 });
   }
   return out;
 }

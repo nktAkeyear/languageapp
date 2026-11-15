@@ -71,6 +71,12 @@ export interface JobPerson {
   name: string;
   /** Role emoji: drives the drawn look (see ui/art/customer.tsx). */
   avatar: string;
+  /**
+   * A colleague (the housing desk, a reporter, the doctor): hands work over and asks as a colleague, and may be
+   * named on letters and papers, but never comes to the counter as a client (a spoken request of a template is
+   * said by the job's other people).
+   */
+  staff?: boolean;
 }
 
 export interface RankDef {
@@ -566,6 +572,9 @@ export interface JobIssue {
   field?: string;
   /** Texts (in-world) whose words the mistake implicates. */
   about: string[];
+  /** What the player gave (the reply chosen, a pad value, a slot cell id, a count, coins) and what the task needed: the reaction says it. */
+  got?: string;
+  want?: string;
 }
 
 export interface JobEvaluation {

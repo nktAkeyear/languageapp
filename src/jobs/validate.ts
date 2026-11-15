@@ -18,8 +18,8 @@
  *   lines are measured too (at the rank they come from).
  * - New words along the spine: an authored task should bring at most SPINE_NEW words the player cannot
  *   have met in the job's earlier tasks (the tea house's words count as known).
- * - Lists (data/english): job words missing from vocab.json are listed (warning: tolerant but loud),
- *   phrase / grammar tags are checked against phrases.json / grammar.json when present (a phrase must
+ * - Lists (data/english): a word need not be in vocab.json (the lists are a yardstick, not a limit); an off-list
+ *   word only needs a gloss of its own (counted, listed with VALIDATE_VERBOSE=1); phrase / grammar tags are checked against phrases.json / grammar.json when present (a phrase must
  *   occur in one of the task's texts: request, options, lines, papers).
  */
 import { wordMarkup, type GameData } from '../core/gamedata';
@@ -30,10 +30,15 @@ import { EIKEN_GRADES } from '../core/types';
 import { englishLists, listsLoaded, vocabFor } from '../curriculum/lists';
 import { eikenIndex, EIKEN_KEYS, TOEIC_BANDS, toeicIndex } from '../curriculum/yardsticks';
 import { evaluateTask, postage, solveTask } from './rules';
+
+/** A shared reaction line that only gives a verdict ("That is not right.", "Oh no. That is wrong."). */
+export const GENERIC = /\b(not (right|correct|good|quite right|the right answer|acceptable)|wrong|incorrect|a mistake|is not good)\b/i;
+/** Per job: wrong answers whose reaction was built from the task (told), from a shared line (shared), and how many of those only said "wrong" (generic). */
+export const explainStats: Record<string, { told: number; shared: number; generic: number }> = {};
 import { evalExpr } from './expr';
 import { authoredInstance, rankLevelIndex, selfNamed, specTexts, templateInstance, type GenCtx } from './templates';
 import { jobContentTexts, templateSlotWords, templateTexts } from './vocab';
-import { featuresAt, reactionPool, reactionScenarios, ruleCtx } from './engine';
+import { featuresAt, reactionPool, reactionScenarios, ruleCtx, wrongAnswers } from './engine';
 import { jobLexiconReport } from './lexicon';
 import type { JobContent, JobDef, TaskInstance, TaskSpec } from './types';
 import { GOODS } from '../content/jobs';
@@ -282,6 +287,49 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
         if (agg.over.size) (agg.worst > LEVEL_SLACK_ERROR ? h.err : h.warn)(`${w} @rank${r.rank}: instances use words above the level (${agg.label}): ${[...agg.over].join(', ')}`);
         if (!ok) h.err(`${w}: cannot be instantiated at rank ${r.rank}`);
       }
+    }
+    // What was off: every wrong answer a player can hand in (check, respond, trade) gets a line built from the task
+    // (explainIssue). Where none can be built the kind's shared line is said; a shared line that only says "wrong" /
+    // "not right" is a verdict in disguise — counted and reported, the last resort.
+    {
+      let told = 0;
+      let shared = 0;
+      const generic = new Map<string, { n: number; ex: string }>();
+      const rc = ruleCtx(data, jc);
+      const scan = (inst: TaskInstance, rank: number, w: string) => {
+        if (inst.spec.arch === 'make' && !inst.spec.method) return;
+        const solved = solveTask(inst.spec, rc);
+        for (const a of wrongAnswers(inst.spec, solved)) {
+          const ev = evaluateTask(inst.spec, a, rc);
+          if (ev.outcome === 'perfect') continue;
+          const pool = reactionPool(data, jc, inst, ev, rank);
+          if (pool[0]?.told) {
+            told++;
+            for (const x of pool) h.checkText(`${where} reaction for ${w}`, x.text);
+            continue;
+          }
+          shared++;
+          const gen = pool.filter((x) => GENERIC.test(x.r.text) && !/\{(field|bin|thing|vessel)\}/.test(x.r.text));
+          if (gen.length === pool.length && pool.length) {
+            const k = `${ev.primary?.kind}`;
+            const x = generic.get(k) ?? { n: 0, ex: `${w}: ${pool[0].text}` };
+            x.n++;
+            generic.set(k, x);
+          }
+        }
+      };
+      for (const t of jc.tasks) {
+        const r = t.rank;
+        scan(authoredInstance(ctxAt(r, 1), t), r, `task ${t.id}`);
+      }
+      for (const t of jc.templates)
+        for (const r of job.ranks.filter((x) => x.rank >= t.rank))
+          for (let seed = 1; seed <= 3; seed++) {
+            const inst = templateInstance(ctxAt(r.rank, seed * 7907 + r.rank), t);
+            if (inst) scan(inst, r.rank, `template ${t.id} @rank${r.rank}`);
+          }
+      explainStats[job.id] = { told, shared, generic: [...generic.values()].reduce((s, x) => s + x.n, 0) };
+      for (const [k, x] of generic) h.warn(`${where} reactions: ${x.n} wrong answer(s) of kind ${k} get only a generic line (e.g. ${x.ex}) — the task gives nothing to say what was off`);
     }
     // Reaction fit: every task (authored, and template instances at every rank it comes at) × every way it can end
     // must have at least one line that fits the request and the speaker (reactionFits); otherwise the person would

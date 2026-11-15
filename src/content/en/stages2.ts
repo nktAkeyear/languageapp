@@ -511,5 +511,5 @@ export const REACTIONS2: Reaction[] = [
   R('r23_right', 'perfect', 23, 'Right! Thank you.', 'happy'),
   R('r23_sure', 'perfect', 23, "Wonderful! I'm sure it's good.", 'delighted'),
   R('r23_problem', 'too_little', 23, 'No problem! More {ing}, please.', 'neutral'),
-  R('r23_wrong', 'any_fail', 23, 'That is wrong.', 'sad'),
+  R('r23_wrong', 'any_fail', 23, 'This is not what I ordered.', 'sad'),
 ];

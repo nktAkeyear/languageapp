@@ -77,7 +77,7 @@ export function evaluateMake(spec: MakeSpec, a: Extract<TaskAnswer, { arch: 'mak
       issues.push({ kind: 'wrong_order', thing: spec.order[k], about: words(spec.order[k]) });
     }
   }
-  if (spec.method && a.method !== spec.method) issues.push({ kind: 'wrong_method', about: [] });
+  if (spec.method && a.method !== spec.method) issues.push({ kind: 'wrong_method', about: [], got: a.method ?? '', want: spec.method });
   if (spec.vessel && a.vessel !== spec.vessel) issues.push({ kind: 'wrong_vessel', about: [] });
   const kinds = new Set(issues.map((i) => i.kind));
   let outcome: Outcome = 'fail';
@@ -98,7 +98,7 @@ export function solveMake(spec: MakeSpec): Extract<TaskAnswer, { arch: 'make' }>
 export function evaluateSort(spec: SortSpec, a: Extract<TaskAnswer, { arch: 'sort' }>): JobEvaluation {
   const issues: JobIssue[] = [];
   for (const it of spec.items) {
-    if (a.placed[it.id] !== it.bin) issues.push({ kind: 'wrong_bin', item: it.id, about: [it.text] });
+    if (a.placed[it.id] !== it.bin) issues.push({ kind: 'wrong_bin', item: it.id, about: [it.text], got: a.placed[it.id] ?? '', want: it.bin });
   }
   const outcome: Outcome = issues.length === 1 && spec.items.length >= 4 ? 'minor' : 'fail';
   return finish(issues, outcome);
@@ -123,14 +123,14 @@ export function evaluateTrade(
 ): JobEvaluation {
   const issues: JobIssue[] = [];
   const want = new Map(spec.want.map((w) => [w.thing, w.n]));
-  for (const [t, n] of want) if ((a.counts[t] ?? 0) !== n) issues.push({ kind: 'wrong_goods', thing: t, about: words(t) });
-  for (const [t, n] of Object.entries(a.counts)) if (n > 0 && !want.has(t)) issues.push({ kind: 'wrong_goods', thing: t, about: words(t) });
+  for (const [t, n] of want) if ((a.counts[t] ?? 0) !== n) issues.push({ kind: 'wrong_goods', thing: t, about: words(t), got: String(a.counts[t] ?? 0), want: String(n) });
+  for (const [t, n] of Object.entries(a.counts)) if (n > 0 && !want.has(t)) issues.push({ kind: 'wrong_goods', thing: t, about: words(t), got: String(n), want: '0' });
   const post = spec.post ? rate(spec) : null;
-  if (spec.post && post !== null && (a.postage ?? 0) !== post) issues.push({ kind: 'wrong_postage', about: spec.post.label ? [spec.post.label] : [] });
+  if (spec.post && post !== null && (a.postage ?? 0) !== post) issues.push({ kind: 'wrong_postage', about: spec.post.label ? [spec.post.label] : [], got: String(a.postage ?? 0), want: String(post) });
   const goodsOk = issues.length === 0;
   // Change is judged on what the customer actually takes (their goods, priced, and the postage).
   const owed = spec.pay - (goodsOk ? tradeTotal(spec, price) + (post ?? 0) : Object.entries(a.counts).reduce((s, [t, n]) => s + n * price(t), 0));
-  if (goodsOk && a.change !== owed) issues.push({ kind: a.change > owed ? 'change_over' : 'change_short', about: [] });
+  if (goodsOk && a.change !== owed) issues.push({ kind: a.change > owed ? 'change_over' : 'change_short', about: [], got: String(a.change), want: String(owed) });
   return finish(issues, 'fail');
 }
 
@@ -153,7 +153,7 @@ export function evaluateCheck(spec: CheckSpec, a: Extract<TaskAnswer, { arch: 'c
   }
   if (a.verdict === 'ok') return finish([{ kind: 'missed', field: spec.wrong, about: fieldText(spec.wrong) }], 'bad');
   if (a.field !== spec.wrong) return finish([{ kind: 'wrong_field', field: spec.wrong, item: a.field, about: [...fieldText(spec.wrong), ...fieldText(a.field)] }], 'fail');
-  if (spec.fix !== undefined && spec.fixOptions?.length && a.fix !== spec.fix) return finish([{ kind: 'wrong_fix', field: spec.wrong, about: [spec.fix] }], 'minor');
+  if (spec.fix !== undefined && spec.fixOptions?.length && a.fix !== spec.fix) return finish([{ kind: 'wrong_fix', field: spec.wrong, about: [spec.fix], got: a.fix, want: spec.fix }], 'minor');
   return finish([], 'perfect');
 }
 
@@ -167,15 +167,15 @@ export function evaluateRespond(spec: RespondSpec, a: Extract<TaskAnswer, { arch
   if (spec.mode === 'choose') {
     if (a.choice === spec.answer) return finish([], 'perfect');
     const opt = a.choice !== undefined ? spec.options?.[a.choice] : undefined;
-    return finish([{ kind: 'wrong_reply', about: [...spec.msg.lines, ...(opt ? [opt] : [])] }], 'fail');
+    return finish([{ kind: 'wrong_reply', about: [...spec.msg.lines, ...(opt ? [opt] : [])], got: opt, want: spec.answer !== undefined ? spec.options?.[spec.answer] : undefined }], 'fail');
   }
   if (spec.mode === 'form') {
     const issues: JobIssue[] = [];
-    for (const f of spec.fields ?? []) if (a.fields?.[f.id] !== f.answer) issues.push({ kind: 'wrong_form', field: f.id, about: [f.answer] });
+    for (const f of spec.fields ?? []) if (a.fields?.[f.id] !== f.answer) issues.push({ kind: 'wrong_form', field: f.id, about: [f.answer], got: a.fields?.[f.id], want: f.answer });
     return finish(issues, issues.length === 1 && (spec.fields?.length ?? 0) >= 3 ? 'minor' : 'fail');
   }
   if (a.slot === spec.slot?.answer) return finish([], 'perfect');
-  return finish([{ kind: 'wrong_slot', about: spec.msg.lines }], 'fail');
+  return finish([{ kind: 'wrong_slot', about: spec.msg.lines, got: a.slot, want: spec.slot?.answer }], 'fail');
 }
 
 export function solveRespond(spec: RespondSpec): Extract<TaskAnswer, { arch: 'respond' }> {

@@ -153,9 +153,16 @@ function clientPeople(ctx: GenCtx): string[] {
   return ctx.jc.people.map((p) => p.id).filter((id) => id !== ctx.jc.boss);
 }
 
-/** Clients with a name of their own (a name slot that names its speaker needs one). */
+/** Who may come to the counter with a request: the job's people except the boss and its staff (colleagues). */
+export function visitorPeople(jc: JobContent): string[] {
+  const all = jc.people.filter((p) => p.id !== jc.boss);
+  const v = all.filter((p) => !p.staff);
+  return (v.length ? v : all).map((p) => p.id);
+}
+
+/** Clients with a name of their own who may speak at the counter (a name slot that names its speaker needs one). */
 function namedClients(ctx: GenCtx): string[] {
-  return clientPeople(ctx).filter((id) => personOf(ctx.data, ctx.jc, id).name !== id);
+  return visitorPeople(ctx.jc).filter((id) => personOf(ctx.data, ctx.jc, id).name !== id);
 }
 
 const SELF_INTRO = /(?:^|[.!?,]\s*|\b)(?:I am|I'm|my name is|this is|it is|it's)\s+\{([^{}|]+)\|@\}/gi;
@@ -219,7 +226,7 @@ export function makeInstance(ctx: GenCtx, source: TaskInstance['source'], meta: 
   const f = features(ctx, meta);
   // Who you work with: sorting and checking papers are for the boss, requests come from clients;
   // a task / template may name a person, or 'client' for any client (a guest at the inn's desk).
-  const clients = clientPeople(ctx).length ? clientPeople(ctx) : [ctx.jc.boss];
+  const clients = visitorPeople(ctx.jc).length ? visitorPeople(ctx.jc) : [ctx.jc.boss];
   const bossTask = spec.arch === 'sort' || spec.arch === 'check' || (spec.arch === 'respond' && spec.msg.kind !== 'speech');
   const named = (id: string) => {
     const nm = personOf(ctx.data, ctx.jc, id).name;

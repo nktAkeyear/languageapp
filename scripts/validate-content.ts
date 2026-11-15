@@ -1,4 +1,5 @@
 /* Content validator: `npm run validate-content`. Exits 1 on errors. */
+import { explainStats } from '../src/jobs/validate';
 import { CONTENT, SHARED } from '../src/content';
 import { compareLanguages, validateLanguage, validateShared } from '../src/core/validate';
 import { LANGS } from '../src/core/types';
@@ -17,10 +18,9 @@ print('info ', lists.notes);
 if (lists.vocab.length) {
   const rec = reconcileLexicon(CONTENT.en.lexicon, lists);
   console.log(`  info  lexicon ↔ vocab.json: ${rec.matched} of ${CONTENT.en.lexicon.length} lexicon words matched; levels / domains taken from the list`);
-  if (rec.missing.length) {
-    console.log(`  warn  ${rec.missing.length} lexicon word(s) not in vocab.json: ${rec.missing.join(', ')}`);
-    warnings++;
-  }
+  // Off-list words are fine (the lists are a yardstick, not a limit): counted, listed only with VALIDATE_VERBOSE=1.
+  if (rec.missing.length)
+    console.log(`  info  ${rec.missing.length} lexicon word(s) not in vocab.json${process.env.VALIDATE_VERBOSE ? `: ${rec.missing.join(', ')}` : ''}`);
 }
 
 const shared = validateShared(SHARED);
@@ -35,6 +35,10 @@ for (const lang of LANGS) {
   console.log(`\n${lang}: ${Object.entries(r.stats).map(([k, v]) => `${k}=${v}`).join(' ')}`);
   print('ERROR', r.errors);
   print('warn ', r.warnings);
+  if (lang === 'en') {
+    const st = Object.entries(explainStats).map(([j, x]) => `${j} ${x.told}/${x.told + x.shared}${x.generic ? ` (generic ${x.generic})` : ''}`);
+    if (st.length) console.log(`  info  wrong answers with a reaction built from the task (told / all): ${st.join(', ')}`);
+  }
   errors += r.errors.length;
   warnings += r.warnings.length;
 }
