@@ -124,8 +124,8 @@ export function DoorGroup({ sky, x, y, w = 160, h = 450, closed = false, sign }:
       <rect x="22" y={h * 0.46} width={w - 44} height={h * 0.2} rx="3" fill="none" stroke="#3a5044" strokeWidth="3" />
       <rect x="22" y={h * 0.7} width={w - 44} height={h * 0.24} rx="3" fill="none" stroke="#3a5044" strokeWidth="3" />
       <circle cx={w - 24} cy={h * 0.56} r="7" fill="url(#g-brass)" stroke="#5a3c12" />
-      {/* "open" card hanging in the pane */}
-      <g transform={`translate(${w / 2} ${18 + h * 0.27})`}>
+      {/* "open" card hanging in the pane (before opening the card is a control of its own, drawn over the scene) */}
+      <g transform={`translate(${w / 2} ${18 + h * 0.27})`} opacity={sign === 'prep' ? 0 : 1}>
         <path d="M-22 -18 L0 -30 L22 -18" stroke="#3a2a1a" strokeWidth="1.2" fill="none" />
         <rect x="-26" y="-18" width="52" height="22" rx="3" fill="#f4ead2" stroke="#8a7350" />
         <text x="0" y="-3" textAnchor="middle" fontSize="13" fill="#7a2f1b" style={{ fontFamily: 'var(--font-serif)' }} fontWeight="700">

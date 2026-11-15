@@ -1,8 +1,10 @@
 /**
  * Benches of the sort and trade archetypes, drawn as the workplace's own furniture.
  * - Sort: the things to sort lie on the counter (letters as envelopes, crates with their labels, bags with luggage
- *   tags); the places are drawn on the wall (the post office's pigeon-hole cabinet with brass name plates, the
- *   kitchen's cold box / shelf / basket …, the inn's floors and rooms). Drag a piece onto its place, or tap it and
+ *   tags, typed copy for the pages, patients' charts in folders, application forms, books with their slips); the
+ *   places are drawn as the room's own furniture (the post office's pigeon-hole cabinet with brass name plates, the
+ *   kitchen's cold box / shelf / basket …, the inn's floors and rooms, the newsroom's wire trays per section, the
+ *   clinic's wall pockets per room, the town hall's desk trays, the library's book trolley). Drag a piece onto its place, or tap it and
  *   tap the place; tap a placed piece to take it back. Hand in the whole lot to be checked.
  * - Trade (the post office counter): the price board and the postage rate card on the wall, the goods drawers,
  *   the letter scale with the customer's parcel, the customer's coins on the brass tray, the till. Put the goods
@@ -61,7 +63,7 @@ export function SortBench({ task, jc, result, onSubmit }: BenchProps) {
               aria-label={def.label}
             >
               <span className="sortb-hole">
-                <BinArt id={b} art={def.art} size={kind === 'letter' ? 44 : 58} />
+                <BinArt id={b} art={def.art} size={kind === 'letter' || kind === 'story' || kind === 'form' ? 44 : 58} />
                 <span className="sortb-inside">
                   {inside.map((it) => (
                     <button
@@ -154,6 +156,46 @@ function SortPiece({ kind, text, tone }: { kind: string; text: string; tone: num
     return (
       <span className="suitcase" style={{ ['--case' as string]: ['#7a4a2e', '#3d5c7e', '#5a6a3a', '#8a3a2e'][tone % 4] }}>
         <span className="suitcase-tag">
+          <WordText text={text} interactive={false} />
+        </span>
+      </span>
+    );
+  // the four upper-level rooms: copy for the pages, a patient's chart, an application form, a book with its slip
+  if (kind === 'story')
+    return (
+      <span className="copyslip" style={{ ['--tilt2' as string]: `${(tone % 3) - 1}deg` }}>
+        <span className="copyslip-rule" aria-hidden />
+        <span className="copyslip-text">
+          <WordText text={text} interactive={false} />
+        </span>
+      </span>
+    );
+  if (kind === 'chart')
+    return (
+      <span className="chartfolder" style={{ ['--tab' as string]: ['#3d8a6a', '#c8643a', '#4a6a8a', '#b8923a'][tone % 4], ['--tabx' as string]: `${12 + (tone % 3) * 30}%` }}>
+        <span className="chartfolder-text">
+          <WordText text={text} interactive={false} />
+        </span>
+      </span>
+    );
+  if (kind === 'form')
+    return (
+      <span className="appform">
+        <span className="appform-head" aria-hidden>
+          <i />
+          <i />
+          <i />
+        </span>
+        <span className="appform-text">
+          <WordText text={text} interactive={false} />
+        </span>
+        <span className="appform-seal" aria-hidden />
+      </span>
+    );
+  if (kind === 'book')
+    return (
+      <span className="bookpiece" style={{ ['--cover' as string]: ['#7a2f2a', '#2f4a3e', '#3a4a6a', '#6b5a3a'][tone % 4] }}>
+        <span className="bookpiece-slip">
           <WordText text={text} interactive={false} />
         </span>
       </span>

@@ -8,24 +8,66 @@ import type { ReactNode } from 'react';
 import { CELL_W, DOOR_COLOURS, MAP_H, MAP_W, MapGroundArt, MapHouseArt, MapLandmarkArt, SHOP_POINT, cellBox } from '../art/town';
 import type { MapCell } from '../../core/townTypes';
 import { KitchenBackdrop, OfficeBackdrop, InnBackdrop, FoodArt, DocArt, KITCHEN_FOODS } from './art2';
+import { AcademyBackdrop, AcademyFrontArt, ClinicBackdrop, ClinicFrontArt, NewsBackdrop, NewsFrontArt, TownHallBackdrop, TownHallFrontArt } from './art3';
 
 export const HUB_W = 1600;
 export const HUB_H = 900;
 
-/** Where each workplace stands on the hub map (door point, for the hotspot and the walk). */
+/**
+ * The east quarter across the bridge: two columns of workplaces, three rows north of the harbour road and one
+ * south of it. Each slot holds a front (scaled to the row's height) with its sign hanging over its base.
+ */
+const EAST_SLOTS: Record<string, { col: 0 | 1; row: 0 | 1 | 2 | 3 }> = {
+  news: { col: 0, row: 0 },
+  townhall: { col: 1, row: 0 },
+  post: { col: 0, row: 1 },
+  office: { col: 1, row: 1 },
+  clinic: { col: 0, row: 2 },
+  academy: { col: 1, row: 2 },
+  kitchen: { col: 0, row: 3 },
+  lot: { col: 1, row: 3 },
+};
+const EAST_X = [1212, 1406];
+const EAST_Y = [8, 190, 372, 612];
+const EAST_W = 186;
+const EAST_ART_H = 128;
+/** Natural size of each front's art (its local box) and the slot it stands in. */
+const FRONT_SIZE: Record<string, { w: number; h: number; top?: number }> = {
+  news: { w: 170, h: 184 },
+  townhall: { w: 170, h: 186 },
+  post: { w: 184, h: 200 },
+  office: { w: 170, h: 290 },
+  clinic: { w: 170, h: 184 },
+  academy: { w: 170, h: 200, top: 18 },
+  kitchen: { w: 190, h: 220, top: 40 },
+  lot: { w: 150, h: 170 },
+};
+/** Where a front is drawn: translate + scale so its art fits the slot's art height, centred in the slot. */
+export function eastPlace(id: string): { x: number; y: number; s: number } | null {
+  const slot = EAST_SLOTS[id];
+  const f = FRONT_SIZE[id];
+  if (!slot || !f) return null;
+  const s = Math.min(EAST_ART_H / f.h, (EAST_W - 20) / f.w);
+  return { x: EAST_X[slot.col] + (EAST_W - f.w * s) / 2, y: EAST_Y[slot.row] + (f.top ?? 0) * s, s };
+}
+const eastSpot = (id: string) => {
+  const slot = EAST_SLOTS[id];
+  return { x: EAST_X[slot.col] + 14, y: EAST_Y[slot.row], w: EAST_W - 28, h: EAST_ART_H + 6 };
+};
+
+/** Where each workplace stands on the hub map (the hotspot over its front; its sign hangs over the base). */
 export const BUILDINGS: Record<string, { x: number; y: number; w: number; h: number }> = {
   teahouse: { x: 40, y: 360, w: 116, h: 110 },
   inn: { ...cellBox(1, 1), w: CELL_W, h: 168 },
-  post: { x: 1236, y: 300, w: 170, h: 190 },
-  office: { x: 1420, y: 210, w: 170, h: 280 },
-  kitchen: { x: 1230, y: 610, w: 180, h: 170 },
-  news: { x: 1236, y: 14, w: 170, h: 180 },
-  clinic: { x: 1420, y: 14, w: 170, h: 180 },
+  post: eastSpot('post'),
+  office: eastSpot('office'),
+  kitchen: eastSpot('kitchen'),
+  news: eastSpot('news'),
+  clinic: eastSpot('clinic'),
+  townhall: eastSpot('townhall'),
+  academy: eastSpot('academy'),
   board: { x: 600, y: 396, w: 110, h: 100 },
-  lot: { x: 1430, y: 620, w: 160, h: 160 },
-  // town hall counter and academy library (generic sign over open ground until they get drawn fronts)
-  townhall: { x: 1236, y: 60, w: 170, h: 150 },
-  academy: { x: 1420, y: 20, w: 170, h: 170 },
+  lot: eastSpot('lot'),
 };
 
 /** The hub: the town map plus the east quarter across the river, with the new workplaces. */
@@ -44,12 +86,12 @@ export function HubMapArt({ cells, temple, tint }: { cells: MapCell[]; temple: '
       <path d={`M${MAP_W} ${MAP_H - 30} H${HUB_W}`} stroke="url(#map-sea)" strokeWidth="60" />
       {/* trees */}
       {[
-        [1218, 140],
-        [1560, 120],
-        [1212, 820],
-        [1340, 520],
+        [1586, 820],
+        [1214, 830],
+        [1400, 180],
+        [1400, 364],
       ].map(([x, y], i) => (
-        <g key={i} transform={`translate(${x} ${y})`}>
+        <g key={i} transform={`translate(${x} ${y}) scale(0.7)`}>
           <rect x="-4" y="0" width="8" height="18" fill="#6b4a2a" />
           <circle cy="-6" r="20" fill="#5e8a46" stroke="#3a5a2a" strokeWidth="2" />
         </g>
@@ -76,12 +118,15 @@ export function HubMapArt({ cells, temple, tint }: { cells: MapCell[]; temple: '
       </g>
       {/* the job board on the main street */}
       <JobBoardArt x={BUILDINGS.board.x + 55} y={BUILDINGS.board.y + 92} />
-      <PostOfficeArt x={BUILDINGS.post.x} y={BUILDINGS.post.y} />
-      <OfficeArt x={BUILDINGS.office.x} y={BUILDINGS.office.y} />
-      <CanteenArt x={BUILDINGS.kitchen.x} y={BUILDINGS.kitchen.y} />
-      <NewsArt x={BUILDINGS.news.x} y={BUILDINGS.news.y} />
-      <ClinicArt x={BUILDINGS.clinic.x} y={BUILDINGS.clinic.y} />
-      <BuildingLotArt x={BUILDINGS.lot.x} y={BUILDINGS.lot.y} />
+      {(['post', 'office', 'kitchen', 'news', 'clinic', 'townhall', 'academy', 'lot'] as const).map((id) => {
+        const pl = eastPlace(id)!;
+        const Art = FRONTS[id];
+        return (
+          <g key={id} transform={`translate(${pl.x} ${pl.y}) scale(${pl.s})`}>
+            <Art x={0} y={0} />
+          </g>
+        );
+      })}
     </g>
   );
 }
@@ -182,44 +227,6 @@ function CanteenArt({ x, y }: { x: number; y: number }) {
   );
 }
 
-/** The newspaper office: grey stone, a sign band, tall windows and the presses' chimney. */
-function NewsArt({ x, y }: { x: number; y: number }) {
-  return (
-    <g transform={`translate(${x} ${y})`}>
-      <ellipse cx="85" cy="176" rx="90" ry="8" fill="#000" opacity="0.15" />
-      <rect x="14" y="40" width="142" height="136" fill="#d8d0c0" stroke="#4a463c" strokeWidth="3" />
-      <rect x="8" y="30" width="154" height="14" fill="#8a8478" stroke="#4a463c" strokeWidth="2.5" />
-      <rect x="30" y="52" width="110" height="24" fill="#2f3a52" stroke="#1a2030" strokeWidth="2" />
-      <text x="85" y="70" textAnchor="middle" fontSize="15" fontWeight="700" fill="#f6ecd2" style={{ fontFamily: 'var(--font-serif)' }}>
-        NEWS
-      </text>
-      {[0, 1, 2].map((c) => (
-        <rect key={c} x={26 + c * 42} y={90} width="28" height="40" fill="#a8c0d0" stroke="#4a463c" strokeWidth="1.5" />
-      ))}
-      <rect x="64" y="136" width="42" height="40" fill="#3a3a42" stroke="#1a1a20" strokeWidth="2.5" />
-      <rect x="120" y="6" width="16" height="26" fill="#6b6a64" stroke="#3a3a34" strokeWidth="2" />
-    </g>
-  );
-}
-
-/** The clinic: white walls, a green cross over the door, a ramp. */
-function ClinicArt({ x, y }: { x: number; y: number }) {
-  return (
-    <g transform={`translate(${x} ${y})`}>
-      <ellipse cx="85" cy="176" rx="90" ry="8" fill="#000" opacity="0.15" />
-      <rect x="14" y="46" width="142" height="130" fill="#f4f1e8" stroke="#4a463c" strokeWidth="3" />
-      <path d="M6 48 H164 L150 26 H20 Z" fill="#7aa88a" stroke="#34553f" strokeWidth="2.5" />
-      <g transform="translate(85 74)">
-        <circle r="20" fill="#fbf8f2" stroke="#34553f" strokeWidth="2.5" />
-        <path d="M-4 -12 h8 v8 h8 v8 h-8 v8 h-8 v-8 h-8 v-8 h8 Z" fill="#3d8a5a" />
-      </g>
-      <rect x="26" y="100" width="34" height="34" fill="#a8c8dc" stroke="#4a463c" strokeWidth="2" />
-      <rect x="110" y="100" width="34" height="34" fill="#a8c8dc" stroke="#4a463c" strokeWidth="2" />
-      <rect x="66" y="120" width="38" height="56" fill="#5e7a6a" stroke="#2a3a22" strokeWidth="2.5" />
-    </g>
-  );
-}
-
 function BuildingLotArt({ x, y }: { x: number; y: number }) {
   return (
     <g transform={`translate(${x} ${y})`} opacity="0.9">
@@ -233,6 +240,18 @@ function BuildingLotArt({ x, y }: { x: number; y: number }) {
     </g>
   );
 }
+
+/** The fronts drawn on the town map, by building id. */
+const FRONTS: Record<string, (p: { x: number; y: number }) => JSX.Element> = {
+  post: PostOfficeArt,
+  office: OfficeArt,
+  kitchen: CanteenArt,
+  news: NewsFrontArt,
+  clinic: ClinicFrontArt,
+  townhall: TownHallFrontArt,
+  academy: AcademyFrontArt,
+  lot: BuildingLotArt,
+};
 
 /** Small front of a workplace (phone list, board cards). */
 export function BuildingFront({ id }: { id: string }) {
@@ -254,8 +273,10 @@ export function BuildingFront({ id }: { id: string }) {
     office: ['-60 -6 290 296', <OfficeArt key="o" x={0} y={0} />],
     kitchen: ['-6 -46 200 230', <CanteenArt key="k" x={0} y={0} />],
     inn: ['-6 -4 190 178', <MapLandmarkArt key="i" lm="inn" x={0} y={0} temple="church" />],
-    news: ['-6 -4 190 190', <NewsArt key="n" x={0} y={0} />],
-    clinic: ['-6 -4 190 190', <ClinicArt key="c" x={0} y={0} />],
+    news: ['-6 -4 190 190', <NewsFrontArt key="n" x={0} y={0} />],
+    clinic: ['-6 -4 190 190', <ClinicFrontArt key="c" x={0} y={0} />],
+    townhall: ['-6 -4 190 192', <TownHallFrontArt key="h" x={0} y={0} />],
+    academy: ['-6 -22 190 210', <AcademyFrontArt key="a" x={0} y={0} />],
   };
   const [vb, art] = views[id] ?? ['0 0 120 112', <rect key="x" x="20" y="30" width="80" height="74" fill="#d8c8a8" stroke="#5a4430" strokeWidth="2" />];
   return (
@@ -269,8 +290,12 @@ export function BuildingFront({ id }: { id: string }) {
 
 export function JobBackdrop({ job, sky }: { job: string; sky: { top: string; bottom: string } }) {
   if (job === 'kitchen') return <KitchenBackdrop sky={sky} />;
-  if (job === 'office' || job === 'news') return <OfficeBackdrop sky={sky} />;
-  if (job === 'inn' || job === 'clinic') return <InnBackdrop sky={sky} />;
+  if (job === 'office') return <OfficeBackdrop sky={sky} />;
+  if (job === 'inn') return <InnBackdrop sky={sky} />;
+  if (job === 'news') return <NewsBackdrop sky={sky} />;
+  if (job === 'clinic') return <ClinicBackdrop sky={sky} />;
+  if (job === 'townhall') return <TownHallBackdrop sky={sky} />;
+  if (job === 'academy') return <AcademyBackdrop sky={sky} />;
   return <PostBackdrop sky={sky} />;
 }
 

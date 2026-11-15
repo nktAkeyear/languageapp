@@ -498,18 +498,24 @@
   line-height: 1.6;
 }
 .supply.m-supply {
-  flex-direction: row;
+  flex: none;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-  padding: 0 8px 4px 96px;
+  justify-content: center;
+  gap: 2px;
+  width: 92px;
+  padding: 0 2px;
 }
 .m-supply .supply-btn {
-  flex-direction: row;
-  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 88px;
   font-size: 14px;
-  min-height: 40px;
-  padding: 2px 10px;
+  line-height: 1.3;
+  min-height: 56px;
+  padding: 4px 4px;
 }
 .m-supply .supply-fee {
   font-size: 11px;
@@ -629,4 +635,392 @@
 .m-notice .notice-pin {
   min-height: 44px;
   padding-top: 0;
+}
+
+/* ============================================================ 始業前 as things in the room (PrepProps.tsx) */
+/* motion: the card turns over in --dur-base (320 ms, ease-out); the hint ring beats five times, then stays still */
+.open-sign {
+  all: unset;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+  perspective: 700px;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
+  z-index: 9;
+}
+.open-sign:disabled {
+  cursor: default;
+}
+.os-string {
+  display: block;
+  width: 64%;
+  height: 20px;
+  background:
+    linear-gradient(to top right, transparent calc(50% - 1.5px), #3a2a1a calc(50% - 1.5px), #3a2a1a calc(50% + 1.5px), transparent calc(50% + 1.5px)) left / 50% 100% no-repeat,
+    linear-gradient(to top left, transparent calc(50% - 1.5px), #3a2a1a calc(50% - 1.5px), #3a2a1a calc(50% + 1.5px), transparent calc(50% + 1.5px)) right / 50% 100% no-repeat;
+}
+.os-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 52px;
+  transform-style: preserve-3d;
+  transition:
+    transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+    translate 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.open-sign.turned .os-card {
+  transform: rotateY(180deg);
+}
+.os-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: linear-gradient(180deg, #f8efd8, #ecdcb8);
+  border: 2px solid #8a7350;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(40, 20, 5, 0.35);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.08em;
+  color: #7a2f1b;
+  white-space: nowrap;
+}
+.os-back {
+  transform: rotateY(180deg);
+  color: #2f5a3a;
+  background: linear-gradient(180deg, #f0f6e8, #dfe8cf);
+}
+.open-sign::after {
+  /* the hint ring around the card (first days) */
+  content: '';
+  position: absolute;
+  left: -8px;
+  right: -8px;
+  top: 12px;
+  height: 68px;
+  border: 3px solid #f2c840;
+  border-radius: 12px;
+  opacity: 0;
+  pointer-events: none;
+}
+.open-sign.hinting::after {
+  opacity: 0.6;
+  animation: os-pulse 1.6s cubic-bezier(0.16, 1, 0.3, 1) 5;
+}
+@keyframes os-pulse {
+  0% {
+    opacity: 0.95;
+    transform: scale(0.97);
+  }
+  100% {
+    opacity: 0.15;
+    transform: scale(1.1);
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .open-sign:not(:disabled):hover .os-card {
+    translate: 0 -2px;
+  }
+}
+.open-sign:focus-visible .os-face {
+  outline: 3px solid #f2c840;
+  outline-offset: 3px;
+}
+.open-sign.rm .os-card {
+  transition: none;
+  transform: none;
+}
+.open-sign.rm .os-back {
+  transform: none;
+  opacity: 0;
+  transition: opacity 120ms linear;
+}
+.open-sign.rm.turned .os-back {
+  opacity: 1;
+}
+.open-sign.rm.turned .os-front {
+  opacity: 0;
+}
+.open-sign.rm::after {
+  animation: none;
+}
+.os-label,
+.prop-label {
+  display: block;
+  margin-top: 8px;
+  padding: 0 8px;
+  background: #fbf6e6;
+  border: 1px solid #b89a6a;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(40, 20, 5, 0.25);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  white-space: nowrap;
+  rotate: -2deg;
+}
+.os-sub {
+  display: block;
+  margin-top: 6px;
+  font-size: 18px;
+  color: #3a2410;
+  white-space: nowrap;
+}
+.wall-map,
+.sp-basket {
+  all: unset;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 8;
+}
+.wall-map-art,
+.sp-basket-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 3px 3px rgba(40, 20, 5, 0.35));
+  transition: translate 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .wall-map:hover .wall-map-art,
+  .sp-basket:hover .sp-basket-art {
+    translate: 0 -2px;
+  }
+}
+.wall-map:focus-visible .wall-map-art,
+.sp-basket:focus-visible .sp-basket-art {
+  outline: 3px solid #f2c840;
+  outline-offset: 3px;
+}
+.shop-prep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.sp-note {
+  position: absolute;
+  pointer-events: auto;
+  background: repeating-linear-gradient(180deg, #fffaf0 0 27px, #ebdfc4 27px 28px);
+  border: 1px solid #b89a6a;
+  box-shadow: 0 6px 14px rgba(40, 20, 5, 0.35);
+  rotate: -1.5deg;
+  padding: 20px 14px 10px;
+  color: #2a1a10;
+  z-index: 7;
+}
+.sp-note-pin {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #f6a0a0, #b8322a);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+}
+.sp-note-title {
+  font-weight: 700;
+}
+.sp-note ul {
+  margin: 2px 0 0;
+  padding-left: 18px;
+}
+.sp-note-tip {
+  margin: 4px 0 0;
+  font-size: 0.85em;
+}
+.sp-why {
+  position: absolute;
+  margin: 0;
+  padding: 4px 10px;
+  background: #fbf6e6;
+  border: 1px solid #b89a6a;
+  color: #7a2a18;
+  font-size: 16px;
+  pointer-events: none;
+  z-index: 9;
+}
+/* desktop stage (design units) */
+.shop-prep.d .sp-door {
+  left: 424px;
+  top: 150px;
+  width: 132px;
+}
+.shop-prep.d .sp-note {
+  left: 640px;
+  top: 74px;
+  width: 276px;
+  font-size: 19px;
+  line-height: 28px;
+}
+.shop-prep.d .sp-map {
+  left: 930px;
+  top: 96px;
+  width: 92px;
+}
+.shop-prep.d .sp-basket {
+  left: 924px;
+  top: 300px;
+  width: 104px;
+}
+.shop-prep.d .sp-why {
+  left: 606px;
+  top: 470px;
+  max-width: 420px;
+}
+/* phone: the wall strip (the customer's place is empty before opening) */
+.shop-prep.m .sp-door {
+  left: 42px;
+  top: 128px;
+  width: 104px;
+}
+.shop-prep.m .os-face {
+  font-size: 19px;
+}
+.shop-prep.m .os-card {
+  height: 44px;
+}
+.shop-prep.m .open-sign::after {
+  height: 58px;
+}
+.shop-prep.m .os-label,
+.shop-prep.m .prop-label {
+  font-size: 13px;
+  margin-top: 4px;
+}
+.shop-prep.m .sp-note {
+  left: 154px;
+  top: 58px;
+  width: 160px;
+  max-height: calc(100% - 64px);
+  overflow-y: auto;
+  font-size: 12px;
+  line-height: 17px;
+  padding: 14px 7px 5px;
+  background: repeating-linear-gradient(180deg, #fffaf0 0 16px, #ebdfc4 16px 17px);
+}
+
+.shop-prep.m .sp-note ul {
+  padding-left: 14px;
+}
+.shop-prep.m .sp-map {
+  right: 8px;
+  top: 70px;
+  width: 64px;
+}
+.shop-prep.m .sp-basket {
+  right: 6px;
+  top: 150px;
+  width: 68px;
+}
+.shop-prep.m .sp-why {
+  left: 160px;
+  right: 8px;
+  bottom: 4px;
+  font-size: 13px;
+}
+/* a workplace before its shift: the sign over the counter, the town map on the wall */
+.job-stage .js-prep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+.job-stage .jp-sign {
+  left: 900px;
+  top: 250px;
+  width: 260px;
+}
+.job-stage .jp-sign .os-card {
+  height: 84px;
+}
+.job-stage .jp-sign .os-face {
+  font-size: 38px;
+  border-width: 3px;
+}
+.job-stage .jp-sign .os-string {
+  height: 34px;
+}
+.job-stage .jp-sign::after {
+  top: 26px;
+  height: 104px;
+}
+.job-stage .jp-sign .os-sub {
+  margin-top: 10px;
+  padding: 2px 12px;
+  background: rgba(40, 52, 44, 0.88);
+  color: #f6f0de;
+  border-radius: 4px;
+  font-size: 22px;
+}
+.job-stage .jp-sign .os-label {
+  font-size: 20px;
+}
+.job-stage .jp-map {
+  left: 1440px;
+  top: 330px;
+  width: 116px;
+}
+.job-stage .jp-map .prop-label {
+  font-size: 18px;
+}
+.m-job .js-prep {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 18px 28px;
+  padding: 10px 12px 18px;
+  z-index: 3;
+}
+.m-job .js-prep .open-sign,
+.m-job .js-prep .wall-map {
+  position: relative;
+}
+.m-job .jp-sign {
+  width: 170px;
+}
+.m-job .jp-sign .os-card {
+  height: 60px;
+}
+.m-job .jp-sign .os-face {
+  font-size: 28px;
+}
+.m-job .jp-sign::after {
+  height: 74px;
+}
+.m-job .jp-sign .os-sub {
+  padding: 1px 10px;
+  background: rgba(40, 52, 44, 0.88);
+  color: #f6f0de;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.m-job .jp-map {
+  width: 84px;
+  margin-top: 18px;
+}
+.m-job .jp-map .prop-label {
+  font-size: 13px;
 }

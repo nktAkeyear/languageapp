@@ -1,13 +1,31 @@
 /**
  * Ambient life of the workplaces, drawn over the (pre-rasterised) interior in the part of the room the bench
  * leaves free: gulls and waves in the post office window and its cat asleep in a parcel box, steam and a
- * swaying pan in the kitchen, the inn's pendulum clock and fern, the office's clouds and wall clock. Transform /
+ * swaying pan in the kitchen, the inn's pendulum clock and fern, the office's clouds and wall clock, the newsroom's
+ * gulls and swaying lamp, the goldfish on the clinic's window sill, the town hall's flag outside the window, dust in
+ * the library's light. Transform /
  * opacity animations only (no filters); still under prefers-reduced-motion.
  */
 export function JobAmbient({ job }: { job: string }) {
   return (
     <svg viewBox="0 0 1600 1000" className={`job-ambient amb-${job}`} preserveAspectRatio="xMidYMid slice" aria-hidden>
-      {job === 'post' ? <PostLife /> : job === 'kitchen' ? <KitchenLife /> : job === 'inn' ? <InnLife /> : <OfficeLife />}
+      {job === 'post' ? (
+        <PostLife />
+      ) : job === 'kitchen' ? (
+        <KitchenLife />
+      ) : job === 'inn' ? (
+        <InnLife />
+      ) : job === 'news' ? (
+        <NewsLife />
+      ) : job === 'clinic' ? (
+        <ClinicLife />
+      ) : job === 'townhall' ? (
+        <TownHallLife />
+      ) : job === 'academy' ? (
+        <AcademyLife />
+      ) : (
+        <OfficeLife />
+      )}
     </svg>
   );
 }
@@ -105,6 +123,84 @@ function OfficeLife() {
         <path d="M0 0 V-30" stroke="#c8322a" strokeWidth="2" className="amb-second" />
         <circle r="3" fill="#2a1a10" />
       </g>
+    </g>
+  );
+}
+
+function NewsLife() {
+  return (
+    <g>
+      <clipPath id="amb-news-win">
+        <rect x="65" y="75" width="290" height="350" />
+      </clipPath>
+      <g clipPath="url(#amb-news-win)">
+        <Gull x={110} y={150} cls="amb-gull amb-gull1" />
+        <Gull x={60} y={200} s={0.7} cls="amb-gull amb-gull2" />
+        <path d="M60 392 q20 -6 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#e8f2f6" strokeWidth="3" className="amb-wave" opacity="0.7" />
+      </g>
+      {/* the hanging lamp over the person's desk sways a little in the draught from the press room */}
+      <g className="amb-sway" style={{ transformOrigin: '520px 44px' }}>
+        <path d="M520 44 V96" stroke="#2a2118" strokeWidth="3" />
+        <path d="M474 136 Q520 86 566 136 Z" fill="#2f6a4e" stroke="#163a2a" strokeWidth="3" />
+        <ellipse cx="520" cy="138" rx="18" ry="6" fill="#ffe7a8" />
+      </g>
+    </g>
+  );
+}
+
+function ClinicLife() {
+  return (
+    <g>
+      {/* a goldfish bowl on the window sill */}
+      <g transform="translate(150 330)">
+        <path d="M-44 0 Q-50 50 0 54 Q50 50 44 0 Z" fill="#cfe6ee" stroke="#6b8a9a" strokeWidth="3" opacity="0.9" />
+        <ellipse cx="0" cy="2" rx="40" ry="6" fill="#e8f4f8" stroke="#6b8a9a" strokeWidth="2" />
+        <g className="amb-fish">
+          <path d="M-8 30 q10 -10 20 0 q-10 10 -20 0 Z M12 30 l8 -6 v12 Z" fill="#e8843a" stroke="#8a3a14" strokeWidth="1.5" />
+        </g>
+        <path d="M-20 50 q6 -14 0 -22 M20 50 q-4 -12 2 -20" stroke="#4d7a3a" strokeWidth="3" fill="none" className="amb-weed" />
+      </g>
+    </g>
+  );
+}
+
+function TownHallLife() {
+  return (
+    <g>
+      <clipPath id="amb-th-win">
+        <rect x="65" y="40" width="270" height="405" />
+      </clipPath>
+      <g clipPath="url(#amb-th-win)">
+        <g className="amb-cloud">
+          <ellipse cx="120" cy="140" rx="40" ry="14" fill="#fff" opacity="0.85" />
+          <ellipse cx="144" cy="130" rx="26" ry="14" fill="#fff" opacity="0.85" />
+        </g>
+        {/* the town's flag on its pole outside */}
+        <g className="amb-flag" style={{ transformOrigin: '252px 204px' }}>
+          <path d="M252 204 q30 -10 60 0 t60 0 v44 q-30 -10 -60 0 t-60 0 Z" fill="#2f4a6a" stroke="#1f2f42" strokeWidth="2" />
+          <path d="M276 226 h40" stroke="#c9a24a" strokeWidth="4" />
+        </g>
+      </g>
+    </g>
+  );
+}
+
+function AcademyLife() {
+  // dust motes drifting in the light from the arched window (opacity / translate only)
+  const motes = [
+    [140, 420, 0],
+    [200, 380, -2],
+    [260, 440, -4],
+    [180, 300, -6],
+    [300, 360, -1],
+    [230, 250, -3],
+  ];
+  return (
+    <g>
+      <path d="M60 180 L340 180 L560 760 L200 760 Z" fill="#fff4cc" opacity="0.12" />
+      {motes.map(([x, y, d], i) => (
+        <circle key={i} cx={x} cy={y} r={i % 2 ? 2.5 : 3.5} fill="#fff8dc" className="amb-mote" style={{ animationDelay: `${d}s` }} />
+      ))}
     </g>
   );
 }

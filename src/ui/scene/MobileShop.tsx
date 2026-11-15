@@ -3,6 +3,7 @@
  * middle: the counter top with the cup, the books and the tools; bottom: the shelf as a
  * pull-out drawer (a horizontally scrolling strip of containers). Books open full screen.
  */
+import { ShopPrep } from './PrepProps';
 import { useState } from 'react';
 import { CounterSurface, MobileWallLive, MobileWallStatic } from '../art/shop';
 import { Raster } from '../art/Raster';
@@ -24,7 +25,6 @@ import {
   ShelfJar,
   ShopDayParts,
   SupplyButton,
-  PrepPanel,
   TipOut,
   ToolButton,
   VesselSpot,
@@ -86,8 +86,8 @@ export function MobileShop({ onSettings }: { onSettings: () => void }) {
           <NextSign />
         </div>
         <Juice />
+        <ShopPrep mobile />
         <div className="m-daypanel">
-          <PrepPanel />
           <ClosedPanel />
         </div>
       </section>
@@ -134,8 +134,6 @@ export function MobileShop({ onSettings }: { onSettings: () => void }) {
         ) : null}
       </section>
       <section className={`m-drawer ${drawer ? 'open' : 'shut'}`} aria-label="棚">
-        {/* 業務中 on a market day: sending for goods sits by the shelf (a row above the jars) */}
-        <SupplyButton className="m-supply" />
         <button type="button" className="m-drawer-handle" onClick={() => setDrawer(!drawer)} aria-expanded={drawer} aria-label={drawer ? '棚を閉じる' : '棚を開く'}>
           <span />
         </button>
@@ -145,9 +143,13 @@ export function MobileShop({ onSettings }: { onSettings: () => void }) {
               <div key={i} className="m-drawer-row" role="list">
                 {/* the blue cup and the carved ship stand first on the shelf, in view without scrolling */}
                 {i === 0 ? (
-                  <div className="m-keepsakes" role="listitem">
-                    <Keepsakes />
-                  </div>
+                  <>
+                    {/* 業務中 on a market day: sending for goods hangs on the shelf itself, first in the row (it adds no height) */}
+                    <SupplyButton className="m-supply" />
+                    <div className="m-keepsakes" role="listitem">
+                      <Keepsakes />
+                    </div>
+                  </>
                 ) : null}
                 {r.map((ing) => (
                   <div key={ing} className="m-slot" role="listitem">

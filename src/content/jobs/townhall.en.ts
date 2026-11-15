@@ -1662,7 +1662,7 @@ const EN: JobContent = {
   boss: 'p_hollis',
   things: [],
   sort: {
-    item: 'file',
+    item: 'form',
     bins: [
       { id: 'license', label: 'Licenses', ref: 'the license desk', art: 'registered' },
       { id: 'tax', label: 'Taxes', ref: 'the tax desk', art: 'claims' },

@@ -22,6 +22,7 @@ import { useGame } from '../useGame';
 import { useReducedMotion } from '../uiState';
 import { lineMs, useTalkBurst } from '../useTalk';
 import { JobBackdrop } from './art';
+import { HINT_DAYS, OpenSign, TownMapProp } from '../scene/PrepProps';
 import { JobAmbient } from './ambient';
 import { Raster } from '../art/Raster';
 import { LevelTag, RankProgress } from './bits';
@@ -117,7 +118,7 @@ export function JobScene({ onSettings }: { onSettings: () => void }) {
     );
   return (
     <div className="scene-viewport" ref={ref}>
-      <div className={`stage job-stage job-${job.id} ${task ? `arch-${task.spec.arch}` : ''}`} style={{ width: 1600, height: 1000, transform: `translate(-50%, -50%) scale(${scale})` }} data-testid="job-scene" data-job={job.id} data-phase={shift.phase}>
+      <div className={`stage job-stage job-${job.id} ${task ? `arch-${task.spec.arch}` : ''}`} style={{ width: 1600, height: 1000, transform: `translate(-50%, -50%) scale(${scale})`, ['--stage-s' as string]: scale }} data-testid="job-scene" data-job={job.id} data-phase={shift.phase}>
         <div className="js-backdrop">
           {/* the interior never changes during a shift: shown as a pre-rasterised image under the moving life */}
           <Raster className="job-backdrop" label={`job-${job.id}`}>
@@ -178,30 +179,35 @@ function Bubble({ text, hidden, onReveal, tag }: { text: string; hidden?: boolea
 }
 
 /**
- * 始業前 at a job (or the start of an evening shift): the boss's greeting and the day's work waiting. Before
- * opening the player may still step out into the town (to work elsewhere today).
+ * 始業前 at a job (or the start of an evening shift): the boss's greeting and the day's work waiting, said by the
+ * room: the 準備中 sign over the counter (with the day's number of tasks chalked under it) is turned to begin;
+ * before opening the town map on the wall leads out (to work elsewhere today).
  */
 function Intro({ shift, jc }: { shift: ShiftState; jc: JobContent }) {
   const g = useGame();
   const talking = useTalkBurst(`intro${shift.part}`, lineMs(shift.startLine, false));
   const before = (g.progress && jobDay(g.progress)?.part) === 0;
+  // The written hint stays for the first days and the first shifts at a workplace; then the room speaks for itself.
+  const shifts = g.progress?.jobs?.jobs[shift.job]?.shifts ?? 0;
+  const first = (g.progress?.day ?? 1) <= HINT_DAYS || shifts < 2;
   return (
     <>
       <div className="js-left">
         <Bubble text={shift.startLine} />
         <Person id={jc.boss} jc={jc} ex="happy" pose="wave" talking={talking} />
       </div>
-      <div className="js-work js-intro" data-testid="job-prep">
-        <p className="js-intro-part hand">{before ? '始業前' : '業務後のひと仕事'}</p>
-        <p className="hand">今日の仕事は {shift.tasks.length} 件。</p>
-        <button type="button" className="cv-btn cv-next" data-testid="shift-begin" onClick={() => (sfx('page'), g.jobs.begin())}>
-          {before ? '始業する' : '仕事を始める'}
-        </button>
-        {before ? (
-          <button type="button" className="cv-btn" data-testid="to-town" onClick={() => (sfx('steps'), g.jobs.toTown())}>
-            町へ出る（ほかの仕事場へ）
-          </button>
-        ) : null}
+      {/* 始業前: no paper on top — the counter's 準備中 sign is turned to begin, the map on the wall leads to the town */}
+      <div className="js-prep" data-testid="job-prep">
+        <OpenSign
+          className="jp-sign"
+          testid="shift-begin"
+          aria={before ? '始業する（札を「営業中」に返す）' : '仕事を始める（札を「営業中」に返す）'}
+          hint={first}
+          label={first ? (before ? '札を返して始業' : '札を返して仕事を始める') : null}
+          sub={`今日の仕事 ${shift.tasks.length} 件`}
+          onOpen={() => (sfx('page'), g.jobs.begin())}
+        />
+        {before ? <TownMapProp className="jp-map" label="町へ（ほかの仕事場）" onGo={() => g.jobs.toTown()} /> : null}
       </div>
     </>
   );

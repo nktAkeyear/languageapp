@@ -462,7 +462,8 @@ export interface MakeBench {
 
 export interface SortBench {
   bins: { id: string; label: string; ref: string; art?: string }[];
-  item: 'letter' | 'parcel' | 'food' | 'file';
+  /** What lies on the counter: letters, luggage, crates, files; stories (copy for the pages), patients' charts, application forms, books. */
+  item: 'letter' | 'parcel' | 'food' | 'file' | 'story' | 'chart' | 'form' | 'book';
 }
 
 export interface TradeBench {

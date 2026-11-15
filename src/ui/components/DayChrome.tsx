@@ -225,27 +225,16 @@ export function NoticePanel({ n, onClose }: { n: ReturnType<typeof useNotices>; 
 }
 
 /**
- * A one-line strip at the top: the day and its part when a day begins (with the chapter's title or how many
- * notices are pinned), and supplies arriving during working hours. Never takes a click; it goes by itself.
+ * A one-line strip at the top when supplies ordered by delivery arrive during working hours. Nothing is shown when
+ * a day begins (the HUD's calendar and the strip 始業前 › 業務中 › 業務後 say the day and its part; the day's notes
+ * are pinned in the scene). Never takes a click; it goes by itself.
  */
 export function DayBanner() {
   const g = useGame();
-  const { data, progress, lang } = g;
+  const { progress, lang } = g;
   const [show, setShow] = useState<{ id: string; text: string } | null>(null);
-  const shown = useRef(new Set<string>());
   const arrived = progress?.townDay?.arrived?.length ?? 0;
   const dayKey = progress && lang ? `${lang}:${progress.day}` : '';
-  // Not while the night's ledger is still open (the next day is already planned behind it).
-  const night = !!progress?.story?.cards.some((c) => c.kind === 'ledger');
-  const atStart = !!progress && !night && progress.today?.phase !== 'closed' && dayPart(progress) === 0;
-  useEffect(() => {
-    if (!data || !progress || !dayKey || !atStart || shown.current.has(dayKey)) return;
-    shown.current.add(dayKey);
-    const items = dayNotices(data, progress);
-    const ch = items.find((i) => i.key.startsWith('c:'));
-    const tail = ch ? `　${ch.title}` : items.length ? `　知らせ ${items.length} 件（📌 から読める）` : '';
-    setShow({ id: dayKey, text: `${progress.day}日目・始業前${tail}` });
-  }, [dayKey, atStart]); // eslint-disable-line react-hooks/exhaustive-deps
   const prevArrived = useRef(arrived);
   useEffect(() => {
     if (arrived > prevArrived.current) {

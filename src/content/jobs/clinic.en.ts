@@ -2550,7 +2550,7 @@ const EN: JobContent = {
   boss: 'p_vega',
   things: [],
   sort: {
-    item: 'file',
+    item: 'chart',
     bins: SECTIONS,
   },
   tasks: [...R1, ...R2, ...R3, ...R4, ...R5].map(tagged),

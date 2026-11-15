@@ -506,7 +506,7 @@ function DesktopMarket({ onSettings }: { onSettings: () => void }) {
   const { ref, scale } = useStageScale(1600, 1000);
   return (
     <div className="scene-viewport town-viewport" ref={ref} data-segment="market">
-      <div className="stage mk-stage" style={{ width: 1600, height: 1000, transform: `translate(-50%, -50%) scale(${scale})` }}>
+      <div className="stage mk-stage" style={{ width: 1600, height: 1000, transform: `translate(-50%, -50%) scale(${scale})`, ['--stage-s' as string]: scale }}>
         <MarketBackdrop sky={tripSky(md)} />
         {md.stall && !md.done ? <StallOpen /> : <Street />}
         <div className="mk-d-trip">

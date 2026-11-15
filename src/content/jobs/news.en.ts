@@ -2054,7 +2054,7 @@ const EN: JobContent = {
   boss: 'p_carver',
   things: [],
   sort: {
-    item: 'file',
+    item: 'story',
     bins: SECTIONS,
   },
   tasks: [...R1, ...R2, ...R3, ...R4, ...R5].map(tagged),

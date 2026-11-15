@@ -1617,6 +1617,12 @@
   place-items: center;
   color: #3a2410;
 }
+/* on a scaled stage the round hooks keep a finger-sized target on screen (at least 44 CSS px at any scale) */
+.stage .hook-btn {
+  width: max(46px, calc(46px / var(--stage-s, 1)));
+  height: max(46px, calc(46px / var(--stage-s, 1)));
+  font-size: max(22px, calc(20px / var(--stage-s, 1)));
+}
 .hook-btn:hover {
   filter: brightness(1.1);
 }
@@ -1955,7 +1961,8 @@
   min-height: 250px;
   display: grid;
   grid-template-columns: 74px 1fr 88px;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  /* the middle row keeps room for the contents slip and the slop bowl, so they never sink into the tools row */
+  grid-template-rows: auto minmax(118px, 1fr) auto;
   grid-template-areas:
     'books serve coin'
     'books vessel side'
@@ -2023,14 +2030,15 @@
   grid-area: side;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 2px;
   align-items: center;
+  min-height: 0;
 }
 .m-side .slip-chit {
   width: 80px;
 }
 .m-side .tipout {
-  width: 76px;
+  width: 66px;
 }
 .m-tools {
   grid-area: tools;
@@ -2128,8 +2136,11 @@
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
-  padding: 0 8px 4px;
+  padding: 0 28px 4px 8px;
   scrollbar-width: thin;
+  /* the strip scrolls sideways: the far edge fades, so more jars read as "further along the shelf" */
+  mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
 }
 .m-drawer-row {
   display: flex;

@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 
 type Sky = { top: string; bottom: string };
 
-function WindowSky({ id, sky, x, y, w, h }: { id: string; sky: Sky; x: number; y: number; w: number; h: number }) {
+export function WindowSky({ id, sky, x, y, w, h }: { id: string; sky: Sky; x: number; y: number; w: number; h: number }) {
   return (
     <g>
       <defs>

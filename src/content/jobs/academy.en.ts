@@ -1536,7 +1536,7 @@ const EN: JobContent = {
   boss: 'p_thorne',
   things: [],
   sort: {
-    item: 'file',
+    item: 'book',
     bins: [
       { id: 'science', label: 'Science', ref: 'the science shelf', art: 'shelf' },
       { id: 'history', label: 'History', ref: 'the history shelf', art: 'store' },

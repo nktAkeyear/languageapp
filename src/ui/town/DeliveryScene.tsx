@@ -581,7 +581,7 @@ function DesktopDelivery({ onSettings, walking, go, atDoor, hour }: { onSettings
   const { ref, scale } = useStageScale(1600, 1000);
   return (
     <div className="scene-viewport town-viewport" ref={ref} data-segment="delivery">
-      <div className="stage dv-stage" style={{ width: 1600, height: 1000, transform: `translate(-50%, -50%) scale(${scale})` }}>
+      <div className="stage dv-stage" style={{ width: 1600, height: 1000, transform: `translate(-50%, -50%) scale(${scale})`, ['--stage-s' as string]: scale }}>
         {atDoor ? (
           <>
             <MarketBackdrop sky={skyAt(hourTime(hour ?? 15))} />

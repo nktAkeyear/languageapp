@@ -3,6 +3,7 @@
  * customer stands behind the counter in front of the door, the shelf is on the right wall,
  * the workbench (cup, tools, books, coin jar) is the counter top in the foreground.
  */
+import { ShopPrep } from './PrepProps';
 import { useLayoutEffect, useRef, useState } from 'react';
 import { hashString } from '../../core/rng';
 import { DecorArt, TeaSetArt } from '../art/props';
@@ -28,7 +29,6 @@ import {
   ShelfJar,
   ShopDayParts,
   SupplyButton,
-  PrepPanel,
   TipOut,
   ToolButton,
   VesselSpot,
@@ -83,7 +83,7 @@ export function ShopScene({ onSettings }: { onSettings: () => void }) {
   const door = useDoorSign();
   return (
     <div className="scene-viewport" ref={ref} data-phase={phase} data-stage={b.stage}>
-      <div className="stage" style={{ width: STAGE_W, height: STAGE_H, transform: `translate(-50%, -50%) scale(${scale})` }}>
+      <div className="stage" style={{ width: STAGE_W, height: STAGE_H, transform: `translate(-50%, -50%) scale(${scale})`, ['--stage-s' as string]: scale }}>
         <Raster label="shop">
           <ShopBackdrop sky={sky} paint={reno.has('paint')} sign={door} />
         </Raster>
@@ -186,8 +186,8 @@ export function ShopScene({ onSettings }: { onSettings: () => void }) {
         <div className="d-supply">
           <SupplyButton />
         </div>
+        <ShopPrep />
         <div className="d-daypanel">
-          <PrepPanel />
           <ClosedPanel />
         </div>
         <CornerHooks onSettings={onSettings} />

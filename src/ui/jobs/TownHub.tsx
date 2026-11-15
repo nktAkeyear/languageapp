@@ -176,7 +176,7 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
     );
   return (
     <div className="scene-viewport hub-viewport" ref={ref}>
-      <div className="stage hub-stage" style={{ width: HUB_W, height: 1000, transform: `translate(-50%, -50%) scale(${scale})` }}>
+      <div className="stage hub-stage" style={{ width: HUB_W, height: 1000, transform: `translate(-50%, -50%) scale(${scale})`, ['--stage-s' as string]: scale }}>
         <div className="hub-mapwrap">{map}</div>
         <div className="hub-bottom">{status}</div>
         <div className="hub-books">
