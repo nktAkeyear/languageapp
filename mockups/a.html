@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup A — Workbench</title>
+<style>
+:root{
+  --ink:#2B1D12; --wall:#B9704A; --wall2:#8E4F31; --plank:#E3BF86; --plank2:#D6AE72; --seam:#B98E55;
+  --walnut:#4A2E1C; --walnut2:#3A2214; --cream:#FFF8EA; --paper:#FBF1DC; --red:#C2412D; --gold:#E2A92B;
+  --serif: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, "Caladea", serif;
+  --jp: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "IPAPGothic", "IPAGothic", sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#2A1A10;color:var(--ink);font-family:var(--jp);-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.app{height:100vh;display:grid;grid-template-rows:44px 1fr;overflow:hidden}
+
+/* top edge: day, part, coins. nothing else */
+.top{display:flex;align-items:center;gap:14px;padding:0 16px;background:#2A1A10;color:#F6E7CC;font-size:14px}
+.top .day{font-weight:700;letter-spacing:.04em}
+.parts{display:flex;background:#45291A;border-radius:999px;padding:3px}
+.parts span{padding:3px 12px;border-radius:999px;color:#B89878;font-size:13px}
+.parts span.on{background:#F6E7CC;color:#2A1A10;font-weight:700}
+.top .sp{flex:1}
+.coins{display:flex;align-items:center;gap:6px;font-family:var(--serif);font-size:18px;font-weight:700}
+.menu{width:34px;height:34px;border-radius:8px;color:#F6E7CC;font-size:20px}
+
+.stage{display:grid;grid-template-columns:27% 1fr 24%;min-height:0}
+
+/* customer: big bust, big bubble */
+.cust{position:relative;background:linear-gradient(#C27B52,#9B5636 70%);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.cust::before{content:"";position:absolute;inset:auto 0 0 0;height:38%;background:radial-gradient(120% 80% at 50% 100%,rgba(255,214,150,.35),transparent 70%)}
+.bubble{position:relative;margin:18px 16px 0;background:var(--cream);border:3px solid var(--ink);border-radius:22px;padding:14px 18px 16px;box-shadow:0 5px 0 rgba(43,29,18,.35);z-index:2}
+.bubble::after{content:"";position:absolute;left:46%;bottom:-19px;width:26px;height:26px;background:var(--cream);border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(45deg) skew(8deg,8deg)}
+.who{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--red);margin-bottom:4px}
+.say{margin:0;font-family:var(--serif);font-size:25px;line-height:1.75;color:var(--ink)}
+.bust{position:relative;width:112%;margin-left:-6%;height:auto;max-height:64%;display:block;margin-top:auto;z-index:1}
+.ledge{position:relative;height:18px;background:#6B3F25;border-top:4px solid #8A5333;z-index:2}
+
+/* words + own meaning */
+.w{position:relative;cursor:pointer;border-bottom:1.5px dotted rgba(43,29,18,.22);border-radius:2px}
+.w:hover{background:rgba(226,169,43,.25)}
+.w .gl{position:absolute;left:50%;top:100%;transform:translateX(-50%);font-family:var(--jp);font-size:11px;line-height:1;color:#7A4A22;white-space:nowrap;margin-top:1px}
+.w .gl:empty{display:none}
+
+/* bench: top-down planks */
+.bench{position:relative;display:grid;grid-template-columns:132px 1fr 132px;grid-template-rows:auto 1fr auto;
+  grid-template-areas:"book book pad" "temps cup methods" ". serve .";gap:10px 14px;padding:16px 18px 16px;min-width:0;min-height:0;
+  background:repeating-linear-gradient(90deg,var(--plank) 0 118px,var(--seam) 118px 120px,var(--plank2) 120px 238px,var(--seam) 238px 240px);
+  box-shadow:inset 0 0 60px rgba(90,50,20,.25)}
+.book{grid-area:book;justify-self:start;display:flex;width:min(560px,100%);height:168px;background:#7B2E22;border-radius:8px;padding:6px;transform:rotate(-1.5deg);box-shadow:0 8px 0 rgba(60,30,10,.25);text-align:left;cursor:pointer}
+.book .pg{flex:1;background:var(--paper);padding:10px 14px;font-family:var(--serif);font-size:15px;line-height:1.55;overflow:hidden}
+.book .pg:first-child{border-radius:4px 0 0 4px;box-shadow:inset -10px 0 14px -10px rgba(0,0,0,.25)}
+.book .pg+.pg{border-radius:0 4px 4px 0;box-shadow:inset 10px 0 14px -10px rgba(0,0,0,.25)}
+.book h4{margin:0 0 4px;font-size:15px;color:var(--red)}
+.book .tab{display:none}
+.padobj{grid-area:pad;justify-self:end;align-self:start;width:104px;height:138px;background:#8B5A36;border-radius:8px;padding:16px 8px 8px;position:relative;transform:rotate(3deg);box-shadow:0 6px 0 rgba(60,30,10,.25)}
+.padobj::before{content:"";position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:44px;height:16px;background:#B7B9BD;border-radius:4px;border:2px solid #7B7E83}
+.padobj .sheet{background:#FFFDF6;height:100%;border-radius:2px;background-image:repeating-linear-gradient(transparent 0 15px,#C9D6E2 15px 16px);padding-top:4px;font-size:12px;font-weight:700;color:#5A4632;text-align:center}
+.temps,.methods{display:flex;flex-direction:column;gap:12px;justify-content:center}
+.temps{grid-area:temps}.methods{grid-area:methods}
+.tool{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 6px 6px;border-radius:18px;background:rgba(255,248,234,.55);border:3px solid transparent;transition:transform .1s}
+.tool svg{width:76px;height:64px}
+.tool span{font-size:14px;font-weight:700}
+.tool.on{background:var(--cream);border-color:var(--ink);box-shadow:0 4px 0 rgba(43,29,18,.3)}
+.tool:active{transform:scale(.96)}
+.cupwrap{grid-area:cup;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0}
+#cup{width:100%;height:100%;max-height:380px;min-height:0;flex:1}
+.slip{margin-top:6px;max-width:340px;background:#FFFDF6;border-radius:4px;padding:6px 12px;font-family:var(--serif);font-size:16px;box-shadow:0 3px 0 rgba(60,30,10,.2);min-height:32px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:100%}
+.slip .k{font-family:var(--jp);font-size:12px;color:#8A6A4A;align-self:center}
+.slip b{font-weight:700}
+.empty{position:absolute;right:4%;top:4%;background:var(--cream);border:2px solid var(--ink);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700}
+.serve{grid-area:serve;justify-self:center;width:min(300px,100%);height:64px;border-radius:999px;background:#7A4A2A;border:4px solid #5A3219;color:#FFF3DC;font-size:26px;font-weight:800;letter-spacing:.3em;box-shadow:0 6px 0 #4A2814;padding-left:.3em}
+.serve:active{transform:translateY(3px);box-shadow:0 3px 0 #4A2814}
+.serve.next{background:var(--cream);color:var(--ink);font-size:20px;letter-spacing:.08em;padding:0}
+
+/* inventory: the bins themselves, counts always */
+.bins{background:var(--walnut);border-left:6px solid var(--walnut2);padding:10px 12px 12px;display:flex;flex-direction:column;min-height:0}
+.bins-h{color:#E9D2B0;font-size:13px;font-weight:700;letter-spacing:.2em;padding:0 2px 8px}
+.grid{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,1fr);gap:10px;min-height:0}
+.bin{position:relative;background:#6E4529;border-radius:12px;box-shadow:inset 0 0 0 3px #8A5A37,0 4px 0 #2A170C;display:flex;flex-direction:column;align-items:center;padding:6px 6px 4px;min-height:0;transition:transform .1s}
+.bin svg{flex:1;width:100%;min-height:0}
+.bin .lab{font-family:var(--serif);color:#FFF1D8;font-size:15px;font-weight:700;line-height:1.2}
+.bin .cnt{position:absolute;top:-6px;right:-4px;min-width:34px;height:34px;padding:0 6px;border-radius:999px;background:var(--cream);color:var(--ink);font-family:var(--serif);font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;border:3px solid var(--ink)}
+.bin.zero{background:#5A3A25;box-shadow:inset 0 0 0 3px #6A4630,0 4px 0 #2A170C}
+.bin.zero .lab{color:#B79C80}
+.bin.zero .cnt{background:#F3D9D2;color:var(--red);border-color:var(--red)}
+.bin:active{transform:scale(.97)}
+.bump{animation:bump .25s}
+@keyframes bump{40%{transform:scale(1.12)}}
+.shake{animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+/* guess card */
+.gcard{position:fixed;z-index:50;background:var(--cream);border:3px solid var(--ink);border-radius:14px;padding:12px;box-shadow:0 8px 0 rgba(43,29,18,.35)}
+.gc-word{font-family:var(--serif);font-size:24px;font-weight:700}
+.gc-lab{display:block;font-size:12px;color:#7A5A3A;margin:6px 0 4px}
+.gc-in{width:100%;font:16px var(--jp);padding:8px 10px;border:2px solid #C9A97F;border-radius:8px;background:#fff}
+.gc-btns{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
+.gc-btns button{padding:6px 14px;border-radius:999px;border:2px solid var(--ink);font-weight:700;font-size:14px}
+.gc-save{background:var(--ink);color:var(--cream)}
+
+/* recipe book open large */
+.bookov,.pad-ov{position:fixed;inset:0;z-index:40;background:rgba(30,15,5,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.bigbook{display:flex;flex-wrap:wrap;width:min(860px,100%);max-height:100%;overflow:auto;background:#7B2E22;border-radius:12px;padding:10px;gap:0}
+.bigbook .pg{flex:1 1 320px;background:var(--paper);padding:20px 26px;font-family:var(--serif);font-size:19px;line-height:1.7}
+.bigbook h4{margin:0 0 4px;color:var(--red);font-size:20px}
+.bigbook .pg p{margin:0 0 16px}
+.bigbook .x{position:absolute}
+.pad{background:#FFFDF6;border-radius:10px;border:6px solid #8B5A36;padding:14px 16px;width:min(480px,100%);max-height:100%;overflow:auto;font-size:14px}
+.pad-h{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:18px;margin-bottom:6px}
+.pad-x{font-size:22px;width:32px;height:32px}
+.pad-t{width:100%;border-collapse:collapse}
+.pad-t th{font-size:11px;color:#8A6A4A;text-align:left;font-weight:600}
+.pad-t td{padding:2px 4px;border-bottom:1px solid #E8DCC6}
+.pad-n{font-family:var(--serif);font-size:15px}
+.pad-st{white-space:nowrap}.pad-st button{width:26px;height:26px;border:2px solid #C9A97F;border-radius:6px}.pad-st b{display:inline-block;width:24px;text-align:center}
+.pad-f{display:flex;gap:14px;align-items:center;justify-content:flex-end;margin-top:10px}
+.pad-go{background:var(--ink);color:var(--cream);padding:8px 16px;border-radius:999px;font-weight:700}
+.pad-go:disabled{opacity:.35}
+
+/* phone */
+@media (max-width:640px){
+  .app{grid-template-rows:40px 1fr}
+  .top{gap:8px;padding:0 10px;font-size:13px}
+  .parts span{padding:2px 8px;font-size:12px}
+  .stage{grid-template-columns:1fr;grid-template-rows:176px 1fr auto}
+  .cust{flex-direction:row;align-items:flex-end}
+  .bubble{order:2;flex:1;margin:10px 10px 18px 0;padding:10px 12px;border-radius:16px;align-self:center}
+  .bubble::after{left:-13px;bottom:auto;top:52%;width:20px;height:20px;border-right:0;border-bottom:3px solid var(--ink);border-left:3px solid var(--ink);transform:rotate(45deg)}
+  .say{font-size:17px;line-height:1.7}
+  .who{font-size:13px;margin-bottom:0}
+  .bust{order:1;width:128px;flex:none;max-height:none;margin:0}
+  .ledge{display:none}
+  .bench{grid-template-columns:78px 1fr 78px;grid-template-rows:1fr 62px;grid-template-areas:"temps cup methods" "book serve pad";padding:10px 10px 10px;gap:8px 8px;
+    background:repeating-linear-gradient(90deg,var(--plank) 0 78px,var(--seam) 78px 80px,var(--plank2) 80px 158px,var(--seam) 158px 160px)}
+  .tool{padding:4px 2px 2px;border-radius:14px}
+  .tool svg{width:56px;height:46px}
+  .tool span{font-size:12px}
+  .temps,.methods{gap:6px}
+  .book{width:78px;height:58px;padding:0;transform:none;align-self:center;justify-self:center;background:#7B2E22;border-radius:6px;align-items:center;justify-content:center}
+  .book .pg{display:none}
+  .book .tab{display:block;color:#FFE9C8;font-weight:800;font-size:13px}
+  .book{border-left:7px solid #5A1E15;box-shadow:inset -5px 0 0 #F3E3C2,inset -7px 0 0 #C9B48E,0 5px 0 rgba(60,30,10,.25)}
+  .padobj{width:66px;height:58px;padding:10px 5px 4px;transform:rotate(2deg);align-self:center}
+  .padobj::before{width:28px;height:10px;top:-4px}
+  .padobj .sheet{font-size:11px;background-image:repeating-linear-gradient(transparent 0 10px,#C9D6E2 10px 11px)}
+  .serve{height:56px;font-size:22px}
+  .slip{font-size:14px;padding:4px 8px;min-height:26px}
+  .empty{right:0;top:0;font-size:12px;padding:3px 9px}
+  .bins{border-left:0;border-top:5px solid var(--walnut2);padding:6px 8px 10px}
+  .bins-h{display:none}
+  .grid{grid-template-columns:repeat(4,1fr);grid-template-rows:96px 96px;gap:8px}
+  .bin{padding:4px 3px 2px;border-radius:10px}
+  .bin .lab{font-size:11.5px;white-space:nowrap;letter-spacing:-.01em}
+  .bin .cnt{min-width:28px;height:28px;font-size:16px;top:-5px;right:-3px;border-width:2px}
+  .bigbook .pg{font-size:17px;padding:16px 18px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="day">3日目</div>
+    <div class="parts"><span>始業前</span><span class="on">業務中</span><span>業務後</span></div>
+    <div class="sp"></div>
+    <div class="coins"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="#E2A92B" stroke="#8A5A0A" stroke-width="2"/><rect x="7" y="7" width="6" height="6" fill="#8A5A0A"/></svg><span>46</span></div>
+    <button class="menu" aria-label="メニュー">≡</button>
+  </header>
+  <main class="stage">
+    <section class="cust">
+      <div class="bubble"><div class="who">Captain Reed</div><p class="say" id="say"></p></div>
+      <svg class="bust" id="bust" viewBox="0 52 300 278" preserveAspectRatio="xMidYMax meet"></svg>
+      <div class="ledge"></div>
+    </section>
+    <section class="bench">
+      <div class="book" data-act="book" role="button" aria-label="レシピ帳">
+        <div class="pg" id="pg1"></div><div class="pg" id="pg2"></div><span class="tab">レシピ帳</span>
+      </div>
+      <button class="padobj" data-act="pad" aria-label="注文書"><div class="sheet">注文書</div></button>
+      <div class="temps">
+        <button class="tool" data-temp="hot"><svg viewBox="0 0 80 66"><path d="M18 50h44l-4-30H22Z" fill="#3C5A7A" stroke="#1E2E40" stroke-width="3"/><path d="M58 26q14-2 14 10" fill="none" stroke="#1E2E40" stroke-width="4"/><path d="M22 20h36" stroke="#1E2E40" stroke-width="4"/><rect x="34" y="12" width="12" height="8" rx="3" fill="#1E2E40"/><path d="M26 64q4-10 8 0q4-12 8 0q4-10 8 0" fill="#F08A2B" stroke="#C2411D" stroke-width="2"/></svg><span>ホット</span></button>
+        <button class="tool" data-temp="cold"><svg viewBox="0 0 80 66"><path d="M10 34h60q-4 26-30 26T10 34Z" fill="#CFE6EF" stroke="#4E7F95" stroke-width="3"/><rect x="20" y="16" width="16" height="16" rx="4" fill="#F4FBFE" stroke="#79AFC4" stroke-width="2.5" transform="rotate(-12 28 24)"/><rect x="40" y="14" width="18" height="18" rx="4" fill="#F4FBFE" stroke="#79AFC4" stroke-width="2.5" transform="rotate(14 49 23)"/><rect x="31" y="24" width="14" height="14" rx="3" fill="#F4FBFE" stroke="#79AFC4" stroke-width="2.5"/></svg><span>アイス</span></button>
+      </div>
+      <div class="cupwrap">
+        <svg id="cup" viewBox="-175 -185 350 350" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="slip" id="slip"></div>
+        <button class="empty" data-act="reset">空ける</button>
+      </div>
+      <div class="methods">
+        <button class="tool" data-method="boil"><svg viewBox="0 0 80 66"><path d="M14 22h52v22q0 12-12 12H26q-12 0-12-12Z" fill="#9AA3AD" stroke="#3F4650" stroke-width="3"/><path d="M8 24h8M64 24h8" stroke="#3F4650" stroke-width="5" stroke-linecap="round"/><path d="M28 14q-4-6 0-10M40 14q-4-6 0-10M52 14q-4-6 0-10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M24 64q4-8 8 0q4-10 8 0q4-8 8 0q4-10 8 0" fill="#F08A2B" stroke="#C2411D" stroke-width="2"/></svg><span>煮る</span></button>
+        <button class="tool" data-method="steep"><svg viewBox="0 0 80 66"><ellipse cx="38" cy="40" rx="24" ry="20" fill="#E9EEF3" stroke="#2E4D6B" stroke-width="3"/><path d="M14 36q-12-6-10 6" fill="none" stroke="#2E4D6B" stroke-width="4"/><path d="M60 34q10-4 14-14" fill="none" stroke="#2E4D6B" stroke-width="4"/><path d="M22 22q16-8 32 0" fill="#7FA6C8" stroke="#2E4D6B" stroke-width="3"/><circle cx="38" cy="15" r="4" fill="#2E4D6B"/><path d="M28 40q10 6 20 0" stroke="#7FA6C8" stroke-width="3" fill="none"/></svg><span>蒸らす</span></button>
+        <button class="tool" data-method="stir"><svg viewBox="0 0 80 66"><ellipse cx="26" cy="46" rx="14" ry="10" fill="#C9CED4" stroke="#4A5058" stroke-width="3" transform="rotate(-30 26 46)"/><path d="M34 40L68 8" stroke="#4A5058" stroke-width="7" stroke-linecap="round"/><path d="M34 40L68 8" stroke="#C9CED4" stroke-width="3" stroke-linecap="round"/><path d="M48 56q10 4 18-4M52 46q6 2 10-2" fill="none" stroke="#8A6A4A" stroke-width="2.5" stroke-linecap="round"/></svg><span>混ぜる</span></button>
+      </div>
+      <button class="serve" data-act="serve" id="serve">出す</button>
+    </section>
+    <aside class="bins"><div class="bins-h">材料</div><div class="grid" id="bins"></div></aside>
+  </main>
+</div>
+<script>
+/* shared mock core: state, drawings of the goods, tappable words, guess card, order pad */
+const ORDER = ['lemon','ginger','mint','honey','chrysanthemum','red date','green tea','sugar'];
+const START = {lemon:3, ginger:6, mint:0, honey:5, chrysanthemum:4, 'red date':2, 'green tea':7, sugar:9};
+const PRICE = {lemon:4, ginger:3, mint:3, honey:6, chrysanthemum:5, 'red date':4, 'green tea':5, sugar:2};
+const S = {stock:{...START}, cup:[], temp:'hot', method:null, served:false, reply:'', gloss:{}};
+const LINE = "I can't sleep, so I want chrysanthemum and red date tea. Not too sweet, please.";
+const WHO = 'Captain Reed';
+const RECIPES = [
+  {t:'Chrysanthemum and Red Date', b:'One chrysanthemum, two red dates. Steep in hot water. For a sweet cup, add honey.'},
+  {t:'Lemon and Ginger', b:'One lemon, one ginger. Boil it. Honey if they like it sweet.'},
+  {t:'Mint Cooler', b:'Two mint, one green tea. Stir with cold water.'},
+  {t:'Green Tea', b:'One green tea. Steep it, hot or cold.'}
+];
+const METHODS = [['boil','煮る'],['steep','蒸らす'],['stir','混ぜる']];
+
+function piece(k, x, y, s=1, r=0){
+  const t = `transform="translate(${x} ${y}) rotate(${r}) scale(${s})"`;
+  switch(k){
+    case 'lemon': return `<g ${t}><ellipse rx="13" ry="9.5" fill="#F3D03E" stroke="#A88414" stroke-width="1.6"/><ellipse cx="-13" rx="2.6" ry="2.2" fill="#D8B21E"/><ellipse cx="13" rx="2.6" ry="2.2" fill="#D8B21E"/><ellipse cx="-4" cy="-3.6" rx="5.5" ry="2" fill="#FFF6B8" opacity=".85"/></g>`;
+    case 'ginger': return `<g ${t}><path d="M-15 3C-15-4-7-7-3-2C-1-10 8-11 9-4C16-4 17 5 10 7C4 10-11 11-15 3Z" fill="#DDB277" stroke="#94693A" stroke-width="1.6"/><path d="M-7 2Q0 0 6 3M2-3l1 3" stroke="#B5864F" fill="none" stroke-width="1.3"/></g>`;
+    case 'mint': return `<g ${t}><path d="M0 2C-13-2-15-13-5-16C1-12 3-5 0 2Z" fill="#62B86E" stroke="#2C7339" stroke-width="1.4"/><path d="M0 2C13 0 17-11 8-15C1-11-1-5 0 2Z" fill="#4DA25B" stroke="#2C7339" stroke-width="1.4"/><path d="M0 2V9" stroke="#2C7339" stroke-width="2.2" stroke-linecap="round"/></g>`;
+    case 'honey': return `<g ${t}><path d="M0-14C6-6 11 0 11 5A11 11 0 0 1-11 5C-11 0-6-6 0-14Z" fill="#E7A41C" stroke="#9A6306" stroke-width="1.6"/><ellipse cx="-4" cy="3" rx="2.6" ry="4.2" fill="#FFD77A" opacity=".85"/></g>`;
+    case 'chrysanthemum': {
+      let p=''; for(let i=0;i<14;i++){ p+=`<ellipse rx="3.2" ry="8.5" cy="-7" fill="#FBEFB0" stroke="#C9A94A" stroke-width=".9" transform="rotate(${i*360/14})"/>`; }
+      return `<g ${t}>${p}<circle r="5.5" fill="#E9B52A" stroke="#A97E12" stroke-width="1.2"/></g>`;
+    }
+    case 'red date': return `<g ${t}><ellipse rx="11.5" ry="8.5" fill="#962A23" stroke="#4E120E" stroke-width="1.6"/><path d="M-7-2Q0 1 7-3M-6 3Q1 5 7 2" stroke="#661915" fill="none" stroke-width="1.2"/><ellipse cx="-4" cy="-4.5" rx="3.4" ry="1.6" fill="#DA7266" opacity=".75"/></g>`;
+    case 'green tea': return `<g ${t}><path d="M-12 4C-11-8 6-12 12-3C6-6-2-2-3 7Z" fill="#6F8F33" stroke="#3B5416" stroke-width="1.5"/><path d="M-2 8C3 1 10 1 13 6C8 5 3 7 1 11Z" fill="#5E7D2A" stroke="#3B5416" stroke-width="1.3"/></g>`;
+    case 'sugar': return `<g ${t}><path d="M0-10L10-5L0 0L-10-5Z" fill="#FFFFFF" stroke="#9AA0A6" stroke-width="1.2"/><path d="M-10-5L0 0V11L-10 6Z" fill="#E6E8EA" stroke="#9AA0A6" stroke-width="1.2"/><path d="M10-5L0 0V11L10 6Z" fill="#CFD3D7" stroke="#9AA0A6" stroke-width="1.2"/></g>`;
+  }
+  return '';
+}
+const SLOTS = [[50,50,0],[28,30,-20],[72,30,25],[28,70,15],[72,70,-30],[50,24,10],[50,78,-10],[18,50,40],[82,50,-40]];
+function binPieces(k, n, s=1.15){
+  let out=''; for(let i=0;i<Math.min(n,9);i++){ const [x,y,r]=SLOTS[i]; out+=piece(k,x,y,s,r); } return out;
+}
+function icon(k, size=40){ return `<svg viewBox="-18 -18 36 36" width="${size}" height="${size}" aria-hidden="true">${piece(k,0,0,1,0)}</svg>`; }
+const TINT = {chrysanthemum:[236,176,48],'red date':[200,92,40],'green tea':[150,176,84],lemon:[236,214,96],ginger:[214,166,98],honey:[216,152,42],mint:[140,200,138]};
+function liquidColor(){
+  let c=[214,230,234], w=S.cup.length?0.6:1;
+  let r=c[0]*w,g=c[1]*w,b=c[2]*w,t=w;
+  S.cup.forEach(k=>{ const x=TINT[k]; if(x){ r+=x[0];g+=x[1];b+=x[2];t+=1; } });
+  r/=t; g/=t; b/=t;
+  if(S.temp==='cold'){ r=(r+235)/2; g=(g+240)/2; b=(b+242)/2; }
+  return `rgb(${r|0},${g|0},${b|0})`;
+}
+/* pieces floating in a round cup seen from above, centre 0,0 radius R */
+function cupPieces(R, s=1){
+  const out=[]; const n=S.cup.length;
+  S.cup.forEach((k,i)=>{
+    const a = i*2.39996; const d = R*0.62*Math.sqrt((i+0.6)/Math.max(n,4));
+    out.push(piece(k, Math.cos(a)*d, Math.sin(a)*d, s, (i*47)%360));
+  });
+  if(S.temp==='cold'){ [[-.35,-.3],[.3,.25],[.1,-.45]].forEach(([x,y],i)=>out.push(`<rect x="${x*R-9}" y="${y*R-9}" width="18" height="18" rx="4" fill="#EAF6FB" opacity=".85" stroke="#B9D9E6" transform="rotate(${i*25} ${x*R} ${y*R})"/>`)); }
+  return out.join('');
+}
+function cupSummary(){ const m={}; S.cup.forEach(k=>m[k]=(m[k]||0)+1); return ORDER.filter(k=>m[k]).map(k=>[k,m[k]]); }
+function esc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function words(text){
+  return text.replace(/[A-Za-z][A-Za-z']*|[^A-Za-z]+/g, tok=>{
+    if(!/^[A-Za-z]/.test(tok)) return esc(tok);
+    const key=tok.toLowerCase(); const g=S.gloss[key];
+    return `<span class="w" data-w="${esc(key)}">${esc(tok)}<small class="gl">${g?esc(g):''}</small></span>`;
+  });
+}
+function addIng(k){
+  if(S.served) return false;
+  if(S.stock[k]<=0) return false;
+  S.stock[k]--; S.cup.push(k); return true;
+}
+function resetCup(){ if(S.served) return; S.cup.forEach(k=>S.stock[k]++); S.cup=[]; S.method=null; }
+function serve(){
+  if(S.served) return;
+  const has=k=>S.cup.includes(k);
+  const sweet=S.cup.filter(k=>k==='honey'||k==='sugar').length;
+  let r;
+  if(!S.cup.length) r="Just hot water? Well. It's warm, I suppose.";
+  else if(has('chrysanthemum')&&has('red date')&&!sweet) r="Mm. Flowers and dates. My mother made this on the boat. Thank you.";
+  else if(has('chrysanthemum')&&has('red date')) r="Oh, that's sweet. Sweeter than I like, but it's warm. Thanks.";
+  else r="Hm. Not what I had in mind. I'll drink it anyway.";
+  if(S.temp==='cold' && S.cup.length) r="Cold, at night? "+r;
+  S.reply=r; S.mood = /Thank you\.$/.test(r)&&S.temp==='hot' ? 'smile' : 'flat';
+  S.served=true;
+}
+function nextCustomer(){ S.cup=[]; S.method=null; S.temp='hot'; S.served=false; S.reply=''; S.mood=null; }
+
+/* guess card: the player writes their own meaning; no translation anywhere */
+let gcard;
+function openCard(el){
+  closeCard();
+  const key=el.dataset.w;
+  gcard=document.createElement('div'); gcard.className='gcard';
+  gcard.innerHTML=`<div class="gc-word">${esc(key)}</div><label class="gc-lab">自分の意味</label><input class="gc-in" maxlength="30" value="${esc(S.gloss[key]||'')}" placeholder="ここに書く"><div class="gc-btns"><button class="gc-close" type="button">閉じる</button><button class="gc-save" type="button">書く</button></div>`;
+  document.body.appendChild(gcard);
+  const r=el.getBoundingClientRect(), W=Math.min(260, innerWidth-24);
+  gcard.style.width=W+'px';
+  let left=Math.max(12, Math.min(innerWidth-W-12, r.left+r.width/2-W/2));
+  gcard.style.left=left+'px';
+  const h=gcard.offsetHeight;
+  let top=r.bottom+10; if(top+h>innerHeight-8) top=Math.max(8, r.top-h-10);
+  gcard.style.top=top+'px';
+  const inp=gcard.querySelector('input');
+  const save=()=>{ const v=inp.value.trim(); if(v) S.gloss[key]=v; else delete S.gloss[key]; document.querySelectorAll(`.w[data-w="${CSS.escape(key)}"] .gl`).forEach(g=>g.textContent=v); closeCard(); };
+  gcard.querySelector('.gc-save').onclick=save;
+  gcard.querySelector('.gc-close').onclick=closeCard;
+  inp.addEventListener('keydown',e=>{ if(e.key==='Enter') save(); if(e.key==='Escape') closeCard(); });
+  setTimeout(()=>inp.focus({preventScroll:true}),0);
+}
+function closeCard(){ if(gcard){ gcard.remove(); gcard=null; } }
+document.addEventListener('click',e=>{
+  const w=e.target.closest('.w'); if(w){ e.stopPropagation(); openCard(w); return; }
+  if(gcard && !e.target.closest('.gcard')) closeCard();
+}, true);
+
+/* order pad: opened only by the player; nothing ticked */
+function openPad(){
+  const q={}; ORDER.forEach(k=>q[k]=0);
+  const ov=document.createElement('div'); ov.className='pad-ov';
+  const draw=()=>{
+    const sub=ORDER.reduce((a,k)=>a+q[k]*PRICE[k],0); const fee= sub===0?0: sub<20?6:3;
+    ov.innerHTML=`<div class="pad"><div class="pad-h">注文書<button class="pad-x" type="button" aria-label="閉じる">×</button></div>
+    <table class="pad-t"><thead><tr><th></th><th>品</th><th>単価</th><th>棚</th><th>数</th></tr></thead><tbody>${ORDER.map(k=>`<tr><td>${icon(k,26)}</td><td class="pad-n">${k}</td><td>${PRICE[k]}</td><td>${S.stock[k]}</td><td class="pad-st"><button type="button" data-k="${k}" data-d="-1">−</button><b>${q[k]}</b><button type="button" data-k="${k}" data-d="1">+</button></td></tr>`).join('')}</tbody></table>
+    <div class="pad-f"><span>配達料 ${fee}</span><span>合計 ${sub+fee}</span><button class="pad-go" type="button" ${sub?'':'disabled'}>注文する</button></div></div>`;
+    ov.querySelector('.pad-x').onclick=()=>ov.remove();
+    ov.querySelectorAll('.pad-st button').forEach(b=>b.onclick=()=>{ const k=b.dataset.k; q[k]=Math.max(0,q[k]+(+b.dataset.d)); draw(); });
+    ov.querySelector('.pad-go').onclick=()=>ov.remove();
+  };
+  ov.addEventListener('click',e=>{ if(e.target===ov) ov.remove(); });
+  draw(); document.body.appendChild(ov);
+}
+function bump(el){ if(!el) return; el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
+
+/* Captain Reed: original drawing, palette per mockup. viewBox 0 0 300 330 */
+function captain(p, mood){
+  const o = p.line ? `stroke="${p.line}" stroke-width="${p.lw||3}" stroke-linejoin="round"` : '';
+  const mouth = mood==='smile' ? `<path d="M131 196Q150 210 169 196" fill="none" stroke="${p.ink}" stroke-width="4" stroke-linecap="round"/>`
+             : `<path d="M134 199Q150 196 166 199" fill="none" stroke="${p.ink}" stroke-width="4" stroke-linecap="round"/>`;
+  const eyes = mood==='smile'
+    ? `<path d="M114 150Q124 142 134 150M166 150Q176 142 186 150" fill="none" stroke="${p.ink}" stroke-width="4.5" stroke-linecap="round"/>`
+    : `<ellipse cx="124" cy="151" rx="6" ry="5" fill="${p.ink}"/><ellipse cx="176" cy="151" rx="6" ry="5" fill="${p.ink}"/>
+       <path d="M113 146Q124 141 135 146M165 146Q176 141 187 146" fill="none" stroke="${p.ink}" stroke-width="3.5" stroke-linecap="round"/>
+       <path d="M115 161Q124 166 133 161M167 161Q176 166 185 161" fill="none" stroke="${p.skinD}" stroke-width="3" stroke-linecap="round"/>`;
+  return `
+  <path d="M18 330C22 268 64 240 110 230H190C236 240 278 268 282 330Z" fill="${p.coat}" ${o}/>
+  <path d="M110 230L150 318L190 230H172L150 280L128 230Z" fill="${p.coatD}" ${o}/>
+  <circle cx="98" cy="292" r="6" fill="${p.gold}"/><circle cx="202" cy="292" r="6" fill="${p.gold}"/>
+  <rect x="130" y="196" width="40" height="40" fill="${p.skinD}"/>
+  <path d="M108 224C126 246 174 246 192 224L196 244C176 264 124 264 104 244Z" fill="${p.scarf}" ${o}/>
+  <path d="M168 248l14 40-18 4-8-38Z" fill="${p.scarf}" ${o}/>
+  <path d="M92 150C88 196 98 214 116 222L120 150Z" fill="${p.hair}" ${o}/>
+  <path d="M208 150C212 196 202 214 184 222L180 150Z" fill="${p.hair}" ${o}/>
+  <ellipse cx="96" cy="160" rx="9" ry="14" fill="${p.skinD}" ${o}/><ellipse cx="204" cy="160" rx="9" ry="14" fill="${p.skinD}" ${o}/>
+  <ellipse cx="150" cy="158" rx="55" ry="64" fill="${p.skin}" ${o}/>
+  <path d="M97 128C98 140 102 150 108 156L112 126Z" fill="${p.hair}"/><path d="M203 128C202 140 198 150 192 156L188 126Z" fill="${p.hair}"/>
+  ${eyes}
+  <path d="M146 158Q141 178 150 182Q156 182 158 178" fill="none" stroke="${p.skinD}" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M110 178Q113 186 118 188M190 178Q187 186 182 188" fill="none" stroke="${p.skinD}" stroke-width="2.5" stroke-linecap="round"/>
+  ${mouth}
+  <path d="M78 96C78 66 222 66 222 96L212 108H88Z" fill="${p.cap}" ${o}/>
+  <rect x="88" y="96" width="124" height="26" rx="6" fill="${p.band}" ${o}/>
+  <path d="M94 120C116 138 184 138 206 120L204 130C184 150 116 150 96 130Z" fill="${p.peak}" ${o}/>
+  <path d="M138 104h24l-4 12h-16Z" fill="${p.gold}"/>
+  <path d="M100 99h100" stroke="${p.gold}" stroke-width="2.5" opacity=".9"/>`;
+}
+
+const PAL={coat:'#25344E',coatD:'#18233A',scarf:'#C9533A',skin:'#C98E67',skinD:'#A86E4C',hair:'#C3C7CE',cap:'#F3F2EE',band:'#1C2840',peak:'#141A24',gold:'#E2A92B',ink:'#2B1D12',line:'#2B1D12',lw:3};
+function render(){
+  document.getElementById('say').innerHTML = words(S.served ? S.reply : LINE);
+  document.getElementById('bust').innerHTML = captain(PAL, S.mood);
+  document.getElementById('pg1').innerHTML = `<h4>${words(RECIPES[0].t)}</h4>${words(RECIPES[0].b)}`;
+  document.getElementById('pg2').innerHTML = `<h4>${words(RECIPES[1].t)}</h4>${words(RECIPES[1].b)}`;
+  document.getElementById('bins').innerHTML = ORDER.map(k=>{
+    const n=S.stock[k];
+    return `<button class="bin ${n?'':'zero'}" data-ing="${k}" aria-label="${k} ${n}">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><rect x="3" y="3" width="94" height="94" rx="12" fill="${n?'#3A2214':'#33200F'}"/>${n?binPieces(k,n,1.25):'<path d="M30 70h40M38 62h8" stroke="#4A2E1C" stroke-width="3" stroke-linecap="round"/>'}</svg>
+      <span class="lab">${k}</span><span class="cnt">${n}</span></button>`;
+  }).join('');
+  const hot=S.temp==='hot', R=118;
+  const steam = hot && S.cup.length ? `<g opacity=".7" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"><path d="M-40-150q-14-14 0-28"/><path d="M0-150q-14-14 0-28"/><path d="M40-150q-14-14 0-28"/></g>` : '';
+  document.getElementById('cup').innerHTML = `
+    <ellipse cx="6" cy="14" rx="166" ry="160" fill="rgba(80,45,15,.25)"/>
+    <circle r="160" fill="#F6F1E8" stroke="#2B1D12" stroke-width="5"/>
+    <circle r="148" fill="none" stroke="#DCCFBA" stroke-width="3"/>
+    <path d="M128 -34 C182 -40 182 40 128 34" fill="none" stroke="#2B1D12" stroke-width="26" stroke-linecap="round"/>
+    <path d="M128 -34 C182 -40 182 40 128 34" fill="none" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round"/>
+    <circle r="132" fill="#FFFFFF" stroke="#2B1D12" stroke-width="5"/>
+    <circle r="${R}" fill="${liquidColor()}"/>
+    <ellipse cx="-50" cy="-60" rx="40" ry="16" fill="#fff" opacity=".35" transform="rotate(-35 -50 -60)"/>
+    ${cupPieces(R,2.3)}${steam}`;
+  const sum=cupSummary();
+  document.getElementById('slip').innerHTML = `<span class="k">カップの中</span>` + (sum.length? sum.map(([k,n])=>`<span>${k} <b>×${n}</b></span>`).join('') : '<span style="color:#A08A70">—</span>')
+    + `<span class="k">${hot?'ホット':'アイス'}${S.method?' · '+METHODS.find(m=>m[0]===S.method)[1]:''}</span>`;
+  document.querySelectorAll('[data-temp]').forEach(b=>b.classList.toggle('on', b.dataset.temp===S.temp));
+  document.querySelectorAll('[data-method]').forEach(b=>b.classList.toggle('on', b.dataset.method===S.method));
+  const sv=document.getElementById('serve'); sv.textContent=S.served?'次のお客さん':'出す'; sv.classList.toggle('next',S.served); sv.dataset.act=S.served?'next':'serve';
+}
+function openBook(){
+  const ov=document.createElement('div'); ov.className='bookov';
+  ov.innerHTML=`<div class="bigbook"><div class="pg">${RECIPES.slice(0,2).map(r=>`<h4>${words(r.t)}</h4><p>${words(r.b)}</p>`).join('')}</div><div class="pg">${RECIPES.slice(2).map(r=>`<h4>${words(r.t)}</h4><p>${words(r.b)}</p>`).join('')}</div></div>`;
+  ov.addEventListener('click',e=>{ if(!e.target.closest('.w')) ov.remove(); });
+  document.body.appendChild(ov);
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-ing],[data-temp],[data-method],[data-act]'); if(!t) return;
+  if(t.dataset.ing){ const k=t.dataset.ing; if(addIng(k)){ render(); bump(document.getElementById('cup')); } else { t.classList.remove('shake'); void t.offsetWidth; t.classList.add('shake'); } return; }
+  if(S.served && !t.dataset.act) return;
+  if(t.dataset.temp){ S.temp=t.dataset.temp; render(); return; }
+  if(t.dataset.method){ S.method = S.method===t.dataset.method?null:t.dataset.method; render(); return; }
+  const a=t.dataset.act;
+  if(a==='serve'){ serve(); render(); }
+  else if(a==='next'){ nextCustomer(); render(); }
+  else if(a==='reset'){ resetCup(); render(); }
+  else if(a==='book') openBook();
+  else if(a==='pad') openPad();
+});
+render();
+</script>
+</body>
+</html>

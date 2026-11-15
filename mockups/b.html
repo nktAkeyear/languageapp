@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup B — Console</title>
+<style>
+:root{
+  --bg:#101219; --panel:#1B1F2B; --cell:#232838; --cell2:#2B3144; --line:#353C52; --txt:#EDE6D6; --dim:#8D93A8;
+  --amber:#F2B33D; --teal:#5ED6C4; --rose:#F06A6A; --plum:#3A2B4A;
+  --mono:"JetBrains Mono","SFMono-Regular",Menlo,Consolas,"DejaVu Sans Mono",monospace;
+  --jp:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic","IPAPGothic","IPAGothic",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--txt);font-family:var(--jp);-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.app{height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;overflow:hidden}
+
+/* left: portrait + dialogue */
+.left{display:grid;grid-template-rows:1fr auto;gap:10px;min-height:0;min-width:0}
+.portrait{position:relative;border-radius:6px;overflow:hidden;min-height:0;
+  background:linear-gradient(180deg,#2C2440 0%,#40305A 55%,#5A3D5E 100%)}
+.portrait .glow{position:absolute;left:58%;top:12%;width:46%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#F6C76A 0%,rgba(246,199,106,.25) 45%,transparent 70%)}
+.portrait .stripes{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.035) 46px 48px)}
+.portrait .bar{position:absolute;left:0;right:0;bottom:0;height:14%;background:#1A1522;border-top:4px solid #8A5A3C}
+.portrait svg.cap{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:98%;width:auto;max-width:none}
+.hud{position:absolute;left:12px;top:12px;display:flex;gap:8px;align-items:center;z-index:2}
+.chip{background:rgba(16,18,25,.82);border:1px solid var(--line);border-radius:4px;padding:5px 10px;font-size:13px;color:var(--txt)}
+.parts{display:flex;gap:2px;padding:3px}
+.parts span{padding:2px 9px;border-radius:3px;color:var(--dim)}
+.parts span.on{background:var(--teal);color:#0C1A18;font-weight:700}
+
+.dlg{background:#07080C;border:2px solid var(--line);border-radius:6px;padding:16px 22px 18px;min-height:150px}
+.dlg .nm{font-family:var(--mono);color:var(--rose);font-size:18px;font-weight:700;margin-bottom:6px}
+.dlg .say{margin:0;font-family:var(--mono);font-size:26px;line-height:1.75;letter-spacing:-.01em}
+
+.w{position:relative;cursor:pointer;border-bottom:1px dashed rgba(237,230,214,.2)}
+.w:hover{color:var(--amber)}
+.w .gl{position:absolute;left:50%;top:100%;transform:translateX(-50%);font-family:var(--jp);font-size:11px;line-height:1;color:var(--teal);white-space:nowrap;margin-top:0}
+.w .gl:empty{display:none}
+
+/* recipe screen replaces the portrait */
+.recipes{position:absolute;inset:0;z-index:5;background:#0B0D14;border:2px solid var(--teal);border-radius:6px;padding:18px 22px;display:none;overflow:auto}
+.recipes.on{display:block}
+.recipes .rh{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--teal);margin-bottom:10px;letter-spacing:.1em}
+.recipes .rx{border:1px solid var(--teal);color:var(--teal);border-radius:3px;padding:3px 10px;font-size:13px}
+.recipes .r{border-top:1px solid var(--line);padding:12px 0;font-family:var(--mono);font-size:17px;line-height:1.65}
+.recipes .r h4{margin:0 0 4px;color:var(--amber);font-size:18px}
+
+/* right: the machine */
+.console{background:var(--panel);border:2px solid var(--line);border-radius:6px;display:grid;grid-template-rows:auto auto 1fr auto;gap:10px;padding:12px;min-height:0;min-width:0}
+.ch{display:flex;align-items:center;gap:8px}
+.ch .ttl{font-family:var(--mono);font-size:13px;color:var(--dim);letter-spacing:.18em}
+.ch .sp{flex:1}
+.coins{font-family:var(--mono);font-size:18px;color:var(--amber);font-weight:700;display:flex;align-items:center;gap:6px}
+.padbtn{border:1px solid var(--line);border-radius:4px;padding:4px 10px;font-size:13px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.menu{border:1px solid var(--line);border-radius:4px;width:30px;height:28px;color:var(--dim)}
+
+.ings{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ing{position:relative;background:var(--cell);border:2px solid var(--line);border-radius:5px;padding:8px 8px 8px;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr auto;gap:2px 6px;text-align:left;min-height:118px;transition:background .1s}
+.ing:hover{background:var(--cell2)}
+.ing .nm{grid-column:1/3;font-family:var(--mono);font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:clip}
+.ing .ic{grid-row:2/4;align-self:center}
+.ing .ic svg{width:62px;height:62px;display:block}
+.ing .n{justify-self:end;align-self:end;font-family:var(--mono);font-size:34px;font-weight:800;line-height:1;color:var(--txt)}
+.ing .seg{grid-column:2;display:grid;grid-template-columns:repeat(9,1fr);gap:2px;align-self:end}
+.ing .seg i{height:7px;background:#3A4158;border-radius:1px}
+.ing .seg i.f{background:var(--teal)}
+.ing.zero{background:#191C26;border-color:#2A2F40}
+.ing.zero .nm{color:#5D6378}
+.ing.zero .n{color:var(--rose)}
+.ing.zero .ic{opacity:.18;filter:grayscale(1)}
+
+.mid{display:grid;grid-template-columns:132px 1fr 132px;gap:10px;min-height:0}
+.sw{display:flex;flex-direction:column;gap:6px;justify-content:center}
+.sw .lab{font-size:11px;color:var(--dim);letter-spacing:.2em;margin-bottom:2px}
+.opt{display:flex;align-items:center;gap:10px;background:var(--cell);border:2px solid var(--line);border-radius:5px;padding:9px 12px;font-size:16px;font-weight:700;color:var(--dim)}
+.opt::before{content:"";width:12px;height:12px;border-radius:50%;border:2px solid #4A5270;flex:none}
+.opt.on{color:var(--txt);border-color:var(--amber);background:#2E2A22}
+.opt.on::before{background:var(--amber);border-color:var(--amber);box-shadow:0 0 8px var(--amber)}
+.opt.cold.on{border-color:var(--teal);background:#1D2E31}
+.opt.cold.on::before{background:var(--teal);border-color:var(--teal);box-shadow:0 0 8px var(--teal)}
+.vessel{position:relative;background:#12151E;border:2px solid var(--line);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0;padding:8px}
+.vessel svg{flex:1;width:100%;min-height:0}
+.read{font-family:var(--mono);font-size:14px;color:var(--teal);min-height:20px;text-align:center}
+.read .k{color:var(--dim)}
+
+.acts{display:grid;grid-template-columns:1fr 1fr 1.6fr;gap:8px}
+.act{height:56px;border-radius:5px;border:2px solid var(--line);background:var(--cell);font-size:18px;font-weight:700}
+.act.serve{background:var(--amber);border-color:var(--amber);color:#1A1205;font-size:22px;letter-spacing:.2em}
+.act.serve.next{background:var(--teal);border-color:var(--teal);letter-spacing:.05em;font-size:18px}
+.act:active{transform:translateY(2px)}
+.bump{animation:bump .25s}@keyframes bump{40%{transform:scale(1.04)}}
+.shake{animation:shake .3s}@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+/* guess card */
+.gcard{position:fixed;z-index:50;background:#0B0D14;border:2px solid var(--amber);border-radius:6px;padding:12px;color:var(--txt);box-shadow:0 10px 30px rgba(0,0,0,.6)}
+.gc-word{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--amber)}
+.gc-lab{display:block;font-size:12px;color:var(--dim);margin:6px 0 4px}
+.gc-in{width:100%;font:16px var(--jp);padding:8px 10px;border:1px solid var(--line);border-radius:4px;background:#1B1F2B;color:var(--txt)}
+.gc-btns{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
+.gc-btns button{padding:6px 14px;border-radius:4px;border:1px solid var(--line);font-size:14px;font-weight:700}
+.gc-save{background:var(--amber);color:#1A1205;border-color:var(--amber)!important}
+.pad-ov{position:fixed;inset:0;z-index:40;background:rgba(5,6,10,.7);display:flex;align-items:center;justify-content:center;padding:16px}
+.pad{background:#0B0D14;border:2px solid var(--line);border-radius:6px;padding:14px 16px;width:min(480px,100%);max-height:100%;overflow:auto;font-size:14px}
+.pad-h{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:16px;margin-bottom:6px;letter-spacing:.1em}
+.pad-x{font-size:20px;width:30px;height:30px}
+.pad-t{width:100%;border-collapse:collapse;font-family:var(--mono)}
+.pad-t th{font:600 11px var(--jp);color:var(--dim);text-align:left}
+.pad-t td{padding:2px 4px;border-bottom:1px solid var(--line)}
+.pad-st{white-space:nowrap}.pad-st button{width:26px;height:26px;border:1px solid var(--line);border-radius:3px}.pad-st b{display:inline-block;width:24px;text-align:center}
+.pad-f{display:flex;gap:14px;align-items:center;justify-content:flex-end;margin-top:10px}
+.pad-go{background:var(--amber);color:#1A1205;padding:8px 16px;border-radius:4px;font-weight:700}.pad-go:disabled{opacity:.3}
+
+/* phone: portrait strip on top, dialogue, machine below */
+@media (max-width:640px){
+  .app{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:6px;padding:6px}
+  .left{grid-template-rows:196px auto;gap:6px}
+  .portrait svg.cap{height:132%;bottom:-36%}
+  .portrait .bar{display:none}
+  .hud{left:8px;top:8px;gap:6px}
+  .chip{font-size:12px;padding:3px 7px}
+  .parts span{padding:1px 6px}
+  .dlg{min-height:0;padding:10px 14px 12px}
+  .dlg .nm{font-size:14px;margin-bottom:2px}
+  .dlg .say{font-size:16.5px;line-height:1.7}
+  .recipes{position:fixed;inset:6px;}
+  .console{padding:8px;gap:7px}
+  .ch .ttl{display:none}
+  .ings{gap:5px}
+  .ing{min-height:0;padding:5px 5px 6px;grid-template-columns:1fr auto;grid-template-rows:auto auto auto;gap:1px 2px}
+  .ing .nm{font-size:11px;grid-column:1/3}
+  .ing .nm.long{font-size:9.6px;letter-spacing:-.04em}
+  .ing .ic{grid-row:2;grid-column:1/3;justify-self:center}
+  .ing .ic svg{width:38px;height:38px}
+  .ing .n{grid-row:3;grid-column:2;font-size:20px}
+  .ing .seg{grid-row:3;grid-column:1;align-self:center;gap:1px}
+  .ing .seg i{height:5px}
+  .mid{grid-template-columns:96px 1fr 96px;gap:6px}
+  .sw{gap:5px}
+  .sw .lab{font-size:10px;margin-bottom:0}
+  .opt{padding:7px 8px;font-size:14px;gap:6px}
+  .opt::before{width:10px;height:10px}
+  .read{font-size:12px}
+  .acts{gap:6px}
+  .act{height:50px;font-size:16px}
+  .act.serve{font-size:19px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="left">
+    <div class="portrait">
+      <div class="glow"></div><div class="stripes"></div><div class="bar"></div>
+      <svg class="cap" id="cap" viewBox="0 0 300 330" preserveAspectRatio="xMidYMax meet"></svg>
+      <div class="hud"><div class="chip">3日目</div><div class="chip parts"><span>始業前</span><span class="on">業務中</span><span>業務後</span></div></div>
+      <div class="recipes" id="recipes"></div>
+    </div>
+    <div class="dlg"><div class="nm">Captain Reed:</div><p class="say" id="say"></p></div>
+  </section>
+  <section class="console">
+    <div class="ch"><span class="ttl">TEA · 茶房</span><span class="sp"></span>
+      <span class="coins"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#F2B33D"/><rect x="5.5" y="5.5" width="5" height="5" fill="#1B1F2B"/></svg>46</span>
+      <button class="padbtn" data-act="pad"><svg width="14" height="16" viewBox="0 0 14 16"><rect x="1" y="2" width="12" height="13" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 6h6M4 9h6M4 12h4" stroke="currentColor" stroke-width="1.3"/></svg>注文書</button>
+      <button class="menu" aria-label="メニュー">≡</button></div>
+    <div class="ings" id="ings"></div>
+    <div class="mid">
+      <div class="sw"><div class="lab">温度</div>
+        <button class="opt" data-temp="hot">ホット</button>
+        <button class="opt cold" data-temp="cold">アイス</button></div>
+      <div class="vessel"><svg id="ves" viewBox="0 0 220 210" preserveAspectRatio="xMidYMid meet"></svg><div class="read" id="read"></div></div>
+      <div class="sw"><div class="lab">作り方</div>
+        <button class="opt" data-method="boil">煮る</button>
+        <button class="opt" data-method="steep">蒸らす</button>
+        <button class="opt" data-method="stir">混ぜる</button></div>
+    </div>
+    <div class="acts">
+      <button class="act" data-act="book">レシピ</button>
+      <button class="act" data-act="reset">リセット</button>
+      <button class="act serve" data-act="serve" id="serve">出す</button>
+    </div>
+  </section>
+</div>
+<script>
+/* shared mock core: state, drawings of the goods, tappable words, guess card, order pad */
+const ORDER = ['lemon','ginger','mint','honey','chrysanthemum','red date','green tea','sugar'];
+const START = {lemon:3, ginger:6, mint:0, honey:5, chrysanthemum:4, 'red date':2, 'green tea':7, sugar:9};
+const PRICE = {lemon:4, ginger:3, mint:3, honey:6, chrysanthemum:5, 'red date':4, 'green tea':5, sugar:2};
+const S = {stock:{...START}, cup:[], temp:'hot', method:null, served:false, reply:'', gloss:{}};
+const LINE = "I can't sleep, so I want chrysanthemum and red date tea. Not too sweet, please.";
+const WHO = 'Captain Reed';
+const RECIPES = [
+  {t:'Chrysanthemum and Red Date', b:'One chrysanthemum, two red dates. Steep in hot water. For a sweet cup, add honey.'},
+  {t:'Lemon and Ginger', b:'One lemon, one ginger. Boil it. Honey if they like it sweet.'},
+  {t:'Mint Cooler', b:'Two mint, one green tea. Stir with cold water.'},
+  {t:'Green Tea', b:'One green tea. Steep it, hot or cold.'}
+];
+const METHODS = [['boil','煮る'],['steep','蒸らす'],['stir','混ぜる']];
+
+function piece(k, x, y, s=1, r=0){
+  const t = `transform="translate(${x} ${y}) rotate(${r}) scale(${s})"`;
+  switch(k){
+    case 'lemon': return `<g ${t}><ellipse rx="13" ry="9.5" fill="#F3D03E" stroke="#A88414" stroke-width="1.6"/><ellipse cx="-13" rx="2.6" ry="2.2" fill="#D8B21E"/><ellipse cx="13" rx="2.6" ry="2.2" fill="#D8B21E"/><ellipse cx="-4" cy="-3.6" rx="5.5" ry="2" fill="#FFF6B8" opacity=".85"/></g>`;
+    case 'ginger': return `<g ${t}><path d="M-15 3C-15-4-7-7-3-2C-1-10 8-11 9-4C16-4 17 5 10 7C4 10-11 11-15 3Z" fill="#DDB277" stroke="#94693A" stroke-width="1.6"/><path d="M-7 2Q0 0 6 3M2-3l1 3" stroke="#B5864F" fill="none" stroke-width="1.3"/></g>`;
+    case 'mint': return `<g ${t}><path d="M0 2C-13-2-15-13-5-16C1-12 3-5 0 2Z" fill="#62B86E" stroke="#2C7339" stroke-width="1.4"/><path d="M0 2C13 0 17-11 8-15C1-11-1-5 0 2Z" fill="#4DA25B" stroke="#2C7339" stroke-width="1.4"/><path d="M0 2V9" stroke="#2C7339" stroke-width="2.2" stroke-linecap="round"/></g>`;
+    case 'honey': return `<g ${t}><path d="M0-14C6-6 11 0 11 5A11 11 0 0 1-11 5C-11 0-6-6 0-14Z" fill="#E7A41C" stroke="#9A6306" stroke-width="1.6"/><ellipse cx="-4" cy="3" rx="2.6" ry="4.2" fill="#FFD77A" opacity=".85"/></g>`;
+    case 'chrysanthemum': {
+      let p=''; for(let i=0;i<14;i++){ p+=`<ellipse rx="3.2" ry="8.5" cy="-7" fill="#FBEFB0" stroke="#C9A94A" stroke-width=".9" transform="rotate(${i*360/14})"/>`; }
+      return `<g ${t}>${p}<circle r="5.5" fill="#E9B52A" stroke="#A97E12" stroke-width="1.2"/></g>`;
+    }
+    case 'red date': return `<g ${t}><ellipse rx="11.5" ry="8.5" fill="#962A23" stroke="#4E120E" stroke-width="1.6"/><path d="M-7-2Q0 1 7-3M-6 3Q1 5 7 2" stroke="#661915" fill="none" stroke-width="1.2"/><ellipse cx="-4" cy="-4.5" rx="3.4" ry="1.6" fill="#DA7266" opacity=".75"/></g>`;
+    case 'green tea': return `<g ${t}><path d="M-12 4C-11-8 6-12 12-3C6-6-2-2-3 7Z" fill="#6F8F33" stroke="#3B5416" stroke-width="1.5"/><path d="M-2 8C3 1 10 1 13 6C8 5 3 7 1 11Z" fill="#5E7D2A" stroke="#3B5416" stroke-width="1.3"/></g>`;
+    case 'sugar': return `<g ${t}><path d="M0-10L10-5L0 0L-10-5Z" fill="#FFFFFF" stroke="#9AA0A6" stroke-width="1.2"/><path d="M-10-5L0 0V11L-10 6Z" fill="#E6E8EA" stroke="#9AA0A6" stroke-width="1.2"/><path d="M10-5L0 0V11L10 6Z" fill="#CFD3D7" stroke="#9AA0A6" stroke-width="1.2"/></g>`;
+  }
+  return '';
+}
+const SLOTS = [[50,50,0],[28,30,-20],[72,30,25],[28,70,15],[72,70,-30],[50,24,10],[50,78,-10],[18,50,40],[82,50,-40]];
+function binPieces(k, n, s=1.15){
+  let out=''; for(let i=0;i<Math.min(n,9);i++){ const [x,y,r]=SLOTS[i]; out+=piece(k,x,y,s,r); } return out;
+}
+function icon(k, size=40){ return `<svg viewBox="-18 -18 36 36" width="${size}" height="${size}" aria-hidden="true">${piece(k,0,0,1,0)}</svg>`; }
+const TINT = {chrysanthemum:[236,176,48],'red date':[200,92,40],'green tea':[150,176,84],lemon:[236,214,96],ginger:[214,166,98],honey:[216,152,42],mint:[140,200,138]};
+function liquidColor(){
+  let c=[214,230,234], w=S.cup.length?0.6:1;
+  let r=c[0]*w,g=c[1]*w,b=c[2]*w,t=w;
+  S.cup.forEach(k=>{ const x=TINT[k]; if(x){ r+=x[0];g+=x[1];b+=x[2];t+=1; } });
+  r/=t; g/=t; b/=t;
+  if(S.temp==='cold'){ r=(r+235)/2; g=(g+240)/2; b=(b+242)/2; }
+  return `rgb(${r|0},${g|0},${b|0})`;
+}
+/* pieces floating in a round cup seen from above, centre 0,0 radius R */
+function cupPieces(R, s=1){
+  const out=[]; const n=S.cup.length;
+  S.cup.forEach((k,i)=>{
+    const a = i*2.39996; const d = R*0.62*Math.sqrt((i+0.6)/Math.max(n,4));
+    out.push(piece(k, Math.cos(a)*d, Math.sin(a)*d, s, (i*47)%360));
+  });
+  if(S.temp==='cold'){ [[-.35,-.3],[.3,.25],[.1,-.45]].forEach(([x,y],i)=>out.push(`<rect x="${x*R-9}" y="${y*R-9}" width="18" height="18" rx="4" fill="#EAF6FB" opacity=".85" stroke="#B9D9E6" transform="rotate(${i*25} ${x*R} ${y*R})"/>`)); }
+  return out.join('');
+}
+function cupSummary(){ const m={}; S.cup.forEach(k=>m[k]=(m[k]||0)+1); return ORDER.filter(k=>m[k]).map(k=>[k,m[k]]); }
+function esc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function words(text){
+  return text.replace(/[A-Za-z][A-Za-z']*|[^A-Za-z]+/g, tok=>{
+    if(!/^[A-Za-z]/.test(tok)) return esc(tok);
+    const key=tok.toLowerCase(); const g=S.gloss[key];
+    return `<span class="w" data-w="${esc(key)}">${esc(tok)}<small class="gl">${g?esc(g):''}</small></span>`;
+  });
+}
+function addIng(k){
+  if(S.served) return false;
+  if(S.stock[k]<=0) return false;
+  S.stock[k]--; S.cup.push(k); return true;
+}
+function resetCup(){ if(S.served) return; S.cup.forEach(k=>S.stock[k]++); S.cup=[]; S.method=null; }
+function serve(){
+  if(S.served) return;
+  const has=k=>S.cup.includes(k);
+  const sweet=S.cup.filter(k=>k==='honey'||k==='sugar').length;
+  let r;
+  if(!S.cup.length) r="Just hot water? Well. It's warm, I suppose.";
+  else if(has('chrysanthemum')&&has('red date')&&!sweet) r="Mm. Flowers and dates. My mother made this on the boat. Thank you.";
+  else if(has('chrysanthemum')&&has('red date')) r="Oh, that's sweet. Sweeter than I like, but it's warm. Thanks.";
+  else r="Hm. Not what I had in mind. I'll drink it anyway.";
+  if(S.temp==='cold' && S.cup.length) r="Cold, at night? "+r;
+  S.reply=r; S.mood = /Thank you\.$/.test(r)&&S.temp==='hot' ? 'smile' : 'flat';
+  S.served=true;
+}
+function nextCustomer(){ S.cup=[]; S.method=null; S.temp='hot'; S.served=false; S.reply=''; S.mood=null; }
+
+/* guess card: the player writes their own meaning; no translation anywhere */
+let gcard;
+function openCard(el){
+  closeCard();
+  const key=el.dataset.w;
+  gcard=document.createElement('div'); gcard.className='gcard';
+  gcard.innerHTML=`<div class="gc-word">${esc(key)}</div><label class="gc-lab">自分の意味</label><input class="gc-in" maxlength="30" value="${esc(S.gloss[key]||'')}" placeholder="ここに書く"><div class="gc-btns"><button class="gc-close" type="button">閉じる</button><button class="gc-save" type="button">書く</button></div>`;
+  document.body.appendChild(gcard);
+  const r=el.getBoundingClientRect(), W=Math.min(260, innerWidth-24);
+  gcard.style.width=W+'px';
+  let left=Math.max(12, Math.min(innerWidth-W-12, r.left+r.width/2-W/2));
+  gcard.style.left=left+'px';
+  const h=gcard.offsetHeight;
+  let top=r.bottom+10; if(top+h>innerHeight-8) top=Math.max(8, r.top-h-10);
+  gcard.style.top=top+'px';
+  const inp=gcard.querySelector('input');
+  const save=()=>{ const v=inp.value.trim(); if(v) S.gloss[key]=v; else delete S.gloss[key]; document.querySelectorAll(`.w[data-w="${CSS.escape(key)}"] .gl`).forEach(g=>g.textContent=v); closeCard(); };
+  gcard.querySelector('.gc-save').onclick=save;
+  gcard.querySelector('.gc-close').onclick=closeCard;
+  inp.addEventListener('keydown',e=>{ if(e.key==='Enter') save(); if(e.key==='Escape') closeCard(); });
+  setTimeout(()=>inp.focus({preventScroll:true}),0);
+}
+function closeCard(){ if(gcard){ gcard.remove(); gcard=null; } }
+document.addEventListener('click',e=>{
+  const w=e.target.closest('.w'); if(w){ e.stopPropagation(); openCard(w); return; }
+  if(gcard && !e.target.closest('.gcard')) closeCard();
+}, true);
+
+/* order pad: opened only by the player; nothing ticked */
+function openPad(){
+  const q={}; ORDER.forEach(k=>q[k]=0);
+  const ov=document.createElement('div'); ov.className='pad-ov';
+  const draw=()=>{
+    const sub=ORDER.reduce((a,k)=>a+q[k]*PRICE[k],0); const fee= sub===0?0: sub<20?6:3;
+    ov.innerHTML=`<div class="pad"><div class="pad-h">注文書<button class="pad-x" type="button" aria-label="閉じる">×</button></div>
+    <table class="pad-t"><thead><tr><th></th><th>品</th><th>単価</th><th>棚</th><th>数</th></tr></thead><tbody>${ORDER.map(k=>`<tr><td>${icon(k,26)}</td><td class="pad-n">${k}</td><td>${PRICE[k]}</td><td>${S.stock[k]}</td><td class="pad-st"><button type="button" data-k="${k}" data-d="-1">−</button><b>${q[k]}</b><button type="button" data-k="${k}" data-d="1">+</button></td></tr>`).join('')}</tbody></table>
+    <div class="pad-f"><span>配達料 ${fee}</span><span>合計 ${sub+fee}</span><button class="pad-go" type="button" ${sub?'':'disabled'}>注文する</button></div></div>`;
+    ov.querySelector('.pad-x').onclick=()=>ov.remove();
+    ov.querySelectorAll('.pad-st button').forEach(b=>b.onclick=()=>{ const k=b.dataset.k; q[k]=Math.max(0,q[k]+(+b.dataset.d)); draw(); });
+    ov.querySelector('.pad-go').onclick=()=>ov.remove();
+  };
+  ov.addEventListener('click',e=>{ if(e.target===ov) ov.remove(); });
+  draw(); document.body.appendChild(ov);
+}
+function bump(el){ if(!el) return; el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
+
+/* Captain Reed: original drawing, palette per mockup. viewBox 0 0 300 330 */
+function captain(p, mood){
+  const o = p.line ? `stroke="${p.line}" stroke-width="${p.lw||3}" stroke-linejoin="round"` : '';
+  const mouth = mood==='smile' ? `<path d="M131 196Q150 210 169 196" fill="none" stroke="${p.ink}" stroke-width="4" stroke-linecap="round"/>`
+             : `<path d="M134 199Q150 196 166 199" fill="none" stroke="${p.ink}" stroke-width="4" stroke-linecap="round"/>`;
+  const eyes = mood==='smile'
+    ? `<path d="M114 150Q124 142 134 150M166 150Q176 142 186 150" fill="none" stroke="${p.ink}" stroke-width="4.5" stroke-linecap="round"/>`
+    : `<ellipse cx="124" cy="151" rx="6" ry="5" fill="${p.ink}"/><ellipse cx="176" cy="151" rx="6" ry="5" fill="${p.ink}"/>
+       <path d="M113 146Q124 141 135 146M165 146Q176 141 187 146" fill="none" stroke="${p.ink}" stroke-width="3.5" stroke-linecap="round"/>
+       <path d="M115 161Q124 166 133 161M167 161Q176 166 185 161" fill="none" stroke="${p.skinD}" stroke-width="3" stroke-linecap="round"/>`;
+  return `
+  <path d="M18 330C22 268 64 240 110 230H190C236 240 278 268 282 330Z" fill="${p.coat}" ${o}/>
+  <path d="M110 230L150 318L190 230H172L150 280L128 230Z" fill="${p.coatD}" ${o}/>
+  <circle cx="98" cy="292" r="6" fill="${p.gold}"/><circle cx="202" cy="292" r="6" fill="${p.gold}"/>
+  <rect x="130" y="196" width="40" height="40" fill="${p.skinD}"/>
+  <path d="M108 224C126 246 174 246 192 224L196 244C176 264 124 264 104 244Z" fill="${p.scarf}" ${o}/>
+  <path d="M168 248l14 40-18 4-8-38Z" fill="${p.scarf}" ${o}/>
+  <path d="M92 150C88 196 98 214 116 222L120 150Z" fill="${p.hair}" ${o}/>
+  <path d="M208 150C212 196 202 214 184 222L180 150Z" fill="${p.hair}" ${o}/>
+  <ellipse cx="96" cy="160" rx="9" ry="14" fill="${p.skinD}" ${o}/><ellipse cx="204" cy="160" rx="9" ry="14" fill="${p.skinD}" ${o}/>
+  <ellipse cx="150" cy="158" rx="55" ry="64" fill="${p.skin}" ${o}/>
+  <path d="M97 128C98 140 102 150 108 156L112 126Z" fill="${p.hair}"/><path d="M203 128C202 140 198 150 192 156L188 126Z" fill="${p.hair}"/>
+  ${eyes}
+  <path d="M146 158Q141 178 150 182Q156 182 158 178" fill="none" stroke="${p.skinD}" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M110 178Q113 186 118 188M190 178Q187 186 182 188" fill="none" stroke="${p.skinD}" stroke-width="2.5" stroke-linecap="round"/>
+  ${mouth}
+  <path d="M78 96C78 66 222 66 222 96L212 108H88Z" fill="${p.cap}" ${o}/>
+  <rect x="88" y="96" width="124" height="26" rx="6" fill="${p.band}" ${o}/>
+  <path d="M94 120C116 138 184 138 206 120L204 130C184 150 116 150 96 130Z" fill="${p.peak}" ${o}/>
+  <path d="M138 104h24l-4 12h-16Z" fill="${p.gold}"/>
+  <path d="M100 99h100" stroke="${p.gold}" stroke-width="2.5" opacity=".9"/>`;
+}
+
+const PAL={coat:'#283A5C',coatD:'#1C2944',scarf:'#E0634A',skin:'#D9A07A',skinD:'#B07652',hair:'#D7D9E2',cap:'#F2F0EA',band:'#1C2840',peak:'#11151F',gold:'#F2B33D',ink:'#1A1220'};
+function render(){
+  document.getElementById('say').innerHTML = words(S.served ? S.reply : LINE);
+  document.getElementById('cap').innerHTML = captain(PAL, S.mood);
+  document.getElementById('ings').innerHTML = ORDER.map(k=>{
+    const n=S.stock[k];
+    return `<button class="ing ${n?'':'zero'}" data-ing="${k}" aria-label="${k} ${n}"><span class="nm ${k.length>10?'long':''}">${k}</span><span class="ic">${icon(k,56)}</span><span class="n">${n}</span><span class="seg">${Array.from({length:9},(_,i)=>`<i class="${i<n?'f':''}"></i>`).join('')}</span></button>`;
+  }).join('');
+  // side-view glass
+  const n=S.cup.length, top = 150 - Math.min(n,6)*14 - 18;
+  let ps=''; S.cup.forEach((k,i)=>{ const x=80+(i%3)*30+((i/3|0)%2)*14, y=top+24+(i/3|0)*28; ps+=piece(k,x,y,1.3,(i*53)%360); });
+  if(S.temp==='cold') ps += [[78,top+12],[120,top+16],[148,top+10]].map(([x,y],i)=>`<rect x="${x-10}" y="${y-10}" width="20" height="20" rx="4" fill="#EAF7FB" opacity=".85" transform="rotate(${i*20} ${x} ${y})"/>`).join('');
+  const steam = S.temp==='hot'&&n ? `<g fill="none" stroke="#EDE6D6" stroke-width="4" stroke-linecap="round" opacity=".5"><path d="M86 30q-10-10 0-20"/><path d="M110 30q-10-10 0-20"/><path d="M134 30q-10-10 0-20"/></g>`:'';
+  document.getElementById('ves').innerHTML = `
+    <defs><clipPath id="gl"><path d="M50 44H170L160 186Q158 196 148 196H72Q62 196 60 186Z"/></clipPath></defs>
+    <rect x="30" y="198" width="160" height="8" rx="4" fill="#353C52"/>
+    <g clip-path="url(#gl)"><rect x="40" y="${top}" width="140" height="200" fill="${liquidColor()}"/><rect x="40" y="${top}" width="140" height="4" fill="#fff" opacity=".35"/>${ps}</g>
+    <path d="M170 74q34 0 30 40t-36 40" fill="none" stroke="#C9D2E6" stroke-width="7" opacity=".7"/>
+    <path d="M50 44H170L160 186Q158 196 148 196H72Q62 196 60 186Z" fill="rgba(200,215,240,.08)" stroke="#C9D2E6" stroke-width="4"/>
+    <path d="M64 60l8 120" stroke="#fff" stroke-width="5" opacity=".18" stroke-linecap="round"/>${steam}`;
+  const sum=cupSummary();
+  document.getElementById('read').innerHTML = sum.length ? sum.map(([k,c])=>`${k}×${c}`).join('  ') : '<span class="k">—</span>';
+  document.querySelectorAll('[data-temp]').forEach(b=>b.classList.toggle('on', b.dataset.temp===S.temp));
+  document.querySelectorAll('[data-method]').forEach(b=>b.classList.toggle('on', b.dataset.method===S.method));
+  const sv=document.getElementById('serve'); sv.textContent=S.served?'次のお客さん':'出す'; sv.classList.toggle('next',S.served); sv.dataset.act=S.served?'next':'serve';
+  document.getElementById('recipes').innerHTML = `<div class="rh"><span>レシピ帳</span><button class="rx" data-act="bookx">閉じる</button></div>` + RECIPES.map(r=>`<div class="r"><h4>${words(r.t)}</h4>${words(r.b)}</div>`).join('');
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-ing],[data-temp],[data-method],[data-act]'); if(!t) return;
+  if(t.dataset.ing){ if(addIng(t.dataset.ing)){ render(); bump(document.querySelector('.vessel')); } else { t.classList.remove('shake'); void t.offsetWidth; t.classList.add('shake'); } return; }
+  if(S.served && !t.dataset.act) return;
+  if(t.dataset.temp){ S.temp=t.dataset.temp; render(); return; }
+  if(t.dataset.method){ S.method = S.method===t.dataset.method?null:t.dataset.method; render(); return; }
+  const a=t.dataset.act;
+  if(a==='serve'){ serve(); render(); }
+  else if(a==='next'){ nextCustomer(); render(); }
+  else if(a==='reset'){ resetCup(); render(); }
+  else if(a==="book"||a==="bookx"){ document.getElementById('recipes').classList.toggle('on'); }
+  else if(a==='pad') openPad();
+});
+render();
+</script>
+</body>
+</html>
