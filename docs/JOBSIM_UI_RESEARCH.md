@@ -368,3 +368,41 @@ Pixel sizes are estimates from the 1280-wide screenshots.
 15. Backlog of last 20 lines also reachable from the Ask card.
 16. Reaction-face history on the ledger (Moonlighter-style) without scores.
 17. Accessibility toggles: larger UI, drag-assist (tap-tap) default on phone, reduced-motion count changes (Unpacking options as precedent).
+
+---
+
+## Addendum: screens actually looked at (Steam store screenshots)
+
+The first pass above was written from search summaries only. This pass looked at the real store screenshots (six per
+game) of: Potion Craft, Strange Horticulture, Papers Please, Coffee Talk, VA-11 Hall-A, Good Pizza Great Pizza,
+Death and Taxes, Lil' Guardsman, Tiny Bookshop, Potionomics. Sheets for 29 games were fetched; these ten were read.
+Where this addendum contradicts section 3 above ("two rooms", Back room), this addendum wins.
+
+What they share:
+
+1. **One workplace view, and it is a picture.** The counter / desk / booth is drawn as a place and fills the screen.
+   The person stands *in* it, at the counter (Good Pizza, Coffee Talk, Potion Craft, Papers Please, Lil' Guardsman).
+   None is a layout of cards and chips on a flat colour.
+2. **No stock room.** Stock is never a place you walk to. It is either the things themselves on the shelf in the
+   same view (Coffee Talk jars, Strange Horticulture plants, Good Pizza topping bins) or one fixed panel at the screen
+   edge with a number on every item (Potion Craft right panel, Tiny Bookshop right column, VA-11 Hall-A grid).
+3. **Zero is shown as zero.** Tiny Bookshop prints "0" in the same badge, in red; Potion Craft simply has no item.
+   Nothing pops up, nothing tells the player to buy. Buying is a place the player chooses to open
+   (Potionomics "Ingredient Boutique", Potion Craft merchants, Tiny Bookshop's daily expenses sheet).
+4. **The day starts at the workplace with a paper on it.** Papers Please: the bulletin lies on the desk of the booth.
+   Death and Taxes: the day's letter lies on the desk next to the files. Strange Horticulture: same room, a "Closed"
+   sign and "End Day" sit in the customer window slot. No separate morning screen.
+5. **The request is big and next to the person's face**: speech bubble or dialogue bar, 1–3 lines, high contrast
+   (Good Pizza, Potion Craft, VA-11 Hall-A bottom bar).
+6. **Tools stay in fixed places**; documents are physical sheets that overlap on the desk and are enlarged when
+   picked (Papers Please, Death and Taxes, Strange Horticulture's book + label drawer).
+7. **Top edge: day / time, money. Nothing else.** (Good Pizza, Potionomics, Potion Craft.)
+8. **End of shift is a card over the same room** (Lil' Guardsman "Shift complete").
+
+Consequences for this game (annotation: these hold for the game as it is now, a counter job and desk jobs; if the
+game play changes they must be re-derived):
+
+- One screen per workplace: the counter (tea house) or the desk (clinic). 始業前 / 業務中 / 業務後 are states of that one
+  screen (door sign, light, who is standing there), not different rooms.
+- Stock count is a number on each jar / supply in the scene. 0 is shown as 0 and the jar looks empty. Nothing else.
+- The order pad is an object in a fixed place. The game never opens it and never suggests ordering.
