@@ -235,7 +235,9 @@ export function DayBanner() {
   const shown = useRef(new Set<string>());
   const arrived = progress?.townDay?.arrived?.length ?? 0;
   const dayKey = progress && lang ? `${lang}:${progress.day}` : '';
-  const atStart = !!progress && progress.today?.phase !== 'closed' && dayPart(progress) === 0;
+  // Not while the night's ledger is still open (the next day is already planned behind it).
+  const night = !!progress?.story?.cards.some((c) => c.kind === 'ledger');
+  const atStart = !!progress && !night && progress.today?.phase !== 'closed' && dayPart(progress) === 0;
   useEffect(() => {
     if (!data || !progress || !dayKey || !atStart || shown.current.has(dayKey)) return;
     shown.current.add(dayKey);
