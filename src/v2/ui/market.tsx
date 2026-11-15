@@ -88,7 +88,7 @@ export function Market() {
     else vendor(line('thanks').text, 'happy');
     setStep({ k: 'done', id: item.id, units: step.units });
   };
-  const leave = () => act((st) => void goRoom(st, 'back'));
+  const leave = () => act((st) => void goRoom(st, 'shop'));
 
   return (
     <Frame roomClass="room-market" dock={<Dock primary={{ label: '店に戻る', onClick: leave, id: 'leave-market' }} middle={<Basket items={basket} />} />}>

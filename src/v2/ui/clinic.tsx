@@ -1,8 +1,10 @@
 /**
- * The clinic's reception (a paper-desk job with the same grammar): the Back room keeps the desk supplies (folders,
- * ink, paper, cards — counted, ordered on the same order form); the Front is the desk: the person and their words
- * on the big card, an in-tray of documents with the active one enlarged, the pen (circle a line) and the stamps in
- * the dock. Tasks are the existing jobs engine's (src/jobs): sort, check, respond (reply / message pad / book).
+ * The clinic's reception: ONE screen, the desk seen from the receptionist's chair. The patient stands at the hatch
+ * (with the 準備中 / 受付中 card hanging in it) and talks in a big bubble; the supplies stand on the wall shelf, each
+ * with its count (folders, ink, message paper, appointment cards); the papers of the current task lie on the desk;
+ * the order ledger and the stamps are in their places on the right. Before opening the head clerk's memo lies on
+ * the desk; after closing the day's card lies over the room. A task that needs a supply at 0 cannot be handed in:
+ * the desk says 在庫 0 and nothing else.
  */
 import { useEffect, useMemo, useState } from 'react';
 import { plain } from '../../core/gamedata';
@@ -10,64 +12,154 @@ import { currentShift, currentTask, jobById, jobContent } from '../../jobs/engin
 import { personOf } from '../../jobs/templates';
 import type { CheckDoc, TaskAnswer, TaskInstance } from '../../jobs/types';
 import { CustomerArt, expressionFor, lookFor } from '../../ui/art/customer';
-import { clinicNext, clinicSubmit, closeWork, endDay, goRoom, morningNote, openWork, supplyFor } from '../logic/day';
+import { WindowGroup, LampGroup } from '../../ui/art/shop';
+import type { SkyColours } from '../../ui/art/sky';
+import { clinicNext, clinicSubmit, morningNote, supplyFor } from '../logic/day';
 import { CLINIC_SUPPLIES } from '../logic/catalog';
-import { DoorArt } from './art';
-import { Icon, ListenButton, ReadingCard, Words } from './bits';
-import { Shelf, Summary, DeskObjects, WallObjects } from './back';
-import { CrateDrop, Dock, Frame, Receipts, type Primary } from './frame';
+import { SupplyArt } from './art';
+import { Icon, ListenButton, Words } from './bits';
+import { Frame } from './frame';
+import { At, Bubble, Count, Crate, DayNote, DoorSign, Light, MapFrame, OrderPad, Receipts, SIZE, Stage, SummaryCard, recentArrivals, skyFor, useZeroTap, type Box } from './scene';
 import { useGame, useS } from './store';
 
 const SUPPLY_JA: Record<string, string> = { folder: '紙ばさみ', ink: 'インク', paper: '伝言用紙', card: '予約カード' };
 
-export function ClinicBack() {
-  const s = useS();
-  const { data, act, layout } = useGame();
-  const part = s.day.part;
-  const lines = morningNote(data, s);
-  const primary: Primary =
-    part === 0
-      ? { label: '受付を開ける', onClick: () => act((st, c) => openWork(st, c)), id: 'open-shop' }
-      : part === 2
-        ? { label: '一日を終える', onClick: () => act((st, c) => endDay(st, c)), id: 'end-day' }
-        : { label: '受付に出る', onClick: () => act((st) => void goRoom(st, 'front')), id: 'to-front' };
+type Geo = {
+  w: number;
+  h: number;
+  /** y of the desk's far edge */
+  dy: number;
+  hatch: Box;
+  sign: Box;
+  patient: Box;
+  bubble: Box;
+  bubbleTail: 'left' | 'bottom';
+  shelf: Box;
+  map: Box;
+  lamp: [number, number];
+  papers: Box;
+  pad: Box;
+  actions: Box;
+  receipts: Box;
+  crate: Box;
+  crateTag: Box;
+  note: Box;
+  summary: Box;
+};
+
+const DESK: Geo = {
+  ...SIZE.desk,
+  dy: 470,
+  hatch: [24, 60, 310, 410],
+  sign: [106, 76, 146, 110],
+  patient: [54, 150, 250, 438],
+  bubble: [350, 30, 700, 300],
+  bubbleTail: 'left',
+  shelf: [1080, 40, 490, 250],
+  map: [1460, 316, 110, 112],
+  lamp: [1290, 300],
+  papers: [350, 346, 900, 584],
+  pad: [1270, 470, 160, 270],
+  actions: [1262, 750, 320, 180],
+  receipts: [1440, 470, 150, 260],
+  crate: [40, 720, 230, 150],
+  crateTag: [40, 560, 260, 150],
+  note: [380, 380, 760, 520],
+  summary: [380, 30, 760, 520],
+};
+
+const PHONE: Geo = {
+  ...SIZE.phone,
+  dy: 300,
+  hatch: [4, 110, 150, 190],
+  sign: [8, 116, 142, 86],
+  patient: [18, 150, 124, 217],
+  bubble: [6, 6, 388, 178],
+  bubbleTail: 'bottom',
+  shelf: [158, 186, 238, 110],
+  map: [318, 104, 76, 76],
+  lamp: [240, 10],
+  papers: [4, 306, 392, 434],
+  pad: [4, 742, 92, 76],
+  actions: [178, 744, 218, 74],
+  receipts: [98, 742, 78, 76],
+  crate: [270, 312, 120, 80],
+  crateTag: [158, 312, 110, 110],
+  note: [10, 312, 380, 420],
+  summary: [8, 8, 384, 290],
+};
+
+/** The reception: tiled wall, the hatch to the waiting room (bench, window), the supply shelf, the desk. */
+function ClinicRoom({ g, sky, phone }: { g: Geo; sky: SkyColours; phone: boolean }) {
+  const [hx, hy, hw, hh] = g.hatch;
+  const [sx, sy, sw, sh] = g.shelf;
+  const tile = phone ? 24 : 40;
   return (
-    <Frame roomClass={`room-back clinic ${part === 2 ? 'evening' : ''}`} dock={<Dock primary={primary} />}>
-      <div className={`back back-${layout}`}>
-        <div className="wall-note">
-          {part === 2 ? (
-            <Summary />
-          ) : (
-            <ReadingCard kind="note" who={<span className="ja-label">受付主任のメモ</span>} tools={<ListenButton text={lines.join(' ')} />}>
-              {lines.map((l, i) => (
-                <p key={i} className={i === 0 ? 'note-first' : 'note-line'}>
-                  <Words text={l} />
-                </p>
-              ))}
-              <p className="ja-label note-help">机の上の品は仕事で減る：書類の振り分けに紙ばさみ、はんこにインク、伝言に用紙、予約にカード。</p>
-            </ReadingCard>
-          )}
-            {layout === 'desk' ? <WallObjects /> : null}
-        </div>
-        <div className="wall-right">
-          <Shelf />
-          {layout === 'desk' ? (
-            <button className={`door ${part === 0 ? 'door-live' : ''}`} disabled={part !== 0} onClick={() => act((st, c) => openWork(st, c))} aria-label="受付を開ける">
-              <DoorArt sign={part === 0 ? '準備中' : part === 1 ? '受付中' : '終了'} lit={part === 1} />
-              {part === 0 ? <span className="door-label">札を返して受付開始</span> : null}
-            </button>
-          ) : null}
-        </div>
-        <div className="workbench">
-          <DeskObjects wall={layout === 'desk'} />
-          <CrateDrop persistentToday={part === 0} />
-        </div>
-      </div>
-    </Frame>
+    <svg viewBox={`0 0 ${g.w} ${g.h}`} className="scene-svg" preserveAspectRatio="none" aria-hidden>
+      <defs>
+        <pattern id="v2-ctiles" width={tile} height={tile} patternUnits="userSpaceOnUse">
+          <rect width={tile} height={tile} fill="#eef2ea" />
+          <rect width={tile} height={tile} fill="none" stroke="#cfd8cc" strokeWidth="2" />
+        </pattern>
+      </defs>
+      <rect width={g.w} height={g.dy + 10} fill="#dce8de" />
+      <rect y={g.dy * 0.58} width={g.w} height={g.dy * 0.42 + 10} fill="url(#v2-ctiles)" />
+      <rect y={g.dy * 0.58 - 8} width={g.w} height="10" fill="#8aa898" />
+      <rect y="0" width={g.w} height={phone ? 14 : 28} fill="#3d6a5a" />
+      {/* the hatch: the waiting room behind the glass */}
+      <g>
+        <rect x={hx} y={hy} width={hw} height={hh} fill="#c9d8cc" />
+        <WindowGroup sky={sky} x={hx + hw * 0.52} y={hy + hh * 0.1} w={hw * 0.4} h={hh * 0.36} />
+        <rect x={hx} y={hy + hh * 0.62} width={hw} height={hh * 0.38} fill="#b9cabd" />
+        <g transform={`translate(${hx + hw * 0.06} ${hy + hh * 0.66})`}>
+          <rect width={hw * 0.88} height={hh * 0.05} rx="4" fill="#a8764a" stroke="#4a2c14" strokeWidth="2" />
+          <rect y={hh * 0.12} width={hw * 0.88} height={hh * 0.05} rx="4" fill="#a8764a" stroke="#4a2c14" strokeWidth="2" />
+        </g>
+        <rect x={hx} y={hy} width={hw} height={hh} fill="#fff" opacity="0.08" />
+        <rect x={hx} y={hy} width={hw} height={hh} fill="none" stroke="#6e8a7c" strokeWidth={phone ? 8 : 14} />
+      </g>
+      {/* the supply cabinet on the wall */}
+      <g>
+        <rect x={sx} y={sy} width={sw} height={sh} rx="6" fill="#8e6a48" stroke="#3a2a1a" strokeWidth="3" />
+        <rect x={sx + 8} y={sy + 8} width={sw - 16} height={sh - 16} rx="3" fill="#6b4c32" />
+        <rect x={sx - 6} y={sy + sh - 14} width={sw + 12} height="16" rx="3" fill="url(#g-shelfboard)" stroke="#3a1f0e" strokeWidth="1.5" />
+      </g>
+      {!phone ? (
+        <g transform="translate(700 380)">
+          {/* the eye chart */}
+          <rect width="90" height="80" fill="#fbfaf6" stroke="#5a6a62" strokeWidth="3" />
+          {[14, 10, 7].map((s, r) => (
+            <path key={r} d={`M${45 - (r + 1) * s * 0.8} ${16 + r * 22} h${(r + 1) * s * 1.6}`} stroke="#2a2118" strokeWidth={s / 2.4} strokeDasharray={`${s} ${s * 0.4}`} />
+          ))}
+        </g>
+      ) : null}
+      <LampGroup x={g.lamp[0]} y={g.lamp[1] - (phone ? 0 : 260)} />
+    </svg>
   );
 }
 
-// ------------------------------------------------------------------------------------------------ the desk
+function ClinicDeskTop({ g, phone }: { g: Geo; phone: boolean }) {
+  return (
+    <svg viewBox={`0 0 ${g.w} ${g.h}`} className="scene-svg counter-svg" preserveAspectRatio="none" aria-hidden>
+      <rect y={g.dy} width={g.w} height={g.h - g.dy} fill="#d9c7a4" />
+      <rect y={g.dy} width={g.w} height={g.h - g.dy} fill="url(#g-counter)" opacity="0.35" />
+      {Array.from({ length: 6 }, (_, i) => (
+        <path key={i} d={`M0 ${g.dy + 40 + i * (phone ? 80 : 90)} H${g.w}`} stroke="#a88e64" strokeWidth="2" opacity="0.35" />
+      ))}
+      <rect y={g.dy - 10} width={g.w} height="20" fill="#f6f3ea" stroke="#8a9a8e" strokeWidth="3" />
+      <rect y={g.dy + 10} width={g.w} height="12" fill="#000" opacity="0.12" />
+      {!phone ? (
+        <g transform="translate(1520 470)">
+          {/* the desk bell */}
+          <ellipse cx="0" cy="34" rx="30" ry="7" fill="#4a4a52" />
+          <path d="M-22 32 Q-22 4 0 4 Q22 4 22 32 Z" fill="#d9b54a" stroke="#6a4a12" strokeWidth="2.5" />
+        </g>
+      ) : null}
+    </svg>
+  );
+}
+
+// ------------------------------------------------------------------------------------------------ the work
 
 type Work =
   | { arch: 'sort'; placed: Record<string, string>; pick: string | null }
@@ -83,25 +175,28 @@ function freshWork(t: TaskInstance | null): Work | null {
   return null;
 }
 
-export function ClinicDesk() {
+export function Clinic() {
   const s = useS();
-  const { data, act, layout, reduced, openOrder } = useGame();
+  const { data, act, layout, reduced, now } = useGame();
+  const g = layout === 'phone' ? PHONE : DESK;
+  const phone = layout === 'phone';
+  const part = s.day.part;
   const sh = currentShift(s.p);
-  const task = currentTask(s.p);
+  const task = part === 1 ? currentTask(s.p) : null;
   const job = jobById(data, 'clinic')!;
   const jc = jobContent(data, job)!;
-  const part = s.day.part;
   const [work, setWork] = useState<Work | null>(() => freshWork(task));
   const [blocked, setBlocked] = useState<string | null>(null);
   const [reveal, setReveal] = useState(false);
   const [talk, setTalk] = useState(false);
+  const [zero, sayZero] = useZeroTap();
   const key = task ? `${task.key}-${sh?.index}` : 'none';
   useEffect(() => {
     setWork(freshWork(task));
     setBlocked(null);
     setReveal(false);
   }, [key]); // eslint-disable-line react-hooks/exhaustive-deps
-  const phaseKey = `${key}-${sh?.phase}`;
+  const phaseKey = `${key}-${sh?.phase}-${part}`;
   useEffect(() => {
     if (reduced) return;
     setTalk(true);
@@ -109,14 +204,18 @@ export function ClinicDesk() {
     return () => window.clearTimeout(id);
   }, [phaseKey, reduced]);
 
-  if (part !== 1 || !sh) return <DeskClosed />;
-  const result = sh.phase === 'result' ? sh.results[sh.results.length - 1] : null;
-  const done = sh.phase === 'done';
-  const person = task ? personOf(data, jc, task.handover ? jc.boss : task.person) : personOf(data, jc, jc.boss);
-  const look = lookFor(person.id, person.avatar);
+  const sky = skyFor(s);
+  const plus = recentArrivals(s, now, 'clinic');
+  const working = part === 1 && !!sh;
+  const result = working && sh!.phase === 'result' ? sh!.results[sh!.results.length - 1] : null;
+  const done = working && sh!.phase === 'done';
+  const person = working ? (task ? personOf(data, jc, task.handover ? jc.boss : task.person) : null) : null;
+  const look = person ? lookFor(person.id, person.avatar) : null;
   const ex = result ? expressionFor(result.face, null) : 'neutral';
   const hidden = !!task?.audioOnly && !reveal && !result;
   const locked = !!result || done;
+  const sup = task ? supplyFor(task) : null;
+  const supOut = !!sup && (s.stock.clinic[sup] ?? 0) <= 0;
 
   const answer = (): TaskAnswer | null => {
     if (!task || !work) return null;
@@ -135,64 +234,135 @@ export function ClinicDesk() {
     if (r && 'reason' in r) setBlocked(r.supply);
     else setBlocked(null);
   };
-  const sup = task ? supplyFor(task) : null;
 
-  let primary: Primary | null = null;
-  let extra: React.ReactNode = null;
-  if (done) primary = { label: '受付を閉める', onClick: () => act((st) => closeWork(st)), id: 'close-shop' };
-  else if (result) primary = { label: sh.index + 1 >= sh.tasks.length ? '仕事を終える' : '次の人', onClick: () => act((st, c) => clinicNext(st, c)), id: 'next' };
-  else if (task?.spec.arch === 'check' && work?.arch === 'check') {
-    const sp = task.spec;
-    const needFix = !!sp.fixOptions?.length;
-    extra = (
-      <div className="stamps" role="group" aria-label="はんこ">
-        <button className="stamp-btn ok" id="stamp-ok" onClick={() => (setWork({ ...work, stamped: 'ok' }), submit({ arch: 'check', verdict: 'ok' }))}>
-          <Icon name="check" /> 問題なし
+  let actions: JSX.Element | null = null;
+  if (working && sh && !done) {
+    if (result)
+      actions = (
+        <button className="plate" id="next" onClick={() => act((st, c) => clinicNext(st, c))}>
+          {sh.index + 1 >= sh.tasks.length ? '見送る' : '次の人'}
         </button>
-        <button
-          className="stamp-btn fix"
-          id="stamp-fix"
-          disabled={!work.field || (needFix && !work.fix)}
-          onClick={() => work.field && (setWork({ ...work, stamped: 'fix' }), submit({ arch: 'check', verdict: 'fix', field: work.field, fix: work.fix ?? undefined }))}
-        >
-          <Icon name="pen" /> 違う所あり
+      );
+    else if (task?.spec.arch === 'check' && work?.arch === 'check') {
+      const sp = task.spec;
+      const needFix = !!sp.fixOptions?.length;
+      actions = (
+        <div className="stamps" role="group" aria-label="はんこ">
+          <button className="stamp-btn ok" id="stamp-ok" onClick={() => (setWork({ ...work, stamped: 'ok' }), submit({ arch: 'check', verdict: 'ok' }))}>
+            <Icon name="check" /> 問題なし
+          </button>
+          <button
+            className="stamp-btn fix"
+            id="stamp-fix"
+            disabled={!work.field || (needFix && !work.fix)}
+            onClick={() => work.field && (setWork({ ...work, stamped: 'fix' }), submit({ arch: 'check', verdict: 'fix', field: work.field, fix: work.fix ?? undefined }))}
+          >
+            <Icon name="pen" /> 違う所あり
+          </button>
+        </div>
+      );
+    } else {
+      const a = answer();
+      actions = (
+        <button className="plate" id="submit" onClick={() => submit(a)} disabled={!a}>
+          {task?.spec.arch === 'sort' ? '振り分けて渡す' : task?.spec.arch === 'respond' && task.spec.msg.kind === 'speech' ? 'こう答える' : '渡す'}
         </button>
-      </div>
-    );
-  } else {
-    const a = answer();
-    primary = { label: task?.spec.arch === 'sort' ? '振り分けて渡す' : task?.spec.arch === 'respond' && task.spec.msg.kind === 'speech' ? 'こう答える' : '渡す', onClick: () => submit(a), disabled: !a, id: 'submit' };
+      );
+    }
   }
 
+  const lines = part === 0 ? morningNote(data, s) : [];
+  const supW = g.shelf[2] / CLINIC_SUPPLIES.length;
+
   return (
-    <Frame roomClass="room-front desk-room" dock={<Dock primary={primary} extra={extra} />}>
-      <div className={`front front-${layout} clinic-desk`}>
-        <section className="ask">
-          <div className={`person ${result ? `face-${result.face}` : ''}`} key={person.id}>
-            <CustomerArt look={look} ex={ex} pose={result ? 'open' : 'rest'} talking={talk} />
-          </div>
-          <ReadingCard
+    <Frame>
+      <Stage w={g.w} h={g.h} className={`scene scene-${layout} clinic part-${part}`}>
+        <ClinicRoom g={g} sky={sky} phone={phone} />
+        {person && look ? (
+          <At box={g.patient} className={`person ${result ? `face-${result.face}` : ''}`}>
+            <div className="person-in" key={person.id}>
+              <CustomerArt look={look} ex={ex} pose={result ? 'open' : 'rest'} talking={talk} />
+            </div>
+          </At>
+        ) : null}
+        <ClinicDeskTop g={g} phone={phone} />
+        <Light part={part} lamp={sky.lamp} lampAt={g.lamp} />
+        <DoorSign box={g.sign} open="受付中" />
+        <MapFrame box={g.map} />
+        <Crate box={g.crate} tagBox={g.crateTag} />
+
+        {/* the supplies, each with its count */}
+        <div className="shelf-items" role="group" aria-label="机の備品（数は在庫）">
+          {CLINIC_SUPPLIES.map((it, i) => {
+            const n = s.stock.clinic[it.id] ?? 0;
+            return (
+              <At key={it.id} box={[g.shelf[0] + i * supW, g.shelf[1], supW, g.shelf[3]]} className="jar-at supply-at">
+                <button className={`jar ${n <= 0 ? 'jar-0' : ''}`} onClick={() => n <= 0 && sayZero(it.id)} aria-label={`${SUPPLY_JA[it.id]} 在庫 ${n}`}>
+                  <span className="jar-art">
+                    <SupplyArt id={it.id} empty={n <= 0} />
+                  </span>
+                  <span className="jar-label" lang="en">
+                    {data.lex.byId.get(it.word)?.text ?? it.id}
+                  </span>
+                  <Count n={n} />
+                  {plus[it.id] ? <span className="plus">+{plus[it.id]}</span> : null}
+                  {zero === it.id ? <span className="zero-tag" role="status">在庫 0</span> : null}
+                </button>
+              </At>
+            );
+          })}
+        </div>
+
+        {/* the papers of the task, on the desk */}
+        {working && sh ? (
+          <At box={g.papers} className={`papers-at ${locked ? 'locked' : ''}`}>
+            <div className="papers">
+              {task && work && !done ? <TaskSurface task={task} work={work} setWork={setWork} locked={locked} hidden={hidden} /> : <div className="desk-empty ja-body">机の上は片づいた。</div>}
+            </div>
+          </At>
+        ) : null}
+
+        <OrderPad box={g.pad} />
+        <Receipts box={g.receipts} />
+        <At box={g.actions} className="actions-at">
+          {sup && !locked && working ? (
+            <p className={`uses ${supOut ? 'uses-0' : ''}`} role={blocked ? 'status' : undefined}>
+              {SUPPLY_JA[sup]}
+              {supOut ? ' 在庫 0' : ` を1つ使う`}
+            </p>
+          ) : null}
+          {actions}
+        </At>
+
+        {part === 0 ? <DayNote box={g.note} lines={lines} title="受付主任のメモ" /> : null}
+
+        {working && sh && (person || done) ? (
+          <Bubble
+            box={g.bubble}
+            tail={g.bubbleTail}
             who={
-              <>
-                <span className="who-name" lang="en">{person.name}</span>
-                <span className="ja-label">{done ? '今日の仕事はここまで' : `${sh.index + 1}件目／${sh.tasks.length}件`}</span>
-              </>
+              person ? (
+                <>
+                  <span className="who-name" lang="en">
+                    {person.name}
+                  </span>
+                  <span className="ja-label">{done ? '' : `${sh.index + 1}件目／${sh.tasks.length}件`}</span>
+                </>
+              ) : null
             }
-            tools={
+            tools={person ? (
               <>
-                <ListenButton text={result ? result.reaction : done ? sh.endLine : task?.say ?? ''} />
+                <ListenButton text={result ? result.reaction : task?.say ?? ''} />
                 {task?.audioOnly && !result ? (
                   <button className="btn-quiet" onClick={() => setReveal((x) => !x)}>
                     {reveal ? '文字を隠す' : '文字で読む'}
                   </button>
                 ) : null}
               </>
-            }
+            ) : null}
           >
             {done ? (
-              <p className="said">
-                <Words text={sh.endLine || 'Thank you. See you tomorrow.'} />
-              </p>
+              <p className="ja-body quiet-line">今日の受付は、これで全部。</p>
             ) : result ? (
               <>
                 {task?.say ? (
@@ -215,41 +385,11 @@ export function ClinicDesk() {
             ) : (
               <p className="said ja-body">書類が回ってきた。</p>
             )}
-          </ReadingCard>
-        </section>
-        <section className={`surface paper-desk ${locked ? 'locked' : ''}`} aria-label="机">
-          {task && work && !done ? <TaskSurface task={task} work={work} setWork={setWork} locked={locked} hidden={hidden} /> : <div className="desk-empty ja-body">机の上は片づいた。</div>}
-          <div className="front-side">
-            {blocked ? (
-              <div className="blocked" role="alert">
-                <p>{SUPPLY_JA[blocked] ?? blocked}が切れている。注文書で頼むと、すぐ届く。</p>
-                <button className="btn-secondary" id="order-supply" onClick={() => openOrder({ [blocked]: 1 })}>
-                  <Icon name="form" size={18} /> 注文書で頼む
-                </button>
-              </div>
-            ) : sup && !locked ? (
-              <p className="ja-label uses">この仕事で使う：{SUPPLY_JA[sup]} 1</p>
-            ) : null}
-            <Receipts compact />
-            <CrateDrop />
-          </div>
-        </section>
-      </div>
-    </Frame>
-  );
-}
+          </Bubble>
+        ) : null}
 
-function DeskClosed() {
-  const s = useS();
-  const { act } = useGame();
-  const part = s.day.part;
-  const primary: Primary = part === 0 ? { label: '受付を開ける', onClick: () => act((st, c) => openWork(st, c)), id: 'open-shop' } : { label: '作業場へ', onClick: () => act((st) => void goRoom(st, 'back')) };
-  return (
-    <Frame roomClass={`room-front closed ${part === 2 ? 'evening' : ''}`} dock={<Dock primary={primary} />}>
-      <div className="front-closed">
-        <DoorArt sign={part === 0 ? '準備中' : '終了'} lit={false} />
-        <p className="ja-body">{part === 0 ? 'まだ受付を開けていない。' : '今日の受付は終わった。'}</p>
-      </div>
+        {part === 2 ? <SummaryCard box={g.summary} /> : null}
+      </Stage>
     </Frame>
   );
 }

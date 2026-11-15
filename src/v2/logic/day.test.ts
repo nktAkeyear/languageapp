@@ -62,14 +62,14 @@ describe('v2 day: the tea house', () => {
     expect(tokOk('We have enough today.')).toEqual([]);
   });
 
-  it('starts in the Back room before opening, with counts on every shelf item', () => {
+  it('starts at the counter before opening, with counts on every shelf item; the whole day is one place', () => {
     const s = newGame(ctx(), { level: 0, toeic: null });
-    expect(s.day).toMatchObject({ day: 1, part: 0, room: 'back', workplace: 'teahouse' });
+    expect(s.day).toMatchObject({ day: 1, part: 0, room: 'shop', workplace: 'teahouse' });
     for (const it of shelfItems(data, s)) expect(typeof s.stock.teahouse[it.id]).toBe('number');
     expect(goRoom(s, 'market')).toBeNull();
-    expect(goRoom(s, 'back')).toBeNull();
+    expect(goRoom(s, 'shop')).toBeNull();
     openWork(s, ctx());
-    expect(s.day).toMatchObject({ part: 1, room: 'front' });
+    expect(s.day).toMatchObject({ part: 1, room: 'shop' });
     // during hours nobody walks to the market
     expect(goRoom(s, 'market')).not.toBeNull();
     expect(goRoom(s, 'town')).not.toBeNull();
@@ -123,7 +123,7 @@ describe('v2 day: the tea house', () => {
         nextCustomer(s, ctx(now));
       }
       closeWork(s);
-      expect(s.day).toMatchObject({ part: 2, room: 'back' });
+      expect(s.day).toMatchObject({ part: 2, room: 'shop' });
       // after closing: the market in person, and an order for tomorrow
       const lemon0 = s.stock.teahouse.lemon;
       expect(marketBuy(s, ctx(now), 'lemon', 1, 3)).toMatchObject({ ok: true, portions: 3 });
@@ -135,7 +135,7 @@ describe('v2 day: the tea house', () => {
       expect(s.stock.teahouse.ginger).toBe(ginger0); // not tonight
       const snapshot = { ...s.stock.teahouse };
       endDay(s, ctx(now));
-      expect(s.day).toMatchObject({ day: day + 1, part: 0, room: 'back' });
+      expect(s.day).toMatchObject({ day: day + 1, part: 0, room: 'shop' });
       expect(s.stock.teahouse.ginger).toBe(ginger0 + 6);
       for (const [id, n] of Object.entries(snapshot)) if (id !== 'ginger') expect(s.stock.teahouse[id]).toBe(n);
     }
@@ -151,6 +151,34 @@ describe('v2 day: the tea house', () => {
     expect(back.brew).toEqual(s.brew);
     expect(back.stock).toEqual(s.stock);
     expect(currentOrder(back.p)?.key).toBe(currentOrder(s.p)?.key);
+  });
+
+  it('a version-1 save (Back room / Front) loads at the workplace screen', () => {
+    const s = newGame(ctx(), { level: 0, toeic: null });
+    for (const [room, part, want] of [
+      ['back', 0, 'shop'],
+      ['front', 1, 'shop'],
+      ['back', 2, 'shop'],
+      ['town', 0, 'town'],
+      ['market', 2, 'market'],
+    ] as const) {
+      const old = JSON.parse(JSON.stringify(s));
+      old.version = 1;
+      old.day = { ...old.day, room, part };
+      const back = parseState(JSON.stringify(old))!;
+      expect(back.day.room, `${room}/${part}`).toBe(want);
+      expect(back.version).toBe(2);
+    }
+  });
+
+  it('the morning note states a 0 as a fact and never tells the player to buy', () => {
+    const s = newGame(ctx(), { level: 0, toeic: null });
+    const first = shelfItems(data, s)[0];
+    s.stock.teahouse[first.id] = 0;
+    const lines = morningNote(data, s);
+    expect(lines.some((l) => /^We have no /.test(l))).toBe(true);
+    expect(lines.join(' ')).not.toMatch(/\b(buy|order)\b/i);
+    for (const line of lines) expect(tokOk(line), line).toEqual([]);
   });
 
   it('a 英検2級 start jumps the shop and places the clinic at rank 3; the shelf holds every stage ingredient', () => {

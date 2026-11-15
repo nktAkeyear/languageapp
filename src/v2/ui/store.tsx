@@ -31,8 +31,9 @@ export interface Api {
   nb: NotebookUi;
   setNb(patch: Partial<NotebookUi>): void;
   openWord(id: string): void;
-  order: { open: boolean; preset: Record<string, number> };
-  openOrder(preset?: Record<string, number>): void;
+  /** The order form: only ever opened by the player (the pad by the till). */
+  order: { open: boolean };
+  openOrder(): void;
   closeOrder(): void;
   reduced: boolean;
   now: number;
@@ -84,7 +85,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
   const layout = useLayout();
   const reduced = useReduced();
   const [nb, setNbState] = useState<NotebookUi>({ open: false, tab: 'words', word: null, page: null });
-  const [order, setOrder] = useState<{ open: boolean; preset: Record<string, number> }>({ open: false, preset: {} });
+  const [order, setOrder] = useState<{ open: boolean }>({ open: false });
   const [now, setNow] = useState(() => Date.now());
 
   const ctx = useCallback((): Ctx => ({ data, rng: makeRng(Math.floor(Math.random() * 2 ** 32)), now: Date.now() }), [data]);
@@ -133,8 +134,8 @@ export function GameProvider({ children }: { children: ReactNode }) {
     setNb: (patch) => setNbState((x) => ({ ...x, ...patch })),
     openWord: (id) => setNbState({ open: true, tab: 'words', word: id, page: null }),
     order,
-    openOrder: (preset = {}) => setOrder({ open: true, preset }),
-    closeOrder: () => setOrder({ open: false, preset: {} }),
+    openOrder: () => setOrder({ open: true }),
+    closeOrder: () => setOrder({ open: false }),
     reduced,
     now,
   };

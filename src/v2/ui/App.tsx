@@ -1,10 +1,10 @@
-/** v2 root: the start screen, or today's room (Back / Front of the workplace, the town, the market). */
+/** v2 root: the start screen, or where the player is: the workplace (one screen all day), the town, the market. */
 import { ArtDefs } from '../../ui/art/defs';
-import { ClinicBack, ClinicDesk } from './clinic';
+import { Clinic } from './clinic';
 import { Market } from './market';
 import { Start } from './start';
 import { GameProvider, useGame } from './store';
-import { TeaBack, TeaFront } from './tea';
+import { TeaHouse } from './tea';
 import { Town } from './town';
 
 function Screen() {
@@ -13,8 +13,7 @@ function Screen() {
   const { room, workplace } = s.day;
   if (room === 'town') return <Town />;
   if (room === 'market') return <Market />;
-  if (workplace === 'clinic') return room === 'front' ? <ClinicDesk /> : <ClinicBack />;
-  return room === 'front' ? <TeaFront /> : <TeaBack />;
+  return workplace === 'clinic' ? <Clinic /> : <TeaHouse />;
 }
 
 export function App() {

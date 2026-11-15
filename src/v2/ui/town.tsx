@@ -36,7 +36,7 @@ export function Town() {
   const [tab, setTab] = useState<'list' | 'map'>('list');
   const part = s.day.part;
   const job = sel ? jobs.find((j) => j.id === sel) ?? null : null;
-  const back = () => act((st) => void goRoom(st, 'back'));
+  const back = () => act((st) => void goRoom(st, 'shop'));
   const board = (j: JobDef) => <Signboard key={j.id} j={j} on={sel === j.id} onClick={() => setSel(j.id)} />;
   return (
     <Frame roomClass="room-town" dock={<Dock primary={{ label: `${PLACE[s.day.workplace].short}に戻る`, onClick: back, id: 'back-to-work' }} middle={<span className="ja-label town-hint">{part === 0 ? '今日の職場を選び直せる（始業前）' : '明日の朝に行く職場を選べる（業務後）'}</span>} />}>

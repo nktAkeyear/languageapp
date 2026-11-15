@@ -1,7 +1,7 @@
 /**
  * The v2 save: one object, stored under its own key (never the old game's). The learning core (words, SRS,
  * own meanings, 単語帳, 検証ページ, difficulty, job ranks) is the existing `LangProgress`, so everything the
- * player learns is kept by the same, tested code; the day, the rooms, the stock and the deliveries are v2's own.
+ * player learns is kept by the same, tested code; the day, the stock and the deliveries are v2's own.
  */
 import { newProgress, type LangProgress } from '../../core/save';
 import type { Brew } from '../../core/types';
@@ -9,9 +9,13 @@ import type { WorkplaceId } from './catalog';
 import type { Arrived, Delivery, Stock } from './stock';
 
 export const V2_KEY = 'minato-v2-save';
-export const V2_VERSION = 1;
+export const V2_VERSION = 2;
 
-export type Room = 'back' | 'front' | 'town' | 'market';
+/**
+ * Where the player is: at the workplace (one screen: the counter / the desk, in every part of the day), out in
+ * the town, or at the market. (Version 1 saves had a Back room and a Front: both are the workplace now.)
+ */
+export type Room = 'shop' | 'town' | 'market';
 /** 0 始業前 / 1 業務中 / 2 業務後 */
 export type Part = 0 | 1 | 2;
 export const PART_NAMES = ['始業前', '業務中', '業務後'] as const;
@@ -70,7 +74,7 @@ export function blankState(): V2State {
     version: V2_VERSION,
     startLabel: 'ゼロから',
     p,
-    day: { day: 1, part: 0, workplace: 'teahouse', room: 'back' },
+    day: { day: 1, part: 0, workplace: 'teahouse', room: 'shop' },
     next: 'teahouse',
     stock: { teahouse: {}, clinic: {} },
     pending: [],
@@ -99,6 +103,10 @@ export function parseState(txt: string | null): V2State | null {
       brew: raw.brew ?? emptyBrew(),
       tally: raw.tally ?? base.tally,
     } as V2State;
+    // v1 → v2: the Back room and the Front are one screen now.
+    const room = String(s.day.room ?? 'shop');
+    if (room !== 'town' && room !== 'market') s.day.room = 'shop';
+    if (room === 'market' && s.day.part === 1) s.day.room = 'shop';
     const p = s.p;
     p.words ??= {};
     for (const w of Object.values(p.words)) {

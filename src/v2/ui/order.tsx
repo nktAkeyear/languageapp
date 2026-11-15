@@ -1,5 +1,6 @@
 /**
- * The order form (注文書): a paper over the room (desktop) / a full-height sheet (phone). One row per shelf item:
+ * The order form (注文書): a paper over the room (desktop) / a full-height sheet (phone). Opened only by the player,
+ * from the pad by the till; it starts with nothing ticked. One row per shelf item:
  * drawing, English name, unit price, what is on the shelf now, a stepper, the line total; the delivery fee (tiered)
  * and the total at the foot; stamping it pays and sends the order. Ordering is never a walk to the market.
  */
@@ -17,10 +18,10 @@ function unitName(one: string): string {
 
 export function OrderForm() {
   const s = useS();
-  const { data, act, order, closeOrder, layout } = useGame();
+  const { data, act, closeOrder, layout } = useGame();
   const wp = s.day.workplace;
   const items = shelfItems(data, s);
-  const [qty, setQty] = useState<Record<string, number>>(() => ({ ...order.preset }));
+  const [qty, setQty] = useState<Record<string, number>>({});
   const [msg, setMsg] = useState<string | null>(null);
   const first = useRef<HTMLButtonElement>(null);
   useEffect(() => {

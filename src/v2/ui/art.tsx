@@ -131,3 +131,35 @@ export function HarbourArt() {
     </svg>
   );
 }
+
+/** The town map in its frame on the wall: parchment, the harbour, the streets, the workplaces as small roofs. */
+export function TownMapArt() {
+  const roofs: [number, number, string][] = [
+    [26, 30, '#b8452f'],
+    [62, 24, '#3d6c9e'],
+    [96, 34, '#d9a520'],
+    [30, 66, '#4d7a3a'],
+    [70, 62, '#b8452f'],
+    [104, 70, '#3d6c9e'],
+    [44, 98, '#d9a520'],
+  ];
+  return (
+    <svg viewBox="0 0 140 130" className="townmap-art" preserveAspectRatio="xMidYMid slice" aria-hidden>
+      <rect width="140" height="130" fill="#efe2bf" />
+      <path d="M0 118 Q40 108 70 116 T140 104 V130 H0 Z" fill="#7fa7b0" />
+      <path d="M92 130 Q100 110 140 96 V130 Z" fill="#6c97a2" />
+      <path d="M8 50 H132 M8 86 H120 M50 10 V112 M88 10 V104" stroke="#cdb48a" strokeWidth="6" strokeLinecap="round" />
+      {roofs.map(([x, y, c], i) => (
+        <g key={i} transform={`translate(${x} ${y})`}>
+          <rect x="-9" y="0" width="18" height="12" fill="#f6ecd6" stroke="#5a4632" strokeWidth="1.5" />
+          <path d="M-12 1 L0 -9 L12 1 Z" fill={c} stroke="#5a4632" strokeWidth="1.5" />
+        </g>
+      ))}
+      <circle cx="26" cy="104" r="5" fill="#c8402a" stroke="#fff" strokeWidth="1.5" />
+      <g transform="translate(120 22)" stroke="#5a4632" strokeWidth="1.5">
+        <circle r="10" fill="#f6ecd6" />
+        <path d="M0 -9 L3 0 L0 9 L-3 0 Z" fill="#5a4632" />
+      </g>
+    </svg>
+  );
+}

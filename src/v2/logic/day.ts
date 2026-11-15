@@ -1,13 +1,14 @@
 /**
- * The v2 working day (pure game logic over V2State; no UI). A day has three parts and two rooms:
+ * The v2 working day (pure game logic over V2State; no UI). A day has three parts, all at the same place — the
+ * counter of the tea house / the reception desk of the clinic (room 'shop'):
  *
- * - 始業前 (part 0): in the Back room (作業場) of today's workplace. The day's note is pinned there, the shelf shows
- *   every item with its count, the order form lies on the desk, the market can be visited in person (tea house),
- *   the town map leads out (to work somewhere else today). Opening the door starts the working hours.
- * - 業務中 (part 1): in the Front. Customers / patients one at a time. Nobody leaves the counter: goods are ordered
- *   by delivery (fee) and arrive a few seconds later; the market is not reachable.
- * - 業務後 (part 2): in the Back room again: the day's summary paper, ordering for tomorrow (the crate comes in the
- *   morning), the market in person, the town (choose where to work tomorrow), ending the day.
+ * - 始業前 (part 0): the sign on the door says 準備中, nobody at the counter, the day's note lies on it. The shelf
+ *   shows every item with its count; the order pad lies by the till; the market (basket by the door, tea house)
+ *   and the town (map on the wall) can be visited. Flipping the sign starts the working hours.
+ * - 業務中 (part 1): customers / patients one at a time at the counter. Nobody leaves: goods can be ordered on the
+ *   pad (delivery fee) and arrive a few seconds later; the market is not reachable.
+ * - 業務後 (part 2): the sign says 準備中 again; the day's summary card lies over the room; ordering for tomorrow
+ *   (the crate comes in the morning), the market, the town (where to work tomorrow), ending the day.
  *
  * The tea house's customers, reactions, reputation, stage and hidden SRS are the existing shop engine
  * (src/activities/shop/engine.ts); the clinic's shift is the existing jobs engine (src/jobs/engine.ts).
@@ -24,7 +25,7 @@ import { beginShift, currentShift, currentTask, jobById, jobProgress, jobsState,
 import type { TaskAnswer, TaskInstance, TaskResult } from '../../jobs/types';
 import { NUMBER_TEXT } from '../../content/en/market';
 import { CLINIC_SUPPLIES, CUP_PAY, START_MONEY, START_STOCK, TAP, teaCatalog, type CatalogItem, type WorkplaceId } from './catalog';
-import { addInto, available, buyInPerson, commitUse, placeOrder, receiveDue, shortfall, type Delivery, type OrderLine } from './stock';
+import { addInto, available, buyInPerson, commitUse, placeOrder, receiveDue, type Delivery, type OrderLine } from './stock';
 import { blankState, emptyBrew, emptyTally, type Part, type Room, type V2State } from './state';
 import { ingredientWords } from '../data';
 
@@ -89,7 +90,7 @@ export function newGame(ctx: Ctx, opts: { level: number; toeic: number | null })
 export function beginDay(s: V2State, ctx: Ctx): void {
   const { data } = ctx;
   const p = s.p;
-  s.day = { day: p.day, part: 0, workplace: s.next, room: 'back' };
+  s.day = { day: p.day, part: 0, workplace: s.next, room: 'shop' };
   s.tally = emptyTally(p.day, s.day.workplace, p.town.money);
   s.brew = emptyBrew();
   difficultyStartDay(data, p);
@@ -123,7 +124,10 @@ export function needToday(data: GameData, s: V2State): Record<string, number> {
   return need;
 }
 
-/** The day's note (in-world English, with markup): how many come today and what to buy. */
+/**
+ * The day's note (in-world English, with markup): how many come today, and which goods are at 0 on the shelf —
+ * stated as a fact, never as an instruction to buy.
+ */
 export function morningNote(data: GameData, s: V2State): string[] {
   if (s.day.workplace === 'clinic') {
     const sh = currentShift(s.p);
@@ -134,31 +138,27 @@ export function morningNote(data: GameData, s: V2State): string[] {
   }
   const q = s.p.today?.queue ?? [];
   const lines = [`Good morning! ${capitalizeFirst(numberWord(q.length))} customers today.`];
-  const need = needToday(data, s);
-  const buy = shelfItems(data, s)
-    .map((it) => ({ it, ...shortfall(s.stock.teahouse, need, it) }))
-    .filter((x) => x.units > 0);
-  if (buy.length) {
-    lines.push('Buy today:');
-    for (const b of buy) lines.push(`${capitalizeFirst(unitPhrase(b.it, b.units))}.`);
-  } else lines.push('We have enough today.');
+  for (const it of shelfItems(data, s)) {
+    if ((s.stock.teahouse[it.id] ?? 0) > 0) continue;
+    lines.push(`We have no ${data.lex.byId.get(it.word)?.text ?? it.id}.`);
+  }
   return lines;
 }
 
-/** Open the door: working hours begin, in the Front. */
+/** Flip the sign: working hours begin (at the same counter / desk). */
 export function openWork(s: V2State, ctx: Ctx): void {
   if (s.day.part !== 0) return;
   s.day.part = 1;
-  s.day.room = 'front';
+  s.day.room = 'shop';
   if (s.day.workplace === 'clinic') beginShift(ctx.data, s.p);
 }
 
-/** The last customer / task is done: close, back to the Back room (業務後). */
+/** The last customer / task is done: flip the sign back (業務後), same place. */
 export function closeWork(s: V2State): void {
   if (s.day.part !== 1) return;
   if (!workDone(s)) return;
   s.day.part = 2;
-  s.day.room = 'back';
+  s.day.room = 'shop';
   s.brew = emptyBrew();
 }
 
@@ -171,11 +171,10 @@ export function workDone(s: V2State): boolean {
 export function goRoom(s: V2State, room: Room): string | null {
   const part = s.day.part;
   if (room === 'market') {
-    if (part === 1) return '業務中は店を離れられません。足りない品は注文書で配達を頼む。';
+    if (part === 1) return '業務中は店を離れられません。';
     if (s.day.workplace !== 'teahouse') return '市場の品は茶房のためのもの。';
   }
   if (room === 'town' && part === 1) return '業務中は店を離れられません。';
-  if (room === 'front' && part === 2) return '閉店しました。';
   s.day.room = room;
   return null;
 }
@@ -191,7 +190,7 @@ export function chooseWorkplace(s: V2State, ctx: Ctx, wp: WorkplaceId): void {
       s.tally.workplace = wp;
       setUpWorkplace(s, ctx);
     }
-    s.day.room = 'back';
+    s.day.room = 'shop';
     return;
   }
   if (s.day.part === 2) s.next = wp;
