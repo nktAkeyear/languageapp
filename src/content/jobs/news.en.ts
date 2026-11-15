@@ -1511,753 +1511,496 @@ const LINES: JobContent['lines'] = [
 ];
 // ---------------------------------------------------------------------------------------------- generated lexicon (tools/genlex.ts)
 const LEX_SRC = `
-# jn1_01 | 新聞社のことば 1（3級）
-page|n|pages|ページ||
-story|n|stories|記事・物語||
-win|v|winning,wins,won|勝つ||
-caption|n||写真の説明文||
-# jn1_02 | 新聞社のことば 2（3級）
-fire|n||火事・火||
-reporter|n|reporter's,reporters|記者||
-editor|n|editor's|編集者||
-bottom|n||下・底||
-# jn1_03 | 新聞社のことば 3（3級）
-sports|n||スポーツ||
-headline|n|headlines|見出し||
-river|n||川||
-festival|n|festival's|祭り||
-# jn2_01 | 新聞社のことば 1（準2級）
-success|n||成功||
-concert|n||コンサート||
-police|n||警察||
-prize|n||賞||
-# jn2_02 | 新聞社のことば 2（準2級）
-mayor|n|mayor's|市長||
-business|n||経済・商売||
-fight|n||戦い・けんか||
-build|v|builds,built|建てる||
-# jn2_03 | 新聞社のことば 3（準2級）
-million|n||100万||
-reader|n|readers|読者||
-subscribe|v||定期購読する||
-film|n||映画||
-# jn2_04 | 新聞社のことば 4（準2級）
-winner|n||勝者||
-factory|n||工場||
-world|n||世界||
-art|n|arts|芸術||
-# jn2_05 | 新聞社のことば 5（準2級）
-artist|n|artists|芸術家||
-coast|n||海岸||
-president|n||大統領||
-swimming|n||水泳||
-# jn2_06 | 新聞社のことば 6（準2級）
-cloud|n||雲||
-coach|n||コーチ||
-corner|n||角||
-decorate|v||飾る||
-# jn2_07 | 新聞社のことば 7（準2級）
-earthquake|n||地震||
-fan|n|fans|ファン||
-final|n||決勝||
-goalkeeper|n||ゴールキーパー||
-# jn2_08 | 新聞社のことば 8（準2級）
-lightning|n||稲妻||
-mend|v|mended|直す||
-rower|n|rowers|漕ぎ手||
-stadium|n||競技場||
-# jn2_09 | 新聞社のことば 9（準2級）
-theatre|n||劇場（theaterの英式つづり）||
-thunder|n||雷||
-council|n|council's|議会・市議会||
-judge|n|judge's|裁判官||
-# jn3_01 | 新聞社のことば 1（2級）
-director|n||責任者・長官||
-exhibition|n||展覧会||
-minister|n|minister's|大臣||
-true|a||本当の||
-# jn3_02 | 新聞社のことば 2（2級）
-stone|n|stones|石||
-worker|n|workers|労働者||
-profit|n|profits|利益||
-thousand|n|thousands|1000||
-# jn3_03 | 新聞社のことば 3（2級）
-advertisement|n|advertisements|広告||
-bakery|n||パン屋||
-official|a|officials|公式の||
-unemployment|n||失業||
-# jn3_04 | 新聞社のことば 4（2級）
-bird|n|birds|鳥||
-science|n||科学||
-seabird|n|seabirds|海鳥||
-critic|n|critics|評論家||
-# jn3_05 | 新聞社のことば 5（2級）
-poor|a||下手な・貧しい||
-singer|n||歌手||
-printer|n||印刷所||
-scientist|n|scientists|科学者||
-# jn3_06 | 新聞社のことば 6（2級）
-accuse|v|accused,accuses|告発する||
-steal|v|stealing,stole|盗む||
-probably|d||たぶん||
-photograph|n|photographed,photographs|写真||
-# jn3_07 | 新聞社のことば 7（2級）
-sport|n||スポーツ||
-courier|n||宅配業者||
-source|n|sources|情報源||
-government|n|government's|政府||
-# jn3_08 | 新聞社のことば 8（2級）
-robbery|n||強盗||
-smoke|v||たばこを吸う||
-teach|v|taught,teaches|教える||
-goal|n|goals|ゴール・得点||
-# jn3_09 | 新聞社のことば 9（2級）
-score|n||得点||
-competition|n||競技会・競争||
-niece|n||めい||
-leader|n|leaders|指導者||
-# jn3_10 | 新聞社のことば 10（2級）
-politics|n||政治||
-crime|n||犯罪||
-environment|n||環境||
-argue|v|argues|議論する||
-# jn3_11 | 新聞社のことば 11（2級）
-army|n||陸軍||
-bay|n||湾||
-beautiful|a||美しい||
-capital|n||首都||
-# jn3_12 | 新聞社のことば 12（2級）
-champion|n||優勝者||
-cinema|n||映画館||
-discover|v||発見する||
-economy|n||経済||
-# jn3_13 | 新聞社のことば 13（2級）
-energy|n||エネルギー||
-engine|n||エンジン||
-experiment|n||実験||
-export|n|exports|輸出||
-# jn3_14 | 新聞社のことば 14（2級）
-famous|a||有名な||
-farmer|n|farmers|農家||
-flood|n|flooded,floods|洪水||
-forest|n||森||
-# jn3_15 | 新聞社のことば 15（2級）
-grow|v|grew,grows|増える・育つ||
-loan|n|loans|貸付||
-medal|n|medals|メダル||
-novel|n||小説||
-# jn3_16 | 新聞社のことば 16（2級）
-panel|n|panels|パネル||
-player|n||選手||
-protect|v|protected|守る||
-recycle|v||リサイクルする||
-# jn3_17 | 新聞社のことば 17（2級）
-robot|n||ロボット||
-roof|n||屋根||
-rubbish|n||ごみ||
-solar|a||太陽の||
-# jn3_18 | 新聞社のことば 18（2級）
-swimmer|n|swimmers|泳ぐ人||
-theory|n||理論||
-thief|n||泥棒||
-throw|v|thrown|投げる・捨てる||
-# jn3_19 | 新聞社のことば 19（2級）
-tourism|n||観光||
-waste|n||廃棄物・むだ||
-wire|n||通信社の配信||
-writer|n|writer's|作家||
-# jn3_20 | 新聞社のことば 20（2級）
-plastic|a||プラスチックの||
-field|n|fields|野原||
-quarter|n||4分の1||
-area|n||地域||
-# jn3_21 | 新聞社のことば 21（2級）
-border|n||国境||
-burglar|n||夜盗||
-cabinet|n||内閣・戸棚||
-capture|v|captures|撮る・捉える||
-# jn3_22 | 新聞社のことば 22（2級）
-catch|n|caught|捕まえること||
-ceasefire|n||停戦||
-chase|n||追跡||
-chip|n||切れ端||
-# jn3_23 | 新聞社のことば 23（2級）
-claw|n||爪||
-cliff|n|cliffs|崖||
-coalition|n||連立||
-crab|n||カニ||
-# jn3_24 | 新聞社のことば 24（2級）
-create|v|creates|創造する||
-cross|v||渡る・越える||
-debate|n|debates|討論||
-deserve|v|deserves|～に値する||
-# jn3_25 | 新聞社のことば 25（2級）
-develop|v|develops|発達する||
-distant|a||遠い||
-embassy|n||大使館||
-endangered|a||絶滅寸前の||
-# jn3_26 | 新聞社のことば 26（2級）
-engineer|n|engineers|技術者||
-enter|v|enters|入る||
-fisherman|n|fishermen|漁師||
-fossil|n|fossils|化石||
-# jn3_27 | 新聞社のことば 27（2級）
-fund|n|funding,funds|資金||
-gather|v||集める||
-glacier|n||氷河||
-homeless|a||ホームレスの||
-# jn3_28 | 新聞社のことば 28（2級）
-innocent|a||無罪の||
-level|n|levels|水準||
-nation|n|nations|国家||
-nest|n|nesting|巣||
-# jn3_29 | 新聞社のことば 29（2級）
-net|a|nets|正味の||
-petition|n||請願書||
-poll|n|polls|世論調査||
-pollution|n||汚染||
-# jn3_30 | 新聞社のことば 30（2級）
-professor|n||教授||
-protester|n|protesters|抗議者||
-recycling|n||リサイクル||
-refugee|n|refugees|難民||
-# jn3_31 | 新聞社のことば 31（2級）
-search|n||捜索・探すこと||
-shake|v|shakes|揺らす・揺れる||
-shore|n||岸||
-speed|n||速度||
-# jn3_32 | 新聞社のことば 32（2級）
-star|n||星||
-supermarket|n||スーパーマーケット||
-telescope|n||望遠鏡||
-theft|n||窃盗||
-# jn3_33 | 新聞社のことば 33（2級）
-tide|n|tides|潮||
-tree|n|trees|木||
-troop|n|troops|軍隊||
-urge|v||強く促す||
-# jn3_34 | 新聞社のことば 34（2級）
-wage|n|wages|賃金||
-whale|n|whales|クジラ||
-series|n||連続||
-mention|n|mentioned|言及||
-# jn3_35 | 新聞社のことば 35（2級）
-fare|n||運賃||
-land|n||土地||
-editorial|n|editorials|社説||
-lease|v||賃貸する||
-# jn4_01 | 新聞社のことば 1（準1級）
-jury|n||陪審||
-verdict|n||評決||
-ban|v||禁止する||
-shopkeeper|n|shopkeepers|店主||
-# jn4_02 | 新聞社のことば 2（準1級）
-graph|n||グラフ||
-opposite|a||反対の||
-spokeswoman|n|spokeswoman's|女性の広報担当者||
-secret|n||秘密||
-# jn4_03 | 新聞社のことば 3（準1級）
-rare|a||まれな||
-average|a||平均的な||
-edition|n||版||
-misleading|a||誤解を招く||
-# jn4_04 | 新聞社のことば 4（準1級）
-photographer|n||写真をとる人||
-defendant|n||被告||
-guilty|a||有罪の||
-plea|n||答弁・嘆願||
-# jn4_05 | 新聞社のことば 5（準1級）
-drought|n||干ばつ||
-reservoir|n||貯水池||
-auction|n||競売||
-campaign|n||運動||
-# jn4_06 | 新聞社のことば 6（準1級）
-education|n||教育||
-advertise|v||広告する||
-rival|n|rival's,rivals|ライバル||
-opposition|n||反対||
-# jn4_07 | 新聞社のことば 7（準1級）
-column|n||コラム・縦の欄||
-margin|n||誤差の幅・差||
-narrowly|d||かろうじて||
-voter|n|voters|投票者||
-# jn4_08 | 新聞社のことば 8（準1級）
-divide|v|divides|分ける||
-hide|v|hid|隠す||
-conclusion|n|conclusions|結論||
-quotation|n||引用||
-# jn4_09 | 新聞社のことば 9（準1級）
-resident|n|residents|住民||
-dock|n||埠頭||
-local|a||地元の||
-feature|n|features|特徴||
-# jn4_10 | 新聞社のことば 10（準1級）
-ambassador|n||大使||
-baker|n||パン屋||
-batch|n||ひとまとまり||
-breakthrough|n||大発見||
-# jn4_11 | 新聞社のことば 11（準1級）
-captain|n||船長||
-championship|n||選手権||
-crew|n||乗組員||
-defeat|n||敗北||
-# jn4_12 | 新聞社のことば 12（準1級）
-documentary|n||ドキュメンタリー||
-flee|v||逃げる||
-harmful|a||有害な||
-host|v||主催する||
-# jn4_13 | 新聞社のことば 13（準1級）
-industry|n||産業||
-investigate|v|investigates|調査する||
-moon|n||月||
-mountain|n|mountains|山||
-# jn4_14 | 新聞社のことば 14（準1級）
-national|a||国の||
-orchestra|n|orchestra's|オーケストラ||
-painter|n||画家||
-planet|n|planets|惑星||
-# jn4_15 | 新聞社のことば 15（準1級）
-prosecutor|n|prosecutors|検察官||
-qualify|v|qualifies|資格を得る||
-redundant|a||余剰の・解雇される||
-resign|v|resigned,resigns|辞職する||
-# jn4_16 | 新聞社のことば 16（準1級）
-runner|n||走者||
-sailing|n||帆走||
-shortage|n||不足||
-species|n||種||
-# jn4_17 | 新聞社のことば 17（準1級）
-summit|n||首脳会談・頂上||
-tour|n||ツアー||
-tourist|n||旅行者||
-treaty|n||条約||
-# jn4_18 | 新聞社のことば 18（準1級）
-triumph|n||勝利||
-union|n||組合||
-village|n|villages|村||
-zone|n||地域||
-# jn4_19 | 新聞社のことば 19（準1級）
-percentage|n|percentages|割合||
-closure|n||閉鎖||
-diary|n||日記||
-announcement|n||発表||
-# jn4_20 | 新聞社のことば 20（準1級）
-election|n||選挙||
-acre|n|acres|エーカー（面積の単位）||
-adopt|v||採用する||
-airport|n||空港||
-# jn4_21 | 新聞社のことば 21（準1級）
-archaeologist|n|archaeologists|考古学者||
-arson|n||放火||
-biologist|n|biologists|生物学者||
-brain|n||脳||
-# jn4_22 | 新聞社のことば 22（準1級）
-chemist|n|chemists|化学者||
-choice|n||選択||
-clash|n||衝突||
-community|n||地域社会||
-# jn4_23 | 新聞社のことば 23（準1級）
-compromise|n||妥協||
-conservationist|n|conservationists|自然保護活動家||
-constitution|n||憲法||
-currency|n||通貨||
-# jn4_24 | 新聞社のことば 24（準1級）
-delegate|n|delegates|代表者||
-delegation|n||代表団||
-destroy|v|destroys|破壊する||
-detect|v|detects|検出する||
-# jn4_25 | 新聞社のことば 25（準1級）
-detective|n||刑事||
-diplomat|n||外交官||
-dissolve|v|dissolves|溶かす||
-duty|n||義務||
-# jn4_26 | 新聞社のことば 26（準1級）
-eclipse|n||日食・月食||
-embezzlement|n||横領||
-emission|n|emissions|排出||
-envoy|n||使節||
-# jn4_27 | 新聞社のことば 27（準1級）
-erosion|n||浸食||
-evasion|n||回避||
-expel|v|expelled|追放する||
-famine|n||飢饉||
-# jn4_28 | 新聞社のことば 28（準1級）
-fighting|n||戦闘||
-firm|n|firm's|会社||
-genetic|a||遺伝の||
-governor|n||知事||
-# jn4_29 | 新聞社のことば 29（準1級）
-guard|n||警備員||
-hollow|a||空洞の||
-household|n|households|世帯||
-import|v|imported,imports|輸入する||
-# jn4_30 | 新聞社のことば 30（準1級）
-increase|v||増える||
-investment|n||投資||
-investor|n|investors|投資者||
-launch|v|launches|始める・発売する||
-# jn4_31 | 新聞社のことば 31（準1級）
-lawmaker|n|lawmakers|立法者||
-legislature|n||立法府||
-lifeboat|n||救命ボート||
-memory|n||記憶||
-# jn4_32 | 新聞社のことば 32（準1級）
-nature|n||自然||
-negotiator|n|negotiators|交渉人||
-neuroscientist|n|neuroscientists|神経科学者||
-obesity|n||肥満||
-# jn4_33 | 新聞社のことば 33（準1級）
-observatory|n||観測所||
-origin|n||起源||
-path|n||小道・進路||
-perform|v||行う・演じる||
-# jn4_34 | 新聞社のことば 34（準1級）
-plead|v|pleaded,pleads|答弁する・懇願する||
-prototype|n||原型||
-rebel|n|rebels|反逆者||
-reform|n|reforming|改革||
-# jn4_35 | 新聞社のことば 35（準1級）
-region|n||地域||
-resolution|n||決議・決心||
-retailer|n||小売業者||
-reveal|v|reveals|明らかにする||
-# jn4_36 | 新聞社のことば 36（準1級）
-satellite|n||衛星||
-seaweed|n||海草||
-seize|v||奪う・つかむ||
-sheep|n||羊||
-# jn4_37 | 新聞社のことば 37（準1級）
-shipbuilder|n||造船業者||
-shipyard|n||造船所||
-smuggle|v|smuggling|密輸する||
-spy|v|spying|スパイをする||
-# jn4_38 | 新聞社のことば 38（準1級）
-stew|n||シチュー||
-store|n|stores|店||
-takeover|n||乗っ取り||
-tank|n|tanker|タンク||
-# jn4_39 | 新聞社のことば 39（準1級）
-tern|n|terns|アジサシ（海鳥）||
-testimony|n||証言||
-threaten|v|threatens|脅す||
-trap|v|trapped|閉じ込める||
-# jn4_40 | 新聞社のことば 40（準1級）
-treasurer|n|treasurer's|会計係||
-trust|v||信頼する||
-unearth|v||掘り出す||
-veto|v|vetoes|拒否権を行使する||
-# jn4_41 | 新聞社のことば 41（準1級）
-victim|n|victim's,victims|被害者||
-war|n||戦争||
-waterfront|n||海辺の地区||
-wetland|n|wetlands|湿地||
-# jn4_42 | 新聞社のことば 42（準1級）
-worth|a||～の価値がある||
-prove|v|proved,proves|証明する||
-lengthen|v||長くする||
-shorten|v|shortened|短くする||
-# jn4_43 | 新聞社のことば 43（準1級）
-authority|n||権限||
-enclose|v|enclosed|同封する||
-unhappy|a||不幸な||
-columnist|n||コラムニスト||
-# jn4_44 | 新聞社のことば 44（準1級）
-unimportant|a||重要でない||
-subscriber|n||定期購読者||
-subscription|n||定期購読||
-widely|d||広く||
-# jn4_45 | 新聞社のことば 45（準1級）
-doubt|n|doubts|疑い||
-daily|a||毎日の||
-healthy|a|healthier|健康な||
-turbine|n|turbines|タービン||
-# jn4_46 | 新聞社のことば 46（準1級）
-villager|n|villagers|村人||
-plaintiff|n||原告||
-sue|v|suing|訴える||
-fraud|n||詐欺||
-# jn5_01 | 新聞社のことば 1（1級）
-recount|n||数え直し・再集計||
-lawsuit|n||訴訟||
-ballot|n|ballots|投票用紙||
-majority|n||大多数||
-# jn5_02 | 新聞社のことば 2（1級）
-none|r||どれも～ない||
-prison|n||刑務所||
-overstate|v|overstated,overstates|誇張して言う||
-lead|v||先頭に立つ・（記事を）トップにする||
-# jn5_03 | 新聞社のことば 3（1級）
-jail|n|jailed|刑務所||
-county|n||郡||
-connection|n||つながり||
-recession|n||景気後退||
-# jn5_04 | 新聞社のことば 4（1級）
-bankrupt|a||破産した||
-creditor|n|creditors|債権者||
-hardly|d||ほとんど～ない||
-shout|v||叫ぶ||
-# jn5_05 | 新聞社のことば 5（1級）
-link|n||つながり||
-pesticide|n|pesticides|農薬||
-collision|n||衝突||
-traffic|n||交通||
-# jn5_06 | 新聞社のことば 6（1級）
-councillor|n||市（町）議会議員||
-former|a||前の||
-obituary|n|obituaries|死亡記事||
-volunteer|n|volunteers|ボランティア||
-# jn5_07 | 新聞社のことば 7（1級）
-celebrate|v|celebrates|祝う||
-century|n||世紀||
-hundredth|a||100番目の||
-pension|n||年金||
-# jn5_08 | 新聞社のことば 8（1級）
-impression|n||印象||
-unreasonable|a||不合理な||
-law|n||法律||
-retreat|n||撤退||
-# jn5_09 | 新聞社のことば 9（1級）
-dawn|n||夜明け||
-rescue|n||救助||
-phrase|n||句||
-timeline|n||年表||
-# jn5_10 | 新聞社のことば 10（1級）
-peace|n||平和||
-turtle|n|turtles|カメ||
-text|n||本文||
-flourish|v||栄える||
-# jn5_11 | 新聞社のことば 11（1級）
-suppose|v||思う||
-fuel|n||燃料||
-referendum|n||国民投票||
-scandal|n||醜聞||
-# jn5_12 | 新聞社のことば 12（1級）
-merger|n||合併||
-quota|n||割当||
-tariff|n||関税||
-libel|n||名誉毀損（文書による）||
-# jn5_13 | 新聞社のことば 13（1級）
-congratulate|v|congratulates|お祝いを言う||
-powerful|a||強力な||
-acclaim|v||称賛する||
-accountable|a||説明責任のある||
-# jn5_14 | 新聞社のことば 14（1級）
-agency|n|agencies|機関・代理店||
-algorithm|n||アルゴリズム||
-amendment|n||修正||
-amid|p||〜の真っただ中で||
-# jn5_15 | 新聞社のことば 15（1級）
-article|n||記事||
-astronomer|n|astronomers|天文学者||
-austerity|n||緊縮||
-award|v|awarded|授与する・与える||
-# jn5_16 | 新聞社のことば 16（1級）
-bail|n||保釈||
-blacksmith|n||鍛冶屋||
-bribery|n||贈収賄||
-burst|v|bursts|破裂する||
-# jn5_17 | 新聞社のことば 17（1級）
-caution|n||用心||
-chemical|n|chemicals|化学物質||
-conductor|n||指揮者||
-constitutional|a||憲法上の||
-# jn5_18 | 新聞社のことば 18（1級）
-controversial|a||議論を呼ぶ||
-convict|v|convicts|有罪判決を下す||
-correlation|n||相関||
-crisis|n||危機||
-# jn5_19 | 新聞社のことば 19（1級）
-debut|n||デビュー||
-decade|n||10年間||
-design|n||デザイン||
-divided|a||分かれた||
-# jn5_20 | 新聞社のことば 20（1級）
-dividend|n||配当金||
-evacuate|v|evacuated|避難させる||
-extension|n||拡張・増築||
-extinction|n||絶滅||
-# jn5_21 | 新聞社のことば 21（1級）
-funeral|n||葬式||
-gain|n|gains|増加||
-generation|n|generations|世代||
-habitat|n||生息地||
-# jn5_22 | 新聞社のことば 22（1級）
-humanitarian|a||人道的な||
-hypothesis|n||仮説||
-immunity|n||免疫||
-incumbent|n||現職者||
-# jn5_23 | 新聞社のことば 23（1級）
-issue|v|issued|発行する・問題||
-keeper|n||番人||
-lowest|a||最も低い・最低の||
-major|a||主要な||
-# jn5_24 | 新聞社のことば 24（1級）
-novelist|n||小説家||
-oyster|n||カキ||
-pandemic|n||世界的大流行||
-peacefully|d||平和的に||
-# jn5_25 | 新聞社のことば 25（1級）
-portrait|n||肖像画||
-praise|n||賞賛||
-precedent|n||先例||
-predict|v|predicts|予測する||
-# jn5_26 | 新聞社のことば 26（1級）
-private|a||私的な||
-public|n||一般の人々||
-push|v|pushes|押す||
-recall|v|recalled|呼び戻す・思い出す||
-# jn5_27 | 新聞社のことば 27（1級）
-reflect|v||よく考える・反射する||
-repayment|n||返済||
-restraint|n||抑制||
-resume|v||再び始める||
-# jn5_28 | 新聞社のことば 28（1級）
-retrospective|n||回顧展||
-sanction|n|sanctions|制裁||
-shell|v|shelled,shelling|砲撃する||
-survive|v|survived,survives|生き残る||
-# jn5_29 | 新聞社のことば 29（1級）
-swim|n||水泳||
-toward|p|towards|～の方へ||
-trader|n|traders|取引業者||
-transparency|n||透明性||
-# jn5_30 | 新聞社のことば 30（1級）
-tribute|n||賛辞||
-unfashionable|a||流行遅れの||
-volatile|a||不安定な||
-warrant|n||令状||
-# jn5_31 | 新聞社のことば 31（1級）
-accurately|d||正確に||
-acquit|v|acquitted|無罪とする||
-activist|n|activists|活動家||
-amnesty|n||恩赦||
-# jn5_32 | 新聞社のことば 32（1級）
-analyst|n|analysts|分析者||
-bankruptcy|n||破産||
-bid|v||入札する||
-biodiversity|n||生物多様性||
-# jn5_33 | 新聞社のことば 33（1級）
-blame|v|blamed|責める||
-canvas|n|canvases|キャンバス・画布||
-cartel|n||カルテル||
-central|a||中心の・中央の||
-# jn5_34 | 新聞社のことば 34（1級）
-chain|v||鎖でつなぐ||
-chronicle|v|chronicled|記録する||
-commission|n||委員会・手数料||
-complacency|n||自己満足||
-# jn5_35 | 新聞社のことば 35（1級）
-conviction|n||有罪判決||
-coral|n||サンゴ||
-curb|v||抑える||
-deadlock|n||行き詰まり||
-# jn5_36 | 新聞社のことば 36（1級）
-defence|n||防衛・擁護・弁護側||
-deliberate|v|deliberates|熟考する・評議する||
-dismiss|v|dismissed|却下する・解雇する||
-dump|v|dumping|投棄する||
-# jn5_37 | 新聞社のことば 37（1級）
-electoral|a||選挙の||
-embargo|n||禁輸||
-enemy|n||敵||
-epidemic|n||流行病||
-# jn5_38 | 新聞社のことば 38（1級）
-estuary|n||河口||
-exile|n|exiled|追放||
-existence|n||存在||
-expert|n|experts|専門家||
-# jn5_39 | 新聞社のことば 39（1級）
-extradite|v|extradited|（犯罪人を）引き渡す||
-fairness|n||公平さ||
-finding|n|findings|調査結果||
-forge|v|forged|偽造する||
-# jn5_40 | 新聞社のことば 40（1級）
-galaxy|n||銀河||
-gene|n||遺伝子||
-genome|n||ゲノム||
-geologist|n|geologists|地質学者||
-# jn5_41 | 新聞社のことば 41（1級）
-impose|v|imposes|課す||
-inadmissible|a||証拠として認められない||
-irregularity|n|irregularities|不正||
-legislation|n||立法||
-# jn5_42 | 新聞社のことば 42（1級）
-lobby|v|lobbying|陳情する・ロビー活動をする||
-method|n||方法||
-microbe|n||微生物||
-misspell|v|misspelled|つづりを間違える||
-# jn5_43 | 新聞社のことば 43（1級）
-misstate|v|misstated|事実を誤って述べる||
-misuse|v|misusing|悪用する||
-moral|a||道徳的な||
-mourn|v|mourned|悼む||
-# jn5_44 | 新聞社のことば 44（1級）
-omit|v|omitted|省略する||
-opponent|n|opponents|相手||
-paramedic|n|paramedics|救急救命士||
-parliament|n||議会||
-# jn5_45 | 新聞社のことば 45（1級）
-particle|n||粒子||
-peer|n||同等の人||
-physicist|n|physicists|物理学者||
-poacher|n|poachers|密猟者||
-# jn5_46 | 新聞社のことば 46（1級）
-prime|a||最も重要な||
-prosecution|n||起訴||
-ratify|v|ratified|批准する||
-redundancy|n|redundancies|余剰人員の解雇・冗長||
-# jn5_47 | 新聞社のことば 47（1級）
-reef|n||岩礁||
-refinery|n||精製所||
-renewable|a||再生可能な||
-reshuffle|n||内閣改造||
-# jn5_48 | 新聞社のことば 48（1級）
-resist|v||抵抗する||
-reviewer|n|reviewers|査読者・批評家||
-rural|a||田舎の||
-scrutiny|n||綿密な調査||
-# jn5_49 | 新聞社のことば 49（1級）
-seal|n|seals|アザラシ||
-senator|n||上院議員||
-sequence|v||（遺伝子を）解読する・連続||
-silence|n||沈黙・静けさ||
-# jn5_50 | 新聞社のことば 50（1級）
-steel|n||鋼鉄||
-sugary|a||糖分の多い||
-supply|v|supplies|供給する||
-swamp|v||水浸しにする・沼地||
-# jn5_51 | 新聞社のことば 51（1級）
-themselves|r||彼ら自身||
-those|t||それらの||
-tumble|v||急落する・転ぶ||
-unjust|a||不当な||
-# jn5_52 | 新聞社のことば 52（1級）
-unstable|a||不安定な||
-widen|v|widens|広げる||
-wiretap|n||盗聴||
-officer|n||役人||
-# jn5_53 | 新聞社のことば 53（1級）
-bribe|v|bribed|賄賂を贈る||
-lawful|a|lawfully|合法の||
-master|n||長・港長||
-producer|n||生産者||
-# jn5_54 | 新聞社のことば 54（1級）
-saving|n||節約・貯金||
-personal|a||個人の||
-remove|v||取り除く||
-inflammatory|a||扇動的な||
-# jn5_55 | 新聞社のことば 55（1級）
-fairly|d||公平に・かなり||
-cheer|v||歓声をあげる||
-allegation|n|allegations|(根拠のない)申し立て||
-remark|n|remarks|発言・意見||
-# jn5_56 | 新聞社のことば 56（1級）
-vague|a||あいまいな||
-kill|v|killed,kills|殺す||
-resignation|n||辞職||
-february|n||2月||
+# jn2_001 | 新聞社のことば ①（3級）
+win|v|winning,wins,won|勝つ
+caption|n||写真の説明文
+reporter|n|reporter's,reporters|記者
+# jn2_002 | 新聞社のことば ②（3級）
+bottom|n||下・底
+sports|n||スポーツ
+headline|n|headlines|見出し
+# jn3_003 | 新聞社のことば ①（準2級）
+police|n||警察
+prize|n||賞
+fight|n||戦い・けんか
+subscribe|v||定期購読する
+swimming|n||水泳
+# jn3_004 | 新聞社のことば ②（準2級）
+cloud|n||雲
+coach|n||コーチ
+decorate|v||飾る
+earthquake|n||地震
+# jn3_005 | 新聞社のことば ③（準2級）
+fan|n|fans|ファン
+final|n||決勝
+goalkeeper|n||ゴールキーパー
+lightning|n||稲妻
+# jn3_006 | 新聞社のことば ④（準2級）
+rower|n|rowers|漕ぎ手
+theatre|n||劇場（theaterの英式つづり）
+thunder|n||雷
+judge|n|judge's|裁判官
+# jn4_007 | 新聞社のことば ①（2級）
+director|n||責任者・長官
+minister|n|minister's|大臣
+stone|n|stones|石
+profit|n|profits|利益
+# jn4_008 | 新聞社のことば ②（2級）
+thousand|n|thousands|1000
+advertisement|n|advertisements|広告
+seabird|n|seabirds|海鳥
+singer|n||歌手
+# jn4_009 | 新聞社のことば ③（2級）
+scientist|n|scientists|科学者
+steal|v|stealing,stole|盗む
+probably|d||たぶん
+sport|n||スポーツ
+# jn4_010 | 新聞社のことば ④（2級）
+courier|n||宅配業者
+robbery|n||強盗
+goal|n|goals|ゴール・得点
+competition|n||競技会・競争
+# jn4_011 | 新聞社のことば ⑤（2級）
+niece|n||めい
+leader|n|leaders|指導者
+crime|n||犯罪
+army|n||陸軍
+# jn4_012 | 新聞社のことば ⑥（2級）
+beautiful|a||美しい
+champion|n||優勝者
+cinema|n||映画館
+discover|v||発見する
+# jn4_013 | 新聞社のことば ⑦（2級）
+economy|n||経済
+export|n|exports|輸出
+farmer|n|farmers|農家
+medal|n|medals|メダル
+# jn4_014 | 新聞社のことば ⑧（2級）
+panel|n|panels|パネル
+player|n||選手
+recycle|v||リサイクルする
+rubbish|n||ごみ
+# jn4_015 | 新聞社のことば ⑨（2級）
+swimmer|n|swimmers|泳ぐ人
+thief|n||泥棒
+tourism|n||観光
+plastic|a||プラスチックの
+# jn4_016 | 新聞社のことば ⑩（2級）
+field|n|fields|野原
+quarter|n||4分の1
+border|n||国境
+burglar|n||夜盗
+# jn4_017 | 新聞社のことば ⑪（2級）
+cabinet|n||内閣・戸棚
+capture|v|captures|撮る・捉える
+ceasefire|n||停戦
+chase|n||追跡
+# jn4_018 | 新聞社のことば ⑫（2級）
+chip|n||切れ端
+claw|n||爪
+cliff|n|cliffs|崖
+coalition|n||連立
+# jn4_019 | 新聞社のことば ⑬（2級）
+crab|n||カニ
+create|v|creates|創造する
+cross|v||渡る・越える
+debate|n|debates|討論
+# jn4_020 | 新聞社のことば ⑭（2級）
+deserve|v|deserves|～に値する
+develop|v|develops|発達する
+distant|a||遠い
+embassy|n||大使館
+# jn4_021 | 新聞社のことば ⑮（2級）
+endangered|a||絶滅寸前の
+gather|v||集める
+glacier|n||氷河
+innocent|a||無罪の
+# jn4_022 | 新聞社のことば ⑯（2級）
+nation|n|nations|国家
+nest|n|nesting|巣
+net|a|nets|正味の
+protester|n|protesters|抗議者
+# jn4_023 | 新聞社のことば ⑰（2級）
+refugee|n|refugees|難民
+shake|v|shakes|揺らす・揺れる
+supermarket|n||スーパーマーケット
+telescope|n||望遠鏡
+# jn4_024 | 新聞社のことば ⑱（2級）
+theft|n||窃盗
+troop|n|troops|軍隊
+urge|v||強く促す
+wage|n|wages|賃金
+# jn4_025 | 新聞社のことば ⑲（2級）
+whale|n|whales|クジラ
+fare|n||運賃
+editorial|n|editorials|社説
+# jn5_026 | 新聞社のことば 1（準1級）
+jury|n||陪審
+shopkeeper|n|shopkeepers|店主
+opposite|a||反対の
+spokeswoman|n|spokeswoman's|女性の広報担当者
+# jn5_027 | 新聞社のことば 2（準1級）
+misleading|a||誤解を招く
+photographer|n||写真をとる人
+defendant|n||被告
+guilty|a||有罪の
+# jn5_028 | 新聞社のことば 3（準1級）
+plea|n||答弁・嘆願
+reservoir|n||貯水池
+auction|n||競売
+education|n||教育
+# jn5_029 | 新聞社のことば 4（準1級）
+advertise|v||広告する
+rival|n|rival's,rivals|ライバル
+column|n||コラム・縦の欄
+narrowly|d||かろうじて
+# jn5_030 | 新聞社のことば 5（準1級）
+divide|v|divides|分ける
+hide|v|hid|隠す
+quotation|n||引用
+feature|n|features|特徴
+# jn5_031 | 新聞社のことば 6（準1級）
+ambassador|n||大使
+batch|n||ひとまとまり
+breakthrough|n||大発見
+captain|n||船長
+# jn5_032 | 新聞社のことば 7（準1級）
+championship|n||選手権
+crew|n||乗組員
+defeat|n||敗北
+documentary|n||ドキュメンタリー
+# jn5_033 | 新聞社のことば 8（準1級）
+flee|v||逃げる
+harmful|a||有害な
+host|v||主催する
+national|a||国の
+# jn5_034 | 新聞社のことば 9（準1級）
+prosecutor|n|prosecutors|検察官
+redundant|a||余剰の・解雇される
+runner|n||走者
+sailing|n||帆走
+# jn5_035 | 新聞社のことば 10（準1級）
+shortage|n||不足
+summit|n||首脳会談・頂上
+tour|n||ツアー
+tourist|n||旅行者
+# jn5_036 | 新聞社のことば 11（準1級）
+treaty|n||条約
+triumph|n||勝利
+union|n||組合
+percentage|n|percentages|割合
+# jn5_037 | 新聞社のことば 12（準1級）
+announcement|n||発表
+acre|n|acres|エーカー（面積の単位）
+adopt|v||採用する
+airport|n||空港
+# jn5_038 | 新聞社のことば 13（準1級）
+archaeologist|n|archaeologists|考古学者
+arson|n||放火
+biologist|n|biologists|生物学者
+chemist|n|chemists|化学者
+# jn5_039 | 新聞社のことば 14（準1級）
+choice|n||選択
+clash|n||衝突
+compromise|n||妥協
+conservationist|n|conservationists|自然保護活動家
+# jn5_040 | 新聞社のことば 15（準1級）
+constitution|n||憲法
+currency|n||通貨
+delegation|n||代表団
+destroy|v|destroys|破壊する
+# jn5_041 | 新聞社のことば 16（準1級）
+detective|n||刑事
+diplomat|n||外交官
+dissolve|v|dissolves|溶かす
+eclipse|n||日食・月食
+# jn5_042 | 新聞社のことば 17（準1級）
+embezzlement|n||横領
+envoy|n||使節
+erosion|n||浸食
+evasion|n||回避
+# jn5_043 | 新聞社のことば 18（準1級）
+expel|v|expelled|追放する
+famine|n||飢饉
+fighting|n||戦闘
+firm|n|firm's|会社
+# jn5_044 | 新聞社のことば 19（準1級）
+governor|n||知事
+hollow|a||空洞の
+import|v|imported,imports|輸入する
+increase|v||増える
+# jn5_045 | 新聞社のことば 20（準1級）
+investment|n||投資
+investor|n|investors|投資者
+launch|v|launches|始める・発売する
+lawmaker|n|lawmakers|立法者
+# jn5_046 | 新聞社のことば 21（準1級）
+legislature|n||立法府
+lifeboat|n||救命ボート
+negotiator|n|negotiators|交渉人
+neuroscientist|n|neuroscientists|神経科学者
+# jn5_047 | 新聞社のことば 22（準1級）
+obesity|n||肥満
+observatory|n||観測所
+perform|v||行う・演じる
+plead|v|pleaded,pleads|答弁する・懇願する
+# jn5_048 | 新聞社のことば 23（準1級）
+prototype|n||原型
+rebel|n|rebels|反逆者
+resolution|n||決議・決心
+retailer|n||小売業者
+# jn5_049 | 新聞社のことば 24（準1級）
+reveal|v|reveals|明らかにする
+seaweed|n||海草
+seize|v||奪う・つかむ
+sheep|n||羊
+# jn5_050 | 新聞社のことば 25（準1級）
+shipbuilder|n||造船業者
+shipyard|n||造船所
+smuggle|v|smuggling|密輸する
+spy|v|spying|スパイをする
+# jn5_051 | 新聞社のことば 26（準1級）
+stew|n||シチュー
+takeover|n||乗っ取り
+tank|n|tanker|タンク
+tern|n|terns|アジサシ（海鳥）
+# jn5_052 | 新聞社のことば 27（準1級）
+testimony|n||証言
+threaten|v|threatens|脅す
+trap|v|trapped|閉じ込める
+treasurer|n|treasurer's|会計係
+# jn5_053 | 新聞社のことば 28（準1級）
+unearth|v||掘り出す
+veto|v|vetoes|拒否権を行使する
+victim|n|victim's,victims|被害者
+waterfront|n||海辺の地区
+# jn5_054 | 新聞社のことば 29（準1級）
+wetland|n|wetlands|湿地
+worth|a||～の価値がある
+shorten|v|shortened|短くする
+unhappy|a||不幸な
+# jn5_055 | 新聞社のことば 30（準1級）
+columnist|n||コラムニスト
+unimportant|a||重要でない
+subscriber|n||定期購読者
+subscription|n||定期購読
+# jn5_056 | 新聞社のことば 31（準1級）
+widely|d||広く
+doubt|n|doubts|疑い
+daily|a||毎日の
+healthy|a|healthier|健康な
+# jn5_057 | 新聞社のことば 32（準1級）
+turbine|n|turbines|タービン
+plaintiff|n||原告
+sue|v|suing|訴える
+fraud|n||詐欺
+# jn6_058 | 新聞社のことば 1（1級）
+lawsuit|n||訴訟
+prison|n||刑務所
+lead|v||先頭に立つ・（記事を）トップにする
+# jn6_059 | 新聞社のことば 2（1級）
+jail|n|jailed|刑務所
+county|n||郡
+connection|n||つながり
+recession|n||景気後退
+bankrupt|a||破産した
+# jn6_060 | 新聞社のことば 3（1級）
+hardly|d||ほとんど～ない
+shout|v||叫ぶ
+link|n||つながり
+pesticide|n|pesticides|農薬
+# jn6_061 | 新聞社のことば 4（1級）
+collision|n||衝突
+obituary|n|obituaries|死亡記事
+celebrate|v|celebrates|祝う
+hundredth|a||100番目の
+# jn6_062 | 新聞社のことば 5（1級）
+impression|n||印象
+unreasonable|a||不合理な
+law|n||法律
+retreat|n||撤退
+# jn6_063 | 新聞社のことば 6（1級）
+dawn|n||夜明け
+rescue|n||救助
+phrase|n||句
+timeline|n||年表
+# jn6_064 | 新聞社のことば 7（1級）
+peace|n||平和
+turtle|n|turtles|カメ
+text|n||本文
+flourish|v||栄える
+# jn6_065 | 新聞社のことば 8（1級）
+suppose|v||思う
+scandal|n||醜聞
+merger|n||合併
+quota|n||割当
+# jn6_066 | 新聞社のことば 9（1級）
+libel|n||名誉毀損（文書による）
+congratulate|v|congratulates|お祝いを言う
+powerful|a||強力な
+acclaim|v||称賛する
+# jn6_067 | 新聞社のことば 10（1級）
+accountable|a||説明責任のある
+agency|n|agencies|機関・代理店
+amid|p||〜の真っただ中で
+astronomer|n|astronomers|天文学者
+# jn6_068 | 新聞社のことば 11（1級）
+austerity|n||緊縮
+award|v|awarded|授与する・与える
+bail|n||保釈
+blacksmith|n||鍛冶屋
+# jn6_069 | 新聞社のことば 12（1級）
+bribery|n||贈収賄
+burst|v|bursts|破裂する
+caution|n||用心
+chemical|n|chemicals|化学物質
+# jn6_070 | 新聞社のことば 13（1級）
+constitutional|a||憲法上の
+controversial|a||議論を呼ぶ
+convict|v|convicts|有罪判決を下す
+crisis|n||危機
+# jn6_071 | 新聞社のことば 14（1級）
+debut|n||デビュー
+decade|n||10年間
+divided|a||分かれた
+dividend|n||配当金
+# jn6_072 | 新聞社のことば 15（1級）
+evacuate|v|evacuated|避難させる
+extinction|n||絶滅
+funeral|n||葬式
+gain|n|gains|増加
+# jn6_073 | 新聞社のことば 16（1級）
+generation|n|generations|世代
+habitat|n||生息地
+humanitarian|a||人道的な
+incumbent|n||現職者
+# jn6_074 | 新聞社のことば 17（1級）
+keeper|n||番人
+oyster|n||カキ
+pandemic|n||世界的大流行
+peacefully|d||平和的に
+# jn6_075 | 新聞社のことば 18（1級）
+praise|n||賞賛
+push|v|pushes|押す
+recall|v|recalled|呼び戻す・思い出す
+reflect|v||よく考える・反射する
+# jn6_076 | 新聞社のことば 19（1級）
+repayment|n||返済
+restraint|n||抑制
+resume|v||再び始める
+retrospective|n||回顧展
+# jn6_077 | 新聞社のことば 20（1級）
+sanction|n|sanctions|制裁
+shell|v|shelled,shelling|砲撃する
+swim|n||水泳
+toward|p|towards|～の方へ
+# jn6_078 | 新聞社のことば 21（1級）
+trader|n|traders|取引業者
+transparency|n||透明性
+tribute|n||賛辞
+unfashionable|a||流行遅れの
+# jn6_079 | 新聞社のことば 22（1級）
+volatile|a||不安定な
+warrant|n||令状
+accurately|d||正確に
+acquit|v|acquitted|無罪とする
+# jn6_080 | 新聞社のことば 23（1級）
+activist|n|activists|活動家
+amnesty|n||恩赦
+analyst|n|analysts|分析者
+bankruptcy|n||破産
+# jn6_081 | 新聞社のことば 24（1級）
+biodiversity|n||生物多様性
+canvas|n|canvases|キャンバス・画布
+cartel|n||カルテル
+chain|v||鎖でつなぐ
+# jn6_082 | 新聞社のことば 25（1級）
+chronicle|v|chronicled|記録する
+complacency|n||自己満足
+conviction|n||有罪判決
+curb|v||抑える
+# jn6_083 | 新聞社のことば 26（1級）
+deadlock|n||行き詰まり
+defence|n||防衛・擁護・弁護側
+deliberate|v|deliberates|熟考する・評議する
+dismiss|v|dismissed|却下する・解雇する
+# jn6_084 | 新聞社のことば 27（1級）
+dump|v|dumping|投棄する
+enemy|n||敵
+epidemic|n||流行病
+estuary|n||河口
+# jn6_085 | 新聞社のことば 28（1級）
+existence|n||存在
+extradite|v|extradited|（犯罪人を）引き渡す
+fairness|n||公平さ
+forge|v|forged|偽造する
+# jn6_086 | 新聞社のことば 29（1級）
+genome|n||ゲノム
+geologist|n|geologists|地質学者
+impose|v|imposes|課す
+inadmissible|a||証拠として認められない
+# jn6_087 | 新聞社のことば 30（1級）
+irregularity|n|irregularities|不正
+legislation|n||立法
+lobby|v|lobbying|陳情する・ロビー活動をする
+microbe|n||微生物
+# jn6_088 | 新聞社のことば 31（1級）
+misspell|v|misspelled|つづりを間違える
+misstate|v|misstated|事実を誤って述べる
+misuse|v|misusing|悪用する
+moral|a||道徳的な
+# jn6_089 | 新聞社のことば 32（1級）
+mourn|v|mourned|悼む
+omit|v|omitted|省略する
+opponent|n|opponents|相手
+paramedic|n|paramedics|救急救命士
+# jn6_090 | 新聞社のことば 33（1級）
+parliament|n||議会
+peer|n||同等の人
+physicist|n|physicists|物理学者
+poacher|n|poachers|密猟者
+# jn6_091 | 新聞社のことば 34（1級）
+prosecution|n||起訴
+ratify|v|ratified|批准する
+redundancy|n|redundancies|余剰人員の解雇・冗長
+refinery|n||精製所
+# jn6_092 | 新聞社のことば 35（1級）
+renewable|a||再生可能な
+reshuffle|n||内閣改造
+resist|v||抵抗する
+rural|a||田舎の
+# jn6_093 | 新聞社のことば 36（1級）
+scrutiny|n||綿密な調査
+senator|n||上院議員
+sequence|v||（遺伝子を）解読する・連続
+steel|n||鋼鉄
+# jn6_094 | 新聞社のことば 37（1級）
+sugary|a||糖分の多い
+supply|v|supplies|供給する
+swamp|v||水浸しにする・沼地
+tumble|v||急落する・転ぶ
+# jn6_095 | 新聞社のことば 38（1級）
+unjust|a||不当な
+unstable|a||不安定な
+widen|v|widens|広げる
+wiretap|n||盗聴
+# jn6_096 | 新聞社のことば 39（1級）
+bribe|v|bribed|賄賂を贈る
+lawful|a|lawfully|合法の
+producer|n||生産者
+saving|n||節約・貯金
+# jn6_097 | 新聞社のことば 40（1級）
+inflammatory|a||扇動的な
+fairly|d||公平に・かなり
+cheer|v||歓声をあげる
+allegation|n|allegations|(根拠のない)申し立て
+# jn6_098 | 新聞社のことば 41（1級）
+remark|n|remarks|発言・意見
+vague|a||あいまいな
+kill|v|killed,kills|殺す
+resignation|n||辞職
 `;
-const EXTRA_FORMS: Record<string, string[]> = {"ad":["ads"],"on":["ones"],"girl":["girls"],"job":["jobs"],"monday":["Monday's","monday's","mondays"],"tuesday":["Tuesday's","tuesday's","tuesdays"],"in_saturday":["Saturday's","saturday's","saturdays"],"open":["opening"],"tomorrow":["tomorrow's"],"complete":["completes"],"yesterday":["yesterday's"],"school":["schools"],"doctor":["doctors"],"go":["gone"],"look":["looked"],"fall":["fallen","falling","falls"],"agree":["agrees"],"friday":["Friday's","friday's","fridays"],"sell":["selling","sold"],"retire":["retired"],"today":["today's"],"large":["larger"],"company":["company's"],"your":["yours"],"expect":["expected","expects"],"review":["reviewed"],"in_long":["longest"],"spend":["spending"],"old":["older"],"record":["recording"],"last":["lasted"],"in_end":["ended"],"welcome":["welcomed","welcomes"],"fish":["fished","fishing"],"water":["waters"],"clear":["cleared"],"in_question":["questioned"],"start":["starting"],"claim":["claimed","claiming"],"is":["bees"],"family":["family's"],"rule":["ruled","ruling"],"house":["houses","housing"],"face":["faces","facing"],"reject":["rejects"],"damage":["damages"],"report":["reported","reporting","reports"],"safe":["saves"],"home":["homes"],"child":["children's"],"spread":["spreading"],"warm":["warmer"],"rise":["risen","rises","rising"],"break":["broke"],"park":["parks"],"propose":["proposes"],"candidate":["candidates"],"slow":["slowing","slows"],"melt":["melting"],"case":["cases"],"neighbour":["neighbouring","neighbours"],"unit":["united"],"clean":["cleaned","cleaner","cleans"],"force":["forces","forcing"],"worry":["worries"],"bank":["banks"],"town":["town's"],"inn":["inns"],"result":["results"],"begin":["begins"],"club":["club's"],"in_sit":["sites"],"spoil":["spoils"],"sea":["seas"],"declare":["declared","declares"],"announce":["announces"],"receive":["receives"],"file":["filed"],"form":["formed"],"strike":["striking"],"in_museum":["museum's"],"board":["board's"],"fine":["fined"],"patient":["patients'"],"control":["controls"],"great":["greatest"],"excuse":["excuses"],"in_guide":["guided"],"hundred":["hundreds"],"finish":["finishing"],"correct":["correcting"],"they":["theirs"],"apply":["applied"],"employ":["employed"],"in_explain":["explaining"],"inform":["informed"],"ask":["asking"],"accept":["accepts"],"cover":["covering"],"week":["week's"],"take":["takings"],"draw":["drawing"],"read":["reading"],"estimate":["estimated"],"follow":["followed"],"own":["owned"],"show":["shown"],"will":["willing"],"contact":["contacting"],"client":["client's"],"interview":["interviewed"],"submit":["submitted"],"teacher":["teachers"],"speak":["speaking"],"in_side":["sided"],"harbour":["harbour's"],"miss":["missing"],"soon":["sooner"],"quote":["quoted"],"wednesday":["Wednesday's"],"thursday":["Thursday's"],"sunday":["Sunday's"]};
+const EXTRA_FORMS: Record<string, string[]> = {"ad":["ads"],"girl":["girls"],"job":["jobs"],"monday":["Monday's","monday's","mondays"],"tuesday":["Tuesday's","tuesday's","tuesdays"],"in_saturday":["Saturday's","saturday's","saturdays"],"open":["opening"],"tomorrow":["tomorrow's"],"complete":["completes"],"yesterday":["yesterday's"],"school":["schools"],"doctor":["doctors"],"go":["gone"],"look":["looked"],"fall":["fallen","falling","falls"],"agree":["agrees"],"friday":["Friday's","friday's","fridays"],"sell":["selling","sold"],"retire":["retired"],"today":["today's"],"large":["larger"],"company":["company's"],"your":["yours"],"expect":["expected","expects"],"review":["reviewed"],"in_long":["longest"],"spend":["spending"],"old":["older"],"record":["recording"],"last":["lasted"],"in_end":["ended"],"welcome":["welcomed","welcomes"],"fish":["fished","fishing"],"water":["waters"],"clear":["cleared"],"in_question":["questioned"],"start":["starting"],"claim":["claimed","claiming"],"is":["bees"],"family":["family's"],"rule":["ruled","ruling"],"house":["houses","housing"],"face":["faces","facing"],"reject":["rejects"],"damage":["damages"],"report":["reported","reporting","reports"],"safe":["saves"],"home":["homes"],"child":["children's"],"spread":["spreading"],"warm":["warmer"],"rise":["risen","rises","rising"],"break":["broke"],"park":["parks"],"propose":["proposes"],"candidate":["candidates"],"slow":["slowing","slows"],"melt":["melting"],"case":["cases"],"neighbour":["neighbouring","neighbours"],"unit":["united"],"clean":["cleaned","cleaner","cleans"],"force":["forces","forcing"],"worry":["worries"],"bank":["banks"],"town":["town's"],"inn":["inns"],"result":["results"],"begin":["begins"],"club":["club's"],"in_sit":["sites"],"spoil":["spoils"],"sea":["seas"],"declare":["declared","declares"],"announce":["announces"],"receive":["receives"],"file":["filed"],"form":["formed"],"strike":["striking"],"in_museum":["museum's"],"board":["board's"],"fine":["fined"],"patient":["patients'"],"control":["controls"],"great":["greatest"],"excuse":["excuses"],"in_guide":["guided"],"hundred":["hundreds"],"finish":["finishing"],"correct":["correcting"],"they":["theirs"],"apply":["applied"],"employ":["employed"],"in_explain":["explaining"],"inform":["informed"],"ask":["asking"],"accept":["accepts"],"cover":["covering"],"week":["week's"],"take":["takings"],"draw":["drawing"],"read":["reading"],"estimate":["estimated"],"follow":["followed"],"own":["owned"],"show":["shown"],"will":["willing"],"contact":["contacting"],"client":["client's"],"interview":["interviewed"],"submit":["submitted"],"teacher":["teachers"],"speak":["speaking"],"in_side":["sided"],"harbour":["harbour's"],"miss":["missing"],"soon":["sooner"],"quote":["quoted"],"wednesday":["Wednesday's"],"thursday":["Thursday's"],"sunday":["Sunday's"]};
 // generated by tools/tags.ts: phrases (phrases.json ids) and grammar points (grammar.json ids) found in the task's own texts
 const TAGS: Record<string, { p?: string[]; g?: string[] }> = {"n1_first":{"p":["ph-5-0002"],"g":["gr-5-011"]},"n1_photo":{"p":["ph-5-0159"],"g":["gr-5-011"]},"n1_time":{"p":["ph-5-0133"],"g":["gr-5-013","gr-5-015"]},"n1_sport":{"p":["ph-3-0116"],"g":["gr-5-013"]},"n1_age":{"g":["gr-5-011"]},"n1_sunday":{"g":["gr-5-013","gr-5-014"]},"n1_hale":{"p":["ph-5-0014","ph-5-0132"],"g":["gr-5-017"]},"n1_grant":{"g":["gr-5-011"]},"n1_plan":{"p":["ph-5-0159"],"g":["gr-5-013","gr-5-011"]},"n1_ad":{"g":["gr-5-013","gr-5-014"]},"n1_more":{"p":["ph-5-0132","ph-5-0159"],"g":["gr-4-002","gr-5-011"]},"n1_boys":{"g":["gr-5-011"]},"n1_office":{"p":["ph-5-0023","ph-5-0132"],"g":["gr-3-005","gr-4-026"]},"n1_caption":{"p":["ph-5-0132"],"g":["gr-5-013"]},"n1_tan":{"g":["gr-5-011"]},"n1_headline":{"p":["ph-5-0132"],"g":["gr-5-013"]},"n1_ok":{"g":["gr-5-011"]},"n1_visit":{"p":["ph-5-0023"],"g":["gr-5-015","gr-5-011"]},"n1_letters":{"p":["ph-5-0023","ph-5-0081"],"g":["gr-4-008","gr-5-011"]},"n2_sort1":{"g":["gr-4-002","gr-5-011"]},"n2_visitors":{"g":["gr-5-017","gr-5-011"]},"n2_tickets":{"g":["gr-pre2-015","gr-4-002"]},"n2_accident":{"g":["gr-5-017","gr-5-011"]},"n2_winner":{"g":["gr-5-013"]},"n2_temp":{"g":["gr-5-011"]},"n2_mayor":{"p":["ph-5-0014"],"g":["gr-4-002","gr-5-015"]},"n2_plan":{"p":["ph-5-0159"],"g":["gr-4-019","gr-5-013"]},"n2_sort2":{"p":["ph-5-0132"],"g":["gr-5-011"]},"n2_library":{"g":["gr-4-002","gr-5-013"]},"n2_ok":{"g":["gr-4-002"]},"n2_wrongday":{"g":["gr-pre2-006","gr-3-005"]},"n2_ad":{"p":["ph-3-0137"],"g":["gr-5-011"]},"n2_year":{"g":["gr-5-013","gr-5-014"]},"n2_quote":{"p":["ph-5-0132"],"g":["gr-4-002","gr-5-011"]},"n2_correct":{"g":["gr-4-002","gr-4-019"]},"n2_sort3":{"p":["ph-5-0159"],"g":["gr-5-011"]},"n2_late":{"p":["ph-5-0039"],"g":["gr-pre2-056","gr-4-002"]},"n2_headline2":{"g":["gr-4-002","gr-5-013"]},"n3_vote":{"g":["gr-5-011"]},"n3_hale":{"p":["ph-3-0170"],"g":["gr-3-014","gr-4-003"]},"n3_trial":{"p":["ph-5-0002"],"g":["gr-5-011"]},"n3_headline1":{"g":["gr-2-030","gr-3-005"]},"n3_ribbon":{"p":["ph-5-0159"],"g":["gr-5-011"]},"n3_hospital":{"p":["ph-4-0140"],"g":["gr-4-002"]},"n3_plan1":{"p":["ph-5-0159"],"g":["gr-4-019"]},"n3_fish":{"g":["gr-3-030"]},"n3_gap1":{"g":["gr-5-013"]},"n3_sort1":{"g":["gr-4-002"]},"n3_exhibit":{"g":["gr-4-007","gr-4-019"]},"n3_quote":{"g":["gr-4-002","gr-4-006"]},"n3_complaint":{"p":["ph-5-0014"],"g":["gr-pre2-006","gr-4-002"]},"n3_budget":{"g":["gr-3-002"]},"n3_caption1":{"g":["gr-5-013"]},"n3_phone2":{"g":["gr-2-056"]},"n3_wonder":{"p":["ph-pre2-0111"],"g":["gr-4-002","gr-4-019"]},"n3_sort2":{"p":["ph-pre2-0016"],"g":["gr-pre2-031","gr-4-020"]},"n3_ok1":{"p":["ph-pre2-0174"],"g":["gr-2-058"]},"n3_contradict1":{"p":["ph-5-0133"],"g":["gr-4-002"]},"n3_reader":{"p":["ph-5-0014"],"g":["gr-3-002","gr-3-014"]},"n3_unemployment":{"p":["ph-2-0159"],"g":["gr-2-056","gr-3-002"]},"n3_headline2":{"p":["ph-2-0159"],"g":["gr-2-056","gr-pre2-006"]},"n3_ok2":{"g":["gr-5-011"]},"n3_review":{"p":["ph-5-0014"],"g":["gr-2-056"]},"n3_sort3":{"p":["ph-pre2-0273"],"g":["gr-pre2-006","gr-4-002"]},"n3_say1":{"p":["ph-5-0061"],"g":["gr-4-002"]},"n3_trial_notes":{"g":["gr-5-011"]},"n3_gap2":{"p":["ph-5-0132"],"g":["gr-pre2-013"]},"n3_say2":{"p":["ph-4-0141"],"g":["gr-4-002","gr-4-007"]},"n3_weather":{"g":["gr-5-011"]},"n3_pollution":{"p":["ph-pre2-0364"],"g":["gr-2-052","gr-pre2-052"]},"n3_plan2":{"p":["ph-5-0159"],"g":["gr-pre2-052","gr-4-019"]},"n3_quote_ask":{"p":["ph-3-0065"],"g":["gr-4-008","gr-4-019"]},"n3_tax":{"g":["gr-2-056","gr-3-002"]},"n3_phone3":{"p":["ph-4-0141"],"g":["gr-3-002","gr-4-002"]},"n3_contradict2":{"p":["ph-pre2-0202","ph-3-0103"],"g":["gr-4-002","gr-4-003"]},"n3_sort4":{"p":["ph-3-0170"],"g":["gr-4-002","gr-4-020"]},"n3_hale2":{"p":["ph-3-0083","ph-3-0159"],"g":["gr-pre2-061","gr-4-002"]},"n3_sport":{"g":["gr-5-011"]},"n3_gap3":{"g":["gr-pre2-033","gr-4-019"]},"n3_caption2":{"g":["gr-5-013"]},"n3_say3":{"p":["ph-5-0051"],"g":["gr-5-015"]},"n3_age":{"g":["gr-5-011"]},"n3_sort5":{"p":["ph-5-0103"],"g":["gr-4-002"]},"n4_inquiry":{"g":["gr-4-002"]},"n4_deficit":{"p":["ph-3-0103"],"g":["gr-pre2-050","gr-pre2-015"]},"n4_sort1":{"p":["ph-4-0128"],"g":["gr-3-030"]},"n4_hale":{"p":["ph-5-0132"],"g":["gr-4-003"]},"n4_survey":{"g":["gr-2-056","gr-3-002"]},"n4_phone1":{"p":["ph-4-0141"],"g":["gr-3-002"]},"n4_headline1":{"g":["gr-3-002","gr-3-014"]},"n4_plan1":{"p":["ph-5-0159"],"g":["gr-5-013"]},"n4_quote":{"p":["ph-pre2-0241"],"g":["gr-2-030","gr-pre2-006"]},"n4_contradict1":{"p":["ph-5-0132"],"g":["gr-2-056","gr-3-005"]},"n4_source":{"g":["gr-3-005"]},"n4_sort2":{"p":["ph-5-0103"],"g":["gr-pre2-006"]},"n4_waiting":{"g":["gr-3-002"]},"n4_complaint":{"p":["ph-3-0159"],"g":["gr-pre2-031","gr-pre2-006"]},"n4_phone2":{"p":["ph-4-0141"],"g":["gr-pre2-031","gr-3-005"]},"n4_correct":{"p":["ph-3-0159"],"g":["gr-pre2-006"]},"n4_reader1":{"g":["gr-2-056","gr-pre2-006"]},"n4_sort3":{"p":["ph-5-0166"],"g":["gr-4-002"]},"n4_percent":{"g":["gr-2-056"]},"n4_say1":{"g":["gr-2-030","gr-pre2-064"]},"n4_caption":{"g":["gr-3-005"]},"n4_headline2":{"g":["gr-pre2-065","gr-3-002"]},"n4_budget":{"g":["gr-3-002"]},"n4_reader2":{"g":["gr-2-045"]},"n4_sort4":{"p":["ph-pre2-0364"],"g":["gr-3-007"]},"n4_phone3":{"p":["ph-pre2-0092","ph-pre2-0289"],"g":["gr-5-011"]},"n4_ok2":{"g":["gr-pre2-031"]},"n4_condition":{"p":["ph-pre1-0448","ph-2-0152"],"g":["gr-3-018"]},"n4_dates":{"g":["gr-5-011"]},"n4_contradict2":{"p":["ph-5-0132"],"g":["gr-4-002"]},"n4_say2":{"p":["ph-5-0061"],"g":["gr-4-002"]},"n4_plan2":{"p":["ph-2-0164"],"g":["gr-2-019","gr-pre2-015"]},"n4_survey2":{"g":["gr-2-056"]},"n4_headline3":{"g":["gr-2-056","gr-3-005"]},"n4_sort5":{"g":["gr-pre2-006"]},"n4_reader3":{"p":["ph-pre2-0202"],"g":["gr-pre2-052","gr-pre2-006"]},"n4_trial":{"g":["gr-5-011"]},"n4_say3":{"p":["ph-5-0014"],"g":["gr-4-002"]},"n4_quote2":{"g":["gr-3-002"]},"n4_gap1":{"g":["gr-2-023","gr-pre2-033"]},"n4_phone4":{"p":["ph-4-0131"],"g":["gr-2-056"]},"n4_review":{"g":["gr-4-019"]},"n4_ok3":{"p":["ph-pre2-0174"],"g":["gr-2-058"]},"n4_sort6":{"g":["gr-3-002","gr-3-007"]},"n5_lawsuit":{"p":["ph-4-0096"],"g":["gr-pre2-006","gr-pre2-034"]},"n5_verdict":{"g":["gr-2-030"]},"n5_sort1":{"g":["gr-3-002"]},"n5_apology":{"p":["ph-pre1-0448","ph-2-0152"],"g":["gr-1-032"]},"n5_recount":{"g":["gr-5-011"]},"n5_phone1":{"p":["ph-pre1-0297"],"g":["gr-pre1-016","gr-pre2-031"]},"n5_headline1":{"g":["gr-pre1-024"]},"n5_plan1":{"p":["ph-5-0159"],"g":["gr-4-002"]},"n5_contradict1":{"g":["gr-pre2-028","gr-pre2-001"]},"n5_reader1":{"g":["gr-1-004","gr-2-015"]},"n5_sort2":{"g":["gr-4-002"]},"n5_bankruptcy":{"g":["gr-2-056"]},"n5_source":{"p":["ph-pre1-0448"],"g":["gr-pre2-056"]},"n5_quote":{"p":["ph-pre1-0185"],"g":["gr-pre2-006"]},"n5_gap1":{"g":["gr-1-030"]},"n5_headline2":{"g":["gr-2-056"]},"n5_phone2":{"p":["ph-2-0029"],"g":["gr-3-002"]},"n5_complaint":{"p":["ph-3-0019"],"g":["gr-pre2-006","gr-pre2-010"]},"n5_age":{"g":["gr-5-011"]},"n5_contradict2":{"g":["gr-2-052","gr-pre2-052"]},"n5_sort3":{"g":["gr-pre2-015"]},"n5_say1":{"g":["gr-1-004","gr-2-015"]},"n5_pension":{"g":["gr-2-056"]},"n5_reader2":{"p":["ph-3-0159"],"g":["gr-2-016","gr-pre2-031"]},"n5_headline3":{"g":["gr-pre2-006","gr-pre2-061"]},"n5_caption":{"g":["gr-4-019"]},"n5_gap2":{"g":["gr-1-004","gr-2-015"]},"n5_phone3":{"p":["ph-4-0141"],"g":["gr-3-005"]},"n5_plan2":{"p":["ph-5-0159"],"g":["gr-3-005"]},"n5_say2":{"p":["ph-3-0154"],"g":["gr-pre2-001","gr-pre2-010"]},"n5_deficit":{"g":["gr-5-011"]},"n5_reader3":{"g":["gr-1-018","gr-pre2-006"]},"n5_sort4":{"g":["gr-4-002"]},"n5_ok2":{"p":["ph-3-0159"],"g":["gr-3-005"]},"n5_review":{"p":["ph-pre1-0452"],"g":["gr-2-012","gr-pre2-056"]},"n5_contradict3":{"p":["ph-4-0096"],"g":["gr-2-056","gr-pre2-031"]},"n5_poll":{"g":["gr-2-056"]},"n5_gap3":{"g":["gr-3-002"]},"n5_say3":{"g":["gr-3-002"]},"n5_phone4":{"p":["ph-2-0226"],"g":["gr-pre2-006"]},"n5_headline4":{"g":["gr-pre1-016","gr-2-030"]},"n5_tax":{"g":["gr-2-056","gr-pre2-056"]},"n5_sort5":{"g":["gr-1-025","gr-pre2-006"]},"n5_anniversary":{"g":["gr-pre2-061"]},"news1#0":{"p":["ph-5-0081"],"g":["gr-4-002","gr-4-008"]},"news1#1":{"p":["ph-5-0025"]},"news1#2":{"p":["ph-5-0014"],"g":["gr-4-002"]},"news1#3":{"p":["ph-5-0014"]},"news1#5":{"g":["gr-4-002"]},"news1#7":{"p":["ph-5-0085"],"g":["gr-5-015"]},"news1#8":{"p":["ph-5-0039","ph-5-0014"],"g":["gr-5-011"]},"mail1#0":{"p":["ph-5-0014"]},"mail1#1":{"g":["gr-5-017"]},"mail1#2":{"g":["gr-4-002"]},"mail1#3":{"p":["ph-5-0023","ph-5-0128"]},"mail1#4":{"p":["ph-5-0023","ph-5-0081"],"g":["gr-4-008","gr-5-015"]},"mail1#5":{"g":["gr-5-017"]},"news2#0":{"g":["gr-4-002","gr-4-007"]},"news2#1":{"g":["gr-4-019","gr-5-013"]},"news2#2":{"g":["gr-5-011"]},"news2#3":{"p":["ph-5-0061"],"g":["gr-4-002","gr-5-015"]},"news2#4":{"p":["ph-5-0081"],"g":["gr-4-008"]},"news2#5":{"g":["gr-3-030"]},"news2#6":{"p":["ph-5-0014"],"g":["gr-4-002"]},"news2#7":{"p":["ph-4-0140"]},"news2#8":{"p":["ph-5-0014"],"g":["gr-5-017"]},"phone2#0":{"p":["ph-5-0002"],"g":["gr-4-008","gr-5-013"]},"phone2#1":{"g":["gr-4-002","gr-5-016"]},"phone2#2":{"p":["ph-pre2-0312"],"g":["gr-5-015"]},"phone2#3":{"g":["gr-4-002","gr-5-011"]},"phone2#4":{"p":["ph-5-0085"],"g":["gr-4-002","gr-5-015"]},"phone2#5":{"p":["ph-5-0014"],"g":["gr-5-017"]},"phone2#6":{"g":["gr-4-002"]},"phone2#7":{"p":["ph-5-0023"],"g":["gr-5-015","gr-5-011"]},"mail2#0":{"p":["ph-5-0014"],"g":["gr-4-002","gr-5-017"]},"mail2#1":{"p":["ph-5-0023"],"g":["gr-4-006","gr-4-007"]},"mail2#2":{"p":["ph-5-0014"],"g":["gr-4-002"]},"mail2#3":{"p":["ph-5-0039"],"g":["gr-4-002","gr-5-011"]},"mail2#4":{"p":["ph-5-0132"],"g":["gr-5-017","gr-5-020"]},"mail2#5":{"p":["ph-5-0014"],"g":["gr-4-002"]},"mail2#6":{"g":["gr-4-002"]},"news3#0":{"g":["gr-4-007"]},"news3#1":{"p":["ph-pre2-0111"],"g":["gr-4-002","gr-4-019"]},"news3#2":{"p":["ph-2-0272","ph-pre2-0157"],"g":["gr-4-002"]},"news3#3":{"p":["ph-2-0494","ph-2-0495"],"g":["gr-4-019"]},"news3#4":{"g":["gr-pre2-052","gr-4-002"]},"news3#5":{"g":["gr-5-013"]},"news3#6":{"g":["gr-2-052"]},"news3#8":{"g":["gr-pre2-052","gr-4-002"]},"news3#9":{"p":["ph-5-0014"],"g":["gr-5-017"]},"phone3#0":{"g":["gr-5-016"]},"phone3#1":{"p":["ph-2-0252","ph-2-0468"],"g":["gr-3-014"]},"phone3#2":{"p":["ph-5-0014"],"g":["gr-2-030","gr-pre2-064"]},"phone3#3":{"g":["gr-4-002","gr-4-007"]},"phone3#4":{"p":["ph-2-0272"],"g":["gr-pre2-034","gr-4-019"]},"phone3#5":{"p":["ph-5-0014"],"g":["gr-4-002"]},"phone3#6":{"p":["ph-4-0051"],"g":["gr-4-002"]},"phone3#7":{"p":["ph-5-0014"],"g":["gr-2-052","gr-4-007"]},"mail3#0":{"p":["ph-5-0014"],"g":["gr-4-007"]},"mail3#1":{"p":["ph-5-0014"],"g":["gr-5-015"]},"mail3#2":{"p":["ph-pre2-0030"],"g":["gr-4-002","gr-4-015"]},"mail3#3":{"p":["ph-5-0014"],"g":["gr-4-002","gr-4-019"]},"mail3#4":{"g":["gr-pre2-006","gr-4-002"]},"mail3#5":{"p":["ph-5-0014"],"g":["gr-4-002"]},"mail3#6":{"g":["gr-3-002"]},"mail3#7":{"p":["ph-5-0014"],"g":["gr-pre2-064","gr-3-005"]},"letter3#0":{"p":["ph-5-0014"],"g":["gr-4-002","gr-4-020"]},"letter3#1":{"g":["gr-4-002"]},"letter3#2":{"p":["ph-2-0149"],"g":["gr-2-043","gr-4-002"]},"letter3#3":{"g":["gr-pre2-015","gr-3-005"]},"letter3#4":{"p":["ph-2-0462"],"g":["gr-3-002","gr-3-005"]},"letter3#5":{"p":["ph-5-0014"],"g":["gr-2-056","gr-pre2-006"]},"gap3#0":{"g":["gr-3-005","gr-4-026"]},"gap3#1":{"g":["gr-4-002"]},"gap3#2":{"g":["gr-pre2-013"]},"gap3#3":{"g":["gr-pre2-033","gr-3-005"]},"gap3#4":{"g":["gr-4-019"]},"gap3#5":{"g":["gr-4-002"]},"gap3#6":{"g":["gr-5-017"]},"gap3#7":{"p":["ph-pre2-0241"],"g":["gr-2-030","gr-3-005"]},"gap3#8":{"g":["gr-3-033"]},"gap3#9":{"g":["gr-3-002","gr-3-021"]},"gap3#11":{"g":["gr-2-030","gr-3-005"]},"proof3#0":{"p":["ph-5-0132"],"g":["gr-2-030","gr-3-005"]},"proof3#1":{"g":["gr-5-017"]},"proof3#2":{"g":["gr-pre2-050","gr-3-005"]},"proof3#4":{"g":["gr-2-056"]},"proof3#5":{"g":["gr-4-002"]},"news4#0":{"g":["gr-2-030","gr-pre2-006"]},"news4#1":{"p":["ph-3-0170"],"g":["gr-3-014"]},"news4#2":{"p":["ph-2-0272"],"g":["gr-pre2-065","gr-3-002"]},"news4#3":{"p":["ph-5-0014"],"g":["gr-4-002"]},"news4#4":{"p":["ph-5-0014"],"g":["gr-2-056"]},"news4#5":{"p":["ph-pre2-0363"],"g":["gr-2-052","gr-pre2-052"]},"news4#6":{"p":["ph-5-0128"],"g":["gr-4-002"]},"news4#7":{"p":["ph-4-0096"],"g":["gr-pre2-034"]},"phone4#0":{"p":["ph-2-0048"],"g":["gr-2-066"]},"phone4#1":{"g":["gr-4-002"]},"phone4#2":{"p":["ph-4-0096"],"g":["gr-pre2-065","gr-pre2-034"]},"phone4#3":{"p":["ph-5-0014"],"g":["gr-4-002"]},"phone4#4":{"p":["ph-4-0101"],"g":["gr-4-006"]},"phone4#5":{"p":["ph-5-0055"],"g":["gr-4-002"]},"phone4#6":{"p":["ph-5-0014"],"g":["gr-3-019"]},"phone4#7":{"p":["ph-5-0085"],"g":["gr-2-052"]},"mail4#0":{"p":["ph-2-0017","ph-2-0029"],"g":["gr-pre2-065","gr-3-002"]},"mail4#1":{"p":["ph-2-0024"],"g":["gr-2-052"]},"mail4#2":{"p":["ph-3-0159"],"g":["gr-pre2-001","gr-3-005"]},"mail4#3":{"p":["ph-5-0014"],"g":["gr-4-002"]},"mail4#4":{"p":["ph-5-0014"],"g":["gr-4-002"]},"mail4#5":{"p":["ph-pre2-0193"],"g":["gr-4-002"]},"mail4#6":{"p":["ph-2-0229"],"g":["gr-3-005"]},"mail4#7":{"p":["ph-5-0014"],"g":["gr-3-005"]},"letter4#0":{"p":["ph-5-0014"],"g":["gr-3-002","gr-3-005"]},"letter4#1":{"p":["ph-5-0014"],"g":["gr-4-006"]},"letter4#2":{"g":["gr-pre2-015"]},"letter4#3":{"g":["gr-3-005","gr-3-007"]},"letter4#4":{"g":["gr-2-045","gr-3-002"]},"letter4#5":{"g":["gr-3-002","gr-3-005"]},"gap4#0":{"g":["gr-pre2-001","gr-3-021"]},"gap4#1":{"g":["gr-pre2-029"]},"gap4#2":{"p":["ph-5-0132"],"g":["gr-3-002","gr-3-005"]},"gap4#3":{"p":["ph-2-0398"]},"gap4#4":{"g":["gr-2-015","gr-pre2-010"]},"gap4#5":{"g":["gr-3-005"]},"gap4#6":{"p":["ph-pre2-0297"],"g":["gr-2-043"]},"gap4#7":{"p":["ph-2-0226"],"g":["gr-pre2-033"]},"gap4#9":{"g":["gr-pre1-034","gr-3-002"]},"proof4#0":{"g":["gr-3-005"]},"proof4#1":{"g":["gr-4-002"]},"proof4#2":{"g":["gr-2-056"]},"proof4#3":{"g":["gr-pre2-031","gr-3-007"]},"proof4#4":{"g":["gr-pre2-052","gr-3-002"]},"proof4#5":{"g":["gr-4-002"]},"news5#0":{"g":["gr-1-004","gr-2-015"]},"news5#1":{"p":["ph-5-0132"],"g":["gr-2-001","gr-pre2-001"]},"news5#2":{"p":["ph-pre1-0460"],"g":["gr-2-052"]},"news5#3":{"g":["gr-3-002"]},"news5#4":{"g":["gr-4-002"]},"news5#5":{"p":["ph-2-0272"],"g":["gr-1-018","gr-1-001"]},"news5#6":{"g":["gr-2-023","gr-2-059"]},"news5#7":{"p":["ph-5-0014"],"g":["gr-5-017"]},"phone5#0":{"p":["ph-5-0004"],"g":["gr-2-045"]},"phone5#1":{"p":["ph-5-0014"],"g":["gr-2-030","gr-pre2-064"]},"phone5#2":{"p":["ph-1-0022"],"g":["gr-2-059"]},"phone5#3":{"p":["ph-5-0085"],"g":["gr-pre2-065","gr-pre2-052"]},"phone5#4":{"p":["ph-2-0047"],"g":["gr-pre2-034"]},"phone5#5":{"p":["ph-5-0055"],"g":["gr-1-004","gr-2-015"]},"phone5#6":{"g":["gr-4-020"]},"phone5#7":{"p":["ph-5-0014"],"g":["gr-3-019"]},"mail5#0":{"p":["ph-2-0048"],"g":["gr-2-066"]},"mail5#1":{"p":["ph-2-0471"],"g":["gr-1-006","gr-1-033"]},"mail5#2":{"p":["ph-3-0159"],"g":["gr-pre2-015"]},"mail5#3":{"g":["gr-2-045","gr-pre2-031"]},"mail5#4":{"p":["ph-5-0014"],"g":["gr-pre2-015"]},"mail5#5":{"p":["ph-2-0149"],"g":["gr-2-043","gr-pre2-015"]},"mail5#6":{"p":["ph-pre2-0289"],"g":["gr-3-002"]},"mail5#7":{"p":["ph-2-0017","ph-2-0047"],"g":["gr-2-030","gr-2-052"]},"letter5#0":{"g":["gr-2-043"]},"letter5#1":{"p":["ph-pre1-0452"],"g":["gr-pre2-056"]},"letter5#2":{"g":["gr-5-013"]},"letter5#3":{"p":["ph-5-0014"],"g":["gr-pre2-006"]},"letter5#4":{"p":["ph-1-0079","ph-pre1-0282"],"g":["gr-3-007"]},"letter5#5":{"p":["ph-pre1-0461"],"g":["gr-2-045"]},"gap5#0":{"g":["gr-1-001","gr-2-012"]},"gap5#1":{"g":["gr-5-017"]},"gap5#2":{"g":["gr-1-004","gr-2-015"]},"gap5#3":{"g":["gr-2-043"]},"gap5#4":{"g":["gr-4-020"]},"gap5#5":{"g":["gr-pre2-010"]},"gap5#6":{"g":["gr-pre2-013"]},"gap5#7":{"g":["gr-pre2-029"]},"gap5#8":{"g":["gr-pre2-001"]},"gap5#9":{"g":["gr-5-017"]},"proof5#0":{"g":["gr-2-056","gr-pre2-006"]},"proof5#1":{"g":["gr-2-030"]},"proof5#2":{"g":["gr-2-056","gr-pre2-006"]},"proof5#3":{"g":["gr-5-017"]},"proof5#4":{"g":["gr-pre2-031"]},"proof5#5":{"g":["gr-3-005"]},"nt1_sort":{"p":["ph-3-0116","ph-5-0132"],"g":["gr-5-016","gr-5-011"]},"nt1_age":{"g":["gr-5-011"]},"nt1_place":{"p":["ph-5-0159"],"g":["gr-5-011"]},"nt1_boys":{"g":["gr-5-011"]},"nt1_pad":{"g":["gr-5-011"]},"nt1_plan":{"p":["ph-5-0014","ph-5-0159"],"g":["gr-5-013","gr-5-011"]},"nt1_ask":{"g":["gr-4-002","gr-4-008"]},"nt1_mail":{"g":["gr-5-017","gr-4-002"]},"nt2_sort":{"p":["ph-5-0132"],"g":["gr-pre2-056","gr-4-002"]},"nt2_visitors":{"g":["gr-5-011"]},"nt2_temp":{"g":["gr-5-011"]},"nt2_quote":{"p":["ph-5-0132"],"g":["gr-4-002","gr-5-011"]},"nt2_ad":{"g":["gr-5-011"]},"nt2_pad":{"g":["gr-5-017","gr-5-011"]},"nt2_plan":{"p":["ph-5-0014"],"g":["gr-4-019","gr-5-013"]},"nt2_say":{"g":["gr-4-002","gr-4-007"]},"nt2_phone":{"g":["gr-4-002","gr-5-015"]},"nt2_mail":{"g":["gr-4-002","gr-5-017"]},"nt3_sort":{"p":["ph-2-0159","ph-pre2-0273"],"g":["gr-2-030","gr-2-056"]},"nt3_vote":{"g":["gr-5-017"]},"nt3_budget":{"g":["gr-4-003"]},"nt3_trial":{"g":["gr-5-011"]},"nt3_caption":{"g":["gr-4-006"]},"nt3_tax":{"g":["gr-3-002"]},"nt3_match":{"g":["gr-5-011"]},"nt3_pad":{"p":["ph-4-0141"],"g":["gr-3-002","gr-4-002"]},"nt3_pad2":{"g":["gr-2-056"]},"nt3_plan":{"p":["ph-pre2-0292"],"g":["gr-pre2-052","gr-3-030"]},"nt3_say":{"g":["gr-4-002","gr-4-019"]},"nt3_phone":{"g":["gr-4-002","gr-4-007"]},"nt3_mail":{"g":["gr-4-002","gr-4-007"]},"nt3_letter":{"g":["gr-4-002","gr-3-005"]},"nt3_gap":{"g":["gr-3-005","gr-4-002"]},"nt3_proof":{"g":["gr-3-005","gr-2-030"]},"nt4_sort":{"p":["ph-pre1-0389"],"g":["gr-pre2-050","gr-3-002"]},"nt4_survey":{"g":["gr-3-005"]},"nt4_spending":{"g":["gr-3-002"]},"nt4_inquiry":{"g":["gr-5-011"]},"nt4_dates":{"g":["gr-5-011"]},"nt4_court":{"g":["gr-5-011"]},"nt4_quote":{"g":["gr-3-002"]},"nt4_pad":{"p":["ph-4-0141"],"g":["gr-2-030","gr-pre2-064"]},"nt4_plan":{"p":["ph-5-0014"],"g":["gr-4-003"]},"nt4_say":{"g":["gr-4-002","gr-2-030"]},"nt4_phone":{"g":["gr-4-002","gr-2-066"]},"nt4_mail":{"g":["gr-3-005","gr-4-002"]},"nt4_letter":{"g":["gr-3-002","gr-3-005"]},"nt4_gap":{"g":["gr-3-002","gr-3-005"]},"nt4_proof":{"g":["gr-4-002","gr-3-005"]},"nt5_sort":{"p":["ph-1-0029","ph-pre1-0020"],"g":["gr-pre1-032","gr-2-030"]},"nt5_poll":{"g":["gr-5-011"]},"nt5_accounts":{"g":["gr-5-011"]},"nt5_claim":{"g":["gr-3-002"]},"nt5_recount":{"g":["gr-3-002"]},"nt5_caption":{"g":["gr-2-056"]},"nt5_obit":{"g":["gr-5-011"]},"nt5_pad":{"p":["ph-1-0321"],"g":["gr-3-005"]},"nt5_plan":{"p":["ph-5-0014"],"g":["gr-3-005"]},"nt5_say":{"g":["gr-1-004","gr-2-015"]},"nt5_phone":{"g":["gr-2-045","gr-2-030"]},"nt5_mail":{"g":["gr-pre2-015","gr-2-066"]},"nt5_letter":{"g":["gr-2-043","gr-pre2-056"]},"nt5_gap":{"g":["gr-5-017","gr-1-001"]},"nt5_proof":{"g":["gr-2-056","gr-pre2-006"]},"nt2_sort2":{"p":["ph-3-0116","ph-3-0115"],"g":["gr-pre2-006","gr-3-002"]},"nt3_sort2":{"p":["ph-2-0159","ph-3-0141"],"g":["gr-2-056","gr-pre2-006"]},"nt4_sort2":{"p":["ph-2-0389"],"g":["gr-pre2-050","gr-3-002"]},"nt5_sort2":{"p":["ph-pre1-0163","ph-pre1-0389"],"g":["gr-pre1-024","gr-pre1-032"]}};
 

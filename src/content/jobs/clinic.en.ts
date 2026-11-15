@@ -1959,638 +1959,542 @@ const LINES: JobContent['lines'] = [
 ];
 // ---------------------------------------------------------------------------------------------- generated lexicon (tools/genlex.ts)
 const LEX_SRC = `
-# jc1_01 | 診療所のことば 1（3級）
-cry|v|cries,crying|泣く・叫ぶ||
-lot|n||たくさん||
-dentist|n||歯科医||
-general|a||一般的な||
-# jc1_02 | 診療所のことば 2（3級）
-mouth|n||口||
-leg|n|legs|脚||
-skin|n||皮膚||
-prescription|n|prescriptions|処方箋||
-# jc2_01 | 診療所のことば 1（準2級）
-tablet|n|tablets|錠剤||
-pick|v||選ぶ・取りに行く||
-beat|v|beating,beats|打つ・鼓動する||
-chest|n||胸||
-# jc2_02 | 診療所のことば 2（準2級）
-dose|n||服用量||
-bone|n||骨||
-bend|v||曲げる||
-owe|v|owed|借りている・支払う義務がある||
-# jc2_03 | 診療所のことば 3（準2級）
-shoulder|n||肩||
-tight|a||きつい・つまった||
-ache|n|aches,aching|痛み||
-ankle|n|ankles|足首||
-# jc2_04 | 診療所のことば 4（準2級）
-bandage|n|bandages|包帯||
-blister|n|blisters|水ぶくれ||
-heel|n||かかと||
-hip|n||股関節・腰||
-# jc2_05 | 診療所のことば 5（準2級）
-itchy|a||かゆい||
-painful|a||痛い||
-painkiller|n|painkillers|鎮痛剤||
-sprain|v|sprained|（足首などを）くじく||
-# jc2_06 | 診療所のことば 6（準2級）
-stiff|a||硬い||
-sunburn|n||日焼け||
-toddler|n||よちよち歩きをしはじめた幼児||
-wrist|n||手首||
-# jc2_07 | 診療所のことば 7（準2級）
-student|n||学生||
-toe|n||足の指||
-pharmacist|n||薬剤師||
-blood|n||血||
-# jc3_01 | 診療所のことば 1（2級）
-drowsy|a||眠気を催す||
-scan|n|scanned,scans|検査・スキャン||
-ointment|n||軟膏||
-breathe|v||呼吸する||
-# jc3_02 | 診療所のことば 2（2級）
-syrup|n||シロップ||
-lecture|n|lectures|講義||
-knee|n|knees|ひざ||
-leaflet|n||ちらし||
-# jc3_03 | 診療所のことば 3（2級）
-wheelchair|n|wheelchairs|車いす||
-sticker|n||ステッカー||
-injection|n||注射||
-shot|n||注射・発砲||
-# jc3_04 | 診療所のことば 4（2級）
-swallow|v|swallowed|飲み込む||
-tetanus|n||破傷風||
-whooping|a||ヒューと息を吸う||
-bee|n||ハチ||
-# jc3_05 | 診療所のことば 5（2級）
-bleed|v|bleeding,bleeds|出血する||
-cholesterol|n||コレステロール||
-faint|a|fainted|ふらつく・かすかな||
-pill|n|pills|錠剤||
-# jc3_06 | 診療所のことば 6（2級）
-properly|d||適切に||
-sting|v|stung|刺す||
-sudden|a||突然の||
-sweat|v|sweating|汗をかく||
-# jc3_07 | 診療所のことば 7（2級）
-elbow|n||ひじ||
-ultrasound|n||超音波検査||
-bit|n||少し||
-blur|v|blurred|ぼやけさせる||
-# jc3_08 | 診療所のことば 8（2級）
-brush|v||歯をみがく・ブラシをかける||
-burn|n|burned,burns|やけど||
-feed|v||乳を飲む・食べさせる||
-gum|n|gums|歯ぐき・ガム||
-# jc3_09 | 診療所のことば 9（2級）
-scratch|n|scratched|ひっかき傷||
-twist|v|twisted|ひねる||
-anemia|n||貧血||
-booster|n||（ワクチンの）追加接種||
-# jc3_10 | 診療所のことば 10（2級）
-breath|n|breathing|息||
-copayment|n||自己負担金||
-generic|a||ジェネリックの・一般的な||
-inhale|v|inhaled,inhaler|吸い込む||
-# jc3_11 | 診療所のことば 11（2級）
-installment|n|installments|分割払い込み金||
-insulin|n||インスリン||
-itemize|v|itemized|項目別に書く||
-lung|n|lungs|肺||
-# jc3_12 | 診療所のことば 12（2級）
-medical|a||医療の||
-physiotherapy|n||理学療法||
-refill|n||（薬の）補充||
-stuck|a||はまった・動かない||
-# jc3_13 | 診療所のことば 13（2級）
-update|v|updated|更新する||
-vision|n||視力||
-watery|a||涙ぐんだ||
-wisdom|n||知恵（wisdom toothは親知らず）||
-# jc3_14 | 診療所のことば 14（2級）
-adjust|v|adjuster|調整する||
-antihistamine|n||抗ヒスタミン薬||
-antiseptic|n||消毒薬||
-around|p||～のまわりに||
-# jc3_15 | 診療所のことば 15（2級）
-bark|n||ほえ声・樹皮||
-bite|v|bitten|かむ・刺す||
-chickenpox|n||水ぼうそう||
-constipated|a||便秘の||
-# jc3_16 | 診療所のことば 16（2級）
-cramp|n|cramps|けいれん||
-deep|d||深く||
-eczema|n||湿疹||
-eyelid|n||まぶた||
-# jc3_17 | 診療所のことば 17（2級）
-finger|n|fingers|指||
-flash|v|flashing|ぴかっと光る||
-fracture|n||骨折||
-hay|n||干し草（hay feverは花粉症）||
-# jc3_18 | 診療所のことば 18（2級）
-heartburn|n||胸焼け||
-hepatitis|n||肝炎||
-hives|n||じんましん||
-kin|n||親族||
-# jc3_19 | 診療所のことば 19（2級）
-lip|n|lips|くちびる||
-lozenge|n|lozenges|（のどの）トローチ||
-lump|n||しこり・塊||
-migraine|n|migraines|偏頭痛||
-# jc3_20 | 診療所のことば 20（2級）
-mumps|n||おたふくかぜ||
-numb|a||しびれた||
-plaster|n|plasters|絆創膏（英）・しっくい||
-pneumonia|n||肺炎||
-# jc3_21 | 診療所のことば 21（2級）
-rabies|n||狂犬病||
-splint|n||添え木||
-stye|n||ものもらい||
-surcharge|n||追加料金||
-# jc3_22 | 診療所のことば 22（2級）
-swollen|a||腫れた||
-terrible|a||ひどい||
-wart|n||いぼ||
-capsule|n|capsules|カプセル||
-# jc3_23 | 診療所のことば 23（2級）
-acne|n||にきび||
-bug|n||虫（stomach bugは胃腸炎）||
-chill|n|chills|寒気||
-colic|n||（乳児の）疝痛||
-# jc3_24 | 診療所のことば 24（2級）
-dental|a||歯の||
-dislocate|v|dislocated|脱臼させる||
-football|n||フットボール||
-immunization|n|immunizations|予防接種||
-# jc3_25 | 診療所のことば 25（2級）
-jellyfish|n||クラゲ||
-newborn|a||生まれたばかりの||
-nosebleed|n||鼻血||
-quay|n||波止場||
-# jc3_26 | 診療所のことば 26（2級）
-seasickness|n||船酔い||
-spare|a||予備の||
-swell|v|swelling|ふくらむ||
-tongue|n||舌||
-# jc3_27 | 診療所のことば 27（2級）
-voice|n|voices|声||
-wasp|n||スズメバチ||
-explanation|n||説明||
-rarely|d||めったに〜ない||
-# jc3_28 | 診療所のことば 28（2級）
-sneeze|v|sneezing|くしゃみをする||
-vitamin|n|vitamins|ビタミン||
-cheek|n||ほお||
-earache|n||耳痛||
-# jc3_29 | 診療所のことば 29（2級）
-toothache|n||歯痛||
-regular|a||定期的な||
-exercise|v|exercises|運動する||
-muscle|n|muscles|筋肉||
-# jc3_30 | 診療所のことば 30（2級）
-therapist|n||セラピスト||
-thumb|n||親指||
-cloth|n||布||
-bruise|n||打撲傷||
-# jc3_31 | 診療所のことば 31（2級）
-limp|v|limps|足を引きずる||
-itch|v|itches,itching|かゆい||
-click|v|clicks|カチッと鳴る・クリックする||
-wide|a||幅の広い||
-# jc3_32 | 診療所のことば 32（2級）
-grandchild|n||孫||
-relative|n|relative's,relatives|親戚||
-button|n||ボタン||
-cancellation|n||取り消し・キャンセル||
-# jc3_33 | 診療所のことば 33（2級）
-interpreter|n||通訳||
-crutch|n|crutches|松葉づえ||
-ramp|n||傾斜路||
-harm|v|harming|害する||
-# jc4_01 | 診療所のことば 1（準1級）
-repeat|v|repeated|繰り返す||
-consent|n||同意||
-parent|n|parent's,parents|親||
-nose|n||鼻||
-# jc4_02 | 診療所のことば 2（準1級）
-referral|n|referrals|紹介・紹介状||
-drug|n|drugs|薬||
-yearly|a||毎年の||
-assistant|n||助手||
-# jc4_03 | 診療所のことば 3（準1級）
-employer|n||雇い主||
-infection|n|infections|感染||
-rash|n||発疹||
-vomit|v|vomiting|吐く||
-# jc4_04 | 診療所のことば 4（準1級）
-alcohol|n||アルコール||
-suddenly|d||突然||
-ear|n|ears|耳||
-elderly|a||年配の||
-# jc4_05 | 診療所のことば 5（準1級）
-normal|a||普通の||
-certificate|n||証明書||
-physical|a||身体の・健康診断（名詞）||
-afterwards|d||あとで||
-# jc4_06 | 診療所のことば 6（準1級）
-course|n||コース||
-sail|v||航海する||
-symptom|n|symptoms|症状||
-unsure|a||確信がない||
-# jc4_07 | 診療所のことば 7（準1級）
-advice|n||助言||
-appetite|n||食欲||
-option|n|options|選択肢||
-stress|n||ストレス||
-# jc4_08 | 診療所のことば 8（準1級）
-improvement|n||改善||
-asthma|n||喘息||
-diarrhea|n||下痢||
-nausea|n||吐き気||
-# jc4_09 | 診療所のことば 9（準1級）
-severe|a||重い・ひどい||
-usual|a||いつもの||
-breast|n||乳房・胸||
-manage|v||経営する||
-# jc4_10 | 診療所のことば 10（準1級）
-mole|n||ほくろ・モグラ||
-panic|n||パニック||
-patch|n||（皮膚の）部分・当て布||
-pulse|n||脈拍||
-# jc4_11 | 診療所のことば 11（準1級）
-spine|n||背骨||
-authorization|n||承認・許可||
-cardiologist|n||心臓専門医||
-contraception|n||避妊||
-# jc4_12 | 診療所のことば 12（準1級）
-counselor|n||カウンセラー||
-deductible|n||（保険の）自己負担額||
-dementia|n||認知症||
-depressed|a||落ち込んだ・うつ状態の||
-# jc4_13 | 診療所のことば 13（準1級）
-dermatologist|n||皮膚科医||
-discharge|n|discharged|退院・（荷）降ろし||
-droop|v|drooping|垂れ下がる||
-menopause|n||更年期||
-# jc4_14 | 診療所のことば 14（準1級）
-online|a||オンラインの||
-ooze|v|oozing|じくじく出る||
-physiotherapist|n||理学療法士||
-policyholder|n||保険契約者||
-# jc4_15 | 診療所のことば 15（準1級）
-prenatal|a||出産前の||
-prior|a||事前の・前の||
-refer|v|referred|紹介する・言及する||
-respond|v|responding|反応する・返事をする||
-# jc4_16 | 診療所のことば 16（準1級）
-routine|a||定期の・決まりきった||
-settle|v||清算する・落ち着く||
-sinus|n|sinuses|副鼻腔||
-slurred|a||ろれつの回らない||
-# jc4_17 | 診療所のことば 17（準1級）
-smear|n||塗抹（smear testは子宮頸がん検診）||
-speech|n||話し方・演説||
-spouse|n||配偶者||
-teenage|a||10代の||
-# jc4_18 | 診療所のことば 18（準1級）
-tonsil|n|tonsils|扁桃（へんとう）||
-urinary|a||尿の||
-wander|v|wanders|徘徊する・ぶらつく||
-abdominal|a||腹の||
-# jc4_19 | 診療所のことば 19（準1級）
-access|n||利用・閲覧する権利||
-addicted|a||中毒の||
-biopsy|n||生検||
-breastfeed|v|breastfeeding|母乳で育てる||
-# jc4_20 | 診療所のことば 20（準1級）
-caregiver|n||介護者||
-choke|v|choking|息が詰まる||
-claimant|n||請求者||
-cope|v||対処する||
-# jc4_21 | 診療所のことば 21（準1級）
-divorce|n||離婚||
-entitle|v|entitled|権利を与える||
-flashback|n|flashbacks|フラッシュバック||
-gland|n|glands|腺||
-# jc4_22 | 診療所のことば 22（準1級）
-hoarse|a||声がかれた||
-incontinent|a||失禁する||
-loudly|d||大声で||
-motivation|n||やる気||
-# jc4_23 | 診療所のことば 23（準1級）
-neurologist|n||神経科医||
-overpay|v|overpaid|払いすぎる||
-pregnancy|n||妊娠||
-recur|v|recurring|再発する||
-# jc4_24 | 診療所のことば 24（準1級）
-rehabilitation|n||リハビリ||
-seizure|n||発作・押収||
-snore|v||いびきをかく||
-spelling|n||語のつづり方||
-# jc4_25 | 診療所のことば 25（準1級）
-stroke|n||脳卒中||
-surname|n||姓||
-urologist|n||泌尿器科医||
-appendix|n||虫垂・付録||
-# jc4_26 | 診療所のことば 26（準1級）
-cataract|n||白内障||
-hernia|n||ヘルニア||
-bully|v|bullied|いじめる||
-class|n|classes|授業||
-# jc4_27 | 診療所のことば 27（準1級）
-concentrate|v||集中する||
-crush|v|crushing|押しつぶす||
-exhausted|a||疲れ果てた||
-fertility|n||妊娠しやすさ・肥沃さ||
-# jc4_28 | 診療所のことば 28（準1級）
-grieve|v|grieving|深く悲しむ||
-hormone|n||ホルモン||
-kidney|n|kidneys|腎臓||
-license|n||免許（証）||
-# jc4_29 | 診療所のことば 29（準1級）
-lonely|a||孤独な||
-loose|a||ゆるい||
-miscarriage|n||流産||
-nail|n||釘・つめ||
-# jc4_30 | 診療所のことば 30（準1級）
-sense|n||感覚||
-snake|n||ヘビ||
-spell|n|spells|一時的な発作・期間||
-stitch|n|stitches|縫い目・縫合||
-# jc4_31 | 診療所のことば 31（準1級）
-tube|n||管||
-visa|n||ビザ||
-thirteenth|a||13番目の||
-identity|n||身元||
-# jc4_32 | 診療所のことば 32（準1級）
-frightened|a||おびえた||
-surely|d||確かに||
-improve|v||改善する||
-concern|n||心配||
-# jc4_33 | 診療所のことば 33（準1級）
-confidential|a||機密の||
-penicillin|n||ペニシリン||
-beside|p||～のそばに||
-entrance|n||入口||
-# jc4_34 | 診療所のことば 34（準1級）
-outpatient|n||外来患者||
-row|n||列||
-recovery|n||回復||
-shape|n||形||
-# jc4_35 | 診療所のことば 35（準1級）
-pound|n|pounding|ポンド（重さ・通貨）||
-mask|n|masks|マスク||
-monthly|a||毎月の||
-lend|v|lends|貸す||
-# jc4_36 | 診療所のことば 36（準1級）
-rib|n|ribs|肋骨||
-nerve|n||神経||
-shiver|v|shivering|震える||
-dependent|n||扶養家族||
-# jc4_37 | 診療所のことば 37（準1級）
-inpatient|n||入院患者||
-anesthetic|n||麻酔薬||
-stretcher|n||担架||
-exist|v|existed|存在する||
-# jc5_01 | 診療所のことば 1（1級）
-exclusion|n|exclusions|除外||
-fee|n||料金||
-dummy|n||おしゃぶり（英）||
-length|n||長さ||
-# jc5_02 | 診療所のことば 2（1級）
-virus|n||ウイルス||
-attorney|n||弁護士・（power of attorneyで）代理権||
-himself|r||彼自身||
-anxious|a||心配している||
-# jc5_03 | 診療所のことば 3（1級）
-excess|n||免責額・超過||
-premium|n||保険料||
-code|n||コード||
-handle|v|handled|扱う||
-# jc5_04 | 診療所のことば 4（1級）
-inconvenience|n||不便||
-mild|a||穏やかな||
-perfectly|d||完全に||
-wear|v||着る||
-# jc5_05 | 診療所のことば 5（1級）
-disclose|v|disclosed|公開する||
-confused|a||困惑した||
-movement|n||動き||
-pregnant|a||妊娠している||
-# jc5_06 | 診療所のことば 6（1級）
-interact|v||相互作用する||
-prescribe|v|prescribed|処方する||
-easily|d||簡単に||
-round|d||まわって||
-# jc5_07 | 診療所のことば 7（1級）
-dizzy|a||めまいがする||
-examination|n||診察・検査||
-infected|a||感染した||
-reaction|n||反応||
-# jc5_08 | 診療所のことば 8（1級）
-overdose|n||（薬の）過剰摂取||
-tribunal|n||裁判所||
-anxiety|n||不安||
-corridor|n||廊下||
-# jc5_09 | 診療所のことば 9（1級）
-flat|n||アパート（英）||
-lapse|v|lapsed|失効する||
-pale|a||青白い||
-procedure|n|procedures|処置・手順||
-# jc5_10 | 診療所のことば 10（1級）
-equally|d||平等に||
-cast|n||ギプス・配役||
-heavily|d||激しく||
-joint|n|joints|関節||
-# jc5_11 | 診療所のことば 11（1級）
-leak|v||漏れる||
-benefit|n|benefits|給付・利益||
-booklet|n||小冊子||
-cosmetic|a||化粧用の||
-# jc5_12 | 診療所のことば 12（1級）
-eligible|a||資格のある||
-amend|v|amended|修正する||
-anaphylactic|a||アナフィラキシーの||
-antenatal|a||出産前の||
-# jc5_13 | 診療所のことば 13（1級）
-arthritis|n||関節炎||
-audiologist|n||聴覚の専門家||
-bereavement|n||死別||
-burnout|n||燃え尽き症候群||
-# jc5_14 | 診療所のことば 14（1級）
-certify|v|certified|証明する||
-data|n||資料||
-disorder|n||障害||
-elective|a||待機的な（緊急でない）||
-# jc5_15 | 診療所のことば 15（1級）
-exclude|v|excluded,excludes|除外する||
-fade|v||消える・色あせる||
-fatigue|n||疲労||
-fluid|n|fluids|水分・液体||
-# jc5_16 | 診療所のことば 16（1級）
-frail|a||弱々しい||
-ground|n||根拠・地面||
-insomnia|n||不眠症||
-irregular|a||不規則な||
-# jc5_17 | 診療所のことば 17（1級）
-mammogram|n||乳房X線検査||
-management|n||管理・経営||
-maternity|a||産科の・出産の||
-medication|n|medications|薬||
-# jc5_18 | 診療所のことば 18（1級）
-midwife|n||助産師||
-mood|n||気分||
-nasal|a||鼻の||
-nightmare|n|nightmares|悪夢||
-# jc5_19 | 診療所のことば 19（1級）
-numbness|n||しびれ||
-oncologist|n||腫瘍（がん）専門医||
-orthopedic|a||整形外科の||
-palliative|a||緩和ケアの||
-# jc5_20 | 診療所のことば 20（1級）
-persistent|a||長引く・しつこい||
-reimbursement|n||払い戻し||
-respite|n||休息・（介護の）一時預かり||
-screening|n||検診||
-# jc5_21 | 診療所のことば 21（1級）
-septum|n||（鼻の）中隔||
-shock|n||衝撃||
-sinusitis|n||副鼻腔炎||
-site|n||部位・場所||
-# jc5_22 | 診療所のことば 22（1級）
-struggle|v|struggling|苦闘する・もがく||
-suffer|v|suffers|苦しむ||
-teenager|n||ティーンエージャー||
-thyroid|n||甲状腺||
-# jc5_23 | 診療所のことば 23（1級）
-tonsillectomy|n||扁桃摘出手術||
-trimester|n||妊娠の3か月ごとの期間||
-ulcer|n||潰瘍||
-vertigo|n||めまい（回転性）||
-# jc5_24 | 診療所のことば 24（1級）
-waive|v|waived,waiver|免除する||
-widow|n|widower|未亡人||
-abscess|n||膿瘍||
-anonymize|v|anonymized|匿名にする||
-# jc5_25 | 診療所のことば 25（1級）
-assessment|n||評価||
-bedridden|a||寝たきりの||
-calf|n||ふくらはぎ・子牛||
-cardiac|a||心臓の||
-# jc5_26 | 診療所のことば 26（1級）
-cervical|a||子宮頸部の||
-cesarean|n||帝王切開||
-chart|n||表・記録表||
-complication|n|complications|合併症・複雑化||
-# jc5_27 | 診療所のことば 27（1級）
-consultant|n||上級専門医（英）・コンサルタント||
-consultation|n||相談||
-counseling|n||カウンセリング||
-eardrum|n||鼓膜||
-# jc5_28 | 診療所のことば 28（1級）
-exceed|v|exceeds|超える||
-exempt|a||免除された||
-guardian|n||保護者||
-hemorrhage|v|hemorrhaging|大出血する||
-# jc5_29 | 診療所のことば 29（1級）
-lethal|a||致死の||
-lodge|v||（苦情を）申し立てる||
-ombudsman|n||オンブズマン（苦情処理の調停役）||
-pathology|n||病理学||
-# jc5_30 | 診療所のことば 30（1級）
-perforated|a||穴のあいた||
-relieve|v||和らげる||
-remittance|n||送金||
-seek|v|seeks|探す||
-# jc5_31 | 診療所のことば 31（1級）
-suffering|n||苦しみ||
-target|n||目標||
-tonsillitis|n||扁桃炎||
-tremor|n||震え||
-# jc5_32 | 診療所のことば 32（1級）
-twin|n|twins|双子の一人||
-unconscious|a||意識を失った||
-underwriter|n||保険引受人||
-inflamed|a||炎症を起こした||
-# jc5_33 | 診療所のことば 33（1級）
-suspicious|a||疑わしい||
-cognitive|a||認知の||
-deceased|a||亡くなった||
-deletion|n||削除||
-# jc5_34 | 診療所のことば 34（1級）
-depression|n||落ち込み||
-diagnosis|n||診断||
-glue|v||のり（glue earは滲出性中耳炎）||
-grounds|n||理由・根拠||
-# jc5_35 | 診療所のことば 35（1級）
-hardship|n||苦難||
-hysterectomy|n||子宮摘出手術||
-incision|n||切開||
-independent|a||独立した||
-# jc5_36 | 診療所のことば 36（1級）
-jaw|n||あご||
-language|n||言語||
-mobility|n||移動性||
-poison|v|poisoned|毒を盛る||
-# jc5_37 | 診療所のことば 37（1級）
-previous|a||前の||
-radiate|v|radiating|（痛みが）広がる・放射する||
-recurrent|a||繰り返し起こる||
-rupture|v|ruptured|破裂する||
-# jc5_38 | 診療所のことば 38（1級）
-solicitor|n||事務弁護士（英）||
-unpaid|a||未払いの||
-urine|n||尿||
-valuation|n||評価||
-# jc5_39 | 診療所のことば 39（1級）
-wheeze|v|wheezing|ぜいぜいいう||
-guess|v||推測する||
-reduction|n||削減||
-unclear|a||はっきりしない||
-# jc5_40 | 診療所のことば 40（1級）
-receptionist|n||受付係||
-unhelpful|a||役に立たない||
-membership|n||会員であること||
-persist|v|persisted|持続する||
-# jc5_41 | 診療所のことば 41（1級）
-harmless|a||無害な||
-isolate|v||隔離する・孤立させる||
-property|n||財産||
-individual|a||個々の||
-# jc5_42 | 診療所のことば 42（1級）
-accompany|v|accompanied|同行する||
-original|a||もとの||
-compulsory|a||義務の||
-voluntary|a||自発的な||
-# jc5_43 | 診療所のことば 43（1級）
-presence|n||存在||
-shortness|n||息切れ（shortness of breath）・短さ||
-religious|a||宗教の||
-disclosure|n||開示||
-# jc5_44 | 診療所のことば 44（1級）
-adverse|a||不利な||
-protocol|n||手順・規定||
-quarantine|n||検疫||
-weakness|n||弱さ||
-# jc5_45 | 診療所のことば 45（1級）
-liver|n||肝臓||
-unusual|a||普通でない||
-tumor|n||腫瘍||
-negligence|n||過失||
-# jc5_46 | 診療所のことば 46（1級）
-negligent|a||怠慢な||
-settlement|n||和解・示談||
-ethics|n||倫理||
-journalist|n|journalist's|ジャーナリスト||
-# jc5_47 | 診療所のことば 47（1級）
-adopted|a||養子の||
-log|n||記録（ログ）・丸太||
-dosage|n||（薬の）用量||
-locum|n||代理医師||
+# jc2_001 | 診療所のことば ①（3級）
+cry|v|cries,crying|泣く・叫ぶ
+dentist|n||歯科医
+general|a||一般的な
+mouth|n||口
+# jc2_002 | 診療所のことば ②（3級）
+leg|n|legs|脚
+skin|n||皮膚
+prescription|n|prescriptions|処方箋
+# jc3_003 | 診療所のことば ①（準2級）
+tablet|n|tablets|錠剤
+pick|v||選ぶ・取りに行く
+beat|v|beating,beats|打つ・鼓動する
+chest|n||胸
+dose|n||服用量
+# jc3_004 | 診療所のことば ②（準2級）
+bone|n||骨
+bend|v||曲げる
+shoulder|n||肩
+tight|a||きつい・つまった
+# jc3_005 | 診療所のことば ③（準2級）
+ache|n|aches,aching|痛み
+ankle|n|ankles|足首
+bandage|n|bandages|包帯
+blister|n|blisters|水ぶくれ
+# jc3_006 | 診療所のことば ④（準2級）
+heel|n||かかと
+hip|n||股関節・腰
+itchy|a||かゆい
+painful|a||痛い
+painkiller|n|painkillers|鎮痛剤
+# jc3_007 | 診療所のことば ⑤（準2級）
+sprain|v|sprained|（足首などを）くじく
+stiff|a||硬い
+sunburn|n||日焼け
+toddler|n||よちよち歩きをしはじめた幼児
+# jc3_008 | 診療所のことば ⑥（準2級）
+wrist|n||手首
+toe|n||足の指
+pharmacist|n||薬剤師
+blood|n||血
+# jc4_009 | 診療所のことば 1（2級）
+drowsy|a||眠気を催す
+ointment|n||軟膏
+breathe|v||呼吸する
+syrup|n||シロップ
+knee|n|knees|ひざ
+# jc4_010 | 診療所のことば 2（2級）
+wheelchair|n|wheelchairs|車いす
+sticker|n||ステッカー
+injection|n||注射
+shot|n||注射・発砲
+# jc4_011 | 診療所のことば 3（2級）
+swallow|v|swallowed|飲み込む
+tetanus|n||破傷風
+whooping|a||ヒューと息を吸う
+bee|n||ハチ
+# jc4_012 | 診療所のことば 4（2級）
+bleed|v|bleeding,bleeds|出血する
+cholesterol|n||コレステロール
+faint|a|fainted|ふらつく・かすかな
+pill|n|pills|錠剤
+# jc4_013 | 診療所のことば 5（2級）
+sting|v|stung|刺す
+sudden|a||突然の
+sweat|v|sweating|汗をかく
+elbow|n||ひじ
+# jc4_014 | 診療所のことば 6（2級）
+ultrasound|n||超音波検査
+bit|n||少し
+blur|v|blurred|ぼやけさせる
+brush|v||歯をみがく・ブラシをかける
+# jc4_015 | 診療所のことば 7（2級）
+feed|v||乳を飲む・食べさせる
+gum|n|gums|歯ぐき・ガム
+scratch|n|scratched|ひっかき傷
+twist|v|twisted|ひねる
+# jc4_016 | 診療所のことば 8（2級）
+anemia|n||貧血
+booster|n||（ワクチンの）追加接種
+breath|n|breathing|息
+copayment|n||自己負担金
+# jc4_017 | 診療所のことば 9（2級）
+generic|a||ジェネリックの・一般的な
+inhale|v|inhaled,inhaler|吸い込む
+installment|n|installments|分割払い込み金
+insulin|n||インスリン
+# jc4_018 | 診療所のことば 10（2級）
+itemize|v|itemized|項目別に書く
+lung|n|lungs|肺
+medical|a||医療の
+physiotherapy|n||理学療法
+# jc4_019 | 診療所のことば 11（2級）
+refill|n||（薬の）補充
+stuck|a||はまった・動かない
+update|v|updated|更新する
+vision|n||視力
+# jc4_020 | 診療所のことば 12（2級）
+watery|a||涙ぐんだ
+wisdom|n||知恵（wisdom toothは親知らず）
+adjust|v|adjuster|調整する
+antihistamine|n||抗ヒスタミン薬
+# jc4_021 | 診療所のことば 13（2級）
+antiseptic|n||消毒薬
+around|p||～のまわりに
+bark|n||ほえ声・樹皮
+bite|v|bitten|かむ・刺す
+# jc4_022 | 診療所のことば 14（2級）
+chickenpox|n||水ぼうそう
+constipated|a||便秘の
+cramp|n|cramps|けいれん
+eczema|n||湿疹
+# jc4_023 | 診療所のことば 15（2級）
+eyelid|n||まぶた
+finger|n|fingers|指
+flash|v|flashing|ぴかっと光る
+fracture|n||骨折
+# jc4_024 | 診療所のことば 16（2級）
+hay|n||干し草（hay feverは花粉症）
+heartburn|n||胸焼け
+hepatitis|n||肝炎
+hives|n||じんましん
+# jc4_025 | 診療所のことば 17（2級）
+kin|n||親族
+lip|n|lips|くちびる
+lozenge|n|lozenges|（のどの）トローチ
+lump|n||しこり・塊
+# jc4_026 | 診療所のことば 18（2級）
+migraine|n|migraines|偏頭痛
+mumps|n||おたふくかぜ
+numb|a||しびれた
+plaster|n|plasters|絆創膏（英）・しっくい
+# jc4_027 | 診療所のことば 19（2級）
+pneumonia|n||肺炎
+rabies|n||狂犬病
+splint|n||添え木
+stye|n||ものもらい
+# jc4_028 | 診療所のことば 20（2級）
+surcharge|n||追加料金
+swollen|a||腫れた
+terrible|a||ひどい
+wart|n||いぼ
+# jc4_029 | 診療所のことば 21（2級）
+capsule|n|capsules|カプセル
+acne|n||にきび
+bug|n||虫（stomach bugは胃腸炎）
+chill|n|chills|寒気
+# jc4_030 | 診療所のことば 22（2級）
+colic|n||（乳児の）疝痛
+dental|a||歯の
+dislocate|v|dislocated|脱臼させる
+football|n||フットボール
+# jc4_031 | 診療所のことば 23（2級）
+immunization|n|immunizations|予防接種
+jellyfish|n||クラゲ
+newborn|a||生まれたばかりの
+nosebleed|n||鼻血
+# jc4_032 | 診療所のことば 24（2級）
+seasickness|n||船酔い
+swell|v|swelling|ふくらむ
+tongue|n||舌
+wasp|n||スズメバチ
+# jc4_033 | 診療所のことば 25（2級）
+explanation|n||説明
+rarely|d||めったに〜ない
+sneeze|v|sneezing|くしゃみをする
+vitamin|n|vitamins|ビタミン
+# jc4_034 | 診療所のことば 26（2級）
+cheek|n||ほお
+earache|n||耳痛
+toothache|n||歯痛
+regular|a||定期的な
+# jc4_035 | 診療所のことば 27（2級）
+muscle|n|muscles|筋肉
+therapist|n||セラピスト
+thumb|n||親指
+cloth|n||布
+# jc4_036 | 診療所のことば 28（2級）
+bruise|n||打撲傷
+limp|v|limps|足を引きずる
+itch|v|itches,itching|かゆい
+click|v|clicks|カチッと鳴る・クリックする
+# jc4_037 | 診療所のことば 29（2級）
+grandchild|n||孫
+relative|n|relative's,relatives|親戚
+button|n||ボタン
+cancellation|n||取り消し・キャンセル
+# jc4_038 | 診療所のことば 30（2級）
+interpreter|n||通訳
+crutch|n|crutches|松葉づえ
+ramp|n||傾斜路
+harm|v|harming|害する
+# jc5_039 | 診療所のことば 1（準1級）
+nose|n||鼻
+referral|n|referrals|紹介・紹介状
+drug|n|drugs|薬
+yearly|a||毎年の
+# jc5_040 | 診療所のことば 2（準1級）
+infection|n|infections|感染
+rash|n||発疹
+vomit|v|vomiting|吐く
+alcohol|n||アルコール
+# jc5_041 | 診療所のことば 3（準1級）
+suddenly|d||突然
+ear|n|ears|耳
+elderly|a||年配の
+normal|a||普通の
+# jc5_042 | 診療所のことば 4（準1級）
+physical|a||身体の・健康診断（名詞）
+afterwards|d||あとで
+course|n||コース
+symptom|n|symptoms|症状
+# jc5_043 | 診療所のことば 5（準1級）
+unsure|a||確信がない
+advice|n||助言
+appetite|n||食欲
+option|n|options|選択肢
+# jc5_044 | 診療所のことば 6（準1級）
+stress|n||ストレス
+improvement|n||改善
+asthma|n||喘息
+diarrhea|n||下痢
+# jc5_045 | 診療所のことば 7（準1級）
+nausea|n||吐き気
+severe|a||重い・ひどい
+breast|n||乳房・胸
+manage|v||経営する
+# jc5_046 | 診療所のことば 8（準1級）
+mole|n||ほくろ・モグラ
+panic|n||パニック
+patch|n||（皮膚の）部分・当て布
+pulse|n||脈拍
+# jc5_047 | 診療所のことば 9（準1級）
+authorization|n||承認・許可
+cardiologist|n||心臓専門医
+contraception|n||避妊
+counselor|n||カウンセラー
+# jc5_048 | 診療所のことば 10（準1級）
+deductible|n||（保険の）自己負担額
+dementia|n||認知症
+depressed|a||落ち込んだ・うつ状態の
+dermatologist|n||皮膚科医
+# jc5_049 | 診療所のことば 11（準1級）
+droop|v|drooping|垂れ下がる
+menopause|n||更年期
+ooze|v|oozing|じくじく出る
+physiotherapist|n||理学療法士
+# jc5_050 | 診療所のことば 12（準1級）
+policyholder|n||保険契約者
+prenatal|a||出産前の
+prior|a||事前の・前の
+refer|v|referred|紹介する・言及する
+# jc5_051 | 診療所のことば 13（準1級）
+respond|v|responding|反応する・返事をする
+routine|a||定期の・決まりきった
+settle|v||清算する・落ち着く
+sinus|n|sinuses|副鼻腔
+# jc5_052 | 診療所のことば 14（準1級）
+slurred|a||ろれつの回らない
+smear|n||塗抹（smear testは子宮頸がん検診）
+speech|n||話し方・演説
+spouse|n||配偶者
+# jc5_053 | 診療所のことば 15（準1級）
+teenage|a||10代の
+tonsil|n|tonsils|扁桃（へんとう）
+urinary|a||尿の
+wander|v|wanders|徘徊する・ぶらつく
+# jc5_054 | 診療所のことば 16（準1級）
+abdominal|a||腹の
+addicted|a||中毒の
+biopsy|n||生検
+breastfeed|v|breastfeeding|母乳で育てる
+# jc5_055 | 診療所のことば 17（準1級）
+caregiver|n||介護者
+choke|v|choking|息が詰まる
+claimant|n||請求者
+cope|v||対処する
+# jc5_056 | 診療所のことば 18（準1級）
+divorce|n||離婚
+flashback|n|flashbacks|フラッシュバック
+gland|n|glands|腺
+hoarse|a||声がかれた
+# jc5_057 | 診療所のことば 19（準1級）
+incontinent|a||失禁する
+motivation|n||やる気
+neurologist|n||神経科医
+overpay|v|overpaid|払いすぎる
+# jc5_058 | 診療所のことば 20（準1級）
+pregnancy|n||妊娠
+recur|v|recurring|再発する
+rehabilitation|n||リハビリ
+seizure|n||発作・押収
+# jc5_059 | 診療所のことば 21（準1級）
+snore|v||いびきをかく
+spelling|n||語のつづり方
+stroke|n||脳卒中
+surname|n||姓
+# jc5_060 | 診療所のことば 22（準1級）
+urologist|n||泌尿器科医
+cataract|n||白内障
+hernia|n||ヘルニア
+bully|v|bullied|いじめる
+# jc5_061 | 診療所のことば 23（準1級）
+concentrate|v||集中する
+crush|v|crushing|押しつぶす
+exhausted|a||疲れ果てた
+fertility|n||妊娠しやすさ・肥沃さ
+# jc5_062 | 診療所のことば 24（準1級）
+grieve|v|grieving|深く悲しむ
+hormone|n||ホルモン
+kidney|n|kidneys|腎臓
+lonely|a||孤独な
+# jc5_063 | 診療所のことば 25（準1級）
+loose|a||ゆるい
+miscarriage|n||流産
+nail|n||釘・つめ
+sense|n||感覚
+# jc5_064 | 診療所のことば 26（準1級）
+snake|n||ヘビ
+spell|n|spells|一時的な発作・期間
+stitch|n|stitches|縫い目・縫合
+tube|n||管
+# jc5_065 | 診療所のことば 27（準1級）
+visa|n||ビザ
+thirteenth|a||13番目の
+frightened|a||おびえた
+surely|d||確かに
+# jc5_066 | 診療所のことば 28（準1級）
+confidential|a||機密の
+penicillin|n||ペニシリン
+beside|p||～のそばに
+outpatient|n||外来患者
+# jc5_067 | 診療所のことば 29（準1級）
+recovery|n||回復
+pound|n|pounding|ポンド（重さ・通貨）
+mask|n|masks|マスク
+monthly|a||毎月の
+# jc5_068 | 診療所のことば 30（準1級）
+rib|n|ribs|肋骨
+nerve|n||神経
+shiver|v|shivering|震える
+dependent|n||扶養家族
+# jc5_069 | 診療所のことば 31（準1級）
+inpatient|n||入院患者
+anesthetic|n||麻酔薬
+stretcher|n||担架
+# jc6_070 | 診療所のことば 1（1級）
+exclusion|n|exclusions|除外
+dummy|n||おしゃぶり（英）
+virus|n||ウイルス
+attorney|n||弁護士・（power of attorneyで）代理権
+# jc6_071 | 診療所のことば 2（1級）
+himself|r||彼自身
+anxious|a||心配している
+excess|n||免責額・超過
+premium|n||保険料
+# jc6_072 | 診療所のことば 3（1級）
+inconvenience|n||不便
+mild|a||穏やかな
+perfectly|d||完全に
+movement|n||動き
+# jc6_073 | 診療所のことば 4（1級）
+pregnant|a||妊娠している
+interact|v||相互作用する
+prescribe|v|prescribed|処方する
+easily|d||簡単に
+# jc6_074 | 診療所のことば 5（1級）
+round|d||まわって
+dizzy|a||めまいがする
+infected|a||感染した
+reaction|n||反応
+# jc6_075 | 診療所のことば 6（1級）
+overdose|n||（薬の）過剰摂取
+anxiety|n||不安
+corridor|n||廊下
+lapse|v|lapsed|失効する
+# jc6_076 | 診療所のことば 7（1級）
+pale|a||青白い
+procedure|n|procedures|処置・手順
+equally|d||平等に
+heavily|d||激しく
+# jc6_077 | 診療所のことば 8（1級）
+joint|n|joints|関節
+booklet|n||小冊子
+cosmetic|a||化粧用の
+amend|v|amended|修正する
+# jc6_078 | 診療所のことば 9（1級）
+anaphylactic|a||アナフィラキシーの
+antenatal|a||出産前の
+arthritis|n||関節炎
+audiologist|n||聴覚の専門家
+# jc6_079 | 診療所のことば 10（1級）
+bereavement|n||死別
+burnout|n||燃え尽き症候群
+certify|v|certified|証明する
+disorder|n||障害
+# jc6_080 | 診療所のことば 11（1級）
+elective|a||待機的な（緊急でない）
+fade|v||消える・色あせる
+fatigue|n||疲労
+fluid|n|fluids|水分・液体
+# jc6_081 | 診療所のことば 12（1級）
+frail|a||弱々しい
+insomnia|n||不眠症
+irregular|a||不規則な
+mammogram|n||乳房X線検査
+# jc6_082 | 診療所のことば 13（1級）
+management|n||管理・経営
+maternity|a||産科の・出産の
+medication|n|medications|薬
+midwife|n||助産師
+# jc6_083 | 診療所のことば 14（1級）
+mood|n||気分
+nasal|a||鼻の
+nightmare|n|nightmares|悪夢
+numbness|n||しびれ
+# jc6_084 | 診療所のことば 15（1級）
+oncologist|n||腫瘍（がん）専門医
+orthopedic|a||整形外科の
+palliative|a||緩和ケアの
+persistent|a||長引く・しつこい
+# jc6_085 | 診療所のことば 16（1級）
+reimbursement|n||払い戻し
+respite|n||休息・（介護の）一時預かり
+screening|n||検診
+septum|n||（鼻の）中隔
+# jc6_086 | 診療所のことば 17（1級）
+shock|n||衝撃
+sinusitis|n||副鼻腔炎
+struggle|v|struggling|苦闘する・もがく
+teenager|n||ティーンエージャー
+# jc6_087 | 診療所のことば 18（1級）
+thyroid|n||甲状腺
+tonsillectomy|n||扁桃摘出手術
+trimester|n||妊娠の3か月ごとの期間
+ulcer|n||潰瘍
+# jc6_088 | 診療所のことば 19（1級）
+vertigo|n||めまい（回転性）
+waive|v|waived,waiver|免除する
+abscess|n||膿瘍
+# jc6_089 | 診療所のことば 20（1級）
+anonymize|v|anonymized|匿名にする
+bedridden|a||寝たきりの
+calf|n||ふくらはぎ・子牛
+cardiac|a||心臓の
+# jc6_090 | 診療所のことば 21（1級）
+cervical|a||子宮頸部の
+cesarean|n||帝王切開
+chart|n||表・記録表
+complication|n|complications|合併症・複雑化
+# jc6_091 | 診療所のことば 22（1級）
+consultation|n||相談
+counseling|n||カウンセリング
+eardrum|n||鼓膜
+hemorrhage|v|hemorrhaging|大出血する
+# jc6_092 | 診療所のことば 23（1級）
+lethal|a||致死の
+ombudsman|n||オンブズマン（苦情処理の調停役）
+pathology|n||病理学
+perforated|a||穴のあいた
+# jc6_093 | 診療所のことば 24（1級）
+relieve|v||和らげる
+remittance|n||送金
+seek|v|seeks|探す
+suffering|n||苦しみ
+# jc6_094 | 診療所のことば 25（1級）
+target|n||目標
+tonsillitis|n||扁桃炎
+tremor|n||震え
+twin|n|twins|双子の一人
+# jc6_095 | 診療所のことば 26（1級）
+unconscious|a||意識を失った
+underwriter|n||保険引受人
+inflamed|a||炎症を起こした
+suspicious|a||疑わしい
+# jc6_096 | 診療所のことば 27（1級）
+cognitive|a||認知の
+deceased|a||亡くなった
+deletion|n||削除
+depression|n||落ち込み
+# jc6_097 | 診療所のことば 28（1級）
+diagnosis|n||診断
+glue|v||のり（glue earは滲出性中耳炎）
+hardship|n||苦難
+hysterectomy|n||子宮摘出手術
+# jc6_098 | 診療所のことば 29（1級）
+incision|n||切開
+independent|a||独立した
+jaw|n||あご
+language|n||言語
+# jc6_099 | 診療所のことば 30（1級）
+mobility|n||移動性
+poison|v|poisoned|毒を盛る
+previous|a||前の
+radiate|v|radiating|（痛みが）広がる・放射する
+# jc6_100 | 診療所のことば 31（1級）
+recurrent|a||繰り返し起こる
+rupture|v|ruptured|破裂する
+solicitor|n||事務弁護士（英）
+urine|n||尿
+# jc6_101 | 診療所のことば 32（1級）
+valuation|n||評価
+wheeze|v|wheezing|ぜいぜいいう
+guess|v||推測する
+unclear|a||はっきりしない
+# jc6_102 | 診療所のことば 33（1級）
+receptionist|n||受付係
+unhelpful|a||役に立たない
+membership|n||会員であること
+persist|v|persisted|持続する
+# jc6_103 | 診療所のことば 34（1級）
+harmless|a||無害な
+isolate|v||隔離する・孤立させる
+accompany|v|accompanied|同行する
+compulsory|a||義務の
+# jc6_104 | 診療所のことば 35（1級）
+voluntary|a||自発的な
+presence|n||存在
+shortness|n||息切れ（shortness of breath）・短さ
+religious|a||宗教の
+# jc6_105 | 診療所のことば 36（1級）
+disclosure|n||開示
+adverse|a||不利な
+weakness|n||弱さ
+liver|n||肝臓
+# jc6_106 | 診療所のことば 37（1級）
+unusual|a||普通でない
+tumor|n||腫瘍
+ethics|n||倫理
+journalist|n|journalist's|ジャーナリスト
+# jc6_107 | 診療所のことば 38（1級）
+log|n||記録（ログ）・丸太
+dosage|n||（薬の）用量
+locum|n||代理医師
 `;
-const EXTRA_FORMS: Record<string, string[]> = {"doctor":["doctor's","doctors"],"on":["ones"],"machine":["machines"],"begin":["begins","begun"],"speak":["speaking"],"complete":["completes"],"allergy":["allergies"],"your":["yours"],"in_up":["ups"],"result":["results"],"is":["being"],"warm":["warmer"],"child":["child's","children's"],"collect":["collects"],"appointment":["appointments"],"afternoon":["afternoons"],"complain":["complaining","complains"],"amount":["amounts"],"feel":["feeling","feels","felt"],"fall":["fallen","falls"],"agree":["agreeing","agrees"],"in_saturday":["Saturday's","saturdays"],"old":["older"],"patient":["patient's","patients'"],"father":["father's"],"go":["gone"],"quote":["quoted"],"ask":["asking"],"read":["reading"],"morning":["mornings"],"inspector":["inspector's"],"soon":["sooner"],"in_question":["questioned"],"mother":["mother's"],"wind":["wound"],"neighbour":["neighbours"],"think":["thinking"],"forget":["forgetting","forgotten"],"help":["helping"],"report":["reported","reports"],"woman":["women's"],"fill":["filling"],"break":["broke"],"expect":["expected","expecting","expects"],"show":["showing"],"clean":["cleaned","cleaning"],"tooth":["teething"],"husband":["husband's"],"light":["lights"],"baby":["baby's"],"son":["son's"],"stop":["stopping"],"worry":["worrying"],"retire":["retired"],"evening":["evenings"],"list":["listed"],"spread":["spreading"],"in_watch":["watching"],"in_wake":["woken"],"day":["day's"],"case":["cases"],"in_view":["viewed"],"request":["requested"],"schedule":["scheduled"],"period":["periods"],"cough":["coughing"],"file":["filed"],"bill":["billed","billing"],"contact":["contacted","contacting"],"in_bath":["bathing"],"dress":["dressing"],"book":["booking"],"large":["larger"],"submit":["submitted"],"miss":["missing"],"address":["addressed"],"they":["theirs"],"look":["looked"],"accept":["accepts"],"thursday":["Thursday's","thursdays"],"draw":["drawing"],"way":["ways"],"inform":["informed"],"reply":["replies"],"rule":["ruled"],"client":["client's"],"open":["opening"],"we":["wing"],"rise":["risen"],"reserve":["reserves"],"name":["named"],"review":["reviewed"],"in_slip":["slipped"],"arrange":["arranges"],"sell":["sells"],"cream":["creams"],"wednesday":["Wednesday's","wednesdays"],"telephone":["telephones"],"wash":["washing"],"follow":["followed"],"school":["school's"],"in_foot":["feet"],"to":["toes"],"in_uncle":["uncle's"],"wife":["wife's"],"add":["adds"],"door":["doors"],"form":["forms"],"monday":["Monday's"],"tuesday":["Tuesday's"],"friday":["Friday's"],"sunday":["Sunday's"]};
+const EXTRA_FORMS: Record<string, string[]> = {"doctor":["doctor's","doctors"],"machine":["machines"],"begin":["begins","begun"],"speak":["speaking"],"complete":["completes"],"allergy":["allergies"],"your":["yours"],"in_up":["ups"],"result":["results"],"is":["being"],"warm":["warmer"],"child":["child's","children's"],"collect":["collects"],"appointment":["appointments"],"afternoon":["afternoons"],"complain":["complaining","complains"],"amount":["amounts"],"feel":["feeling","feels","felt"],"fall":["fallen","falls"],"agree":["agreeing","agrees"],"in_saturday":["Saturday's","saturdays"],"old":["older"],"patient":["patient's","patients'"],"father":["father's"],"go":["gone"],"quote":["quoted"],"ask":["asking"],"read":["reading"],"morning":["mornings"],"inspector":["inspector's"],"soon":["sooner"],"in_question":["questioned"],"mother":["mother's"],"wind":["wound"],"neighbour":["neighbours"],"think":["thinking"],"forget":["forgetting","forgotten"],"help":["helping"],"report":["reported","reports"],"woman":["women's"],"fill":["filling"],"break":["broke"],"expect":["expected","expecting","expects"],"show":["showing"],"clean":["cleaned","cleaning"],"tooth":["teething"],"husband":["husband's"],"light":["lights"],"baby":["baby's"],"son":["son's"],"stop":["stopping"],"worry":["worrying"],"retire":["retired"],"evening":["evenings"],"list":["listed"],"spread":["spreading"],"in_watch":["watching"],"in_wake":["woken"],"day":["day's"],"case":["cases"],"in_view":["viewed"],"request":["requested"],"schedule":["scheduled"],"period":["periods"],"cough":["coughing"],"file":["filed"],"bill":["billed","billing"],"contact":["contacted","contacting"],"in_bath":["bathing"],"dress":["dressing"],"book":["booking"],"large":["larger"],"submit":["submitted"],"miss":["missing"],"address":["addressed"],"they":["theirs"],"look":["looked"],"accept":["accepts"],"thursday":["Thursday's","thursdays"],"draw":["drawing"],"way":["ways"],"inform":["informed"],"reply":["replies"],"rule":["ruled"],"client":["client's"],"open":["opening"],"we":["wing"],"rise":["risen"],"reserve":["reserves"],"name":["named"],"review":["reviewed"],"in_slip":["slipped"],"arrange":["arranges"],"sell":["sells"],"cream":["creams"],"wednesday":["Wednesday's","wednesdays"],"telephone":["telephones"],"wash":["washing"],"follow":["followed"],"school":["school's"],"in_foot":["feet"],"to":["toes"],"in_uncle":["uncle's"],"wife":["wife's"],"add":["adds"],"door":["doors"],"form":["forms"],"monday":["Monday's"],"tuesday":["Tuesday's"],"friday":["Friday's"],"sunday":["Sunday's"]};
 // generated by tools/tags.ts: phrases (phrases.json ids) and grammar points (grammar.json ids) found in the task's own texts
 const TAGS: Record<string, { p?: string[]; g?: string[] }> = {"c1_first":{"p":["ph-5-0002"],"g":["gr-5-013"]},"c1_card":{"p":["ph-5-0159"],"g":["gr-5-011"]},"c1_sat":{"p":["ph-5-0051"],"g":["gr-3-005","gr-4-026"]},"c1_sort2":{"g":["gr-5-013","gr-5-015"]},"c1_mom":{"g":["gr-5-015","gr-5-016"]},"c1_fee":{"g":["gr-5-013","gr-5-014"]},"c1_book":{"p":["ph-5-0133","ph-5-0159"],"g":["gr-4-008","gr-4-019"]},"c1_name":{"g":["gr-5-011"]},"c1_dentist":{"p":["ph-5-0132"],"g":["gr-5-015"]},"c1_sort3":{"p":["ph-5-0159"],"g":["gr-5-011"]},"c1_phone":{"g":["gr-5-011"]},"c1_wait":{"g":["gr-4-002","gr-4-003"]},"c1_nurse":{"g":["gr-5-015","gr-5-011"]},"c1_form":{"g":["gr-4-003","gr-5-013"]},"c1_book2":{"p":["ph-4-0149","ph-5-0159"],"g":["gr-4-008","gr-4-019"]},"c1_sick":{"g":["gr-5-015"]},"c1_thanks":{"p":["ph-5-0014"],"g":["gr-5-015","gr-5-011"]},"c2_sort1":{"p":["ph-5-0128"],"g":["gr-5-013"]},"c2_rx":{"g":["gr-5-011"]},"c2_pharm":{"p":["ph-4-0132"],"g":["gr-4-019","gr-5-013"]},"c2_rash":{"g":["gr-4-007","gr-5-011"]},"c2_card":{"g":["gr-5-011"]},"c2_pay":{"g":["gr-4-002","gr-5-013"]},"c2_book":{"p":["ph-4-0149"],"g":["gr-4-008","gr-4-019"]},"c2_sort2":{"p":["ph-3-0103"],"g":["gr-4-008","gr-4-019"]},"c2_ok":{"p":["ph-pre2-0174"],"g":["gr-5-011"]},"c2_leaflet":{"g":["gr-4-005","gr-4-019"]},"c2_allergy":{"p":["ph-4-0076","ph-4-0075"],"g":["gr-4-003","gr-4-004"]},"c2_book2":{"g":["gr-5-011"]},"c2_back":{"p":["ph-5-0002"],"g":["gr-4-008","gr-5-015"]},"c2_late":{"p":["ph-4-0075"],"g":["gr-3-014","gr-3-018"]},"c2_sort3":{"g":["gr-5-016","gr-5-011"]},"c2_form":{"g":["gr-5-011"]},"c2_hours":{"p":["ph-4-0147"],"g":["gr-pre2-031","gr-3-005"]},"c2_book3":{"p":["ph-5-0132"],"g":["gr-4-007","gr-4-019"]},"c2_dose":{"p":["ph-pre2-0174"]},"c2_thanks":{"p":["ph-5-0014"],"g":["gr-3-005","gr-4-026"]},"c3_dose":{"g":["gr-3-002"]},"c3_sort1":{"g":["gr-3-002"]},"c3_leaflet":{"p":["ph-4-0076"],"g":["gr-pre2-006","gr-4-003"]},"c3_scan":{"p":["ph-pre2-0202"],"g":["gr-pre2-031","gr-4-002"]},"c3_card":{"g":["gr-4-002"]},"c3_cover":{"p":["ph-3-0103"]},"c3_book1":{"p":["ph-5-0132"],"g":["gr-pre2-056","gr-4-003"]},"c3_ok1":{"p":["ph-pre2-0174"],"g":["gr-2-058"]},"c3_fee":{"p":["ph-3-0103"],"g":["gr-3-002","gr-4-002"]},"c3_sort2":{"p":["ph-5-0159"],"g":["gr-3-002"]},"c3_wait":{"p":["ph-4-0112"],"g":["gr-3-018","gr-4-003"]},"c3_phone":{"p":["ph-2-0396"],"g":["gr-4-002"]},"c3_bill":{"g":["gr-5-011"]},"c3_wonder":{"p":["ph-pre2-0111"],"g":["gr-4-002","gr-4-003"]},"c3_sort3":{"p":["ph-5-0159"],"g":["gr-3-002","gr-4-007"]},"c3_gap1":{"g":["gr-pre2-013"]},"c3_form":{"g":["gr-5-011"]},"c3_complaint":{"p":["ph-pre2-0180"],"g":["gr-3-014","gr-4-002"]},"c3_ref":{"g":["gr-3-002","gr-4-003"]},"c3_phone2":{"g":["gr-pre2-006","gr-pre2-010"]},"c3_contradict1":{"g":["gr-4-006"]},"c3_vaccine":{"g":["gr-5-011"]},"c3_say1":{"p":["ph-4-0130"],"g":["gr-2-052","gr-3-019"]},"c3_label":{"g":["gr-5-011"]},"c3_policy":{"p":["ph-4-0074"],"g":["gr-3-018","gr-4-003"]},"c3_book2":{"p":["ph-5-0159"],"g":["gr-4-007","gr-4-019"]},"c3_sort4":{"g":["gr-pre2-056","gr-3-002"]},"c3_hours":{"p":["ph-pre2-0032"],"g":["gr-4-007"]},"c3_result":{"p":["ph-4-0130"],"g":["gr-5-011"]},"c3_gap2":{"g":["gr-pre2-033","gr-4-019"]},"c3_say2":{"p":["ph-4-0141"],"g":["gr-4-002","gr-4-007"]},"c3_ok2":{"p":["ph-pre2-0174"],"g":["gr-2-058"]},"c3_emergency":{"p":["ph-pre2-0289"],"g":["gr-3-002","gr-3-005"]},"c3_book3":{"p":["ph-5-0159"],"g":["gr-3-005","gr-4-003"]},"c3_insurance":{"g":["gr-5-011"]},"c3_contradict2":{"g":["gr-pre2-031","gr-3-005"]},"c3_phone3":{"p":["ph-5-0003"],"g":["gr-3-002","gr-4-002"]},"c3_reader":{"p":["ph-4-0005"],"g":["gr-pre2-006","gr-3-002"]},"c3_sort5":{"g":["gr-4-003"]},"c3_wait2":{"p":["ph-pre2-0289"],"g":["gr-3-014","gr-3-021"]},"c3_age":{"g":["gr-5-011"]},"c3_gap3":{"g":["gr-3-018","gr-4-002"]},"c3_thanks":{"p":["ph-4-0131"],"g":["gr-pre2-006","gr-4-003"]},"c3_ok3":{"p":["ph-pre2-0174"],"g":["gr-2-058"]},"c3_hale":{"p":["ph-5-0061"],"g":["gr-pre2-056","gr-4-002"]},"c4_repeat":{"g":["gr-pre2-031","gr-3-019"]},"c4_consent":{"g":["gr-4-003"]},"c4_sort1":{"p":["ph-pre2-0124"],"g":["gr-4-019"]},"c4_referral":{"p":["ph-pre2-0184"],"g":["gr-2-030","gr-3-005"]},"c4_phone1":{"p":["ph-4-0141"],"g":["gr-3-005","gr-3-014"]},"c4_claim":{"g":["gr-3-002"]},"c4_cover":{"p":["ph-4-0074"],"g":["gr-2-056","gr-pre2-056"]},"c4_book1":{"p":["ph-5-0159"],"g":["gr-4-019"]},"c4_privacy":{"g":["gr-2-052","gr-pre2-031"]},"c4_letter":{"p":["ph-pre2-0289"],"g":["gr-2-012","gr-pre2-031"]},"c4_sort2":{"g":["gr-pre2-031","gr-3-002"]},"c4_quote":{"g":["gr-5-011"]},"c4_policy":{"p":["ph-4-0075"],"g":["gr-pre2-033","gr-3-007"]},"c4_phone2":{"g":["gr-pre2-065","gr-3-002"]},"c4_contradict1":{"g":["gr-3-005"]},"c4_age":{"g":["gr-4-003"]},"c4_complaint":{"g":["gr-2-052","gr-pre2-006"]},"c4_sort3":{"g":["gr-3-002"]},"c4_dose2":{"g":["gr-2-056","gr-pre2-010"]},"c4_say1":{"p":["ph-5-0132"],"g":["gr-4-019"]},"c4_slot":{"g":["gr-5-011"]},"c4_gap1":{"g":["gr-2-023","gr-pre2-033"]},"c4_result":{"g":["gr-pre2-031","gr-3-002"]},"c4_reader":{"g":["gr-2-045"]},"c4_sort4":{"g":["gr-3-007"]},"c4_phone3":{"p":["ph-4-0141"],"g":["gr-2-056","gr-pre2-065"]},"c4_ok2":{"g":["gr-5-011"]},"c4_condition":{"p":["ph-pre1-0448","ph-2-0152"],"g":["gr-pre1-010","gr-pre2-031"]},"c4_calc":{"g":["gr-2-056"]},"c4_contradict2":{"g":["gr-pre2-006","gr-3-002"]},"c4_say2":{"p":["ph-4-0074"],"g":["gr-4-002"]},"c4_book2":{"p":["ph-5-0132"],"g":["gr-3-005"]},"c4_dates":{"g":["gr-5-011"]},"c4_complaint2":{"g":["gr-2-052","gr-3-005"]},"c4_sort5":{"p":["ph-pre2-0243","ph-pre2-0225"],"g":["gr-3-007"]},"c4_name":{"g":["gr-3-002"]},"c4_gap2":{"g":["gr-3-005"]},"c4_say3":{"p":["ph-4-0130"],"g":["gr-3-014"]},"c4_stay":{"p":["ph-2-0159"],"g":["gr-pre1-032"]},"c4_policy2":{"p":["ph-4-0143"],"g":["gr-pre2-006","gr-3-002"]},"c4_phone4":{"p":["ph-4-0141"],"g":["gr-4-002"]},"c4_hale":{"g":["gr-3-005"]},"c4_ok3":{"g":["gr-5-011"]},"c4_sort6":{"p":["ph-5-0103"],"g":["gr-2-045","gr-pre2-056"]},"c5_refusal":{"g":["gr-3-002"]},"c5_exclusion":{"p":["ph-3-0103"],"g":["gr-pre2-001"]},"c5_sort1":{"p":["ph-pre2-0364"],"g":["gr-2-045"]},"c5_consent":{"p":["ph-2-0474"],"g":["gr-2-030","gr-pre2-031"]},"c5_phone1":{"p":["ph-pre1-0297"],"g":["gr-3-005"]},"c5_age":{"g":["gr-5-011"]},"c5_book1":{"p":["ph-5-0159"],"g":["gr-pre2-031","gr-pre2-056"]},"c5_say1":{"p":["ph-pre1-0448","ph-2-0200"],"g":["gr-1-004","gr-2-015"]},"c5_contradict1":{"p":["ph-4-0112"],"g":["gr-pre2-052","gr-pre2-006"]},"c5_reader1":{"g":["gr-1-004","gr-2-015"]},"c5_sort2":{"g":["gr-3-002"]},"c5_quote":{"g":["gr-3-002"]},"c5_gap1":{"g":["gr-1-001","gr-2-012"]},"c5_phone2":{"p":["ph-5-0014"],"g":["gr-pre2-006"]},"c5_phone3":{"p":["ph-4-0112"],"g":["gr-3-002"]},"c5_vaccine":{"g":["gr-3-002"]},"c5_complaint":{"p":["ph-2-0229"],"g":["gr-pre2-006","gr-pre2-010"]},"c5_sort3":{"g":["gr-pre2-013"]},"c5_calc":{"g":["gr-3-005"]},"c5_say2":{"p":["ph-5-0132"],"g":["gr-1-004","gr-2-015"]},"c5_ok2":{"p":["ph-5-0132"]},"c5_reader2":{"p":["ph-4-0143"],"g":["gr-2-052","gr-pre2-031"]},"c5_gap2":{"g":["gr-pre2-001","gr-pre2-010"]},"c5_trial":{"g":["gr-5-011"]},"c5_policy":{"g":["gr-2-052"]},"c5_sort4":{"g":["gr-2-052","gr-pre2-065"]},"c5_form":{"g":["gr-3-002"]},"c5_phone4":{"p":["ph-2-0396"],"g":["gr-3-002"]},"c5_headline":{"p":["ph-4-0143"],"g":["gr-pre2-006"]},"c5_book2":{"p":["ph-5-0132"],"g":["gr-4-019"]},"c5_ok3":{"p":["ph-3-0170"],"g":["gr-4-020"]},"c5_contradict2":{"g":["gr-3-005"]},"c5_say3":{"g":["gr-pre2-010"]},"c5_dates":{"g":["gr-5-011"]},"c5_reader3":{"g":["gr-4-002"]},"c5_sort5":{"p":["ph-1-0568"],"g":["gr-pre2-056"]},"c5_receipt":{"g":["gr-5-011"]},"c5_gap3":{"g":["gr-pre2-001"]},"c5_phone5":{"p":["ph-4-0101"],"g":["gr-1-004","gr-2-015"]},"c5_phone6":{"p":["ph-4-0141"],"g":["gr-4-003"]},"c5_anniv":{"g":["gr-3-014"]},"c5_report":{"g":["gr-2-030"]},"c5_sort6":{"g":["gr-pre2-006","gr-pre2-013"]},"c5_say4":{"g":["gr-pre2-065"]},"say1#0":{"g":["gr-4-007","gr-5-015"]},"say1#1":{"p":["ph-5-0039"]},"say1#2":{"p":["ph-5-0157","ph-5-0007"],"g":["gr-4-002","gr-5-011"]},"say1#3":{"p":["ph-5-0014"]},"say1#4":{"p":["ph-5-0157"],"g":["gr-5-011"]},"say1#5":{"g":["gr-5-015"]},"say1#6":{"p":["ph-5-0081"],"g":["gr-4-008"]},"say1#7":{"g":["gr-5-011"]},"mail1#0":{"p":["ph-5-0081"],"g":["gr-4-008","gr-5-015"]},"mail1#1":{"g":["gr-5-015"]},"mail1#2":{"p":["ph-5-0039"]},"mail1#3":{"p":["ph-5-0014"]},"mail1#4":{"g":["gr-5-015"]},"say2#0":{"p":["ph-pre2-0184"],"g":["gr-4-002","gr-4-007"]},"say2#1":{"p":["ph-5-0085"],"g":["gr-3-002","gr-4-002"]},"say2#2":{"g":["gr-5-015"]},"say2#3":{"g":["gr-5-015"]},"say2#4":{"p":["ph-5-0014"],"g":["gr-4-002","gr-5-011"]},"say2#5":{"p":["ph-5-0023"],"g":["gr-pre2-006","gr-4-003"]},"say2#6":{"g":["gr-4-002"]},"say2#7":{"p":["ph-5-0157"],"g":["gr-4-002","gr-5-011"]},"phone2#0":{"g":["gr-4-007"]},"phone2#1":{"p":["ph-pre2-0312"],"g":["gr-4-007","gr-5-015"]},"phone2#2":{"p":["ph-5-0007"],"g":["gr-4-008","gr-5-015"]},"phone2#3":{"p":["ph-5-0085"],"g":["gr-4-019","gr-5-013"]},"phone2#4":{"g":["gr-4-002","gr-4-003"]},"phone2#5":{"g":["gr-5-015"]},"phone2#6":{"g":["gr-4-007","gr-4-019"]},"phone2#7":{"p":["ph-5-0085"],"g":["gr-4-002","gr-5-015"]},"mail2#0":{"p":["ph-5-0078"],"g":["gr-5-015"]},"mail2#1":{"p":["ph-5-0014"],"g":["gr-4-002"]},"mail2#2":{"p":["ph-4-0150"],"g":["gr-5-015","gr-5-020"]},"mail2#3":{"p":["ph-5-0014"],"g":["gr-3-005","gr-4-026"]},"mail2#4":{"p":["ph-4-0112"],"g":["gr-4-006","gr-5-015"]},"mail2#5":{"g":["gr-5-013","gr-5-014"]},"say3#0":{"p":["ph-4-0141"],"g":["gr-4-002","gr-4-007"]},"say3#1":{"p":["ph-2-0495","ph-3-0007"],"g":["gr-4-019"]},"say3#2":{"p":["ph-5-0132"],"g":["gr-pre2-052","gr-4-002"]},"say3#3":{"p":["ph-4-0074"],"g":["gr-4-003","gr-4-019"]},"say3#4":{"p":["ph-5-0061"],"g":["gr-4-002","gr-4-019"]},"say3#5":{"p":["ph-2-0272","ph-pre2-0157"],"g":["gr-4-002"]},"say3#6":{"g":["gr-2-052"]},"say3#7":{"p":["ph-5-0014"],"g":["gr-5-017"]},"phone3#0":{"g":["gr-5-016"]},"phone3#1":{"p":["ph-2-0252","ph-2-0468"],"g":["gr-3-014"]},"phone3#2":{"p":["ph-5-0014"],"g":["gr-4-002"]},"phone3#3":{"g":["gr-4-002","gr-4-007"]},"phone3#4":{"p":["ph-2-0272"],"g":["gr-pre2-034","gr-4-019"]},"phone3#5":{"p":["ph-pre2-0289","ph-3-0126"],"g":["gr-4-002","gr-4-019"]},"phone3#6":{"p":["ph-4-0051"],"g":["gr-4-002","gr-4-008"]},"phone3#7":{"g":["gr-4-007"]},"mail3#0":{"p":["ph-2-0019","ph-pre2-0034"],"g":["gr-3-005","gr-4-002"]},"mail3#1":{"p":["ph-2-0017"],"g":["gr-3-005","gr-4-026"]},"mail3#3":{"p":["ph-2-0018","ph-2-0272"],"g":["gr-3-005","gr-4-002"]},"mail3#4":{"p":["ph-2-0021","ph-2-0252"],"g":["gr-2-052","gr-pre2-031"]},"mail3#5":{"p":["ph-5-0014"],"g":["gr-4-007"]},"mail3#6":{"g":["gr-4-002"]},"mail3#7":{"p":["ph-2-0272"],"g":["gr-2-030","gr-pre2-031"]},"letter3#0":{"p":["ph-5-0081"],"g":["gr-3-005","gr-3-007"]},"letter3#1":{"p":["ph-2-0149"],"g":["gr-2-043","gr-3-030"]},"letter3#2":{"p":["ph-3-0170"],"g":["gr-4-020"]},"letter3#3":{"p":["ph-5-0014"],"g":["gr-4-002","gr-4-019"]},"letter3#4":{"p":["ph-5-0061"],"g":["gr-4-002"]},"letter3#5":{"p":["ph-pre2-0184"],"g":["gr-2-059","gr-4-002"]},"gap3#2":{"g":["gr-pre2-033"]},"gap3#3":{"g":["gr-3-005","gr-4-019"]},"gap3#5":{"g":["gr-4-002"]},"gap3#6":{"g":["gr-3-033"]},"gap3#7":{"g":["gr-3-002","gr-3-021"]},"gap3#9":{"p":["ph-pre2-0289"],"g":["gr-3-018","gr-4-019"]},"proof3#0":{"g":["gr-3-005","gr-4-026"]},"proof3#1":{"g":["gr-4-006"]},"proof3#2":{"g":["gr-2-056"]},"proof3#3":{"p":["ph-4-0075"],"g":["gr-pre2-031","gr-3-005"]},"proof3#5":{"g":["gr-5-011"]},"say4#0":{"g":["gr-4-002"]},"say4#1":{"p":["ph-5-0061"],"g":["gr-3-014"]},"say4#2":{"p":["ph-2-0272","ph-pre2-0281"],"g":["gr-pre2-031"]},"say4#3":{"p":["ph-5-0014"],"g":["gr-4-002"]},"say4#4":{"g":["gr-pre2-015","gr-3-002"]},"say4#5":{"g":["gr-2-052","gr-3-007"]},"say4#6":{"g":["gr-2-015"]},"say4#7":{"p":["ph-pre2-0289"],"g":["gr-pre2-010","gr-3-002"]},"phone4#0":{"p":["ph-2-0048"],"g":["gr-2-066","gr-pre2-015"]},"phone4#1":{"p":["ph-pre2-0184"],"g":["gr-4-002"]},"phone4#2":{"p":["ph-5-0014"],"g":["gr-pre2-064","gr-3-005"]},"phone4#3":{"g":["gr-2-052","gr-3-007"]},"phone4#4":{"p":["ph-4-0128"],"g":["gr-3-002"]},"phone4#5":{"p":["ph-5-0014"],"g":["gr-3-002"]},"phone4#6":{"p":["ph-5-0014"],"g":["gr-3-014"]},"phone4#7":{"p":["ph-5-0085"],"g":["gr-2-030","gr-pre2-064"]},"mail4#0":{"p":["ph-2-0017","ph-2-0029"],"g":["gr-3-002"]},"mail4#1":{"p":["ph-2-0024"],"g":["gr-4-002"]},"mail4#2":{"g":["gr-4-002"]},"mail4#3":{"p":["ph-5-0014"],"g":["gr-4-002"]},"mail4#4":{"p":["ph-2-0474"],"g":["gr-4-007"]},"mail4#5":{"p":["ph-pre2-0193"],"g":["gr-pre2-015"]},"letter4#0":{"p":["ph-5-0014"],"g":["gr-pre2-001","gr-pre2-006"]},"letter4#1":{"p":["ph-5-0014"],"g":["gr-3-002"]},"letter4#2":{"g":["gr-pre2-015","gr-3-005"]},"letter4#3":{"g":["gr-pre2-052"]},"letter4#4":{"g":["gr-3-002"]},"letter4#5":{"g":["gr-2-052","gr-pre2-006"]},"gap4#0":{"g":["gr-3-002"]},"gap4#1":{"g":["gr-pre2-029"]},"gap4#2":{"g":["gr-3-005"]},"gap4#3":{"g":["gr-3-005"]},"gap4#4":{"p":["ph-5-0132"],"g":["gr-2-015"]},"gap4#5":{"g":["gr-2-043"]},"gap4#6":{"p":["ph-2-0226"],"g":["gr-pre2-033"]},"gap4#7":{"g":["gr-5-017"]},"gap4#8":{"g":["gr-pre1-034","gr-pre2-052"]},"proof4#0":{"p":["ph-5-0132"],"g":["gr-2-030","gr-pre2-064"]},"proof4#1":{"g":["gr-pre2-056"]},"proof4#2":{"g":["gr-2-056"]},"proof4#3":{"g":["gr-pre2-031","gr-3-005"]},"proof4#4":{"g":["gr-4-002"]},"say5#0":{"p":["ph-pre2-0157"],"g":["gr-1-004","gr-2-015"]},"say5#1":{"p":["ph-5-0132"],"g":["gr-2-001","gr-pre2-001"]},"say5#2":{"p":["ph-pre1-0460"],"g":["gr-2-052"]},"say5#3":{"g":["gr-5-013"]},"say5#4":{"g":["gr-pre2-064"]},"say5#5":{"p":["ph-2-0272"],"g":["gr-1-018","gr-1-001"]},"say5#6":{"g":["gr-2-023","gr-2-059"]},"say5#7":{"p":["ph-5-0014"],"g":["gr-5-017"]},"phone5#0":{"p":["ph-5-0004"],"g":["gr-2-045"]},"phone5#1":{"p":["ph-5-0014"],"g":["gr-2-030","gr-pre2-064"]},"phone5#2":{"p":["ph-2-0229"],"g":["gr-2-059"]},"phone5#3":{"p":["ph-5-0085"],"g":["gr-pre2-065","gr-pre2-052"]},"phone5#4":{"p":["ph-2-0047"],"g":["gr-pre2-034"]},"phone5#5":{"p":["ph-5-0055"],"g":["gr-1-004","gr-2-015"]},"phone5#6":{"g":["gr-4-020"]},"phone5#7":{"p":["ph-pre2-0281"],"g":["gr-5-015"]},"mail5#0":{"p":["ph-2-0048"],"g":["gr-2-066"]},"mail5#1":{"p":["ph-2-0152"],"g":["gr-1-006","gr-1-032"]},"mail5#2":{"p":["ph-2-0159"],"g":["gr-pre1-032","gr-pre2-015"]},"mail5#3":{"g":["gr-2-045","gr-pre2-031"]},"mail5#4":{"p":["ph-5-0014"],"g":["gr-pre2-015"]},"mail5#5":{"p":["ph-2-0149"],"g":["gr-2-043","gr-pre2-015"]},"mail5#6":{"p":["ph-2-0229"],"g":["gr-3-002"]},"mail5#7":{"p":["ph-2-0017","ph-2-0047"],"g":["gr-2-030","gr-2-052"]},"letter5#0":{"g":["gr-pre2-001"]},"letter5#1":{"p":["ph-pre1-0452"],"g":["gr-pre2-056"]},"letter5#2":{"g":["gr-3-007"]},"letter5#3":{"p":["ph-5-0014"],"g":["gr-pre2-006"]},"letter5#4":{"p":["ph-1-0079","ph-pre1-0282"],"g":["gr-3-002"]},"letter5#5":{"p":["ph-pre1-0461"],"g":["gr-2-045"]},"gap5#0":{"g":["gr-1-001","gr-2-012"]},"gap5#1":{"g":["gr-3-019"]},"gap5#2":{"g":["gr-1-004","gr-2-015"]},"gap5#3":{"g":["gr-2-043"]},"gap5#4":{"g":["gr-4-020"]},"gap5#5":{"g":["gr-4-005"]},"gap5#6":{"g":["gr-pre2-031","gr-pre2-013"]},"gap5#7":{"g":["gr-pre2-029"]},"gap5#8":{"g":["gr-pre2-065","gr-pre2-001"]},"gap5#9":{"g":["gr-5-017"]},"proof5#0":{"g":["gr-pre2-006"]},"proof5#1":{"g":["gr-pre2-031"]},"proof5#2":{"p":["ph-4-0143"],"g":["gr-pre2-006"]},"proof5#4":{"g":["gr-4-002"]},"proof5#5":{"g":["gr-3-030"]},"notice3#0":{"g":["gr-3-018","gr-4-002"]},"notice3#1":{"p":["ph-5-0014"],"g":["gr-4-002"]},"notice3#2":{"p":["ph-5-0055"],"g":["gr-4-002"]},"notice3#3":{"p":["ph-4-0143"],"g":["gr-3-018","gr-4-002"]},"notice3#4":{"g":["gr-4-008"]},"notice3#5":{"p":["ph-5-0167"],"g":["gr-2-030","gr-3-005"]},"notice3#6":{"g":["gr-2-030","gr-3-005"]},"notice3#7":{"p":["ph-4-0143"],"g":["gr-pre2-006","gr-4-002"]},"notice3#8":{"p":["ph-pre2-0289"],"g":["gr-3-018","gr-4-002"]},"notice3#9":{"p":["ph-3-0103"],"g":["gr-3-005","gr-4-002"]},"notice4#0":{"p":["ph-2-0152"],"g":["gr-4-006"]},"notice4#1":{"p":["ph-5-0014"],"g":["gr-3-007"]},"notice4#2":{"g":["gr-3-002","gr-3-005"]},"notice4#3":{"p":["ph-pre2-0288"],"g":["gr-2-030","gr-pre2-056"]},"notice4#4":{"p":["ph-2-0193"],"g":["gr-3-018"]},"notice4#5":{"p":["ph-5-0014"],"g":["gr-pre2-031"]},"notice4#6":{"p":["ph-4-0101"],"g":["gr-3-005"]},"notice4#7":{"p":["ph-5-0014"]},"notice5#0":{"p":["ph-pre1-0159"],"g":["gr-pre2-031"]},"notice5#1":{"g":["gr-3-005"]},"notice5#2":{"p":["ph-4-0143"],"g":["gr-3-002"]},"notice5#3":{"p":["ph-5-0055"],"g":["gr-2-030","gr-pre2-031"]},"notice5#4":{"g":["gr-3-005"]},"notice5#5":{"p":["ph-pre1-0448"],"g":["gr-3-005"]},"notice5#6":{"g":["gr-pre2-065"]},"notice5#7":{"p":["ph-5-0055"],"g":["gr-2-030"]},"desk3#0":{"g":["gr-4-005","gr-4-019"]},"desk3#1":{"p":["ph-4-0096"],"g":["gr-pre2-034","gr-4-019"]},"desk3#2":{"p":["ph-2-0272"],"g":["gr-3-007"]},"desk3#3":{"g":["gr-5-011"]},"desk3#4":{"g":["gr-4-019"]},"desk3#5":{"g":["gr-4-019"]},"desk3#6":{"g":["gr-3-019","gr-4-019"]},"desk3#7":{"p":["ph-5-0079"],"g":["gr-5-011"]},"desk3#8":{"g":["gr-3-021"]},"desk3#9":{"g":["gr-5-015"]},"desk4#0":{"g":["gr-3-021"]},"desk4#1":{"g":["gr-3-005"]},"desk4#2":{"p":["ph-4-0140"],"g":["gr-4-002"]},"desk4#3":{"g":["gr-3-002","gr-3-007"]},"desk4#4":{"p":["ph-5-0159"],"g":["gr-3-002","gr-3-007"]},"desk4#5":{"p":["ph-4-0151"]},"desk4#6":{"p":["ph-5-0159"],"g":["gr-3-007"]},"desk4#7":{"p":["ph-5-0007"],"g":["gr-pre2-065","gr-3-002"]},"desk4#8":{"g":["gr-3-002"]},"desk4#9":{"p":["ph-4-0140"],"g":["gr-5-015"]},"desk5#0":{"p":["ph-4-0151"],"g":["gr-3-002"]},"desk5#1":{"p":["ph-pre2-0289"],"g":["gr-4-002"]},"desk5#2":{"g":["gr-3-002"]},"desk5#4":{"p":["ph-pre2-0289"]},"desk5#5":{"g":["gr-3-002"]},"desk5#6":{"p":["ph-2-0272"],"g":["gr-3-005"]},"desk5#7":{"p":["ph-1-0441"],"g":["gr-pre2-013"]},"ask3#0":{"g":["gr-4-003","gr-4-006"]},"ask3#1":{"g":["gr-3-007","gr-4-002"]},"ask3#2":{"g":["gr-4-005"]},"ask3#3":{"p":["ph-5-0061"],"g":["gr-4-006"]},"ask3#4":{"g":["gr-3-005","gr-4-002"]},"ask3#5":{"g":["gr-4-003"]},"ask4#0":{"g":["gr-pre2-006"]},"ask4#1":{"g":["gr-4-003"]},"ask4#2":{"g":["gr-3-005"]},"ask4#3":{"g":["gr-2-056"]},"ask4#4":{"g":["gr-pre2-056"]},"ask4#5":{"g":["gr-4-019"]},"ask4#6":{"g":["gr-pre2-006","gr-3-002"]},"ask4#7":{"p":["ph-2-0200"],"g":["gr-5-015"]},"ask4#8":{"p":["ph-5-0128"],"g":["gr-4-002"]},"ask4#9":{"p":["ph-pre2-0289"],"g":["gr-2-015"]},"ask5#0":{"g":["gr-2-052"]},"ask5#1":{"g":["gr-4-006"]},"ask5#2":{"g":["gr-3-002"]},"ask5#3":{"g":["gr-2-030","gr-pre2-031"]},"ask5#4":{"g":["gr-pre2-015"]},"ask5#5":{"g":["gr-4-006"]},"ask5#6":{"g":["gr-4-002"]},"ask5#7":{"g":["gr-3-005"]},"body2#0":{"p":["ph-5-0157"],"g":["gr-4-002","gr-4-019"]},"body2#1":{"p":["ph-pre2-0310"],"g":["gr-4-002","gr-5-015"]},"body2#2":{"p":["ph-5-0167"],"g":["gr-5-011"]},"body2#3":{"g":["gr-5-015","gr-5-011"]},"body2#4":{"p":["ph-5-0007"],"g":["gr-5-015"]},"body2#5":{"p":["ph-5-0128"],"g":["gr-5-011"]},"body3#0":{"p":["ph-5-0157"],"g":["gr-4-002"]},"body3#1":{"p":["ph-pre2-0289"],"g":["gr-5-016"]},"body3#2":{"g":["gr-5-011"]},"body3#3":{"p":["ph-pre2-0310"],"g":["gr-4-011"]},"body3#4":{"p":["ph-5-0157"],"g":["gr-4-019"]},"body3#5":{"p":["ph-4-0096"],"g":["gr-pre2-034","gr-4-019"]},"body4#0":{"g":["gr-4-019"]},"body4#1":{"p":["ph-5-0133"],"g":["gr-pre2-015"]},"body4#2":{"p":["ph-5-0157"],"g":["gr-3-021"]},"body4#3":{"p":["ph-4-0151"],"g":["gr-5-015"]},"body4#4":{"p":["ph-5-0157"],"g":["gr-4-011"]},"body4#5":{"p":["ph-pre2-0289"],"g":["gr-4-019"]},"body5#0":{"p":["ph-pre2-0289"],"g":["gr-pre2-015","gr-pre2-034"]},"body5#1":{"g":["gr-3-002"]},"body5#2":{"g":["gr-4-002"]},"body5#3":{"g":["gr-3-002"]},"body5#4":{"g":["gr-3-002"]},"body5#5":{"g":["gr-3-005"]},"fam3#0":{"g":["gr-4-002","gr-4-006"]},"fam3#1":{"g":["gr-4-006","gr-4-007"]},"fam3#2":{"g":["gr-2-030","gr-3-005"]},"fam3#3":{"p":["ph-3-0103"],"g":["gr-3-005","gr-4-006"]},"fam3#4":{"p":["ph-pre2-0289"],"g":["gr-3-002"]},"fam3#5":{"p":["ph-5-0061"],"g":["gr-4-006","gr-4-007"]},"fam4#0":{"g":["gr-2-023","gr-pre2-033"]},"fam4#1":{"g":["gr-4-006"]},"fam4#2":{"g":["gr-3-002","gr-3-005"]},"fam4#3":{"g":["gr-3-005","gr-3-014"]},"fam5#0":{"g":["gr-pre2-006","gr-pre2-015"]},"fam5#1":{"g":["gr-4-019"]},"fam5#2":{"p":["ph-4-0075"],"g":["gr-pre2-031"]},"fam5#3":{"g":["gr-pre2-015"]},"fam5#4":{"p":["ph-5-0128"],"g":["gr-3-005"]},"fam5#5":{"g":["gr-2-030","gr-pre2-056"]},"desk3b#0":{"p":["ph-4-0096"],"g":["gr-pre2-006","gr-pre2-010"]},"desk3b#2":{"g":["gr-5-015"]},"desk3b#3":{"g":["gr-2-030","gr-3-002"]},"desk3b#4":{"g":["gr-pre2-006","gr-4-006"]},"desk3b#5":{"p":["ph-5-0157"],"g":["gr-3-002","gr-4-002"]},"desk3b#6":{"p":["ph-3-0019"],"g":["gr-4-002","gr-4-005"]},"desk4b#0":{"p":["ph-5-0014"],"g":["gr-pre2-006"]},"desk4b#1":{"g":["gr-4-002"]},"desk4b#2":{"p":["ph-2-0272"],"g":["gr-2-030","gr-pre2-064"]},"desk4b#3":{"g":["gr-2-030","gr-pre2-006"]},"desk4b#4":{"p":["ph-pre2-0289"],"g":["gr-5-015"]},"desk4b#5":{"p":["ph-4-0143"],"g":["gr-3-002"]},"desk5b#1":{"p":["ph-3-0155"],"g":["gr-3-002"]},"desk5b#2":{"g":["gr-pre2-006"]},"desk5b#3":{"g":["gr-3-002"]},"desk5b#4":{"g":["gr-5-017"]},"desk5b#5":{"p":["ph-4-0101"],"g":["gr-3-007"]},"ct1_sort":{"p":["ph-4-0096","ph-5-0002"],"g":["gr-4-019","gr-5-013"]},"ct1_card":{"p":["ph-5-0159"],"g":["gr-5-011"]},"ct1_day":{"g":["gr-5-011"]},"ct1_phone":{"g":["gr-5-011"]},"ct1_pad":{"p":["ph-5-0132"],"g":["gr-5-015","gr-5-016"]},"ct1_book":{"p":["ph-4-0149","ph-5-0133"],"g":["gr-3-030","gr-4-008"]},"ct1_ask":{"g":["gr-5-011","gr-5-015"]},"ct1_mail":{"g":["gr-5-015","gr-4-008"]},"ct2_sort":{"p":["ph-pre2-0126","ph-3-0170"],"g":["gr-4-007","gr-4-008"]},"ct2_rx":{"g":["gr-5-011"]},"ct2_dose":{"p":["ph-pre2-0174"]},"ct2_spoon":{"p":["ph-pre2-0174"]},"ct2_drops":{"p":["ph-pre2-0174"]},"ct2_card":{"g":["gr-5-011"]},"ct2_book":{"g":["gr-5-011"]},"ct2_addr":{"g":["gr-5-011"]},"ct2_fee":{"g":["gr-5-011"]},"ct2_pad":{"g":["gr-4-007","gr-5-011"]},"ct2_book2":{"p":["ph-5-0014"],"g":["gr-3-030","gr-4-007"]},"ct2_say":{"g":["gr-4-002","gr-5-015"]},"ct2_phone":{"g":["gr-5-015","gr-4-007"]},"ct2_mail":{"g":["gr-5-015","gr-4-002"]},"ct3_sort":{"p":["ph-pre2-0237","ph-3-0170"],"g":["gr-pre2-052","gr-pre2-056"]},"ct3_dose":{"g":["gr-3-002"]},"ct3_card":{"g":["gr-4-002"]},"ct3_bill":{"g":["gr-5-011"]},"ct3_result":{"p":["ph-4-0130"],"g":["gr-5-011"]},"ct3_shot":{"g":["gr-5-011"]},"ct3_child":{"g":["gr-5-011"]},"ct3_claim":{"g":["gr-5-011"]},"ct3_pad":{"p":["ph-pre2-0202"],"g":["gr-pre2-031","gr-3-005"]},"ct3_book":{"p":["ph-4-0096"],"g":["gr-pre2-034","gr-3-005"]},"ct3_say":{"g":["gr-4-002","gr-4-019"]},"ct3_phone":{"g":["gr-4-002","gr-4-007"]},"ct3_mail":{"g":["gr-3-005","gr-4-002"]},"ct3_letter":{"g":["gr-4-002","gr-3-005"]},"ct3_gap":{"g":["gr-4-019","gr-pre2-033"]},"ct3_proof":{"g":["gr-3-005","gr-4-026"]},"ct4_sort":{"p":["ph-pre2-0243"],"g":["gr-pre2-006","gr-3-002"]},"ct4_claim":{"g":["gr-3-002"]},"ct4_share":{"g":["gr-2-056"]},"ct4_repeat":{"p":["ph-4-0151"],"g":["gr-3-019"]},"ct4_result":{"g":["gr-pre2-031","gr-3-002"]},"ct4_dates":{"g":["gr-5-011"]},"ct4_stay":{"g":["gr-5-011"]},"ct4_pad":{"p":["ph-4-0141"],"g":["gr-2-056","gr-pre2-065"]},"ct4_book":{"p":["ph-5-0133"],"g":["gr-pre2-056","gr-3-005"]},"ct4_say":{"g":["gr-4-002","gr-3-002"]},"ct4_phone":{"g":["gr-pre2-064","gr-3-002"]},"ct4_mail":{"g":["gr-4-002","gr-3-002"]},"ct4_letter":{"g":["gr-pre2-006","gr-3-002"]},"ct4_gap":{"g":["gr-3-005","gr-3-002"]},"ct4_proof":{"g":["gr-2-030","gr-pre2-064"]},"ct5_sort":{"p":["ph-1-0568","ph-2-0405"],"g":["gr-pre1-024","gr-2-045"]},"ct5_terms":{"g":["gr-3-002"]},"ct5_pay":{"g":["gr-3-005"]},"ct5_refusal":{"g":["gr-3-002"]},"ct5_trial":{"g":["gr-5-011"]},"ct5_class":{"g":["gr-5-011"]},"ct5_report":{"p":["ph-4-0151"],"g":["gr-2-030"]},"ct5_pad":{"p":["ph-4-0141"],"g":["gr-3-005"]},"ct5_book":{"p":["ph-5-0014"],"g":["gr-pre2-031","gr-pre2-056"]},"ct5_say":{"g":["gr-1-004","gr-2-015"]},"ct5_phone":{"g":["gr-2-045","gr-2-030"]},"ct5_mail":{"g":["gr-pre2-015","gr-2-066"]},"ct5_letter":{"g":["gr-pre2-001","gr-pre2-056"]},"ct5_gap":{"g":["gr-1-001","gr-2-012"]},"ct5_proof":{"g":["gr-pre2-006","gr-pre2-031"]},"ct3_notice":{"g":["gr-4-002","gr-3-018"]},"ct4_notice":{"g":["gr-3-005","gr-4-006"]},"ct5_notice":{"g":["gr-3-005","gr-pre2-031"]},"ct3_triage":{"p":["ph-pre2-0296","ph-3-0170"],"g":["gr-2-030","gr-pre2-031"]},"ct4_triage":{"p":["ph-pre2-0201"],"g":["gr-2-030","gr-pre2-031"]},"ct5_triage":{"p":["ph-2-0272"],"g":["gr-pre2-013"]},"ct3_body":{"g":["gr-5-011"]},"ct4_leaflet":{"g":["gr-pre1-010","gr-2-030"]},"ct5_clause":{"g":["gr-5-011"]},"ct3_symptom":{"p":["ph-2-0272","ph-pre2-0124"],"g":["gr-2-052","gr-3-002"]},"ct4_symptom":{"p":["ph-2-0405","ph-2-0272"],"g":["gr-pre2-065","gr-pre2-006"]},"ct3_desk":{"g":["gr-4-019","gr-5-011"]},"ct4_desk":{"g":["gr-3-002","gr-3-007"]},"ct5_desk":{"g":["gr-3-002","gr-4-002"]},"ct3_ask":{"g":["gr-4-003","gr-4-006"]},"ct4_ask":{"g":["gr-pre2-006","gr-4-003"]},"ct5_ask":{"g":["gr-4-006","gr-2-052"]},"ct2_body":{"g":["gr-5-015","gr-5-011"]},"ct3_body2":{"g":["gr-4-019","gr-4-002"]},"ct4_body2":{"g":["gr-4-019","gr-pre2-015"]},"ct5_body2":{"g":["gr-3-002","gr-pre2-015"]},"ct3_fam":{"g":["gr-4-006","gr-4-007"]},"ct4_fam":{"g":["gr-3-005","gr-2-023"]},"ct5_fam":{"g":["gr-pre2-015","gr-pre2-006"]},"ct2_sort2":{"p":["ph-pre2-0243","ph-3-0170"],"g":["gr-pre2-031","gr-3-002"]},"ct3_sort2":{"p":["ph-3-0170"],"g":["gr-pre2-050","gr-3-002"]},"ct4_sort2":{"p":["ph-pre1-0074","ph-2-0197"],"g":["gr-pre2-056","gr-3-002"]},"ct5_sort2":{"p":["ph-pre1-0074","ph-2-0272"],"g":["gr-pre2-065"]},"ct3_sort3":{"p":["ph-2-0195","ph-3-0170"],"g":["gr-pre2-065","gr-3-002"]},"ct4_sort3":{"p":["ph-pre2-0201"],"g":["gr-2-052","gr-pre2-065"]},"ct5_sort3":{"p":["ph-1-0331","ph-pre1-0075"],"g":["gr-2-052","gr-pre2-001"]},"ct3_deskb":{"g":["gr-pre2-006","gr-3-002"]},"ct4_deskb":{"g":["gr-pre2-006","gr-2-030"]},"ct5_deskb":{"g":["gr-3-002","gr-pre2-006"]},"ct3_label":{"g":["gr-5-011"]},"ct4_discharge":{"g":["gr-5-011"]},"ct5_specrep":{"p":["ph-2-0223"],"g":["gr-5-011"]},"ct3_sort4":{"p":["ph-pre2-0199","ph-3-0170"],"g":["gr-pre2-031","gr-3-002"]},"ct4_sort4":{"p":["ph-2-0272"],"g":["gr-2-052","gr-pre2-065"]},"ct5_sort4":{"p":["ph-2-0223"],"g":["gr-pre2-065","gr-pre2-031"]}};
 

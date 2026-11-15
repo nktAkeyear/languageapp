@@ -31,578 +31,386 @@ const TAGS: Tags = {"ac1_shelf1":{"grammar":["gr-5-011"]},"ac1_card1":{"grammar"
 // <<END:TAGS>>
 
 // <<GEN:FORMS>>
-const EXTRA_FORMS: Record<string, string[]> = {"th_loan":["loans"],"machine":["machines"],"computer":["computers"],"renew":["renewals"],"paint":["paintings"],"th_harvest":["harvests"],"hot":["hotter"],"library":["libraries"],"copy":["copied","copying"],"study":["studied"],"th_booking":["bookings"],"safe":["saves"],"last":["lasted"],"th_village":["villages"],"th_collection":["collections"],"th_reference":["references"],"th_suggestion":["suggestions"],"application":["applications"],"th_rich":["richer"],"present":["presented"],"follow":["followed"],"school":["schools"],"gift":["gifts"],"one":["ones"],"glad":["gladly"],"accept":["accepting","accepts"],"th_factory":["factories"],"church":["churches"],"warm":["warming"],"correct":["corrects"],"change":["changing"],"port":["ports"],"forget":["forgotten"],"th_statue":["statues"],"estimate":["estimating"],"reject":["rejects"],"th_save":["saved"],"color":["colors"],"th_river":["rivers"],"town":["towns"],"market":["markets"],"harbour":["harbours"],"move":["moves"],"result":["results"],"th_support":["supports"],"th_warn":["warns"],"interview":["interviewed"],"th_test":["tests"],"survey":["surveyed"],"word":["wording"]};
+const EXTRA_FORMS: Record<string, string[]> = {"loan":["loans"],"machine":["machines"],"computer":["computers"],"renew":["renewals"],"paint":["paintings"],"th_harvest":["harvests"],"hot":["hotter"],"library":["libraries"],"copy":["copied","copying"],"study":["studied"],"th_booking":["bookings"],"safe":["saves"],"last":["lasted"],"village":["villages"],"th_collection":["collections"],"th_reference":["references"],"suggestion":["suggestions"],"application":["applications"],"th_rich":["richer"],"present":["presented"],"follow":["followed"],"school":["schools"],"gift":["gifts"],"one":["ones"],"glad":["gladly"],"accept":["accepting","accepts"],"factory":["factories"],"church":["churches"],"warm":["warming"],"correct":["corrects"],"change":["changing"],"port":["ports"],"forget":["forgotten"],"th_statue":["statues"],"estimate":["estimating"],"reject":["rejects"],"save":["saved"],"color":["colors"],"river":["rivers"],"town":["towns"],"market":["markets"],"harbour":["harbours"],"move":["moves"],"result":["results"],"support":["supports"],"warn":["warns"],"interview":["interviewed"],"test":["tests"],"survey":["surveyed"],"word":["wording"]};
 // <<END:FORMS>>
 
 // <<GEN:LEX>>
 const LEX_SRC = `
-# jac_1art1 | 学院図書室の芸術 ①（3級）
-art|noun|arts|芸術||ac_art
-artist|noun||芸術家||ac_artist
+# jac2_001 | 学院図書室の芸術 ①（3級）
 author|noun||著者||ac_author
-bird|noun|birds|鳥||ac_bird
 cent|noun|cents|セント||ac_cent
-# jac_1art2 | 学院図書室の芸術 ②（3級）
-famous|adj||有名な||ac_famous
-image|noun||イメージ||ac_image
 king|noun|kings|王||ac_king
-loudly|adv||大声で||ac_loudly
 poem|noun|poems|詩||ac_poem
-# jac_1art3 | 学院図書室の芸術 ③（3級）
 popular|adj||人気のある||ac_popular
+# jac2_002 | 学院図書室の芸術 ②（3級）
 production|noun||生産||ac_production
 queen|noun|queens|女王||ac_queen
-series|noun||連続||ac_series
-# jac_1art4 | 学院図書室の芸術 ④（3級）
 song|noun|songs|歌||ac_song
-star|noun|stars|星||ac_star
-story|noun|stories|物語||ac_story
 style|noun||スタイル||ac_style
-# jac_1nat5 | 学院図書室の自然 ①（3級）
-bay|noun||湾||ac_bay
-grow|verb|grew,grown,grows|育つ||ac_grow
-nature|noun||自然||ac_nature
-# jac_1nat6 | 学院図書室の自然 ②（3級）
-wave|noun|waves|波||ac_wave
-wood|noun||木材||ac_wood
-world|noun||世界||ac_world
-# jac_1sch7 | 学院図書室の学校 ①（3級）
+# jac2_003 | 学院図書室の学校（3級）
 academy|noun||学院||ac_academy
-average|adj||平均的な||ac_average
-borrow|verb|borrowed,borrowing,borrows|借りる||ac_borrow
 drawing|noun|drawings|デッサン・図面||ac_drawing
 literature|noun||文学||ac_literature
-# jac_1sch8 | 学院図書室の学校 ②（3級）
-page|noun|pages|ページ||ac_page
-reader|noun|readers|読者||ac_reader
-reading|noun||読書||ac_reading
-sum|noun|sums|合計||ac_sum
-# jac_1sci9 | 学院図書室の科学（3級）
+# jac2_004 | 学院図書室の科学（3級）
 discovery|noun||発見||ac_discovery
 math|noun|maths|数学||ac_math
 metal|noun|metals|金属||ac_metal
-science|noun||科学||ac_science
-# jac_1tec10 | 学院図書室の技術（3級）
-online|adj||オンラインの||ac_online
-search|noun||検索||ac_search
-technology|noun||技術||ac_technology
-# jac_2art11 | 学院図書室の芸術 ①（準2級）
+# jac3_005 | 学院図書室の芸術 ①（準2級）
 animal|noun|animals|動物||ac_animal
 clown|noun||道化師||ac_clown
 comedy|noun||喜劇||ac_comedy
 dance|noun|dances|ダンス||ac_dance
-deep|adv|deeper|深く||ac_deep
-# jac_2art12 | 学院図書室の芸術 ②（準2級）
+# jac3_006 | 学院図書室の芸術 ②（準2級）
 description|noun||説明||ac_description
 empire|noun||帝国||ac_empire
 folk|noun||人々||ac_folk
 gallery|noun||画廊||ac_gallery
+# jac3_007 | 学院図書室の芸術 ③（準2級）
 knight|noun|knights|騎士||ac_knight
-# jac_2art13 | 学院図書室の芸術 ③（準2級）
 manual|adj||手動の||ac_manual
 melody|noun||美しい音の流れ||ac_melody
 mystery|noun||なぞ||ac_mystery
-novel|noun|novels|小説||ac_novel
-orchestra|noun||オーケストラ||ac_orchestra
-# jac_2art14 | 学院図書室の芸術 ④（準2級）
+# jac3_008 | 学院図書室の芸術 ④（準2級）
 poet|noun|poet's,poets|詩人||ac_poet
-portrait|noun|portraits|肖像画||ac_portrait
 pottery|noun||陶器||ac_pottery
 rhythm|noun||リズム||ac_rhythm
-# jac_2art15 | 学院図書室の芸術 ⑤（準2級）
 rock|noun|rocks|岩||ac_rock
-sail|verb|sails|航海する||ac_sail
+# jac3_009 | 学院図書室の芸術 ⑤（準2級）
 sailor|noun|sailors|船乗り||ac_sailor
 soil|verb||汚す||ac_soil
-# jac_2art16 | 学院図書室の芸術 ⑥（準2級）
-step|verb|steps|歩く||ac_step
 tale|noun|tales|物語||ac_tale
 useful|adj||役に立つ||ac_useful
-war|noun|wars|戦争||ac_war
-# jac_2nat17 | 学院図書室の自然 ①（準2級）
+# jac3_010 | 学院図書室の自然 ①（準2級）
 air|noun||空気||ac_air
 clay|noun||粘土||ac_clay
-coast|noun||海岸||ac_coast
-coastal|adj||沿岸の||ac_coastal
-# jac_2nat18 | 学院図書室の自然 ②（準2級）
-forest|noun|forests|森||ac_forest
 herb|noun|herbs|草||ac_herb
-leaflet|noun||ちらし||ac_leaflet
+# jac3_011 | 学院図書室の自然 ②（準2級）
 mineral|noun|minerals|鉱物||ac_mineral
-# jac_2nat19 | 学院図書室の自然 ③（準2級）
-moon|noun|moons|月||ac_moon
-sun|noun||太陽||ac_sun
 volcano|noun|volcanoes|火山||ac_volcano
 wild|adj||野生の||ac_wild
-# jac_2sch20 | 学院図書室の学校 ①（準2級）
+# jac3_012 | 学院図書室の学校 ①（準2級）
 archive|noun|archives|公文書館||ac_archive
 biography|noun||伝記||ac_biography
 chapter|noun|chapters|章||ac_chapter
 clever|adj||賢い||ac_clever
+# jac3_013 | 学院図書室の学校 ②（準2級）
 dictionary|noun|dictionaries|辞書||ac_dictionary
-# jac_2sch21 | 学院図書室の学校 ②（準2級）
 encyclopedia|noun||百科事典||ac_encyclopedia
 essay|noun|essays|小論文||ac_essay
 handbook|noun||手引き||ac_handbook
+# jac3_014 | 学院図書室の学校 ③（準2級）
 lecturer|noun||講演者||ac_lecturer
 legend|noun||伝説||ac_legend
-# jac_2sch22 | 学院図書室の学校 ③（準2級）
-professor|noun|professors|教授||ac_professor
 scholar|noun|scholars|学者||ac_scholar
 syllabus|noun||要項||ac_syllabus
-teach|verb|teaches|教える||ac_teach
-# jac_2sci23 | 学院図書室の科学 ①（準2級）
+# jac3_015 | 学院図書室の科学 ①（準2級）
 abstract|adj|abstracts|抽象的な||ac_abstract
 cell|noun||細胞||ac_cell
 circle|noun||円||ac_circle
 diagram|noun|diagrams|図||ac_diagram
-# jac_2sci24 | 学院図書室の科学 ②（準2級）
+# jac3_016 | 学院図書室の科学 ②（準2級）
 earth|noun||地球||ac_earth
-energy|noun||エネルギー||ac_energy
-finding|noun||調査結果||ac_finding
-graph|noun|graphs|グラフ||ac_graph
-# jac_2sci25 | 学院図書室の科学 ③（準2級）
-origin|noun||起源||ac_origin
 oxygen|noun||酸素||ac_oxygen
-planet|noun|planets|惑星||ac_planet
-# jac_2tec26 | 学院図書室の技術 ①（準2級）
 device|noun||装置||ac_device
 electronic|adj||電子の||ac_electronic
-press|verb||押す||ac_press
-# jac_2tec27 | 学院図書室の技術 ②（準2級）
-printer|noun||プリンター||ac_printer
-robot|noun||ロボット||ac_robot
-scan|noun|scanning|スキャン||ac_scan
-# jac_3art28 | 学院図書室の芸術 ①（2級）
-affect|verb|affected|影響する||ac_affect
+# jac4_017 | 学院図書室の芸術 ①（2級）
 animation|noun||アニメーション||ac_animation
-argue|verb|argues|議論する||ac_argue
-assistant|noun||助手||ac_assistant
 audience|noun||観客||ac_audience
-# jac_3art29 | 学院図書室の芸術 ②（2級）
 cartoon|noun||漫画||ac_cartoon
 classical|adj||古典の||ac_classical
 composer|noun||作曲家||ac_composer
-conductor|noun||車掌||ac_conductor
-confused|adj||困惑した||ac_confused
-# jac_3art30 | 学院図書室の芸術 ③（2級）
-critic|noun|critics|評論家||ac_critic
+# jac4_018 | 学院図書室の芸術 ②（2級）
 dark|adj||暗い||ac_dark
-design|noun||デザイン||ac_design
-die|verb|died|死ぬ||ac_die
 dislike|noun|disliked|嫌悪||ac_dislike
-# jac_3art31 | 学院図書室の芸術 ④（2級）
-drought|noun||干ばつ||ac_drought
-engine|noun||エンジン||ac_engine
-exercise|verb|exercises|運動する||ac_exercise
-exhibition|noun||展覧会||ac_exhibition
 farming|noun||農業||ac_farming
-# jac_3art32 | 学院図書室の芸術 ⑤（2級）
-fisherman|noun||漁師||ac_fisherman
 harmony|noun||調和||ac_harmony
+# jac4_019 | 学院図書室の芸術 ③（2級）
 hero|noun||英雄||ac_hero
 journey|noun||旅行||ac_journey
 modern|adj||現代の||ac_modern
-# jac_3art33 | 学院図書室の芸術 ⑥（2級）
 narrative|adj||物語の||ac_narrative
-painter|noun|painters|画家||ac_painter
+# jac4_020 | 学院図書室の芸術 ④（2級）
 passage|noun||通路||ac_passage
 photocopy|noun||コピー||ac_photocopy
-photograph|noun|photographs|写真||ac_photograph
-# jac_3art34 | 学院図書室の芸術 ⑦（2級）
 plot|noun||筋||ac_plot
 poetry|noun||詩||ac_poetry
-poor|adj|poorer|貧しい||ac_poor
+# jac4_021 | 学院図書室の芸術 ⑤（2級）
 porter|noun||ポーター||ac_porter
 prose|noun||散文||ac_prose
-# jac_3art35 | 学院図書室の芸術 ⑧（2級）
 role|noun||役割||ac_role
 sculpture|noun|sculptures|彫刻||ac_sculpture
-service|noun||接客||ac_service
-store|noun|storing|店||ac_store
+# jac4_022 | 学院図書室の芸術 ⑥（2級）
 symphony|noun||交響曲||ac_symphony
-# jac_3art36 | 学院図書室の芸術 ⑨（2級）
 tragedy|noun||悲劇||ac_tragedy
 tune|noun||曲||ac_tune
 verse|noun||詩||ac_verse
-villager|noun|villagers|村人||ac_villager
-voice|noun||声||ac_voice
-# jac_3art37 | 学院図書室の芸術 ⑩（2級）
+# jac4_023 | 学院図書室の芸術 ⑦（2級）
 voyage|noun|voyages|航海||ac_voyage
 weaken|verb|weakened|弱める||ac_weaken
 wealth|noun||富||ac_wealth
 yourself|pron||あなた自身||ac_yourself
-# jac_3med38 | 学院図書室のメディア（2級）
-article|noun|articles|記事||ac_article
+# jac4_024 | 学院図書室のメディア（2級）
 brochure|noun||パンフレット||ac_brochure
-edition|noun||版||ac_edition
 manuscript|noun||原稿||ac_manuscript
 periodical|noun||定期刊行物||ac_periodical
-# jac_3nat39 | 学院図書室の自然 ①（2級）
+# jac4_025 | 学院図書室の自然（2級）
 climate|noun||気候||ac_climate
 coal|noun||石炭||ac_coal
-mountain|noun|mountains|山||ac_mountain
-# jac_3nat40 | 学院図書室の自然 ②（2級）
 northern|adj||北の||ac_northern
 ocean|noun||大洋||ac_ocean
-survive|verb|survived|生き残る||ac_survive
-# jac_3nou41 | 学院図書室のことば（2級）
-method|noun||方法||ac_method
-point|noun||点||ac_point
-silence|noun||静けさ||ac_silence
-solution|noun|solutions|解決策||ac_solution
-# jac_3sch42 | 学院図書室の学校 ①（2級）
+# jac4_026 | 学院図書室の学校 ①（2級）
 dean|noun||学部長||ac_dean
-describe|verb|described,describes|説明する||ac_describe
-diary|noun|diaries|日記||ac_diary
 dynasty|noun||王朝||ac_dynasty
 historian|noun||歴史家||ac_historian
-# jac_3sch43 | 学院図書室の学校 ②（2級）
 introduction|noun||紹介||ac_introduction
 journal|noun|journals|日誌||ac_journal
+# jac4_027 | 学院図書室の学校 ②（2級）
 librarian|noun||司書||ac_librarian
 literary|adj||文学の||ac_literary
-mark|noun|marks|印||ac_mark
-# jac_3sch44 | 学院図書室の学校 ③（2級）
-score|noun|scored|得点||ac_score
 summarize|verb|summarized|要約する||ac_summarize
 textbook|noun||教科書||ac_textbook
 thesis|noun|theses|陳述||ac_thesis
-# jac_3sci45 | 学院図書室の科学 ①（2級）
+# jac4_028 | 学院図書室の科学 ①（2級）
 carbon|noun||炭素||ac_carbon
 cycle|noun||周期||ac_cycle
-experiment|noun||実験||ac_experiment
 exploration|noun||探検||ac_exploration
 formation|noun||形成||ac_formation
-# jac_3sci46 | 学院図書室の科学 ②（2級）
+# jac4_029 | 学院図書室の科学 ②（2級）
 geometry|noun||幾何学||ac_geometry
 logic|noun||論理||ac_logic
 measurement|noun|measurements|測定||ac_measurement
 molecule|noun||分子||ac_molecule
+# jac4_030 | 学院図書室の科学 ③（2級）
 orbit|noun||軌道||ac_orbit
-# jac_3sci47 | 学院図書室の科学 ③（2級）
 proportion|noun||割合||ac_proportion
 ratio|noun||比||ac_ratio
 revolution|noun||革命||ac_revolution
-satellite|noun||衛星||ac_satellite
-solar|adj||太陽の||ac_solar
-# jac_3sci48 | 学院図書室の科学 ④（2級）
-species|noun||種||ac_species
+# jac4_031 | 学院図書室の科学 ④（2級）
 statistics|noun||統計||ac_statistics
 structure|noun||構造||ac_structure
-theory|noun||理論||ac_theory
 volume|noun|volumes|量||ac_volume
-# jac_3soc49 | 学院図書室の社会（2級）
+# jac4_032 | 学院図書室の社会（2級）
 ancient|adj||古代の||ac_ancient
-century|noun||世紀||ac_century
-government|noun||政府||ac_government
 province|noun||州||ac_province
 tribe|noun|tribes|部族||ac_tribe
-# jac_3tec50 | 学院図書室の技術 ①（2級）
-battery|noun|batteries|電池||ac_battery
+# jac4_033 | 学院図書室の技術 ①（2級）
 cable|noun|cables|ケーブル||ac_cable
 circuit|noun||回路||ac_circuit
 database|noun||データベース||ac_database
-# jac_3tec51 | 学院図書室の技術 ②（2級）
+# jac4_034 | 学院図書室の技術 ②（2級）
 edit|verb|edited|編集する||ac_edit
 network|noun||ネットワーク||ac_network
-wire|noun|wires|針金||ac_wire
-# jac_4adj52 | 学院図書室の様子を表すことば ①（準1級）
+solution|noun|solutions|解決策||ac_solution
+# jac5_035 | 学院図書室の様子を表すことば ①（準1級）
 anywhere|adv||どこでも||ac_anywhere
 contrary|adj||反対の||ac_contrary
-far|adv||遠くに||ac_far
-marked|adj||顕著な||ac_marked
 medieval|adj||中世の||ac_medieval
-# jac_4adj53 | 学院図書室の様子を表すことば ②（準1級）
+# jac5_036 | 学院図書室の様子を表すことば ②（準1級）
 mostly|adv||たいてい||ac_mostly
 nineteenth|adj||19分の1の||ac_nineteenth
 tall|adj|taller|背が高い||ac_tall
-usual|adj||いつもの||ac_usual
-# jac_4art54 | 学院図書室の芸術 ①（準1級）
+# jac5_037 | 学院図書室の芸術 ①（準1級）
 aesthetic|adj||美的な||ac_aesthetic
 architecture|noun||建築術||ac_architecture
 chorus|noun||合唱||ac_chorus
 ensemble|noun||アンサンブル||ac_ensemble
-# jac_4art55 | 学院図書室の芸術 ②（準1級）
-film|noun||映画||ac_film
 genre|noun||ジャンル||ac_genre
+# jac5_038 | 学院図書室の芸術 ②（準1級）
 imagery|noun||イメージ||ac_imagery
 masterpiece|noun||傑作||ac_masterpiece
-# jac_4art56 | 学院図書室の芸術 ③（準1級）
-novelist|noun||小説家||ac_novelist
 palette|noun||パレット||ac_palette
 romantic|adj||ロマンチックな||ac_romantic
+# jac5_039 | 学院図書室の芸術 ③（準1級）
 saga|noun||大河物語||ac_saga
-# jac_4art57 | 学院図書室の芸術 ④（準1級）
 sonnet|noun||ソネット||ac_sonnet
 soundtrack|noun||サウンドトラック||ac_soundtrack
 trilogy|noun||三部作||ac_trilogy
-writer|noun||作家||ac_writer
-# jac_4com58 | 学院図書室の通信（準1級）
-citation|noun||引用||ac_citation
-mention|noun|mentioned,mentions|言及||ac_mention
-telegraph|noun||電報||ac_telegraph
-# jac_4med59 | 学院図書室のメディア ①（準1級）
+# jac5_040 | 学院図書室のメディア ①（準1級）
 anthology|noun||アンソロジー||ac_anthology
 censorship|noun||検閲||ac_censorship
 commentary|noun||論評||ac_commentary
 critical|adj||批判的な||ac_critical
-# jac_4med60 | 学院図書室のメディア ②（準1級）
+# jac5_041 | 学院図書室のメディア ②（準1級）
 current|adj|currents|現在の||ac_current
-embargo|noun|embargoed|公開禁止（期間）||ac_embargo
 memoir|noun||回顧録||ac_memoir
 propaganda|noun||宣伝||ac_propaganda
-# jac_4nat61 | 学院図書室の自然 ①（準1級）
-continent|noun||大陸||ac_continent
-coral|noun||サンゴ||ac_coral
-dock|noun|docks|埠頭||ac_dock
-galaxy|noun||銀河||ac_galaxy
-# jac_4nat62 | 学院図書室の自然 ②（準1級）
-inland|adj||内陸の||ac_inland
-reef|noun||岩礁||ac_reef
-shore|noun||岸||ac_shore
-# jac_4sch63 | 学院図書室の学校 ①（準1級）
-class|noun||授業||ac_class
-conclusion|noun||結論||ac_conclusion
-examination|noun|examinations|試験||ac_examination
+# jac5_042 | 学院図書室の学校 ①（準1級）
 examine|verb|examined,examines|調べる||ac_examine
-false|adj||間違った||ac_false
-# jac_4sch64 | 学院図書室の学校 ②（準1級）
 lesson|noun|lessons|授業||ac_lesson
 pencil|noun|pencils|鉛筆||ac_pencil
+# jac5_043 | 学院図書室の学校 ②（準1級）
 plagiarism|noun||盗用||ac_plagiarism
 seminar|noun||セミナー||ac_seminar
 topic|noun||話題||ac_topic
-# jac_4sci65 | 学院図書室の科学 ①（準1級）
+# jac5_044 | 学院図書室の科学 ①（準1級）
 acquisition|noun|acquisitions|取得||ac_acquisition
-algorithm|noun||アルゴリズム||ac_algorithm
 cathedral|noun||大聖堂||ac_cathedral
 conclude|verb|concludes|終える||ac_conclude
 curve|noun|curved,curves|曲線||ac_curve
-# jac_4sci66 | 学院図書室の科学 ②（準1級）
+# jac5_045 | 学院図書室の科学 ②（準1級）
 ecology|noun||生態学||ac_ecology
 enzyme|noun||酵素||ac_enzyme
 equation|noun||方程式||ac_equation
 evolution|noun||進化||ac_evolution
-fear|noun||恐れ||ac_fear
-# jac_4sci67 | 学院図書室の科学 ③（準1級）
+# jac5_046 | 学院図書室の科学 ③（準1級）
 fleet|noun||艦隊||ac_fleet
-fuel|noun||燃料||ac_fuel
-gene|noun|genes|遺伝子||ac_gene
-genetic|adj||遺伝の||ac_genetic
 gravity|noun||重力||ac_gravity
-# jac_4sci68 | 学院図書室の科学 ④（準1級）
 hop|noun|hoped|ぴょんと跳ぶこと||ac_hop
-laboratory|noun||実験室||ac_laboratory
 laser|noun||レーザー||ac_laser
-lift|noun|lifting,lifts|持ち上げること||ac_lift
+# jac5_047 | 学院図書室の科学 ④（準1級）
 matrix|noun||行列||ac_matrix
-# jac_4sci69 | 学院図書室の科学 ⑤（準1級）
-missing|adj||行方不明の||ac_missing
 model|noun||模型||ac_model
 mutation|noun||突然変異||ac_mutation
 optical|adj||光学の||ac_optical
-particle|noun||粒子||ac_particle
-# jac_4sci70 | 学院図書室の科学 ⑥（準1級）
-prove|verb|proves|証明する||ac_prove
+# jac5_048 | 学院図書室の科学 ⑤（準1級）
 railway|noun||鉄道||ac_railway
-rare|adj||まれな||ac_rare
-researcher|noun|researchers|研究者||ac_researcher
-shape|noun|shapes|形||ac_shape
-# jac_4sci71 | 学院図書室の科学 ⑦（準1級）
-share|verb|shared|分け合う||ac_share
-source|noun|sources|源||ac_source
 spectrum|noun||スペクトル||ac_spectrum
-spine|noun||背骨||ac_spine
-success|noun||成功||ac_success
-# jac_4sci72 | 学院図書室の科学 ⑧（準1級）
-temperature|noun||温度||ac_temperature
 theorem|noun||定理||ac_theorem
-those|det||それらの||ac_those
-throw|noun||投げること||ac_throw
-tide|noun|tides|潮||ac_tide
-# jac_4sci73 | 学院図書室の科学 ⑨（準1級）
 type|noun||種類||ac_type
+# jac5_049 | 学院図書室の科学 ⑥（準1級）
 vector|noun||ベクトル||ac_vector
 voltage|noun||電圧||ac_voltage
-wear|verb||着る||ac_wear
 weekly|adj||毎週の||ac_weekly
-# jac_4soc74 | 学院図書室の社会（準1級）
+# jac5_050 | 学院図書室の社会（準1級）
 civilization|noun||文明||ac_civilization
 fellowship|noun|fellowships|仲間意識||ac_fellowship
 kingdom|noun||王国||ac_kingdom
 migration|noun||移住||ac_migration
 monk|noun||僧||ac_monk
-# jac_4tec75 | 学院図書室の技術 ①（準1級）
+# jac5_051 | 学院図書室の技術 ①（準1級）
 antenna|noun||アンテナ||ac_antenna
-code|noun||コード||ac_code
 digital|adj||デジタルの||ac_digital
 download|verb|downloaded|ダウンロードする||ac_download
-# jac_4tec76 | 学院図書室の技術 ②（準1級）
+# jac5_052 | 学院図書室の技術 ②（準1級）
 radar|noun||レーダー||ac_radar
 sensor|noun||感知器||ac_sensor
 simulation|noun||シミュレーション||ac_simulation
-# jac_4ver77 | 学院図書室の動詞（準1級）
+# jac5_053 | 学院図書室の動詞（準1級）
 cite|verb|cited,citing|引用する||ac_cite
 crane|verb|cranes|首を伸ばす||ac_crane
-detect|verb|detects|検出する||ac_detect
 distort|verb|distorts|ゆがめる||ac_distort
-# jac_5adj78 | 学院図書室の様子を表すことば ①（1級）
-certain|adj||確かな||ac_certain
+# jac6_054 | 学院図書室の様子を表すことば（1級）
 common|adj||共通の||ac_common
 freely|adv||自由に||ac_freely
-# jac_5adj79 | 学院図書室の様子を表すことば ②（1級）
 giant|adj||巨大な||ac_giant
-main|adj||主な||ac_main
-major|adj||主要な||ac_major
-# jac_5art80 | 学院図書室の芸術 ①（1級）
+# jac6_055 | 学院図書室の芸術 ①（1級）
 ballad|noun||バラード||ac_ballad
 baroque|adj||バロック様式の||ac_baroque
 blueprint|noun||設計図||ac_blueprint
 cello|noun||チェロ||ac_cello
+# jac6_056 | 学院図書室の芸術 ②（1級）
 chord|noun||和音||ac_chord
-# jac_5art81 | 学院図書室の芸術 ②（1級）
 choreography|noun||振り付け||ac_choreography
 concerto|noun||協奏曲||ac_concerto
 curator|noun||学芸員||ac_curator
+# jac6_057 | 学院図書室の芸術 ③（1級）
 hymn|noun||賛美歌||ac_hymn
 jazz|noun||ジャズ||ac_jazz
-# jac_5art82 | 学院図書室の芸術 ③（1級）
 mythology|noun||神話||ac_mythology
 organ|noun||器官||ac_organ
-original|adj|originals|もとの||ac_original
+# jac6_058 | 学院図書室の芸術 ④（1級）
 pastoral|adj||牧歌的な||ac_pastoral
-# jac_5art83 | 学院図書室の芸術 ④（1級）
 playwright|noun||劇作家||ac_playwright
 protagonist|noun||主人公||ac_protagonist
 pseudonym|noun||ペンネーム||ac_pseudonym
+# jac6_059 | 学院図書室の芸術 ⑤（1級）
 rehearse|verb||けいこする||ac_rehearse
-# jac_5art84 | 学院図書室の芸術 ⑤（1級）
-reviewer|noun|reviewers|批評家||ac_reviewer
 screenplay|noun||脚本||ac_screenplay
 sculptor|noun||彫刻家||ac_sculptor
 tempo|noun||テンポ||ac_tempo
-# jac_5com85 | 学院図書室の通信（1級）
+# jac6_060 | 学院図書室の通信（1級）
 dialect|noun||方言||ac_dialect
-extension|noun||拡張||ac_extension
 hint|noun||暗示||ac_hint
 signal|noun||信号||ac_signal
-# jac_5law86 | 学院図書室の法律（1級）
-blame|verb|blamed|責める||ac_blame
-evidence|noun||証拠||ac_evidence
-identity|noun||身元||ac_identity
-# jac_5med87 | 学院図書室のメディア ①（1級）
+# jac6_061 | 学院図書室のメディア（1級）
 channel|noun||チャンネル||ac_channel
 copyright|noun||著作権||ac_copyright
-editor|noun|editors|編集者||ac_editor
 mislead|verb|misled|誤解させる||ac_mislead
-# jac_5med88 | 学院図書室のメディア ②（1級）
 pamphlet|noun|pamphlets|パンフレット||ac_pamphlet
-print|verb|printed|印刷する||ac_print
 publication|noun||出版||ac_publication
-# jac_5nat89 | 学院図書室の自然 ①（1級）
+# jac6_062 | 学院図書室の自然（1級）
 layer|noun||層||ac_layer
 overfishing|noun||乱獲||ac_overfishing
 ozone|noun||オゾン||ac_ozone
-# jac_5nat90 | 学院図書室の自然 ②（1級）
-region|noun||地域||ac_region
 sand|noun||砂||ac_sand
 silt|verb|silts|土砂でふさがる||ac_silt
-# jac_5sch91 | 学院図書室の学校 ①（1級）
+# jac6_063 | 学院図書室の学校 ①（1級）
 comparison|noun||比較||ac_comparison
-conference|noun||会議||ac_conference
 imitate|verb|imitated|まねる||ac_imitate
-improve|verb||改善する||ac_improve
 monograph|noun||専門書||ac_monograph
-# jac_5sch92 | 学院図書室の学校 ②（1級）
+# jac6_064 | 学院図書室の学校 ②（1級）
 pupil|noun|pupils|生徒||ac_pupil
 relevant|adj||関連のある||ac_relevant
-sentence|noun||文||ac_sentence
-session|noun||会議||ac_session
 theme|noun||主題||ac_theme
-# jac_5sci93 | 学院図書室の科学 ①（1級）
+# jac6_065 | 学院図書室の科学 ①（1級）
 algebra|noun||代数||ac_algebra
 archaeology|noun||考古学||ac_archaeology
 ballet|noun||バレエ||ac_ballet
-brain|noun||脳||ac_brain
 calculus|noun||微積分学||ac_calculus
-# jac_5sci94 | 学院図書室の科学 ②（1級）
+# jac6_066 | 学院図書室の科学 ②（1級）
 combine|verb||結合する||ac_combine
 computation|noun||計算||ac_computation
 conclusive|adj||決定的な||ac_conclusive
 conservator|noun|conservators|（文化財の）修復士||ac_conservator
-correlation|noun||相関||ac_correlation
-# jac_5sci95 | 学院図書室の科学 ③（1級）
+# jac6_067 | 学院図書室の科学 ③（1級）
 damp|adj||湿った||ac_damp
 death|noun||死||ac_death
 decimal|noun||小数||ac_decimal
 domain|noun||領域||ac_domain
+# jac6_068 | 学院図書室の科学 ④（1級）
 empirical|adj||経験的な||ac_empirical
-# jac_5sci96 | 学院図書室の科学 ④（1級）
-faithful|adj||忠実な||ac_faithful
-fossil|noun||化石||ac_fossil
 fraction|noun||分数||ac_fraction
 geological|adj||地質学の||ac_geological
 grain|noun||穀物||ac_grain
-# jac_5sci97 | 学院図書室の科学 ⑤（1級）
-hypothesis|noun||仮説||ac_hypothesis
-illness|noun||病気||ac_illness
+# jac6_069 | 学院図書室の科学 ⑤（1級）
 influence|noun||影響||ac_influence
 kindness|noun||親切||ac_kindness
-lack|noun||不足||ac_lack
-# jac_5sci98 | 学院図書室の科学 ⑥（1級）
-lend|verb|lending,lends,lent|貸す||ac_lend
 load|noun||荷物||ac_load
 motion|noun||動き||ac_motion
+# jac6_070 | 学院図書室の科学 ⑥（1級）
 neuron|noun||ニューロン||ac_neuron
 plankton|noun||プランクトン||ac_plankton
-# jac_5sci99 | 学院図書室の科学 ⑦（1級）
 plus|prep||～に加えて||ac_plus
 polymer|noun||ポリマー||ac_polymer
-predict|verb|predicts|予測する||ac_predict
+# jac6_071 | 学院図書室の科学 ⑦（1級）
 qualification|noun||資格を与えること||ac_qualification
-# jac_5sci100 | 学院図書室の科学 ⑧（1級）
 registration|noun||登録||ac_registration
 reproduce|verb||繁殖する||ac_reproduce
 shift|verb|shifted|移す||ac_shift
+# jac6_072 | 学院図書室の科学 ⑧（1級）
 sociology|noun||社会学||ac_sociology
-# jac_5sci101 | 学院図書室の科学 ⑨（1級）
-space|noun||空間||ac_space
 synthesis|noun||合成||ac_synthesis
 universe|noun||宇宙||ac_universe
 wavelength|noun||波長||ac_wavelength
-# jac_5sea102 | 学院図書室の海（1級）
-catch|noun||捕まえること||ac_catch
-fishery|noun|fisheries|漁業||ac_fishery
-shipwreck|noun||難破||ac_shipwreck
-# jac_5soc103 | 学院図書室の社会 ①（1級）
-contributor|noun|contributors|寄付者||ac_contributor
-decline|noun|declined|衰退||ac_decline
-exile|noun||追放||ac_exile
+# jac6_073 | 学院図書室の社会（1級）
+contributor|noun|contributors|寄稿者・貢献者||ac_contributor
 monument|noun||記念碑||ac_monument
-politics|noun||政治||ac_politics
-# jac_5soc104 | 学院図書室の社会 ②（1級）
 donor|noun||寄付者||ac_donor
-prime|adj||主要な||ac_prime
 supervisor|noun||上司||ac_supervisor
 tradition|noun||しきたり||ac_tradition
-# jac_5tec105 | 学院図書室の技術（1級）
+# jac6_074 | 学院図書室の技術（1級）
 amplifier|noun||アンプ||ac_amplifier
 automation|noun||自動化||ac_automation
 firewall|noun||ファイアウォール||ac_firewall
-memory|noun||記憶||ac_memory
 transistor|noun||トランジスタ||ac_transistor
-# jac_5ver106 | 学院図書室の動詞 ①（1級）
+# jac6_075 | 学院図書室の動詞 ①（1級）
 assume|verb||思い込む||ac_assume
 conjecture|verb||推測する||ac_conjecture
 consult|verb||相談する||ac_consult
-exclude|verb|excluded|除外する||ac_exclude
-exist|verb||存在する||ac_exist
-# jac_5ver107 | 学院図書室の動詞 ②（1級）
-lengthen|verb|lengthened|長くする||ac_lengthen
-overstate|verb|overstates|誇張して言う||ac_overstate
 withstand|verb||耐える||ac_withstand
+# jac6_076 | 学院図書室の動詞 ②（1級）
 worsen|verb||悪化させる||ac_worsen
+fishery|noun|fisheries|漁業||ac_fishery
+shipwreck|noun||難破||ac_shipwreck
+# jac2_077 | 学院図書室のことば（3級）
+wave|noun|waves|波||ac_wave
+wood|noun||木材||ac_wood
+technology|noun||技術||ac_technology
+# jac5_078 | 学院図書室のことば（準1級）
+citation|noun||引用||ac_citation
+telegraph|noun||電報||ac_telegraph
+continent|noun||大陸||ac_continent
+inland|adj||内陸の||ac_inland
 `;
 // <<END:LEX>>
 

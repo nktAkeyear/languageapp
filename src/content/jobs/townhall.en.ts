@@ -33,618 +33,331 @@ const TAGS: Tags = {"th1_desks1":{"grammar":["gr-5-011"]},"th1_hours":{"grammar"
 // <<END:TAGS>>
 
 // <<GEN:FORMS>>
-const EXTRA_FORMS: Record<string, string[]> = {"house":["houses","housing"],"collect":["collected"],"in_end":["ended"],"friday":["fridays"],"old":["older"],"fine":["fines"],"fill":["filled"],"receive":["receives","receiving"],"apply":["applied","applying"],"own":["owns"],"home":["homes"],"in_month":["month's","months'"],"week":["weeks'"],"vote":["voting"],"in_saturday":["saturdays"],"complain":["complaining","complains"],"begin":["begins","begun"],"inspection":["inspections"],"in_hear":["hearings"],"tuesday":["tuesdays"],"thursday":["thursdays"],"station":["stations"],"proposal":["proposals"],"deadline":["deadlines"],"in_explain":["explaining"],"in_owner":["owner's"],"list":["listed"],"ask":["asking"],"paint":["painted","painting"],"request":["requested"],"show":["shown"],"rise":["rises","rising"],"attend":["attended"],"morning":["mornings"],"address":["addresses"],"candidate":["candidates"],"report":["reported","reports"],"force":["forced"],"agree":["agrees"],"floor":["floors"],"clean":["cleaning"],"file":["filed"],"start":["starting"],"wednesday":["wednesdays"],"monday":["mondays"],"wife":["wife's"],"declare":["declared"],"neighbour":["neighbours"],"fall":["falls"],"in_third":["thirds"],"stop":["stopping"],"teacher":["teachers"],"large":["larger"],"in_aunt":["aunt's"],"father":["father's"],"sell":["sold"],"submit":["submitted"],"excuse":["excused","excuses"],"in_double":["doubled"],"decide":["deciding"],"mother":["mother's"],"except":["excepted"],"face":["faced"],"door":["doors"]};
+const EXTRA_FORMS: Record<string, string[]> = {"house":["houses","housing"],"collect":["collected"],"in_end":["ended"],"friday":["fridays"],"old":["older"],"fine":["fines","fined"],"fill":["filled"],"receive":["receives","receiving"],"apply":["applied","applying"],"own":["owns"],"home":["homes"],"in_month":["month's","months'"],"week":["weeks'"],"vote":["voting"],"in_saturday":["saturdays"],"complain":["complaining","complains"],"begin":["begins","begun"],"inspection":["inspections"],"in_hear":["hearings"],"tuesday":["tuesdays"],"thursday":["thursdays"],"station":["stations"],"proposal":["proposals"],"deadline":["deadlines"],"in_explain":["explaining"],"in_owner":["owner's"],"list":["listed"],"ask":["asking"],"paint":["painted","painting"],"request":["requested"],"show":["shown"],"rise":["rises","rising"],"attend":["attended"],"morning":["mornings"],"address":["addresses"],"candidate":["candidates"],"report":["reported","reports"],"force":["forced"],"agree":["agrees"],"floor":["floors"],"clean":["cleaning"],"file":["filed"],"start":["starting"],"wednesday":["wednesdays"],"monday":["mondays"],"wife":["wife's"],"declare":["declared"],"neighbour":["neighbours"],"fall":["falls"],"in_third":["thirds"],"stop":["stopping"],"teacher":["teachers"],"large":["larger"],"in_aunt":["aunt's"],"father":["father's"],"sell":["sold"],"submit":["submitted"],"excuse":["excused","excuses"],"in_double":["doubled"],"decide":["deciding"],"mother":["mother's"],"except":["excepted"],"face":["faced"],"door":["doors"]};
 // <<END:FORMS>>
 
 // <<GEN:LEX>>
 const LEX_SRC = `
-# jth_1adj1 | 役場の様子を表すことば（3級）
-down|adv||下へ||th_down
-nearly|adv||ほとんど||th_nearly
-outside|adv||外で||th_outside
-# jth_1hou2 | 役場の住居 ①（3級）
+# jth2_001 | 役場の住居（3級）
 apartment|noun||アパート||th_apartment
-entrance|noun||入口||th_entrance
-fire|noun||火||th_fire
 garage|noun|garages|車庫||th_garage
-# jth_1hou3 | 役場の住居 ②（3級）
 garbage|noun||ごみ||th_garbage
-remove|verb||取り除く||th_remove
-roof|noun|roofs|屋根||th_roof
 trash|noun||くず（ごみ箱の中身）||th_trash
-# jth_1soc4 | 役場の社会 ①（3級）
-birth|noun|births|誕生||th_birth
+# jth2_002 | 役場の社会 ①（3級）
 biscuit|noun||ビスケット（英）||th_biscuit
-choose|verb|chose|選ぶ||th_choose
 citizen|noun|citizens|市民||th_citizen
 collection|noun||収集||th_collection
-# jth_1soc5 | 役場の社会 ②（3級）
-council|noun|council's|議会||th_council
-election|noun|elections|選挙||th_election
-fee|noun|fees|料金||th_fee
-license|verb|licensed,licenses|免許を与える||th_license
 lily|noun||ユリ||th_lily
-# jth_1soc6 | 役場の社会 ③（3級）
+# jth2_003 | 役場の社会 ②（3級）
 permit|verb|permits|許可する||th_permit
 population|noun||人口||th_population
-president|noun||大統領||th_president
-public|noun||一般の人々||th_public
 registry|noun||登録簿||th_registry
-# jth_1soc7 | 役場の社会 ④（3級）
 town hall|noun|town halls|町役場||th_town_hall
-village|noun||村||th_village
-waste|adj||廃棄の||th_waste
-zone|noun||地域||th_zone
-# jth_1tra8 | 役場の交通 ①（3級）
-car|noun|cars|車||th_car
-drive|noun|drove|ドライブ||th_drive
-kilometer|noun|kilometers|キロメートル||th_kilometer
-parking|noun||駐車||th_parking
-# jth_1tra9 | 役場の交通 ②（3級）
-pass|noun|passed|合格||th_pass
-road|noun|roads|道路||th_road
-speed|noun||速度||th_speed
-# jth_2adj10 | 役場の様子を表すことば（準2級）
-dangerous|adj||危険な||th_dangerous
-muddy|adj||泥をかぶった||th_muddy
-official|adj||公式の||th_official
-square|adj||正方形の||th_square
-# jth_2fin11 | 役場の財務 ①（準2級）
-benefit|noun||利益||th_benefit
-certificate|noun|certificates|証明書||th_certificate
-commission|noun||手数料||th_commission
-# jth_2fin12 | 役場の財務 ②（準2級）
-fund|noun||資金||th_fund
-income|noun||収入||th_income
-instalment|noun|instalments|分割払いの1回分||th_instalment
-# jth_2hou13 | 役場の住居 ①（準2級）
-bakery|noun||パン屋||th_bakery
-block|noun|blocked|1区画||th_block
+# jth3_004 | 役場の住居 ①（準2級）
 brick|noun|bricks|れんが||th_brick
-build|verb|built|建てる||th_build
 bulb|noun||電球||th_bulb
-# jth_2hou14 | 役場の住居 ②（準2級）
-clinic|noun||診療所||th_clinic
-concert|noun||コンサート||th_concert
 construction|noun||建設||th_construction
-corner|noun||角||th_corner
 drain|noun||排水管||th_drain
-# jth_2hou15 | 役場の住居 ③（準2級）
 dust|noun||ちり||th_dust
+# jth3_005 | 役場の住居 ②（準2級）
 electricity|noun||電気||th_electricity
 fence|noun|fences|柵||th_fence
-flat|noun|flats|アパート（英）||th_flat
 furniture|noun||家具||th_furniture
-# jth_2hou16 | 役場の住居 ④（準2級）
 gym|noun||ジム||th_gym
-health|noun||健康||th_health
+# jth3_006 | 役場の住居 ③（準2級）
 heating|noun||暖房||th_heating
 mill|noun||製粉所||th_mill
 mine|pron||私のもの||th_mine
-# jth_2hou17 | 役場の住居 ⑤（準2級）
 pipe|noun|pipes|管||th_pipe
-raise|verb|raised,raises|上げる||th_raise
 rich|adj||裕福な||th_rich
-site|noun||場所||th_site
-stadium|noun||競技場||th_stadium
-# jth_2hou18 | 役場の住居 ⑥（準2級）
+# jth3_007 | 役場の住居 ④（準2級）
 staircase|noun||階段（全体）||th_staircase
 statue|noun||像||th_statue
 theater|noun||劇場||th_theater
 tower|noun||塔||th_tower
-yours|pron||あなたのもの||th_yours
-# jth_2law19 | 役場の法律（準2級）
-authority|noun||権限||th_authority
-fair|adj||公平な||th_fair
-guard|noun||警備員||th_guard
-security|noun||安全||th_security
-signature|noun|signatures|署名||th_signature
-# jth_2nat20 | 役場の自然（準2級）
+# jth3_008 | 役場の自然（準2級）
 crossing|noun||横断||th_crossing
 fountain|noun||噴水||th_fountain
 mud|noun||泥||th_mud
-path|noun||小道||th_path
 pond|noun||池||th_pond
-# jth_2nou21 | 役場のことば（準2級）
+# jth3_009 | 役場のことば ①（準2級）
 cemetery|noun||共同墓地||th_cemetery
 hole|noun||穴||th_hole
-lot|noun||たくさん||th_lot
-# jth_2sch22 | 役場の学校（準2級）
+muddy|adj||泥をかぶった||th_muddy
+square|adj||正方形の||th_square
+# jth3_010 | 役場のことば ②（準2級）
+instalment|noun|instalments|分割払いの1回分||th_instalment
+security|noun||安全||th_security
 playground|noun||遊び場||th_playground
-repeat|verb|repeated|繰り返す||th_repeat
-student|noun|students|学生||th_student
-# jth_2soc23 | 役場の社会 ①（準2級）
+# jth3_011 | 役場の社会（準2級）
 administration|noun||行政||th_administration
-campaign|noun||運動||th_campaign
-capital|noun||首都||th_capital
 center|noun||中心||th_center
-central|adj||中心の||th_central
-# jth_2soc24 | 役場の社会 ②（準2級）
-community|noun||地域社会||th_community
 district|noun|districts|地区||th_district
-individual|adj||個々の||th_individual
-industry|noun|industries|産業||th_industry
 kindergarten|noun||幼稚園||th_kindergarten
-# jth_2soc25 | 役場の社会 ③（準2級）
-majority|noun||大多数||th_majority
-mayor|noun||市長||th_mayor
-poll|noun|polling|世論調査||th_poll
-pollution|noun||汚染||th_pollution
-resident|adj|residents|居住している||th_resident
-# jth_2tra26 | 役場の交通（準2級）
+# jth3_012 | 役場の交通（準2級）
 lane|noun||車線||th_lane
 meter|noun|meters|メートル||th_meter
 sidewalk|noun||歩道||th_sidewalk
-# jth_3adj27 | 役場の様子を表すことば ①（2級）
-able|adj||～できる||th_able
+# jth4_013 | 役場の様子を表すことば ①（2級）
 above|adv||上に||th_above
 below|adv||下に||th_below
 disabled|adj||身体障害の不具の||th_disabled
-# jth_3adj28 | 役場の様子を表すことば ②（2級）
-eligible|adj||資格のある||th_eligible
+# jth4_014 | 役場の様子を表すことば ②（2級）
 following|adj||次の||th_following
 nowhere|adv||どこにも～ない||th_nowhere
-private|adj||私的な||th_private
-# jth_3adj29 | 役場の様子を表すことば ③（2級）
 sincerely|adv||心から||th_sincerely
-true|adj||本当の||th_true
-unpaid|adj||未払いの||th_unpaid
-# jth_3fin30 | 役場の財務 ①（2級）
+# jth4_015 | 役場の財務（2級）
 accountant|noun||会計士||th_accountant
 assess|verb|assessed|評価する||th_assess
-deal|noun|deals|取引||th_deal
 enterprise|noun|enterprises|事業||th_enterprise
-# jth_3fin31 | 役場の財務 ②（2級）
-grant|noun|granted,grants|補助金||th_grant
 taxpayer|noun|taxpayers|納税者||th_taxpayer
 transaction|noun||取引||th_transaction
-# jth_3hot32 | 役場のホテル（2級）
-bar|noun|bars|バー||th_bar
-hostel|noun||ホステル||th_hostel
-lodge|noun|lodger|山小屋||th_lodge
-# jth_3hou33 | 役場の住居 ①（2級）
+# jth4_016 | 役場の住居 ①（2級）
 architect|noun||建築家||th_architect
 builder|noun||建築業者||th_builder
 demolish|verb|demolished|取り壊す||th_demolish
 developer|noun||開発者||th_developer
 fridge|noun|fridges|冷蔵庫||th_fridge
-# jth_3hou34 | 役場の住居 ②（2級）
-handle|noun|handled|取っ手||th_handle
-household|noun|households|世帯||th_household
+# jth4_017 | 役場の住居 ②（2級）
 landlord|noun||家主||th_landlord
-repair|noun|repaired,repairing,repairs|修理||th_repair
-# jth_3hou35 | 役場の住居 ③（2級）
 residential|adj||住宅の||th_residential
 rid|verb||取り除く（get rid of）||th_rid
 shelter|noun||避難所||th_shelter
-spare|adj||予備の||th_spare
-# jth_3hr36 | 役場の人事 ①（2級）
+# jth4_018 | 役場の人事 ①（2級）
 applicant|noun|applicants|応募者||th_applicant
-assessment|noun||評価||th_assessment
 booking|noun||予約||th_booking
 electrician|noun||電気技師||th_electrician
-# jth_3hr37 | 役場の人事 ②（2級）
-employer|noun||雇い主||th_employer
-engineer|noun||技術者||th_engineer
+# jth4_019 | 役場の人事 ②（2級）
 plumber|noun||配管工||th_plumber
-qualify|verb||資格を得る||th_qualify
-# jth_3hr38 | 役場の人事 ③（2級）
 reference|noun||参照||th_reference
 vacancy|noun||空室||th_vacancy
-worker|noun|workers|労働者||th_worker
-# jth_3law39 | 役場の法律 ①（2級）
-appeal|noun|appealed,appeals|訴え||th_appeal
-ban|noun|banned|禁止||th_ban
+# jth4_020 | 役場の法律（2級）
 citizenship|noun||市民権||th_citizenship
-condition|noun|conditions|状態||th_condition
 contractor|noun||請負業者||th_contractor
-# jth_3law40 | 役場の法律 ②（2級）
-dispute|noun||論争||th_dispute
-document|noun|documents|文書||th_document
 identify|verb||特定する||th_identify
-lawyer|noun||弁護士||th_lawyer
-lease|noun||賃貸借契約||th_lease
-# jth_3law41 | 役場の法律 ③（2級）
-objection|noun|objections|反対||th_objection
-officer|noun||役人||th_officer
-property|noun||財産||th_property
-protect|verb|protected,protects|守る||th_protect
-# jth_3law42 | 役場の法律 ④（2級）
 refusal|noun||拒否||th_refusal
-restrict|verb|restricted|制限する||th_restrict
 vendor|noun||売る人||th_vendor
-witness|verb||目撃する||th_witness
-# jth_3mon43 | 役場のお金（2級）
+# jth4_021 | 役場のお金（2級）
 allowance|noun||手当||th_allowance
 deduction|noun||控除||th_deduction
 earn|verb|earns|稼ぐ||th_earn
-pension|noun||年金||th_pension
-# jth_3nat44 | 役場の自然（2級）
-environment|noun||環境||th_environment
-refuse|noun|refused,refuses|廃棄物||th_refuse
+# jth4_022 | 役場のことば ①（2級）
+bar|noun|bars|バー||th_bar
+hostel|noun||ホステル||th_hostel
 stream|noun||小川||th_stream
-tree|noun|trees|木||th_tree
-# jth_3nou45 | 役場のことば ①（2級）
-consultant|noun||専門的助言をする人||th_consultant
-fact|noun|facts|事実||th_fact
-guardian|noun||保護者||th_guardian
-# jth_3nou46 | 役場のことば ②（2級）
-life|noun||生活||th_life
-person|noun|person's|人||th_person
-recycling|noun||リサイクル||th_recycling
-# jth_3off47 | 役場のオフィス（2級）
-business|noun||商売||th_business
 division|noun||分割||th_division
-enter|verb||入る||th_enter
+# jth4_023 | 役場のことば ②（2級）
 executive|adj||経営の||th_executive
-expert|noun||専門家||th_expert
-# jth_3sea48 | 役場の海（2級）
 berth|noun||停泊所||th_berth
-fishing|noun||魚釣り||th_fishing
 pier|noun||船着き場||th_pier
-# jth_3sma49 | 役場のつなぎのことば ①（2級）
-anyone|pron||だれでも||th_anyone
 itself|pron||それ自体||th_itself
+# jth4_024 | 役場のことば ③（2級）
 somebody|pron||だれか（ある人）||th_somebody
-# jth_3sma50 | 役場のつなぎのことば ②（2級）
-such|det||そのような||th_such
-themselves|pron||彼ら自身||th_themselves
-though|conj||～だけれども||th_though
-# jth_3soc51 | 役場の社会 ①（2級）
+development|noun||発展||th_development
+proxy|noun||代理||th_proxy
+# jth4_025 | 役場の社会 ①（2級）
 accuracy|noun||正確さ||th_accuracy
-area|noun|areas|地域||th_area
 banker|noun||銀行家||th_banker
 boundary|noun||境界線||th_boundary
-care|noun||世話||th_care
-# jth_3soc52 | 役場の社会 ②（2級）
-concern|noun|concerns|心配||th_concern
 dig|noun|dug|掘ること||th_dig
-festival|noun||祭り||th_festival
+# jth4_026 | 役場の社会 ②（2級）
 foreign|adj||外国の||th_foreign
 gardener|noun||植木屋||th_gardener
-# jth_3soc53 | 役場の社会 ③（2級）
 height|noun||高さ||th_height
-homeless|adj||ホームレスの||th_homeless
 identification|noun||身分証明書||th_identification
+# jth4_027 | 役場の社会 ③（2級）
 immigrant|noun||移民||th_immigrant
 inhabitant|noun||住民||th_inhabitant
-# jth_3soc54 | 役場の社会 ④（2級）
-land|verb||着陸する||th_land
-length|noun||長さ||th_length
-local|adj||地元の||th_local
 newcomer|noun||新人||th_newcomer
-nurse|noun||看護師||th_nurse
-# jth_3soc55 | 役場の社会 ⑤（2級）
-parent|noun||親||th_parent
-part|noun|parts|部分||th_part
 pensioner|noun||年金受給者||th_pensioner
-publish|verb|published|出版する||th_publish
+# jth4_028 | 役場の社会 ④（2級）
 queue|noun||列||th_queue
-# jth_3soc56 | 役場の社会 ⑥（2級）
-reform|noun||改革||th_reform
 respect|noun||尊敬||th_respect
 stallholder|noun||露店の店主||th_stallholder
 subsidy|noun||補助金||th_subsidy
-suggestion|noun||提案||th_suggestion
-# jth_3soc57 | 役場の社会 ⑦（2級）
+# jth4_029 | 役場の社会 ⑤（2級）
 tenant|noun|tenant's|入居者||th_tenant
-thank|verb||感謝する||th_thank
 unemployed|adj||失業中の||th_unemployed
 urban|adj||都市の||th_urban
-# jth_3soc58 | 役場の社会 ⑧（2級）
 veteran|noun||ベテラン||th_veteran
-volunteer|verb||進んで申し出る||th_volunteer
-voter|noun|voters|投票者||th_voter
-widow|noun||未亡人||th_widow
-# jth_3tec59 | 役場の技術（2級）
-access|noun||接近||th_access
-development|noun||発展||th_development
-proxy|noun||代理||th_proxy
-# jth_4adj60 | 役場の様子を表すことば ①（準1級）
-along|adv||一緒に||th_along
-clearly|adv||はっきりと||th_clearly
-expected|adj||予想された||th_expected
-faithfully|adv||忠実に||th_faithfully
-former|adj||前の||th_former
-# jth_4adj61 | 役場の様子を表すことば ②（準1級）
-lowest|adj||最下の||th_lowest
-personal|adj||個人の||th_personal
-properly|adv||適切に||th_properly
-tender|adj||柔らかい||th_tender
-wide|adj|wider|幅の広い||th_wide
-# jth_4com62 | 役場の通信（準1級）
-enclose|verb|enclosed|同封する||th_enclose
-ignore|verb|ignored,ignores|無視する||th_ignore
-warn|verb||警告する||th_warn
-# jth_4fin63 | 役場の財務 ①（準1級）
-bid|verb|bids|入札する||th_bid
+# jth5_030 | 役場の財務（準1級）
 compensate|verb||補償する||th_compensate
-debt|noun||借金||th_debt
-owe|verb|owed,owes|借りている||th_owe
-# jth_4fin64 | 役場の財務 ②（準1級）
-reduction|noun|reductions|削減||th_reduction
 revenue|noun||収益||th_revenue
 surplus|noun||余剰||th_surplus
-tariff|noun||関税||th_tariff
-# jth_4hea65 | 役場の健康（準1級）
-burn|noun|burning,burns|やけど||th_burn
-disability|noun||障害||th_disability
-quarantine|noun||検疫||th_quarantine
-# jth_4hou66 | 役場の住居（準1級）
+# jth5_031 | 役場の住居（準1級）
 kerb|noun||縁石||th_kerb
 mortgage|noun||抵当||th_mortgage
 residence|noun||住宅||th_residence
-smoke|noun||煙||th_smoke
-# jth_4hr67 | 役場の人事（準1級）
-colleague|noun|colleagues|同僚||th_colleague
-opening|noun||開始||th_opening
-succeed|verb|succeeds|成功する||th_succeed
-# jth_4law68 | 役場の法律 ①（準1級）
-adopted|adj||養子の||th_adopted
+# jth5_032 | 役場の法律 ①（準1級）
 anybody|pron||だれか（疑問・否定で）||th_anybody
-baker|noun||パン屋||th_baker
 centimeter|noun|centimeters|センチメートル||th_centimeter
-consent|noun|consented|同意||th_consent
-# jth_4law69 | 役場の法律 ②（準1級）
-court|noun||裁判所||th_court
 deed|noun||行為||th_deed
 disturb|verb|disturbs|邪魔をする||th_disturb
-emission|noun||排出||th_emission
 enact|verb|enacted|制定する||th_enact
-# jth_4law70 | 役場の法律 ③（準1級）
+# jth5_033 | 役場の法律 ②（準1級）
 enforce|verb|enforced|施行する||th_enforce
-factory|noun||工場||th_factory
-fin|noun|fined|ひれ||th_fin
-flood|noun|flooded|洪水||th_flood
 forbid|verb|forbids|禁じる||th_forbid
-# jth_4law71 | 役場の法律 ④（準1級）
 guarantee|noun||保証||th_guarantee
 harvest|noun||収穫||th_harvest
+# jth5_034 | 役場の法律 ③（準1級）
 hesitate|verb||ためらう||th_hesitate
 inherit|verb|inherited,inherits|相続する||th_inherit
 legitimate|adj||合法的な||th_legitimate
-# jth_4law72 | 役場の法律 ⑤（準1級）
-level|noun||水準||th_level
-negligent|adj||怠慢な||th_negligent
 nominate|verb||指名する||th_nominate
+# jth5_035 | 役場の法律 ④（準1級）
 obey|verb||従う||th_obey
 obligation|noun||義務||th_obligation
-# jth_4law73 | 役場の法律 ⑥（準1級）
-oblige|verb|obliged|義務づける||th_oblige
 obtain|verb||手に入れる||th_obtain
 ordinance|noun|ordinances|条例||th_ordinance
+# jth5_036 | 役場の法律 ⑤（準1級）
 patrol|noun||巡回||th_patrol
-permission|noun||許可||th_permission
-# jth_4law74 | 役場の法律 ⑦（準1級）
-petition|noun|petitions|請願書||th_petition
 pool|noun||プール||th_pool
 prohibit|verb|prohibits|禁止する||th_prohibit
 provision|noun||供給||th_provision
+# jth5_037 | 役場の法律 ⑥（準1級）
 regulate|verb|regulates|規制する||th_regulate
-# jth_4law75 | 役場の法律 ⑧（準1級）
-settlement|noun||解決||th_settlement
 trustee|noun|trustees|受託者||th_trustee
 violate|verb|violated,violates,violating|違反する||th_violate
 whatever|det||どんな～でも||th_whatever
-# jth_4nat76 | 役場の自然（準1級）
-oak|noun||オーク||th_oak
-river|noun||川||th_river
-trunk|noun||幹||th_trunk
-# jth_4nou77 | 役場のことば ①（準1級）
-age|noun||年齢||th_age
-closure|noun||閉鎖||th_closure
+# jth5_038 | 役場のことば ①（準1級）
 donation|noun||寄付||th_donation
-future|noun||未来||th_future
-# jth_4nou78 | 役場のことば ②（準1級）
-grounds|noun||敷地||th_grounds
-january|noun||1月||th_january
-million|noun||100万||th_million
 nomination|noun|nominations|指名||th_nomination
-# jth_4nou79 | 役場のことば ③（準1級）
 pavement|noun||舗装||th_pavement
 purpose|noun|purposes|目的||th_purpose
-reason|noun|reasons|理由||th_reason
-# jth_4off80 | 役場のオフィス ①（準1級）
+# jth5_039 | 役場のことば ②（準1級）
+along|adv||一緒に||th_along
+faithfully|adv||忠実に||th_faithfully
+disability|noun||障害||th_disability
+colleague|noun|colleagues|同僚||th_colleague
+# jth5_040 | 役場のことば ③（準1級）
+succeed|verb|succeeds|成功する||th_succeed
+oak|noun||オーク||th_oak
+trunk|noun||幹||th_trunk
+van|noun|vans|バン||th_van
+# jth5_041 | 役場のオフィス（準1級）
 dispose|verb|disposed|処分する||th_dispose
 documentation|noun||文書化||th_documentation
 exception|noun|exceptions|例外||th_exception
-# jth_4off81 | 役場のオフィス ②（準1級）
 guideline|noun|guidelines|ガイドライン||th_guideline
-seal|noun|sealed|アザラシ||th_seal
-support|noun|supported|支持||th_support
-# jth_4soc82 | 役場の社会 ①（準1級）
+# jth5_042 | 役場の社会 ①（準1級）
 administrator|noun||管理者||th_administrator
 census|noun||国勢調査||th_census
 chamber|noun||部屋||th_chamber
 civic|adj||市民の||th_civic
-councillor|noun|councillors|（市）議会議員||th_councillor
-# jth_4soc83 | 役場の社会 ②（準1級）
+# jth5_043 | 役場の社会 ②（準1級）
 demonstration|noun||実演||th_demonstration
-electoral|adj||選挙の||th_electoral
 heritage|noun||遺産||th_heritage
-issue|noun|issued|問題||th_issue
 minority|noun||少数||th_minority
-# jth_4soc84 | 役場の社会 ③（準1級）
 municipal|adj||市の||th_municipal
+# jth5_044 | 役場の社会 ③（準1級）
 municipality|noun||自治体||th_municipality
-opposition|noun||反対||th_opposition
 parade|noun||行進||th_parade
-protest|noun||抗議||th_protest
-# jth_4soc85 | 役場の社会 ④（準1級）
-referendum|noun||国民投票||th_referendum
-state|noun|states|状態||th_state
-unemployment|noun||失業||th_unemployment
 utility|noun||公共料金||th_utility
 welfare|noun||幸福||th_welfare
-# jth_4tra86 | 役場の交通（準1級）
-quay|noun||岸壁||th_quay
-traffic|noun||交通||th_traffic
-van|noun|vans|バン||th_van
-# jth_5adj87 | 役場の様子を表すことば ①（1級）
+# jth6_045 | 役場の様子を表すことば ①（1級）
 easy|adj||簡単な||th_easy
 exceptional|adj||例外的な||th_exceptional
-exempt|adj||免除された||th_exempt
 involved|adj||複雑な||th_involved
-# jth_5adj88 | 役場の様子を表すことば ②（1級）
 otherwise|adv||さもなければ||th_otherwise
 precisely|adv||正確に||th_precisely
+# jth6_046 | 役場の様子を表すことば ②（1級）
 satisfied|adj||満足した||th_satisfied
 tenth|adj||10分の1の||th_tenth
-# jth_5adj89 | 役場の様子を表すことば ③（1級）
-unavailable|adj||利用できない||th_unavailable
 unsafe|adj||危険な||th_unsafe
 whenever|adv||いったいいつ||th_whenever
-# jth_5com90 | 役場の通信（1級）
-condemn|verb|condemned|非難する||th_condemn
-paragraph|noun||段落||th_paragraph
-secret|noun||秘密||th_secret
-# jth_5fin91 | 役場の財務 ①（1級）
+# jth6_047 | 役場の財務（1級）
 arrears|noun||滞納金||th_arrears
 collateral|adj||付随的な||th_collateral
-creditor|noun||債権者||th_creditor
 default|noun||債務不履行||th_default
-demand|noun|demanded|需要||th_demand
-# jth_5fin92 | 役場の財務 ②（1級）
-loan|noun||貸付||th_loan
-margin|noun||余白||th_margin
 monopoly|noun||独占||th_monopoly
 offset|verb|offsets|相殺する||th_offset
-# jth_5hou93 | 役場の住居（1級）
+# jth6_048 | 役場の住居（1級）
 barn|noun||納家||th_barn
 gas|noun||ガス||th_gas
-leak|noun|leaking|漏れ||th_leak
 sewage|noun||下水||th_sewage
 temporary|adj||一時的な||th_temporary
-# jth_5hr94 | 役場の人事（1級）
-absence|noun|absences|欠席||th_absence
-resign|verb|resigned,resigns|辞職する||th_resign
-tenure|noun||在職期間||th_tenure
-# jth_5law95 | 役場の法律 ①（1級）
+# jth6_049 | 役場の法律 ①（1級）
 abatement|noun||軽減||th_abatement
 abolish|verb|abolished|廃止する||th_abolish
-accuse|verb|accused|告発する||th_accuse
 aged|adj||～歳の||th_aged
-amendment|noun||修正||th_amendment
-# jth_5law96 | 役場の法律 ②（1級）
-appendix|noun||付録||th_appendix
 arbitration|noun||仲裁||th_arbitration
-cast|noun||配役||th_cast
+# jth6_050 | 役場の法律 ②（1級）
 comply|verb|complies|従う||th_comply
 concession|noun|concessions|譲歩||th_concession
-# jth_5law97 | 役場の法律 ③（1級）
 corruption|noun||汚職||th_corruption
 decree|noun||法令||th_decree
-discharge|noun|discharges|荷降ろし||th_discharge
+# jth6_051 | 役場の法律 ③（1級）
 display|noun|displayed|展示||th_display
-duty|noun||義務||th_duty
-# jth_5law98 | 役場の法律 ④（1級）
-emergency|noun||緊急事態||th_emergency
 forgive|verb||許す||th_forgive
-ground|noun||地面||th_ground
 heir|noun|heirs|相続人||th_heir
-immunity|noun||免疫||th_immunity
-# jth_5law99 | 役場の法律 ⑤（1級）
 injunction|noun||差止め命令||th_injunction
-investigate|verb|investigated|調査する||th_investigate
+# jth6_052 | 役場の法律 ④（1級）
 investigation|noun||調査||th_investigation
 jurisdiction|noun||管轄権||th_jurisdiction
 levy|verb||課す||th_levy
-# jth_5law100 | 役場の法律 ⑥（1級）
 litigation|noun||訴訟||th_litigation
+# jth6_053 | 役場の法律 ⑤（1級）
 mediation|noun||調停||th_mediation
-minor|adj||小さいほうの||th_minor
 narrow|adj||狭い||th_narrow
-negligence|noun||過失||th_negligence
-# jth_5law101 | 役場の法律 ⑦（1級）
 offense|noun||違反||th_offense
-precedent|noun||先例||th_precedent
 punish|verb|punished|罰する||th_punish
+# jth6_054 | 役場の法律 ⑥（1級）
 regulation|noun|regulations|規則||th_regulation
 remedy|noun|remedies|治療法||th_remedy
-# jth_5law102 | 役場の法律 ⑧（1級）
 repeal|verb|repealed|廃止する||th_repeal
-save|verb||救う||th_save
 spoilt|adj||（投票用紙が）無効になった||th_spoilt
+# jth6_055 | 役場の法律 ⑦（1級）
 statute|noun||法令||th_statute
-# jth_5law103 | 役場の法律 ⑨（1級）
-suffer|verb|suffered|苦しむ||th_suffer
-tribunal|noun||裁判所||th_tribunal
-trust|verb||信頼する||th_trust
-verdict|noun||評決||th_verdict
-# jth_5law104 | 役場の法律 ⑩（1級）
 violation|noun||違反||th_violation
 void|adj||無効の||th_void
-winner|noun||勝者||th_winner
 workshop|noun||作業場||th_workshop
-# jth_5man105 | 役場の製造（1級）
+# jth6_056 | 役場の製造（1級）
 cannery|noun||缶詰工場||th_cannery
 produce|verb|produced|生産する||th_produce
 storage|noun||保管||th_storage
-# jth_5mee106 | 役場の会議（1級）
-delegate|noun|delegated|代表者||th_delegate
-represent|verb||代表する||th_represent
-speaker|noun||話す人||th_speaker
-# jth_5nou107 | 役場のことば ①（1級）
+# jth6_057 | 役場のことば ①（1級）
 annex|noun||別館||th_annex
 bundle|noun||束||th_bundle
 drainage|noun||排水||th_drainage
-february|noun||2月||th_february
 heap|noun||山||th_heap
-# jth_5nou108 | 役場のことば ②（1級）
+# jth6_058 | 役場のことば ②（1級）
 holder|noun||保有者||th_holder
-row|noun||列||th_row
-spot|noun|spotted|場所||th_spot
 width|noun||幅||th_width
-# jth_5off109 | 役場のオフィス（1級）
+condemn|verb|condemned|非難する||th_condemn
+paragraph|noun||段落||th_paragraph
+# jth6_059 | 役場のことば ③（1級）
+absence|noun|absences|欠席||th_absence
+tenure|noun||在職期間||th_tenure
+speaker|noun||話す人||th_speaker
+liter|noun||リットル||th_liter
+# jth6_060 | 役場のことば ④（1級）
+milligram|noun|milligrams|ミリグラム||th_milligram
+considering|conj||〜を考えると||th_considering
+everybody|pron||みんな||th_everybody
+microphone|noun|microphones|マイクロフォン||th_microphone
+# jth6_061 | 役場のことば ⑤（1級）
+setting|noun||設定||th_setting
+charter|verb||チャーターする||th_charter
+pothole|noun|potholes|道路の穴||th_pothole
+count|verb|counted,counting|数える||th_count
+# jth6_062 | 役場のオフィス（1級）
 absent|adj||欠席の||th_absent
 coordinate|verb|coordinates|調整する||th_coordinate
 coordination|noun||調整||th_coordination
 formal|adj||正式な||th_formal
-# jth_5sch110 | 役場の学校（1級）
-lecture|noun|lectures|講義||th_lecture
-master|noun||主人||th_master
-test|noun|tested|テスト||th_test
-# jth_5sci111 | 役場の科学（1級）
-liter|noun||リットル||th_liter
-milligram|noun|milligrams|ミリグラム||th_milligram
-object|noun|objected|物||th_object
-# jth_5sma112 | 役場のつなぎのことば（1級）
-considering|conj||〜を考えると||th_considering
-everybody|pron||みんな||th_everybody
-none|pron||どれも～ない||th_none
-# jth_5soc113 | 役場の社会 ①（1級）
+# jth6_063 | 役場の社会 ①（1級）
 appoint|verb|appointed|任命する||th_appoint
-ballot|noun|ballots|投票用紙||th_ballot
 constituent|noun||構成要素||th_constituent
 elect|verb|elected|選挙で選ぶ||th_elect
 firefighter|noun|firefighters|消防士||th_firefighter
-# jth_5soc114 | 役場の社会 ②（1級）
+# jth6_064 | 役場の社会 ②（1級）
 observer|noun|observers|観察者||th_observer
-power|noun|powers|力||th_power
 ratepayer|noun|ratepayers|（地方税の）納税者||th_ratepayer
 successor|noun||後任者||th_successor
-# jth_5tec115 | 役場の技術（1級）
-data|noun||資料||th_data
-error|noun||誤り||th_error
-microphone|noun|microphones|マイクロフォン||th_microphone
-protocol|noun||儀礼||th_protocol
-setting|noun||設定||th_setting
-# jth_5tra116 | 役場の交通（1級）
-ambulance|noun|ambulances|救急車||th_ambulance
-charter|verb||チャーターする||th_charter
-pothole|noun|potholes|道路の穴||th_pothole
-seat|noun||席||th_seat
-# jth_5ver117 | 役場の動詞 ①（1級）
-contradict|verb|contradicts|矛盾する||th_contradict
-count|verb|counted,counting|数える||th_count
-disclose|verb|disclosed|公開する||th_disclose
-entitle|verb|entitled|権利を与える||th_entitle
-exceed|verb|exceeds|超える||th_exceed
-# jth_5ver118 | 役場の動詞 ②（1級）
-mend|verb||直す||th_mend
-recount|verb|recounts|詳しく語る||th_recount
-remain|verb||残る||th_remain
-suspend|verb|suspended|一時停止する||th_suspend
+# jth2_065 | 役場のことば（3級）
+nearly|adv||ほとんど||th_nearly
+kilometer|noun|kilometers|キロメートル||th_kilometer
+parking|noun||駐車||th_parking
 `;
 // <<END:LEX>>
 
