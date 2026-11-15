@@ -2528,8 +2528,8 @@ const EN: JobContent = {
   forms: EXTRA_FORMS,
   people: [
     { id: 'p_vega', name: 'Ms. Vega', avatar: '👩' },
-    { id: 'p_patel', name: '{Dr. Patel|@}', avatar: '🧑‍⚕️', staff: true },
-    { id: 'p_moreau', name: '{Dr. Moreau|@}', avatar: '🧑‍⚕️', staff: true },
+    { id: 'p_patel', name: 'Dr. Patel', avatar: '🧑‍⚕️', staff: true },
+    { id: 'p_moreau', name: 'Dr. Moreau', avatar: '🧑‍⚕️', staff: true },
     { id: 'p_ito', name: 'Nurse Ito', avatar: '👩', staff: true },
     { id: 'p_costa', name: 'Mr. Costa', avatar: '👨', staff: true },
     { id: 'p_lund', name: 'Ms. Lund', avatar: '👩', staff: true },

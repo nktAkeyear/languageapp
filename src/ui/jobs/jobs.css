@@ -1097,11 +1097,6 @@
   display: none;
 }
 
-.hub-spot[data-job='office'] .hub-sign {
-  left: auto;
-  right: -2px;
-  transform: none;
-}
 .wp-tags {
   display: flex;
   flex-wrap: wrap;
@@ -1129,7 +1124,18 @@
   padding-bottom: 24px;
 }
 
-/* the office's sign hangs on its tall façade, clear of the post office's sign next to it */
-.hub-spot[data-job='office'] .hub-sign {
-  bottom: 96px;
+/* the east quarter: two narrow columns of workplaces, so their signs are a size smaller and stay within the slot */
+.hub-spot.east .hub-sign {
+  bottom: auto;
+  top: calc(100% - 16px);
+  max-width: 190px;
+  padding: 0 6px 1px;
+  font-size: 15px;
+  line-height: 1.1;
+}
+.hub-spot.east .hub-signja {
+  font-size: 12px;
+}
+.hub-spot.east .hub-badges {
+  font-size: 11px;
 }

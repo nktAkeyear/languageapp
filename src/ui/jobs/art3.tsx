@@ -334,14 +334,17 @@ export function AcademyBackdrop({ sky }: { sky: Sky }) {
       <rect y="0" width="1600" height="44" fill="#4a2c18" />
       {/* arched leaded window behind the person, light falling in */}
       <g>
+        <clipPath id="jb-a-arch">
+          <path d="M60 470 V180 Q200 40 340 180 V470 Z" />
+        </clipPath>
         <path d="M60 470 V180 Q200 40 340 180 V470 Z" fill={sky.top} />
+        <g clipPath="url(#jb-a-arch)">
+          <rect x="60" y="300" width="280" height="170" fill={sky.bottom} opacity="0.6" />
+          {Array.from({ length: 16 }, (_, i) => (
+            <path key={i} d={`M${i * 40 - 120} 60 L${i * 40 + 80} 470 M${i * 40 + 80} 60 L${i * 40 - 120} 470`} stroke="#5a3418" strokeWidth="2.5" opacity="0.55" />
+          ))}
+        </g>
         <path d="M60 470 V180 Q200 40 340 180 V470 Z" fill="none" stroke="#5a3418" strokeWidth="12" />
-        {Array.from({ length: 9 }, (_, i) => (
-          <path key={i} d={`M${60 + i * 35} 90 L${60 + i * 35 - 200} 470`} stroke="#5a3418" strokeWidth="2" opacity="0.6" />
-        ))}
-        {Array.from({ length: 9 }, (_, i) => (
-          <path key={i} d={`M${60 + i * 35} 90 L${60 + i * 35 + 200} 470`} stroke="#5a3418" strokeWidth="2" opacity="0.6" />
-        ))}
         <path d="M40 470 h320" stroke="#5a3418" strokeWidth="16" />
       </g>
       {/* shelves from floor to ceiling on both sides of the room */}

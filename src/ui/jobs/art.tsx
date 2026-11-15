@@ -28,9 +28,9 @@ const EAST_SLOTS: Record<string, { col: 0 | 1; row: 0 | 1 | 2 | 3 }> = {
   lot: { col: 1, row: 3 },
 };
 const EAST_X = [1212, 1406];
-const EAST_Y = [8, 190, 372, 612];
+const EAST_Y = [46, 216, 386, 612];
 const EAST_W = 186;
-const EAST_ART_H = 128;
+const EAST_ART_H = 120;
 /** Natural size of each front's art (its local box) and the slot it stands in. */
 const FRONT_SIZE: Record<string, { w: number; h: number; top?: number }> = {
   news: { w: 170, h: 184 },
@@ -88,8 +88,6 @@ export function HubMapArt({ cells, temple, tint }: { cells: MapCell[]; temple: '
       {[
         [1586, 820],
         [1214, 830],
-        [1400, 180],
-        [1400, 364],
       ].map(([x, y], i) => (
         <g key={i} transform={`translate(${x} ${y}) scale(0.7)`}>
           <rect x="-4" y="0" width="8" height="18" fill="#6b4a2a" />

@@ -7,8 +7,10 @@ Japanese; everything in the world is in the target language.
 
 **Many lives in one town.** The player inherited a tea/spice shop in a port town — the first job — and,
 from day 4, the town's job board offers more working lives they can take up and switch between freely
-(a day's workplace, plus a second shift after closing): the **post office**, the **harbour kitchen**, the **inn's front desk** and a
-**trading company's office** (TOEIC-flavoured working English). Each job is a different place with its own
+(a day's workplace, plus a second shift after closing): the **post office**, the **harbour kitchen**, the **inn's front desk**, a
+**trading company's office** (TOEIC-flavoured working English) and four upper-level workplaces whose first rank is 英検3級 and
+whose last is 1級: the **newspaper office** (the Harbour Courier), the **clinic's reception**, the **town hall counter** and the
+**academy library**. Each job is a different place with its own
 people, tasks, ranks and vocabulary; one shared notebook / verification / hidden SRS runs across all of
 them, and the jobs feed each other (the kitchen bakes the bread the inn serves, the office's parcels go
 through the post office, the tea house's tea goes to the office's meetings). Progress is measured against
@@ -28,8 +30,10 @@ over the compiled lists (`src/curriculum/`) and the tea house's own activities (
   to whom and how (knock twice, not the child, leave it at the door if nobody is home).
 
 **A working day has three parts** (`src/activities/day.ts`, v6): **始業前** (before opening — the day always starts
-at the workplace: in the shop, preparing; on a market day the shopping note is pinned up and the player may walk
-to the market and back, as often as they like; then 「店を開ける」), **業務中** (working hours — the customers;
+at the workplace: in the shop, preparing; nothing lies on top of the scene: on a market day the shopping note is pinned
+on the wall by the door with the market basket hanging under it (tap the basket to walk to the market and back, as
+often as they like), the framed town map on the wall leads out into the town, and the shop opens when the player turns
+the door's 準備中 card to 営業中 (`src/ui/scene/PrepProps.tsx`)), **業務中** (working hours — the customers;
 nobody can leave the counter to shop, but goods can be **ordered by delivery** for a fee, `DELIVERY_FEE` = 4
 coins an order, said before anything is paid: the same stalls, words, quotes and payment as at the market, and
 the goods arrive when the next customer comes in) and **業務後** (after closing — the house delivery, the evening
@@ -42,14 +46,17 @@ carpenter delivered), the chapter title, a regular waiting in the morning, a del
 came are pinned in the scene: a paper on a nail (「知らせ」, with the number of unread things; desktop: on the
 wall by the door; phone: next to the round buttons; in the town and at a workplace: in the status bar) opens a
 side panel the player reads when they want (a story card plays only when opened from it); papers lie in the
-document box, which glows. A one-line banner at the top says the day and its part (and the chapter's title) and
-goes by itself; it never takes a click and never covers a control. The HUD shows the three parts
+document box, which glows. Nothing is laid over the scene when a day begins: the HUD's calendar and the strip of the
+day's parts say the day and its part (a one-line banner appears only when supplies ordered by delivery arrive during
+working hours; it goes by itself, never takes a click and never covers a control). The HUD shows the three parts
 (始業前 › 業務中 › 業務後) in every scene.
 
 **No verdicts.** Play never judges an answer: no 完璧 / うまくいかなかった badges, no ✓ / ✗, no right answer shown in
-green or red, no mistake marks. What remains is in-world: the customer's / boss's reaction line in English (which
-names what is wrong — "Where is the mint?", "Not that one. Look at the tracking number.", "The “Call back” is not
-right."), their face and what they do (come back another day, pay less), and the coins / reputation that result,
+green or red, no mistake marks. What remains is in-world: the customer's / boss's reaction line in English, which
+says what is off from the task's own facts — never just "that is not right": "Where is the mint?", "The caller said
+Thursday, not Wednesday.", "The address is 12 Bridge Street here, but 21 Bridge Street on the passport.", "Wednesday,
+9:00? But I said: “I can come on Wednesday or Thursday, but not in the morning.”", "But I asked: “What time do you
+close on Friday?”" (see 「Reactions say what was off」 below); their face and what they do (come back another day, pay less), and the coins / reputation that result,
 shown as ledger facts. Scoring stays internal (SRS, pacing, ranks, metrics). The 検証ページ remain the game's one
 way to confirm a hypothesis about meanings; 現在地 / 記録 show aggregate progress only.
 
@@ -127,8 +134,9 @@ src/
                         generator: typed slots → instances; quantities and agreement), expr.ts (computed check
                         fields), engine.ts (board, hours, parts of the day, shifts, planner, ranks, wages,
                         links), lexicon.ts (the job lexicon registry), vocab.ts (job vocabularies, where words
-                        were met), nearmiss.ts (wrong reply options on the same topic), placement.ts (the jobs'
-                        ranks for a start level), validate.ts, merge.ts
+                        were met), nearmiss.ts (wrong reply options on the same topic), explain.ts (what a wrong
+                        answer got wrong, said from the task's facts), placement.ts (the jobs' ranks for a
+                        start level), validate.ts, merge.ts
   curriculum/           the compiled English lists: lists.ts (types, tolerant reading, packing), node.ts
                         (disk), browser.ts (bundled, gzip + base64), curriculum.ts (reconciliation, 英検 / TOEIC
                         reports, next-word selection), yardsticks.ts, apply.ts
@@ -151,7 +159,8 @@ src/
     shared/town.ts      language-neutral town data: goods, stalls, map, time slots, curriculum, unlocks
     shared/renovation.ts the catalogue: upgrades, prices, gates, effects; {en,zh}/renovation.ts its text + words
     jobs/               the jobs: teahouse.ts (the first job + the shared goods), post.en.ts, kitchen.en.ts,
-                        inn.en.ts, office.en.ts, townhall.en.ts, academy.en.ts (English-only), common.en.ts (words several jobs share),
+                        inn.en.ts, office.en.ts, news.en.ts, clinic.en.ts, townhall.en.ts, academy.en.ts (English-only),
+                        common.en.ts (words several jobs share),
                         near.en.ts (near-miss replies for the QA banks), index.ts (the list + the common lists;
                         merges the near misses onto the QA items)
     en/  zh/            lexicon.ts + index.ts (shop); town.ts = lexicon.town.ts + market.ts + delivery.ts
@@ -172,7 +181,9 @@ src/
                         the installed items placed in the shop), Raster.tsx (static textured layers shown as
                         pre-rasterised images)
     scene/              the shop as a scene: workbench.tsx (hand / drag & drop / serve flow), parts.tsx
-                        (interactive objects), ShopScene.tsx (desktop), MobileShop.tsx (phone),
+                        (interactive objects), PrepProps.tsx (始業前 as things in the room: the door's
+                        準備中 card, the market basket under the shopping note, the town map; the
+                        workplaces' 準備中 sign), ShopScene.tsx (desktop), MobileShop.tsx (phone),
                         Transition.tsx (shop ↔ market / delivery passages, dusk; none over the day's start)
     town/               MarketScene.tsx (street of stalls, open stall, paying on the tray),
                         DeliveryScene.tsx (slip in hand, town map, sun dial, walk, the door)
@@ -188,7 +199,8 @@ src/
                         trade) + benches2.tsx (make, check, respond) drawn as furniture, furniture.tsx (bins,
                         envelopes, parcel, scale, till, stations, telephone, stamps, pen, key), papers.tsx
                         (documents as what they are, pen circle, stamp imprint), ambient.tsx, drag.ts (pointer
-                        drag & drop), art.tsx / art2.tsx (hub, interiors, things, food), Yardsticks.tsx
+                        drag & drop), art.tsx / art2.tsx / art3.tsx (hub, interiors — art3: the newsroom,
+                        the clinic, the town hall, the library and their fronts —, things, food), Yardsticks.tsx
                         (現在地 by 英検 / TOEIC, the per-job record), bits.tsx, jobs.css + scene.css
     difficulty/         レベル設定 sheet, 腕だめし, 学習の記録 page + SVG charts, notebook bits (既 mark, peek,
                         目標 panel), scene assists (the もう一度つくる slip, slower speech)
@@ -207,18 +219,24 @@ The layout is chosen by viewport width (≤ 820px → mobile), overridable in se
 
 Every place is a drawn scene (desktop: a 1600×1000 stage scaled to the window; phone: tall compositions of the
 same pieces), and walking between the tea house's places (shop ↔ market, out to a delivery) is a short passage of
-light; going home is dusk and the night's ledger. A new day opens straight on the workplace (no passage over it:
-the banner says the day). Skipped with `prefers-reduced-motion`.
+light; going home is dusk and the night's ledger. A new day opens straight on the workplace (no passage, no paper
+and no banner over it: the HUD says the day and its part). Skipped with `prefers-reduced-motion`.
 
-- **The town** (from day 4): the delivery map extended across the bridge by the east quarter — the post
-  office (red brick, a red postbox), the trading company (stone, a clock), the harbour kitchen (striped
-  awning, chimney smoke), a building site for the jobs to come; the inn and the tea house where they always
+- **The town** (from day 4): the delivery map extended across the bridge by the east quarter — two columns of
+  workplaces, three rows north of the harbour road and one south of it (`EAST_SLOTS` in `art.tsx`, each front scaled
+  to its slot, the sign hanging under it a size smaller): the Harbour Courier (grey stone, the masthead band, the
+  presses' chimney, bundled papers at the door) and the town hall (a pediment on columns, steps, the clock and the
+  flag); the post office (red brick, a red postbox) and the trading company (stone, a clock); the clinic (white walls,
+  the green cross, a ramp) and the academy library (red brick, an arched window with books in it, a bell tower); the
+  harbour kitchen (striped awning, chimney smoke) and a building site for the jobs to come; the inn and the tea house where they always
   were; the job board on the main street. Signs in the target language with a small Japanese label. The
   light follows the part of the day (始業前 morning, 業務後 evening). Phone: overview map + signboard list.
 - **Workplaces** (`src/ui/jobs/`): each job is a drawn interior (pre-rasterised once per shift, like the
   shop) with ambient life on top (`ambient.tsx`: gulls and waves in the post office window and its cat asleep
   in a parcel box, steam and a swaying pan in the kitchen, the inn's pendulum clock and fern, clouds and the
-  office clock's second hand), the person at the counter (drawn, talking, reacting with face and arms) and
+  office clock's second hand, gulls past the newsroom window and its green lamp swaying in the draught from the press
+  room, a goldfish in a bowl on the clinic's window sill, the town's flag outside the town hall's window, dust in the
+  light of the library's arched window), the person at the counter (drawn, talking, reacting with face and arms) and
   the work drawn as the room's own furniture, acted on directly (`benches*.tsx`, `furniture.tsx`,
   `papers.tsx`): letters as envelopes dragged (or tapped) into a wooden pigeon-hole cabinet with brass name
   plates; crates with their labels into the cold box / shelf / basket / freezer / bin / sink / stove …
@@ -232,7 +250,20 @@ the banner says the day). Skipped with `prefers-reduced-motion`.
   inn's register book in handwriting, a letter, a notice pinned to the board, an index card, a parcel tag,
   an e-mail on a screen) checked with a red pen (tap a line: it is circled) and rubber stamps (✓ / ✗, an
   imprint, no words); a ringing telephone (pick up the receiver), the message pad, reply slips, the wall
-  calendar, the inn's floor board (the key hangs on the room chosen). Phone: the same pieces stacked
+  calendar, the inn's floor board (the key hangs on the room chosen). The four upper-level rooms (`art3.tsx`): the
+  **newsroom** (newsprint-cream walls over a green dado, the page plan pinned on cork, the masthead, the press room's
+  door with its round window, the wire tray of incoming copy, the spike and a typewriter on the desk; stories are
+  typed copy slips filed into wire baskets per section, drafts are galley proofs, notes a reporter's spiral notebook,
+  the page plan a ruled newsprint grid), the **clinic's reception** (sage walls and white tiles, the eye chart, coats
+  and the waiting bench, the open appointment book with its ribbon, the desk bell; patients' charts in manila folders
+  with coloured tabs go into the rooms' wall pockets, the doctor's note is a prescription pad, the register an
+  appointment book), the **town hall counter** (stone pilasters, the town's crest with a ship, the notice board, the
+  "now serving" number, a brass grille along the counter, the stamp rack and the ink pad; application forms go into
+  the desks' trays, papers are official forms with boxed fields), the **academy library** (oak shelves to the ceiling,
+  a leaded arched window, green reading lamps, the rolling ladder, the study-room chart, the card catalogue and the
+  date stamp; books with their slips go onto the subject shelves of the book trolley, cards are catalogue cards with
+  the drawer rod's hole). Each room's papers and calendars take the room's look (`.job-<id>` in `scene.css`); each
+  boss has a fixed drawn look. Phone: the same pieces stacked
   (pieces still drag with a finger; tap-tap works everywhere). A long request (rank 5's contracts, set menus,
   letters) is never scrolled inside its bubble on the desktop stage: the person steps back a little and the hand
   gets smaller (`.js-long` over 75 characters, `.js-longer` over 180). After handing in, the bench keeps only
@@ -242,10 +273,16 @@ the banner says the day). Skipped with `prefers-reduced-motion`.
 - **The shop**: the customer stands behind the counter in front of the door, the shelf is on the
   right wall. Reputation is the plaque above the door, the day is the wall calendar ("40日目"), the part of the
   day is the strip 始業前 › 業務中 › 業務後 (the door's card says 準備中 / 営業中 / 閉店), customers are order tickets
-  on a nail (torn off when served — no mark of how it went), money is the coin jar. 始業前, where the customer
-  will stand, a paper says what the day holds: the shopping note (English), 市場へ買い出しに行く, 町へ出る and
-  店を開ける; 業務中, a wooden sign 「配達を頼む（配送費 4 枚）」 by the shelf (on market days; it glows when a good is
-  out) asks before anything is paid; 業務後 the same place offers the house delivery, the market for tomorrow,
+  on a nail (torn off when served — no mark of how it went), money is the coin jar. 始業前, nothing lies over
+  the scene and every way on is a thing in the room (`PrepProps.tsx`): the door's card says 準備中 — tapping it (or
+  the door) turns it over to 営業中 and opens the shop (the card turns in about 320 ms, ease-out; under reduced motion
+  its face changes at once); on the first three days it carries a small label (札を返して開店) and a ring that beats
+  five times and then stays still. On a market day the shopping note (English) is pinned on the wall by the door with
+  the market basket hanging under it (市場へ / もう一度市場へ); when the jobs are open, a framed town map on the wall
+  leads out (町へ). Phone: the same card on the door in the wall strip, the note, the map and the basket in the
+  customer's empty place. 業務中, a wooden sign 「配達を頼む（配送費 4 枚）」 by the shelf (on market days; it glows when
+  a good is out; on the phone it hangs first in the shelf's row, so the counter keeps its height) asks before anything
+  is paid; 業務後 the same place offers the house delivery, the market for tomorrow,
   the town and home. The window light follows
   the day, the lamp glows stronger in the evening, the door bell rings when customers come and go.
 - **Brewing by hand**: drag a container onto the cup, or tap it (picked up) and tap the cup — each
@@ -363,17 +400,20 @@ Decipherment needs a pencil: the player writes down what they think a word means
   opens (a note pinned on the notice; from **day 1** when the start level places a job — en 英検4級 and up, see
   「The jobs at a start level」). **Every day still starts at a workplace, never on the map**: today's workplace,
   i.e. the one chosen after closing the day before (「明日はここで働く」 on a workplace's card in the town; it stays
-  the choice until changed, `JobsState.next`) — at first the tea house. Before opening, the workplace's door
-  leads into **the town** (`TownHub.tsx`, 「町へ出る（ほかの仕事場へ）」): tap a building → its card (job, rank, the
+  the choice until changed, `JobsState.next`) — at first the tea house. Before opening, the town map on the
+  workplace's wall leads into **the town** (`TownHub.tsx`; labelled 町へ): tap a building → its card (job, rank, the
   level of its material, what it teaches, its hours) → **今日はここで働く** (the day moves there, still before
   opening; a shift planned but not begun is simply dropped) or back to today's workplace. The town: the delivery
-  map, extended across the bridge by an east quarter where the new workplaces stand (post office, harbour kitchen,
-  the trading company's office; the inn is the map's inn; a building site with scaffolding stands for the jobs
-  still to come). Every workplace shows at a glance whether it is open now (営業中 or its hours), the player's rank
+  map, extended across the bridge by an east quarter where the new workplaces stand (newspaper office, town hall,
+  post office, trading company, clinic, academy library, harbour kitchen; the inn is the map's inn; a building site
+  with scaffolding stands for the jobs still to come). Every workplace shows at a glance whether it is open now (営業中 or its hours), the player's rank
   there (●●○○○) and 「新」 when something new waits. Phone: the map as an overview — a tap zooms into that spot,
   全体を見る zooms out — and the workplaces as signboards with the same badges (no tappable target under 40 px).
-- **The parts of the day at a job**: 始業前 is the job's greeting — the boss says the day's first line, the number
-  of tasks waits, 「始業する」 begins working hours (or 「町へ出る」 to work elsewhere today). 業務中 is the day's
+- **The parts of the day at a job**: 始業前 is the job's greeting — the boss says the day's first line; nothing is laid
+  over the room: a 準備中 sign hangs over the counter with the day's number of tasks chalked under it, and turning it
+  to 営業中 begins working hours (the label 札を返して始業 and a few beats of a ring on the first three days and the first
+  two shifts at a workplace); the framed map on the wall (町へ) leads out to work elsewhere today. The evening's second
+  shift starts the same way. 業務中 is the day's
   **shift**: the rank's `tasks` + `MAIN_SHIFT_EXTRA` (2) tasks. 業務後: out into the town, where a workplace with an
   evening shift takes one **second shift** (the rank's `tasks`; one a day; not the day's own workplace) — the
   tea house too, opened late: the shop only, from the back room (`BACK_ROOM_COST` = 1 coin a cup, no market, no
@@ -382,8 +422,10 @@ Decipherment needs a pencil: the player writes down what they think a word means
   next to the shop's accounts.
 - **Hours** (`JobDef.hours`, unchanged field — its first meaning was 0 朝 / 1 昼 / 2 夕): 0 or 1 = the workplace has
   day shifts (it can be the day's workplace), 2 = it has an evening shift (業務後). Post office and office `[0, 1]`
-  (日中のみ), inn `[0, 2]` and kitchen `[0, 1, 2]` (日中・業務後も), the tea house always. A new job keeps writing
-  `hours` as before.
+  (日中のみ), inn `[0, 2]` and kitchen `[0, 1, 2]` (日中・業務後も), the tea house always; the newspaper office `[1, 2]`
+  (the day's pages and the evening's late edition), the clinic and the town hall `[0, 1]` (日中のみ), the academy
+  library `[0, 2]` (the reading room is open in the evening). A new job keeps writing `hours` as before. Every job's
+  ladder has the same shift sizes: 4 / 5 / 5 / 6 / 6 tasks (rank 1 … 5), plus `MAIN_SHIFT_EXTRA` for a day shift.
 - A day **without the tea house** leaves it closed: its planned customers come another day, its **stage
   clock does not move** (`clockOffset −1`, so no stage runs ahead while the player works elsewhere), and a
   planned story beat waits for another day (as before). The story, renovation, difficulty and metrics are
@@ -418,18 +460,27 @@ templates (×3) over the previous rank's (×1.5) and older ones (×0.6, review).
 | 港の食堂 harbour kitchen | make, sort | food, cooking, health, shopping | 英検4 / 3 / 準2・〜400 / 2・〜500 / 準1・〜600 | 31 / 63 / 67 / 72 / 34 |
 | 宿の帳場 inn front desk | check, respond, sort | hotel, travel, housing | 英検4 / 3・〜400 / 準2・〜500 / 2・〜600 / 準1・〜730 | 41 / 40 / 46 / 50 / 36 |
 | 商会の事務 trading office | check, respond | office, meetings, sales, finance, logistics | TOEIC〜400 (英検3) / 〜600 (準2) / 〜730 (2) / 〜860 (準1) / 〜990 (1) | 33 / 36 / 32 / 32 / 35 |
-| 新聞社 newspaper office (the Harbour Courier) | sort, check, respond | media, society, law, science, nature, finance, arts | 英検3・〜400 / 準2・〜600 / 2・〜730 / 準1・〜860 / 1・〜990 | 20 / 20 / 45 / 45 / 45 (templates 9 / 12 / 17 / 16 / 16) |
-| 診療所の受付 clinic reception (Harbour Clinic) | sort, check, respond | health, body, family, money, emotion, society | 英検3・〜400 / 準2・〜600 / 2・〜730 / 準1・〜860 / 1・〜990 | 20 / 20 / 45 / 45 / 45 (templates 9 / 16 / 29 / 28 / 27) |
+| 新聞社 newspaper office (the Harbour Courier) | sort, check, respond | media, society, law, science, nature, finance, arts | 英検3・〜400 / 準2・〜600 / 2・〜730 / 準1・〜860 / 1・〜990 | 20 / 20 / 45 / 45 / 45 |
+| 診療所の受付 clinic reception (Harbour Clinic) | sort, check, respond | health, body, family, money, emotion, society | 英検3・〜400 / 準2・〜600 / 2・〜730 / 準1・〜860 / 1・〜990 | 20 / 20 / 45 / 45 / 45 |
 | 役場の窓口 town hall counter | sort, check, respond | society, law, housing, finance, money, hr, nature, communication, office (administrative English, TOEIC-flavoured) | 英検3・〜500 / 準2・〜600 / 2・〜730 / 準1・〜860 / 1・〜990 | 23 / 23 / 52 / 45 / 45 |
 | 学院の図書室 academy library | sort, check, respond | science, school, arts, technology, society, nature, media (academic reading, 英検-flavoured) | 英検3 / 準2 / 2 / 準1 / 1 | 22 / 21 / 46 / 45 / 46 |
 
-The newspaper office and the clinic reception are the two upper-level jobs (rank 1 ≈ 英検3級, rank 5 ≈ 1級): reception work only (no
-medical advice), vocabulary in the trade's own words (courts, politics, the economy; symptoms, tests, medicines, insurance), words
-that `vocab.json` lacked were added to `data/english/overrides/additions.tsv` with an estimated 英検 / TOEIC level and a gloss. Their
-buildings (`BUILDINGS.news`, `BUILDINGS.clinic`, `NewsArt`, `ClinicArt`) live in `src/ui/jobs/art.tsx`.
+The four upper-level jobs (rank 1 ≈ 英検3級, rank 5 ≈ 1級; the board offers them from day 3, 4, 5 and 6 after it opens —
+the newspaper, the town hall, the clinic, the academy) are reception and desk work only (no medical or legal advice), in
+the trade's own words: courts, politics and the economy at the newspaper; symptoms, tests, medicines and insurance at the
+clinic; permits, taxes, elections and appeals at the town hall; abstracts, citations, loans and copyright at the library.
+Their colleagues (`JobPerson.staff`: the town hall's housing / tax / inspection desks, the clinic's doctors, nurse,
+pharmacist and billing clerk, the newsroom's reporters and photographer, the library's assistants) hand work over and
+ask as colleagues, but never come to the counter as clients (`visitorPeople`). Words: each job defines its own (news
+390, clinic 427, town hall 255, academy 297) and uses the shared list (`common.en.ts`, 593 words, of which 283 came from
+the four jobs when they were merged: a word used by several jobs is defined once); words `vocab.json` lacked were added to
+`data/english/overrides/additions.tsv` with an estimated 英検 / TOEIC level and a gloss — but a word need not be in the
+lists (they are a yardstick, not a limit: an off-list word only needs a gloss of its own). The English lexicon has
+3 126 words: 英検5級 17 %, 4級 15 %, 3級 18 %, 準2級 21 %, 2級 9 %, 準1級 11 %, 1級 9 %.
 
-Every job has authored + templated content for all five ranks (templates per rank: townhall 9 / 13 / 18 / 17 / 17, academy 9 / 12 / 17 / 17 / 17, post 14 / 15 / 19 / 16 / 11,
-kitchen 14 / 21 / 20 / 34 / 14, inn 13 / 18 / 14 / 14 / 13, office 14 / 14 / 13 / 13 / 14). Rank 5 (灯台) is the
+Every job has authored + templated content for all five ranks (templates per rank: post 14 / 15 / 19 / 16 / 11,
+kitchen 14 / 21 / 20 / 34 / 14, inn 13 / 18 / 14 / 14 / 13, office 14 / 14 / 13 / 13 / 14, news 9 / 12 / 17 / 16 / 16,
+clinic 9 / 16 / 29 / 28 / 27, town hall 9 / 13 / 18 / 17 / 17, academy 9 / 12 / 17 / 17 / 17). Rank 5 (灯台) is the
 longest reading: the kitchen's catering contracts, supplier notes, an inspector's memo, set menus with diet
 rules and "if … use … instead" substitutions, spoken orders, sorting by the notes on deliveries / tickets /
 customers' cards; the inn's group bookings, refund and deposit rules, late fees, complaint letters and their
@@ -453,8 +504,9 @@ a wrong document approved).
    go in in that order — first / then are real), what the pantry is **out of** today (`out`: "if there is no
    fish, give chicken" is a real decision). Issues: empty, forbidden (bad), disliked, missing, extra,
    too_much / too_little, wrong_vessel (minor), wrong_method, wrong_order.
-2. **sort & route** (post office, kitchen's deliveries, inn's luggage): a tray of letters / crates / bags
-   with their labels, a cabinet of labelled cubbies; tap (or drag) and place, hand in (the reply names the box a
+2. **sort & route** (post office, kitchen's deliveries, inn's luggage, the newsroom's copy, the clinic's patients, the
+   town hall's applications, the library's returned books): a tray of letters / crates / bags / copy slips / charts /
+   forms / books with their labels, a cabinet of labelled cubbies; tap (or drag) and place, hand in (the reply names the box a
    misplaced one belongs in).
    One wrong of ≥ 4 is minor. Crates show only their label (reading, not the picture, decides).
 3. **check documents** (inn, office, post): papers side by side (or what the guest just said vs the booking
@@ -702,21 +754,29 @@ reactions and the boss's lines (at their rank); **new words along the spine**: a
 at most `SPINE_NEW` (4) words not met in the job's earlier tasks (the tea house's words count as known). Lists:
 job words missing from `vocab.json` are allowed (the lists are a yardstick, not a limit; they are only counted, listed with
 `VALIDATE_VERBOSE=1`, and a word without a list entry needs a written gloss), phrase / grammar tags are checked against the lists when present, a word without gloss needs one
-in the list. Template warnings are printed once per template and rank (with a count). The jobs simulator
+in the list. **What was off**: every wrong answer a player can hand in to every authored task and to three instances of
+every template at every rank (`wrongAnswers`: each other reply, each wrong value on the message pad, each other free
+slot, approving a paper with a mistake, circling each other line, each wrong correction, a wrong count / change /
+postage, each item in another pile, the wrong cooking method) is evaluated and its reaction built
+(`explainIssue`); its text must tokenise, and where only a kind's generic line ("That is not right.") is left the
+validator warns with the count; `validate-content` prints, per job, how many wrong answers got a line built from the
+task (all but 6 of about 26 000 now, none generic). Template warnings are printed once per template and rank (with a
+count). The jobs simulator
 (`npm run simulate -- --jobs [--buy]`) plays the town end to end.
 
 ### Roadmap: jobs the framework is ready for
+
+(The newspaper office, the clinic's reception, the town hall counter and the academy library, once on this list, are
+playable now.)
 
 | job | archetypes | domains |
 | --- | --- | --- |
 | fishing boat 漁船 | make (nets / bait to a spec), sort (the catch by kind / size), go & deliver (to the market stalls) | sea, nature, weather, food, transport |
 | farm / market garden 畑 | make (planting plans), check (seed orders), trade (at the market, selling side) | farming, nature, weather, food |
 | tailor 仕立て屋 | make (to measurements / colours / fabric), check (order ↔ garment), trade | clothing, crafts, money |
-| library 図書館 | sort (by subject / author / call number), respond (requests), check (returns ↔ cards) | school, arts, media |
 | railway station 駅 | respond (timetable questions, slot: the right train), trade (tickets), go & deliver (lost property) | transport, travel |
 | bank counter 銀行 | check (forms ↔ ID, cheques), trade (exchange), respond (account questions) | finance, money, law |
 | carpenter / builder 大工 | make (to a drawing: lengths, pieces), check (delivery ↔ order), go & deliver | crafts, housing |
-| town hall 役場 | check (applications ↔ rules), respond (citizens' questions / forms), sort (mail by department) | society, law, hr |
 | shipping agent 海運代理店 | check (bills of lading ↔ manifests), respond (schedules, e-mail), go & deliver | logistics, sea, sales |
 
 
@@ -762,12 +822,13 @@ English prices are the shared prices × `RenoText.priceScale` = 2.2 (rounded to 
 all; zh has no jobs and keeps the shared prices, 842). Calibration (`npm run simulate -- --jobs --days=70 --acc=…
 --buy`: the board opens on day 4; the days alternate between the tea house's day with a second shift after closing
 and a job's day with the tea house opened after closing; buying what is affordable): earned in 70 days (jobs + tea
-house net) — acc 0.95: 1391 + 1345, the whole catalogue owned on **day 47**; acc 0.85: 1258 + 1241, **day 50**; acc
-0.7: 1109 + 822, **day 63** (before the three-part day, with 2.6: 1360 + 1854 day 49; 1242 + 1670 day 52; 1080 +
-1364 day 60). A player who never shops before opening and orders by delivery whenever the shelf runs out
-(`--order`, acc 0.85): 33 orders and 132 coins of fees in 70 days, the catalogue owned on day 57 — a real cost, not
-a punishing one. Ranks after 70 days at 0.85: post 2, kitchen 3, inn 3, office 2 (the spine gate keeps each rank's
-material in play). The tea-house-only calibration (zh, and en before the
+house net), with the nine jobs — acc 0.95: 1405 + 1403, the whole catalogue owned on **day 47**; acc 0.85: 1295 +
+1132, **day 53**; acc 0.7: 1050 + 979, **day 61** (with the first five jobs: 1391 + 1345 day 47; 1258 + 1241 day 50;
+1109 + 822 day 63 — the new jobs spread the same days over more workplaces, they do not add days of work). A player who
+never shops before opening and orders by delivery whenever the shelf runs out (`--order`, acc 0.85): 35 orders and 140
+coins of fees in 70 days, the catalogue owned on day 60 — a real cost, not a punishing one. Ranks after 70 days at
+0.85: news 3, academy 3, inn 2, kitchen 2, post / office / town hall / clinic 1 (the simulated player alternates and
+prefers workplaces with an evening shift; the spine gate keeps each rank's material in play). The tea-house-only calibration (zh, and en before the
 board opens): a player who serves everything right earns ~770 coins net of the market in 45 days (zh) and owns
 the whole zh catalogue (842) around day 39–42.
 
@@ -1168,6 +1229,12 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
   a resumed day's story catch-up (`ensureTownDay`) is deferred too. Checked with saves written by the v2, v3, v4
   and v5 code (git worktrees) and v1 saves, at the start of a day, at the market, mid-shop, closed, at the delivery,
   mid-shift and in the town after a shift: each loads, plays on and reaches the next day.
+- **Saves after the four upper-level jobs (no version bump)**: the new jobs' progress is created on first use
+  (`jobProgress`), a task result's issue may carry `got` / `want` (what the player gave and what the task needed, for
+  the reaction), people may be `staff` (content only). No word id a save could hold changed: the merged words keep the
+  ids of the common list and of the five earlier jobs; the four new jobs (no saves yet) got clean ids and regrouped
+  検証ページ. Checked in the browser with saves written by the v6 build (git worktree): the start of a day, at the
+  market, mid-shop, closed, a workplace before its shift and mid-shift, en and zh; and v1–v5 saves as before.
 - **Saves after this round (no version bump)**: optional `DifficultyState.startToeic` (the start chosen as a TOEIC band),
   `JobProgress.placed` (`{ rank, day, good }`: the job was placed at that rank by the start level) and
   `town.slips[id].seeded` (a delivery slip skipped by the start level). Word ids are
@@ -1215,6 +1282,22 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
   speed). Without a voice for the language — or without `speechSynthesis` at all — the listen buttons are disabled,
   audio-only orders are shown as text, and ⚙ 設定 says which of the two it is. Sound effects: `window.__minatoAudio()` (diagnostics) reports the AudioContext state
   ('none' before the first gesture, 'running' after) and plays any effect by name.
+- **Reactions say what was off** (`src/jobs/explain.ts`): a wrong answer's reaction is built from the task's own facts
+  and the player's answer (`JobIssue.got` / `want`), so every mistake can be learnt from and none is a bare verdict. A
+  reply: the one fact that changed, if the replies differ only by a fact (a number, an amount, a time, a day, a name, a
+  capitalised place — not a changed verb form) — "The caller said Thursday, not Wednesday." (from the message) or "It
+  is $25, not $5." (computed); otherwise the line of the message that supports the right reply ("But the notice says:
+  “…”"), or the question that was asked when the reply answers another one ("But I asked: “What time do you close on
+  Friday?”"); a sentence with a gap is said as it reads with the word that fits. A paper: "The address is 12 Bridge
+  Street here, but 21 Bridge Street on the passport." (missed), "The fee is $20, and the fee list says the same." (a
+  correct line circled), "The name is …, the same as on the passport. Look at the address." (the wrong line), "The
+  doctor's note says three times, not four times." (the wrong correction); a label that does not read as a noun is
+  quoted ("Valid until: May 3 here, …"). A slot: "Wednesday, 9:00? But I said: “I can come on Wednesday or Thursday,
+  but not in the morning.”" (the line that names what differs from the cell that fits). The message pad: "The caller
+  said 6204, not 6024." The counter: "I asked for 3 stamps, not 4.", "My change is 9 coins. It should be 10 coins.",
+  "The card says 12 coins for this parcel, not 13 coins." A pile: "“To the bank” goes in “the bank”, not in “the
+  school”." A dish: "I wanted it fried, not boiled." A small mistake starts with "Good. But …". The kind's own lines
+  (written per job) give the person's face, and are said only where nothing can be built.
 - **Reaction lines fit the request and the speaker** (`reactionFits`, `src/jobs/engine.ts`; every pairing of every
   task and template instance with every line it can get was dumped and read, and the rules below now flag the classes
   of mismatch that turned up): who speaks (`reactionSpeaker`: the person drawn, or the boss for a handed-over paper /

@@ -105,7 +105,7 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
           <button
             key={j.id}
             type="button"
-            className={`hub-spot ${offered ? '' : 'closed'} ${done ? 'done' : ''} ${open ? 'open' : 'shut'} ${sel === j.id ? 'on' : ''}`}
+            className={`hub-spot ${b.x >= MAP_W ? 'east' : ''} ${offered ? '' : 'closed'} ${done ? 'done' : ''} ${open ? 'open' : 'shut'} ${sel === j.id ? 'on' : ''}`}
             style={{ left: `${(b.x / HUB_W) * 100}%`, top: `${(b.y / HUB_H) * 100}%`, width: `${(b.w / HUB_W) * 100}%`, height: `${(b.h / HUB_H) * 100}%` }}
             onClick={() => {
               sfx('pickup');
@@ -133,7 +133,7 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
           <span className="hub-signja">掲示板</span>
         </span>
       </button>
-      <span className="hub-lot" style={{ left: `${(BUILDINGS.lot.x / HUB_W) * 100}%`, top: `${((BUILDINGS.lot.y + 150) / HUB_H) * 100}%` }}>
+      <span className="hub-lot" style={{ left: `${(BUILDINGS.lot.x / HUB_W) * 100}%`, top: `${((BUILDINGS.lot.y + 158) / HUB_H) * 100}%` }}>
         新しい仕事場を建設中
       </span>
     </>

@@ -75,7 +75,7 @@ export function JobBoard({ onClose }: { onClose: () => void }) {
           ))}
           <li className="jboard-soon">
             <span className="jboard-pin" aria-hidden />
-            <b>建設中の仕事場</b>：漁船・畑・診療所・仕立て屋・図書館・駅・銀行・新聞社・大工・市役所 …（準備中）
+            <b>建設中の仕事場</b>：漁船・畑・仕立て屋・駅・銀行・大工・海運代理店 …（準備中）
           </li>
         </ul>
       </div>

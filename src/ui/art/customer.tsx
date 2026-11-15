@@ -74,6 +74,10 @@ const ROLE: Record<string, Partial<Look>> = {
   '👩': { hairStyle: 'long', collar: 'shawl' },
   '👨': { hairStyle: 'short', collar: 'coat', moustache: true },
   '👨‍🦳': { age: 'old', hairStyle: 'short', hair: '#e2ded6', collar: 'suit' },
+  '👨‍💼': { hairStyle: 'short', collar: 'suit', coat: '#3a4a5a', coat2: '#262f3a' },
+  '👩‍💼': { hairStyle: 'bun', collar: 'suit', coat: '#4a4a5a', coat2: '#2e2e3a' },
+  '👩‍🏫': { hairStyle: 'bun', glasses: true, collar: 'suit', coat: '#6b4a3a', coat2: '#4a3226' },
+  '👨‍🏫': { hairStyle: 'side', glasses: true, beard: true, collar: 'suit', coat: '#5a5a3a', coat2: '#3e3e26' },
 };
 
 function stripModifiers(e: string): string {
@@ -110,6 +114,12 @@ const FIXED: Record<string, Look> = {
   // Chef Basil, the harbour kitchen: tall white hat, black moustache, apron, broad.
   p_chef: { skin: '#d79f74', hair: '#1c1c22', hairStyle: 'short', hat: 'chef', beard: false, moustache: true, glasses: false, coat: '#f1ece2', coat2: '#cfc6b4', collar: 'apron', age: 'adult', broad: true, extras: ['kerchief'], accent: '#c8402a' },
   // Ms. Park, the office manager at the trading house: dark bob, glasses, grey suit, pencil.
+  // The four upper-level bosses: the Courier's editor (green vest, pencil behind the ear), the clinic's front-desk
+  // lead (sage cardigan, bun), the town clerk (navy suit, glasses, watch chain), the head librarian (oxblood suit, glasses).
+  p_carver: { skin: '#e8c0a0', hair: '#5a4a3e', hairStyle: 'long', hat: 'none', beard: false, moustache: false, glasses: false, coat: '#3f6a58', coat2: '#2a4a3e', collar: 'vest', age: 'adult', broad: false, extras: ['pencil', 'earrings'] },
+  p_vega: { skin: '#c98e64', hair: '#2a1a12', hairStyle: 'bun', hat: 'none', beard: false, moustache: false, glasses: false, coat: '#7aa88a', coat2: '#4e7a5e', collar: 'shawl', age: 'adult', broad: false, extras: ['earrings'] },
+  p_hollis: { skin: '#f0cdb0', hair: '#9a948a', hairStyle: 'short', hat: 'none', beard: false, moustache: true, glasses: true, coat: '#2f4a6a', coat2: '#1f2f42', collar: 'suit', age: 'old', broad: true, extras: ['chain'] },
+  p_thorne: { skin: '#f3d2b3', hair: '#3a2a20', hairStyle: 'bun', hat: 'none', beard: false, moustache: false, glasses: true, coat: '#7a2f2a', coat2: '#521e1a', collar: 'suit', age: 'adult', broad: false, extras: ['brooch'], accent: '#d9b54a' },
   p_park: { skin: '#f3d2b3', hair: '#1c1c22', hairStyle: 'side', hat: 'none', beard: false, moustache: false, glasses: true, coat: '#4a4a52', coat2: '#2e2e34', collar: 'suit', age: 'adult', broad: false, extras: ['pencil', 'earrings'] },
   // Mr. Olsen, the innkeeper: curly red-brown hair and beard, green waistcoat, key chain.
   p_olsen: { skin: '#f6dcc4', hair: '#8a4a2a', hairStyle: 'curly', hat: 'none', beard: true, moustache: true, glasses: false, coat: '#3e6a4a', coat2: '#284a32', collar: 'vest', age: 'adult', broad: true, extras: ['chain'] },

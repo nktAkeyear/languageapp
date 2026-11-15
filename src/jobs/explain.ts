@@ -66,6 +66,8 @@ export function factDiff(right: string, wrong: string, max = 4, isVerb: (w: stri
   // Only a fact reads well as "X, not Y": a number, an amount, a time, a day or month, a name, a place with a
   // capital — not a changed verb form or a reworded clause (those get the line of the message quoted instead).
   const fact = (x: string) => FACT_WORD.test(x) || (i > 0 && CAP.test(x));
+  // one fact, not a list or a second clause ("1:30, or before 12:30")
+  if ([r, w].some((x) => /,|;|\b(or|and|but)\b/i.test(x))) return null;
   if (/^(yes|no|of course|sure|certainly)\b/i.test(r) || /^(yes|no|of course|sure|certainly)\b/i.test(w)) return null;
   if (!fact(r) || !fact(w)) return null;
   // A changed verb ("will leave tomorrow" / "left yesterday") is grammar, not a fact to set straight.
@@ -195,14 +197,17 @@ function checkLines(data: GameData, inst: TaskInstance, issue: JobIssue): string
   // "the order says", "the prices say"
   const says = (n: string) => (/[^s]s$/.test(n) && !/news$/.test(n) ? `${n} say` : `${n} says`);
   // "The address is 9 Station Road" for a noun label; "Valid until: May 3" for one that is not.
-  const is = (label: string, v: string) => (labelIsNoun(data, label) ? `The ${fieldInText(label)} is ${v}` : `${strip(label)}: ${v}`);
+  // a value read out in running text: "the library", not "The library" (names and places keep their capitals)
+  const val = (v: string) => v.replace(/^(The|A|An)\b/, (m) => m.toLowerCase());
+  const isAre = (label: string) => (/[^s]s$/i.test(label.replace(/\{([^{}|]+)\|[^{}]*\}/g, '$1').trim()) ? 'are' : 'is');
+  const is = (label: string, v: string) => (labelIsNoun(data, label) ? `The ${fieldInText(label)} ${isAre(label)} ${val(v)}` : `${strip(label)}: ${val(v)}`);
   const lookAt = (label: string) => (labelIsNoun(data, label) ? `Look at the ${fieldInText(label)}.` : `Look at “${strip(label)}”.`);
   switch (issue.kind) {
     case 'missed': {
       const f = fieldOf(issue.field);
       if (!f) return [];
       const right = spec.fix ?? otherVal(f.id);
-      if (right && right.length <= LONG && f.value.length <= LONG && norm(right) !== norm(f.value)) return [`${is(f.label, f.value)} here, but ${right} on ${name(f.id)}.`];
+      if (right && right.length <= LONG && f.value.length <= LONG && norm(right) !== norm(f.value)) return [`${is(f.label, f.value)} here, but ${val(right)} on ${name(f.id)}.`];
       return [`${lookAt(f.label)} It is not what ${says(name(f.id))}.`];
     }
     case 'false_alarm': {
