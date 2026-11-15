@@ -1,6 +1,7 @@
 /**
  * The workplace as ONE drawn place (tea house counter / clinic reception desk). Everything is laid out in fixed
- * design units on a stage that is scaled to fit the window — desktop 1600×940, phone 400×820 — so the room is a
+ * design units on a stage that is scaled to fit the window — desktop 1600×940, phone 400×820; centred across, held at
+ * the top, so height left over below reads as more counter / desk — so the room is a
  * picture and the things in it (jars with their counts, the order pad, the basket, the door sign, the papers) stay
  * in the same place all day. 始業前 / 業務中 / 業務後 are states of this one picture: the sign, the light, who stands
  * at the counter, the paper lying on it.
@@ -51,7 +52,7 @@ export function Stage({ w, h, className, children }: { w: number; h: number; cla
   }, [w, h]);
   return (
     <div className={`stage-fit ${className ?? ''}`} ref={ref}>
-      <div className="stage-box" style={{ width: w, height: h, transform: `translate(-50%, -50%) scale(${k})`, ['--k' as string]: k }}>
+      <div className="stage-box" style={{ width: w, height: h, transform: `translateX(-50%) scale(${k})`, ['--k' as string]: k }}>
         {children}
       </div>
     </div>

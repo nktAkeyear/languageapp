@@ -66,7 +66,7 @@ const DESK: Geo = {
   shelf: [1130, 56, 440, 0],
   tools: [24, 586, 380, 340],
   cup: [470, 590, 210, 270],
-  chit: [700, 620, 220, 170],
+  chit: [700, 640, 210, 150],
   primary: [960, 790, 270, 110],
   pad: [1262, 640, 170, 240],
   receipts: [1060, 596, 180, 180],
@@ -100,6 +100,28 @@ const PHONE: Geo = {
   note: [6, 552, 272, 264],
   summary: [6, 550, 272, 266],
 };
+
+/**
+ * Phone with many goods (a high start): the jar shelf takes more height so every jar keeps a readable name and its
+ * count; the counter below gives up the same height (tools, cup, chit, the pad column move down and shrink).
+ */
+function phoneGeo(n: number): Geo {
+  const extra = n <= 6 ? 0 : n <= 14 ? 26 : 70;
+  if (!extra) return PHONE;
+  const down = (b: Box, grow = 1): Box => [b[0], b[1] + extra, b[2], b[3] - extra * grow];
+  return {
+    ...PHONE,
+    shelf: [PHONE.shelf[0], PHONE.shelf[1], PHONE.shelf[2], PHONE.shelf[3] + extra],
+    tools: down(PHONE.tools),
+    cup: down(PHONE.cup, 0.6),
+    chit: [PHONE.chit[0], PHONE.chit[1] + extra * 0.4, PHONE.chit[2], PHONE.chit[3] - extra * 0.4],
+    pad: down(PHONE.pad, 0.5),
+    primary: [PHONE.primary[0], PHONE.primary[1] + extra * 0.5, PHONE.primary[2], PHONE.primary[3]],
+    receipts: [PHONE.receipts[0], PHONE.receipts[1] + extra * 0.5, PHONE.receipts[2], PHONE.receipts[3] - extra * 0.5],
+    note: down(PHONE.note),
+    summary: down(PHONE.summary),
+  };
+}
 
 /** The back wall (static picture): plaster, wainscot, beams, the door, the window, the shelf boards, the lamp. */
 function TeaWall({ g, sky, rows, rowH, phone }: { g: Geo; sky: SkyColours; rows: number; rowH: number; phone: boolean }) {
@@ -169,8 +191,8 @@ const METHOD_TOOLS: Method[] = ['steep', 'boil', 'stir'];
 export function TeaHouse() {
   const s = useS();
   const { data, act, layout, now, reduced } = useGame();
-  const g = layout === 'phone' ? PHONE : DESK;
   const phone = layout === 'phone';
+  const g = phone ? phoneGeo(shelfItems(data, s).length) : DESK;
   const p = s.p;
   const t = p.today;
   const part = s.day.part;
@@ -191,7 +213,7 @@ export function TeaHouse() {
   const items = shelfItems(data, s);
   const rows = phone ? 0 : items.length > 15 ? 4 : 3;
   const rowH = rows === 4 ? 120 : 160;
-  const cols = 5;
+  const cols = items.length <= 12 ? 4 : 5;
   const phase = part === 1 ? t?.phase : null;
   const result = phase === 'reaction' && t ? t.results[t.results.length - 1] : null;
   const cust = order ? data.content.customers.find((c) => c.id === order.customer) : null;
@@ -295,7 +317,7 @@ export function TeaHouse() {
                   <span className="jar-art">
                     <ContainerArt ing={it.id as IngredientId} empty={out} />
                   </span>
-                  <span className={`jar-label ${word.length > 8 ? 'long' : ''}`} lang="en">
+                  <span className={`jar-label ${word.length * (phone ? 8.5 : 10.5) + 26 > cellW ? "long" : ""}`} lang="en">
                     {word}
                   </span>
                   <Count n={n} />

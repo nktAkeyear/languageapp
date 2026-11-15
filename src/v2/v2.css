@@ -2127,16 +2127,16 @@ button:disabled {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: linear-gradient(180deg, #4a3020 0, #4a3020 58%, #6b4527 58%, #5a3a20);
+  background: linear-gradient(180deg, #8a5a32, #6b4527 40%, #5a3a20);
 }
 .stage-fit.clinic {
-  background: linear-gradient(180deg, #a9bcae 0, #a9bcae 50%, #b8a684 50%, #a8936e);
+  background: linear-gradient(180deg, #8a5a32, #6b4527 40%, #5a3a20);
 }
 .stage-box {
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform-origin: 50% 50%;
+  top: 0;
+  transform-origin: 50% 0;
   overflow: hidden;
   font-size: 20px;
 }
@@ -2427,7 +2427,7 @@ button:disabled {
 .jar-art svg {
   width: 100%;
   height: 100%;
-  max-height: 118px;
+  max-height: 124px;
   display: block;
 }
 .jar-0 .jar-art {
@@ -3195,7 +3195,7 @@ button:disabled {
   padding: 10px 14px 16px;
 }
 .scene-desk .papers {
-  zoom: 1.25;
+  zoom: 1.4;
 }
 .papers .ja-label {
   font-size: 14px;
@@ -3326,4 +3326,91 @@ button:disabled {
 }
 .scene-phone .summary-head {
   padding-bottom: 2px;
+}
+
+.actions-at .uses {
+  color: var(--ink) !important;
+}
+.actions-at .uses-0 {
+  color: var(--signal) !important;
+}
+.clinic .tail-bottom::before {
+  left: 60px;
+}
+.clinic .tail-bottom::after {
+  left: 63px;
+}
+.clinic .tail-left::before {
+  top: 60px;
+}
+.clinic .tail-left::after {
+  top: 63px;
+}
+/* the destinations of a sort: file folders with a tab */
+.papers .pocket {
+  position: relative;
+  min-height: 78px;
+  margin-top: 14px;
+  border-radius: 0 6px 6px 6px;
+  background: linear-gradient(#e2c27e, #cfa962);
+  color: #3a2a12;
+  box-shadow: 0 3px 0 #8a6a2a, 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+.papers .pocket::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -14px;
+  width: 44%;
+  height: 16px;
+  border-radius: 6px 6px 0 0;
+  background: #e2c27e;
+}
+.papers .pocket:not(:disabled):hover {
+  background: linear-gradient(#ecd08e, #d9b46e);
+}
+.papers .pocket-label {
+  font-family: var(--serif);
+  font-weight: 700;
+}
+.papers .pocket-n {
+  color: #5a4220;
+}
+.papers .paper,
+.papers .tray,
+.papers .chart,
+.papers .reply {
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+.papers .in-tray {
+  background: #f3ead2;
+}
+.papers .in-tray > .ja-label {
+  color: var(--ink-soft);
+}
+
+.papers .hint,
+.papers .fix > .ja-label,
+.papers .respond > .ja-label,
+.papers .replies > .ja-label,
+.papers .pad > .ja-label,
+.papers .book-grid > .ja-label,
+.papers .pockets .ja-label {
+  color: #f3ead2 !important;
+}
+.scene-desk .papers .docs {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+/* long names wrap inside their tag rather than being cut */
+.jar-label.long {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.1;
+  padding: 1px 4px;
+  text-align: center;
+}
+.scene-phone .jar-label.long {
+  font-size: 10.5px;
+  letter-spacing: -0.02em;
 }

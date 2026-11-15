@@ -12,7 +12,6 @@ import { currentShift, currentTask, jobById, jobContent } from '../../jobs/engin
 import { personOf } from '../../jobs/templates';
 import type { CheckDoc, TaskAnswer, TaskInstance } from '../../jobs/types';
 import { CustomerArt, expressionFor, lookFor } from '../../ui/art/customer';
-import { WindowGroup, LampGroup } from '../../ui/art/shop';
 import type { SkyColours } from '../../ui/art/sky';
 import { clinicNext, clinicSubmit, morningNote, supplyFor } from '../logic/day';
 import { CLINIC_SUPPLIES } from '../logic/catalog';
@@ -49,23 +48,23 @@ type Geo = {
 
 const DESK: Geo = {
   ...SIZE.desk,
-  dy: 470,
-  hatch: [24, 60, 310, 410],
+  dy: 420,
+  hatch: [24, 56, 310, 364],
   sign: [106, 76, 146, 110],
-  patient: [54, 150, 250, 438],
+  patient: [54, 170, 250, 438],
   bubble: [350, 30, 700, 300],
   bubbleTail: 'left',
   shelf: [1080, 40, 490, 250],
-  map: [1460, 316, 110, 112],
-  lamp: [1290, 300],
-  papers: [350, 346, 900, 584],
-  pad: [1270, 470, 160, 270],
+  map: [1460, 296, 110, 112],
+  lamp: [800, 0],
+  papers: [350, 372, 900, 560],
+  pad: [1270, 440, 160, 270],
   actions: [1262, 750, 320, 180],
-  receipts: [1440, 470, 150, 260],
-  crate: [40, 720, 230, 150],
-  crateTag: [40, 560, 260, 150],
+  receipts: [1440, 440, 150, 280],
+  crate: [40, 760, 220, 150],
+  crateTag: [40, 600, 260, 150],
   note: [380, 380, 760, 520],
-  summary: [380, 30, 760, 520],
+  summary: [400, 420, 820, 480],
 };
 
 const PHONE: Geo = {
@@ -86,14 +85,19 @@ const PHONE: Geo = {
   crate: [270, 312, 120, 80],
   crateTag: [158, 312, 110, 110],
   note: [10, 312, 380, 420],
-  summary: [8, 8, 384, 290],
+  summary: [10, 312, 380, 420],
 };
 
-/** The reception: tiled wall, the hatch to the waiting room (bench, window), the supply shelf, the desk. */
+/**
+ * The reception (static picture): pale tiled wall, the hatch — a glass window in a white frame with the "Reception"
+ * plaque above and a ledge below, the waiting room behind it (chairs, a poster, its own window) — and the supply
+ * cabinet on the wall.
+ */
 function ClinicRoom({ g, sky, phone }: { g: Geo; sky: SkyColours; phone: boolean }) {
   const [hx, hy, hw, hh] = g.hatch;
   const [sx, sy, sw, sh] = g.shelf;
   const tile = phone ? 24 : 40;
+  const f = phone ? 8 : 16;
   return (
     <svg viewBox={`0 0 ${g.w} ${g.h}`} className="scene-svg" preserveAspectRatio="none" aria-hidden>
       <defs>
@@ -101,23 +105,52 @@ function ClinicRoom({ g, sky, phone }: { g: Geo; sky: SkyColours; phone: boolean
           <rect width={tile} height={tile} fill="#eef2ea" />
           <rect width={tile} height={tile} fill="none" stroke="#cfd8cc" strokeWidth="2" />
         </pattern>
+        <linearGradient id="v2-waiting" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#e9e2cc" />
+          <stop offset="1" stopColor="#d6ccb0" />
+        </linearGradient>
+        <clipPath id="v2-hatch-clip">
+          <rect x={hx + f} y={hy + f} width={hw - 2 * f} height={hh - 2 * f} />
+        </clipPath>
       </defs>
       <rect width={g.w} height={g.dy + 10} fill="#dce8de" />
       <rect y={g.dy * 0.58} width={g.w} height={g.dy * 0.42 + 10} fill="url(#v2-ctiles)" />
       <rect y={g.dy * 0.58 - 8} width={g.w} height="10" fill="#8aa898" />
       <rect y="0" width={g.w} height={phone ? 14 : 28} fill="#3d6a5a" />
-      {/* the hatch: the waiting room behind the glass */}
-      <g>
-        <rect x={hx} y={hy} width={hw} height={hh} fill="#c9d8cc" />
-        <WindowGroup sky={sky} x={hx + hw * 0.52} y={hy + hh * 0.1} w={hw * 0.4} h={hh * 0.36} />
-        <rect x={hx} y={hy + hh * 0.62} width={hw} height={hh * 0.38} fill="#b9cabd" />
-        <g transform={`translate(${hx + hw * 0.06} ${hy + hh * 0.66})`}>
-          <rect width={hw * 0.88} height={hh * 0.05} rx="4" fill="#a8764a" stroke="#4a2c14" strokeWidth="2" />
-          <rect y={hh * 0.12} width={hw * 0.88} height={hh * 0.05} rx="4" fill="#a8764a" stroke="#4a2c14" strokeWidth="2" />
-        </g>
-        <rect x={hx} y={hy} width={hw} height={hh} fill="#fff" opacity="0.08" />
-        <rect x={hx} y={hy} width={hw} height={hh} fill="none" stroke="#6e8a7c" strokeWidth={phone ? 8 : 14} />
+      {/* the waiting room behind the glass */}
+      <g clipPath="url(#v2-hatch-clip)">
+        <rect x={hx} y={hy} width={hw} height={hh} fill="url(#v2-waiting)" />
+        <rect x={hx} y={hy + hh * 0.7} width={hw} height={hh * 0.3} fill="#b7a98a" />
+        <rect x={hx + hw * 0.58} y={hy + hh * 0.12} width={hw * 0.3} height={hh * 0.3} fill={sky.bottom} stroke="#8a7a5a" strokeWidth={phone ? 3 : 5} />
+        <path d={`M${hx + hw * 0.73} ${hy + hh * 0.12} V${hy + hh * 0.42}`} stroke="#8a7a5a" strokeWidth={phone ? 2 : 4} />
+        <rect x={hx + hw * 0.12} y={hy + hh * 0.14} width={hw * 0.22} height={hh * 0.26} fill="#f6f1e2" stroke="#7a8a7e" strokeWidth="2" />
+        <circle cx={hx + hw * 0.23} cy={hy + hh * 0.24} r={hw * 0.06} fill="#3d8a6a" />
+        <path d={`M${hx + hw * 0.16} ${hy + hh * 0.35} h${hw * 0.14}`} stroke="#3d6a5a" strokeWidth={phone ? 2 : 4} />
+        {[0, 1, 2, 3].map((i) => (
+          <g key={i} transform={`translate(${hx + hw * (0.08 + i * 0.23)} ${hy + hh * 0.56})`}>
+            <rect width={hw * 0.18} height={hh * 0.05} rx="3" fill="#5f8a9a" stroke="#2f4a55" strokeWidth="2" />
+            <rect y={-hh * 0.12} width={hw * 0.04} height={hh * 0.12} fill="#5f8a9a" stroke="#2f4a55" strokeWidth="2" />
+            <path d={`M${hw * 0.02} ${hh * 0.05} v${hh * 0.12} M${hw * 0.16} ${hh * 0.05} v${hh * 0.12}`} stroke="#2f4a55" strokeWidth="3" />
+          </g>
+        ))}
+        <path d={`M${hx + hw * 0.1} ${hy + hh} L${hx + hw * 0.55} ${hy} L${hx + hw * 0.66} ${hy} L${hx + hw * 0.21} ${hy + hh} Z`} fill="#fff" opacity="0.13" />
       </g>
+      {/* the white frame, the plaque, the ledge */}
+      <rect x={hx + f / 2} y={hy + f / 2} width={hw - f} height={hh - f} fill="none" stroke="#f6f3ea" strokeWidth={f} />
+      <rect x={hx} y={hy} width={hw} height={hh} fill="none" stroke="#6e8a7c" strokeWidth="3" />
+      <rect x={hx + f} y={hy + f} width={hw - 2 * f} height={hh - 2 * f} fill="none" stroke="#9fb3a6" strokeWidth="2" />
+      {!phone ? (
+        <g transform={`translate(${hx + hw / 2} ${hy - 6})`}>
+          <rect x="-120" y="-44" width="240" height="40" rx="6" fill="#3d6a5a" stroke="#1f3a2e" strokeWidth="3" />
+          <g transform="translate(-92 -24)">
+            <circle r="13" fill="#f6f3ea" />
+            <path d="M-3 -9 h6 v6 h6 v6 h-6 v6 h-6 v-6 h-6 v-6 h6 Z" fill="#3d8a6a" />
+          </g>
+          <text x="14" y="-16" textAnchor="middle" fontSize="22" fontFamily="Georgia, serif" fontWeight="700" fill="#f6f3ea">
+            Reception
+          </text>
+        </g>
+      ) : null}
       {/* the supply cabinet on the wall */}
       <g>
         <rect x={sx} y={sy} width={sw} height={sh} rx="6" fill="#8e6a48" stroke="#3a2a1a" strokeWidth="3" />
@@ -125,39 +158,58 @@ function ClinicRoom({ g, sky, phone }: { g: Geo; sky: SkyColours; phone: boolean
         <rect x={sx - 6} y={sy + sh - 14} width={sw + 12} height="16" rx="3" fill="url(#g-shelfboard)" stroke="#3a1f0e" strokeWidth="1.5" />
       </g>
       {!phone ? (
-        <g transform="translate(700 380)">
+        <g transform="translate(1310 300)">
           {/* the eye chart */}
-          <rect width="90" height="80" fill="#fbfaf6" stroke="#5a6a62" strokeWidth="3" />
-          {[14, 10, 7].map((s, r) => (
-            <path key={r} d={`M${45 - (r + 1) * s * 0.8} ${16 + r * 22} h${(r + 1) * s * 1.6}`} stroke="#2a2118" strokeWidth={s / 2.4} strokeDasharray={`${s} ${s * 0.4}`} />
+          <rect width="96" height="120" fill="#fbfaf6" stroke="#5a6a62" strokeWidth="3" />
+          {[18, 13, 9, 6].map((s, r) => (
+            <path key={r} d={`M${48 - (r + 1) * s * 0.7} ${22 + r * 26} h${(r + 1) * s * 1.4}`} stroke="#2a2118" strokeWidth={s / 2.2} strokeDasharray={`${s} ${s * 0.45}`} />
           ))}
         </g>
       ) : null}
-      <LampGroup x={g.lamp[0]} y={g.lamp[1] - (phone ? 0 : 260)} />
     </svg>
   );
 }
 
+/** The reception desk (in front of the patient): a wooden top, a leather blotter where the papers lie, desk things. */
 function ClinicDeskTop({ g, phone }: { g: Geo; phone: boolean }) {
+  const [px, py, pw] = g.papers;
+  const by = Math.max(py, g.dy + 14);
   return (
     <svg viewBox={`0 0 ${g.w} ${g.h}`} className="scene-svg counter-svg" preserveAspectRatio="none" aria-hidden>
-      <rect y={g.dy} width={g.w} height={g.h - g.dy} fill="#d9c7a4" />
-      <rect y={g.dy} width={g.w} height={g.h - g.dy} fill="url(#g-counter)" opacity="0.35" />
+      <rect y={g.dy} width={g.w} height={g.h - g.dy} fill="url(#g-counter)" />
       {Array.from({ length: 6 }, (_, i) => (
-        <path key={i} d={`M0 ${g.dy + 40 + i * (phone ? 80 : 90)} H${g.w}`} stroke="#a88e64" strokeWidth="2" opacity="0.35" />
+        <path key={i} d={`M0 ${g.dy + 40 + i * (phone ? 80 : 90)} H${g.w}`} stroke="#4a2a12" strokeWidth="2" opacity="0.25" />
       ))}
-      <rect y={g.dy - 10} width={g.w} height="20" fill="#f6f3ea" stroke="#8a9a8e" strokeWidth="3" />
-      <rect y={g.dy + 10} width={g.w} height="12" fill="#000" opacity="0.12" />
+      <rect y={g.dy - 12} width={g.w} height="22" fill="#f6f3ea" stroke="#8a9a8e" strokeWidth="3" />
+      <rect y={g.dy + 10} width={g.w} height="12" fill="#000" opacity="0.14" />
+      {/* the blotter */}
+      <rect x={px - 6} y={by - 4} width={pw + 12} height={g.h - by + 20} rx="8" fill="#2f4a3e" stroke="#1a2a22" strokeWidth="3" />
+      <rect x={px + 6} y={by + 8} width={pw - 12} height={g.h - by} rx="4" fill="#3d5c4e" />
       {!phone ? (
-        <g transform="translate(1520 470)">
-          {/* the desk bell */}
-          <ellipse cx="0" cy="34" rx="30" ry="7" fill="#4a4a52" />
-          <path d="M-22 32 Q-22 4 0 4 Q22 4 22 32 Z" fill="#d9b54a" stroke="#6a4a12" strokeWidth="2.5" />
-        </g>
+        <>
+          {/* in-tray with waiting files, the pen pot, the bell on the ledge */}
+          <g transform="translate(46 470)">
+            <path d="M0 40 L240 40 L224 120 L16 120 Z" fill="#9a7a50" stroke="#3a2a1a" strokeWidth="3" />
+            {[0, 1, 2, 3].map((i) => (
+              <rect key={i} x={24 + i * 4} y={22 - i * 8} width="190" height="30" rx="2" fill={['#e8d6a8', '#f3e6c4', '#d9c08a', '#f6efe0'][i]} stroke="#7a6a52" strokeWidth="1.5" />
+            ))}
+            <rect x="0" y="40" width="240" height="16" fill="#b08a5a" stroke="#3a2a1a" strokeWidth="2" />
+          </g>
+          <g transform="translate(300 640)">
+            <rect x="-26" y="0" width="52" height="64" rx="5" fill="#3d6a5a" stroke="#1f3a2e" strokeWidth="2.5" />
+            <path d="M-12 0 l-10 -46 M2 0 l4 -50 M14 0 l12 -40" stroke="#2a2118" strokeWidth="5" strokeLinecap="round" />
+          </g>
+          <g transform="translate(300 390)">
+            <ellipse cx="0" cy="30" rx="30" ry="7" fill="#4a4a52" />
+            <path d="M-22 28 Q-22 0 0 0 Q22 0 22 28 Z" fill="#d9b54a" stroke="#6a4a12" strokeWidth="2.5" />
+            <rect x="-3" y="-9" width="6" height="10" fill="#6a4a12" />
+          </g>
+        </>
       ) : null}
     </svg>
   );
 }
+
 
 // ------------------------------------------------------------------------------------------------ the work
 
