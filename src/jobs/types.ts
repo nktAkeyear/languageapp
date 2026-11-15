@@ -420,6 +420,12 @@ export interface JobReaction {
    * e-mail or a call); 'boss' — only for a handed-over paper or call.
    */
   voice?: 'person' | 'boss';
+  /**
+   * A `minor` line about time ("please be fast next time"): said only when the work was right but the optional
+   * timer ran out, never for a small mistake; a `minor` line without it is about a small mistake and is never
+   * said for lateness.
+   */
+  late?: boolean;
 }
 
 /**

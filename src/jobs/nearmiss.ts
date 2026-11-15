@@ -163,3 +163,61 @@ export function qaDistractors(qa: QaItem, bank: QaItem[], need: number, rng: Rng
     for (const o of shuffle(rng, bank.filter((x) => x.fn !== qa.fn && x.a !== qa.a))) if (out.length < need && !out.includes(o.a) && o.a !== qa.a) out.push(o.a);
   return out;
 }
+
+// ---------------------------------------------------------------------------- checks (validator)
+
+/** Text as read: markup resolved to its surface, lowercase, punctuation and extra spaces gone. */
+export function normReply(s: string): string {
+  return s
+    .replace(/\{([^{}|]+)\|[^{}]*\}/g, '$1')
+    .toLowerCase()
+    .replace(/[^a-z0-9$%: ]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/** Words that carry no fact of their own: a reply that differs from the answer only by these says the same thing. */
+const FILLER = new Set(['a', 'an', 'the', 'is', 'are', 'it', 'its', 'you', 'your', 'here', 'one', 'them', 'they', 'this', 'that', 'some', 'of', 'i', 'will', 'please', 'now', 'sure', 'of course', 'yes', 'ok']);
+const wordsOf = (s: string) => new Set(normReply(s).split(' ').filter(Boolean));
+
+export interface NearProblem {
+  level: 'error' | 'warn';
+  msg: string;
+}
+
+/**
+ * What can be said about a reply choice's wrong options mechanically (`validate-content`):
+ * - error: a wrong option that reads the same as the answer (case, punctuation and markup aside), or twice the same;
+ * - error: a wrong option that only adds words of the message to the answer ("Sure. Here is your stamp." next to
+ *   "Sure. Here you are." under "Can I have a stamp?"): it says the same thing, so it is right too;
+ * - warn: the answer stands out by its length (every wrong option under 45 % or over 220 % of it, and ≥ 20 letters
+ *   apart) or by its form (only the answer is a question, or only the answer is not).
+ */
+export function nearProblems(q: string, a: string, wrong: string[]): NearProblem[] {
+  const out: NearProblem[] = [];
+  const na = normReply(a);
+  const seen = new Set<string>();
+  const qw = wordsOf(q);
+  const aw = wordsOf(a);
+  for (const d of wrong) {
+    const nd = normReply(d);
+    if (nd === na) out.push({ level: 'error', msg: `wrong option reads as the answer: «${d}»` });
+    else if (seen.has(nd)) out.push({ level: 'error', msg: `wrong option given twice: «${d}»` });
+    else {
+      const dw = wordsOf(d);
+      const extra = [...dw].filter((w) => !aw.has(w));
+      const missing = [...aw].filter((w) => !dw.has(w));
+      if (extra.length && extra.every((w) => qw.has(w) || FILLER.has(w)) && extra.some((w) => qw.has(w) && !FILLER.has(w)) && missing.every((w) => FILLER.has(w)))
+        out.push({ level: 'error', msg: `wrong option only adds words of the message to the answer, so it is right too: «${d}»` });
+    }
+    seen.add(nd);
+  }
+  if (wrong.length) {
+    const la = na.length;
+    const lens = wrong.map((d) => normReply(d).length);
+    if (lens.every((l) => (l < la * 0.45 || l > la * 2.2) && Math.abs(l - la) >= 20)) out.push({ level: 'warn', msg: `the answer stands out by its length (${la} letters; wrong options ${lens.join(', ')}): «${a}»` });
+    const isQ = (s: string) => /\?\s*$/.test(s);
+    if (wrong.every((d) => isQ(d) !== isQ(a))) out.push({ level: 'warn', msg: `the answer stands out by its form (${isQ(a) ? 'the only question' : 'the only one that is not a question'}): «${a}»` });
+  }
+  return out;
+}

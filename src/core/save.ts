@@ -25,6 +25,8 @@ export interface Settings {
    * 'hover' = only on hover / in the word card, 'off' = never in sentences (notebook lists always).
    */
   guessDisplay: GuessDisplay;
+  /** The reading voice chosen per language (a voiceURI of the browser's speech synthesis); absent = automatic. */
+  voices?: Partial<Record<'en' | 'zh', string>>;
 }
 
 export type GuessDisplay = 'under' | 'hover' | 'off';

@@ -225,6 +225,7 @@ function SpotBadges({ open, done, fresh, rank, hours }: { open: boolean; done: b
 function ZoomMap({ children }: { children: React.ReactNode }) {
   const [zoom, setZoom] = useState<{ x: number; y: number } | null>(null);
   const box = useRef<HTMLDivElement>(null);
+  const inner = useRef<HTMLDivElement>(null);
   const Z = 2.6;
   useLayoutEffect(() => {
     const el = box.current;
@@ -232,23 +233,42 @@ function ZoomMap({ children }: { children: React.ReactNode }) {
     el.scrollLeft = zoom.x * el.scrollWidth - el.clientWidth / 2;
     el.scrollTop = zoom.y * el.scrollHeight - el.clientHeight / 2;
   }, [zoom]);
+  // Zoomed out, the whole map is one target ("tap to zoom"): the small buildings on it are not buttons
+  // (inert: not tappable, not focusable) — every tappable target on the phone stays finger-sized.
+  useLayoutEffect(() => {
+    const el = inner.current;
+    if (!el) return;
+    if (zoom) el.removeAttribute('inert');
+    else el.setAttribute('inert', '');
+  }, [zoom]);
+  const zoomAt = (x: number, y: number) => {
+    sfx('whoosh');
+    setZoom({ x, y });
+  };
   return (
     <div className={`m-hub-zoom ${zoom ? 'zoomed' : ''}`}>
       <div
         ref={box}
         className="m-hub-zoombox"
+        role={zoom ? undefined : 'button'}
+        tabIndex={zoom ? undefined : 0}
+        aria-label={zoom ? undefined : '町の地図：押した所を大きくする'}
         onClickCapture={(e) => {
           if (zoom) return;
           // First tap: zoom into the spot (do not open a workplace yet).
           const r = e.currentTarget.getBoundingClientRect();
           e.stopPropagation();
           e.preventDefault();
-          sfx('whoosh');
-          setZoom({ x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height });
+          zoomAt((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+        }}
+        onKeyDown={(e) => {
+          if (zoom || (e.key !== 'Enter' && e.key !== ' ')) return;
+          e.preventDefault();
+          zoomAt(0.5, 0.5);
         }}
         data-testid="hub-zoom"
       >
-        <div className="m-hub-zoominner" style={zoom ? { width: `${Z * 100}%` } : undefined}>
+        <div ref={inner} className="m-hub-zoominner" style={zoom ? { width: `${Z * 100}%` } : undefined}>
           {children}
         </div>
       </div>

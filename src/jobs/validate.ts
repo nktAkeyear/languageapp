@@ -25,7 +25,7 @@
 import { wordMarkup, type GameData } from '../core/gamedata';
 import { makeRng } from '../core/rng';
 import { tokenIds } from '../core/tokenize';
-import { nearMisses } from './nearmiss';
+import { nearMisses, nearProblems } from './nearmiss';
 import { EIKEN_GRADES } from '../core/types';
 import { englishLists, listsLoaded, vocabFor } from '../curriculum/lists';
 import { eikenIndex, EIKEN_KEYS, TOEIC_BANDS, toeicIndex } from '../curriculum/yardsticks';
@@ -33,7 +33,7 @@ import { evaluateTask, postage, solveTask } from './rules';
 import { evalExpr } from './expr';
 import { authoredInstance, rankLevelIndex, selfNamed, specTexts, templateInstance, type GenCtx } from './templates';
 import { jobContentTexts, templateSlotWords, templateTexts } from './vocab';
-import { featuresAt, ruleCtx } from './engine';
+import { featuresAt, reactionPool, reactionScenarios, ruleCtx } from './engine';
 import { jobLexiconReport } from './lexicon';
 import type { JobContent, JobDef, TaskInstance, TaskSpec } from './types';
 import { GOODS } from '../content/jobs';
@@ -135,6 +135,7 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
         if ((q.near ?? []).includes(q.a)) h.err(`${where} qa ${bank} ${q.fn}: a near miss is the answer itself`);
         const nm = nearMisses(q, items);
         for (const t of nm) h.checkText(`${where} qa ${bank} ${q.fn} near miss`, t);
+        for (const p of nearProblems(q.q, q.a, nm)) (p.level === 'error' ? h.err : h.warn)(`${where} qa ${bank} ${q.fn}: ${p.msg}`);
         if (nm.length < 2) few.push(q.fn);
       }
       if (few.length) h.warn(`${where} qa ${bank}: ${few.length} item(s) with fewer than 2 near misses (wrong replies then come from other topics): ${few.join(', ')}`);
@@ -227,6 +228,10 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
       tagsOk(w, t, inst.texts, h);
       speakerOk(w, inst, t.person, data, jc, h);
       checkInstance(w, inst, ctxAt(t.rank, 1));
+      if (t.arch === 'respond' && t.mode === 'choose' && t.options && t.answer !== undefined && inst.spec.arch === 'respond') {
+        const q = [inst.say, ...inst.spec.msg.lines].filter(Boolean).join(' ');
+        for (const p of nearProblems(q, t.options[t.answer], t.options.filter((_, i) => i !== t.answer))) (p.level === 'error' ? h.err : h.warn)(`${w}: ${p.msg}`);
+      }
       const fresh = [...new Set([...inst.texts, ...binTexts(inst.spec)].flatMap((x) => tokenIds(data.tokens(x))))].filter((id) => !known.has(id) && !pic.has(id));
       if (fresh.length > SPINE_NEW) spineHeavy.push(`${t.id}(${fresh.length}: ${fresh.map((id) => data.lex.byId.get(id)?.text ?? id).join(' ')})`);
       fresh.forEach((id) => known.add(id));
@@ -277,6 +282,37 @@ export function validateJobsLanguage(data: GameData, h: Hooks): Record<string, n
         if (agg.over.size) (agg.worst > LEVEL_SLACK_ERROR ? h.err : h.warn)(`${w} @rank${r.rank}: instances use words above the level (${agg.label}): ${[...agg.over].join(', ')}`);
         if (!ok) h.err(`${w}: cannot be instantiated at rank ${r.rank}`);
       }
+    }
+    // Reaction fit: every task (authored, and template instances at every rank it comes at) × every way it can end
+    // must have at least one line that fits the request and the speaker (reactionFits); otherwise the person would
+    // say a line about something else ("Where is my food?" from the chef over a recipe card).
+    {
+      const misfit = new Map<string, { n: number; ex: string }>();
+      const scan = (inst: TaskInstance, rank: number, w: string) => {
+        for (const sc of reactionScenarios(inst.spec)) {
+          const pool = reactionPool(data, jc, inst, sc.ev, rank, sc.late);
+          if (!pool.length || !pool[0].misfit) continue;
+          const k = `${sc.late ? 'late' : sc.ev.primary?.kind ?? sc.ev.outcome}/${sc.ev.outcome}: ${[...new Set(pool.map((x) => x.r.id))].join(', ')}`;
+          const x = misfit.get(k) ?? { n: 0, ex: w };
+          x.n++;
+          misfit.set(k, x);
+        }
+      };
+      for (const t of jc.tasks) for (const r of job.ranks.filter((x) => x.rank >= t.rank)) scan(authoredInstance(ctxAt(r.rank, 1), t), r.rank, `task ${t.id} @rank${r.rank}`);
+      for (const t of jc.templates)
+        for (const r of job.ranks.filter((x) => x.rank >= t.rank))
+          for (let seed = 1; seed <= 6; seed++) {
+            const inst = templateInstance(ctxAt(r.rank, seed * 104729 + r.rank), t);
+            if (inst) scan(inst, r.rank, `template ${t.id} @rank${r.rank}`);
+          }
+      for (const [k, x] of misfit) h.err(`${where} reactions: no line fits ${k} (×${x.n}, e.g. ${x.ex}) — add a line for this request / speaker`);
+      // Lines about time are for lateness only, and lateness gets a line about time.
+      for (const r of jc.reactions) {
+        if (r.kind === 'minor' && !r.late && /\b(fast|quick(er|ly)?|slow(ly)?|late)\b/i.test(r.text)) h.warn(`${where} reaction ${r.id}: a minor line about time — mark it late: true (it is said for small mistakes otherwise)`);
+        if (r.late && (r.kind !== 'minor' || /\b(wrong|mistake|careful|not right|again)\b/i.test(r.text))) h.err(`${where} reaction ${r.id}: a late line must be kind minor and must not speak of a mistake`);
+      }
+      const timedAt = job.ranks.find((r) => r.unlocks?.includes('timed'))?.rank;
+      if (timedAt && !jc.reactions.some((r) => r.kind === 'minor' && r.late && !r.arch && (r.rank ?? 1) <= timedAt)) h.err(`${where}: timed tasks from rank ${timedAt}, but no late line (kind minor, late: true) by then`);
     }
     // Reactions and the boss's lines are said at their rank: measured like a task of that rank.
     for (const r of jc.reactions) report(`${where} reaction ${r.id}`, levelOver([r.text.replace(PH_OK, ' ')], r.rank ?? 1));

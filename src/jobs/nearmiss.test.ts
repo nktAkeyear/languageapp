@@ -4,7 +4,7 @@ import { nearUnmatched } from '../content/jobs';
 import { buildGameData } from '../core/gamedata';
 import { makeRng } from '../core/rng';
 import { featuresAt, jobById, jobsOf } from './engine';
-import { deriveNear, nearMisses, qaDistractors } from './nearmiss';
+import { deriveNear, nearMisses, nearProblems, normReply, qaDistractors } from './nearmiss';
 import { templateInstance } from './templates';
 import type { QaItem } from './types';
 
@@ -81,6 +81,35 @@ describe('authored reply choices', () => {
         expect(stale.length, `${orig.id} ${t.id}: ${stale.join(' / ')}`).toBeLessThan(wrong.length);
         expect(wrong.length).toBeGreaterThanOrEqual(2);
       }
+    }
+  });
+});
+
+describe('mechanical checks of wrong reply options (nearProblems)', () => {
+  const errs = (q: string, a: string, w: string[]) => nearProblems(q, a, w).filter((p) => p.level === 'error');
+  const warns = (q: string, a: string, w: string[]) => nearProblems(q, a, w).filter((p) => p.level === 'warn');
+  it('reads text as the player does: markup, case and punctuation aside', () => {
+    expect(normReply('Yes, {Ms. Park|@} is here!')).toBe('yes ms park is here');
+    expect(errs('Hello?', 'Sure. Here you are.', ['sure, here you are', 'No, thank you.'])).toHaveLength(1);
+    expect(errs('Hello?', 'Yes.', ['No.', 'no!'])).toHaveLength(1);
+  });
+  it('flags a wrong option that only adds words of the message to the answer (it is right too)', () => {
+    expect(errs('Can I have a stamp, please?', 'Sure. Here you are.', ['Sure. Here is your stamp.', 'Sure. Here is your postcard.'])).toHaveLength(1);
+    expect(errs('I need a towel, please.', 'Sure. I will bring one.', ['Sure. I will bring a towel.', 'Sure. I will bring a blanket.'])).toHaveLength(1);
+    // a different fact is fine
+    expect(errs('Can I have a stamp, please?', 'Sure. Here you are.', ['Sure. Here is your postcard.', 'It is five coins.'])).toEqual([]);
+  });
+  it('warns when the answer stands out by its length or by being the only question', () => {
+    expect(warns('Can I copy this?', 'Sure. How many copies?', ['Sure. It is four dollars.', 'No, it is my paper.'])[0].msg).toMatch(/only question/);
+    expect(warns('Can I copy this?', 'Sure. How many copies?', ['Sure. How much is the paper?', 'No, it is my paper.'])).toEqual([]);
+    expect(warns('Why?', 'We are sorry to hear that. We will send you a full refund, because you wrote more than a week before you were due to come.', ['No.', 'Thank you for your letter.'])[0].msg).toMatch(/length/);
+  });
+  it('no reply choice in the content fails these checks (QA items with their derived near misses, authored tasks)', () => {
+    for (const j of jobsOf(data)) {
+      for (const [, items] of Object.entries(j.content.en?.qa ?? {})) for (const q of items) expect(nearProblems(q.q, q.a, nearMisses(q, items)), `${j.id} ${q.fn}`).toEqual([]);
+      for (const t of j.content.en?.tasks ?? [])
+        if (t.arch === 'respond' && t.mode === 'choose' && t.options && t.answer !== undefined)
+          expect(nearProblems([t.say, ...(t.msg?.lines ?? [])].join(' '), t.options[t.answer], t.options.filter((_, i) => i !== t.answer)), `${j.id} ${t.id}`).toEqual([]);
     }
   });
 });

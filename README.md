@@ -333,7 +333,9 @@ Decipherment needs a pencil: the player writes down what they think a word means
   or authored tasks of the player's rank not met yet). **Hours** (`JobDef.hours`): post office and office
   朝・昼, inn 朝・夕方 (check-out / check-in), kitchen all day, tea house all day. Phone: the map as an
   overview — a tap zooms into that spot (signs legible, pan with a finger), 全体を見る zooms out, as on the
-  delivery map — and the workplaces as signboards with the same badges.
+  delivery map — and the workplaces as signboards with the same badges. Zoomed out, the whole map is one target
+  (role button, Enter zooms too) and the small buildings on it are `inert` (not tappable or focusable), so no tappable
+  target on the phone is under 40 px.
 - **Parts of the day**: 朝 / 昼 / 夕方. A job's **shift** (4–6 tasks) fills one part; each job at most once a
   day, and only in its hours. The **tea house** is planned every morning as before and, when chosen, runs its
   own segments from the current part on: started in the morning it is the original day (market 朝, shop 昼,
@@ -418,7 +420,15 @@ a wrong document approved).
    the message varied automatically, `src/jobs/nearmiss.ts`; three slips when an item has two near misses,
    answers of other topics only for an item with fewer; authored reply tasks likewise — their wrong slips are
    written per task in `NEAR_TASKS_EN` or taken from the QA item with the same answer, never stock lines such
-   as "It is five kilos." under a question about a lost letter), writing the message pad (each field offers near misses), or picking
+   as "It is five kilos." under a question about a lost letter). A wrong slip must be wrong **on a careful read
+   of the message alone**: it contradicts the message or itself ("Yes, we are closed until five", "No, every room
+   has a bath"), answers another question ("It is two kilos." to "How much is a stamp?", "On the second floor." to
+   "When …?"), or gets an echoed fact wrong — never a different value of a fact the message does not give (the
+   price of a stamp, where the station is), which would be arguably right. The validator checks what can be
+   mechanised (`nearProblems`, src/jobs/nearmiss.ts): a slip that reads as the answer (case, punctuation, markup
+   aside) or twice the same, or one that only adds words of the message to the answer ("Sure. Here is your stamp."
+   next to "Sure. Here you are." under "Can I have a stamp?") is an error; an answer that stands out by its length
+   or by being the only question is a warning), writing the message pad (each field offers near misses), or picking
    the one free slot that fits on a week calendar or on the inn's floors (the generator makes exactly one cell
    fit the constraints; the validator re-checks it). A paper or call is handed over by the boss with a line
    of its own (`handover` lines), never in silence.
@@ -507,7 +517,9 @@ Register it in `src/content/jobs/index.ts`; run `npm run validate-content` and `
   job → bank → `fn` (`fn#2` for the second item with that function)), `reactions` (`{ id, kind, text, face, rank?,
   arch?, needs?, not?, voice? }` — `needs` / `not`: a pattern the task's texts must / must not match, so "Every bag is
   in the right place" comes only for luggage and "right in the book" only for the register book; `voice: 'person'`
-  for a line only the person who asked can say, `'boss'` for a handed-over letter / e-mail / call; kinds: `perfect minor any_fail` +
+  for a line only the person who asked can say, `'boss'` for a handed-over letter / e-mail / call; `late: true` for a
+  `minor` line about time ("please be fast next time": said only when the work was right but the optional timer ran
+  out; the other `minor` lines are for small mistakes and join the issue's own lines); kinds: `perfect minor any_fail` +
   the archetypes' issue kinds; placeholders `{bin} {field} {vessel} {name}` and, for a thing, `{thing}` (in the
   number the sentence needs: "the bread", "eggs"), `{is}` (is / are), `{much}` (much / many), `{it}` (it /
   them), `{this}` — e.g. `'Where {is} the {thing}?'`, `"So {much} {thing}! I can't eat {it}."`), `lines` (the boss's
@@ -622,11 +634,15 @@ plural; counter goods have prices; the rate table is dests × bands; every conte
 and the words that come only through template slots count as used; reactions' placeholders and patterns, a rank-1 `perfect`
 and `any_fail`, a `perfect` usable by each archetype, `start` / `end` lines; QA banks (≥ 3 items, ≥ 2
 functions; every item's near misses — written and derived — tokenise and stay within its rank's level, and an item
-with fewer than two is warned about, since its wrong slips would come from other topics); computed check fields (their expressions name earlier fields); every authored task and 30
+with fewer than two is warned about, since its wrong slips would come from other topics; the mechanical near-miss
+checks above for every QA item and authored reply choice); computed check fields (their expressions name earlier fields); every authored task and 30
 instances of every template at every rank it can come at: references resolve (bins, things, fields, vessels,
 methods, options, pantry `out` / recipe `order` against the wanted things, postage on the rate table), solved
 perfectly by the archetype's own solver, a customer never pays less than the total (postage included), the
-papers of a check agree except on the one field marked wrong, a paper / call task has something said (a
+papers of a check agree except on the one field marked wrong, **reaction fit** (every authored task and template
+instance × every way it can end — right, late, each mistake its archetype can produce — has at least one reaction
+line that fits the request and the speaker, `reactionScenarios` + `reactionPool`; a `late` line is kind `minor` and
+never speaks of a mistake, a `minor` line about time must be marked `late`, a job with timed tasks has a late line), a paper / call task has something said (a
 `handover` line), a speaker who names themselves is a person of the job and the one drawn, and the person drawn
 never speaks of themselves in the third person ("{Chef Basil|@} wrote these tickets" is said by Ivy, not by the chef;
 warning); **level**: words
@@ -992,8 +1008,12 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
 
 - **現在の実力の目安 (start)**: ゼロから / zh HSK1–3 (中検・CEFR shown; higher HSK levels are listed as 未対応) / en
   **every 英検 grade, 5級 … 1級** (CEFR・TOEIC shown), chosen on either yardstick: 「英検で選ぶ」 (the grades) or
-  「TOEIC で選ぶ」 (〜400 … 〜990, each seeding its 英検 equivalent — 〜400 = 3級, 〜500 = 準2級, 〜600 = 2級, 〜730 = 準1級,
-  〜860 / 〜990 = 1級 — and placing the jobs by their ranks' TOEIC bands; `DifficultyState.startToeic`). The tea house's
+  「TOEIC で選ぶ」 (〜400 … 〜990; `DifficultyState.startToeic`): a TOEIC start assumes the words **by their TOEIC band**
+  from `data/english/vocab.json` (every lexicon word whose list band is at or below the chosen one; `startWords` /
+  `inStart` in `core/difficulty.ts`), so every band seeds its own set — 〜860 and 〜990 differ — and the jobs are placed
+  by their ranks' TOEIC bands. The band's 英検 equivalent (〜400 = 3級, 〜500 = 準2級, 〜600 = 2級, 〜730 / 〜860 = 準1級,
+  〜990 = 1級) is only the label, the shop stage and the fallback for the few words the list gives no band; changing
+  between bands is exact like changing grades (`src/core/startToeic.test.ts`). The tea house's
   material ends at 準2級; the jobs carry the higher grades (their rank 5 is 準1級 / 1級), so en offers them all.
   Choosing a level seeds every lexicon word
   tagged at or below it as **assumed known — 未確認（知っているはず）** (`WordState.seeded`, seen 6 / correct 2
@@ -1122,12 +1142,26 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
   of due/weak words; there is no flashcard screen.
 - **Mastered** (for 現在地) = meaning confirmed in a 検証ページ AND (used correctly ≥2 times or seen ≥6 times).
 - **現在地** is a vocabulary / reading / listening guide only; it does not measure speaking or writing.
-- Speech uses the browser's `speechSynthesis` (en-US / zh-CN). Without a matching voice (or without
-  `speechSynthesis` at all) the listen buttons are disabled, audio-only orders are shown as text, and ⚙ 設定 says
-  so in a small notice. Sound effects: `window.__minatoAudio()` (diagnostics) reports the AudioContext state
+- Speech uses the browser's `speechSynthesis` (`src/ui/speech.ts`). Voice choice (`voiceCandidates` / `pickVoice`,
+  unit-tested with mocked voices): the player's own choice (⚙ 設定 → 読み上げ: 声, by voiceURI, `Settings.voices` per
+  language) when it is still there, else en-US, then en-GB, then other English; for Chinese zh-CN / cmn, then zh-TW —
+  never Cantonese (zh-HK, yue); the system default first within a tag, novelty voices last. The voice list loads
+  asynchronously (`voiceschanged` plus a short poll for engines that never fire it); ⚙ 設定 shows 「音声を読み込んで
+  います…」 meanwhile, then the voice picker, the speed and 「声を試す」 (reads a sample with the chosen voice and
+  speed). Without a voice for the language — or without `speechSynthesis` at all — the listen buttons are disabled,
+  audio-only orders are shown as text, and ⚙ 設定 says which of the two it is. Sound effects: `window.__minatoAudio()` (diagnostics) reports the AudioContext state
   ('none' before the first gesture, 'running' after) and plays any effect by name.
-- **Reaction lines fit the request** (`reactionFits`, `src/jobs/engine.ts`): job reactions are shared by every
-  task of a kind, so lines that would not fit are passed over when others exist — "Both of us are happy" when
+- **Reaction lines fit the request and the speaker** (`reactionFits`, `src/jobs/engine.ts`; every pairing of every
+  task and template instance with every line it can get was dumped and read, and the rules below now flag the classes
+  of mismatch that turned up): who speaks (`reactionSpeaker`: the person drawn, or the boss for a handed-over paper /
+  call) — lines only the one who eats or receives the work can say ("My plate is empty!", "I am still hungry", "Tell
+  the chef …") never come from the boss or over a recipe card / ticket / a dish for someone else; a line naming the boss
+  is not said by the boss; "I am a hungry man" not by a woman (gender from the drawn look); how the request came —
+  "Please listen again" only after a spoken request or a call, "read it / the card again" only after a written one; the
+  asker's own lines ("not an answer to my question") only face to face; "please send it" only for a written reply; a
+  line pointing at a paper or a thing ("Read the note again", "the book is right") only when the task has it. Lines that
+  fit are preferred; where none would, the validator reports it as an error. Paper field labels read naturally after
+  "the" (`fieldInText`: "the tracking number", "the “By” line", never "the by"). Also — "Both of us are happy" when
   nobody else was mentioned, "My son will love this" without a child in the request, "I can't eat it" / "no …
   for me" when the request said someone else can't eat it (the kitchen has a third-person-safe line for that).
   Lines can also say themselves what they need (`needs` / `not` patterns on the task's texts, `voice`): "Every bag is

@@ -114,7 +114,7 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
   const progress = isNew ? null : g.progress;
   const cur = progress?.difficulty ?? defaultDifficulty();
   const [start, setStart] = useState(cur.start);
-  // en: the start can be chosen on either yardstick (英検 grade or TOEIC band; the band seeds its 英検 equivalent).
+  // en: the start can be chosen on either yardstick (英検 grade or TOEIC band; a band assumes the words of its TOEIC band and below).
   const [startBy, setStartBy] = useState<'eiken' | 'toeic'>(cur.startToeic ? 'toeic' : 'eiken');
   const [band, setBand] = useState<number | null>(cur.startToeic ?? null);
   const [target, setTarget] = useState<number | null>(cur.target);
@@ -252,7 +252,7 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
                 data-testid={`start-toeic-${t.band}`}
               >
                 <span className="lvs-card-l">TOEIC 〜{t.band}</span>
-                <span className="lvs-card-e">{levelName(lang, t.level)}相当の言葉</span>
+                <span className="lvs-card-e">TOEIC 〜{t.band} までの言葉（{levelName(lang, t.level)}相当）</span>
               </button>
             ))}
           </div>
@@ -283,7 +283,7 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
         <p className="small lvs-explain">
           {start === 0
             ? '最初の一杯から。言葉はすべてゲームの中で出会って、検証して覚えます。'
-            : `${levelName(lang, start)}までの言葉は「知っているはず（未確認）」として扱い、易しい言葉ばかりの注文は省きます。答え（意味）は表示されません。手帳では未確認のまま並び、自分の推測を書いて検証ページで確かめると「確」になります（一語ずつ取り消しも可）。店は第${startStage}段階から。棚の品の名前など、まだ知らない言葉の入った最初の注文はそのまま出てきます。${lang === 'en' && start >= 2 ? '町の掲示板は最初の日から開き、仕事はそれぞれ実力に合った位から始まります（下の位の仕事は復習としてときどき）。' : ''}物語は最初の手紙から、少し詰めて進みます。`}
+            : `${lang === 'en' && startBy === 'toeic' && band ? `TOEIC 〜${band}（単語リストの TOEIC の帯）` : levelName(lang, start)}までの言葉は「知っているはず（未確認）」として扱い、易しい言葉ばかりの注文は省きます。答え（意味）は表示されません。手帳では未確認のまま並び、自分の推測を書いて検証ページで確かめると「確」になります（一語ずつ取り消しも可）。店は第${startStage}段階から。棚の品の名前など、まだ知らない言葉の入った最初の注文はそのまま出てきます。${lang === 'en' && start >= 2 ? '町の掲示板は最初の日から開き、仕事はそれぞれ実力に合った位から始まります（下の位の仕事は復習としてときどき）。' : ''}物語は最初の手紙から、少し詰めて進みます。`}
         </p>
         {preview ? (
           <ul className="lvs-preview small" data-testid="level-preview">

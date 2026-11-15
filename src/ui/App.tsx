@@ -9,6 +9,7 @@ import { DesktopLayout } from './desktop/DesktopLayout';
 import { MobileCtx } from './layout';
 import { MobileLayout } from './mobile/MobileLayout';
 import { armAudioOnGesture, setAudioSettings } from './sound';
+import { setPreferredVoices } from './speech';
 import { DayTransition } from './scene/Transition';
 import { StoryStage } from './story/StoryStage';
 import { StoryUiProvider } from './story/StoryUi';
@@ -44,6 +45,8 @@ function Shell() {
   }, [mobile]);
   useEffect(() => armAudioOnGesture(), []);
   useEffect(() => setAudioSettings({ volume, muted, ambient }), [volume, muted, ambient]);
+  const voicePrefs = g.settings.voices;
+  useEffect(() => setPreferredVoices(voicePrefs), [voicePrefs]);
   return (
     <MobileCtx.Provider value={mobile}>
       <UiProvider>

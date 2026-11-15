@@ -118,8 +118,19 @@ export function WordText({ text, className, interactive = true, story = false, g
     const mode = settings.guessDisplay ?? 'under';
     const title = confirmed ? undefined : guess && mode !== 'off' ? `自分の推測: ${guess}` : undefined;
     const pinyin = zh && pinyinShown(settings.showPinyin, progress, id) && e?.pinyin;
-    const under = !!guess && mode === 'under' && !pinyin && !glossed;
-    const surface = pinyin ? (
+    const under = !!guess && mode === 'under' && !glossed;
+    const surface = pinyin && under ? (
+      // zh: the pinyin above (ruby) and the player's guess hanging under the word, both at once.
+      <span className="w-guess-wrap w-guess-py">
+        <ruby>
+          {t.text}
+          <rt>{e!.pinyin}</rt>
+        </ruby>
+        <span className="w-guess" aria-hidden>
+          {shortGuess(guess)}
+        </span>
+      </span>
+    ) : pinyin ? (
       <ruby>
         {t.text}
         <rt>{e!.pinyin}</rt>

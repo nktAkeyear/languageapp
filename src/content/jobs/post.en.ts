@@ -1145,7 +1145,7 @@ const THINGS = [
 ];
 
 // ---------------------------------------------------------------------------- reactions and lines
-const rx = (id: string, kind: JobContent['reactions'][number]['kind'], text: string, face: Face, extra: { rank?: number; arch?: JobContent['reactions'][number]['arch']; needs?: string; not?: string } = {}) => ({ id, kind, text, face, ...extra });
+const rx = (id: string, kind: JobContent['reactions'][number]['kind'], text: string, face: Face, extra: { rank?: number; arch?: JobContent['reactions'][number]['arch']; needs?: string; not?: string; voice?: 'person' | 'boss'; late?: boolean } = {}) => ({ id, kind, text, face, ...extra });
 
 const REACTIONS: JobContent['reactions'] = [
   rx('pr_ok1', 'perfect', 'Good job!', 'happy', { arch: 'sort' }),
@@ -1160,7 +1160,7 @@ const REACTIONS: JobContent['reactions'] = [
   rx('pr_ok6b', 'perfect', 'Great, thank you!', 'delighted', { arch: 'respond', not: '\\b(complain\\w*|broken|lost|damaged|angry)\\b' }),
   rx('pr_minor_sort', 'minor', 'Good. But one is in the wrong box.', 'neutral', { arch: 'sort' }),
   rx('pr_minor_fix', 'wrong_fix', 'Almost. But that is not the right {field}.', 'neutral', { arch: 'check' }),
-  rx('pr_minor', 'minor', 'Thank you. But please be fast next time.', 'neutral'),
+  rx('pr_minor', 'minor', 'Thank you. But please be fast next time.', 'neutral', { late: true }),
   rx('pr_bin1', 'wrong_bin', 'No, no. This one goes in “{bin}”.', 'puzzled'),
   rx('pr_bin2', 'wrong_bin', 'Check the address, please. This one goes in “{bin}”.', 'sad', { rank: 2, needs: '\\b(street|road|address)\\b', not: 'note on each letter' }),
   rx('pr_bin3', 'wrong_bin', 'Oh no! It is in the wrong box. It goes in “{bin}”.', 'angry', { rank: 2 }),
@@ -1171,8 +1171,9 @@ const REACTIONS: JobContent['reactions'] = [
   rx('pr_missed', 'missed', 'Oh no! Look at the {field}. It is wrong!', 'angry'),
   rx('pr_false', 'false_alarm', 'No, no. It is right. Look again, please.', 'puzzled'),
   rx('pr_wfield', 'wrong_field', 'No. The {field} is right. Look again, please.', 'puzzled'),
-  rx('pr_reply', 'wrong_reply', 'Sorry? That is not what I want.', 'puzzled'),
-  rx('pr_reply2', 'wrong_reply', 'Sorry? I do not know. Say it again, please.', 'sad', { rank: 2 }),
+  rx('pr_reply', 'wrong_reply', 'Sorry? That is not what I asked.', 'puzzled', { voice: 'person' }),
+  rx('pr_reply2', 'wrong_reply', 'Sorry? I do not know. Say it again, please.', 'sad', { rank: 2, voice: 'person' }),
+  rx('pr_reply_b', 'wrong_reply', 'No, that is not the right answer. Please look again.', 'puzzled', { voice: 'boss' }),
   rx('pr_slot', 'wrong_slot', "Oh, I can't come then.", 'sad'),
   rx('pr_form', 'wrong_form', 'No, that is not right. Look again, please.', 'puzzled'),
   rx('pr_ok7', 'perfect', 'Thank you. See you next week!', 'happy', { arch: 'trade', rank: 3 }),

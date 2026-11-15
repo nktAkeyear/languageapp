@@ -1231,7 +1231,7 @@ const EN: JobContent = {
     { id: 'ir_ok5', kind: 'perfect', arch: 'respond', rank: 3, text: 'Thank you. You have been very helpful.', face: 'delighted' },
     { id: 'ir_ok6', kind: 'perfect', rank: 4, text: 'Excellent. I really appreciate your help.', face: 'delighted' },
     // small slips
-    { id: 'ir_minor', kind: 'minor', text: 'Thank you. But please be fast next time.', face: 'neutral' },
+    { id: 'ir_minor', kind: 'minor', late: true, text: 'Thank you. But please be fast next time.', face: 'neutral' },
     { id: 'ir_minor2', kind: 'minor', arch: 'sort', needs: '\\b(bags?|suitcases?)\\b', text: 'Good. But one bag is in the wrong place.', face: 'neutral' },
     { id: 'ir_fix', kind: 'wrong_fix', text: 'Yes, that one. But the new “{field}” is not right.', face: 'neutral' },
     // check
@@ -1247,7 +1247,8 @@ const EN: JobContent = {
     { id: 'ir_reply', kind: 'wrong_reply', voice: 'person', text: 'Sorry? That is not right.', face: 'puzzled' },
     { id: 'ir_reply2', kind: 'wrong_reply', voice: 'person', text: 'No. That does not help me.', face: 'puzzled' },
     { id: 'ir_reply3', kind: 'wrong_reply', rank: 3, voice: 'person', text: 'I am afraid you did not understand me.', face: 'sad' },
-    { id: 'ir_reply_b', kind: 'wrong_reply', rank: 3, voice: 'boss', text: 'I am afraid that is not the right answer. Please read it again.', face: 'puzzled' },
+    { id: 'ir_reply_b', kind: 'wrong_reply', rank: 3, voice: 'boss', not: '\\bringing\\b', text: 'I am afraid that is not the right answer. Please read it again.', face: 'puzzled' },
+    { id: 'ir_reply_c', kind: 'wrong_reply', voice: 'boss', needs: '\\bringing\\b', text: 'Oh dear. That was not the right answer to the call.', face: 'puzzled' },
     { id: 'ir_slot', kind: 'wrong_slot', text: 'Oh, I do not want this room.', face: 'sad' },
     { id: 'ir_slot2', kind: 'wrong_slot', text: 'No, no. That is not what I asked for.', face: 'puzzled' },
     { id: 'ir_slot3', kind: 'wrong_slot', rank: 3, text: 'I am sorry, but that is not the room for me.', face: 'sad' },
@@ -1269,6 +1270,7 @@ const EN: JobContent = {
     { id: 'ir5_field', kind: 'wrong_field', rank: 5, text: 'Not that line. The mistake is in “{field}”.', face: 'puzzled' },
     { id: 'ir5_reply', kind: 'wrong_reply', rank: 5, voice: 'person', text: 'I am afraid that does not answer my question. Please read it again.', face: 'puzzled' },
     { id: 'ir5_slot', kind: 'wrong_slot', rank: 5, text: 'I am afraid that does not suit me. I explained what I need.', face: 'sad' },
+    { id: 'ir_form', kind: 'wrong_form', text: 'Some of this message is not right. Please check it again.', face: 'sad' },
     { id: 'ir5_form', kind: 'wrong_form', rank: 5, text: 'I think the message is not right. Please listen again.', face: 'sad' },
     { id: 'ir5_bin', kind: 'wrong_bin', rank: 5, text: 'No, that one goes to “{bin}”. Please read the note again.', face: 'puzzled' },
     { id: 'ir5_fail', kind: 'any_fail', rank: 5, text: 'That is not right. Please be more careful.', face: 'sad' },

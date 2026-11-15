@@ -167,8 +167,8 @@ export function levelName(lang: Lang, level: number): string {
 
 /** Rough equivalents shown next to each level (目安). */
 const EQUIV: Record<Lang, string[]> = {
-  // TOEIC equivalents follow the game's own rank annotations (英検3級 ≈ 〜400, 準2級 ≈ 〜500, 2級 ≈ 〜600, 準1級 ≈ 〜730).
-  en: ['', 'CEFR A1（入門）・TOEIC —', 'CEFR A1・TOEIC —', 'CEFR A2・TOEIC 〜400', 'CEFR A2〜B1・TOEIC 〜500', 'CEFR B1・TOEIC 〜600', 'CEFR B2・TOEIC 〜730', 'CEFR C1・TOEIC 〜860〜990'],
+  // TOEIC equivalents follow the game's own rank annotations (英検3級 ≈ 〜400, 準2級 ≈ 〜500, 2級 ≈ 〜600, 準1級 ≈ 〜730 / 〜860, 1級 ≈ 〜990).
+  en: ['', 'CEFR A1（入門）・TOEIC —', 'CEFR A1・TOEIC —', 'CEFR A2・TOEIC 〜400', 'CEFR A2〜B1・TOEIC 〜500', 'CEFR B1・TOEIC 〜600', 'CEFR B2・TOEIC 〜730〜860', 'CEFR C1・TOEIC 〜990'],
   zh: ['', '中検 準4級程度・CEFR A1（入門）', '中検 準4級・CEFR A1', '中検 4級・CEFR A2', '中検 3級・CEFR B1', '中検 2級・CEFR B2', '中検 準1級・CEFR C1'],
 };
 
@@ -191,13 +191,17 @@ export const START_STAGE: Record<Lang, Record<number, number>> = {
   en: { 0: 1, 1: 7, 2: 13, 3: 19, 4: 23, 5: 23, 6: 23, 7: 23 },
 };
 
-/** en: TOEIC bands offered as a start, with the 英検 grade (level index) whose words they seed. */
+/**
+ * en: TOEIC bands offered as a start, each with its 英検 equivalent (level index): the label (「準1級相当」), the shop
+ * stage and the fallback for the few words the list gives no TOEIC band. The words assumed known are chosen **by
+ * TOEIC band** (`startWords`): a word whose list band is at or below the chosen one, so 〜860 and 〜990 differ.
+ */
 export const START_TOEIC: { band: number; level: number }[] = [
   { band: 400, level: 3 },
   { band: 500, level: 4 },
   { band: 600, level: 5 },
   { band: 730, level: 6 },
-  { band: 860, level: 7 },
+  { band: 860, level: 6 },
   { band: 990, level: 7 },
 ];
 
@@ -246,10 +250,25 @@ export function startOptions(data: GameData): LevelOption[] {
 
 /** Lexicon words of level ≤ `level` (cumulative), i.e. the part of that level's list present in the game. */
 export function wordsUpTo(data: GameData, level: number): LexEntry[] {
-  return data.content.lexicon.filter((e) => {
-    const l = wordLevel(data.lang, e);
-    return l > 0 && l <= level;
-  });
+  return data.content.lexicon.filter((e) => inStart(data.lang, e, level, null));
+}
+
+/**
+ * Is a word assumed known at this start? By its 英検 grade (or HSK level) — or, for a start chosen as a TOEIC band
+ * (en), by its TOEIC band from the list (a word without one falls back to its 英検 grade against the band's
+ * equivalent `level`).
+ */
+export function inStart(lang: Lang, e: LexEntry, level: number, toeic: number | null): boolean {
+  if (lang === 'en' && toeic) {
+    if (e.toeic) return e.toeic <= toeic;
+  }
+  const l = wordLevel(lang, e);
+  return l > 0 && l <= level;
+}
+
+/** The words a start assumes known (en: by TOEIC band when the start was chosen as one). */
+export function startWords(data: GameData, level: number, toeic: number | null = null): LexEntry[] {
+  return data.content.lexicon.filter((e) => inStart(data.lang, e, level, toeic));
 }
 
 /** Minimum words of exactly that level and minimum share of its (cumulative) list for a target to be offered. */
@@ -821,8 +840,7 @@ export function applyStartLevel(data: GameData, p: LangProgress, level: number, 
   for (const e of data.content.lexicon) {
     const w = p.words[e.id];
     if (!w?.seeded) continue;
-    const l = wordLevel(lang, e);
-    if (l === 0 || l > level) {
+    if (!inStart(lang, e, level, toeic)) {
       const page = p.verification[e.group];
       if (unseedWord(data, p, e.id)) {
         sum.reopened++;
@@ -831,7 +849,7 @@ export function applyStartLevel(data: GameData, p: LangProgress, level: number, 
     }
   }
   // 2. seed words at or below it
-  for (const e of wordsUpTo(data, level)) {
+  for (const e of startWords(data, level, toeic)) {
     if (d.optOut.includes(e.id)) continue;
     if (seedWord(p, e.id)) {
       sum.seeded++;

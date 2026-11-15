@@ -14,7 +14,7 @@ describe('start levels (en): every 英検 grade, or a TOEIC band', () => {
   it('offers 英検5級 … 1級, each with a shop stage', () => {
     const opts = startOptions(data);
     expect(opts.filter((o) => o.level > 0 && o.available).map((o) => o.level)).toEqual([1, 2, 3, 4, 5, 6, 7]);
-    expect(START_TOEIC.map((t) => startLevelForToeic(t.band))).toEqual([3, 4, 5, 6, 7, 7]);
+    expect(START_TOEIC.map((t) => startLevelForToeic(t.band))).toEqual([3, 4, 5, 6, 6, 7]);
   });
 });
 

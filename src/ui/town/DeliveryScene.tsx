@@ -365,7 +365,10 @@ function DoorScene() {
   const persons = d.persons;
   // Who stands at the door: the household (door phase), then whoever took the parcel.
   const res = x.result;
-  const storyRecipient = !!r && hasFixedLook(r.id);
+  // At the wrong house the people there are that house's own (a regular's fixed look would be the recipient
+  // answering "Not this house!" at a door that is not theirs).
+  const wrongHouse = x.choice.place !== x.slip.rule.place;
+  const storyRecipient = !!r && hasFixedLook(r.id) && !wrongHouse;
   const speaker =
     res && (storyRecipient || !x.choice.person)
       ? r

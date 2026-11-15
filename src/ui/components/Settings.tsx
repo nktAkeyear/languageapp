@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { GuessDisplay, LayoutPref } from '../../core/save';
-import { useSpeechAvailable } from '../speech';
+import { pickVoice, speak, VOICE_SAMPLE, useVoices } from '../speech';
 import { LANGS, type Lang } from '../../core/types';
 import { useGame } from '../useGame';
 import { SaveTextTransfer } from './SaveText';
@@ -14,7 +14,10 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
   const { settings, save, lang } = g;
   const fileRef = useRef<HTMLInputElement>(null);
   const [msg, setMsg] = useState('');
-  const voice = useSpeechAvailable(lang ?? 'en');
+  const L: Lang = lang ?? 'en';
+  const vs = useVoices(L, settings.voices?.[L]);
+  const chosen = pickVoice(vs.voices, L, settings.voices?.[L]);
+  const [tried, setTried] = useState('');
   return (
     <div className="settings">
       <div className="settings-head">
@@ -70,22 +73,66 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
             <option value="off">文の中には出さない（手帳と単語帳だけ）</option>
           </select>
         </label>
-        <label className="field">
-          読み上げの速さ {settings.speechRate.toFixed(1)}
-          <input
-            type="range"
-            min={0.5}
-            max={1.3}
-            step={0.1}
-            value={settings.speechRate}
-            onChange={(e) => g.updateSettings({ speechRate: Number(e.target.value) })}
-          />
-        </label>
-        {!voice ? (
-          <p className="small voice-note" data-testid="no-voice">
-            この環境には{lang === 'zh' ? '中国語' : '英語'}の読み上げ音声が見つかりません。聞くボタンは使えず、聞くだけの注文は文字で表示されます（OS の設定で音声を追加すると使えます）。
-          </p>
-        ) : null}
+        <div className="voice-box" data-testid="voice-settings">
+          <h4 className="voice-h">読み上げ（{LANG_JA[L]}）</h4>
+          {!vs.supported ? (
+            <p className="small voice-note" data-testid="no-voice">
+              このブラウザは読み上げ（音声合成）に対応していません。聞くボタンは使えず、聞くだけの注文や電話は文字で表示されます。
+            </p>
+          ) : !vs.loaded ? (
+            <p className="small muted" data-testid="voice-loading">
+              音声を読み込んでいます…
+            </p>
+          ) : !vs.voices.length ? (
+            <p className="small voice-note" data-testid="no-voice">
+              この環境には{L === 'zh' ? '中国語（普通話）' : '英語'}の読み上げ音声が見つかりません。聞くボタンは使えず、聞くだけの注文は文字で表示されます（OS の設定で音声を追加すると使えます）。
+            </p>
+          ) : (
+            <label className="field">
+              声
+              <select
+                value={settings.voices?.[L] && chosen?.voiceURI === settings.voices[L] ? settings.voices[L] : ''}
+                onChange={(e) => g.updateSettings({ voices: { ...(settings.voices ?? {}), [L]: e.target.value || undefined } })}
+                data-testid="voice-select"
+              >
+                <option value="">自動（{vs.voices[0].name}・{vs.voices[0].lang}）</option>
+                {vs.voices.map((v) => (
+                  <option key={v.voiceURI} value={v.voiceURI}>
+                    {v.name}・{v.lang}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          <label className="field">
+            読み上げの速さ {settings.speechRate.toFixed(1)}
+            <input
+              type="range"
+              min={0.5}
+              max={1.3}
+              step={0.1}
+              value={settings.speechRate}
+              onChange={(e) => g.updateSettings({ speechRate: Number(e.target.value) })}
+              data-testid="voice-rate"
+            />
+          </label>
+          <div className="row-wrap">
+            <button
+              type="button"
+              className="btn"
+              disabled={!chosen}
+              onClick={() => setTried(speak(VOICE_SAMPLE[L], L, settings.speechRate, chosen?.voiceURI) ? `「${VOICE_SAMPLE[L]}」（${chosen?.name}）` : '読み上げられませんでした。')}
+              data-testid="voice-test"
+            >
+              🔊 声を試す
+            </button>
+            {tried ? (
+              <span className="small muted" aria-live="polite" data-testid="voice-tried">
+                {tried}
+              </span>
+            ) : null}
+          </div>
+        </div>
       </section>
 
       <section>

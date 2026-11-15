@@ -2619,3 +2619,27 @@
 .bubble-xlong .reaction-text {
   font-size: 21px !important;
 }
+
+/* Phone, after a cup: the reaction comes first (the column is short; the order said before is a small reminder
+   under it, then the empty-cup note), so the customer's answer is never scrolled out of sight. */
+.m-bubble .bubble-paper.bubble-react {
+  display: flex;
+  flex-direction: column;
+}
+.m-bubble .bubble-react .bubble-who {
+  order: -2;
+}
+.m-bubble .bubble-react .bubble-reaction {
+  order: -1;
+}
+.m-bubble .bubble-react .bubble-prev {
+  font-size: 14px;
+  margin: 6px 0 0;
+  padding: 4px 0 0;
+  border-bottom: 0;
+  border-top: 1px dashed #b89a6a;
+}
+.m-bubble .bubble-react .mistake-empty {
+  font-size: 13px;
+  margin: 2px 0 0;
+}

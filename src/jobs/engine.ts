@@ -23,13 +23,14 @@ import { selectNext } from '../curriculum/curriculum';
 import type { Yardstick } from '../curriculum/yardsticks';
 import { fill } from '../activities/town/text';
 import { evaluateTask, postage, type RuleCtx } from './rules';
-import { authoredInstance, personName, rankLevelIndex, templateInstance, thingAgreement, thingById, thingName, type GenCtx } from './templates';
+import { authoredInstance, personName, personOf, rankLevelIndex, templateInstance, thingAgreement, thingById, thingName, type GenCtx } from './templates';
 import { jobVocab } from './vocab';
 import type {
   JobContent,
   JobDayState,
   JobDef,
   JobEvaluation,
+  JobIssue,
   JobProgress,
   JobReaction,
   JobsState,
@@ -39,6 +40,7 @@ import type {
   TaskFeature,
   TaskInstance,
   TaskResult,
+  TaskSpec,
 } from './types';
 
 export const BOARD_DAY = 4;
@@ -553,32 +555,120 @@ export function reactionSuits(r: Pick<JobReaction, 'needs' | 'not' | 'voice'>, i
 const CHILD = /\b(sons?|daughters?|child|children|kids?|boys?|girls?|baby)\b/i;
 const OTHER = /\b(sons?|daughters?|child|children|kids?|boys?|girls?|baby|husband|wife|mother|father|grandmother|grandfather|family|friends?|guests?|patients?|he|she|him|her)\b|\|@\}\s+(can't|cannot|wants|likes|says|is|has)\b/i;
 const GROUP = /\b(we|us|our|both|everyone|all of us)\b/i;
+/** Lines only the one who will eat / receive the work can say ("My plate is empty!", "I am still hungry"). */
+const EATER =
+  /\b(my (plate|food|teeth|stomach|tummy)|I am (still |so |a )?hungry|hungry (man|woman)|I can't stop eating|I am full|I am greedy|for me\b|I can't eat|I don't like|I will eat|good for me|my allergy|the way I like it|how I like it|the bread I bake|tell the chef|told me about this kitchen|name of this dish|best food that I have ever had|tell my friends|tell people about this kitchen)/i;
+/** The request is for someone else: a dish for a guest, a recipe card, a ticket, a contract. */
+const FOR_OTHER =
+  /\bfor (\{[^}]*\|@\}|him|her|them|the (guests?|club|inn|table|inspector|customers?|wedding)|table \d+|each guest|every guest|her (son|daughter|child)|his (son|daughter|child))|\b(give|serve) (him|her|them)\b|\b(he|she) wants\b|\|@\} (wants|asked|can't|cannot|is allergic|says)|\b(guests?|customers?|man|woman|child) (wants|asked)\b|\bnext (man|customer|guest)\b|recipe card|\bcontract\b|\binspector\b|\btickets?\b|\bcatering\b/i;
+/** Text the player read on paper (a card, a ticket, a note, a contract …), not heard. */
+const WRITTEN = /recipe card|\bcards?\b|\btickets?\b|\bnotes?\b|\bcontract\b|\bclause\b|\breport\b|\bmenu\b|\binstructions\b|\bwritten\b|\bnotice\b|\bmemo\b|\bletter\b|\be-?mail\b/i;
+/** A line that tells the player to listen (needs a spoken request) / to read (needs a written one). */
+const LISTEN = /\blisten(ed)?\b/i;
+const READ = /\bread (it|the|every|each|my|them|again)\b|\byou read\b|\bwell read\b|\bcheck the (card|note|order|instructions)\b/i;
+/** Lines of the one who asked, face to face ("That is not an answer to my question"): not over a handed-on paper or call. */
+const ASKER = /\bmy question\b|\bunderstand me\b|\bhelp me\b|\bsay it again\b|\bwhat I (want|asked)\b/i;
+/** "Please send it": a written reply (a letter, an e-mail, a memo), not a spoken one. */
+const SEND = /\bsend it\b/i;
+/** A line that points at a paper or a thing ("Read the note again", "the book is right") needs it in the task. */
+const REFERENT = /\bthe (book|bill|note|card|bags?|letters?|parcels?|invoice|contract|tickets?|instructions|menu|list|order|e-?mail|boxes|crates?)\b/gi;
+
+/** Who speaks a reaction: whether it is the job's boss, the boss's name (markup), the speaker's gender. */
+export interface ReactionSpeaker {
+  boss: boolean;
+  bossName?: string;
+  gender?: 'm' | 'f' | null;
+}
+
+/** Gender from a person's drawn look (role emoji), when it shows one. */
+export function avatarGender(avatar: string): 'm' | 'f' | null {
+  if (/[👩👧👵]|♀/u.test(avatar)) return 'f';
+  if (/[👨👦👴]|♂/u.test(avatar)) return 'm';
+  return null;
+}
+
+/** The speaker of a task's reactions: the person drawn, or the boss when a paper / call was handed over. */
+export function reactionSpeaker(data: GameData, jc: JobContent, inst: Pick<TaskInstance, 'person' | 'handover'>): ReactionSpeaker {
+  const boss = !!inst.handover || (!!jc.boss && inst.person === jc.boss);
+  const who = boss && jc.boss ? jc.boss : inst.person;
+  return { boss, bossName: jc.boss ? personName(data, jc, jc.boss) : undefined, gender: avatarGender(personOf(data, jc, who).avatar) };
+}
+
+/** Was the request heard (spoken, or a call) rather than read on paper? */
+function spokenRequest(inst: TaskInstance): boolean {
+  const sp = inst.spec;
+  if (sp.arch === 'respond') return sp.msg.kind === 'speech' || sp.msg.kind === 'phone';
+  if (sp.arch === 'make' || sp.arch === 'trade') return inst.audioOnly || !WRITTEN.test(inst.say ?? '');
+  return false;
+}
 
 /**
- * Does a reaction line fit who the request was for? Content reactions are shared by every task of a
- * kind, so a few would not fit some requests: "Both of us are happy" from a single customer, "My son
- * will love this" when nobody mentioned a child, "I can't eat it" / "no cheese for me" when the request
- * said someone else (my son, Mrs. Wren …) can't eat it. Lines that fit are preferred (pickFitting
- * falls back to all lines of the kind when none fits).
+ * Does a reaction line fit the request and the one who says it? Content reactions are shared by every task
+ * of a kind, so some would not fit some requests:
+ * - who the request was for: "Both of us are happy" from a single customer, "My son will love this" when nobody
+ *   mentioned a child, "I can't eat it" / "no cheese for me" when the request said someone else can't eat it;
+ * - who speaks: lines only the one who eats or receives the work can say ("My plate is empty!", "I am still
+ *   hungry", "Tell the chef …") never come from the boss or from someone ordering for another person (a recipe
+ *   card, a ticket, "a box for Mrs. Wren"); a line naming the boss is not said by the boss; "I am a hungry man"
+ *   is not said by a woman;
+ * - how the request came: "Please listen again" only after a spoken request or a call, "Read the card again"
+ *   only after a written one.
+ * Lines that fit are preferred (reactionPool falls back to all lines of the kind when none fits; the validator
+ * reports where that happens).
  */
-export function reactionFits(inst: TaskInstance): (text: string) => boolean {
+export function reactionFits(inst: TaskInstance, who?: ReactionSpeaker): (text: string) => boolean {
   const req = (inst.texts ?? []).join(' ');
   const child = CHILD.test(req);
   const other = OTHER.test(req);
   const group = other || GROUP.test(req);
   // The thing to avoid is someone else's: "My son can't eat cheese", "{Tom|@} can't eat onions".
   const forbidOther = /can't eat|cannot eat|allerg/i.test(req) && !/\bI\s+(can't|cannot)\s+eat\b|\bI am allergic\b|\bI'm allergic\b/i.test(req) && other;
+  const eater = !who?.boss && !FOR_OTHER.test(inst.say || req);
+  const spoken = inst.spec ? spokenRequest(inst) : true;
+  const written = inst.spec ? !spoken || WRITTEN.test(req) : true;
   return (text) => {
     if (CHILD.test(text) && !child) return false;
     if (/\bboth of us\b|\ball of us\b|\bwe are\b|\bwe're\b/i.test(text) && !group) return false;
     if (forbidOther && /\bI\s+(can't|cannot)\s+eat\b|\bfor me\b|\bmy allergy\b|\bgood for me\b|\bmy face\b/i.test(text)) return false;
+    if (who && EATER.test(text) && !eater) return false;
+    if (who?.boss && who.bossName && text.includes(who.bossName)) return false;
+    if (who?.gender === 'f' && /\bI am an? [a-z ]*\b(man|boy)\b/i.test(text)) return false;
+    if (who?.gender === 'm' && /\bI am an? [a-z ]*\b(woman|girl)\b/i.test(text)) return false;
+    if (LISTEN.test(text) && !spoken) return false;
+    if (READ.test(text) && !written) return false;
+    if (inst.spec?.arch === 'respond' && ASKER.test(text) && inst.spec.msg.kind !== 'speech') return false;
+    if (inst.spec?.arch === 'respond' && SEND.test(text) && (inst.spec.msg.kind === 'speech' || inst.spec.msg.kind === 'phone')) return false;
+    const about = inst.spec?.arch === 'respond' ? `${req} ${inst.spec.msg.kind}` : req;
+    for (const m of text.matchAll(REFERENT)) {
+      const noun = m[1].toLowerCase().replace(/e-mail/, 'email');
+      const stem = noun.replace(/(es|s)$/, '').replace(/^box$/, 'box');
+      if (!new RegExp(`\\b${stem === 'email' ? 'e-?mail' : stem}`, 'i').test(about)) return false;
+    }
     return true;
   };
 }
 
-function reactionText(data: GameData, jc: JobContent, inst: TaskInstance, ev: JobEvaluation, rank: number, rng: Rng, late: boolean): { text: string; face: Face } {
+/** A label that does not read as a noun after "the" ("By", "Send by", "Who", "Room, a night"). */
+const NOT_NOUN = /^(to|by|from|inside|outside|who|why|what|when|where|how|send|pay|leave|arrive|come|sign|signed|please|they|wants|needs|bring|keep|ready|sent|paid|arrived|coming|only|in|on|at)\b|\b(by|at|to|for|from|before|in)$|,/i;
+const PROPER = /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|January|February|March|April|May|June|July|August|September|October|November|December)\b|\|@\}/;
+
+/**
+ * A paper's field label in running text after "the": lowercased when it reads as a noun ("the tracking number"),
+ * kept for a proper noun ("the Monday"), quoted as a line when it does not read as a noun ("the “By” line", not
+ * "the by").
+ */
+export function fieldInText(label: string): string {
+  if (NOT_NOUN.test(label.replace(/\{([^{}|]+)\|[^{}]*\}/g, '$1'))) return `“${label}” line`;
+  if (PROPER.test(label)) return label;
+  return /^[A-Z][a-z]/.test(label) ? label[0].toLowerCase() + label.slice(1) : label;
+}
+
+/** Every line the person could say for this evaluation (the pool `reactionText` picks one from at random). */
+export function reactionPool(data: GameData, jc: JobContent, inst: TaskInstance, ev: Pick<JobEvaluation, 'outcome' | 'primary'>, rank: number, late = false): { r: JobReaction; text: string; misfit?: boolean }[] {
   const prim = ev.primary;
-  const kind = ev.outcome === 'perfect' ? (late ? 'minor' : 'perfect') : prim?.kind;
+  // Late: the work was right but the optional timer ran out (submitTask has already made the outcome minor).
+  const lateOnly = late && !prim;
+  const kind = lateOnly ? 'minor' : ev.outcome === 'perfect' ? 'perfect' : prim?.kind;
   const values: Record<string, string> = {};
   if (prim?.thing) {
     const th = thingById(jc, prim.thing);
@@ -595,7 +685,7 @@ function reactionText(data: GameData, jc: JobContent, inst: TaskInstance, ev: Jo
     // A label quoted (“Kind”) stays as written on the paper; in running text ("the kind") it is lowercased.
     if (f) {
       values.field = f.label;
-      values.fieldLow = /^[A-Z][a-z]/.test(f.label) ? f.label[0].toLowerCase() + f.label.slice(1) : f.label;
+      values.fieldlow = fieldInText(f.label);
     }
   }
   if (prim?.item && inst.spec.arch === 'sort') {
@@ -609,24 +699,34 @@ function reactionText(data: GameData, jc: JobContent, inst: TaskInstance, ev: Jo
   }
   values.name = personName(data, jc, inst.person);
   const suits = (r: JobReaction) => reactionSuits(r, inst);
+  // Late → only the `late` minor lines; a small mistake → only the others.
   const pickFrom = (k: string | undefined) =>
     jc.reactions
-      .filter((r) => r.kind === k && (r.rank ?? 1) <= rank && (!r.arch || r.arch === inst.spec.arch) && suits(r))
-      .map((r) => ({ r, text: fill(r.text.replace(/\b(the|right|wrong) \{field\}/g, '$1 {fieldLow}'), values) }))
+      .filter((r) => r.kind === k && (r.rank ?? 1) <= rank && (!r.arch || r.arch === inst.spec.arch) && suits(r) && (k !== 'minor' || !!r.late === lateOnly))
+      .map((r) => ({ r, text: fill(r.text.replace(/\b(the|right|wrong) \{field\}/gi, '$1 {fieldlow}'), values) }))
       .filter((x): x is { r: (typeof jc.reactions)[number]; text: string } => !!x.text);
-  const fits = reactionFits(inst);
+  const fits = reactionFits(inst, reactionSpeaker(data, jc, inst));
   const pickFitting = (k: string | undefined) => {
     const all = pickFrom(k);
     const ok = all.filter((x) => fits(x.r.text));
-    return ok.length ? ok : all;
+    return ok.length ? ok : all.map((x) => ({ ...x, misfit: true }));
   };
   let cands = pickFitting(kind);
+  // A small mistake: the archetype's own "almost" lines ("Good. But one box is wrong.") join the issue's lines.
+  if (ev.outcome === 'minor' && !lateOnly) cands = [...cands, ...pickFitting('minor').filter((x) => x.r.arch === inst.spec.arch)];
   // Newer issue kinds fall back to the nearest older one (content written before them still reacts sensibly).
   const near: Partial<Record<string, string>> = { disliked: 'extra', wrong_order: 'wrong_method', wrong_postage: 'change_short' };
   if (!cands.length && kind && near[kind]) cands = pickFitting(near[kind]);
   if (!cands.length && ev.outcome === 'minor') cands = pickFitting('minor');
+  // Right but late, with no line about time: a plain thank-you, never "that is wrong".
+  if (!cands.length && lateOnly) cands = pickFitting('perfect');
   if (!cands.length && ev.outcome !== 'perfect') cands = pickFitting('any_fail');
   if (!cands.length) cands = pickFitting('perfect');
+  return cands;
+}
+
+function reactionText(data: GameData, jc: JobContent, inst: TaskInstance, ev: JobEvaluation, rank: number, rng: Rng, late: boolean): { text: string; face: Face } {
+  const cands = reactionPool(data, jc, inst, ev, rank, late);
   const c = cands.length ? pick(rng, cands) : null;
   return { text: c?.text ?? '', face: c?.r.face ?? (ev.outcome === 'perfect' ? 'happy' : 'puzzled') };
 }
@@ -751,4 +851,49 @@ export function shiftTally(s: ShiftState): Record<Outcome, number> {
   const t: Record<Outcome, number> = { perfect: 0, minor: 0, fail: 0, bad: 0 };
   for (const r of s.results) t[r.outcome]++;
   return t;
+}
+
+/**
+ * The evaluations a task can end in (outcome + primary issue), for checking which reaction lines it can get:
+ * right, right but late, and every mistake its archetype (and this task's spec) can produce.
+ */
+export function reactionScenarios(spec: TaskSpec): { late: boolean; ev: Pick<JobEvaluation, 'outcome' | 'primary'> }[] {
+  const out: { late: boolean; ev: Pick<JobEvaluation, 'outcome' | 'primary'> }[] = [
+    { late: false, ev: { outcome: 'perfect', primary: null } },
+    { late: true, ev: { outcome: 'minor', primary: null } },
+  ];
+  const add = (kind: JobIssue['kind'], outcome: JobEvaluation['outcome'], extra: Partial<JobIssue> = {}) => out.push({ late: false, ev: { outcome, primary: { kind, about: [], ...extra } } });
+  if (spec.arch === 'make') {
+    const thing = spec.want[0]?.thing;
+    for (const k of ['empty', 'missing', 'extra', 'too_much', 'too_little'] as const) add(k, 'fail', { thing });
+    add('too_much', 'minor', { thing });
+    add('too_little', 'minor', { thing });
+    if (spec.forbid?.length) add('forbidden', 'bad', { thing: spec.forbid[0] });
+    if (spec.dislike?.length) add('disliked', 'fail', { thing: spec.dislike[0] });
+    if (spec.vessel) add('wrong_vessel', 'minor');
+    if (spec.method) add('wrong_method', 'fail');
+    if (spec.order?.length) add('wrong_order', 'fail', { thing: spec.order[1] ?? spec.order[0] });
+  } else if (spec.arch === 'sort') {
+    add('wrong_bin', 'fail', { item: spec.items[0]?.id });
+    if (spec.items.length >= 4) add('wrong_bin', 'minor', { item: spec.items[0]?.id });
+  } else if (spec.arch === 'trade') {
+    add('wrong_goods', 'fail', { thing: spec.want[0]?.thing });
+    add('change_short', 'fail');
+    add('change_over', 'fail');
+    if (spec.post) add('wrong_postage', 'fail');
+  } else if (spec.arch === 'check') {
+    if (spec.wrong == null) add('false_alarm', 'fail', { field: spec.docs[spec.target]?.fields?.[0]?.id });
+    else {
+      add('missed', 'bad', { field: spec.wrong });
+      add('wrong_field', 'fail', { field: spec.wrong });
+      if (spec.fixOptions?.length) add('wrong_fix', 'minor', { field: spec.wrong });
+    }
+  } else if (spec.arch === 'respond') {
+    if (spec.mode === 'choose') add('wrong_reply', 'fail');
+    else if (spec.mode === 'form') {
+      add('wrong_form', 'fail');
+      if ((spec.fields?.length ?? 0) >= 3) add('wrong_form', 'minor');
+    } else add('wrong_slot', 'fail');
+  }
+  return out;
 }
