@@ -338,6 +338,11 @@ export interface LanguageContent {
   renovation?: RenoText;
   /** Jobs playable in this language (the tea house first). Merged in by src/content/index.ts. */
   jobs?: JobDef[];
+  /**
+   * Shop stages of this language only, numbered on from the shared ones (en: 24–26, the 英検2級 / 準1級 / 1級
+   * tea house, src/content/en/stages3.ts). They add no shelf items: their orders use the shared rule space.
+   */
+  stages?: StageDef[];
   /** Who defines each job word, and duplicate definitions found (src/jobs/lexicon.ts). */
   jobRegistry?: JobRegistry;
 }

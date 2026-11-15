@@ -28,6 +28,7 @@ import { fill } from '../activities/town/text';
 import { evaluateTask, postage, type RuleCtx } from './rules';
 import { authoredInstance, personName, personOf, rankLevelIndex, templateInstance, thingAgreement, thingById, thingName, type GenCtx } from './templates';
 import { jobVocab } from './vocab';
+import { rankName } from './rankNames';
 import type {
   JobContent,
   JobDayState,
@@ -48,14 +49,10 @@ import type {
 
 export const BOARD_DAY = 4;
 export const TEAHOUSE = 'teahouse';
-/** The rank ladder shared by every job (original names: the tide coming in, then the lighthouse). */
-export const RANK_NAMES = ['さざ波', '潮だまり', '満ち潮', '大潮', '灯台'];
+/** The rank ladder shared by every job (src/jobs/rankNames.ts). */
+export { RANK_NAMES, rankName } from './rankNames';
 /** The three parts of a working day (v6). */
 export const PART_NAMES = ['始業前', '業務中', '業務後'];
-
-export function rankName(rank: number): string {
-  return RANK_NAMES[rank - 1] ?? `${rank}`;
-}
 
 // ---------------------------------------------------------------------------- registry
 
@@ -524,6 +521,9 @@ function unseen(data: GameData, p: LangProgress, inst: TaskInstance): string[] {
 /** Tasks a day's working hours at a job add to the rank's shift (`RankDef.tasks` = an evening's second shift). */
 export const MAIN_SHIFT_EXTRA = 2;
 
+/** Template tasks from below a placed job's rank (jobs/placement.ts) in one shift, at most. */
+export const MAX_BELOW_PLACED = 1;
+
 /** New words a shift may introduce (grows a little with rank). */
 export function newWordBudget(rank: number): number {
   return 6 + rank;
@@ -578,8 +578,13 @@ export function planShift(data: GameData, p: LangProgress, job: JobDef, part: nu
     return sc + rng();
   };
   let guard = 0;
+  // A start-level placement (jobs/placement.ts): the ranks below it are review, at most one task a shift (they are
+  // simpler, so the new-word score alone would otherwise fill a placed player's shift with them).
+  const floor = spineFrom(jp);
+  const own = jc.templates.filter((t) => t.rank <= rank && t.rank >= floor);
   while (tasks.length < n && guard++ < 40) {
-    const pool = jc.templates.filter((t) => t.rank <= rank);
+    const below = tasks.filter((t) => t.source.type === 'template' && (jc.templates.find((x) => x.id === t.source.id)?.rank ?? floor) < floor).length;
+    const pool = floor > 1 && own.length && below >= MAX_BELOW_PLACED ? own : jc.templates.filter((t) => t.rank <= rank);
     if (!pool.length) break;
     // Mix the archetypes: prefer one not used yet in this shift.
     const used = new Set(tasks.map((t) => t.spec.arch));

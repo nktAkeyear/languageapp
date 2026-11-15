@@ -5,10 +5,12 @@ import { LEXICON2, VERIFICATION2 } from './lexicon2';
 import {
   CUSTOMERS2, INGREDIENTS2, NUMBERS2, ORDER_TEXTS, PAGES2, REACTIONS2, RECIPE_NAMES2, SYMPTOMS2, TAG_WORDS2, TEMPLATE_TEXTS,
 } from './stages2';
+import { CUSTOMERS3, ORDERS3, REACTIONS3, STAGES3, TEMPLATES3 } from './stages3';
+import { LEXICON3, VERIFICATION3 } from './lexicon3';
 
 const content: LanguageContent = {
   lang: 'en',
-  lexicon: [...LEXICON, ...LEXICON2],
+  lexicon: [...LEXICON, ...LEXICON2, ...LEXICON3],
   numbers: { 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', ...NUMBERS2 },
   temperatureWords: { hot: 'hot', cold: 'cold' },
   methodWords: { steep: 'steep', boil: 'boil', stir: 'stir' },
@@ -231,6 +233,7 @@ const content: LanguageContent = {
     { id: 'o9_big', stage: 9, seq: 4, customer: 'c_boy', text: 'Four mint leaves and five ice cubes, please. Cold.', rule: { require: [{ ing: 'mint', min: 4, max: 4 }, { ing: 'ice', min: 5, max: 5 }], temp: 'cold' } },
     { id: 'o9_milk_tea', stage: 9, seq: 5, text: 'Black tea with milk, please. Hot.', rule: { require: [{ ing: 'black_tea' }, { ing: 'milk' }], temp: 'hot' } },
     ...buildOrders(ORDER_TEXTS),
+    ...ORDERS3,
   ],
 
   templates: [
@@ -252,6 +255,7 @@ const content: LanguageContent = {
     { id: 't7_recipe', stage: 7, text: '{Recipe}, please.', slots: { recipe: { kind: 'recipe' } } },
     { id: 't9_big', stage: 9, text: '{Q1} and {q2}, please. {Temp}.', slots: { q1: { kind: 'qty', min: 1, max: 5 }, q2: { kind: 'qty', min: 1, max: 5 }, temp: { kind: 'temp' } } },
     ...buildTemplates(TEMPLATE_TEXTS),
+    ...TEMPLATES3,
   ],
 
   reactions: [
@@ -300,6 +304,7 @@ const content: LanguageContent = {
     { id: 'r_temp2', kind: 'wrong_temp', stage: 6, text: 'Oh! This is not {temp}.', face: 'sad' },
     { id: 'r_method', kind: 'wrong_method', stage: 9, text: '{Method} it, please.', face: 'neutral' },
     ...REACTIONS2,
+    ...REACTIONS3,
   ],
 
   customers: [
@@ -311,6 +316,7 @@ const content: LanguageContent = {
     { id: 'c_docker', name: 'Big Joe', avatar: '👷', stage: 3 },
     { id: 'c_scholar', name: 'Professor Hale', avatar: '🧑‍🏫', stage: 6 },
     ...CUSTOMERS2,
+    ...CUSTOMERS3,
   ],
 
   verificationPages: [
@@ -335,7 +341,11 @@ const content: LanguageContent = {
     { id: 'g_num2', labelJa: '数（二）と時間', minEncounters: 2 },
     { id: 'g_talk', labelJa: '気持ちを言う' },
     ...VERIFICATION2,
+    ...VERIFICATION3,
   ],
+
+  // The 英検2級 / 準1級 / 1級 tea house (en only).
+  stages: STAGES3,
 
   // Approximate cumulative vocabulary sizes. 英検 has no official list; these are common estimates.
   levelTargets: {

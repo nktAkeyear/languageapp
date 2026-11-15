@@ -5,7 +5,7 @@ import { applyStartLevel, describeChange, START_TOEIC, startLevelForToeic, start
 import { makeRng } from '../core/rng';
 import { newProgress } from '../core/save';
 import { endTownDay, startTownDay } from '../activities/day';
-import { chooseJob, checkRankUp, goodCredit, jobById, jobDay, jobOffered, jobsOf, planShift, rankStatus, spineSeen } from './engine';
+import { chooseJob, checkRankUp, goodCredit, jobById, jobDay, jobOffered, jobsOf, MAX_BELOW_PLACED, planShift, rankStatus, spineSeen } from './engine';
 import { placedRankFor, previewPlacement } from './placement';
 
 const data = buildGameData(CONTENT.en, SHARED);
@@ -84,7 +84,7 @@ describe('jobs placed by the start level', () => {
     const sum = applyStartLevel(data, p, 1);
     expect(sum.boardOpened).toBe(false);
     expect(p.jobs?.boardOpen).toBeUndefined();
-    expect(previewPlacement(data, 6).map((x) => `${x.id}${x.rank}`)).toEqual(['teahouse4', 'post5', 'kitchen5', 'inn5', 'office4', 'news4', 'clinic4', 'townhall4', 'academy4']);
+    expect(previewPlacement(data, 6).map((x) => `${x.id}${x.rank}`)).toEqual(['teahouse6', 'post5', 'kitchen5', 'inn5', 'office4', 'news4', 'clinic4', 'townhall4', 'academy4']);
   });
 
   it('a 英検3級 start offers the office at once, at its first rank (its material is 3級)', () => {
@@ -148,5 +148,51 @@ describe('the market never asks for more than the purse can pay', () => {
         expect(cost, `start ${lv} seed ${seed}`).toBeLessThanOrEqual(Math.max(p.town.money, dearest(md.lines[0].good, md.lines[0].variant)));
         expect(md.lines.length).toBeGreaterThan(0);
       }
+  });
+});
+
+describe('every job, every start: the first shift is the placed rank’s material', () => {
+  const starts = [
+    ...[1, 2, 3, 4, 5, 6, 7].map((level) => ({ label: `英検 level ${level}`, level, toeic: null as number | null })),
+    ...START_TOEIC.map((t) => ({ label: `TOEIC 〜${t.band}`, level: 0, toeic: t.band as number | null })),
+  ];
+  const jobs = jobsOf(data).filter((j) => !j.legacy);
+
+  it('covers the eight jobs, five ranks each', () => {
+    expect(jobs.map((j) => j.id).sort()).toEqual(['academy', 'clinic', 'inn', 'kitchen', 'news', 'office', 'post', 'townhall']);
+    for (const j of jobs) expect(j.ranks.map((r) => r.rank)).toEqual([1, 2, 3, 4, 5]);
+  });
+
+  it('a start places each job at the rank whose level matches; the shift’s authored tasks are that rank’s, review from below at most once', () => {
+    for (const job of jobs) {
+      const jc = job.content.en!;
+      const seen = new Set<number>();
+      for (const s of starts) {
+        const p = newProgress('en');
+        applyStartLevel(data, p, s.level, { toeic: s.toeic });
+        const want = placedRankFor(job, s.level, s.toeic);
+        if (want < 1) {
+          expect(p.jobs?.jobs[job.id], `${job.id} ${s.label}`).toBeUndefined();
+          continue;
+        }
+        seen.add(want);
+        expect(p.jobs!.jobs[job.id].rank, `${job.id} ${s.label}`).toBe(want);
+        const shift = planShift(data, p, job, 1, makeRng(3));
+        const authored = shift.tasks.filter((t) => t.source.type === 'authored').map((t) => jc.tasks.find((x) => x.id === t.source.id)!.rank);
+        expect(authored.length, `${job.id} ${s.label}`).toBeGreaterThanOrEqual(2);
+        expect(new Set(authored), `${job.id} ${s.label}`).toEqual(new Set([want]));
+        const below = shift.tasks.filter((t) => t.source.type === 'template' && jc.templates.find((x) => x.id === t.source.id)!.rank < want);
+        expect(below.length, `${job.id} ${s.label}`).toBeLessThanOrEqual(MAX_BELOW_PLACED);
+      }
+      // the 英検 grades reach the job's top rank, and distinct grades reach distinct material up to it
+      expect(seen.has(5), job.id).toBe(true);
+    }
+  });
+
+  it('adjacent 英検 grades place a job at different ranks until its top rank (no two grades share material below it)', () => {
+    for (const job of jobs) {
+      const ranks = [1, 2, 3, 4, 5, 6, 7].map((l) => placedRankFor(job, l)).filter((r) => r > 0);
+      for (let i = 1; i < ranks.length; i++) if (ranks[i - 1] < 5) expect(ranks[i], job.id).toBe(ranks[i - 1] + 1);
+    }
   });
 });

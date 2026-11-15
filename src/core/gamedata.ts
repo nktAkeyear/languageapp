@@ -36,7 +36,7 @@ export function buildGameData(content: LanguageContent, shared: SharedContent): 
     ing: indexIngredients(shared.ingredients),
     ingText: new Map(content.ingredients.map((i) => [i.ingredient, i])),
     recipes: new Map(shared.recipes.map((r) => [r.id, r])),
-    stages: [...shared.stages].sort((a, b) => a.stage - b.stage),
+    stages: [...shared.stages, ...(content.stages ?? [])].sort((a, b) => a.stage - b.stage),
     tokens: (text: string) => {
       let t = cache.get(text);
       if (!t) {

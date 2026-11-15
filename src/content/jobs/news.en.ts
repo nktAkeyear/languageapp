@@ -1876,7 +1876,7 @@ humanitarian|a||人道的な
 incumbent|n||現職者
 # jn6_074 | 新聞社のことば 17（1級）
 keeper|n||番人
-oyster|n||カキ
+oyster|n|oysters|カキ
 pandemic|n||世界的大流行
 peacefully|d||平和的に
 # jn6_075 | 新聞社のことば 18（1級）

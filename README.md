@@ -1126,8 +1126,10 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
   `inStart` in `core/difficulty.ts`), so every band seeds its own set — 〜860 and 〜990 differ — and the jobs are placed
   by their ranks' TOEIC bands. The band's 英検 equivalent (〜400 = 3級, 〜500 = 準2級, 〜600 = 2級, 〜730 / 〜860 = 準1級,
   〜990 = 1級) is only the label, the shop stage and the fallback for the few words the list gives no band; changing
-  between bands is exact like changing grades (`src/core/startToeic.test.ts`). The tea house's
-  material ends at 準2級; the jobs carry the higher grades (their rank 5 is 準1級 / 1級), so en offers them all.
+  between bands is exact like changing grades (`src/core/startToeic.test.ts`). The en tea house has a stage for
+  each of the higher grades too (24 = 2級, 25 = 準1級, 26 = 1級: English-only `LanguageContent.stages`,
+  `src/content/en/stages3.ts`, over 40 authored orders each, in the rule space of stages 1–23), and its ranks 5 / 6 / 7
+  (外海 and 北極星 above 灯台) are those grades; the jobs carry them as well (their rank 5 is 準1級 / 1級).
   Choosing a level seeds every lexicon word
   tagged at or below it as **assumed known — 未確認（知っているはず）** (`WordState.seeded`, seen 6 / correct 2
   added, first review spread over 3–14 days so they come back now and then). Assumed words count as known for
@@ -1137,10 +1139,14 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
   confirmed like any word — on their 検証ページ, which opens once the page's words have been met in play
   (`playSeen`: the level's 6 seeded encounters do not count) — nothing is sealed by the start level. Starting
   higher marks earlier curriculum orders made only of known words — or of words written on the shelf and the
-  tools (ingredient labels, hot / cold, the methods: "Mint." is answered by reading the jar) — as done (orders
-  with other unknown words — units like slice / cube, higher-level words — still come), and fast-forwards the shop to the level's stage (`START_STAGE`: zh 6 /
-  11 / 16, en 7 / 13 / 19 / 23 (準2級 and above: the last stage) — calibrated on the curriculum's structures, since
-  level tags are spread over all stages), with its reputation, a stage-clock offset (`stageDay` = day + offset gates
+  tools (ingredient labels, hot / cold, the methods: "Mint." is answered by reading the jar) — as done — only below the level's band (`START_FLOOR`: zh 5 / 10 / 15, en 6 / 12 / 17 / 21 / 24 / 25 / 26;
+  orders with other unknown words — units like slice / cube, higher-level words — still come, at most one a day, see
+  below), and fast-forwards the shop to the level's stage (`START_STAGE`: zh 6 / 11 / 16, en 7 / 13 / 19 / 23 / 24 /
+  25 / 26 — calibrated on the curriculum's structures, since level tags are spread over all stages). **A placed
+  player's days come from the band** (`placedFloor`, `src/activities/shop/dayplan.ts`): the curriculum from the
+  floor up, in order; template review and the fallback review from the band's stages too; an easier curriculum
+  order (below the floor) at most once a day (`MAX_BELOW_FLOOR`) and never first. ゼロから has floor 1, so its plan
+  is unchanged (`src/activities/shop/placed.test.ts`). The fast-forward brings the stage's reputation, a stage-clock offset (`stageDay` = day + offset gates
   stages and town unlocks), market / delivery experience and money; the delivery curriculum's slips of the levels
   below the one reached are skipped like early orders (`town.slips[id].seeded`), so a high start's first slip is of
   its delivery level, not "To the school. In the morning.".
@@ -1152,7 +1158,7 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
   the start opens as usual), with a short Japanese note on the first morning (「実力に合わせて、町の掲示板が最初の日から
   開いている。郵便局は「大潮」（英検2級の内容）から…」) and in the level sheet's preview. A placed job serves its own
   rank's authored tasks as new material from the first shift (`JobProgress.placed`; the authored tasks of the ranks
-  below are not served as new, their templates still come as review), the ladder above it is as far as for a player
+  below are not served as new, their templates still come as review — at most one a shift, `MAX_BELOW_PLACED`), the ladder above it is as far as for a player
   who climbed there (the ranks below count as done: `placed.good`; the spine gate counts only the placed rank's own
   tasks), and nothing is revealed — the words stay assumed known. Ranks never go down when the level is lowered (like
   the shop's stage). Simulated (`npm run simulate -- --jobs --start=5 --tasks` / `--start=6`): day 1–3 shifts are the

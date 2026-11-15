@@ -12,13 +12,14 @@
  *
  * Nothing is revealed: placement changes ranks only; the words stay assumed known (未確認) as seeded. Placement
  * never lowers a rank (a later, lower start level leaves the ranks where they are, like the shop's stage).
- * Imports only types (core/difficulty.ts calls it; jobs/engine.ts imports core/difficulty.ts).
+ * Imports only types and the import-free rank names (core/difficulty.ts calls it; jobs/engine.ts imports core/difficulty.ts).
  */
 import type { GameData } from '../core/gamedata';
 import type { LangProgress } from '../core/save';
 import { EIKEN_GRADES } from '../core/types';
 import { eikenFromKey } from '../curriculum/yardsticks';
 import type { JobDef, JobProgress, JobsState, RankDef } from './types';
+import { rankName } from './rankNames';
 
 export interface PlacedJob {
   id: string;
@@ -36,7 +37,6 @@ export interface Placement {
   boardOpened: boolean;
 }
 
-const RANK_JA = ['さざ波', '潮だまり', '満ち潮', '大潮', '灯台'];
 
 /** 1-based 英検 level index of a rank's material (5級 = 1 … 1級 = 7). */
 function rankEiken(r: RankDef): number {
@@ -150,7 +150,7 @@ export function placeJobsForStart(data: GameData, p: LangProgress, level: number
   if (anyJob) {
     const names = res.jobs
       .filter((x) => !jobsOfData(data).find((j) => j.id === x.id)?.legacy)
-      .map((x) => `${x.nameJa}は「${RANK_JA[x.rank - 1] ?? x.rank}」（${x.levelJa}の内容）から`)
+      .map((x) => `${x.nameJa}は「${rankName(x.rank)}」（${x.levelJa}の内容）から`)
       .join('、');
     const msg = `${res.boardOpened ? '実力に合わせて、町の掲示板が最初の日から開いている。' : ''}${names}働ける。下の位の仕事は、復習としてときどき出てくる。言葉の意味は、これまでどおり自分で確かめる。`;
     // Today's town (a level changed mid-game) shows it at once; a new game shows it on its first morning.

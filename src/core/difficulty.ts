@@ -34,6 +34,7 @@ import { hashString } from './rng';
 import { listsLoaded } from '../curriculum/lists';
 import { yardstickReport } from '../curriculum/curriculum';
 import { placeJobsForStart, type PlacedJob } from '../jobs/placement';
+import { rankName } from '../jobs/rankNames';
 import { isMastered as isMasteredState } from './srs';
 
 // ---------------------------------------------------------------------------
@@ -182,14 +183,39 @@ export function levelEquiv(lang: Lang, level: number): string {
  * family 10–11, big numbers 12, time 13, weather 14 …, ≈ CEFR A1 → into A2). Vocabulary tags are
  * spread over all stages, so the jump is calibrated on structures, not word counts:
  * HSK1 / 英検5級 (A1 entry) skip the first-week basics, HSK2 / 英検4級 (A1) start at the
- * greetings-and-family stages, HSK3 / 英検3級 (A2) at the late-A2 stages, en 準2級 and above at the last
- * stage (the tea house's material ends at 準2級; the jobs carry the higher levels, see jobs/placement.ts:
- * their ranks reach 準1級 / 1級, so en offers every grade). Levels without an entry are not offered.
+ * greetings-and-family stages, HSK3 / 英検3級 (A2) at the late-A2 stages, en 準2級 at stage 23 (opinions,
+ * polite requests), and en 2級 / 準1級 / 1級 each at a stage of its own (24 / 25 / 26: en-only stages, see
+ * src/content/en/stages3.ts). Levels without an entry are not offered.
  */
 export const START_STAGE: Record<Lang, Record<number, number>> = {
   zh: { 0: 1, 1: 6, 2: 11, 3: 16 },
-  en: { 0: 1, 1: 7, 2: 13, 3: 19, 4: 23, 5: 23, 6: 23, 7: 23 },
+  en: { 0: 1, 1: 7, 2: 13, 3: 19, 4: 23, 5: 24, 6: 25, 7: 26 },
 };
+
+/**
+ * The placed band's floor: the lowest shop stage whose material a start level counts as its own (the top stages of
+ * the band the start jumps into; each level's floor lies above the stage the level below starts at). A start skips
+ * the known-word orders below the floor only; the day planner (shop/dayplan.ts) serves a placed player's days from
+ * stages at or above it, and easier material below it (orders the start did not skip because a word in them is not
+ * assumed known) comes at most once a day. ゼロから = stage 1 = no floor: a player who starts from zero plans as before.
+ */
+export const START_FLOOR: Record<Lang, Record<number, number>> = {
+  zh: { 0: 1, 1: 5, 2: 10, 3: 15 },
+  en: { 0: 1, 1: 6, 2: 12, 3: 17, 4: 21, 5: 24, 6: 25, 7: 26 },
+};
+
+/** The band floor of a start level (1 for ゼロから), never above the stage the level starts at. */
+export function startFloorFor(data: GameData, level: number): number {
+  if (level <= 0) return 1;
+  return Math.max(1, Math.min(START_FLOOR[data.lang][level] ?? 1, startStageFor(data, level)));
+}
+
+/** The floor of the band the player was placed in (1 = not placed / ゼロから); never above today's stage. */
+export function placedFloor(data: GameData, p: LangProgress): number {
+  const level = p.difficulty?.start ?? 0;
+  if (level <= 0) return 1;
+  return Math.min(startFloorFor(data, level), p.stage);
+}
 
 /**
  * en: TOEIC bands offered as a start, each with its 英検 equivalent (level index): the label (「準1級相当」), the shop
@@ -814,7 +840,7 @@ export function describeChange(data: GameData, s: LevelChangeSummary): string[] 
   if (s.to < s.from && s.stageTo === s.stageFrom) out.push('店の段階はそのままです（開いた棚や用事は閉じません）。');
   const placed = (s.jobs ?? []).filter((j) => j.raised && j.id !== 'teahouse');
   if (s.boardOpened) out.push('町の掲示板が最初の日から開きます（茶房のほかの仕事もすぐ選べます）。');
-  if (placed.length) out.push(`仕事は実力に合った位から：${placed.map((j) => `${j.nameJa}「${['さざ波', '潮だまり', '満ち潮', '大潮', '灯台'][j.rank - 1]}」（${j.levelJa}）`).join('・')}。下の位の仕事は復習としてときどき出ます。`);
+  if (placed.length) out.push(`仕事は実力に合った位から：${placed.map((j) => `${j.nameJa}「${rankName(j.rank)}」（${j.levelJa}）`).join('・')}。下の位の仕事は復習としてときどき出ます。`);
   if (!out.length) out.push('変更はありません。');
   void data;
   return out;
@@ -858,12 +884,14 @@ export function applyStartLevel(data: GameData, p: LangProgress, level: number, 
   }
   // 3. 検証ページ are never sealed by the start level: the player confirms assumed words in play
   //    (a page opens once its words have been met in play, see verification.ts pageStatus).
-  // 4. curriculum orders before the start stage made only of known words are done
+  // 4. curriculum orders below the start's band (START_FLOOR) made only of known words are done; the band's own
+  //    orders stay: they are the level's material, what the first days are planned from (shop/dayplan.ts)
   sum.ordersReopened = reopenSeededOrders(data, p, level);
   const startStage = startStageFor(data, level);
+  const floor = startFloorFor(data, level);
   const labels = labelWords(data);
   for (const o of data.content.orders) {
-    if (o.stage >= startStage || p.orders[o.id]?.perfect) continue;
+    if (o.stage >= floor || p.orders[o.id]?.perfect) continue;
     if (orderKnown(data, p, o.text, labels)) {
       p.orders[o.id] = { attempts: p.orders[o.id]?.attempts ?? 0, perfect: true, seeded: true };
       sum.ordersSkipped++;

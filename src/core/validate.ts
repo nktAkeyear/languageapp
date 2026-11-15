@@ -77,7 +77,13 @@ export function validateLanguage(content: LanguageContent, shared: SharedContent
   const data: GameData = buildGameData(content, shared);
   const reachable = new Set<string>();
   const ingIds = new Set(shared.ingredients.map((i) => i.id));
-  const maxStage = Math.max(...shared.stages.map((s) => s.stage));
+  const maxStage = Math.max(...data.stages.map((s) => s.stage));
+  // Language-only stages (content.stages) continue the shared numbering and add no shelf items.
+  data.stages.forEach((s, i) => {
+    if (s.stage !== i + 1) err(`stages must be numbered 1..n contiguously (got ${s.stage})`);
+    if (i > 0 && s.minDay < data.stages[i - 1].minDay) err(`stage ${s.stage} minDay goes backwards`);
+  });
+  for (const s of content.stages ?? []) if (s.ingredients.length) err(`stage ${s.stage}: a language-only stage cannot add shelf items`);
 
   const checkText = (where: string, text: string, collect = true) => {
     const toks = data.tokens(text);
@@ -312,6 +318,9 @@ export function validateLanguage(content: LanguageContent, shared: SharedContent
 /** Structural parallelism between languages (warnings only). */
 export function compareLanguages(a: LanguageContent, b: LanguageContent): string[] {
   const out: string[] = [];
+  // Material of a language's own stages (content.stages) has no counterpart in the other language.
+  const own = new Set([...(a.stages ?? []), ...(b.stages ?? [])].map((s) => s.stage));
+  const shared = <T extends { stage: number; id: string }>(xs: T[]) => xs.filter((x) => !own.has(x.stage)).map((x) => x.id);
   const diff = (what: string, xa: string[], xb: string[]) => {
     const sa = new Set(xa);
     const sb = new Set(xb);
@@ -320,9 +329,9 @@ export function compareLanguages(a: LanguageContent, b: LanguageContent): string
     if (onlyA.length) out.push(`${what} only in ${a.lang}: ${onlyA.join(', ')}`);
     if (onlyB.length) out.push(`${what} only in ${b.lang}: ${onlyB.join(', ')}`);
   };
-  diff('orders', a.orders.map((o) => o.id), b.orders.map((o) => o.id));
-  diff('pages', a.pages.map((o) => o.id), b.pages.map((o) => o.id));
-  diff('templates', a.templates.map((o) => o.id), b.templates.map((o) => o.id));
-  diff('customers', a.customers.map((o) => o.id), b.customers.map((o) => o.id));
+  diff('orders', shared(a.orders), shared(b.orders));
+  diff('pages', shared(a.pages), shared(b.pages));
+  diff('templates', shared(a.templates), shared(b.templates));
+  diff('customers', shared(a.customers), shared(b.customers));
   return out;
 }

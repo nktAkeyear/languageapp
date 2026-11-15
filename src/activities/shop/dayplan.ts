@@ -5,12 +5,15 @@ import { reviewWeight } from '../../core/srs';
 import { tokenIds } from '../../core/tokenize';
 import type { OrderInstance } from '../../core/types';
 import { authoredInstance, instantiateTemplate } from './templates';
-import { planKnobs } from '../../core/difficulty';
+import { placedFloor, planKnobs } from '../../core/difficulty';
 
 /** Template orders may introduce at most this many unseen words. */
 export const MAX_NEW_PER_TEMPLATE_ORDER = 1;
 /** Authored (curriculum) orders may introduce at most this many unseen words. */
 export const MAX_NEW_PER_AUTHORED_ORDER = 3;
+
+/** Easier curriculum orders (below a placed player's band floor) per day, at most. */
+export const MAX_BELOW_FLOOR = 1;
 
 export interface DayPlan {
   queue: OrderInstance[];
@@ -28,6 +31,12 @@ export function orderWordIds(data: GameData, inst: Pick<OrderInstance, 'text'>):
  *    within the day's new-word budget.
  * 3. Template instances scored by how many due / weak words they review, allowing at most
  *    one unseen word each, so review never runs out.
+ *
+ * A player placed by a start level (レベル設定) has a band floor (core/difficulty.ts placedFloor): the
+ * curriculum, the templates and the fallback review come from stages at or above it, so the first days are at
+ * the placed level, not the earliest orders the start did not skip. Below-floor curriculum orders (they hold a
+ * word the start does not assume known) come at most `MAX_BELOW_FLOOR` a day, never first. ゼロから has floor 1:
+ * the plan is exactly the one without a start level (same choices, same random draws).
  */
 export function planDay(data: GameData, p: LangProgress, rng: Rng): DayPlan {
   // レベル設定 / 自動調整 (core/difficulty.ts): without a difficulty state these are the stage's own values.
@@ -55,18 +64,24 @@ export function planDay(data: GameData, p: LangProgress, rng: Rng): DayPlan {
   // 2. authored curriculum
   const authored: OrderInstance[] = [];
   const pendingReturnKeys = new Set(p.returns.map((r) => r.instance.key));
-  const candidates = data.content.orders
+  const floor = placedFloor(data, p);
+  const open = data.content.orders
     .filter((o) => o.stage <= p.stage && !p.orders[o.id]?.perfect && !pendingReturnKeys.has(o.id))
     .sort((a, b) => a.stage - b.stage || (a.seq ?? 0) - (b.seq ?? 0));
+  // Placed: the band's own material first (in curriculum order), then the easier backlog (capped below).
+  const candidates = floor > 1 ? [...open.filter((o) => o.stage >= floor), ...open.filter((o) => o.stage < floor)] : open;
   // A minimum share of review orders (pace ゆっくり / a struggling player); 0 = curriculum may fill the day.
   const maxAuthored = k.reviewShare > 0 ? Math.max(1, Math.round(slots * (1 - k.reviewShare))) : slots;
+  let below = 0;
   for (const o of candidates) {
     if (authored.length >= maxAuthored) break;
+    if (o.stage < floor && (below >= MAX_BELOW_FLOOR || authored.length === 0)) continue;
     const inst = authoredInstance(data, o);
     const fresh = newOf(inst);
     if (fresh.length > MAX_NEW_PER_AUTHORED_ORDER && authored.length > 0) continue;
     if (dayNew.size + fresh.length > budget && authored.length > 0) continue;
     fresh.forEach((w) => dayNew.add(w));
+    if (o.stage < floor) below++;
     authored.push(inst);
     keys.add(inst.key);
     texts.add(plain(inst.text));
@@ -80,7 +95,10 @@ export function planDay(data: GameData, p: LangProgress, rng: Rng): DayPlan {
     rng,
     audio: k.audio,
   };
-  const templates = data.content.templates.filter((t) => t.stage <= p.stage);
+  // Placed: review in the band too (templates of stages at or above the floor, or the highest ones there are).
+  const opened = data.content.templates.filter((t) => t.stage <= p.stage);
+  const tFloor = Math.min(floor, Math.max(1, ...opened.map((t) => t.stage)));
+  const templates = floor > 1 ? opened.filter((t) => t.stage >= tFloor) : opened;
   const templ: OrderInstance[] = [];
   const usedTemplates = new Map<string, number>();
   while (authored.length + templ.length < slots && templates.length) {
@@ -115,7 +133,9 @@ export function planDay(data: GameData, p: LangProgress, rng: Rng): DayPlan {
   // 4. fallback: re-serve already-completed authored orders as review
   if (authored.length + templ.length < slots) {
     const done = data.content.orders.filter((o) => o.stage <= p.stage && !keys.has(o.id));
-    for (const o of shuffle(rng, done)) {
+    // Placed: the band's own orders first; easier ones only when the band cannot fill the day.
+    const pool = floor > 1 ? [...shuffle(rng, done.filter((o) => o.stage >= floor)), ...shuffle(rng, done.filter((o) => o.stage < floor))] : shuffle(rng, done);
+    for (const o of pool) {
       if (authored.length + templ.length >= slots) break;
       const inst = authoredInstance(data, o);
       if (orderWordIds(data, inst).filter((id) => !known(id)).length > MAX_NEW_PER_TEMPLATE_ORDER) continue;

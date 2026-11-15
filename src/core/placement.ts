@@ -19,7 +19,7 @@ import { makeRng, shuffle, type Rng } from './rng';
 import { tokenIds } from './tokenize';
 import type { AuthoredOrder, Brew, IngredientId, OrderRule } from './types';
 import { evaluateBrew, witnessBrew } from '../activities/shop/rules';
-import { startOptions, wordLevel } from './difficulty';
+import { startOptions, startStageFor, wordLevel } from './difficulty';
 
 export const ITEMS_PER_LEVEL = 2;
 
@@ -97,11 +97,16 @@ export function distractors(data: GameData, rule: OrderRule, right: Brew, rng: R
   });
 }
 
-/** Candidate orders for a level. */
+/**
+ * Candidate orders for a level. A language's own higher stages (en 24–26: the 英検2級 / 準1級 / 1級 tea house) test
+ * only the levels that start there or above: their grammar is above a lower level even where their words are not.
+ */
 export function levelCandidates(data: GameData, level: number): AuthoredOrder[] {
   const labels = labelWords(data);
+  const sharedTop = Math.max(...data.shared.stages.map((s) => s.stage));
+  const top = Math.max(sharedTop, startStageFor(data, level));
   return data.content.orders.filter((o) => {
-    if (!ruleOf(data, o)) return false;
+    if (!ruleOf(data, o) || o.stage > top) return false;
     const ids = tokenIds(data.tokens(o.text)).filter((id) => !labels.has(id));
     if (!ids.length) return false;
     const lv = ids.map((id) => {

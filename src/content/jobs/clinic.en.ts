@@ -2323,7 +2323,7 @@ movement|n||動き
 # jc6_073 | 診療所のことば 4（1級）
 pregnant|a||妊娠している
 interact|v||相互作用する
-prescribe|v|prescribed|処方する
+prescribe|v|prescribed,prescribes|処方する
 easily|d||簡単に
 # jc6_074 | 診療所のことば 5（1級）
 round|d||まわって
