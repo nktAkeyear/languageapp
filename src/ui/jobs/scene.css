@@ -2715,3 +2715,6 @@ img.job-backdrop {
 .job-stage .jpaper.target .pp-field {
   min-height: 54px;
 }
+.m-job .jpaper.target .pp-field {
+  min-height: 44px;
+}

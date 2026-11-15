@@ -1139,3 +1139,8 @@
 .hub-spot.east .hub-badges {
   font-size: 11px;
 }
+/* the phone's overview map: the east quarter's signs would cover the whole quarter at this size — they appear when
+   the map is zoomed in (the signboard list below names every workplace) */
+.m-hub-zoom:not(.zoomed) .hub-spot.east .hub-sign {
+  display: none;
+}

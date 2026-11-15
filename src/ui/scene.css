@@ -2626,3 +2626,42 @@
   font-size: 13px;
   margin: 2px 0 0;
 }
+
+/* short phones (about 740 px tall): the wall strip and the counter's middle row give up a little height, so the
+   counter's tools never sink under the shelf drawer */
+@media (max-height: 780px) {
+  .m-wall {
+    height: 214px;
+  }
+  .m-counter {
+    grid-template-rows: auto minmax(96px, 1fr) auto;
+    padding-top: 4px;
+    padding-bottom: 14px;
+  }
+  .m-books {
+    min-height: 0;
+  }
+  .m-vessel {
+    max-height: 150px;
+  }
+  .m-drawer-row {
+    padding-bottom: 8px;
+    border-bottom-width: 7px;
+    margin-bottom: 4px;
+  }
+  .m-drawer {
+    padding-top: 6px;
+  }
+  .m-serve .serve {
+    height: 44px;
+  }
+  .m-tools .tool {
+    width: 50px;
+  }
+  .m-side .slip-chit {
+    width: 72px;
+  }
+  .m-side .tipout {
+    width: 58px;
+  }
+}
