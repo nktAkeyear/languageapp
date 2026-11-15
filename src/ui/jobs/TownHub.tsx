@@ -7,7 +7,11 @@
  */
 import { useLayoutEffect, useRef, useState } from 'react';
 import { townOf } from '../../activities/town/text';
-import { jobDay, jobHasNew, jobHoursJa, jobOffered, jobOpenAt, jobsOf, PART_NAMES, rankName, rankStatus, recommendJobs } from '../../jobs/engine';
+import { jobDay, jobHasDay, jobHasEvening, jobHasNew, jobHoursJa, jobOffered, jobOpenAt, jobsOf, rankName, rankStatus, recommendJobs, TEAHOUSE } from '../../jobs/engine';
+import { marketAccess } from '../../activities/day';
+import type { JobDayState } from '../../jobs/types';
+import type { LangProgress } from '../../core/save';
+import { DayParts, NoticePin } from '../components/DayChrome';
 import type { JobDef } from '../../jobs/types';
 import { skyAt } from '../art/sky';
 import { MAP_W } from '../art/town';
@@ -22,8 +26,13 @@ import { JobBoard } from './JobBoard';
 import { GoodsShelf, LevelTag } from './bits';
 
 const PART_T = [0.08, 0.36, 0.68, 0.86];
-/** The day's notes are shown once (per language and day), not again after each shift. */
-const notesShown = new Set<string>();
+
+/** Has the player worked at this workplace today (as today's workplace, after it began, or as the evening shift)? */
+function workedToday(p: LangProgress, d: JobDayState, j: JobDef): boolean {
+  if (d.log.some((l) => l.job === j.id) || d.evening === j.id) return true;
+  if (d.work !== j.id) return false;
+  return j.legacy ? (p.townDay?.part ?? 0) > 0 : d.part > 0;
+}
 
 export function TownHub({ onSettings }: { onSettings: () => void }) {
   const g = useGame();
@@ -31,7 +40,6 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
   const { ref, scale } = useStageScale(HUB_W, 1000);
   const [sel, setSel] = useState<string | null>(null);
   const [board, setBoard] = useState(false);
-  const [, setNotesSeen] = useState('');
   const { data, progress } = g;
   const day = progress ? jobDay(progress) : null;
   if (!data || !progress || !day) return null;
@@ -39,66 +47,48 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
   const sky = skyAt(PART_T[Math.min(3, day.part)]);
   const over = day.part > 2;
   const jobs = jobsOf(data);
-  const notesKey = `${data.lang}:${progress.day}`;
-  // A story card (the predecessor's letter on the first morning …) comes first; the day's notes wait for it.
-  const storyFirst = (progress.story?.cards?.length ?? 0) > 0;
-  const showNotes = day.notes.length > 0 && !notesShown.has(notesKey) && !sel && !board && !storyFirst;
+  const work = jobs.find((j) => j.id === day.work);
+  const next = jobs.find((j) => j.id === (progress.jobs?.next ?? TEAHOUSE));
+  const mk = day.part === 2 ? marketAccess(progress, 'hub') : null;
   const status = (
     <div className="hub-status">
-      <div className="hub-when">
-        <span className="hub-day">{progress.day}日目</span>
-        <span className="hub-part">{over ? '夜' : PART_NAMES[day.part]}</span>
-      </div>
-      <div className="hub-parts" aria-label="今日の仕事">
-        {PART_NAMES.map((n, i) => {
-          const l = day.log.find((x) => x.part === i) ?? (day.tea !== 'none' && i >= 0 ? null : null);
-          const j = l ? jobs.find((x) => x.id === l.job) : null;
-          return (
-            <span key={n} className={`hub-partchip ${i === day.part ? 'now' : ''} ${l ? 'done' : ''}`}>
-              {n}
-              {j ? <span className="hub-partjob">{j.icon}</span> : null}
-            </span>
-          );
-        })}
+      <DayParts className="hub-dayparts" />
+      <div className="hub-work small" data-testid="hub-work">
+        {day.part === 0 ? `今日の仕事場：${work?.nameJa ?? ''}` : `明日の仕事場：${next?.nameJa ?? '茶房'}`}
       </div>
       <div className="hub-coins" title="財布">
         <span aria-hidden>🪙</span> {progress.town.money}
       </div>
+      <NoticePin className="hub-notice" />
       <button type="button" className="cv-btn hub-boardbtn" data-testid="open-board" onClick={() => (sfx('paper'), setBoard(true))}>
         掲示板を見る
       </button>
-      <button
-        type="button"
-        className={`cv-btn ${over ? 'cv-next' : ''} hub-home`}
-        data-testid="go-home"
-        onClick={() => {
-          sfx('steps');
-          g.closeDay();
-        }}
-      >
-        {over ? '家に帰って帳簿をつける' : '今日はもう帰る'}
-      </button>
+      {day.part === 0 ? (
+        <button type="button" className="cv-btn cv-next hub-home" data-testid="back-to-work" onClick={() => (sfx('steps'), g.jobs.back())}>
+          {work?.nameJa ?? '仕事場'}に戻る
+        </button>
+      ) : (
+        <>
+          {mk ? (
+            <button type="button" className="cv-btn hub-market" data-testid="go-market" disabled={!!mk.why} title={mk.why ?? undefined} onClick={() => (sfx('steps'), g.day.goMarket('hub'))}>
+              市場へ（明日の分）
+            </button>
+          ) : null}
+          <button
+            type="button"
+            className="cv-btn cv-next hub-home"
+            data-testid="go-home"
+            onClick={() => {
+              sfx('steps');
+              g.closeDay();
+            }}
+          >
+            家に帰って帳簿をつける
+          </button>
+        </>
+      )}
     </div>
   );
-  const notes = showNotes ? (
-    <div className="letter hub-notes" role="dialog" aria-label="今日の知らせ">
-      <div className="letter-title">今日の知らせ</div>
-      {day.notes.map((n) => (
-        <p key={n}>{n}</p>
-      ))}
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={() => {
-          sfx('page');
-          notesShown.add(notesKey);
-          setNotesSeen(notesKey);
-        }}
-      >
-        わかった
-      </button>
-    </div>
-  ) : null;
   const card = sel ? <WorkplaceCard id={sel} onClose={() => setSel(null)} onBoard={() => setBoard(true)} /> : null;
   const hotspots = (
     <>
@@ -106,7 +96,7 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
         const b = BUILDINGS[j.building];
         if (!b) return null;
         const offered = jobOffered(progress, j);
-        const done = day.log.some((l) => l.job === j.id) || (j.legacy && day.tea !== 'none');
+        const done = workedToday(progress, day, j);
         const sign = j.legacy ? null : j.content[data.lang]?.sign;
         const open = offered && !over && jobOpenAt(j, day.part);
         const fresh = jobHasNew(data, progress, j);
@@ -129,7 +119,6 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
               <span className="hub-signja">{j.nameJa}</span>
               {offered ? <SpotBadges open={open} done={!!done} fresh={fresh} rank={rank} hours={jobHoursJa(j)} /> : null}
             </span>
-            {done ? <span className="hub-done" aria-hidden>✓</span> : null}
           </button>
         );
       })}
@@ -182,7 +171,6 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
           <CornerHooks onSettings={onSettings} />
         </div>
         {card}
-        {notes}
         {boardSheet}
       </div>
     );
@@ -196,7 +184,6 @@ export function TownHub({ onSettings }: { onSettings: () => void }) {
         </div>
         <GoodsShelf className="hub-goods" />
         {card}
-        {notes}
         <CornerHooks onSettings={onSettings} />
       </div>
       {boardSheet}
@@ -290,7 +277,7 @@ function WorkplaceRow({ job, onOpen }: { job: JobDef; onOpen: () => void }) {
   const day = jobDay(p)!;
   const offered = jobOffered(p, job);
   const rs = rankStatus(data, p, job);
-  const done = day.log.some((l) => l.job === job.id) || (job.legacy && day.tea !== 'none');
+  const done = workedToday(p, day, job);
   const sign = job.legacy ? null : job.content[data.lang]?.sign;
   const open = offered && day.part <= 2 && jobOpenAt(job, day.part);
   const fresh = jobHasNew(data, p, job);
@@ -309,12 +296,15 @@ function WorkplaceRow({ job, onOpen }: { job: JobDef; onOpen: () => void }) {
         <span className="m-hub-rowrank">{offered ? `位：${rankName(rs.rank)}（${rs.rank}）` : 'まだ募集していない'}</span>
         {offered ? <SpotBadges open={open} done={!!done} fresh={fresh} rank={rs.rank} hours={jobHoursJa(job)} /> : null}
       </span>
-      {done ? <span className="hub-done" aria-hidden>✓</span> : null}
     </button>
   );
 }
 
-/** The card shown for a tapped workplace: the job, its rank and what it teaches; work here. */
+/**
+ * The card shown for a tapped workplace: the job, its rank and what it teaches. Before opening: work here today
+ * (the day moves there); after closing: a second shift here (when it is open in the evening), and "work here
+ * from tomorrow".
+ */
 function WorkplaceCard({ id, onClose, onBoard }: { id: string; onClose: () => void; onBoard: () => void }) {
   const g = useGame();
   const [why, setWhy] = useState<string | null>(null);
@@ -325,10 +315,30 @@ function WorkplaceCard({ id, onClose, onBoard }: { id: string; onClose: () => vo
   if (!job || !day) return null;
   const rs = rankStatus(data, p, job);
   const offered = jobOffered(p, job);
-  const doneToday = day.log.some((l) => l.job === job.id) || (job.legacy && day.tea !== 'none');
+  const doneToday = workedToday(p, day, job);
   const over = day.part > 2;
   const rec = recommendJobs(data, p).includes(job.id);
-  const teaParts = job.legacy ? (day.part === 0 ? '朝の市場・昼の店・夕方の配達' : day.part === 1 ? '昼の店（今日は市場なし）・夕方の配達' : '店だけ（今日は市場も配達もなし）') : '';
+  const isWork = day.work === job.id;
+  const isNext = (p.jobs?.next ?? TEAHOUSE) === job.id;
+  const teaNote = job.legacy ? (day.part === 0 ? '一日をここで：始業前の買い出し・店・業務後の配達' : '業務後に店だけ開ける（奥の部屋の品で出す。一杯ごとに少しかかる）') : '';
+  const canToday = offered && day.part === 0 && jobHasDay(job);
+  const canEvening = offered && day.part === 2 && jobHasEvening(job) && !doneToday && !isWork && !day.evening;
+  const canNext = offered && day.part === 2 && jobHasDay(job) && !isNext;
+  const state = !offered
+    ? 'まだ募集していない'
+    : over
+      ? '今日の仕事はおしまい'
+      : day.part === 2
+        ? doneToday || isWork
+          ? '今日はここで働いた'
+          : day.evening
+            ? '業務後のひと仕事は、今日はもう済んだ'
+            : jobHasEvening(job)
+              ? ''
+              : `業務後は閉まっている（${jobHoursJa(job)}）`
+        : day.part === 0 && !jobHasDay(job)
+          ? `日中の仕事はない（${jobHoursJa(job)}）`
+          : '';
   return (
     <div className="hub-card" role="dialog" aria-label={job.nameJa} data-testid="workplace-card">
       <button type="button" className="hub-card-x" onClick={onClose} aria-label="閉じる">
@@ -348,18 +358,31 @@ function WorkplaceCard({ id, onClose, onBoard }: { id: string; onClose: () => vo
       <p className="hub-card-blurb">{job.blurbJa}</p>
       {!job.legacy ? (
         <p className="hub-card-note">
-          開いている時間：{jobHoursJa(job)}
-          {!jobOpenAt(job, day.part) && !over ? '（今は閉まっている）' : ''}
+          仕事の時間：{jobHoursJa(job)}
           {jobHasNew(data, p, job) ? '　・新しい仕事が待っている' : ''}
         </p>
       ) : null}
-      {job.legacy && !doneToday && !over ? <p className="hub-card-note">今から開けると：{teaParts}</p> : null}
+      {job.legacy && !over && (canToday || canEvening) ? <p className="hub-card-note">{teaNote}</p> : null}
       {why ? <p className="hub-card-why">{why}</p> : null}
       <div className="hub-card-actions">
         <button type="button" className="btn" onClick={onBoard}>
           掲示板でくわしく
         </button>
-        {offered && !doneToday && !over && jobOpenAt(job, day.part) ? (
+        {canNext ? (
+          <button
+            type="button"
+            className="btn"
+            data-testid="work-next"
+            onClick={() => {
+              sfx('pickup');
+              const r = g.jobs.chooseNext(job.id);
+              setWhy(r ?? `明日からは${job.nameJa}で一日を始める。`);
+            }}
+          >
+            明日はここで働く
+          </button>
+        ) : null}
+        {canToday || canEvening ? (
           <button
             type="button"
             className="btn btn-primary"
@@ -370,11 +393,11 @@ function WorkplaceCard({ id, onClose, onBoard }: { id: string; onClose: () => vo
               if (r) setWhy(r);
             }}
           >
-            ここで働く（{PART_NAMES[day.part]}）
+            {canEvening ? '業務後にここで働く' : isWork ? 'ここに戻る' : '今日はここで働く'}
           </button>
-        ) : (
-          <span className="hub-card-state">{!offered ? 'まだ募集していない' : doneToday ? '今日はここで働いた' : over ? '今日の仕事はおしまい' : `今は閉まっている（${jobHoursJa(job)}）`}</span>
-        )}
+        ) : state ? (
+          <span className="hub-card-state">{state}</span>
+        ) : null}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ Japanese; everything in the world is in the target language.
 
 **Many lives in one town.** The player inherited a tea/spice shop in a port town — the first job — and,
 from day 4, the town's job board offers more working lives they can take up and switch between freely
-(per part of the day): the **post office**, the **harbour kitchen**, the **inn's front desk** and a
+(a day's workplace, plus a second shift after closing): the **post office**, the **harbour kitchen**, the **inn's front desk** and a
 **trading company's office** (TOEIC-flavoured working English). Each job is a different place with its own
 people, tasks, ranks and vocabulary; one shared notebook / verification / hidden SRS runs across all of
 them, and the jobs feed each other (the kitchen bakes the bread the inn serves, the office's parcels go
@@ -27,9 +27,31 @@ over the compiled lists (`src/curriculum/`) and the tea house's own activities (
   signs; behind / across from / next to / left / right), when (morning, o'clock, before / after),
   to whom and how (knock twice, not the child, leave it at the door if nobody is home).
 
-A tea house day is a sequence of segments planned by `src/activities/day.ts` (e.g. 朝 market → 昼 shop →
-夕方 delivery). Before the town activities open, a day is exactly the Phase 1 shop day; before the job board
-opens (day 4) a day is exactly the tea house day.
+**A working day has three parts** (`src/activities/day.ts`, v6): **始業前** (before opening — the day always starts
+at the workplace: in the shop, preparing; on a market day the shopping note is pinned up and the player may walk
+to the market and back, as often as they like; then 「店を開ける」), **業務中** (working hours — the customers;
+nobody can leave the counter to shop, but goods can be **ordered by delivery** for a fee, `DELIVERY_FEE` = 4
+coins an order, said before anything is paid: the same stalls, words, quotes and payment as at the market, and
+the goods arrive when the next customer comes in) and **業務後** (after closing — the house delivery, the evening
+market whose goods are kept in the back room for tomorrow, the catalogue, the town and a second shift, home and
+the night's ledger). Before the town activities open, a day is the Phase 1 shop day in those three parts; before
+the job board opens (day 4) it is exactly the tea house day.
+
+**Nothing opens by itself** — at the start of a day or later. The day's notes (what opened, a new rank, what the
+carpenter delivered), the chapter title, a regular waiting in the morning, a delivery note and the papers that
+came are pinned in the scene: a paper on a nail (「知らせ」, with the number of unread things; desktop: on the
+wall by the door; phone: next to the round buttons; in the town and at a workplace: in the status bar) opens a
+side panel the player reads when they want (a story card plays only when opened from it); papers lie in the
+document box, which glows. A one-line banner at the top says the day and its part (and the chapter's title) and
+goes by itself; it never takes a click and never covers a control. The HUD shows the three parts
+(始業前 › 業務中 › 業務後) in every scene.
+
+**No verdicts.** Play never judges an answer: no 完璧 / うまくいかなかった badges, no ✓ / ✗, no right answer shown in
+green or red, no mistake marks. What remains is in-world: the customer's / boss's reaction line in English (which
+names what is wrong — "Where is the mint?", "Not that one. Look at the tracking number.", "The “Call back” is not
+right."), their face and what they do (come back another day, pay less), and the coins / reputation that result,
+shown as ledger facts. Scoring stays internal (SRS, pacing, ranks, metrics). The 検証ページ remain the game's one
+way to confirm a hypothesis about meanings; 現在地 / 記録 show aggregate progress only.
 
 Around this core: a **story** (regulars, the predecessor's letters, chapters, the nightly ledger), the
 **shop renovation** (a carpenter's catalogue bought with the shop's coins: more customers, stock kept
@@ -59,8 +81,10 @@ npm run simulate -- zh 45 --start=2 --pace=slow --acc=0.7 [--adaptive=0] [--seed
 npm run simulate -- --table [--buy]   # settings comparison table (both languages, 45 days, mean of 3 seeds)
 npm run simulate -- --jobs [--days=20] [--acc=0.85] [--seed=1] [--yard=eiken|toeic] [--log]
                           [--start=N | --toeic=BAND] [--tasks]
-                          # jobs: a simulated English player works through the town (a job in the morning,
-                          # the tea house at noon, another job in the evening): one line per day with ranks,
+                          # jobs: a simulated English player works through the town (days alternate: the tea
+                          # house's day with a second shift after closing, a job's day with the tea house opened
+                          # after closing; --order: never shops before opening, orders by delivery when the
+                          # shelf runs out — what the delivery fee costs): one line per day with ranks,
                           # coins, words met / confirmed and progress on both yardsticks; --log prints every
                           # task's request and reaction (content review); --start=5 (英検2級; 1 = 5級 … 7 = 1級)
                           # or --toeic=600 starts at that level (the level change is printed: words assumed
@@ -149,7 +173,7 @@ src/
                         pre-rasterised images)
     scene/              the shop as a scene: workbench.tsx (hand / drag & drop / serve flow), parts.tsx
                         (interactive objects), ShopScene.tsx (desktop), MobileShop.tsx (phone),
-                        Transition.tsx (morning → midday → afternoon → night → dawn passages)
+                        Transition.tsx (shop ↔ market / delivery passages, dusk; none over the day's start)
     town/               MarketScene.tsx (street of stalls, open stall, paying on the tray),
                         DeliveryScene.tsx (slip in hand, town map, sun dial, walk, the door)
     story/              StoryStage.tsx (conversations, choices, notes, chapter title cards), Documents.tsx
@@ -167,7 +191,7 @@ src/
                         drag & drop), art.tsx / art2.tsx (hub, interiors, things, food), Yardsticks.tsx
                         (現在地 by 英検 / TOEIC, the per-job record), bits.tsx, jobs.css + scene.css
     difficulty/         レベル設定 sheet, 腕だめし, 学習の記録 page + SVG charts, notebook bits (既 mark, peek,
-                        目標 panel), scene assists (mistake marks, retry slip, slower speech)
+                        目標 panel), scene assists (the もう一度つくる slip, slower speech)
     components/         settings, title, word text (every word opens its card; the player's guess under the word;
                         gloss on hover for confirmed words; story names; glossed documents; word-by-word reveal),
                         WordCard.tsx (単語カード), SaveText.tsx (save as text: copy / paste)
@@ -181,15 +205,16 @@ The layout is chosen by viewport width (≤ 820px → mobile), overridable in se
 
 ## Presentation
 
-Every part of the day is a drawn scene (desktop: a 1600×1000 stage scaled to the window; phone: tall
-compositions of the same pieces), and moving between them is a short passage of light: 朝 market →
-昼 shop → 夕方 delivery → 夜 the ledger → dawn of the next day (skipped with `prefers-reduced-motion`).
+Every place is a drawn scene (desktop: a 1600×1000 stage scaled to the window; phone: tall compositions of the
+same pieces), and walking between the tea house's places (shop ↔ market, out to a delivery) is a short passage of
+light; going home is dusk and the night's ledger. A new day opens straight on the workplace (no passage over it:
+the banner says the day). Skipped with `prefers-reduced-motion`.
 
 - **The town** (from day 4): the delivery map extended across the bridge by the east quarter — the post
   office (red brick, a red postbox), the trading company (stone, a clock), the harbour kitchen (striped
   awning, chimney smoke), a building site for the jobs to come; the inn and the tea house where they always
   were; the job board on the main street. Signs in the target language with a small Japanese label. The
-  light follows the part of the day (朝 / 昼 / 夕方 / evening). Phone: overview map + signboard list.
+  light follows the part of the day (始業前 morning, 業務後 evening). Phone: overview map + signboard list.
 - **Workplaces** (`src/ui/jobs/`): each job is a drawn interior (pre-rasterised once per shift, like the
   shop) with ambient life on top (`ambient.tsx`: gulls and waves in the post office window and its cat asleep
   in a parcel box, steam and a swaying pan in the kitchen, the inn's pendulum clock and fern, clouds and the
@@ -210,10 +235,18 @@ compositions of the same pieces), and moving between them is a short passage of 
   calendar, the inn's floor board (the key hangs on the room chosen). Phone: the same pieces stacked
   (pieces still drag with a finger; tap-tap works everywhere). A long request (rank 5's contracts, set menus,
   letters) is never scrolled inside its bubble on the desktop stage: the person steps back a little and the hand
-  gets smaller (`.js-long` over 75 characters, `.js-longer` over 180).
+  gets smaller (`.js-long` over 75 characters, `.js-longer` over 180). After handing in, the bench keeps only
+  what the player did (the letters where they put them, their pen circle and their own stamp, the slip they
+  chose): nothing is marked right or wrong, the person's reply says it, and the paid wage is shown as a fact
+  (お給金 +3). The end of a shift: the tasks done, the wage, the rank's progress (a rank reached is said there).
 - **The shop**: the customer stands behind the counter in front of the door, the shelf is on the
-  right wall. Reputation is the plaque above the door, the day is the wall calendar ("40日目", with
-  today's plan), customers are order tickets on a nail, money is the coin jar. The window light follows
+  right wall. Reputation is the plaque above the door, the day is the wall calendar ("40日目"), the part of the
+  day is the strip 始業前 › 業務中 › 業務後 (the door's card says 準備中 / 営業中 / 閉店), customers are order tickets
+  on a nail (torn off when served — no mark of how it went), money is the coin jar. 始業前, where the customer
+  will stand, a paper says what the day holds: the shopping note (English), 市場へ買い出しに行く, 町へ出る and
+  店を開ける; 業務中, a wooden sign 「配達を頼む（配送費 4 枚）」 by the shelf (on market days; it glows when a good is
+  out) asks before anything is paid; 業務後 the same place offers the house delivery, the market for tomorrow,
+  the town and home. The window light follows
   the day, the lamp glows stronger in the evening, the door bell rings when customers come and go.
 - **Brewing by hand**: drag a container onto the cup, or tap it (picked up) and tap the cup — each
   drop is one portion, made with the tool that fits the unit of the quantity phrases (knife for
@@ -226,15 +259,17 @@ compositions of the same pieces), and moving between them is a short passage of 
   Shelf containers show `残りN` / `品切れ` from the market stock.
 - **Reactions**: the customer takes the cup in both hands, sips, then reacts with the content's face
   plus a body motion chosen from the mistake (grimace for bitter, pucker for sour, shiver when they
-  wanted it hot …); the plaque, tickets and coin jar update only then. A regular's small talk is
-  part of their reaction in the speech bubble.
-- **Market** (morning light): a street of four stalls with awnings in the stall's colour, each with its
+  wanted it hot …) and their line, which names what is wrong; the plaque, tickets and coin jar update only
+  then (no sound, colour or badge tells right from wrong). A regular's small talk is part of their reaction
+  in the speech bubble; a regular's story visit that went wrong says the shop's line first, then theirs.
+- **Market** (morning light before opening; noon while an order is sent for delivery; evening light after
+  closing, when the goods go to the back room for tomorrow — a strip at the top says which): a street of four stalls with awnings in the stall's colour, each with its
   drawn vendor and goods with paper price tags (from the street one jar per good with its usual price;
   at the stall every kind, on two tiers when a stall is busy); the shopping note is pinned in view, the
   basket and the coin purse lie in front. At a stall the vendor speaks in a bubble (clickable words, listen; the
   conversation so far above it); point at a good, set the number, and pay by dropping coins from the
   purse onto the vendor's brass tray (tap the tray to take them back).
-- **Delivery** (afternoon / evening light): the slip in hand, the illustrated town map on the table
+- **Delivery** (after closing, optional — 店に戻る puts it off; afternoon / evening light): the slip in hand, the illustrated town map on the table
   (sea and harbour with ships, the river and its bridge, distinct landmark buildings with their
   target-language signs, houses with coloured doors; rows and the main street keep the map's grid, so
   "behind / across / left / right" read as on the slip), the time on a sun dial, a short walk across the
@@ -248,8 +283,8 @@ compositions of the same pieces), and moving between them is a short passage of 
   現在地 (level guide + 目標), 記録 (学習の記録, see Difficulty). With the catalogue's red ribbon the word list
   opens on 復習 (words due today); with the magnifying glass a word's page marks it in its sentences and
   lists the words that keep appearing with it. A verification page lays out meaning cards; word slips are dragged (or tap-tap)
-  onto them and the stamp checks the whole page: right → seals and cards flip to word + meaning;
-  wrong → only "something is off". When a page newly opens, the notebook glows and a bookmark sticks
+  onto them and the stamp (推測を確かめる) tests the arrangement as a hypothesis: confirmed → seals and cards flip
+  to word + meaning; not yet → only 「この組み合わせでは、まだ確かめられない」 (never which card). When a page newly opens, the notebook glows and a bookmark sticks
   out. Confirmed words are highlighted everywhere and show their gloss on hover; a tap on any word —
   order, vendor, slip, story, document, job paper, notebook sentence — opens its **word card** (see
   「Own meanings and the 単語帳」 below).
@@ -262,8 +297,9 @@ compositions of the same pieces), and moving between them is a short passage of 
   line by mood; they listen with a hand at the chin while the player speaks), the player's thoughts as
   narration strips, and choices as reply slips the player says (こう言う). After a regular's cup the scene waits until the
   player has read the reaction (話のつづきを聞く), and likewise at the door after a regular's delivery.
-  A delivery request is a note left at the shop. Documents appear on the counter, are picked up
-  (手に取る) and read as paper — letter, torn ticket, postcard, diary page, recipe card; every word
+  A delivery request is a note left at the shop (pinned on the day's notice). Documents never open by
+  themselves: a new paper lies in the document box, which glows; opened (or 手に取る from the notice), it is picked up
+  and read as paper — letter, torn ticket, postcard, diary page, recipe card; every word
   clickable, confirmed words with their meaning written underneath, barely met words faint — then go
   into the document box on the counter; the blue cup and the carved ship go on the window sill (on the
   phone, onto the shelf). Re-reading a paper marks the words confirmed since it was last put away
@@ -271,11 +307,13 @@ compositions of the same pieces), and moving between them is a short passage of 
   window is dark, the lamp lit, the shelf stocked, and the day is written into the ledger book (lying on
   the counter, the night shop visible around it) line by line (takings, purchases, catalogue orders,
   purse, reputation, today's customers, goods kept for tomorrow, regulars met, words understood, things
-  found, the player's thoughts); blowing out the lamp ends the day. Last night's ledger is in the box.
-  A new chapter opens the next morning with its title card (no dawn passage on top of it). ⚙ and the
+  found, the player's thoughts — no list of how each cup or task went: the customers served, the shifts'
+  tasks and wages); blowing out the lamp ends the day. Last night's ledger is in the box. A new chapter is
+  announced the next morning in the banner and pinned on the notice; its title card over the harbour plays when
+  the player opens it. ⚙ and the
   sound hook stay reachable over story cards and the night.
 - **Sound**: synthesised effects (door bell, pouring, chopping, clinks, simmer, page turn, coins,
-  stamp, confirm chime, soft failure, paper, the box, knocks, footsteps, pen in the ledger, the lamp
+  stamp, confirm chime, soft failure (only for a container that is full), paper, the box, knocks, footsteps, pen in the ledger, the lamp
   blown out, a chapter bell, dawn birds, dusk) and an optional ambient loop; volume / mute / ambient
   in ⚙ 設定 (saved with the settings). Audio starts after the first user gesture and silently does
   nothing where Web Audio is unavailable. `prefers-reduced-motion` turns the animations off.
@@ -321,29 +359,31 @@ Decipherment needs a pencil: the player writes down what they think a word means
 
 ### The day and the town
 
-- **Before day 4** a day is exactly the tea house day (market → shop → delivery). On **day 4** the job board
-  opens (a note in the morning; from **day 1** when the start level places a job — en 英検4級 and up, see
-  「The jobs at a start level」) and every morning from then on starts **in the town** (`TownHub.tsx`): the
-  delivery map, extended across the bridge by an east quarter where the new workplaces stand (post office,
-  harbour kitchen, the trading company's office; the inn is the map's inn; a building site with scaffolding
-  stands for the jobs still to come). Tap a building → its card (job, rank, the level of its material, what
-  it teaches, its hours) → **ここで働く**. The day's notes (「今日の知らせ」) wait until a story card on top of the town (the
-  predecessor's first letter on day 1 of a high start) has been read. Every workplace shows at a glance whether it is open now (営業中 or
-  its hours), the player's rank there (●●○○○) and 「新」 when something new waits (a job not visited yet,
-  or authored tasks of the player's rank not met yet). **Hours** (`JobDef.hours`): post office and office
-  朝・昼, inn 朝・夕方 (check-out / check-in), kitchen all day, tea house all day. Phone: the map as an
-  overview — a tap zooms into that spot (signs legible, pan with a finger), 全体を見る zooms out, as on the
-  delivery map — and the workplaces as signboards with the same badges. Zoomed out, the whole map is one target
-  (role button, Enter zooms too) and the small buildings on it are `inert` (not tappable or focusable), so no tappable
-  target on the phone is under 40 px.
-- **Parts of the day**: 朝 / 昼 / 夕方. A job's **shift** (4–6 tasks) fills one part; each job at most once a
-  day, and only in its hours. The **tea house** is planned every morning as before and, when chosen, runs its
-  own segments from the current part on: started in the morning it is the original day (market 朝, shop 昼,
-  delivery 夕); started at noon there is no market that day (the shop serves from the back room, which costs
-  `BACK_ROOM_COST` = 1 coin a cup, so skipping the market is no cheaper than shopping); started in the evening
-  it is the shop only. After the shop closes with no delivery planned, 「店を閉めて町へ出る」 leaves the evening for
-  another job. 「今日はもう帰る」 ends the day from the town; the night's ledger lists the shifts (お給金, tasks,
-  how many went well) next to the shop's accounts.
+- **Before day 4** a day is exactly the tea house day (始業前 → 業務中 → 業務後). On **day 4** the job board
+  opens (a note pinned on the notice; from **day 1** when the start level places a job — en 英検4級 and up, see
+  「The jobs at a start level」). **Every day still starts at a workplace, never on the map**: today's workplace,
+  i.e. the one chosen after closing the day before (「明日はここで働く」 on a workplace's card in the town; it stays
+  the choice until changed, `JobsState.next`) — at first the tea house. Before opening, the workplace's door
+  leads into **the town** (`TownHub.tsx`, 「町へ出る（ほかの仕事場へ）」): tap a building → its card (job, rank, the
+  level of its material, what it teaches, its hours) → **今日はここで働く** (the day moves there, still before
+  opening; a shift planned but not begun is simply dropped) or back to today's workplace. The town: the delivery
+  map, extended across the bridge by an east quarter where the new workplaces stand (post office, harbour kitchen,
+  the trading company's office; the inn is the map's inn; a building site with scaffolding stands for the jobs
+  still to come). Every workplace shows at a glance whether it is open now (営業中 or its hours), the player's rank
+  there (●●○○○) and 「新」 when something new waits. Phone: the map as an overview — a tap zooms into that spot,
+  全体を見る zooms out — and the workplaces as signboards with the same badges (no tappable target under 40 px).
+- **The parts of the day at a job**: 始業前 is the job's greeting — the boss says the day's first line, the number
+  of tasks waits, 「始業する」 begins working hours (or 「町へ出る」 to work elsewhere today). 業務中 is the day's
+  **shift**: the rank's `tasks` + `MAIN_SHIFT_EXTRA` (2) tasks. 業務後: out into the town, where a workplace with an
+  evening shift takes one **second shift** (the rank's `tasks`; one a day; not the day's own workplace) — the
+  tea house too, opened late: the shop only, from the back room (`BACK_ROOM_COST` = 1 coin a cup, no market, no
+  house delivery). The evening market (goods for tomorrow) is in the town too. 「家に帰って帳簿をつける」 ends the day
+  from the town, from a closed shop or from a finished shift; the night's ledger lists the shifts (tasks, お給金)
+  next to the shop's accounts.
+- **Hours** (`JobDef.hours`, unchanged field — its first meaning was 0 朝 / 1 昼 / 2 夕): 0 or 1 = the workplace has
+  day shifts (it can be the day's workplace), 2 = it has an evening shift (業務後). Post office and office `[0, 1]`
+  (日中のみ), inn `[0, 2]` and kitchen `[0, 1, 2]` (日中・業務後も), the tea house always. A new job keeps writing
+  `hours` as before.
 - A day **without the tea house** leaves it closed: its planned customers come another day, its **stage
   clock does not move** (`clockOffset −1`, so no stage runs ahead while the player works elsewhere), and a
   planned story beat waits for another day (as before). The story, renovation, difficulty and metrics are
@@ -405,7 +445,8 @@ a wrong document approved).
    fish, give chicken" is a real decision). Issues: empty, forbidden (bad), disliked, missing, extra,
    too_much / too_little, wrong_vessel (minor), wrong_method, wrong_order.
 2. **sort & route** (post office, kitchen's deliveries, inn's luggage): a tray of letters / crates / bags
-   with their labels, a cabinet of labelled cubbies; tap (or drag) and place, hand in, wrong ones are marked.
+   with their labels, a cabinet of labelled cubbies; tap (or drag) and place, hand in (the reply names the box a
+   misplaced one belongs in).
    One wrong of ≥ 4 is minor. Crates show only their label (reading, not the picture, decides).
 3. **check documents** (inn, office, post): papers side by side (or what the guest just said vs the booking
    book); stamp ✓ (問題なし) or circle the line that disagrees and stamp ✗ (at rank 3 also choose the right
@@ -708,14 +749,18 @@ Goods kept overnight start the next market day in stock and the shopping note as
 not when a regular already made small talk; a remark may be marked `notWhen: ['cold' | 'hot']` so nobody
 says "very warm here" over an iced tea). The arrival note is on the day's first notice (the market's paper
 when the day starts there). An entry that has appeared stays listed even if reputation dips below its gate.
-**Economy with the jobs (en).** Jobs pay wages (3 coins a task done well, the office 4; 12–24 a shift) and rank
-rewards, on top of the tea house's takings, so English prices are the shared prices × `RenoText.priceScale` =
-2.6 (rounded to 5: the catalogue costs 2185 coins in all; zh has no jobs and keeps the shared prices, 842).
-Calibration (`npm run simulate -- --jobs --days=70 --acc=… --buy`: the board opens on day 4; a job in the
-morning, the tea house at noon, another job in the evening; buying what is affordable): earned in 70 days
-(jobs + tea house net) — acc 0.95: 1384 + 1870, the whole catalogue owned on **day 48**; acc 0.85: 1297 + 1634,
-**day 52**; acc 0.7: 1058 + 1350, **day 61**. Ranks after 70 days at 0.85: post 2, kitchen 3, inn 3, office 2
-(the spine gate keeps each rank's material in play). The tea-house-only calibration (zh, and en before the
+**Economy with the jobs (en).** Jobs pay wages (3 coins a task done well, the office 4; a day's shift is the rank's
+`tasks` + 2, an evening's second shift the rank's `tasks`) and rank rewards, on top of the tea house's takings, so
+English prices are the shared prices × `RenoText.priceScale` = 2.2 (rounded to 5: the catalogue costs 1845 coins in
+all; zh has no jobs and keeps the shared prices, 842). Calibration (`npm run simulate -- --jobs --days=70 --acc=…
+--buy`: the board opens on day 4; the days alternate between the tea house's day with a second shift after closing
+and a job's day with the tea house opened after closing; buying what is affordable): earned in 70 days (jobs + tea
+house net) — acc 0.95: 1391 + 1345, the whole catalogue owned on **day 47**; acc 0.85: 1258 + 1241, **day 50**; acc
+0.7: 1109 + 822, **day 63** (before the three-part day, with 2.6: 1360 + 1854 day 49; 1242 + 1670 day 52; 1080 +
+1364 day 60). A player who never shops before opening and orders by delivery whenever the shelf runs out
+(`--order`, acc 0.85): 33 orders and 132 coins of fees in 70 days, the catalogue owned on day 57 — a real cost, not
+a punishing one. Ranks after 70 days at 0.85: post 2, kitchen 3, inn 3, office 2 (the spine gate keeps each rank's
+material in play). The tea-house-only calibration (zh, and en before the
 board opens): a player who serves everything right earns ~770 coins net of the market in 45 days (zh) and owns
 the whole zh catalogue (842) around day 39–42.
 
@@ -1068,12 +1113,12 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
   minimum review share, template choice (older, shorter templates when easing), audio-only frequency and the
   stage clock. The reason is shown in Japanese on the 学習の記録 page.
 - **手助け** (all off by default): pinyin always / unconfirmed only / never (else 設定's switch); peek at the gloss
-  of an unconfirmed word on its notebook page (評判 −1); mark the order words a failed cup was about; retry the
-  same customer without penalty (state restored; the failed first try still counts in the indicators; not for
-  regulars' story visits; anything else done after the failed cup — a catalogue order, a sealed page, a memo,
-  a story card — ends the chance to retry, since the restore would undo it); after an empty cup no word is
-  marked, a note says the cup was empty; audio-only orders off / normal / many (also the market's spoken
-  quotes); slower speech.
+  of an unconfirmed word on its notebook page (評判 −1); 「もう一度つくる」: after **every** cup (so that it never tells
+  how the cup went) the same customer again, state restored (the first try still counts in the indicators as it
+  went; not for regulars' story visits; anything else done after the cup — a catalogue order, a sealed page, a
+  memo, a story card — ends the chance, since the restore would undo it); audio-only orders off / normal / many
+  (also the market's spoken quotes); slower speech. (The former 「まちがいの印」 assist, which marked the words a
+  failed cup was about, is retired: `assists.markMistake` stays in saves and does nothing.)
 - **腕だめし** (`src/core/placement.ts`): two curriculum orders per offered level, each with three cups labelled
   like the shelf (one right, two near misses checked by the real rules) or わからない; the suggestion is the
   highest level answered completely right from the first level up; the player confirms it in the sheet.
@@ -1104,6 +1149,18 @@ from ⚙ 設定 → レベル設定, and from the notebook's 現在地 (目標) 
 
 ## Learning model notes
 
+- **Saves (v6, the day in three parts)**: `TownDayState.part` (0 始業前 / 1 業務中 / 2 業務後), `at` (shop / market /
+  delivery), `incoming` / `arrived` / `fees` (supplies ordered by delivery), `evening` (the tea house opened after
+  closing); `MarketDay.mode` / `trips` / `fee` / `from`; `TownProgress.pantry` (goods bought after closing, kept for
+  tomorrow); `JobDayState.work` (today's workplace) and `evening` (the second shift), `JobsState.next` (the
+  workplace for the next days); `StoryCard.deferred` (waiting in the scene). The v5 → v6 migration puts a day in
+  progress where it was: at the market only if a trip was under way (a stall open, something bought), else in the
+  shop before opening; serving → 業務中; closed or out delivering → 業務後; a shift under way → that job, its part
+  from the shift's phase; the town after some work → 業務後; a morning in the town with nothing done → the tea
+  house, before opening. Cards that came with the morning (and, before opening, every card waiting) are deferred;
+  a resumed day's story catch-up (`ensureTownDay`) is deferred too. Checked with saves written by the v2, v3, v4
+  and v5 code (git worktrees) and v1 saves, at the start of a day, at the market, mid-shop, closed, at the delivery,
+  mid-shift and in the town after a shift: each loads, plays on and reaches the next day.
 - **Saves after this round (no version bump)**: optional `DifficultyState.startToeic` (the start chosen as a TOEIC band),
   `JobProgress.placed` (`{ rank, day, good }`: the job was placed at that rank by the start level) and
   `town.slips[id].seeded` (a delivery slip skipped by the start level). Word ids are

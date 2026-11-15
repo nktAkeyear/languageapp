@@ -15,7 +15,7 @@ export const TEAHOUSE_JOB: JobDef = {
   archetypes: ['make', 'trade', 'deliver'],
   ranks: [
     { rank: 1, need: { good: 0, words: 0 }, level: { eiken: '5', toeic: null }, tasks: 0, noteJa: '注文は一語から。品名・数・熱い／冷たい（段階 1〜6）。' },
-    { rank: 2, need: { good: 20, words: 40 }, level: { eiken: '4', toeic: null }, tasks: 0, reward: { coins: 10 }, noteJa: '体調からお茶を選ぶ・淹れ方・朝の市場（段階 7〜12 ほど）。' },
+    { rank: 2, need: { good: 20, words: 40 }, level: { eiken: '4', toeic: null }, tasks: 0, reward: { coins: 10 }, noteJa: '体調からお茶を選ぶ・淹れ方・始業前の市場（段階 7〜12 ほど）。' },
     { rank: 3, need: { good: 60, words: 110 }, level: { eiken: '3', toeic: 400 }, tasks: 0, reward: { coins: 20 }, noteJa: '挨拶・家族・時間・天気・値段・配達票の道案内（段階 13〜18 ほど）。' },
     { rank: 4, need: { good: 120, words: 200 }, level: { eiken: 'pre2', toeic: 500 }, tasks: 0, reward: { coins: 30 }, noteJa: '理由・比較・提案（段階 19〜23）。この先の茶房の内容はまだ少ない。' },
   ],

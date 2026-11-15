@@ -4,14 +4,14 @@
  * Layout / position is up to the composition (ShopScene.tsx / MobileShop.tsx, via CSS).
  */
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { activityDef } from '../../activities';
-import { hasNextSegment } from '../../activities/day';
-import { canGoToTown } from '../../jobs/engine';
+import { DELIVERY_FEE, deliveryWaiting, marketAccess, marketDay, teaPart } from '../../activities/day';
+import { canGoToTown, jobDay, TEAHOUSE } from '../../jobs/engine';
 import { currentOrder } from '../../activities/shop/engine';
 import { plain, wordMarkup } from '../../core/gamedata';
 import type { IngredientId, Method, Temp } from '../../core/types';
 import { ING_UNIT, UNIT_ACTION_JA, canAdd, reactionMotion, type Motion } from '../brewing';
 import { CustomerArt, expressionFor, lookFor, type Expression } from '../art/customer';
+import { DayParts } from '../components/DayChrome';
 import { ContainerArt, PieceArt } from '../art/ingredients';
 import { CalendarArt, CoinJarArt, NotebookProp, PlaqueArt, RecipeBookProp } from '../art/props';
 import { BoardArt, ColdBasinArt, HandToolArt, HourglassArt, KettleArt, PotArt, SlopBowlArt, SpoonArt } from '../art/tools';
@@ -26,7 +26,7 @@ import { useStoryHold } from '../story/StoryUi';
 import { useMobile } from '../layout';
 import { useBench, useBenchOptional } from './workbench';
 import { owns } from '../../renovation/engine';
-import { EmptyCupNote, RetrySign, useMistakeMarks } from '../difficulty/AssistUi';
+import { RetrySign } from '../difficulty/AssistUi';
 
 // ------------------------------------------------------------------------------------- shelf
 
@@ -340,7 +340,8 @@ export function useCustomer() {
   const b = useBench();
   const { data, progress, lastServe } = g;
   const t = progress?.today;
-  const order = progress ? currentOrder(progress) : null;
+  // Before opening nobody is at the counter yet.
+  const order = progress && teaPart(progress) !== 0 ? currentOrder(progress) : null;
   const customer = order && data ? data.content.customers.find((c) => c.id === order.customer) : undefined;
   const result = t?.phase === 'reaction' ? t.results[t.results.length - 1] : null;
   const motion: Motion | null =
@@ -413,7 +414,6 @@ export function Bubble() {
   const voice = useSpeechAvailable(lang ?? 'en');
   const { order, result, t, customer } = useCustomer();
   const mobile = useMobile();
-  const marks = useMistakeMarks(order);
   const spokenKey = useRef('');
   // Audio-only orders are read out when the customer arrives.
   useEffect(() => {
@@ -446,9 +446,8 @@ export function Bubble() {
             </div>
           ) : null}
           <div className="bubble-prev">
-            <WordText text={order.text} mark={marks} />
+            <WordText text={order.text} />
           </div>
-          <EmptyCupNote />
           <div className="bubble-line bubble-reaction" key="r">
             <WordText text={result!.reaction} className="reaction-text" />
             <SpeakButton text={result!.reaction} label="" className="speak-round" />
@@ -509,9 +508,12 @@ export function Juice() {
   const k = `${t!.day}:${t!.index}`;
   return (
     <>
-      <div key={`rep${k}`} className={`juice juice-rep ${r.repDelta > 0 ? 'up' : r.repDelta < 0 ? 'down' : 'flat'}`} aria-live="polite">
-        評判 {r.repDelta > 0 ? `+${r.repDelta}` : r.repDelta}
-      </div>
+      {/* the ledger's facts, not a grade: the plaque's number moves, the coins drop into the jar */}
+      {r.repDelta ? (
+        <div key={`rep${k}`} className="juice juice-rep flat" aria-live="polite">
+          評判 {r.repDelta > 0 ? `+${r.repDelta}` : r.repDelta}
+        </div>
+      ) : null}
       {b.coinDelta > 0 ? (
         <div key={`coin${k}`} className="juice juice-coin" aria-hidden>
           {Array.from({ length: Math.min(4, b.coinDelta) }, (_, i) => (
@@ -550,25 +552,19 @@ export function Plaque() {
 }
 
 export function Calendar() {
-  const { progress, townDay } = useGame();
+  const { progress } = useGame();
   if (!progress) return null;
   return (
     <div className="calendar" title={`${progress.day}日目`}>
       <CalendarArt day={progress.day} />
-      {townDay && townDay.segments.length > 1 ? (
-        <div className="cal-plan" aria-label="今日の予定">
-          {townDay.segments.map((s, i) => {
-            const a = activityDef(s);
-            return (
-              <span key={s} className={i < townDay.seg ? 'done' : i === townDay.seg ? 'cur' : ''}>
-                {a.whenJa}・{a.nameJa}
-              </span>
-            );
-          })}
-        </div>
-      ) : null}
     </div>
   );
+}
+
+/** The day-part indicator in the shop (始業前 / 業務中 / 業務後). */
+export function ShopDayParts({ compact = false }: { compact?: boolean }) {
+  // phone: a narrow column under the wall calendar (the calendar shows the day)
+  return <DayParts compact={compact} vertical={compact} className="shop-dayparts" />;
 }
 
 export function CoinJar() {
@@ -581,9 +577,7 @@ export function CoinJar() {
   );
 }
 
-const MINI_FACE: Record<string, string> = { perfect: 'good', minor: 'meh', fail: 'bad', bad: 'bad' };
-
-/** Order tickets on a nail: one per customer today, marked when served. */
+/** Order tickets on a nail: one per customer today, torn off when served (no mark of how it went). */
 export function QueueTickets() {
   const t = useGame().progress?.today;
   const pend = usePending();
@@ -592,7 +586,7 @@ export function QueueTickets() {
     <div className="tickets" aria-label={`${Math.min(t.index + 1, t.queue.length)} 人目 / ${t.queue.length} 人`}>
       {t.queue.map((_q, i) => {
         const r = pend.pending && i === t.results.length - 1 ? undefined : t.results[i];
-        return <span key={i} className={`ticket ${i === t.index && t.phase !== 'closed' ? 'ticket-cur' : ''} ${r ? `ticket-${MINI_FACE[r.outcome]}` : ''}`} />;
+        return <span key={i} className={`ticket ${i === t.index && t.phase !== 'closed' ? 'ticket-cur' : ''} ${r ? 'ticket-served' : ''}`} />;
       })}
     </div>
   );
@@ -639,94 +633,243 @@ export function BookProps({ compact = false }: { compact?: boolean }) {
   );
 }
 
-// ------------------------------------------------------------------------------------- paper on the counter
+// ------------------------------------------------------------------------------------- the day's three parts at the counter
 
-export function DayNotice() {
-  const t = useGame().progress?.today;
-  const [hidden, setHidden] = useState<string>('');
-  if (!t || !t.notes.length || t.index !== 0 || t.phase !== 'order' || hidden === `${t.day}`) return null;
+/** The shopping note as paper (target language): the market's note lines, kept or bought marked by the shelf. */
+function ShoppingNote() {
+  const { townDay } = useGame();
+  const md = townDay?.market;
+  if (!md || !md.lines.length) return null;
   return (
-    <div className="letter" role="dialog" aria-label="今日の知らせ">
-      <div className="letter-title">今日の知らせ</div>
-      {t.notes.map((n) => (
-        <p key={n}>{n}</p>
+    <div className="shop-note" data-testid="shopping-note">
+      <div className="shop-note-title">
+        <WordText text={md.title} />
+      </div>
+      <ul>
+        {md.lines.map((l) => (
+          <li key={l.good + (l.variant ?? '')}>
+            <WordText text={l.text} />
+          </li>
+        ))}
+      </ul>
+      {md.tips.map((t) => (
+        <p key={t} className="shop-note-tip">
+          <WordText text={t} />
+        </p>
       ))}
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={() => {
-          sfx('page');
-          setHidden(`${t.day}`);
-        }}
-      >
-        わかった
-      </button>
     </div>
   );
 }
 
 /**
- * The shop has closed for the day. With a delivery still to do, a short note of the day's
- * customers and the way out; otherwise the closing sign — the day's accounts are written in the
- * ledger at night (src/ui/story/NightLedger.tsx).
+ * 始業前: the shop is being prepared. Where the customer will stand: the day's shopping note (on a market day), the
+ * way to the market and back, out into the town (to work elsewhere today), and 「店を開ける」. Never covers the shelf,
+ * the books or the cup.
  */
-export function DayEnd() {
+export function PrepPanel() {
   const g = useGame();
-  const { data, progress } = g;
-  if (!data || !progress?.today || progress.today.phase !== 'closed') return null;
-  const t = progress.today;
-  const nextSeg = hasNextSegment(progress) && g.townDay ? activityDef(g.townDay.segments[g.townDay.seg + 1]) : null;
-  if (!nextSeg)
-    return (
-      <div className="closing" role="dialog" aria-label="店じまい">
-        <div className="closing-sign" aria-hidden>
-          <span>本日</span>
-          <span>閉店</span>
-        </div>
-        <p className="closing-line hand">最後のお客さんが帰っていった。</p>
-        {canGoToTown(progress) ? (
+  const { progress } = g;
+  const [why, setWhy] = useState<string | null>(null);
+  if (!progress?.today || !progress.townDay || teaPart(progress) !== 0 || progress.today.phase === 'closed') return null;
+  const acc = marketAccess(progress);
+  const md = progress.townDay.market;
+  const trips = md?.trips ?? 0;
+  const town = !!jobDay(progress);
+  return (
+    <div className="day-panel prep-panel" data-testid="prep-panel" aria-label="始業前">
+      <div className="dpn-head">
+        <span className="dpn-title">始業前</span>
+        <span className="dpn-sub hand">店はまだ準備中。{progress.today.queue.length}人のお客さんが来る予定。</span>
+      </div>
+      {marketDay(progress) ? <ShoppingNote /> : acc ? <p className="dpn-line hand small">今日は仕入れの日ではない。棚の品は足りている。</p> : null}
+      {why ? <p className="dpn-why small">{why}</p> : null}
+      <div className="dpn-actions">
+        {acc && marketDay(progress) ? (
           <button
             type="button"
-            className="cv-btn closing-btn"
+            className="cv-btn"
+            data-testid="go-market"
+            onClick={() => {
+              sfx('steps');
+              setWhy(g.day.goMarket());
+            }}
+          >
+            {trips ? 'もう一度市場へ' : '市場へ買い出しに行く'}
+          </button>
+        ) : null}
+        {town ? (
+          <button
+            type="button"
+            className="cv-btn"
             data-testid="to-town"
             onClick={() => {
               sfx('steps');
               g.jobs.toTown();
             }}
           >
-            店を閉めて町へ出る（夕方の仕事）
+            町へ出る（ほかの仕事場へ）
           </button>
         ) : null}
         <button
           type="button"
-          className="cv-btn cv-next closing-btn"
+          className="cv-btn cv-next"
+          data-testid="open-shop"
+          onClick={() => {
+            sfx('bell');
+            g.day.openShop();
+          }}
+        >
+          店を開ける
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * 業務中, on a market day: 「配達を頼む」 — send to the market for goods. The fee is said before anything is paid; the
+ * goods come with the next customer.
+ */
+export function SupplyButton({ className = '' }: { className?: string }) {
+  const g = useGame();
+  const { progress } = g;
+  const [ask, setAsk] = useState(false);
+  const [why, setWhy] = useState<string | null>(null);
+  if (!progress?.townDay || teaPart(progress) !== 1 || !marketDay(progress) || progress.today?.phase === 'closed') return null;
+  const acc = marketAccess(progress);
+  if (!acc) return null;
+  const td = progress.townDay;
+  const out = Object.values(td.stock).some((n) => n === 0);
+  const coming = (td.incoming ?? []).length;
+  return (
+    <div className={`supply ${className}`}>
+      <button
+        type="button"
+        className={`supply-btn ${out && !acc.why ? 'supply-want' : ''}`}
+        data-testid="order-supplies"
+        aria-expanded={ask}
+        onClick={() => {
+          sfx('paper');
+          setWhy(null);
+          setAsk(!ask);
+        }}
+      >
+        配達を頼む
+        <span className="supply-fee">配送費 {DELIVERY_FEE} 枚</span>
+      </button>
+      {coming ? <span className="supply-coming hand small">注文した品：次のお客さんのころに届く</span> : null}
+      {ask ? (
+        <div className="supply-ask" role="group" aria-label="配達の注文" data-testid="supply-ask">
+          <p className="small">
+            市場の店に使いを出して、品を届けてもらう。品の代金のほかに<b>配送費 {DELIVERY_FEE} 枚</b>がかかる（何も頼まなければ返ってくる）。届くのは次のお客さんが来るころ。
+          </p>
+          {acc.why || why ? <p className="dpn-why small">{acc.why ?? why}</p> : null}
+          <div className="dpn-actions">
+            <button type="button" className="cv-btn" onClick={() => setAsk(false)}>
+              やめる
+            </button>
+            <button
+              type="button"
+              className="cv-btn cv-next"
+              data-testid="supply-confirm"
+              disabled={!!acc.why}
+              onClick={() => {
+                sfx('coin');
+                const r = g.day.goMarket();
+                if (r) setWhy(r);
+                else setAsk(false);
+              }}
+            >
+              配送費を払って注文する
+            </button>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+/**
+ * 業務後: the shop is closed. The day's house delivery, the market (for tomorrow), the town (a second shift at a
+ * workplace open in the evening), and home with the ledger. The catalogue and the books stay on the counter.
+ */
+export function ClosedPanel() {
+  const g = useGame();
+  const { progress } = g;
+  const [why, setWhy] = useState<string | null>(null);
+  if (!progress?.today || progress.today.phase !== 'closed' || !progress.townDay) return null;
+  const td = progress.townDay;
+  const acc = marketAccess(progress);
+  const deliver = deliveryWaiting(progress) && !td.evening;
+  const d = jobDay(progress);
+  const pantry = Object.entries(progress.town.pantry ?? {}).filter(([, n]) => (n ?? 0) > 0).length;
+  const served = progress.today.results.length;
+  return (
+    <div className="day-panel closed-panel" data-testid="closed-panel" aria-label="業務後">
+      <div className="dpn-head">
+        <span className="dpn-title">業務後</span>
+        <span className="dpn-sub hand">
+          店を閉めた。今日のお客さんは{served}人。
+          {td.delivery?.phase === 'result' ? '配達も済んだ。' : ''}
+        </span>
+      </div>
+      {deliver ? <p className="dpn-line hand small">配達の包みがひとつ待っている。</p> : null}
+      {pantry ? <p className="dpn-line hand small">明日の分の品を、奥の部屋に置いてある。</p> : null}
+      {why ? <p className="dpn-why small">{why}</p> : null}
+      <div className="dpn-actions">
+        {deliver ? (
+          <button
+            type="button"
+            className="cv-btn"
+            data-testid="go-delivery"
+            onClick={() => {
+              sfx('steps');
+              g.day.goDelivery();
+            }}
+          >
+            配達に出かける
+          </button>
+        ) : null}
+        {acc ? (
+          <button
+            type="button"
+            className="cv-btn"
+            data-testid="go-market"
+            disabled={!!acc.why}
+            title={acc.why ?? undefined}
+            onClick={() => {
+              sfx('steps');
+              setWhy(g.day.goMarket());
+            }}
+          >
+            市場へ（明日の分の仕入れ）
+          </button>
+        ) : null}
+        {d && canGoToTown(progress) ? (
+          <button
+            type="button"
+            className="cv-btn"
+            data-testid="to-town"
+            onClick={() => {
+              sfx('steps');
+              g.jobs.toTown();
+            }}
+          >
+            町へ出る{d.evening ? '' : d.work === TEAHOUSE ? '（業務後のひと仕事も）' : ''}
+          </button>
+        ) : null}
+        <button
+          type="button"
+          className="cv-btn cv-next"
           data-testid="next-day"
           onClick={() => {
             sfx('bell');
             g.closeDay();
           }}
         >
-          店じまいして帳簿をつける
+          家に帰って帳簿をつける
         </button>
       </div>
-    );
-  return (
-    <div className="ledger" role="dialog" aria-label="店じまい">
-      <h2 className="ledger-title">{t.day}日目、店を閉めた</h2>
-      <div className="ledger-faces">
-        {t.results.map((r, i) => {
-          const c = data.content.customers.find((x) => x.id === r.customer);
-          return (
-            <span key={i} className={`ledger-face out-${r.outcome}`} title={c?.name}>
-              <CustomerArt look={lookFor(c?.id ?? r.customer, c?.avatar ?? '🧑')} ex={r.face} />
-            </span>
-          );
-        })}
-      </div>
-      <p className="ledger-line hand">夕方は、配達の包みがひとつ待っている。</p>
-      <button type="button" className="cv-btn cv-next" data-testid="next-segment" onClick={() => g.nextSegment()}>
-        {nextSeg.nameJa}へ出かける
-      </button>
     </div>
   );
 }

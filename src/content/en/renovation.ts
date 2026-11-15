@@ -11,7 +11,7 @@ export const RENO_EN: RenoText = {
   subtitle: 'Buy today, here tomorrow morning!',
   price: { one: '{d} coin', other: '{d} coins' },
   // English has the town's jobs: wages on top of the takings (see README "Shop renovation", calibration).
-  priceScale: 2.6,
+  priceScale: 2.2,
   upgrades: {
     ribbon: { name: 'a ribbon', lines: ['Words for today!'] },
     signboard: {

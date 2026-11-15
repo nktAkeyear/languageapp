@@ -1,0 +1,632 @@
+/* ============================================================ the day's parts (HUD) */
+.dayparts {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: #3a2410;
+  background: rgba(251, 243, 223, 0.94);
+  border: 1px solid #8a7350;
+  border-radius: 6px;
+  padding: 3px 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+}
+.dp-day {
+  font-weight: 700;
+}
+.dp-list {
+  display: flex;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dp-part {
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: #8a7a62;
+}
+.dp-part + .dp-part::before {
+  content: '›';
+  margin-right: 4px;
+  color: #b8a888;
+}
+.dp-cur {
+  color: #fff7e6;
+  background: var(--accent);
+  font-weight: 700;
+}
+.dp-cur::before {
+  color: #b8a888;
+}
+.dp-done {
+  color: #6b5a45;
+}
+.dayparts-compact {
+  font-size: 11px;
+  gap: 3px;
+  padding: 2px 4px;
+}
+.dayparts-compact .dp-part {
+  padding: 0 3px;
+}
+.dayparts-compact .dp-part + .dp-part::before {
+  margin-right: 2px;
+}
+
+/* ============================================================ notices pinned in the scene */
+.notice-pin {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 2px 4px 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+}
+.np-nail {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #e8d9b0, #6a5a3a);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+.np-paper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 34px;
+  height: 38px;
+  margin-top: -4px;
+  padding: 8px 5px;
+  background: linear-gradient(#fbf3df, #ecdcb4);
+  border: 1px solid #b89a6a;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);
+  transform: rotate(-4deg);
+  box-sizing: border-box;
+}
+.np-paper i {
+  display: block;
+  height: 2px;
+  background: #8a7350;
+  opacity: 0.6;
+}
+.np-paper i:last-child {
+  width: 60%;
+}
+.np-label {
+  font-size: 12px;
+  font-family: var(--font-serif);
+  color: #3a2410;
+  background: rgba(251, 243, 223, 0.9);
+  padding: 0 4px;
+  border-radius: 3px;
+  margin-top: 1px;
+}
+.np-dot {
+  position: absolute;
+  right: -2px;
+  top: 2px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #c0392b;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.notice-unread .np-paper {
+  animation: np-sway 2.4s ease-in-out infinite;
+  transform-origin: 50% 0;
+}
+@keyframes np-sway {
+  50% {
+    transform: rotate(3deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .notice-unread .np-paper {
+    animation: none;
+  }
+}
+
+.notice-panel {
+  position: fixed;
+  right: 12px;
+  top: 64px;
+  width: min(380px, calc(100vw - 24px));
+  max-height: calc(100dvh - 90px);
+  overflow: auto;
+  z-index: 900;
+  background:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="30"><rect y="29" width="4" height="1" fill="%23c8b28a" opacity="0.5"/></svg>'),
+    linear-gradient(#fbf3df, #f1e2bf);
+  border: 1px solid #b89a6a;
+  border-radius: 4px;
+  box-shadow: 0 14px 30px rgba(20, 8, 2, 0.5);
+  padding: 10px 16px 14px;
+  font-family: var(--font-hand, inherit);
+  animation: np-in 0.25s ease-out both;
+}
+@keyframes np-in {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+.notice-sheet {
+  left: 8px;
+  right: 8px;
+  top: auto;
+  bottom: 8px;
+  width: auto;
+  max-height: 55dvh;
+}
+.np-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.np-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--accent);
+}
+.np-x {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: #5a3c12;
+}
+.np-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.np-item {
+  border-top: 1px dashed #c8b28a;
+  padding-top: 8px;
+}
+.np-text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.np-sub {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6b5a45;
+}
+.np-new .np-text::before,
+.np-story .np-text::before {
+  content: '●';
+  color: #c0392b;
+  font-size: 10px;
+  margin-right: 6px;
+  vertical-align: 2px;
+}
+.np-open {
+  margin-top: 6px;
+  min-height: 40px;
+}
+.np-empty {
+  margin: 8px 0;
+}
+
+/* ============================================================ the one-line banner */
+.day-banner {
+  position: fixed;
+  left: 50%;
+  top: 8px;
+  transform: translateX(-50%);
+  max-width: min(560px, calc(100vw - 140px));
+  z-index: 950;
+  pointer-events: none;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: #fff7e6;
+  background: rgba(58, 31, 14, 0.86);
+  border: 1px solid #c99a3c;
+  border-radius: 18px;
+  padding: 6px 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: banner 5.2s ease-in-out both;
+}
+@keyframes banner {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -14px);
+  }
+  8%,
+  86% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -6px);
+  }
+}
+/* phone: over the wall's top row (plaque, calendar), clear of the round buttons on the right */
+[data-layout='mobile'] .day-banner {
+  left: 8px;
+  right: 156px;
+  top: 6px;
+  max-width: none;
+  transform: none;
+  font-size: 13px;
+  padding: 5px 10px;
+  white-space: normal;
+  animation-name: banner-m;
+}
+@keyframes banner-m {
+  0% {
+    opacity: 0;
+  }
+  8%,
+  86% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .day-banner {
+    animation: none;
+  }
+}
+
+/* ============================================================ the shop: where the pieces stand (design units) */
+.d-dayparts {
+  left: 26px;
+  top: 26px;
+  z-index: 6;
+}
+.d-notice {
+  left: 318px;
+  top: 300px;
+  z-index: 6;
+}
+.d-supply {
+  left: 1032px;
+  top: 548px;
+  width: 300px;
+  z-index: 8;
+}
+.d-daypanel {
+  left: 640px;
+  top: 76px;
+  width: 400px;
+  z-index: 12;
+}
+.m-dayparts {
+  left: 108px;
+  top: 70px;
+  z-index: 6;
+}
+.dayparts-vertical {
+  padding: 2px;
+}
+.dayparts-vertical .dp-list {
+  flex-direction: column;
+  gap: 1px;
+}
+.dayparts-vertical .dp-part {
+  font-size: 10px;
+  line-height: 1.35;
+  text-align: center;
+}
+.dayparts-vertical .dp-part + .dp-part::before {
+  content: none;
+}
+.m-notice {
+  right: 100px;
+  top: 12px;
+  z-index: 31;
+}
+.m-daypanel {
+  left: 8px;
+  right: 8px;
+  top: 104px;
+  bottom: 6px;
+  z-index: 12;
+  overflow: auto;
+  pointer-events: none;
+}
+.m-daypanel > * {
+  pointer-events: auto;
+}
+.ticket-served {
+  opacity: 0.45;
+  transform: rotate(-6deg) translateY(2px);
+}
+
+/* the panel where the customer will stand (始業前) / stood (業務後) */
+.day-panel {
+  background:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="30"><rect y="29" width="4" height="1" fill="%23c8b28a" opacity="0.5"/></svg>'),
+    linear-gradient(#fbf3df, #f1e2bf);
+  border: 1px solid #b89a6a;
+  border-radius: 4px;
+  box-shadow: 0 10px 24px rgba(20, 8, 2, 0.45);
+  padding: 12px 16px 14px;
+  font-size: 17px;
+}
+.dpn-head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 6px;
+}
+.dpn-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--accent);
+}
+.dpn-sub,
+.dpn-line {
+  margin: 0;
+  line-height: 1.6;
+}
+.dpn-why {
+  margin: 4px 0;
+  color: #7a2a18;
+}
+.dpn-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.dpn-actions .cv-btn {
+  min-height: 44px;
+}
+.shop-note {
+  margin: 6px 0 2px;
+  padding: 6px 10px;
+  background: #fffaf0;
+  border: 1px dashed #b89a6a;
+  font-size: 18px;
+}
+.shop-note-title {
+  font-weight: 700;
+}
+.shop-note ul {
+  margin: 2px 0 0;
+  padding-left: 18px;
+}
+.shop-note-tip {
+  margin: 2px 0 0;
+  font-size: 15px;
+}
+.m-daypanel .day-panel {
+  padding: 8px 10px 10px;
+  font-size: 14px;
+}
+.m-daypanel .dpn-title {
+  font-size: 17px;
+}
+.m-daypanel .shop-note {
+  font-size: 15px;
+}
+.m-daypanel .dpn-actions .cv-btn {
+  font-size: 14px;
+  padding: 6px 10px;
+}
+
+/* 業務中: send for goods */
+.supply {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.supply-btn {
+  font: inherit;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  min-height: 44px;
+  padding: 4px 14px;
+  border: 2px solid #5a3c12;
+  border-radius: 6px;
+  background: linear-gradient(#f3e2b8, #d9bf86);
+  color: #3a2410;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+}
+.supply-fee {
+  font-size: 12px;
+  color: #6b4a2a;
+}
+.supply-want {
+  animation: supply-glow 1.8s ease-in-out infinite;
+}
+@keyframes supply-glow {
+  50% {
+    box-shadow: 0 0 0 4px rgba(255, 210, 120, 0.8), 0 3px 6px rgba(0, 0, 0, 0.4);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .supply-want {
+    animation: none;
+    box-shadow: 0 0 0 3px rgba(255, 210, 120, 0.9);
+  }
+}
+.supply-coming {
+  background: rgba(251, 243, 223, 0.92);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+.supply-ask {
+  background: linear-gradient(#fbf3df, #f1e2bf);
+  border: 1px solid #b89a6a;
+  border-radius: 4px;
+  box-shadow: 0 10px 24px rgba(20, 8, 2, 0.45);
+  padding: 8px 12px 10px;
+  width: 300px;
+  max-width: calc(100vw - 24px);
+}
+.supply-ask p {
+  margin: 0;
+  line-height: 1.6;
+}
+.supply.m-supply {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 0 8px 4px 96px;
+}
+.m-supply .supply-btn {
+  flex-direction: row;
+  gap: 6px;
+  font-size: 14px;
+  min-height: 40px;
+  padding: 2px 10px;
+}
+.m-supply .supply-fee {
+  font-size: 11px;
+}
+.m-supply .supply-coming {
+  font-size: 11px;
+  line-height: 1.3;
+  order: -1;
+}
+.m-supply .supply-ask {
+  /* phone: a sheet at the bottom of the screen, above everything (the counter's pieces stack over each other) */
+  position: fixed;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  z-index: 900;
+  width: auto;
+  max-width: none;
+}
+
+/* the town, a workplace, the market, the delivery: where the HUD goes */
+.hub-status .dayparts {
+  font-size: 16px;
+}
+.hub-work {
+  font-family: var(--font-serif);
+}
+.hub-notice .np-label {
+  color: #3a2410;
+}
+.m-hub-head .dayparts {
+  font-size: 12px;
+}
+.js-head .dayparts {
+  margin-left: 8px;
+}
+.js-head .notice-pin {
+  margin-left: 4px;
+}
+.js-intro-part {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--accent);
+  margin: 0;
+}
+.js-done-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.mk-d-trip {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+  width: 760px;
+  z-index: 15;
+}
+.mk-trip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(251, 243, 223, 0.94);
+  border: 1px solid #8a7350;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 16px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+.mk-trip .dayparts {
+  box-shadow: none;
+  border: 0;
+  background: none;
+  padding: 0;
+}
+.mk-trip-text {
+  line-height: 1.4;
+}
+.mk-trip-order {
+  border-color: #9b3f26;
+}
+.m-town-trip {
+  position: relative;
+  z-index: 6;
+  margin: 2px 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.m-town-trip .mk-trip {
+  font-size: 12px;
+  padding: 3px 6px;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.dv-d-parts {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  z-index: 15;
+}
+.dv-notnow {
+  min-height: 40px;
+}
+.m-counter > .m-side.m-side {
+  z-index: 3;
+}
+.m-notice .np-label {
+  display: none;
+}
+.m-notice .notice-pin {
+  min-height: 44px;
+  padding-top: 0;
+}

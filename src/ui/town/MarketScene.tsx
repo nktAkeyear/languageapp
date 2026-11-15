@@ -7,7 +7,7 @@
  * Logic is the market engine's (src/activities/market/engine.ts) through GameApi.market.
  */
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { hasNextSegment } from '../../activities/day';
+import { DELIVERY_FEE } from '../../activities/day';
 import { canBargain, findOffer, goodName, maxUnits, priceTag, variantText } from '../../activities/market/engine';
 import { townOf } from '../../activities/town/text';
 import { plain } from '../../core/gamedata';
@@ -25,9 +25,11 @@ import { useStageScale } from '../scene/ShopScene';
 import { sfx } from '../sound';
 import { speak, useSpeechAvailable } from '../speech';
 import { useGame } from '../useGame';
-import { TownNoticePaper } from './common';
+import { DayParts } from '../components/DayChrome';
 
 const MORNING = skyAt(0.04);
+const NOON = skyAt(0.38);
+const EVENING = skyAt(0.74);
 
 function useMarket(): MarketDay | null {
   return useGame().townDay?.market ?? null;
@@ -35,11 +37,34 @@ function useMarket(): MarketDay | null {
 
 // ------------------------------------------------------------------------------------- pieces
 
+/**
+ * What this trip is for, in a strip at the top (Japanese chrome): before opening, today's goods; during working
+ * hours, an order sent for delivery (the fee already paid, given back if nothing is ordered); after closing,
+ * tomorrow's goods (kept in the back room overnight).
+ */
+function TripStrip() {
+  const md = useMarket();
+  if (!md) return null;
+  const mode = md.mode ?? 'visit';
+  return (
+    <div className={`mk-trip mk-trip-${mode}`} data-testid="market-mode" data-mode={mode}>
+      <DayParts compact />
+      <span className="mk-trip-text">
+        {mode === 'order'
+          ? `配達の注文：店に使いを出している（配送費 ${DELIVERY_FEE} 枚は払った。何も頼まなければ返ってくる）。届くのは次のお客さんが来るころ。`
+          : mode === 'evening'
+            ? '明日の分の仕入れ：買った品は奥の部屋に置いておき、明日の朝、棚に並ぶ。'
+            : '開店前の買い出し：買った品は今日の棚に並ぶ。'}
+      </span>
+    </div>
+  );
+}
+
 /** The shopping note, pinned (target language only). */
 export function ShoppingNote({ compact = false }: { compact?: boolean }) {
   const md = useMarket();
   const [open, setOpen] = useState(!compact);
-  if (!md) return null;
+  if (!md || !md.lines.length || md.mode === 'evening') return null;
   return (
     <div className={`mk-note ${compact ? 'mk-note-compact' : ''} ${open ? 'open' : ''}`} data-testid="shopping-note">
       <span className="mk-pin" aria-hidden />
@@ -439,34 +464,27 @@ function Street() {
   );
 }
 
-/** Leave the market (or, done, go open the shop). */
+/** Leave the market: back to the shop (or the town, after closing). */
 function LeaveSign() {
   const g = useGame();
   const md = useMarket();
-  if (!md || !g.progress) return null;
-  if (md.done)
-    return hasNextSegment(g.progress) ? (
-      <button type="button" className="mk-leave mk-leave-go" data-testid="next-segment" onClick={() => g.nextSegment()}>
-        <SignpostArt />
-        <span>茶房を開けに戻る</span>
-      </button>
-    ) : null;
+  if (!md || !g.progress || md.done) return null;
+  const mode = md.mode ?? 'visit';
+  const label = mode === 'order' ? (md.basket.length ? '注文を済ませて店に戻る' : '何も頼まずに店に戻る') : mode === 'evening' ? (md.from === 'hub' ? '買い物を終えて町に戻る' : '買い物を終えて店に戻る') : '買い物を終えて店に戻る';
   return (
-    <button type="button" className="mk-leave" data-testid="finish-market" disabled={!!md.pending} onClick={() => g.market.finish()}>
+    <button
+      type="button"
+      className="mk-leave"
+      data-testid="finish-market"
+      disabled={!!md.pending}
+      onClick={() => {
+        sfx('steps');
+        g.market.finish();
+      }}
+    >
       <SignpostArt />
-      <span>買い物を終える</span>
+      <span>{label}</span>
     </button>
-  );
-}
-
-function DonePaper() {
-  const md = useMarket();
-  if (!md?.done) return null;
-  return (
-    <div className="letter mk-done">
-      <div className="letter-title">買い物を終えた</div>
-      <p>かごの品は、茶房の棚に並べよう。</p>
-    </div>
   );
 }
 
@@ -479,14 +497,21 @@ export function MarketScene({ onSettings }: { onSettings: () => void }) {
   return mobile ? <MobileMarket onSettings={onSettings} /> : <DesktopMarket onSettings={onSettings} />;
 }
 
+function tripSky(md: MarketDay) {
+  return md.mode === 'evening' ? EVENING : md.mode === 'order' ? NOON : MORNING;
+}
+
 function DesktopMarket({ onSettings }: { onSettings: () => void }) {
   const md = useMarket()!;
   const { ref, scale } = useStageScale(1600, 1000);
   return (
     <div className="scene-viewport town-viewport" ref={ref} data-segment="market">
       <div className="stage mk-stage" style={{ width: 1600, height: 1000, transform: `translate(-50%, -50%) scale(${scale})` }}>
-        <MarketBackdrop sky={MORNING} />
+        <MarketBackdrop sky={tripSky(md)} />
         {md.stall && !md.done ? <StallOpen /> : <Street />}
+        <div className="mk-d-trip">
+          <TripStrip />
+        </div>
         <div className="mk-d-note">
           <ShoppingNote />
         </div>
@@ -510,10 +535,6 @@ function DesktopMarket({ onSettings }: { onSettings: () => void }) {
         <div className="mk-d-books">
           <BookProps compact />
         </div>
-        <div className="d-paper">
-          <TownNoticePaper />
-          <DonePaper />
-        </div>
         <CornerHooks onSettings={onSettings} />
       </div>
     </div>
@@ -525,11 +546,14 @@ function MobileMarket({ onSettings }: { onSettings: () => void }) {
   return (
     <div className="m-town m-market" data-segment="market">
       <div className="m-town-bg">
-        <MarketBackdrop sky={MORNING} W={400} H={860} ground={330} />
+        <MarketBackdrop sky={tripSky(md)} W={400} H={860} ground={330} />
       </div>
       <div className="m-town-top">
         <ShoppingNote compact />
         <CornerHooks onSettings={onSettings} />
+      </div>
+      <div className="m-town-trip">
+        <TripStrip />
       </div>
       <div className="m-town-main">{md.stall && !md.done ? <StallOpen /> : <Street />}</div>
       {!md.stall || md.done ? (
@@ -542,10 +566,6 @@ function MobileMarket({ onSettings }: { onSettings: () => void }) {
           <LeaveSign />
         </div>
       ) : null}
-      <div className="m-paper">
-        <TownNoticePaper />
-        <DonePaper />
-      </div>
     </div>
   );
 }

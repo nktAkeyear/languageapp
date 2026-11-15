@@ -1,8 +1,9 @@
 /**
  * 検証ページ: meaning cards (sketch + official gloss) are laid on the page; the player puts the
  * word slips onto them (drag, or tap a slip then tap a card). When every card has a slip the
- * stamp checks the whole page at once. Right → every card gets a seal and flips to show its
- * word + meaning; wrong → the page only says something is off.
+ * stamp checks the whole page at once — the game's one way to confirm a hypothesis about meanings. Confirmed →
+ * every card gets a seal and flips to show its word + meaning; not yet → the page only says this arrangement does
+ * not confirm it (never which card is off).
  */
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -214,11 +215,11 @@ export function VerifyPage({ page }: { page: VerificationPage }) {
             <button type="button" className={`stamp-btn ${full ? 'ready' : ''}`} disabled={!full || stamping} onClick={check} data-testid="verify-check">
               <span className="stamp-handle" aria-hidden />
               <span className="stamp-face">検</span>
-              <span className="stamp-label">確かめる</span>
+              <span className="stamp-label">推測を確かめる</span>
             </button>
             {result === 'ng' ? (
               <p className="ng-note hand" role="status">
-                ……どこかが違うようだ。（どれが違うかは分からない）
+                ……この組み合わせでは、まだ確かめられない。（どこを組み替えるかは、出会った文を手がかりに）
                 <span className="ng-smudge" aria-hidden>
                   ？
                 </span>
@@ -228,7 +229,7 @@ export function VerifyPage({ page }: { page: VerificationPage }) {
         </>
       ) : result === 'ok' ? (
         <p className="ok-note hand" role="status">
-          ぴったり合った！ これらの言葉の意味が確定した。
+          推測が確かめられた。これらの言葉の意味は、これで確定。
         </p>
       ) : (
         <p className="ok-note hand">このページの言葉はすべて確定している。</p>

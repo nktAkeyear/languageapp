@@ -1271,6 +1271,7 @@ const EN: JobContent = {
     { id: 'ir5_reply', kind: 'wrong_reply', rank: 5, voice: 'person', text: 'I am afraid that does not answer my question. Please read it again.', face: 'puzzled' },
     { id: 'ir5_slot', kind: 'wrong_slot', rank: 5, text: 'I am afraid that does not suit me. I explained what I need.', face: 'sad' },
     { id: 'ir_form', kind: 'wrong_form', text: 'Some of this message is not right. Please check it again.', face: 'sad' },
+    { id: 'ir_form2', kind: 'wrong_form', text: 'The “{field}” is not right. Please check it again.', face: 'puzzled' },
     { id: 'ir5_form', kind: 'wrong_form', rank: 5, text: 'I think the message is not right. Please listen again.', face: 'sad' },
     { id: 'ir5_bin', kind: 'wrong_bin', rank: 5, text: 'No, that one goes to “{bin}”. Please read the note again.', face: 'puzzled' },
     { id: 'ir5_fail', kind: 'any_fail', rank: 5, text: 'That is not right. Please be more careful.', face: 'sad' },

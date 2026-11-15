@@ -514,7 +514,11 @@ export interface JobDef {
   wage: Record<Outcome, number>;
   /** Day (calendar, counted from the board opening) from which the job is offered. */
   opensAfter: number;
-  /** Parts of the day the workplace is open (0 朝, 1 昼, 2 夕; default: all). The town shows which are open now. */
+  /**
+   * When the workplace is open (default: always). Kept from the first version (0 朝 / 1 昼 / 2 夕) and read as:
+   * 0 or 1 = it has day shifts (can be the day's workplace: 始業前 → 業務中), 2 = it has an evening shift (a second
+   * shift after closing time, 業務後). E.g. `[0, 1]` day only, `[0, 2]` / `[0, 1, 2]` day and evening, `[2]` evening only.
+   */
   hours?: number[];
   /** Building on the town map (src/ui/jobs/TownHub.tsx). */
   building: string;
@@ -578,7 +582,7 @@ export interface TaskResult {
   coins: number;
   /** Bonus coins from a used link good. */
   bonus: number;
-  /** Item ids the sort / form the player got wrong (shown on the bench). */
+  /** Item ids the sort / form the player got wrong (internal: never shown — the person's reaction says what was wrong). */
   wrongItems: string[];
 }
 
@@ -616,13 +620,21 @@ export interface JobProgress {
   placed?: { rank: number; day: number; good: number };
 }
 
-/** Which job each part of today went to. */
+/**
+ * Today at work (v6). A day has three parts — 0 始業前 (before opening: at today's workplace, preparing; the town
+ * can be visited to change workplace), 1 業務中 (working hours at today's workplace), 2 業務後 (after closing: a
+ * second shift at a workplace open in the evening, the evening market, going home); 3 = the day is over.
+ */
 export interface JobDayState {
   day: number;
-  /** 0 朝 / 1 昼 / 2 夕; 3 = the day's work is over. */
+  /** 0 始業前 / 1 業務中 / 2 業務後; 3 = the day's work is over. */
   part: number;
   view: 'hub' | 'teahouse' | 'job';
-  /** The tea house today: not yet / running / finished. */
+  /** Today's workplace (job id): where the day starts and where the working hours are spent. */
+  work: string;
+  /** The job worked as the second shift after closing (業務後), if any. */
+  evening?: string;
+  /** The tea house today: not opened / open (or opened) / finished. */
   tea: 'none' | 'active' | 'done';
   log: { part: number; job: string; tasks: number; good: number; coins: number }[];
   shift: ShiftState | null;
@@ -645,6 +657,8 @@ export interface JobsState {
   seen: string[];
   /** Japanese notes for the next morning (a rank reached at night). */
   pending?: string[];
+  /** The workplace the player chose for the next days (picked after closing, or at a workplace before opening). */
+  next?: string;
   /** Set by the v3 → v4 migration: work out the tea house's rank once at load. */
   migrated?: boolean;
 }

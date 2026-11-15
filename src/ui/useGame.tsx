@@ -1,8 +1,8 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { currentSegment, endTownDay, ensureTownDay, nextSegment, serveInTown, startTownDay, stockOf } from '../activities/day';
+import { backToShop, currentSegment, dayPart, endTownDay, ensureTownDay, goDelivery, goMarket, leaveMarket, nextInTown, openShop, serveInTown, startTownDay, stockOf } from '../activities/day';
 import * as delivery from '../activities/delivery/engine';
 import * as market from '../activities/market/engine';
-import { nextCustomer, viewPage, type ServeOutcome } from '../activities/shop/engine';
+import { viewPage, type ServeOutcome } from '../activities/shop/engine';
 import { CONTENT, SHARED } from '../content';
 import { buildGameData, type GameData } from '../core/gamedata';
 import { makeRng } from '../core/rng';
@@ -19,10 +19,10 @@ import {
   type Settings,
 } from '../core/save';
 import { addHandEntry, editEntry, markReview, removeEntry, setWordNote, toggleStar, type HandResult } from '../core/wordbook';
-import type { AbsentAction, ActivityKind, PersonId, TownDayState } from '../core/townTypes';
+import type { AbsentAction, ActivityKind, DayPart, PersonId, TownDayState } from '../core/townTypes';
 import type { Brew, IngredientId, Lang, Method, Temp } from '../core/types';
 import { submitVerification } from '../core/verification';
-import { storySync } from '../story/engine';
+import { storyOpen, storySync } from '../story/engine';
 import { difficultyOnRetry, difficultyOrderTime } from '../core/difficulty';
 import { currentOrder } from '../activities/shop/engine';
 import { applyBrewAction, emptyBrew, portionLimit, type BrewAction } from './brewing';
@@ -68,7 +68,7 @@ export interface GameApi {
   chooseLanguage(lang: Lang): void;
   /** Start a language afresh, letting `setup` adjust the new progress (レベル設定) before day 1 is planned. */
   newGame(lang: Lang, setup: (p: LangProgress, d: GameData) => void): void;
-  /** Assist 「やり直し」: a failed cup can be made again for the same customer without penalty. */
+  /** Assist 「もう一度つくる」: after any cup, the same customer again (state restored to before the cup). */
   canRetry: boolean;
   retryServe(): void;
   leaveToTitle(): void;
@@ -103,8 +103,21 @@ export interface GameApi {
   importText(json: string): string | null;
   resetLanguage(lang: Lang): void;
   openWord(id: string | null): void;
-  /** Move on to the next segment of the day (after the current one is done). */
-  nextSegment(): void;
+  /** The part of the day: 0 始業前 / 1 業務中 / 2 業務後. */
+  part: DayPart;
+  /** The tea house's day (src/activities/day.ts). */
+  day: {
+    /** 「店を開ける」: working hours begin. */
+    openShop(): void;
+    /** To the market (before opening: shopping; working hours: an order by delivery; after closing: for tomorrow). */
+    goMarket(from?: 'shop' | 'hub'): string | null;
+    /** After closing: out with the house delivery. */
+    goDelivery(): void;
+    /** Back into the shop (from the delivery). */
+    backToShop(): void;
+  };
+  /** A story card waiting in the scene (notice board, document box) is opened. */
+  openStoryCard(index: number): void;
   /** Generic progress mutation (used by the story layer's own components). */
   mutateProgress(fn: (p: LangProgress, d: GameData) => void): void;
   market: {
@@ -129,8 +142,12 @@ export interface GameApi {
     view: 'teahouse' | 'hub' | 'job';
     /** Work at a job for the current part of the day; returns a Japanese reason when not possible. */
     choose(id: string): string | null;
-    /** The tea house closed with part of the day left: out into the town. */
+    /** Out into the town: from the tea house (before opening / after closing) or a job's door before opening. */
     toTown(): void;
+    /** Back from the town to today's workplace (before opening). */
+    back(): void;
+    /** The workplace for the next days. */
+    chooseNext(id: string): string | null;
     begin(): void;
     submit(a: TaskAnswer, late?: boolean): void;
     next(): void;
@@ -242,9 +259,9 @@ export function GameProvider({ children }: { children: ReactNode }) {
         setLastServe(null);
         setSelectedWord(null);
       },
+      // Offered after every cup (not only a failed one), so that it never tells how the cup went.
       canRetry:
         !!lastServe &&
-        lastServe.evaluation.outcome !== 'perfect' &&
         !!progress?.difficulty?.assists.retry &&
         progress?.today?.phase === 'reaction' &&
         !!preServe.current &&
@@ -253,11 +270,12 @@ export function GameProvider({ children }: { children: ReactNode }) {
         const snap = preServe.current;
         if (!snap || !lang) return;
         preServe.current = null;
+        const ok = lastServe?.evaluation.outcome === 'perfect';
         mutate((s) => {
           const p = structuredClone(snap.progress);
           s.progress[lang] = p;
           const o = currentOrder(p);
-          if (o) difficultyOnRetry(gameData(lang), p, o);
+          if (o) difficultyOnRetry(gameData(lang), p, o, ok);
         });
         setBrew(snap.brew);
         setLastServe(null);
@@ -285,7 +303,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
         setLastServe(box.out);
       },
       next: () => {
-        withProgress((p, d) => nextCustomer(d, p));
+        withProgress((p, d) => nextInTown(d, p));
         setBrew(emptyBrew());
         setLastServe(null);
       },
@@ -371,11 +389,24 @@ export function GameProvider({ children }: { children: ReactNode }) {
         setLastServe(null);
       },
       openWord: (id) => setSelectedWord(id),
-      nextSegment: () => {
-        withProgress((p) => nextSegment(p));
-        setBrew(emptyBrew());
-        setLastServe(null);
+      part: progress ? dayPart(progress) : 0,
+      day: {
+        openShop: () => withProgressNoRetry((p) => openShop(p)),
+        goMarket: (from) => {
+          let why: string | null = null;
+          withProgressNoRetry((p, d) => {
+            why = goMarket(d, p, rng(), from);
+          });
+          return why;
+        },
+        goDelivery: () => {
+          withProgressNoRetry((p) => void goDelivery(p));
+          setBrew(emptyBrew());
+          setLastServe(null);
+        },
+        backToShop: () => withProgressNoRetry((p) => backToShop(p)),
       },
+      openStoryCard: (index) => withProgressNoRetry((p) => storyOpen(p, index)),
       mutateProgress: (fn) => withProgressNoRetry(fn),
       market: {
         openStall: (id) => withProgress((p, d) => market.openStall(d, p, id, rng())),
@@ -385,7 +416,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
         bargain: () => withProgress((p, d) => market.bargain(d, p, rng())),
         pay: (n) => withProgress((p, d) => void market.pay(d, p, n, rng())),
         cancel: () => withProgress((p) => market.cancelPurchase(p)),
-        finish: () => withProgress((p, d) => market.finishMarket(d, p)),
+        finish: () => withProgress((p, d) => leaveMarket(d, p, market.finishMarket)),
       },
       jobs: {
         view: progress ? jobs.jobView(progress) : 'teahouse',
@@ -400,7 +431,19 @@ export function GameProvider({ children }: { children: ReactNode }) {
           setLastJob(null);
           return why;
         },
-        toTown: () => withProgressNoRetry((p) => jobs.teaToTown(p)),
+        toTown: () =>
+          withProgressNoRetry((p) => {
+            if (jobs.jobView(p) === 'job') jobs.jobToTown(p);
+            else jobs.teaToTown(p);
+          }),
+        back: () => withProgressNoRetry((p) => jobs.backToWork(p)),
+        chooseNext: (id) => {
+          let why: string | null = null;
+          withProgressNoRetry((p, d) => {
+            why = jobs.chooseNext(d, p, id);
+          });
+          return why;
+        },
         begin: () => withProgressNoRetry((p, d) => jobs.beginShift(d, p)),
         submit: (a, late) => {
           const box: { out: jobs.SubmitOutcome | null } = { out: null };

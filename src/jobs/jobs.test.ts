@@ -3,8 +3,8 @@ import { CONTENT, SHARED } from '../content';
 import { buildGameData } from '../core/gamedata';
 import { makeRng } from '../core/rng';
 import { migrateSave, newProgress, SAVE_VERSION } from '../core/save';
-import { endTownDay, startTownDay } from '../activities/day';
-import { playJobShift, simulatePlayer } from '../activities/simPlayer';
+import { dayPart, endTownDay, startTownDay } from '../activities/day';
+import { playJobShift, playTeaHouse, simulatePlayer } from '../activities/simPlayer';
 import { validateLanguage } from '../core/validate';
 import { indexLists, type VocabItem } from '../curriculum/lists';
 import { setEnglishLists, emptyLists } from '../curriculum/lists';
@@ -22,6 +22,9 @@ import {
   planShift,
   teaToTown,
   canGoToTown,
+  chooseNext,
+  currentShift,
+  jobToTown,
   featuresAt,
   SPINE_SEEN,
   spineSeen,
@@ -114,62 +117,88 @@ describe('job content', () => {
 });
 
 describe('job day', () => {
-  it('the board opens on day 4; before it a day is the original tea house day', () => {
+  it('the board opens on day 4; before it a day is the original tea house day; every day starts at the workplace', () => {
     const data = en();
     const { p } = simulatePlayer({ lang: 'en', days: BOARD_DAY - 2, accuracy: 1, seed: 2 });
     startTownDay(data, p, makeRng(1));
     expect(p.day).toBe(BOARD_DAY - 1);
     expect(jobView(p)).toBe('teahouse');
     expect(p.jobs?.day ?? null).toBeNull();
+    expect(dayPart(p)).toBe(0);
     const { p: p2 } = simulatePlayer({ lang: 'en', days: BOARD_DAY - 1, accuracy: 1, seed: 2 });
     startTownDay(data, p2, makeRng(1));
     expect(p2.jobs?.boardOpen).toBe(BOARD_DAY);
-    expect(jobView(p2)).toBe('hub');
+    // the day starts in the tea house (始業前), not on the map
+    expect(jobView(p2)).toBe('teahouse');
+    expect(jobDay(p2)!.work).toBe('teahouse');
+    expect(dayPart(p2)).toBe(0);
+    // the board's note waits on the notice board; no story card opens by itself
+    expect(p2.story.cards.every((c) => c.deferred || c.kind === 'ledger')).toBe(true);
   });
-  it('a shift at the post office in the morning, the tea house at noon (no market), then home', () => {
+  it('before opening the player can work elsewhere today; after closing one evening shift; the tea house stays closed', () => {
     const data = en();
-    const { p } = simulatePlayer({ lang: 'en', days: 5, accuracy: 1, seed: 4 });
+    const { p } = simulatePlayer({ lang: 'en', days: 6, accuracy: 1, seed: 4 });
     startTownDay(data, p, makeRng(5));
     const money = p.town.money;
+    const clock = p.difficulty?.clockOffset ?? 0;
     const r = playJobShift(data, p, 'post', 1, makeRng(2), makeRng(3))!;
     expect(r.outcomes.every((o) => o === 'perfect')).toBe(true);
     expect(p.town.money).toBeGreaterThan(money);
-    expect(jobDay(p)!.part).toBe(1);
+    expect(jobDay(p)!.work).toBe('post');
+    expect(dayPart(p)).toBe(2);
+    expect(jobView(p)).toBe('hub');
     expect(chooseJob(data, p, 'post', makeRng(1))).not.toBeNull(); // not twice a day
-    expect(chooseJob(data, p, 'teahouse', makeRng(1))).toBeNull();
-    expect(p.townDay!.segments[0]).toBe('shop');
-    expect(p.townDay!.market).toBeUndefined();
-    expect(jobView(p)).toBe('teahouse');
+    expect(chooseJob(data, p, 'office', makeRng(1))).toMatch(/業務後は閉まって/); // no evening shift
     // words met at the post office are tagged with the job
     const met = Object.keys(p.jobs!.wordJobs).filter((id) => p.jobs!.wordJobs[id].includes('post'));
     expect(met.length).toBeGreaterThan(5);
     expect(wordJobs(data, p.jobs!.wordJobs, met[0])).toContain('post');
-  });
-  it('a day without the tea house keeps its stage clock still and its customers for another day', () => {
-    const data = en();
-    const { p } = simulatePlayer({ lang: 'en', days: 6, accuracy: 1, seed: 7 });
-    startTownDay(data, p, makeRng(5));
-    const clock = p.difficulty?.clockOffset ?? 0;
-    playJobShift(data, p, 'post', 1, makeRng(2), makeRng(3));
-    playJobShift(data, p, 'kitchen', 1, makeRng(2), makeRng(3));
+    expect(playJobShift(data, p, 'kitchen', 1, makeRng(2), makeRng(3))).not.toBeNull();
+    expect(chooseJob(data, p, 'inn', makeRng(1))).toMatch(/業務後のひと仕事/); // one evening shift a day
+    // chosen after closing: the next days start at the post office
+    expect(chooseNext(data, p, 'office')).toBeNull();
+    expect(chooseNext(data, p, 'post')).toBeNull();
     jobsCloseDay(data, p);
     const day = p.day;
     endTownDay(p, data);
     expect(p.day).toBe(day + 1);
     expect(p.difficulty!.clockOffset).toBeLessThan(clock - 0.5);
     expect(p.story.lastLedger?.work?.map((w) => w.job)).toEqual(['post', 'kitchen']);
+    // the next day starts at the post office, before opening
+    startTownDay(data, p, makeRng(6));
+    expect(jobDay(p)!.work).toBe('post');
+    expect(jobView(p)).toBe('job');
+    expect(currentShift(p)!.phase).toBe('intro');
+    expect(dayPart(p)).toBe(0);
+    // from the door: out into the town and back to the tea house for today
+    jobToTown(p);
+    expect(jobView(p)).toBe('hub');
+    expect(chooseJob(data, p, 'teahouse', makeRng(1))).toBeNull();
+    expect(jobView(p)).toBe('teahouse');
+    expect(currentShift(p)).toBeNull();
   });
-  it('the tea house can hand the evening to another job when no delivery is planned', () => {
+  it('the tea house after closing: out into the town for an evening shift; or opened late after another job', () => {
     const data = en();
     const { p } = simulatePlayer({ lang: 'en', days: 4, accuracy: 1, seed: 9 });
     startTownDay(data, p, makeRng(5));
-    chooseJob(data, p, 'teahouse', makeRng(1));
-    p.townDay!.segments = ['shop'];
-    p.today!.phase = 'closed';
+    expect(canGoToTown(p)).toBe(true); // before opening
+    playTeaHouse(data, p, 1, makeRng(2), makeRng(3));
+    expect(dayPart(p)).toBe(2);
     expect(canGoToTown(p)).toBe(true);
     teaToTown(p);
-    expect(jobDay(p)!.part).toBe(2);
     expect(jobView(p)).toBe('hub');
+    expect(playJobShift(data, p, 'inn', 1, makeRng(2), makeRng(3))).not.toBeNull();
+    // another day: the post office, then the tea house opened late (shop only, from the back room)
+    jobsCloseDay(data, p);
+    endTownDay(p, data);
+    startTownDay(data, p, makeRng(7));
+    playJobShift(data, p, 'post', 1, makeRng(2), makeRng(3));
+    expect(chooseJob(data, p, 'teahouse', makeRng(1))).toBeNull();
+    expect(p.townDay!.fromBack).toBe(true);
+    expect(p.townDay!.delivery).toBeUndefined();
+    const t = playTeaHouse(data, p, 1, makeRng(2), makeRng(3));
+    expect(t.cups).toBeGreaterThan(0);
+    expect(dayPart(p)).toBe(2);
   });
   it('ranks: good tasks + confirmed words + most of the rank’s authored spine met; rewards paid once', () => {
     const data = en();
@@ -213,9 +242,7 @@ describe('job day', () => {
     playJobShift(data, p, 'kitchen', 1, makeRng(2), makeRng(3));
     const bread = p.jobs!.goods.bread ?? 0;
     expect(bread).toBeGreaterThan(0);
-    // the inn's desk is open in the morning and the evening, not at noon
-    expect(chooseJob(data, p, 'inn', makeRng(1))).toMatch(/閉まって/);
-    playJobShift(data, p, 'post', 1, makeRng(6), makeRng(7));
+    // the inn's desk has an evening shift (check-in)
     const r = playJobShift(data, p, 'inn', 1, makeRng(4), makeRng(5))!;
     expect(p.jobs!.goods.bread ?? 0).toBeLessThan(bread);
     expect(r.texts.some((t) => t.includes('bread for breakfast'))).toBe(true);

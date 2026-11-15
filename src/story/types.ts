@@ -228,13 +228,19 @@ export interface Ledger {
   wages?: number;
 }
 
-export type StoryCard =
+/**
+ * `deferred`: the card waits in the world instead of opening by itself — a chapter title, a morning visit or a
+ * delivery note on the day's notice board, a paper in the document box — and plays when the player opens it
+ * (storyOpen). Cards made at the start of a day and every document are deferred.
+ */
+export type StoryCard = (
   | { kind: 'chapter'; chapter: string }
   /** A beat's scene (lines + choice); `request` = a delivery beat's note in the morning. */
   | { kind: 'scene'; beat: string; outcome?: BeatOutcome; request?: boolean }
   | { kind: 'reply'; beat: string; option: string }
   | { kind: 'doc'; doc: string }
-  | { kind: 'ledger'; ledger: Ledger };
+  | { kind: 'ledger'; ledger: Ledger }
+) & { deferred?: boolean };
 
 export interface StoryDay {
   day: number;

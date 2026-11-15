@@ -1524,26 +1524,6 @@
   background: #fff1c4;
   outline: 2px solid var(--accent);
 }
-.ticket-good::after,
-.ticket-meh::after,
-.ticket-bad::after {
-  content: '';
-  position: absolute;
-  left: 3px;
-  top: 5px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-}
-.ticket-good::after {
-  background: #4d6a38;
-}
-.ticket-meh::after {
-  background: #b8892f;
-}
-.ticket-bad::after {
-  background: var(--danger);
-}
 .desk-book,
 .desk-notebook {
   all: unset;
@@ -1879,14 +1859,6 @@
 .m-tickets .ticket {
   width: 11px;
   height: 15px;
-}
-.m-tickets .ticket-good::after,
-.m-tickets .ticket-meh::after,
-.m-tickets .ticket-bad::after {
-  left: 2px;
-  top: 3px;
-  width: 6px;
-  height: 6px;
 }
 .m-wall .corner-hooks {
   right: 6px;

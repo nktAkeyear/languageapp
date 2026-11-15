@@ -29,7 +29,7 @@ export function RankProgress({ job }: { job: JobDef }) {
         次の位「{rankName(rs.next.rank)}」まで <LevelTag job={job} rank={rs.next.rank} />
       </div>
       <div className="rank-prog-row">
-        <span>うまくできた仕事</span>
+        <span>認められた仕事</span>
         <span className="rank-bar">
           <span style={{ width: `${g * 100}%` }} />
         </span>

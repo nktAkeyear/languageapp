@@ -7,7 +7,6 @@
  * Logic is the delivery engine's (src/activities/delivery/engine.ts) through GameApi.delivery.
  */
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { hasNextSegment } from '../../activities/day';
 import { someoneHome } from '../../activities/delivery/engine';
 import { townOf } from '../../activities/town/text';
 import { wordMarkup } from '../../core/gamedata';
@@ -38,7 +37,7 @@ import { sfx } from '../sound';
 import { useStoryHold } from '../story/StoryUi';
 import { useGame } from '../useGame';
 import { useUi } from '../uiState';
-import { TownNoticePaper } from './common';
+import { DayParts } from '../components/DayChrome';
 import { UpgradeArt } from '../art/reno';
 import { useReno } from '../reno/useReno';
 import { Raster } from '../art/Raster';
@@ -385,8 +384,7 @@ function DoorScene() {
   };
   const back = () => {
     sfx('bell');
-    if (hasNextSegment(progress)) g.nextSegment();
-    else g.closeDay();
+    g.day.backToShop();
   };
   return (
     <div className="dv-door-scene" data-phase={x.phase}>
@@ -500,7 +498,7 @@ function DoorScene() {
               </button>
             ) : (
               <button type="button" className="cv-btn cv-next" data-testid="end-day" onClick={back}>
-                {hasNextSegment(progress) ? '次へ' : '店に帰る（今日を終える）'}
+                店に戻る
               </button>
             )}
           </div>
@@ -508,6 +506,16 @@ function DoorScene() {
       </div>
       {ui.reducedMotion ? null : <span key={rap} className="dv-rap-fx" aria-hidden />}
     </div>
+  );
+}
+
+/** The delivery can wait: back into the shop without going (it stays on the counter until the day ends). */
+function NotNow() {
+  const g = useGame();
+  return (
+    <button type="button" className="btn btn-small dv-notnow" data-testid="delivery-later" onClick={() => (sfx('steps'), g.day.backToShop())}>
+      店に戻る
+    </button>
   );
 }
 
@@ -559,8 +567,9 @@ export function DeliveryScene({ onSettings }: { onSettings: () => void }) {
           </div>
         </div>
       )}
-      <div className="m-paper">
-        <TownNoticePaper />
+      <div className="m-town-trip">
+        <DayParts compact />
+        {atDoor ? null : <NotNow />}
       </div>
     </div>
   ) : (
@@ -600,8 +609,9 @@ function DesktopDelivery({ onSettings, walking, go, atDoor, hour }: { onSettings
             <div className="dv-afternoon" aria-hidden />
           </>
         )}
-        <div className="d-paper">
-          <TownNoticePaper />
+        <div className="dv-d-parts">
+          <DayParts />
+          {atDoor ? null : <NotNow />}
         </div>
         <CornerHooks onSettings={onSettings} />
       </div>

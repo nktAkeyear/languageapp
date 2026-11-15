@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { currentSegment, endTownDay, hasNextSegment, nextSegment, serveInTown, startTownDay, stockOf } from '../activities/day';
+import { walkSegment, endTownDay, hasNextSegment, nextSegment, serveInTown, startTownDay, stockOf } from '../activities/day';
 import { solveDelivery } from '../activities/delivery/engine';
 import { finishMarket, planMarket, solveMarket } from '../activities/market/engine';
 import { currentOrder, nextCustomer, type ServeOutcome } from '../activities/shop/engine';
@@ -47,7 +47,7 @@ function playDays(d: GameData, p: LangProgress, days: number, rng: () => number,
     startTownDay(d, p, rng);
     storyAutoPlay(d, p, (b) => b.choice?.[0]?.id ?? '');
     for (;;) {
-      const seg = currentSegment(p);
+      const seg = walkSegment(p);
       if (seg === 'market') {
         solveMarket(d, p, rng);
         finishMarket(d, p);
@@ -112,7 +112,7 @@ describe('catalogue', () => {
     expect(p.day).toBe(4);
     // English prices are the shared prices × priceScale (the jobs pay wages on top of the tea house)
     const price = (id: string) => upgradePrice(en, SHARED.renovation!.upgrades.find((u) => u.id === id)!);
-    expect(price('plant')).toBe(40);
+    expect(price('plant')).toBe(35); // 15 × 2.2 = 33 → rounded to 5
     p.town.money = 200;
     expect(renoOrder(en, p, 'bench')).not.toBeNull(); // not in the catalogue yet
     expect(renoOrder(en, p, 'plant')).toBeNull();
@@ -260,8 +260,8 @@ describe('upgrade effects', () => {
     expect(renoTipBonus(zh, p)).toBe(4);
     startTownDay(zh, p, rng);
     storyAutoPlay(zh, p, (b) => b.choice?.[0]?.id ?? '');
-    while (currentSegment(p) !== 'delivery') {
-      if (currentSegment(p) === 'market') {
+    while (walkSegment(p) !== 'delivery') {
+      if (walkSegment(p) === 'market') {
         solveMarket(zh, p, rng);
         finishMarket(zh, p);
       } else playShop(zh, p, rng);
@@ -313,7 +313,7 @@ describe('upgrade effects', () => {
 function endTownDayQuick(d: GameData, p: LangProgress, rng: () => number) {
   storyAutoPlay(d, p, (b) => b.choice?.[0]?.id ?? '');
   for (;;) {
-    const seg = currentSegment(p);
+    const seg = walkSegment(p);
     if (seg === 'market') {
       solveMarket(d, p, rng);
       finishMarket(d, p);

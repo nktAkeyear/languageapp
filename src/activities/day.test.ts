@@ -5,10 +5,11 @@ import { makeRng } from '../core/rng';
 import { migrateSave, newProgress, type LangProgress } from '../core/save';
 import { LANGS, type Brew, type IngredientId } from '../core/types';
 import {
-  currentSegment,
+  walkSegment,
   endTownDay,
   ensureTownDay,
   hasNextSegment,
+  nextInTown,
   nextSegment,
   planSegments,
   segmentDone,
@@ -19,7 +20,7 @@ import {
 } from './day';
 import { choosePlace, chooseHour, depart, handOver, knock, solveDelivery, someoneHome } from './delivery/engine';
 import { finishMarket, openStall, orderUnits, pay, selectOffer, solveMarket } from './market/engine';
-import { currentOrder, nextCustomer } from './shop/engine';
+import { currentOrder } from './shop/engine';
 import { witnessBrew } from './shop/rules';
 import { townOf } from './town/text';
 
@@ -29,7 +30,7 @@ function solveShop(data: GameData, p: LangProgress, rng: () => number) {
     const shelf = new Set(ingredientsAtStage(data, p.stage).filter((i) => stockOf(p, i as IngredientId) !== 0));
     const brew: Brew = witnessBrew(o.rule, shelf, data.ing) ?? { counts: { water: 1 }, temp: null, method: null };
     serveInTown(data, p, brew, rng);
-    nextCustomer(data, p);
+    nextInTown(data, p);
   }
 }
 
@@ -41,7 +42,7 @@ function playDays(data: GameData, p: LangProgress, days: number, seed: number, o
     startTownDay(data, p, rng);
     log.push({ day: p.day, segments: [...p.townDay!.segments] });
     for (;;) {
-      const seg = currentSegment(p);
+      const seg = walkSegment(p);
       if (seg === 'market') {
         solveMarket(data, p, rng, { shortBy: opts.shortMarket ? 1 : 0 });
         finishMarket(data, p);
@@ -129,7 +130,7 @@ describe.each(LANGS)('town days (%s)', (lang) => {
     let reacted = 0;
     for (let d = 0; d < 6; d++) {
       startTownDay(data, p, rng);
-      if (currentSegment(p) === 'market') {
+      if (walkSegment(p) === 'market') {
         // buy nothing at all
         finishMarket(data, p);
         const short = Object.keys(p.townDay!.stock) as IngredientId[];
@@ -157,7 +158,7 @@ describe.each(LANGS)('town days (%s)', (lang) => {
     p.reputation = 20;
     const rng = makeRng(9);
     startTownDay(data, p, rng);
-    expect(currentSegment(p)).toBe('market');
+    expect(walkSegment(p)).toBe('market');
     const md = p.townDay!.market!;
     const line = md.lines[0];
     const st = md.stalls.find((s) => s.offers.some((o) => o.good === line.good))!;
@@ -207,8 +208,8 @@ describe.each(LANGS)('town days (%s)', (lang) => {
     startTownDay(data, p, rng);
     expect(p.townDay!.segments).toContain('delivery');
     solveShop(data, p, rng);
-    while (currentSegment(p) !== 'delivery') {
-      if (currentSegment(p) === 'market') {
+    while (walkSegment(p) !== 'delivery') {
+      if (walkSegment(p) === 'market') {
         solveMarket(data, p, rng);
         finishMarket(data, p);
       }

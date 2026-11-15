@@ -25,10 +25,10 @@
  * Jobs (src/jobs) — see scripts/simJobs.ts:
  *   npm run simulate -- --jobs [--days=20] [--acc=0.85] [--seed=1] [--yard=eiken|toeic] [--log]
  */
-import { currentSegment, describeDay, endTownDay, nextSegment, serveInTown, startTownDay, stockOf } from '../src/activities/day';
+import { describeDay, endTownDay, hasNextSegment, nextInTown, nextSegment, serveInTown, startTownDay, stockOf, walkSegment } from '../src/activities/day';
 import { solveDelivery } from '../src/activities/delivery/engine';
 import { finishMarket, solveMarket } from '../src/activities/market/engine';
-import { currentOrder, nextCustomer } from '../src/activities/shop/engine';
+import { currentOrder } from '../src/activities/shop/engine';
 import { witnessBrew } from '../src/activities/shop/rules';
 import { CONTENT, SHARED } from '../src/content';
 import { buildGameData, ingredientsAtStage, plain } from '../src/core/gamedata';
@@ -87,17 +87,18 @@ for (let d = 0; d < Number(daysArg); d++) {
   for (const id of arrivedToday(p)) console.log(`  🛠 arrived: ${id}`);
   const moneyAtStart = p.town.money;
   storyLog(data, p, Number(choiceArg));
-  for (;;) {
-    const seg = currentSegment(p);
+  for (let guard = 0; guard < 10; guard++) {
+    const seg = walkSegment(p);
     if (seg === 'market') {
       const md = p.townDay!.market!;
       const short = failEvery > 0 && ++markets % failEvery === 0;
       console.log(`  🧺 market (level ${md.level}${md.features.length ? ': ' + md.features.join(',') : ''})  note: ${plain(md.title)} ${md.lines.map((l) => plain(l.text)).join(' ')} ${md.tips.map(plain).join(' ')}`);
       solveMarket(data, p, rng, { shortBy: short ? 1 : 0 });
       for (const s of md.stalls) if (s.soldOut.length) console.log(`     (sold out at ${s.id}: ${s.soldOut.join(',')})`);
+      const basket = md.basket.map((b) => `${b.good}${b.variant ? '/' + b.variant : ''}×${b.units}=${b.paid}`).join(', ') || '-';
       finishMarket(data, p);
       const st = p.townDay!.stock;
-      console.log(`     bought: ${md.basket.map((b) => `${b.good}${b.variant ? '/' + b.variant : ''}×${b.units}=${b.paid}`).join(', ') || '-'}  stock: ${JSON.stringify(st)}${short ? '  (bought one unit short)' : ''}`);
+      console.log(`     bought: ${basket}  stock: ${JSON.stringify(st)}${short ? '  (bought one unit short)' : ''}`);
     } else if (seg === 'shop') {
       while (p.today!.phase !== 'closed') {
         const o = currentOrder(p)!;
@@ -110,7 +111,7 @@ for (let d = 0; d < Number(daysArg); d++) {
         const flags = `${o.audioOnly ? '🔊' : '  '}${o.returning ? '↩' : ' '}`;
         console.log(`  ${flags} ${plain(o.text).padEnd(50)} -> ${r.evaluation.outcome.padEnd(7)} ${plain(r.reaction.text)}`);
         storyLog(data, p, Number(choiceArg));
-        nextCustomer(data, p);
+        nextInTown(data, p);
       }
       if (buy)
         for (const b of buyFromCatalogue(data, p)) {
@@ -127,7 +128,7 @@ for (let d = 0; d < Number(daysArg); d++) {
       console.log(`     -> ${x.result!.outcome.padEnd(7)} ${plain(x.result!.reaction)}${wrong ? '  (went to the wrong house)' : ''}`);
       storyLog(data, p, Number(choiceArg));
     }
-    if (!p.townDay || p.townDay.seg >= p.townDay.segments.length - 1) break;
+    if (!hasNextSegment(p)) break;
     nextSegment(p);
   }
   earned += p.town.money - moneyAtStart + bought.filter((b) => b.day === p.day).reduce((a, b) => a + b.price, 0);

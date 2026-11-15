@@ -1662,6 +1662,7 @@ const REACTIONS: JobContent['reactions'] = [
     { id: 'or_slot', kind: 'wrong_slot', text: 'Oh, that time is not good. Please check the email again.', face: 'sad' },
     { id: 'or_slot2', kind: 'wrong_slot', rank: 2, text: 'That time does not suit them, or it is not free. Please read the email again.', face: 'sad' },
     { id: 'or_form', kind: 'wrong_form', text: 'Some of this message is wrong.', face: 'sad' },
+    { id: 'or_form2b', kind: 'wrong_form', text: 'The “{field}” is not right. Please check it again.', face: 'puzzled' },
     { id: 'or_form2', kind: 'wrong_form', rank: 3, text: 'I think you missed something. Please listen again.', face: 'sad' },
     { id: 'or_fail', kind: 'any_fail', text: 'Oh no. Please check it again.', face: 'sad' },
     { id: 'or_fail2', kind: 'any_fail', rank: 3, text: 'This is not good. Please be more careful.', face: 'sad' },

@@ -67,6 +67,6 @@ export function useStoryHold(): { held: boolean; release(): void } {
   const p = g.progress;
   const key = holdKeyOf(p);
   const cards = p?.story?.cards ?? [];
-  const held = !!key && cards.length > 0 && !cards.some((c) => c.kind === 'ledger') && su.released !== key;
+  const held = !!key && cards.some((c) => !c.deferred) && !cards.some((c) => c.kind === 'ledger') && su.released !== key;
   return { held, release: () => key && su.release(key) };
 }

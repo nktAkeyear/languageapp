@@ -402,12 +402,8 @@ export function LevelSettings({ newLang, onClose }: { newLang?: Lang; onClose: (
           確定していない言葉の意味を、手帳でのぞき見できる（1回 評判 −1）
         </label>
         <label className="check">
-          <input type="checkbox" checked={assists.markMistake} onChange={(e) => setA({ markMistake: e.target.checked })} data-testid="assist-mark" />
-          うまくいかなかったとき、注文のどの言葉が原因だったか印をつける
-        </label>
-        <label className="check">
           <input type="checkbox" checked={assists.retry} onChange={(e) => setA({ retry: e.target.checked })} data-testid="assist-retry" />
-          うまくいかなかったとき、同じお客さんにもう一度つくれる（評判は減らない）
+          出したあとで「もう一度つくる」ができる（同じお客さんに、出す前に戻ってつくり直す）
         </label>
         <label className="field">
           声だけの注文

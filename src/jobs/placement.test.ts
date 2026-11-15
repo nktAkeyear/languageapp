@@ -38,7 +38,7 @@ describe('jobs placed by the start level', () => {
     startTownDay(data, p, rng);
     const d = jobDay(p)!;
     expect(d).toBeTruthy();
-    expect(d.view).toBe('hub');
+    expect(d.view).toBe('teahouse'); // the day starts at the workplace
     expect(d.notes.join('')).toMatch(/大潮/);
     for (const j of jobsOf(data).filter((x) => !x.legacy)) expect(jobOffered(p, j)).toBe(true);
     expect(p.jobs!.jobs.post.rank).toBe(4);

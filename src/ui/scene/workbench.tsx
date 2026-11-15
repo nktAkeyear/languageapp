@@ -141,7 +141,9 @@ export function BenchProvider({ children }: { children: ReactNode }) {
 
   const shelf = useMemo(() => (data && progress ? ingredientsAtStage(data, progress.stage) : []), [data, progress]);
   const feats = useMemo(() => (data && progress ? featuresAtStage(data, progress.stage) : new Set<Feature>()), [data, progress]);
-  const canWork = phase === 'order' && stage === 'idle' && !leaving;
+  // Working hours only: before opening the counter is being prepared (no customer at it yet).
+  const open = (progress?.townDay?.part ?? 1) === 1;
+  const canWork = phase === 'order' && stage === 'idle' && !leaving && open;
 
   const playFx = useCallback(
     (kind: FxKind, ing?: IngredientId, sound?: Sfx) => {
@@ -206,8 +208,8 @@ export function BenchProvider({ children }: { children: ReactNode }) {
     const k = custKey;
     if (reacted.current === k) return;
     reacted.current = k;
-    if (result.outcome === 'perfect') sfx('happy');
-    else sfx('fail');
+    // The cup set down, then the coins: no sound tells right from wrong (the customer's face and words do).
+    sfx('clink');
     later(350, () => sfx('coin'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage, result, custKey]);

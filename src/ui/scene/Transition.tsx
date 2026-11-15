@@ -1,12 +1,12 @@
 /**
- * Moving through the day: a short full-screen passage of light between the segments (morning
- * market → shop at midday → afternoon delivery), dusk when the shop closes for the night, and
- * dawn when the lamp has been blown out and the next day begins. Purely presentational; it
- * never blocks input and is skipped with prefers-reduced-motion.
+ * Moving through the day: a short full-screen passage of light when the player walks between places of the tea
+ * house's day (shop → market → shop, out to a delivery) and dusk when the shop is left for the night. A new day
+ * begins with no passage at all — the workplace is there at once, usable (the day's one-line banner says which
+ * day it is, components/DayChrome.tsx). Purely presentational; it never blocks input and is skipped with
+ * prefers-reduced-motion.
  */
 import { useEffect, useRef, useState } from 'react';
 import { currentSegment } from '../../activities/day';
-import { jobView } from '../../jobs/engine';
 import type { ActivityKind } from '../../core/townTypes';
 import { skyAt } from '../art/sky';
 import { sfx } from '../sound';
@@ -15,9 +15,9 @@ import { useUi } from '../uiState';
 
 type Kind = 'dawn' | 'seg' | 'dusk';
 const SEG: Record<ActivityKind, { label: string; sub: string; t: number }> = {
-  market: { label: '朝', sub: '市場へ', t: 0.04 },
-  shop: { label: '昼', sub: '茶房を開ける', t: 0.35 },
-  delivery: { label: '夕方', sub: '配達へ', t: 0.72 },
+  market: { label: '市場', sub: '買い物へ', t: 0.2 },
+  shop: { label: '茶房', sub: '店に戻る', t: 0.35 },
+  delivery: { label: '配達', sub: '町へ', t: 0.72 },
 };
 
 export function DayTransition() {
@@ -37,13 +37,10 @@ export function DayTransition() {
     if (was.split('|')[0] !== key.split('|')[0]) return; // language switch
     const a = was.split('|')[1];
     const b = key.split('|')[1];
-    // A new chapter opens the morning with its own title card over the harbour: no dawn passage on
-    // top of it (it would hide the card for its first seconds).
-    if (b !== 'night' && p?.story?.cards[0]?.kind === 'chapter') return;
     let next: { kind: Kind; label: string; sub: string; t: number };
-    if (b === 'night') next = { kind: 'dusk', label: '夜', sub: '店じまい', t: 1 };
-    else if (a === 'night' || a.split(':')[0] !== b.split(':')[0])
-      next = { kind: 'dawn', label: `${p!.day}日目`, sub: `朝・${p && jobView(p) === 'hub' ? '町へ出る' : seg === 'market' ? '市場へ' : '茶房を開ける'}`, t: 0 };
+    if (b === 'night') next = { kind: 'dusk', label: '夜', sub: '家に帰る', t: 1 };
+    // A new day: no passage over the workplace (it is usable at once).
+    else if (a === 'night' || a.split(':')[0] !== b.split(':')[0]) return;
     else next = { kind: 'seg', ...SEG[seg] };
     n.current++;
     setShow({ id: n.current, ...next });

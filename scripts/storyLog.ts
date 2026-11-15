@@ -2,7 +2,7 @@
 import type { GameData } from '../src/core/gamedata';
 import { plain } from '../src/core/gamedata';
 import type { LangProgress } from '../src/core/save';
-import { beatById, cardNeedsChoice, docLines, storyChoose, storyDismiss, storyState } from '../src/story/engine';
+import { beatById, cardNeedsChoice, docLines, storyChoose, storyDismiss, storyOpen, storyState } from '../src/story/engine';
 import { storyOf } from '../src/story/text';
 
 export function storyLog(data: GameData, p: LangProgress, choice: number): void {
@@ -10,6 +10,7 @@ export function storyLog(data: GameData, p: LangProgress, choice: number): void 
   if (!story) return;
   const st = storyState(p);
   for (let i = 0; i < 40 && st.cards.length; i++) {
+    if (st.cards[0].deferred) storyOpen(p, 0); // waiting in the scene: the player opens it
     const c = st.cards[0];
     if (c.kind === 'chapter') console.log(`  📖 ── ${story.text.chapters[c.chapter]?.titleJa} ──`);
     else if (c.kind === 'doc') console.log(`  📖 document ${c.doc}: ${docLines(data, p, c.doc).map(plain).join(' / ')}`);

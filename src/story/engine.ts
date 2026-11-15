@@ -33,6 +33,7 @@ import {
   type SceneLine,
   type StoryCond,
   type StoryEffect,
+  type StoryCard,
   type StoryState,
 } from './types';
 
@@ -121,7 +122,49 @@ export function giveDoc(data: GameData, p: LangProgress, docId: string): void {
   if (st.docs[docId]) return;
   st.docs[docId] = { day: p.day, firstPct: docReadability(data, p, docId), reads: 0, known: docConfirmedWords(data, p, docId) };
   st.today?.docs.push(docId);
-  st.cards.push({ kind: 'doc', doc: docId });
+  // A paper never opens by itself: it lies in the document box (glowing) until the player reads it.
+  pushCard(st, { kind: 'doc', doc: docId, deferred: true });
+}
+
+/**
+ * Queue a card. Cards that play by themselves (a regular's scene after their cup, the night's ledger) go before
+ * the deferred ones (which wait in the world until the player opens them), so the first card is always the one
+ * playing.
+ */
+export function pushCard(st: StoryState, card: StoryCard): void {
+  if (card.deferred) {
+    st.cards.push(card);
+    return;
+  }
+  const i = st.cards.findIndex((c) => c.deferred);
+  if (i < 0) st.cards.push(card);
+  else st.cards.splice(i, 0, card);
+}
+
+/** The start of a day: whatever the morning brought (chapter title, a visit, a note, papers) waits to be opened. */
+export function storyDeferAll(p: LangProgress): void {
+  for (const c of storyState(p).cards) if (c.kind !== 'ledger') c.deferred = true;
+}
+
+/** Cards waiting in the world (deferred), with their index in the queue. */
+export function deferredCards(p: LangProgress): { card: StoryCard; index: number }[] {
+  return (p.story?.cards ?? []).map((card, index) => ({ card, index })).filter((x) => x.card.deferred);
+}
+
+/** The player opens a waiting card (from the notice board / the document box): it plays now. */
+export function storyOpen(p: LangProgress, index: number): void {
+  const st = storyState(p);
+  const c = st.cards[index];
+  if (!c || !c.deferred) return;
+  st.cards.splice(index, 1);
+  delete c.deferred;
+  st.cards.unshift(c);
+}
+
+/** The first card that plays by itself (null when only deferred cards wait). */
+export function activeCard(p: LangProgress): StoryCard | null {
+  const c = p.story?.cards[0];
+  return c && !c.deferred ? c : null;
 }
 
 /**
@@ -130,6 +173,9 @@ export function giveDoc(data: GameData, p: LangProgress, docId: string): void {
  * still a blur), so an early letter does not flood the notebook with far-off words.
  */
 export function storyReadDoc(data: GameData, p: LangProgress, docId: string): void {
+  // Read from the box (or the window sill): its waiting card has done its work.
+  const st0 = storyState(p);
+  st0.cards = st0.cards.filter((c) => !(c.deferred && c.kind === 'doc' && c.doc === docId));
   const rec = storyState(p).docs[docId];
   if (!rec || rec.lastRead === p.day) return;
   rec.lastRead = p.day;
@@ -217,7 +263,7 @@ function pushScene(data: GameData, story: Story, p: LangProgress, b: BeatDef, ou
   for (const l of lines) if ('say' in l) sayEncounter(data, p, l.say);
   if (hasChoice) sayEncounter(data, p, t?.prompt);
   if (request) sayEncounter(data, p, t?.request);
-  st.cards.push({ kind: 'scene', beat: b.id, ...(outcome ? { outcome } : {}), ...(request ? { request: true } : {}) });
+  pushCard(st, { kind: 'scene', beat: b.id, ...(outcome ? { outcome } : {}), ...(request ? { request: true } : {}) });
 }
 
 function addHook(story: Story, p: LangProgress, beatId: string, outcome?: BeatOutcome): void {
@@ -319,7 +365,7 @@ export function storyPlanShop(data: GameData, p: LangProgress, rng: Rng): void {
   if (ch > st.chapter) {
     // An imported old save catches up on one card: the current chapter.
     st.chapter = ch;
-    st.cards.push({ kind: 'chapter', chapter: sortedChapters(story)[ch].id });
+    pushCard(st, { kind: 'chapter', chapter: sortedChapters(story)[ch].id });
   }
   fireMoments(data, story, p, 'morning', 1);
   const t = p.today;
@@ -409,9 +455,12 @@ export function storyAfterServe(data: GameData, p: LangProgress, out: ServeOutco
     const bt = story.text.beats[b.id];
     const line = good ? bt?.good : bt?.poor;
     if (line) {
-      res.reaction = line;
+      // A cup that was not right: the regular first says what is wrong with it (the shop's own line names it —
+      // the only feedback there is), then their story line.
+      const said = !good && res.reaction && !res.reaction.includes(line) ? `${res.reaction} ${line}` : line;
+      res.reaction = said;
       res.face = good ? 'happy' : 'sad';
-      out.reaction = { ...out.reaction, text: line, face: res.face, reactionId: 'story' };
+      out.reaction = { ...out.reaction, text: said, face: res.face, reactionId: 'story' };
       sayEncounter(data, p, line);
     }
     if (!st.beats[b.id]) fire(story, p, b, 'planned');
@@ -448,7 +497,8 @@ export function storySync(data: GameData, p: LangProgress): boolean {
   const bt = story.text.beats[b.id];
   const line = good ? bt?.good : bt?.poor;
   if (line) {
-    x.result.reaction = line;
+    // Not delivered right: what went wrong (the door's own line) comes first, then the regular's story line.
+    x.result.reaction = !good && x.result.reaction && !x.result.reaction.includes(line) ? `${x.result.reaction} ${line}` : line;
     x.result.face = good ? 'happy' : 'sad';
     sayEncounter(data, p, line);
   }
@@ -502,7 +552,7 @@ export function storyEndDay(data: GameData, p: LangProgress): void {
     hooks: [...today.hooks],
   };
   st.lastLedger = ledger;
-  st.cards.push({ kind: 'ledger', ledger });
+  pushCard(st, { kind: 'ledger', ledger });
 }
 
 // ---------------------------------------------------------------------------
@@ -513,7 +563,7 @@ export function storyEndDay(data: GameData, p: LangProgress): void {
 export function cardNeedsChoice(data: GameData, p: LangProgress): boolean {
   const story = storyOf(data);
   const c = storyState(p).cards[0];
-  if (!story || !c || c.kind !== 'scene' || c.request) return false;
+  if (!story || !c || c.deferred || c.kind !== 'scene' || c.request) return false;
   const b = beatById(story, c.beat);
   return !!b?.choice?.length && !storyState(p).beats[c.beat]?.choice;
 }
@@ -548,6 +598,7 @@ export function storyAutoPlay(data: GameData, p: LangProgress, choose: (b: BeatD
   const story = storyOf(data);
   if (!story) return;
   for (let i = 0; i < 50 && storyState(p).cards.length; i++) {
+    if (storyState(p).cards[0].deferred) storyOpen(p, 0); // the player opens what waits in the scene
     if (cardNeedsChoice(data, p)) {
       const c = storyState(p).cards[0] as { beat: string };
       storyChoose(data, p, choose(beatById(story, c.beat)!));

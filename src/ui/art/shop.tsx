@@ -108,7 +108,11 @@ export function WindowGroup({ sky, x, y, w = 260, h = 310 }: { sky: SkyColours; 
 }
 
 /** Shop door with a glass pane and the brass bell on a bracket. Local box 0..160 × 0..450. */
-export function DoorGroup({ sky, x, y, w = 160, h = 450, closed = false }: { sky: SkyColours; x: number; y: number; w?: number; h?: number; closed?: boolean }) {
+/** The card in the door's pane: 準備中 before opening, 営業中 during working hours, 閉店 after closing. */
+export type DoorSign = 'prep' | 'open' | 'closed';
+const DOOR_SIGN: Record<DoorSign, string> = { prep: '準備中', open: '営業中', closed: '閉店' };
+
+export function DoorGroup({ sky, x, y, w = 160, h = 450, closed = false, sign }: { sky: SkyColours; x: number; y: number; w?: number; h?: number; closed?: boolean; sign?: DoorSign }) {
   return (
     <g transform={`translate(${x} ${y})`}>
       <rect x="-14" y="-14" width={w + 28} height={h + 14} fill="#5a3418" />
@@ -125,7 +129,7 @@ export function DoorGroup({ sky, x, y, w = 160, h = 450, closed = false }: { sky
         <path d="M-22 -18 L0 -30 L22 -18" stroke="#3a2a1a" strokeWidth="1.2" fill="none" />
         <rect x="-26" y="-18" width="52" height="22" rx="3" fill="#f4ead2" stroke="#8a7350" />
         <text x="0" y="-3" textAnchor="middle" fontSize="13" fill="#7a2f1b" style={{ fontFamily: 'var(--font-serif)' }} fontWeight="700">
-          {closed ? '閉店' : '営業中'}
+          {DOOR_SIGN[sign ?? (closed ? 'closed' : 'open')]}
         </text>
       </g>
     </g>
@@ -198,7 +202,7 @@ export function LampGroup({ x, y }: { x: number; y: number }) {
  * bell, lamp flame) and what changes with the time of day, so animation frames never re-run
  * the expensive texture filters.
  */
-export function ShopBackdrop({ sky, closed = false, align = 'xMidYMid', paint = false }: { sky: SkyColours; closed?: boolean; align?: string; paint?: boolean }) {
+export function ShopBackdrop({ sky, closed = false, align = 'xMidYMid', paint = false, sign }: { sky: SkyColours; closed?: boolean; align?: string; paint?: boolean; sign?: DoorSign }) {
   const W = STAGE_W;
   const H = STAGE_H;
   return (
@@ -219,7 +223,7 @@ export function ShopBackdrop({ sky, closed = false, align = 'xMidYMid', paint = 
       <rect x="0" y="34" width={W} height="10" fill="#000" opacity="0.2" filter="url(#fx-blur-sm)" />
       {/* reveal of the window opening */}
       <rect x="30" y="80" width="280" height="336" rx="8" fill="#3a2010" opacity="0.35" filter="url(#fx-blur-sm)" />
-      <DoorGroup sky={sky} x={410} y={118} h={COUNTER_Y - 118} closed={closed} />
+      <DoorGroup sky={sky} x={410} y={118} h={COUNTER_Y - 118} closed={closed} sign={sign} />
       <ShelfUnitGroup x={SHELF.x} y={SHELF.y} w={SHELF.w} rows={SHELF.rows} rowH={SHELF.rowH} />
       {/* counter top (near surface) */}
       <rect x="0" y={COUNTER_Y} width={W} height={H - COUNTER_Y} fill="url(#g-counter)" filter="url(#tx-wood)" />
@@ -249,7 +253,7 @@ export function ShopLive({ sky, ringing, align = 'xMidYMid' }: { sky: SkyColours
 }
 
 /** Phone: the wall strip behind the customer — the static textured layer (pre-rasterised by the scene). */
-export function MobileWallStatic({ sky, closed = false, paint = false }: { sky: SkyColours; closed?: boolean; paint?: boolean }) {
+export function MobileWallStatic({ sky, closed = false, paint = false, sign }: { sky: SkyColours; closed?: boolean; paint?: boolean; sign?: DoorSign }) {
   const W = 400;
   const H = 320;
   return (
@@ -258,7 +262,7 @@ export function MobileWallStatic({ sky, closed = false, paint = false }: { sky: 
       <rect x="0" y={H - 70} width={W} height="70" fill={paint ? 'url(#g-wainscot-paint)' : 'url(#g-wainscot)'} filter="url(#tx-wood-v)" />
       <rect x="0" y={H - 76} width={W} height="8" fill="#8e5a2e" />
       <rect x="0" y="0" width={W} height="18" fill="url(#g-beam)" />
-      <DoorGroup sky={sky} x={34} y={84} w={124} h={H - 84} closed={closed} />
+      <DoorGroup sky={sky} x={34} y={84} w={124} h={H - 84} closed={closed} sign={sign} />
     </svg>
   );
 }

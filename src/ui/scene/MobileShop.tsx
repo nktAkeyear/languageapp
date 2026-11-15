@@ -12,10 +12,9 @@ import {
   Calendar,
   CoinJar,
   ContentsSlip,
+  ClosedPanel,
   CornerHooks,
   CustomerFigure,
-  DayEnd,
-  DayNotice,
   Juice,
   NameCard,
   NextSign,
@@ -23,17 +22,21 @@ import {
   QueueTickets,
   ServeButton,
   ShelfJar,
+  ShopDayParts,
+  SupplyButton,
+  PrepPanel,
   TipOut,
   ToolButton,
   VesselSpot,
 } from './parts';
-import { useSky } from './ShopScene';
+import { useDoorSign, useSky } from './ShopScene';
 import { useBench } from './workbench';
 import { useGame } from '../useGame';
 import { DocBoxProp, Keepsakes } from '../story/Documents';
 import { RenoMobileWall } from '../art/reno';
 import { CatalogueButton } from '../reno/CatalogueProp';
 import { useReno } from '../reno/useReno';
+import { NoticePin } from '../components/DayChrome';
 
 export function MobileShop({ onSettings }: { onSettings: () => void }) {
   const b = useBench();
@@ -41,13 +44,14 @@ export function MobileShop({ onSettings }: { onSettings: () => void }) {
   const phase = useGame().progress?.today?.phase;
   const [drawer, setDrawer] = useState(true);
   const reno = useReno();
+  const door = useDoorSign();
   const half = Math.ceil(b.shelf.length / 2);
   const rows = b.shelf.length > 6 ? [b.shelf.slice(0, half), b.shelf.slice(half)] : [b.shelf];
   return (
     <div className="m-shop" data-phase={phase} data-stage={b.stage}>
       <section className="m-wall">
         <Raster label="wall">
-          <MobileWallStatic sky={sky} paint={reno.has('paint')} />
+          <MobileWallStatic sky={sky} paint={reno.has('paint')} sign={door} />
         </Raster>
         <MobileWallLive sky={sky} ringing={b.ringing} />
         <Raster label="reno-wall">
@@ -64,6 +68,12 @@ export function MobileShop({ onSettings }: { onSettings: () => void }) {
         <div className="m-tickets">
           <QueueTickets />
         </div>
+        <div className="m-dayparts">
+          <ShopDayParts compact />
+        </div>
+        <div className="m-notice">
+          <NoticePin />
+        </div>
         <CornerHooks onSettings={onSettings} />
         <div className="m-customer">
           <CustomerFigure />
@@ -76,6 +86,10 @@ export function MobileShop({ onSettings }: { onSettings: () => void }) {
           <NextSign />
         </div>
         <Juice />
+        <div className="m-daypanel">
+          <PrepPanel />
+          <ClosedPanel />
+        </div>
       </section>
       <section className="m-counter">
         <Raster label="counter">
@@ -118,12 +132,10 @@ export function MobileShop({ onSettings }: { onSettings: () => void }) {
             ) : null}
           </div>
         ) : null}
-        <div className="m-paper">
-          <DayNotice />
-          <DayEnd />
-        </div>
       </section>
       <section className={`m-drawer ${drawer ? 'open' : 'shut'}`} aria-label="棚">
+        {/* 業務中 on a market day: sending for goods sits by the shelf (a row above the jars) */}
+        <SupplyButton className="m-supply" />
         <button type="button" className="m-drawer-handle" onClick={() => setDrawer(!drawer)} aria-expanded={drawer} aria-label={drawer ? '棚を閉じる' : '棚を開く'}>
           <span />
         </button>

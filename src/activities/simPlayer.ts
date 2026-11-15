@@ -20,10 +20,10 @@ import { newProgress, type LangProgress } from '../core/save';
 import type { Brew, IngredientId, Lang } from '../core/types';
 import { pageStatus, pageWords, submitVerification } from '../core/verification';
 import { storyAutoPlay, storySync } from '../story/engine';
-import { currentSegment, endTownDay, nextSegment, serveInTown, startTownDay, stockOf } from './day';
+import { endTownDay, goMarket, hasNextSegment, marketAccess, nextInTown, nextSegment, openShop, serveInTown, startTownDay, stockOf, walkSegment } from './day';
 import { solveDelivery } from './delivery/engine';
 import { finishMarket, solveMarket } from './market/engine';
-import { currentOrder, nextCustomer } from './shop/engine';
+import { currentOrder } from './shop/engine';
 import { orderHasNewWords } from '../core/difficulty';
 import { witnessBrew } from './shop/rules';
 import { catalogue, renoOrder, renoShared } from '../renovation/engine';
@@ -124,8 +124,8 @@ export function simulatePlayer(opts: SimOptions): { p: LangProgress; days: SimDa
     let ft = 0;
     let ftOk = 0;
     const bought: string[] = [];
-    for (;;) {
-      const seg = currentSegment(p);
+    for (let guard = 0; guard < 10; guard++) {
+      const seg = walkSegment(p);
       if (seg === 'market') {
         solveMarket(data, p, rng, { shortBy: prng() < acc ? 0 : 1 });
         finishMarket(data, p);
@@ -140,7 +140,7 @@ export function simulatePlayer(opts: SimOptions): { p: LangProgress; days: SimDa
           ft++;
           if (r.evaluation.outcome === 'perfect') ftOk++;
           storyAutoPlay(data, p, (b) => b.choice?.[0]?.id ?? '');
-          nextCustomer(data, p);
+          nextInTown(data, p);
         }
         if (opts.buy) bought.push(...buyFromCatalogue(data, p).map((b) => b.id));
       } else {
@@ -148,7 +148,7 @@ export function simulatePlayer(opts: SimOptions): { p: LangProgress; days: SimDa
         storySync(data, p);
         storyAutoPlay(data, p, (b) => b.choice?.[0]?.id ?? '');
       }
-      if (!p.townDay || p.townDay.seg >= p.townDay.segments.length - 1) break;
+      if (!hasNextSegment(p)) break;
       nextSegment(p);
     }
     playVerification(data, p, acc, prng);
@@ -214,18 +214,36 @@ export function playJobShift(data: GameData, p: LangProgress, jobId: string, acc
   return { outcomes: out, rankUp, texts, tasks };
 }
 
-/** Play the tea house from its current segment to the end of its day (simulator / jobs simulation). */
-export function playTeaHouse(data: GameData, p: LangProgress, acc: number, rng: Rng, prng: Rng): { cups: number; perfect: number } {
+export interface TeaHouseHabits {
+  /** Skip the market before opening and order by delivery when a good on the note runs out. */
+  orderInstead?: boolean;
+}
+
+/**
+ * Play the tea house from where its day is to closing time and the house delivery (simulator / jobs simulation).
+ * With `orderInstead` the player never walks to the market: when the next customer needs a good the shelf is out
+ * of, they order the note's goods by delivery (fee included) — they arrive with the customer after.
+ */
+export function playTeaHouse(data: GameData, p: LangProgress, acc: number, rng: Rng, prng: Rng, habits: TeaHouseHabits = {}): { cups: number; perfect: number; orders: number; fees: number } {
   let cups = 0;
   let perfect = 0;
-  for (;;) {
-    const seg = currentSegment(p);
+  let orders = 0;
+  for (let guard = 0; guard < 10; guard++) {
+    const seg = habits.orderInstead && p.townDay && (p.townDay.part ?? 0) === 0 ? 'shop' : walkSegment(p);
     if (seg === 'market') {
       solveMarket(data, p, rng, { shortBy: prng() < acc ? 0 : 1 });
       finishMarket(data, p);
     } else if (seg === 'shop') {
+      openShop(p);
       while (p.today!.phase !== 'closed') {
         const o = currentOrder(p)!;
+        if (habits.orderInstead && (o.rule.require ?? []).some((r) => stockOf(p, r.ing) === 0) && marketAccess(p)?.why === null) {
+          if (!goMarket(data, p, rng)) {
+            solveMarket(data, p, rng);
+            finishMarket(data, p);
+            orders++;
+          }
+        }
         const ok = prng() < acc;
         const shelf = new Set(ingredientsAtStage(data, p.stage).filter((i) => stockOf(p, i as IngredientId) !== 0));
         const brew = ok ? (witnessBrew(o.rule, shelf, data.ing) ?? WRONG) : WRONG;
@@ -233,15 +251,15 @@ export function playTeaHouse(data: GameData, p: LangProgress, acc: number, rng: 
         cups++;
         if (r.evaluation.outcome === 'perfect') perfect++;
         storyAutoPlay(data, p, (b) => b.choice?.[0]?.id ?? '');
-        nextCustomer(data, p);
+        nextInTown(data, p);
       }
     } else {
       solveDelivery(data, p, rng, prng() < acc ? 'none' : 'place');
       storySync(data, p);
       storyAutoPlay(data, p, (b) => b.choice?.[0]?.id ?? '');
     }
-    if (!p.townDay || p.townDay.seg >= p.townDay.segments.length - 1) break;
+    if (!hasNextSegment(p)) break;
     nextSegment(p);
   }
-  return { cups, perfect };
+  return { cups, perfect, orders, fees: p.townDay?.fees ?? 0 };
 }

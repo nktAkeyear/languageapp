@@ -18,6 +18,7 @@ import { GameProvider, useGame } from './useGame';
 import { LevelSettingsHost } from './difficulty/LevelSettings';
 import { DifficultyEffects } from './difficulty/AssistUi';
 import { WordCardHost } from './components/WordCard';
+import { DayBanner } from './components/DayChrome';
 
 const MOBILE_QUERY = '(max-width: 820px)';
 
@@ -61,6 +62,7 @@ function Shell() {
               <StoryStage key={`story-${g.lang}`} onSettings={() => setSettings(true)} />
               <BookLayer />
               <DayTransition />
+              <DayBanner />
             </>
           )}
           <LevelSettingsHost />

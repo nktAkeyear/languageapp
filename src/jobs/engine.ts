@@ -1,16 +1,17 @@
 /**
- * Jobs engine: the town's job board, the parts of the day (朝 / 昼 / 夕), shifts of tasks, ranks,
+ * Jobs engine: the town's job board, the day's three parts (始業前 / 業務中 / 業務後), shifts of tasks, ranks,
  * wages and the goods jobs make for each other. UI-agnostic; called by the UI (GameApi.jobs) and by
  * src/activities/day.ts at the start / end of a day.
  *
- * Day model. Until the job board opens (calendar day BOARD_DAY) a day is exactly the original tea
- * house day (market → shop → delivery). Afterwards each morning starts in the town (the hub): the
- * player chooses where to work for each part of the day. The tea house is planned every morning as
- * before and, when chosen, runs its own segments from the current part on (market 朝, shop 昼,
- * delivery 夕; a later start skips the earlier ones). Any other job fills one part with a shift of
- * tasks. A day without the tea house leaves the shop closed: its planned customers do not come, its
- * stage clock does not move (no stage runs ahead while the player works elsewhere) and a planned
- * story beat waits for another day.
+ * Day model (v6). Until the job board opens (calendar day BOARD_DAY) a day is the original tea house day.
+ * Afterwards every day starts at today's workplace (the one chosen after closing the day before, `JobsState.next`;
+ * at first the tea house), before opening: a job's greeting / the tea house being prepared. Before opening the
+ * player may go out into the town and work elsewhere today. Working hours are spent there (a job's shift is its
+ * rank's tasks + MAIN_SHIFT_EXTRA; the tea house serves its customers). After closing, one second shift at a
+ * workplace open in the evening (`JobDef.hours` includes 2; the tea house opened late is the shop only, from the
+ * back room), then home. A day without the tea house leaves the shop closed: its planned customers do not come, its
+ * stage clock does not move (no stage runs ahead while the player works elsewhere) and a planned story beat waits
+ * for another day.
  */
 import { wordMarkup, type GameData } from '../core/gamedata';
 import { pick, type Rng } from '../core/rng';
@@ -47,7 +48,8 @@ export const BOARD_DAY = 4;
 export const TEAHOUSE = 'teahouse';
 /** The rank ladder shared by every job (original names: the tide coming in, then the lighthouse). */
 export const RANK_NAMES = ['さざ波', '潮だまり', '満ち潮', '大潮', '灯台'];
-export const PART_NAMES = ['朝', '昼', '夕方'];
+/** The three parts of a working day (v6). */
+export const PART_NAMES = ['始業前', '業務中', '業務後'];
 
 export function rankName(rank: number): string {
   return RANK_NAMES[rank - 1] ?? `${rank}`;
@@ -101,14 +103,28 @@ export function jobProgress(p: LangProgress, id: string): JobProgress {
   return (s.jobs[id] ??= newJobProgress(p.day));
 }
 
-/** Is the workplace open in this part of the day (its hours)? */
-export function jobOpenAt(job: JobDef, part: number): boolean {
-  return job.legacy || !job.hours || job.hours.includes(part);
+/** Does the workplace have day shifts (it can be the day's workplace) / an evening shift (業務後)? */
+export function jobHasDay(job: JobDef): boolean {
+  return job.legacy || !job.hours || job.hours.includes(0) || job.hours.includes(1);
+}
+export function jobHasEvening(job: JobDef): boolean {
+  return job.legacy || !job.hours || job.hours.includes(2);
 }
 
-/** The workplace's hours in words (Japanese chrome), e.g. 「朝・昼」. */
+/**
+ * Is the workplace open in this part of the day? Before opening and during working hours (0, 1): it has day
+ * shifts; after closing (2): it has an evening shift. (`JobDef.hours` keeps its first meaning — 0 朝 / 1 昼 / 2 夕 —
+ * read as day = 0 or 1, evening = 2.)
+ */
+export function jobOpenAt(job: JobDef, part: number): boolean {
+  return part >= 2 ? jobHasEvening(job) : jobHasDay(job);
+}
+
+/** The workplace's hours in words (Japanese chrome). */
 export function jobHoursJa(job: JobDef): string {
-  return (job.hours ?? [0, 1, 2]).map((h) => PART_NAMES[h]).join('・');
+  const d = jobHasDay(job);
+  const e = jobHasEvening(job);
+  return d && e ? '日中・業務後も' : d ? '日中のみ' : '業務後のみ';
 }
 
 /**
@@ -147,17 +163,48 @@ export function jobDay(p: LangProgress): JobDayState | null {
   return d && d.day === p.day ? d : null;
 }
 
-const SEG_PART: Record<string, number> = { market: 0, shop: 1, delivery: 2 };
+/** Is the tea house open today (its shop opened: working or closed after work)? Set by activities/day.ts. */
+function teaOpened(p: LangProgress): boolean {
+  const td = p.townDay;
+  return !!td && td.day === p.day && (td.part ?? 0) >= 1;
+}
 
-/** Called at the end of startTownDay (after the tea house planned its day). */
-export function jobsStartDay(data: GameData, p: LangProgress): void {
+/** The workplace a day starts at: the one chosen for the days ahead, if it can be today's; else the tea house. */
+export function dayWorkplace(data: GameData, p: LangProgress): string {
+  const s = p.jobs;
+  const id = s?.next;
+  const job = id ? jobById(data, id) : undefined;
+  return job && jobOffered(p, job) && jobHasDay(job) ? job.id : TEAHOUSE;
+}
+
+/** Make `id` today's workplace (before opening): the day starts there. */
+function setWork(data: GameData, p: LangProgress, id: string, rng: Rng): void {
+  const d = jobDay(p)!;
+  const job = jobById(data, id);
+  if (!job) return;
+  d.work = job.id;
+  if (job.legacy) {
+    d.view = 'teahouse';
+    d.tea = 'active';
+    d.shift = null;
+    jobProgress(p, job.id);
+    return;
+  }
+  // The tea house stays closed today (unless it is opened after closing time, as a second shift).
+  if (!teaOpened(p)) d.tea = 'none';
+  d.view = 'job';
+  d.shift = planShift(data, p, job, 1, rng);
+}
+
+/** Called at the end of startTownDay (after the tea house planned its day): the day starts at today's workplace. */
+export function jobsStartDay(data: GameData, p: LangProgress, rng?: Rng): void {
   if (!hasJobs(data)) return;
   const s = jobsState(p);
   const notes: string[] = [...(s.pending ?? [])];
   delete s.pending;
   if (!s.boardOpen && p.day >= BOARD_DAY) {
     s.boardOpen = p.day;
-    notes.push('町の掲示板に、仕事の募集が貼り出された。朝は町に出て、どこで働くか選べる。茶房のほかにも、いろいろな仕事がある。');
+    notes.push('町の掲示板に、仕事の募集が貼り出された。始業前に「町へ出る」と、今日働く場所を選び直せる。茶房のほかにも、いろいろな仕事がある。');
   }
   if (!s.boardOpen) {
     s.day = null;
@@ -165,81 +212,149 @@ export function jobsStartDay(data: GameData, p: LangProgress): void {
     return;
   }
   for (const j of jobsOf(data))
-    if (!j.legacy && jobOffered(p, j) && p.day === s.boardOpen + j.opensAfter && p.day !== s.boardOpen) notes.push(`掲示板に新しい募集：「${j.nameJa}」。`);
-  s.day = { day: p.day, part: 0, view: 'hub', tea: 'none', log: [], shift: null, notes };
+    if (!j.legacy && jobOffered(p, j) && !s.jobs[j.id]?.placed && p.day === s.boardOpen + j.opensAfter && p.day !== s.boardOpen) notes.push(`掲示板に新しい募集：「${j.nameJa}」。`);
+  s.day = { day: p.day, part: 0, view: 'teahouse', work: TEAHOUSE, tea: 'active', log: [], shift: null, notes };
+  const work = dayWorkplace(data, p);
+  if (work !== TEAHOUSE) setWork(data, p, work, rng ?? Math.random);
 }
 
-/** A save made before the board existed / a migrated day in progress: join the day where it is. */
+/**
+ * A save made before the board existed / a day saved by an older version: join the day where it is (the v5 → v6
+ * migration in core/save.ts has already turned an old 朝 / 昼 / 夕 day into the three parts where it could).
+ */
 export function jobsEnsureDay(data: GameData, p: LangProgress): void {
   if (!hasJobs(data) || !p.jobs?.boardOpen) return;
   const s = jobsState(p);
-  if (s.day && s.day.day === p.day) return;
+  const d0 = s.day && s.day.day === p.day ? s.day : null;
+  if (d0 && d0.work) return;
+  if (d0 && !d0.work) {
+    // Older day state without a workplace: the shift under way, the tea house, or (in the town) after closing.
+    d0.work = d0.shift?.job ?? (d0.view === 'teahouse' || d0.tea !== 'none' ? TEAHOUSE : (d0.log[0]?.job ?? TEAHOUSE));
+    if (d0.shift) {
+      d0.shift.part = 1;
+      d0.part = d0.shift.phase === 'intro' ? 0 : d0.shift.phase === 'done' ? 2 : 1;
+    } else if (d0.view === 'teahouse') d0.part = Math.min(2, p.townDay?.part ?? 0);
+    else if (d0.part > 0 || d0.log.length) d0.part = 2;
+    else {
+      d0.part = 0;
+      d0.view = 'teahouse';
+      d0.tea = 'active';
+    }
+    return;
+  }
   // A day already running in the tea house (e.g. loaded mid-day) continues there.
-  const started = !!p.today && (p.today.index > 0 || p.today.phase !== 'order' || (p.townDay?.seg ?? 0) > 0);
-  s.day = { day: p.day, part: started ? SEG_PART[p.townDay?.segments[p.townDay.seg] ?? 'shop'] : 0, view: started ? 'teahouse' : 'hub', tea: started ? 'active' : 'none', log: [], shift: null, notes: [] };
+  const part = Math.min(2, p.townDay?.part ?? 0);
+  s.day = { day: p.day, part, view: 'teahouse', work: TEAHOUSE, tea: 'active', log: [], shift: null, notes: [] };
 }
 
-/** Choose where to work for the current part. Returns a Japanese reason when not possible. */
+/**
+ * Choose where to work. Before opening (始業前): today's workplace (the day moves there; the days ahead still start
+ * where the player chose after closing, `chooseNext`). After closing (業務後): a second shift at a workplace open in the evening (the tea house:
+ * opened late, shop only). Returns a Japanese reason when not possible.
+ */
 export function chooseJob(data: GameData, p: LangProgress, jobId: string, rng: Rng): string | null {
   const d = jobDay(p);
   const job = jobById(data, jobId);
   if (!d || !job) return '今日は選べません';
-  if (d.view !== 'hub' || d.part > 2) return 'もう今日の仕事は終わりです';
   if (!jobOffered(p, job)) return 'まだ募集していません';
-  if (!jobOpenAt(job, d.part)) return `今は閉まっています（${jobHoursJa(job)}に開いています）`;
   const s = jobsState(p);
+  if (d.part === 1) return '今は仕事中です';
+  if (d.part > 2) return 'もう今日の仕事は終わりです';
+  if (d.part === 0) {
+    if (!jobHasDay(job)) return `日中の仕事はありません（${jobHoursJa(job)}）`;
+    if (!s.seen.includes(job.id)) s.seen.push(job.id);
+    if (d.work !== job.id) setWork(data, p, job.id, rng);
+    else d.view = job.legacy ? 'teahouse' : 'job';
+    return null;
+  }
+  // 業務後: a second shift.
+  if (!jobHasEvening(job)) return `業務後は閉まっています（${jobHoursJa(job)}）`;
+  if (d.work === job.id || d.log.some((l) => l.job === job.id)) return 'この仕事には今日もう行きました';
+  if (d.evening) return '業務後のひと仕事は、今日はもう済ませました';
   if (!s.seen.includes(job.id)) s.seen.push(job.id);
   if (job.legacy) {
     if (d.tea !== 'none') return '茶房は今日もう開けました';
     const td = p.townDay;
     if (td) {
-      const keep = td.segments.filter((seg) => SEG_PART[seg] >= d.part || seg === 'shop');
-      if (!keep.includes('market') && td.market && !td.market.done) {
-        delete td.market;
-        // No shopping today: the shop uses what is in the back (goods are not counted; supplies from the back
-        // room are paid per cup, so skipping the market is no cheaper than shopping).
-        td.stock = {};
-        td.fromBack = true;
-      }
-      if (!keep.includes('delivery')) delete td.delivery;
-      td.segments = keep;
+      // Opened late: the shop only, from the back room (no market goods are counted; each cup costs a little).
+      td.stock = {};
+      td.fromBack = true;
+      td.evening = true;
+      delete td.delivery;
+      td.segments = ['shop'];
       td.seg = 0;
-      if (td.segments[0] === 'shop' && td.notes.length && p.today && !p.today.notes.length) p.today.notes.push(...td.notes);
+      td.part = 1;
+      td.at = 'shop';
     }
+    d.evening = job.id;
     d.view = 'teahouse';
     d.tea = 'active';
     jobProgress(p, job.id);
     return null;
   }
-  if (d.log.some((l) => l.job === job.id)) return 'この仕事には今日もう行きました';
-  d.shift = planShift(data, p, job, d.part, rng);
+  d.evening = job.id;
+  d.shift = planShift(data, p, job, 2, rng);
   d.view = 'job';
   return null;
 }
 
-/** The tea house's day is over (shop closed, delivery done or none): back to the town if parts are left. */
-export function teaToTown(p: LangProgress): void {
-  const d = jobDay(p);
-  if (!d || d.view !== 'teahouse') return;
-  const segs = p.townDay?.segments ?? ['shop'];
-  const last = Math.max(...segs.map((x) => SEG_PART[x] ?? 1));
-  d.tea = 'done';
-  d.part = last + 1;
-  d.view = 'hub';
-  d.log.push({ part: SEG_PART[segs[0]] ?? 1, job: TEAHOUSE, tasks: p.today?.results.length ?? 0, good: (p.today?.results ?? []).filter((r) => r.outcome === 'perfect' || r.outcome === 'minor').length, coins: 0 });
+/** Choose the workplace for the next days (after closing, or from a workplace's card). */
+export function chooseNext(data: GameData, p: LangProgress, jobId: string): string | null {
+  const job = jobById(data, jobId);
+  if (!job || !jobOffered(p, job)) return 'まだ募集していません';
+  if (!jobHasDay(job)) return `日中の仕事はありません（${jobHoursJa(job)}）`;
+  jobsState(p).next = job.id;
+  return null;
 }
 
-/** Can the player leave the closed tea house for another job today? */
-export function canGoToTown(p: LangProgress): boolean {
+/** The tea house's part of the day changed (activities/day.ts): the day follows it when the tea house is today's workplace. */
+export function jobsTeaPart(p: LangProgress, part: number): void {
   const d = jobDay(p);
-  if (!d || d.view !== 'teahouse') return false;
-  const segs = p.townDay?.segments ?? ['shop'];
-  return !segs.includes('delivery') && (SEG_PART[segs[segs.length - 1]] ?? 1) < 2;
+  if (!d || d.work !== TEAHOUSE || d.evening === TEAHOUSE || d.part > 2) return;
+  if (part > d.part) d.part = part;
 }
 
 /**
- * Before the day ends from the town: a tea house that was not worked today stays closed (its
- * customers come another day; its stage clock holds still for the day).
+ * Out into the town from the tea house: before opening (to work elsewhere today, or just to look) or after
+ * closing (a second shift, the evening market, home). After closing, the tea house's day goes into the log.
+ */
+export function teaToTown(p: LangProgress): void {
+  const d = jobDay(p);
+  if (!d || d.view !== 'teahouse') return;
+  if (teaOpened(p) && p.today?.phase === 'closed') {
+    d.tea = 'done';
+    if (d.part < 2) d.part = 2;
+    if (!d.log.some((l) => l.job === TEAHOUSE))
+      d.log.push({ part: d.evening === TEAHOUSE ? 2 : 1, job: TEAHOUSE, tasks: p.today?.results.length ?? 0, good: (p.today?.results ?? []).filter((r) => r.outcome === 'perfect' || r.outcome === 'minor').length, coins: 0 });
+  }
+  d.view = 'hub';
+}
+
+/** Out of today's workplace (a job, before its shift begins) into the town: to look around or to work elsewhere today. */
+export function jobToTown(p: LangProgress): void {
+  const d = jobDay(p);
+  if (!d || d.part !== 0 || d.view !== 'job' || (d.shift && d.shift.phase !== 'intro')) return;
+  d.view = 'hub';
+}
+
+/** Back from the town to today's workplace (before opening). */
+export function backToWork(p: LangProgress): void {
+  const d = jobDay(p);
+  if (!d || d.view !== 'hub' || d.part !== 0) return;
+  d.view = d.work === TEAHOUSE ? 'teahouse' : 'job';
+}
+
+/** Can the player step out of the tea house into the town now (before opening, or after closing)? */
+export function canGoToTown(p: LangProgress): boolean {
+  const d = jobDay(p);
+  if (!d || d.view !== 'teahouse' || d.part > 2) return false;
+  const tp = p.townDay?.part ?? 0;
+  return tp === 0 || p.today?.phase === 'closed';
+}
+
+/**
+ * Before the day ends: a tea house that was not worked today stays closed (its customers come another day; its
+ * stage clock holds still for the day); a shift planned but never begun is dropped.
  */
 export function jobsCloseDay(_data: GameData, p: LangProgress): void {
   const d = jobDay(p);
@@ -251,13 +366,15 @@ export function jobsCloseDay(_data: GameData, p: LangProgress): void {
     if (p.townDay) {
       p.townDay.segments = ['shop'];
       p.townDay.seg = 0;
-      delete p.townDay.market;
       delete p.townDay.delivery;
       p.townDay.stock = {};
+      p.townDay.part = 2;
+      p.townDay.at = 'shop';
     }
     const diff = difficultyState(p);
     diff.clockOffset = Math.round((diff.clockOffset - 1) * 1000) / 1000;
   }
+  if (d.shift && d.shift.phase === 'intro') d.shift = null;
   if (d.tea === 'active') d.tea = 'done';
   d.part = 3;
   d.view = 'hub';
@@ -402,6 +519,9 @@ function unseen(data: GameData, p: LangProgress, inst: TaskInstance): string[] {
   return [...out];
 }
 
+/** Tasks a day's working hours at a job add to the rank's shift (`RankDef.tasks` = an evening's second shift). */
+export const MAIN_SHIFT_EXTRA = 2;
+
 /** New words a shift may introduce (grows a little with rank). */
 export function newWordBudget(rank: number): number {
   return 6 + rank;
@@ -418,7 +538,8 @@ export function planShift(data: GameData, p: LangProgress, job: JobDef, part: nu
   const rank = jp.rank;
   const def = job.ranks.find((r) => r.rank === rank) ?? job.ranks[0];
   const ctx = genCtx(data, p, job, jc, rank, rng);
-  const n = def.tasks;
+  // The day's working hours (part 1) are longer than an evening's second shift (part 2).
+  const n = def.tasks + (part === 1 ? MAIN_SHIFT_EXTRA : 0);
   const budget = newWordBudget(rank);
   const sel = selectNext(data, p, { yardstick: yardstickOf(p), domains: job.domains, vocab: jobVocab(data, job), maxStep: yardstickOf(p) === 'eiken' ? rankLevelIndex(job, rank) : undefined, n: 24 });
   const next = new Set(sel.teachable.map((t) => t.id));
@@ -532,6 +653,8 @@ export function beginShift(data: GameData, p: LangProgress): void {
   const job = jobById(data, s.job);
   if (s.startLine && job) recordEncounter(p.words, tokenIds(data.tokens(s.startLine)), p.day, s.startLine);
   s.phase = s.tasks.length ? 'task' : 'done';
+  const d = jobDay(p);
+  if (d && s.part === 1 && d.part < 1) d.part = 1;
   presentTask(data, p);
 }
 
@@ -688,6 +811,11 @@ export function reactionPool(data: GameData, jc: JobContent, inst: TaskInstance,
       values.fieldlow = fieldInText(f.label);
     }
   }
+  // A message pad: which line of it (the form's own label, quoted: “Who”, “Call back”).
+  if (prim?.field && inst.spec.arch === 'respond') {
+    const f = inst.spec.fields?.find((x) => x.id === prim.field);
+    if (f) values.field = f.label;
+  }
   if (prim?.item && inst.spec.arch === 'sort') {
     const it = inst.spec.items.find((x) => x.id === prim.item);
     const bin = jc.sort?.bins.find((b) => b.id === it?.bin);
@@ -814,7 +942,7 @@ export function nextTask(data: GameData, p: LangProgress): void {
   if (s.endLine) recordEncounter(p.words, tokenIds(data.tokens(s.endLine)), p.day, s.endLine);
 }
 
-/** Leave the workplace after the shift: the next part of the day begins in the town. */
+/** Leave the workplace after the shift: after closing, out into the town (a second shift, the market, home). */
 export function leaveShift(p: LangProgress): void {
   const d = jobDay(p);
   const s = d?.shift;
@@ -827,7 +955,7 @@ export function leaveShift(p: LangProgress): void {
     coins: s.results.reduce((a, r) => a + r.coins + r.bonus, 0),
   });
   d.shift = null;
-  d.part = s.part + 1;
+  if (d.part < 2) d.part = 2;
   d.view = 'hub';
 }
 
@@ -891,8 +1019,8 @@ export function reactionScenarios(spec: TaskSpec): { late: boolean; ev: Pick<Job
   } else if (spec.arch === 'respond') {
     if (spec.mode === 'choose') add('wrong_reply', 'fail');
     else if (spec.mode === 'form') {
-      add('wrong_form', 'fail');
-      if ((spec.fields?.length ?? 0) >= 3) add('wrong_form', 'minor');
+      add('wrong_form', 'fail', { field: spec.fields?.[0]?.id });
+      if ((spec.fields?.length ?? 0) >= 3) add('wrong_form', 'minor', { field: spec.fields?.[0]?.id });
     } else add('wrong_slot', 'fail');
   }
   return out;

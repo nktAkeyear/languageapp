@@ -29,7 +29,6 @@ export function SortBench({ task, jc, result, onSubmit }: BenchProps) {
   const [landed, setLanded] = useState<string | null>(null);
   const bench = jc.sort!;
   const done = !!result;
-  const wrong = new Set(result?.wrongItems ?? []);
   const loose = spec.items.filter((i) => !placed[i.id]);
   const put = (bin: string, item = held) => {
     if (!item || done) return;
@@ -68,7 +67,7 @@ export function SortBench({ task, jc, result, onSubmit }: BenchProps) {
                     <button
                       key={it.id}
                       type="button"
-                      className={`sortb-placed ${done ? (wrong.has(it.id) ? 'bad' : 'good') : ''}`}
+                      className="sortb-placed"
                       onClick={(e) => {
                         e.stopPropagation();
                         if (done) return;
@@ -88,7 +87,6 @@ export function SortBench({ task, jc, result, onSubmit }: BenchProps) {
                       data-placed={it.id}
                     >
                       <WordText text={it.text} interactive={false} />
-                      {done ? <span className="sortb-mark">{wrong.has(it.id) ? '✗' : '✓'}</span> : null}
                     </button>
                   ))}
                 </span>
@@ -227,12 +225,11 @@ export function TradeBench({ task, jc, result, onSubmit }: BenchProps) {
                   const v = rates.price[di][bi];
                   const key = `${d.id}:${b.upTo}`;
                   const on = post?.key === key;
-                  const right = done && spec.post?.dest === d.id && b.upTo === rates.bands.find((x) => spec.post!.kilos <= x.upTo)?.upTo;
                   return (
                     <button
                       key={b.upTo}
                       type="button"
-                      className={`ratecard-cell ${on ? 'on' : ''} ${right ? 'right' : ''}`}
+                      className={`ratecard-cell ${on ? 'on' : ''}`}
                       disabled={done || !weighed}
                       onClick={() => {
                         sfx('stamp');

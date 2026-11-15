@@ -7,7 +7,7 @@ import { storyDismiss } from '../../story/engine';
 import { storyOf } from '../../story/text';
 import type { Ledger } from '../../story/types';
 import type { IngredientId } from '../../core/types';
-import { CustomerArt, lookFor } from '../art/customer';
+import { CustomerArt } from '../art/customer';
 import { DocObjectArt, docLook } from '../art/documents';
 import { ContainerArt, PieceArt } from '../art/ingredients';
 import { RenoRoom } from '../art/reno';
@@ -154,34 +154,22 @@ export function LedgerBook({ ledger, act, onClose }: { ledger: Ledger; act?: Act
           </tr>
           <tr className={w(3)}>
             <th>評判</th>
-            <td className={ledger.repDelta > 0 ? 'up' : ledger.repDelta < 0 ? 'down' : ''}>{sign(ledger.repDelta)}</td>
+            <td>{sign(ledger.repDelta)}</td>
           </tr>
           <tr className={w(4)}>
             <th>お客</th>
-            <td>{ledger.served || !ledger.work?.length ? `${ledger.served}人（ぴったり ${ledger.perfect}）` : '茶房は閉めていた'}</td>
+            <td>{ledger.served || !ledger.work?.length ? `${ledger.served}人` : '茶房は閉めていた'}</td>
           </tr>
           {(ledger.work ?? []).map((l) => (
             <tr key={l.job} className={w(4)} data-testid="ledger-work">
               <th>{l.nameJa}</th>
               <td>
-                {l.tasks}件（うまく {l.good}）
+                {l.tasks}件・<span className="coin-glyph" aria-hidden /> +{l.coins}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {snap?.results.length ? (
-        <div className={`lg-faces ${w(5)}`}>
-          {snap.results.map((r, i) => {
-            const c = data.content.customers.find((x) => x.id === r.customer);
-            return (
-              <span key={i} className={`lg-face out-${r.outcome}`} title={c?.name}>
-                <CustomerArt look={lookFor(c?.id ?? r.customer, c?.avatar ?? '🧑')} ex={r.face} />
-              </span>
-            );
-          })}
-        </div>
-      ) : null}
       {snap && snap.stock.length ? (
         <p className={`lg-note ${w(5)}`}>
           在庫の残り
@@ -208,7 +196,7 @@ export function LedgerBook({ ledger, act, onClose }: { ledger: Ledger; act?: Act
           ))}
         </p>
       ) : null}
-      {snap?.returning ? <p className={`lg-note ${w(5)}`}>満足しなかったお客さんが {snap.returning} 人。また来るかもしれない。</p> : null}
+      {snap?.returning ? <p className={`lg-note ${w(5)}`}>また顔を見せそうなお客さんが {snap.returning} 人。</p> : null}
     </div>
   );
   const right = (

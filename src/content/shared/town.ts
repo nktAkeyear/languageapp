@@ -16,7 +16,7 @@ export const TOWN_SHARED: TownShared = {
       graceDays: 3,
       chance: 0.55,
       maxGap: 2,
-      noteJa: '朝、市場へ買い出しに行けるようになった。棚の品が切れている日は、メモを見て買ってこよう。',
+      noteJa: '市場へ買い出しに行けるようになった（始業前と業務後）。棚の品が足りない日は、メモを見て開店前に買ってこよう。店を開けたあとは、配達を頼むこともできる（配送費がかかる）。',
     },
     levels: [
       { level: 1, minRuns: 0, maxItems: 1, features: [] },
@@ -72,7 +72,7 @@ export const TOWN_SHARED: TownShared = {
       graceDays: 3,
       chance: 0.6,
       maxGap: 2,
-      noteJa: '店を閉めたあと、お客さんから配達を頼まれるようになった。配達票と町の地図を見比べよう。',
+      noteJa: '業務後（店を閉めたあと）に、お客さんの家へお茶を届ける配達を頼まれるようになった。配達票と町の地図を見比べよう。',
     },
     levels: [
       { level: 1, minRuns: 0, features: [] },

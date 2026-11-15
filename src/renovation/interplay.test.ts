@@ -2,7 +2,7 @@
  * Renovation × difficulty settings: the two layers were built apart; these pin how they combine.
  */
 import { describe, expect, it } from 'vitest';
-import { currentSegment, endTownDay, hasNextSegment, nextSegment, serveInTown, startTownDay, stockOf } from '../activities/day';
+import { walkSegment, endTownDay, hasNextSegment, nextSegment, serveInTown, startTownDay, stockOf } from '../activities/day';
 import { solveDelivery } from '../activities/delivery/engine';
 import { finishMarket, solveMarket } from '../activities/market/engine';
 import { currentOrder, nextCustomer, type ServeOutcome } from '../activities/shop/engine';
@@ -31,7 +31,7 @@ function playDays(d: GameData, p: LangProgress, days: number, rng: () => number)
     startTownDay(d, p, rng);
     storyAutoPlay(d, p, (b) => b.choice?.[0]?.id ?? '');
     for (;;) {
-      const seg = currentSegment(p);
+      const seg = walkSegment(p);
       if (seg === 'market') {
         solveMarket(d, p, rng);
         finishMarket(d, p);
@@ -138,7 +138,7 @@ describe('renovation × difficulty', () => {
     for (;;) {
       if (!hasNextSegment(p)) break;
       nextSegment(p);
-      if (currentSegment(p) === 'delivery') solveDelivery(d, p, rng);
+      if (walkSegment(p) === 'delivery') solveDelivery(d, p, rng);
     }
     endTownDay(p, d);
     const led = p.story.lastLedger!;
@@ -155,7 +155,7 @@ describe('renovation × difficulty', () => {
     give(p, 'kettle', 'scales', 'icebox');
     startTownDay(d, p, rng);
     for (const seg of p.townDay!.segments) {
-      if (currentSegment(p) !== 'shop') {
+      if (walkSegment(p) !== 'shop') {
         if (seg === 'market') {
           solveMarket(d, p, rng);
           finishMarket(d, p);
@@ -163,7 +163,7 @@ describe('renovation × difficulty', () => {
         nextSegment(p);
       }
     }
-    expect(currentSegment(p)).toBe('shop');
+    expect(walkSegment(p)).toBe('shop');
     const before = structuredClone(p); // what the UI keeps before a cup (useGame.serveBrew)
     const right = rightCup(d, p);
     serveInTown(d, p, WRONG, rng);

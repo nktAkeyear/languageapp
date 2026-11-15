@@ -6,7 +6,8 @@
  * Desktop: a 1600×1000 stage scaled to the window; phone: the same pieces stacked.
  */
 import { useEffect, useRef, useState } from 'react';
-import { currentShift, jobById, rankName, shiftTally } from '../../jobs/engine';
+import { currentShift, jobById, jobDay, rankName } from '../../jobs/engine';
+import { DayParts, NoticePin } from '../components/DayChrome';
 import { personOf } from '../../jobs/templates';
 import type { JobContent, ShiftState, TaskAnswer, TaskInstance, TaskResult } from '../../jobs/types';
 import { CustomerArt, lookFor, type Expression, type Pose } from '../art/customer';
@@ -86,6 +87,8 @@ export function JobScene({ onSettings }: { onSettings: () => void }) {
         </span>
       ) : null}
       <span className="js-coins">🪙 {progress.town.money}</span>
+      <DayParts compact={mobile} className="js-dayparts" />
+      <NoticePin className="js-notice" />
     </div>
   );
   const body =
@@ -174,20 +177,31 @@ function Bubble({ text, hidden, onReveal, tag }: { text: string; hidden?: boolea
   );
 }
 
+/**
+ * 始業前 at a job (or the start of an evening shift): the boss's greeting and the day's work waiting. Before
+ * opening the player may still step out into the town (to work elsewhere today).
+ */
 function Intro({ shift, jc }: { shift: ShiftState; jc: JobContent }) {
   const g = useGame();
   const talking = useTalkBurst(`intro${shift.part}`, lineMs(shift.startLine, false));
+  const before = (g.progress && jobDay(g.progress)?.part) === 0;
   return (
     <>
       <div className="js-left">
         <Bubble text={shift.startLine} />
         <Person id={jc.boss} jc={jc} ex="happy" pose="wave" talking={talking} />
       </div>
-      <div className="js-work js-intro">
+      <div className="js-work js-intro" data-testid="job-prep">
+        <p className="js-intro-part hand">{before ? '始業前' : '業務後のひと仕事'}</p>
         <p className="hand">今日の仕事は {shift.tasks.length} 件。</p>
         <button type="button" className="cv-btn cv-next" data-testid="shift-begin" onClick={() => (sfx('page'), g.jobs.begin())}>
-          仕事を始める
+          {before ? '始業する' : '仕事を始める'}
         </button>
+        {before ? (
+          <button type="button" className="cv-btn" data-testid="to-town" onClick={() => (sfx('steps'), g.jobs.toTown())}>
+            町へ出る（ほかの仕事場へ）
+          </button>
+        ) : null}
       </div>
     </>
   );
@@ -214,9 +228,16 @@ function TaskView({ task, jc, result }: { task: TaskInstance; jc: JobContent; re
   const talking = useTalkBurst(sayKey, lineMs(shown, false));
   const face: Expression = result ? (result.outcome === 'perfect' ? 'delighted' : result.outcome === 'minor' ? 'neutral' : result.outcome === 'bad' ? 'angry' : 'puzzled') : 'listen';
   const pose: Pose = result ? (result.outcome === 'perfect' ? 'heart' : 'open') : task.spec.arch === 'trade' || task.spec.arch === 'make' ? 'explain' : 'chin';
+  const leftRef = useRef<HTMLDivElement>(null);
+  const mobile = useMobile();
+  // The reply is the only feedback: on the phone (a page that scrolls) bring the person's words into view.
+  useEffect(() => {
+    if (result && mobile) leftRef.current?.scrollIntoView?.({ block: 'start', behavior: rm ? 'auto' : 'smooth' });
+  }, [result, mobile, rm]);
   useEffect(() => {
     if (!result) return;
-    sfx(result.outcome === 'perfect' ? 'happy' : result.outcome === 'minor' ? 'clink' : 'fail');
+    // No sound tells right from wrong: the person's words and face do.
+    sfx('clink');
     if (result.coins + result.bonus > 0) window.setTimeout(() => sfx('coin'), 500);
   }, [result]);
   const onSubmit = (a: TaskAnswer) => {
@@ -225,9 +246,9 @@ function TaskView({ task, jc, result }: { task: TaskInstance; jc: JobContent; re
   };
   return (
     <>
-      <div className={`js-left ${lengthClass(result ? result.reaction : task.say)}`}>
+      <div ref={leftRef} className={`js-left ${lengthClass(result ? result.reaction : task.say)}`}>
         {result ? (
-          <Bubble text={result.reaction} tag={result.outcome === 'perfect' ? undefined : undefined} />
+          <Bubble text={result.reaction} />
         ) : (
           <Bubble text={task.say} hidden={task.audioOnly && canSpeak && !revealed} onReveal={() => setRevealed(true)} />
         )}
@@ -247,10 +268,10 @@ function TaskView({ task, jc, result }: { task: TaskInstance; jc: JobContent; re
         ) : null}
         <Bench task={task} jc={jc} result={result} onSubmit={onSubmit} />
         {result ? (
-          <div className="js-result" data-testid="task-result" data-outcome={result.outcome}>
-            <span className={`js-outcome out-${result.outcome}`}>{OUTCOME_JA[result.outcome]}</span>
-            <span className="js-pay">
-              +{result.coins}
+          <div className="js-result" data-testid="task-result">
+            {/* what happened is in the person's words above; here only the ledger's fact */}
+            <span className="js-pay" data-testid="task-pay">
+              お給金 +{result.coins}
               {result.bonus ? `（+${result.bonus}）` : ''} 🪙
             </span>
             <button type="button" className="cv-btn cv-next" data-testid="task-next" onClick={() => (sfx('page'), g.jobs.next())}>
@@ -263,14 +284,11 @@ function TaskView({ task, jc, result }: { task: TaskInstance; jc: JobContent; re
   );
 }
 
-export const OUTCOME_JA = { perfect: '完璧', minor: 'まあまあ', fail: 'うまくいかなかった', bad: '大失敗' } as const;
-
 function Done({ shift }: { shift: ShiftState }) {
   const g = useGame();
   const data = g.data!;
   const job = jobById(data, shift.job)!;
   const jc = job.content[data.lang]!;
-  const tally = shiftTally(shift);
   const coins = shift.results.reduce((a, r) => a + r.coins + r.bonus, 0);
   const talking = useTalkBurst(`end${shift.part}`, lineMs(shift.endLine, false));
   useEffect(() => {
@@ -283,11 +301,10 @@ function Done({ shift }: { shift: ShiftState }) {
         <Person id={jc.boss} jc={jc} ex="happy" pose="wave" talking={talking} />
       </div>
       <div className="js-work js-done" data-testid="shift-done">
-        <h3>今日の{job.nameJa}の仕事、おしまい</h3>
-        <div className="js-tally">
-          {(['perfect', 'minor', 'fail', 'bad'] as const).map((k) => (tally[k] ? <span key={k} className={`js-outcome out-${k}`}>{OUTCOME_JA[k]} ×{tally[k]}</span> : null))}
-        </div>
-        <p className="js-wage">お給金 {coins} 枚</p>
+        <h3>{shift.part >= 2 ? '業務後のひと仕事、おしまい' : `今日の${job.nameJa}の仕事、おしまい`}</h3>
+        <p className="js-wage">
+          {shift.results.length} 件の仕事・お給金 {coins} 枚
+        </p>
         {shift.rankUp ? (
           <div className="js-rankup" data-testid="rank-up">
             <div className="js-rankup-badge">{rankName(shift.rankUp)}</div>
@@ -300,9 +317,23 @@ function Done({ shift }: { shift: ShiftState }) {
         ) : (
           <RankProgress job={job} />
         )}
-        <button type="button" className="cv-btn cv-next" data-testid="shift-leave" onClick={() => (sfx('steps'), g.jobs.leave())}>
-          町へ戻る
-        </button>
+        <div className="js-done-actions">
+          <button type="button" className="cv-btn" data-testid="shift-leave" onClick={() => (sfx('steps'), g.jobs.leave())}>
+            町へ出る（業務後）
+          </button>
+          <button
+            type="button"
+            className="cv-btn cv-next"
+            data-testid="shift-home"
+            onClick={() => {
+              sfx('steps');
+              g.jobs.leave();
+              g.closeDay();
+            }}
+          >
+            家に帰って帳簿をつける
+          </button>
+        </div>
       </div>
     </>
   );

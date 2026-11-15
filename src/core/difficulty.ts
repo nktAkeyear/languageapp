@@ -49,9 +49,9 @@ export interface Assists {
   pinyin?: PinyinMode;
   /** Peek at the gloss of an unconfirmed word for a reputation point (notebook word page). */
   peek: boolean;
-  /** After a failed cup, mark the words of the order the mistake was about. */
+  /** Retired (v6): marking what a cup's mistake was about told right from wrong. Kept in saves, never shown. */
   markMistake: boolean;
-  /** After a failed cup, try the same customer again without penalty. */
+  /** After a cup, make it again for the same customer (state restored to before the cup; offered after every cup). */
   retry: boolean;
   /** Audio-only orders / market quotes. */
   audio: AudioFreq;
@@ -567,10 +567,10 @@ export function difficultyOnTask(data: GameData, p: LangProgress, key: string, t
   accServe(accFor(data, p), key, perfect, texts.some((text) => orderHasNewWords(data, p, { text })));
 }
 
-/** The retry assist restored the state from before a failed cup: count that failed first try again. */
-export function difficultyOnRetry(data: GameData, p: LangProgress, order: OrderInstance): void {
+/** The retry assist restored the state from before a cup: count that first try again (as it went). */
+export function difficultyOnRetry(data: GameData, p: LangProgress, order: OrderInstance, ok = false): void {
   const acc = accFor(data, p);
-  accServe(acc, order.key, false, orderHasNewWords(data, p, order));
+  accServe(acc, order.key, ok, orderHasNewWords(data, p, order));
   acc.retries++;
 }
 

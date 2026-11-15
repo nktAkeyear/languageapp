@@ -6,7 +6,9 @@
  *   a portion to take it back; the order things went in is numbered (a recipe card's steps). A request that is a
  *   recipe card / menu / note is pinned up as that paper.
  * - Check (the desk): the papers laid out as the documents they are; circle the line that disagrees with the red
- *   pen (tap it), choose the right value when asked, then stamp: ✓ (all in order) or ✗ (send back).
+ *   pen (tap it), choose the right value when asked, then stamp: 問題なし (all in order) or 差し戻す (send back).
+ *   After handing in, the papers show the player's own pen mark and stamp only (no verdict): what was wrong is in
+ *   the person's reply.
  * - Respond: the message as what it is — the telephone (ringing; heard only at higher ranks), an e-mail on the
  *   screen, a letter, a notice on the board — and the reply: reply slips on the counter, the message pad by the
  *   telephone, the wall calendar, the inn's floor board (hang the key on the one free room).
@@ -187,8 +189,8 @@ export function CheckDesk({ task, result, onSubmit }: BenchProps) {
             lines={d.lines}
             target={i === spec.target}
             marked={i === spec.target ? field : null}
-            truth={done && i === spec.target ? spec.wrong : null}
-            stamped={i === spec.target ? (done ? (result?.outcome === 'perfect' || result?.outcome === 'minor' ? (spec.wrong ? 'ng' : 'ok') : stamping) : stamping) : null}
+            truth={null}
+            stamped={i === spec.target ? stamping : null}
             disabled={done || !!stamping}
             onField={(id) => {
               sfx('write');
@@ -226,7 +228,7 @@ export function CheckDesk({ task, result, onSubmit }: BenchProps) {
           </button>
         </div>
       ) : (
-        <p className="hand small muted checkd-after">{spec.wrong ? '緑の丸：食い違っていたところ。' : 'この書類は合っていた。'}</p>
+        <p className="hand small muted checkd-after">{stamping === 'ng' ? '差し戻しの判を押して渡した。' : '問題なしの判を押して渡した。'}</p>
       )}
     </div>
   );
@@ -296,7 +298,7 @@ export function RespondDesk({ task, result, onSubmit }: BenchProps) {
             <button
               key={i}
               type="button"
-              className={`reply-slip ${choice === i ? 'on' : ''} ${done && i === spec.answer ? 'right' : ''} ${done && choice === i && i !== spec.answer ? 'wrong' : ''}`}
+              className={`reply-slip ${choice === i ? 'on' : ''}`}
               style={{ ['--tilt' as string]: `${((i * 53) % 5) - 2}deg` }}
               onClick={() => (sfx('paper'), setChoice(i))}
               disabled={done || (phone && !answered)}
@@ -313,7 +315,7 @@ export function RespondDesk({ task, result, onSubmit }: BenchProps) {
         <div className="respd-pad" aria-label="伝言メモ">
           <span className="respd-pad-top" aria-hidden />
           {spec.fields!.map((f) => (
-            <div key={f.id} className={`respd-field ${done && fields[f.id] !== f.answer ? 'wrong' : ''}`}>
+            <div key={f.id} className="respd-field">
               <span className="respd-flabel">
                 <WordText text={f.label} interactive={false} />
               </span>
@@ -322,7 +324,7 @@ export function RespondDesk({ task, result, onSubmit }: BenchProps) {
                   <button
                     key={o}
                     type="button"
-                    className={`reply-chip hand-chip ${fields[f.id] === o ? 'on' : ''} ${done && o === f.answer ? 'right' : ''}`}
+                    className={`reply-chip hand-chip ${fields[f.id] === o ? 'on' : ''}`}
                     onClick={() => (sfx('write'), setFields((x) => ({ ...x, [f.id]: o })))}
                     disabled={done || (phone && !answered)}
                     data-chip={`${f.id}:${o}`}
@@ -380,7 +382,7 @@ function SlotGrid({ slot, pick, onPick, done }: { slot: NonNullable<RespondSpec[
                 <button
                   key={c.id}
                   type="button"
-                  className={`slotg-cell free ${pick === cell.id ? 'on' : ''} ${done && cell.id === slot.answer ? 'right' : ''} ${done && pick === cell.id && cell.id !== slot.answer ? 'wrong' : ''}`}
+                  className={`slotg-cell free ${pick === cell.id ? 'on' : ''}`}
                   onClick={() => onPick(cell.id)}
                   disabled={done}
                   data-cell={cell.id}

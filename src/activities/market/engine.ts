@@ -21,7 +21,7 @@ import type {
   VendorLineKind,
 } from '../../core/townTypes';
 import { chooseText, colourMarkup, fill, formsText, moneyText, textWords, townOf, type Town } from '../town/text';
-import { bargainTotal, computeNeeds, evaluatePayment, goodDef, offerPrice, stockFromMarket, lineCovered, unitsFor, type PaymentKind } from './rules';
+import { bargainTotal, computeNeeds, evaluatePayment, goodDef, offerPrice, portionsFromBasket, stockFromMarket, lineCovered, unitsFor, type PaymentKind } from './rules';
 
 /** Purchases above this total are not offered (number words exist up to 100). */
 export const MAX_TOTAL = 100;
@@ -402,30 +402,66 @@ export function cancelPurchase(p: LangProgress): void {
   md.talk.forEach((t) => delete t.audioOnly);
 }
 
-/** Leave the market: today's tracked stock is what was bought. Mutates p. */
+/**
+ * Leave the market. Mutates p. By the trip's mode:
+ * - visit (before opening): what was bought goes on today's shelf (the goods the note tracks);
+ * - order (during working hours): it is on its way — it reaches the shop when the next customer comes in
+ *   (activities/day.ts); with nothing ordered, the delivery fee is given back;
+ * - evening (after closing): it is kept in the back room for tomorrow (`town.pantry`).
+ * The first trip of the day is the day's market run (levels, the note's words).
+ */
 export function finishMarket(data: GameData, p: LangProgress): void {
   const town = townOf(data);
   const md = md0(p);
   if (!town || !md || !p.townDay) return;
-  const stock = stockFromMarket(town.shared.market, md.lines, md.basket);
-  // Bought portions join what the shop already had (0, or goods kept overnight).
-  const merged = { ...p.townDay.stock };
-  for (const [ing, n] of Object.entries(stock) as [IngredientId, number][]) merged[ing] = (merged[ing] ?? 0) + n;
-  p.townDay.stock = merged;
-  for (const l of md.lines) {
-    const ids = textWords(data, l.text);
-    if (lineCovered(l, stock)) ids.forEach((id) => recordSuccess(p.words, id, p.day));
-    else {
-      // Implicate the good, its number and unit words (all words of the line except glue).
-      ids.forEach((id) => recordLapse(p.words, id, p.day));
+  const td = p.townDay;
+  const mode = md.mode ?? 'visit';
+  const got = portionsFromBasket(town.shared.market, md.basket);
+  const first = !(md.trips ?? 0);
+  if (mode === 'visit') {
+    const stock = stockFromMarket(town.shared.market, md.lines, md.basket);
+    // Bought portions join what the shop already had (0, or goods kept overnight / bought last night).
+    const merged = { ...td.stock };
+    for (const [ing, n] of Object.entries(stock) as [IngredientId, number][]) merged[ing] = (merged[ing] ?? 0) + n;
+    td.stock = merged;
+    for (const l of md.lines) {
+      const ids = textWords(data, l.text);
+      if (lineCovered(l, merged)) ids.forEach((id) => recordSuccess(p.words, id, p.day));
+      // Implicate the good, its number and unit words (all words of the line except glue) — on the first trip only.
+      else if (first) ids.forEach((id) => recordLapse(p.words, id, p.day));
     }
+  } else if (mode === 'order') {
+    if (!md.basket.length) {
+      p.town.money += md.fee ?? 0; // nothing ordered: the errand boy is not sent
+    } else {
+      const stock: Partial<Record<IngredientId, number>> = {};
+      for (const [ing, n] of got) stock[ing] = Math.floor(n);
+      (td.incoming ??= []).push({
+        stock,
+        at: p.today?.index ?? 0,
+        fee: md.fee ?? 0,
+        goods: md.basket.map((b) => ({ good: b.good, units: b.units, ...(b.variant ? { variant: b.variant } : {}) })),
+      });
+      td.fees = (td.fees ?? 0) + (md.fee ?? 0);
+      md.spent += md.fee ?? 0;
+      for (const l of md.lines) if (got.has(l.good)) textWords(data, l.text).forEach((id) => recordSuccess(p.words, id, p.day));
+    }
+  } else {
+    const pantry = (p.town.pantry ??= {});
+    for (const [ing, n] of got) pantry[ing] = (pantry[ing] ?? 0) + Math.floor(n);
   }
+  md.fee = 0;
+  md.basket = [];
   md.done = true;
   md.stall = null;
   md.pending = null;
   md.selected = null;
-  p.town.marketRuns++;
-  p.town.lastDay.market = p.day;
+  md.talk = [];
+  md.trips = (md.trips ?? 0) + 1;
+  if (first) {
+    p.town.marketRuns++;
+    p.town.lastDay.market = p.day;
+  }
 }
 
 /** Ingredient word markup (for stock reactions in the shop). */

@@ -213,7 +213,7 @@ export function renoMorning(data: GameData, p: LangProgress): string[] {
   if (!due.length) return [];
   r.orders = r.orders.filter((o) => o.day >= p.day);
   for (const o of due) r.owned[o.id] = p.day;
-  return [due.length === 1 ? '朝いちばんに、注文していた品が届いた。店のどこかが変わったようだ。' : `朝いちばんに、注文していた品が${due.length}つ届いた。店のあちこちが変わったようだ。`];
+  return [due.length === 1 ? '始業前に、注文していた品が届いた。店のどこかが変わったようだ。' : `始業前に、注文していた品が${due.length}つ届いた。店のあちこちが変わったようだ。`];
 }
 
 /**

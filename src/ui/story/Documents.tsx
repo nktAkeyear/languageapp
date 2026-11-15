@@ -171,7 +171,8 @@ export function DocReader({ docId, onClose, closeLabel }: { docId: string; onClo
 
 /** The document box on the shop counter. */
 export function DocBoxProp() {
-  const { progress, data } = useGame();
+  const g = useGame();
+  const { progress, data } = g;
   const su = useStoryUi();
   const story = data ? storyOf(data) : null;
   if (!progress?.story || !story) return null;
@@ -184,7 +185,10 @@ export function DocBoxProp() {
       className={`docbox ${unread ? 'docbox-unread' : ''}`}
       onClick={() => {
         sfx('drawer');
-        su.openBox();
+        // A paper that came today and has not been picked up yet: it is taken out first (then into the box).
+        const waiting = progress.story.cards.findIndex((c) => c.deferred && c.kind === 'doc');
+        if (waiting >= 0) g.openStoryCard(waiting);
+        else su.openBox();
       }}
       aria-label={`書類箱を開く（${papers.length}）${unread ? '・まだ読んでいないものがある' : ''}`}
       data-testid="story-docs-button"

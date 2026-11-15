@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { currentSegment, endTownDay, hasNextSegment, nextSegment, serveInTown, startTownDay, stockOf } from '../activities/day';
+import { walkSegment, endTownDay, hasNextSegment, nextSegment, serveInTown, startTownDay, stockOf } from '../activities/day';
 import { solveDelivery } from '../activities/delivery/engine';
 import { finishMarket, solveMarket } from '../activities/market/engine';
 import { currentOrder, nextCustomer } from '../activities/shop/engine';
@@ -47,7 +47,7 @@ function play(lang: 'en' | 'zh', days: number, opts: { seed?: number; failEvery?
     startTownDay(d, p, rng);
     storyAutoPlay(d, p, pickChoice);
     for (;;) {
-      const seg = currentSegment(p);
+      const seg = walkSegment(p);
       if (seg === 'market') {
         solveMarket(d, p, rng);
         finishMarket(d, p);
@@ -99,7 +99,7 @@ describe('story conditions and effects', () => {
     expect(condHolds({ notFlags: ['x'] }, p)).toBe(false);
     expect(p.reputation).toBe(3);
     expect(p.town.money).toBe(15);
-    expect(st.cards.at(-1)).toEqual({ kind: 'doc', doc: 'd_margin' });
+    expect(st.cards.at(-1)).toEqual({ kind: 'doc', doc: 'd_margin', deferred: true });
   });
 
   it('respects groups and the per-character gap', () => {
@@ -151,7 +151,7 @@ describe('story day hooks', () => {
       nextCustomer(d, p);
     }
     const out = serveInTown(d, p, { counts: { salt: 1 }, temp: null, method: null }, rng)!;
-    expect(out.reaction.text).toBe(storyOf(d)!.text.beats.rose_1.poor);
+    expect(out.reaction.text).toContain(storyOf(d)!.text.beats.rose_1.poor); // after the shop's line that says what is wrong
     expect(storyState(p).beats.rose_1).toMatchObject({ status: 'done', outcome: 'poor' });
     expect(p.returns.some((r) => r.instance.key.startsWith(STORY_KEY_PREFIX))).toBe(false);
     expect(p.words.no?.seen).toBeGreaterThan(0);
@@ -171,8 +171,8 @@ describe('story day hooks', () => {
     expect(p.townDay!.segments).toContain('delivery');
     expect(p.townDay!.delivery!.slip.key).toBe(STORY_KEY_PREFIX + 'tom_3');
     expect(p.townDay!.delivery!.slip.recipient).toBe('r_hill');
-    while (currentSegment(p) !== 'delivery') {
-      if (currentSegment(p) === 'market') {
+    while (walkSegment(p) !== 'delivery') {
+      if (walkSegment(p) === 'market') {
         solveMarket(d, p, makeRng(4));
         finishMarket(d, p);
       } else

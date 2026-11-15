@@ -45,7 +45,7 @@ export function RecordLeft({ onSettings }: { onSettings?: () => void }) {
         </div>
         {d?.lastReason ? <p className="hand small drec-reason">きのうの見直し：{d.lastReason}</p> : null}
         <div className="drec-tiles">
-          <Tile label={`最近${w.days || WINDOW_DAYS}日の一回目の正解`} value={w.accuracy === null ? '—' : pct(w.accuracy)} />
+          <Tile label={`最近${w.days || WINDOW_DAYS}日、一回目で注文どおり`} value={w.accuracy === null ? '—' : pct(w.accuracy)} />
           <Tile label="新しい言葉（1日の上限）" value={`${k.budget}語`} />
           <Tile label={seats ? `お客さん／日（長椅子 +${seats}）` : 'お客さん／日'} value={`${k.customers + seats}人`} />
           <Tile label="1日の確定" value={w.days ? `${Math.round(w.confirmedPerDay * 10) / 10}語` : '—'} />
@@ -144,7 +144,7 @@ export function RecordRight() {
         format={(v) => `${Math.round(v)}秒`}
         empty="まだ測っていません"
       />
-      <p className="hand small muted">※ 一回目の正解率は、同じお客さんへの「やり直し」を数えません。のぞき見 {h.reduce((s, m) => s + m.peeks, 0)} 回・やり直し {h.reduce((s, m) => s + m.retries, 0)} 回。</p>
+      <p className="hand small muted">※ 一回目で注文どおりだった割合は、同じお客さんへの「やり直し」を数えません。のぞき見 {h.reduce((s, m) => s + m.peeks, 0)} 回・やり直し {h.reduce((s, m) => s + m.retries, 0)} 回。</p>
     </div>
   );
 }

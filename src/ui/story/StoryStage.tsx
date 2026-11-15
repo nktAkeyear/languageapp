@@ -55,7 +55,9 @@ export function StoryStage({ onSettings }: { onSettings?: () => void }) {
   if (!data || !p || !story || !p.story) return null;
   const act: Act = (fn) => g.mutateProgress(fn);
   const cards = p.story.cards;
-  const card = cards[0];
+  // Only a card that plays by itself (a regular's scene after their cup, the night) — or one the player opened —
+  // takes the stage; what the morning brought waits in the scene (deferred: notice pin, document box).
+  const card = cards[0] && !cards[0].deferred ? cards[0] : undefined;
   const night = cards.some((c) => c.kind === 'ledger');
   if (!card || hold.held) return su.box || su.reading ? <DocBoxView /> : null;
   return <StoryCardStage card={card} cards={cards} data={data} story={story} p={p} act={act} night={night} onSettings={onSettings} />;

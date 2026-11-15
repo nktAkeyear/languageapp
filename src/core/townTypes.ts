@@ -364,6 +364,34 @@ export interface MarketDay {
   done: boolean;
   /** Stalls visited (encounters are counted once per stall per day). */
   visited: string[];
+  /**
+   * What this trip to the market is for (absent = 'visit'): 'visit' = before opening, the goods go on today's
+   * shelf; 'order' = during working hours, ordered for delivery to the shop (arrives with the next customer,
+   * plus a delivery fee); 'evening' = after closing, bought for tomorrow (kept in the back room overnight).
+   */
+  mode?: MarketMode;
+  /** Trips made today (the first one is the day's market run). */
+  trips?: number;
+  /** Delivery fee charged for this trip (order mode; refunded when nothing was ordered). */
+  fee?: number;
+  /** Where the trip started ('hub' = from the town after closing; default the shop). */
+  from?: 'shop' | 'hub';
+}
+
+export type MarketMode = 'visit' | 'order' | 'evening';
+
+/** The three parts of a working day: 0 始業前 (before opening), 1 業務中 (working hours), 2 業務後 (after closing). */
+export type DayPart = 0 | 1 | 2;
+
+/** Goods ordered by delivery during working hours: they reach the shop when the next customer comes in. */
+export interface SupplyOrder {
+  /** Portions per good. */
+  stock: Partial<Record<IngredientId, number>>;
+  /** Index of the customer at the counter when it was ordered (arrives once the queue has moved past it). */
+  at: number;
+  fee: number;
+  /** The goods as ordered (for the arrival note). */
+  goods: { good: IngredientId; units: number; variant?: VariantId }[];
 }
 
 export interface SlipLine {
@@ -435,6 +463,22 @@ export interface TownDayState {
   moneyStart: number;
   market?: MarketDay;
   delivery?: DeliveryDay;
+  /**
+   * The tea house's part of the day (v6): 0 始業前 (preparing; the market may be visited), 1 業務中 (open:
+   * serving; supplies only by delivery), 2 業務後 (closed: house deliveries, the evening market, the town).
+   * Absent in older saves (migrated at load).
+   */
+  part?: DayPart;
+  /** Where the player is in the tea house's day: the shop itself, the market street or out delivering. */
+  at?: ActivityKind;
+  /** Supplies ordered by delivery during working hours, not arrived yet. */
+  incoming?: SupplyOrder[];
+  /** Supplies that arrived today (for the shop's note: "the delivery came"). */
+  arrived?: SupplyOrder[];
+  /** Delivery fees paid today. */
+  fees?: number;
+  /** The tea house opened in the evening (a second shift after another job): shop only. */
+  evening?: boolean;
 }
 
 export interface TownProgress {
@@ -449,4 +493,6 @@ export interface TownProgress {
   /** Curriculum slip log. */
   /** `seeded`: skipped by a start level (its delivery level was already reached), never delivered. */
   slips: Record<string, { attempts: number; perfect: boolean; seeded?: boolean }>;
+  /** Goods bought after closing for the next day (portions; kept in the back room overnight). */
+  pantry?: Partial<Record<IngredientId, number>>;
 }

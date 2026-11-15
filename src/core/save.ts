@@ -7,7 +7,7 @@ import type { DifficultyState } from './difficulty';
 import type { JobsState } from '../jobs/types';
 import { newWordbook, type WordbookState } from './wordbook';
 
-export const SAVE_VERSION = 5;
+export const SAVE_VERSION = 6;
 export const STORAGE_KEY = 'minato-chabou-save';
 
 export type LayoutPref = 'auto' | 'desktop' | 'mobile';
@@ -230,6 +230,85 @@ const migrations: Record<number, (s: AnyObj) => AnyObj> = {
       progress[k] = { ...p, words, verification, wordbook: newWordbook() };
     }
     return { ...s, version: 5, progress };
+  },
+  // v5 → v6: the day in three parts (始業前 / 業務中 / 業務後) instead of 朝 / 昼 / 夕方, starting at the workplace.
+  // - A tea house day in progress gets its part and place from where it was: at the market → before opening
+  //   (still at the market); in the shop before the first cup → before opening; serving → working hours; closed
+  //   (or out delivering) → after closing.
+  // - The jobs' day gets today's workplace: the shift under way (its part from the shift's phase), the tea house,
+  //   or — in the town after some work — after closing; a morning in the town with nothing done yet starts again
+  //   at the tea house, before opening.
+  // - Story cards that came with the morning (a chapter title, a delivery note, papers) wait in the scene.
+  5: (s) => {
+    const progress = { ...((s.progress as AnyObj) ?? {}) };
+    for (const k of Object.keys(progress)) {
+      const p0 = progress[k] as AnyObj | undefined;
+      if (!p0 || typeof p0 !== 'object') continue;
+      const p = { ...p0 };
+      const today = p.today as AnyObj | null | undefined;
+      const td0 = p.townDay as AnyObj | null | undefined;
+      let teaPart = 0;
+      if (td0 && typeof td0 === 'object') {
+        const td = { ...td0 };
+        const segs = Array.isArray(td.segments) ? (td.segments as string[]) : ['shop'];
+        const seg = segs[typeof td.seg === 'number' ? td.seg : 0] ?? 'shop';
+        const phase = today?.phase;
+        const served = !!today && ((today.index as number) > 0 || phase === 'reaction');
+        if (seg === 'market') {
+          teaPart = 0;
+          // At the market only when the trip was under way (a stall open, something bought); else the day starts
+          // in the shop, before opening.
+          const md = td.market as AnyObj | undefined;
+          const begun = !!md && !md.done && (!!md.stall || (Array.isArray(md.basket) && md.basket.length > 0) || (Array.isArray(md.visited) && md.visited.length > 0));
+          td.at = begun ? 'market' : 'shop';
+        } else if (seg === 'delivery') {
+          teaPart = 2;
+          td.at = (td.delivery as AnyObj | undefined)?.phase === 'result' ? 'shop' : 'delivery';
+        } else {
+          teaPart = phase === 'closed' ? 2 : served ? 1 : 0;
+          td.at = 'shop';
+        }
+        td.part = teaPart;
+        progress[k] = p;
+        p.townDay = td;
+      }
+      const jobs = p.jobs as AnyObj | undefined;
+      const d0 = jobs?.day as AnyObj | null | undefined;
+      if (jobs && d0 && typeof d0 === 'object' && !d0.work) {
+        const d = { ...d0 };
+        const shift = d.shift as AnyObj | null | undefined;
+        const log = Array.isArray(d.log) ? (d.log as AnyObj[]) : [];
+        if (shift) {
+          d.work = shift.job;
+          d.shift = { ...shift, part: 1 };
+          d.part = shift.phase === 'intro' ? 0 : shift.phase === 'done' ? 2 : 1;
+          d.view = 'job';
+        } else if (d.view === 'teahouse') {
+          d.work = 'teahouse';
+          d.part = teaPart;
+        } else if ((typeof d.part === 'number' && d.part > 0) || log.length) {
+          d.work = (log[0]?.job as string | undefined) ?? 'teahouse';
+          d.part = typeof d.part === 'number' && d.part > 2 ? 3 : 2;
+          d.view = 'hub';
+        } else {
+          d.work = 'teahouse';
+          d.part = 0;
+          d.view = 'teahouse';
+          d.tea = 'active';
+        }
+        p.jobs = { ...jobs, day: d };
+      }
+      const story = p.story as AnyObj | undefined;
+      if (story && Array.isArray(story.cards)) {
+        // Before opening, every card waiting is the morning's (a chapter, a visit, a note, papers).
+        const morning = teaPart === 0;
+        const cards = (story.cards as AnyObj[]).map((c) => (c && c.kind !== 'ledger' && (morning || c.kind === 'chapter' || c.kind === 'doc' || (c.kind === 'scene' && c.request)) ? { ...c, deferred: true } : c));
+        // The cards that play by themselves come first (story/engine.ts pushCard keeps that order).
+        p.story = { ...story, cards: [...cards.filter((c) => !c?.deferred), ...cards.filter((c) => c?.deferred)] };
+      }
+      progress[k] = p;
+    }
+    return { ...s, version: 6, progress };
   },
 };
 

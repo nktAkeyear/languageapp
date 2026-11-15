@@ -114,7 +114,7 @@ export function JobRecordTable() {
             <th>仕事</th>
             <th>位</th>
             <th>仕事の数</th>
-            <th>うまく</th>
+            <th>認められた</th>
             <th>言葉（確定・知っているはず/全体）</th>
           </tr>
         </thead>
